@@ -1,0 +1,108 @@
+/* app/assets/stylesheets/chat.css */
+
+:root {
+  --body-bg-color: #FFFBE7;
+  --user-message-bg-color: #F2A249;
+  --user-message-border-color: #D18A3A;
+  --user-input-active-bg-color: #FFF2D9;
+  --user-input-active-border-color: #D18A3A;
+  --user-input-disabled-bg-color: #FFE9BF;
+  --user-input-disabled-border-color: #D18A3A;
+  --start-button-bg-color: #F2A249;
+  --start-button-border-color: #D18A3A;
+  --start-button-hover-bg-color: #F2A249;
+  --assistant-message-bg-color: #F0EAD6;
+  --assistant-message-border-color: #D4C59A;
+  --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Lightward Favorit';
+  font-weight: 200;
+  margin: 5vh 10vw;
+  background-color: var(--body-bg-color);
+}
+
+body, input, button {
+  font-size: 100%;
+}
+
+a {
+  font-family: 'Lightward Favorit Lining';
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.hidden {
+  display: none;
+}
+
+.start-chat-button {
+  background-color: var(--start-button-bg-color);
+  border: 1px solid var(--start-button-border-color);
+  color: #101010;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+}
+
+.start-chat-button:hover {
+  background-color: var(--start-button-hover-bg-color);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-log {
+  margin-bottom: -1rem;
+  flex: 1;
+  overflow-y: scroll;
+  background-color: var(--body-bg-color);
+}
+
+.element {
+  padding: 0.7rem 1rem;
+  margin: 1rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.375rem;
+}
+
+.chat-message {
+  background-color: var(--assistant-message-bg-color);
+  border: 1px solid var(--assistant-message-border-color);
+}
+
+.chat-message.user {
+  background-color: var(--user-message-bg-color);
+  border: 1px solid var(--user-message-border-color);
+}
+
+.chat-input {
+  border: 1px solid var(--user-input-active-border-color);
+  background-color: var(--user-input-active-bg-color);
+}
+
+.chat-input.disabled {
+  border: 1px solid var(--user-input-disabled-border-color);
+  background-color: var(--user-input-disabled-bg-color);
+}
+
+.pulsing {
+  animation: pulsing 1.5s infinite;
+}
+
+@keyframes pulsing {
+  0% { opacity: 0.5; filter: blur(1px); }
+  50% { opacity: 1; filter: blur(0); }
+  100% { opacity: 0.5; filter: blur(1px); }
+}
