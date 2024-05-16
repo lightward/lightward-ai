@@ -79,6 +79,7 @@ class StreamMessagesJob < ApplicationJob
   def handle_data_event(json_data, stream_id)
     begin
       event_data = JSON.parse(json_data)
+      Rails.logger.debug("Event: #{@current_event}, Data: #{event_data}")
       case @current_event
       when "message_start"
         ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: 'message_start', data: event_data })

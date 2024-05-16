@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     messageElement.classList.add('chat-message', role, 'element');
     messageElement.innerText = text;
     chatLog.appendChild(messageElement);
-    chatLog.scrollTop = chatLog.scrollHeight;
+    window.scrollTo(0, document.body.scrollHeight);
     return messageElement;
   }
 
@@ -25,19 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
     messageElement.classList.add('chat-message', role, 'element', 'pulsing');
     messageElement.innerHTML = '&nbsp;'; // Prefill with a non-breaking space
     chatLog.appendChild(messageElement);
-    chatLog.scrollTop = chatLog.scrollHeight;
+    window.scrollTo(0, document.body.scrollHeight);
     return messageElement;
   }
 
-  function revealUserInput() {
+  function showUserInput() {
     userInput.classList.remove('hidden');
+    userInput.classList.add('disabled-input');
+    userInput.disabled = true;
   }
 
   function enableUserInput() {
-    revealUserInput();
+    userInput.classList.remove('hidden', 'disabled-input');
     userInput.disabled = false;
     userInput.focus();
-    userInput.classList.remove('disabled');
+  }
+
+  function handleUserInput() {
     userInput.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') {
         event.preventDefault();
@@ -46,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
           addMessage('user', userMessage);
           chatLogData.push({ role: 'user', content: [{ type: 'text', text: userMessage }] });
           userInput.value = '';
-          userInput.disabled = true;
-          userInput.classList.add('disabled');
+          userInput.blur();
+          userInput.classList.add('hidden');
           currentAssistantMessageElement = addPulsingMessage('assistant');
           fetchAssistantResponse();
         }
@@ -82,18 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         received(data) {
           if (data.event === 'message_start') {
-            // Remove pulsing effect from the current assistant message element
             if (currentAssistantMessageElement) {
               currentAssistantMessageElement.classList.remove('pulsing');
               currentAssistantMessageElement.innerText = ''; // Clear the space character
             }
+            showUserInput();
           } else if (data.event === 'content_block_start') {
             // Initialize a new content block
           } else if (data.event === 'content_block_delta') {
             const delta = data.data.delta;
             if (delta.type === 'text_delta' && currentAssistantMessageElement) {
               currentAssistantMessageElement.innerText += delta.text;
-              chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll
+              window.scrollTo(0, document.body.scrollHeight); // Auto-scroll
             }
           } else if (data.event === 'content_block_stop') {
             // Content block is complete
@@ -102,6 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (data.event === 'message_stop') {
             const assistantMessage = currentAssistantMessageElement.innerText;
             chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: assistantMessage }] });
+            userInput.classList.remove('disabled-input');
+            userInput.classList.add('hidden');
+            enableUserInput();
           } else if (data.event === 'end') {
             subscription.unsubscribe();
             enableUserInput();
@@ -126,4 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
     currentAssistantMessageElement = addPulsingMessage('assistant');
     fetchAssistantResponse();
   });
+
+  handleUserInput();
 });

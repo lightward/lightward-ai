@@ -33,10 +33,10 @@ a {
   text-decoration: none;
 }
 
-.container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+h1 {
+  font-weight: 200;
+  font-size: 2rem;
+  margin: 1rem;
 }
 
 .hidden {
@@ -105,4 +105,10 @@ a {
   0% { opacity: 0.5; filter: blur(1px); }
   50% { opacity: 1; filter: blur(0); }
   100% { opacity: 0.5; filter: blur(1px); }
+}
+
+.disabled-input {
+  opacity: 0.5;
+  filter: blur(1px);
+  pointer-events: none;
 }
