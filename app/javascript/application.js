@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const startChatButton = document.getElementById('start-chat');
   const chatLog = document.getElementById('chat-log');
   const userInput = document.getElementById('user-input');
+  const instructions = document.getElementById('instructions');
+  const notes = document.getElementById('notes');
 
   let chatLogData = [];
   let currentAssistantMessageElement = null;
@@ -129,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   startChatButton.addEventListener('click', () => {
+    instructions.remove();
+    notes.remove();
     startChatButton.remove();
     addMessage('user', "I'm here");
     chatLogData.push({ role: 'user', content: [{ type: 'text', text: "I'm here" }] });
