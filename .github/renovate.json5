@@ -1,0 +1,17 @@
+{
+  // Dependabot handles as much as possible. Renovate is in the mix only because Dependabot
+  // can't handle version updates of Ruby itself. As such, we disable Renovate for all
+  // packages *except* Ruby.
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  enabledManagers: ['bundler', 'dockerfile', 'ruby-version'],
+  packageRules: [
+    {
+      matchPackagePatterns: ['.'],
+      enabled: false,
+    },
+    {
+      matchPackageNames: ['ruby'],
+      enabled: true,
+    },
+  ],
+}

@@ -1,0 +1,30 @@
+name: Release Drafter
+
+on:
+  push:
+    branches:
+      - main
+
+  # nb: pushes by the github-actions bot (i.e. pushes resulting from
+  # dependabot auto-merges) do not trigger trigger a `push` event. run
+  # this hourly, to make sure that we're regularly updating the pending
+  # release with whatever dependabot's been up to.
+  schedule:
+    - cron: 0 * * * * # every hour
+
+  # also allow running this manually, as an escape hatch
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

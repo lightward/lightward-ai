@@ -1,0 +1,13 @@
+change-template: '- #$NUMBER: $TITLE @$AUTHOR'
+name-template: $NEXT_MAJOR_VERSION
+tag-template: $NEXT_MAJOR_VERSION
+version-resolver:
+  default: major
+version-template: v$MAJOR
+
+template: |
+  **Compare with $PREVIOUS_TAG**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...$NEXT_MAJOR_VERSION
+
+  ## Changes
+
+  $CHANGES

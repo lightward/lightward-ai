@@ -1,0 +1,60 @@
+console_command = "/bin/sh"
+
+# this one's closest to aws's us-east-1, where our databases live
+primary_region = "iad"
+
+# sidekiq listens for this, and will shut down gracefully when it receives it. puma too.
+kill_signal = "SIGTERM"
+
+# this is fly's max: 5min to exit. we use this as a courtesy to in-progress runs, and we
+# sync this up with sidekiq's timeout.
+kill_timeout = 300
+
+[build]
+  dockerfile = "Dockerfile"
+  ignorefile = ".dockerignore"
+
+[deploy]
+  # deployment is done (and configured) via shared workflow. see:
+  # https://github.com/lightward/.github-private/blob/main/.github/workflows/fly-deploy.yml
+
+[env]
+  PORT                = "8080"
+  RAILS_ENV           = "production"
+  RAILS_LOG_TO_STDOUT = "true"
+
+[processes]
+  web = "bin/puma --port 8080"
+
+[[services]]
+  auto_start_machines  = true
+  auto_stop_machines   = true
+  internal_port        = 8080
+  min_machines_running = 20
+  processes            = ["web"]
+  protocol             = "tcp"
+
+  [services.concurrency]
+    hard_limit = 1000
+    soft_limit = 975
+    type       = "requests"
+
+  [[services.ports]]
+    force_https = true
+    handlers    = ["http"]
+    port        = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port     = 443
+
+[checks]
+  [checks.responds_to_http]
+    grace_period = "5s"
+    interval     = "10s"
+    method       = "get"
+    path         = "/__healthcheck"
+    port         = 8080
+    processes    = ["web"]
+    timeout      = "1s"
+    type         = "http"

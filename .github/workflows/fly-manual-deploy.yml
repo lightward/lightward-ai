@@ -1,0 +1,29 @@
+name: Manual deploy 🛠️
+
+on:
+  workflow_dispatch:
+    inputs:
+      commitish:
+        description: Commitish (branch, tag, sha)
+        required: true
+        default: main
+        type: string
+      environment:
+        description: Environment
+        required: true
+        default: staging
+        type: environment
+      notes:
+        description: Deploy notes
+        required: true
+        type: string
+
+jobs:
+  fly-deploy:
+    name: Fly deploy
+    uses: lightward/.github-private/.github/workflows/fly-deploy.yml@main
+    secrets: inherit
+    with:
+      commitish: ${{ github.event.inputs.commitish }}
+      environment: ${{ github.event.inputs.environment }}
+      changelog: ${{ github.event.inputs.notes }}

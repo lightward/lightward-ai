@@ -1,0 +1,19 @@
+name: Main
+
+on:
+  # daily
+  schedule:
+    - cron: 0 0 * * *
+
+  # on push to main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+    with:
+      sha: ${{ github.sha }}
