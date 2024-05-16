@@ -1,7 +1,9 @@
 // app/javascript/application.js
 import "@hotwired/turbo-rails"
 import "controllers"
-import consumer from "./channels/consumer"
+import { createConsumer } from "@rails/actioncable"
+
+const consumer = createConsumer();
 
 document.addEventListener('DOMContentLoaded', () => {
   const startChatButton = document.getElementById('start-chat');
