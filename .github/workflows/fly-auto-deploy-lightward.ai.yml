@@ -1,4 +1,4 @@
-name: Auto-deploy auth.lightward.guide
+name: Auto-deploy lightward.ai
 
 on:
   push:
@@ -15,11 +15,11 @@ jobs:
       changelog: ${{ github.event.release.body }}
       commitish: ${{ github.event.release.tag_name }}
       deeplink: ${{ github.event.release.html_url }}
-      environment: auth.lightward.guide
+      environment: lightward.ai
 
   fly-secrets:
     name: Fly secrets
     uses: ./.github/workflows/fly-secrets.yml
     secrets: inherit
     with:
-      environment: auth.lightward.guide
+      environment: lightward.ai
