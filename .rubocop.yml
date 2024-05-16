@@ -1,0 +1,67 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Rails/SaveBang:
+  Enabled: true
+  AllowedReceivers:
+    - ActionDispatch::TestRequest
+
+Style/FetchEnvVar:
+  Enabled: true
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: semantic
+  AllowBracesOnProceduralOneLiners: true
+  BracesRequiredMethods:
+    # procs and lambdas are always used by *something*, and if the
+    # return value of a block is significant, we use braces. thus,
+    # we disagree with rubocop's default here.
+    - proc
+    - lambda
+  AllowedMethods: []
+
+Layout/LineLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'db/migrate/*.rb'
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+  Enabled: true
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+  Enabled: true
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+  Enabled: true
+
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true

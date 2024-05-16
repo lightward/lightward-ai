@@ -16,19 +16,19 @@ jobs:
       commitish: ${{ inputs.sha }}
       environment: lightward.ai
 
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: ${{ inputs.sha }}
-  #     - name: Install Ruby and gems
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         bundler-cache: true
-  #     - name: Lint Ruby files
-  #       run: bin/rubocop --parallel --only-recognized-file-types --extra-details --format github --fail-level info
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Lint Ruby files
+        run: bin/rubocop --parallel --only-recognized-file-types --extra-details --format github --fail-level info
 
   audit:
     runs-on: ubuntu-latest
@@ -43,8 +43,8 @@ jobs:
           bundler-cache: true
       - name: Security audit dependencies
         run: bin/bundler-audit --update
-      # - name: Security audit application code
-      #   run: bin/brakeman --quiet --confidence-level 1 --format github
+      - name: Security audit application code
+        run: bin/brakeman --quiet --confidence-level 1 --format github
 
   # rspec:
   #   runs-on: ubuntu-latest

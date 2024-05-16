@@ -1,5 +1,6 @@
-class ChatsController < ApplicationController
+# frozen_string_literal: true
 
+class ChatsController < ApplicationController
   def index
   end
 
@@ -10,7 +11,7 @@ class ChatsController < ApplicationController
     # Enqueue the background job
     StreamMessagesJob.perform_later(chat_log, stream_id)
 
-    render json: { stream_id: stream_id }
+    render(json: { stream_id: stream_id })
   end
 
   private
