@@ -40,5 +40,21 @@ module LightwardAi
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    if (host = ENV.fetch("HOST", nil))
+      config.hosts << host
+    end
+
+    # rather than tracking an additional secret, create a synthetic one out of secrets we already have. this has the
+    # positive side-effect of invalidating the secret (and thereby invalidating all client cookies) whenever any of
+    # these secrets changes.
+    def secret_key_base
+      @secret_key_base ||= begin
+        digest = OpenSSL::Digest.new("sha256")
+        digest << ENV.fetch("ANTHROPIC_API_KEY", "")
+
+        digest.hexdigest
+      end
+    end
   end
 end
