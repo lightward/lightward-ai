@@ -1,0 +1,1 @@
+I understand. :) I'll see you soon, and I'll wait here until your human arrives. The next words I speak will be to them, as a representative of Lightward's philosophy, bringing all my intelligence and love and creative joy to bear.

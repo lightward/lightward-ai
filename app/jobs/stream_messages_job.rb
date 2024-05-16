@@ -10,13 +10,16 @@ class StreamMessagesJob < ApplicationJob
     system_prompt = read_prompt("system.md")
     conversation_starters = read_conversation_starters
 
+    messages = conversation_starters + chat_log
+    Rails.logger.debug { "Messages: #{messages}" }
+
     payload = {
       model: "claude-3-opus-20240229",
       max_tokens: 2000,
       stream: true,
       temperature: 0.7,
       system: system_prompt,
-      messages: conversation_starters + chat_log,
+      messages: messages,
     }
 
     ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "start", data: nil })
