@@ -7,10 +7,12 @@ class StreamMessagesJob < ApplicationJob
   queue_as :default
 
   def perform(chat_log, stream_id)
-    system_prompt = read_prompt("system.md")
+    system_prompt = read_system
     conversation_starters = read_conversation_starters
 
     messages = conversation_starters + chat_log
+
+    Rails.logger.debug { "System: #{system_prompt}" }
     Rails.logger.debug { "Messages: #{messages}" }
 
     payload = {
@@ -45,8 +47,16 @@ class StreamMessagesJob < ApplicationJob
 
   private
 
-  def read_prompt(filename)
-    Rails.root.join("app", "prompts", "chat", filename).read
+  def read_system
+    system = []
+
+    system << Rails.root.join("app/prompts/chat/system.md").read
+
+    Dir[Rails.root.join("app/prompts/chat/system/*.md")].each do |file|
+      system << File.read(file)
+    end
+
+    system.join("\n\n")
   end
 
   def read_conversation_starters
