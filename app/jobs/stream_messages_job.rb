@@ -28,6 +28,15 @@ class StreamMessagesJob < ApplicationJob
 
     begin
       anthropic_api_request(payload) do |response|
+        # check for http errors
+        if response.code.to_i >= 400
+          ActionCable.server.broadcast(
+            "stream_channel_#{stream_id}",
+            { event: "error", data: { error: { message: response.body } } },
+          )
+          return
+        end
+
         buffer = +""
         response.read_body do |chunk|
           buffer << chunk

@@ -1,10 +1,18 @@
 <div id="chat-container" class="chat-container">
   <div id="chat-log" class="chat-log">
-    <div>
-      <button id="start-chat" class="element start-chat-button">I'm here</button>
-      <span id="instructions">← tap</span>
+    <div id="start-suggestions" class="response-suggestions">
+      <a href="#" class="element button response-link">I'm a slow reader</a>
+      <a href="#" class="element button response-link">I'm a fast reader</a>
+      <span id="instructions">← tap one</span>
     </div>
   </div>
+
+  <div id="response-suggestions" class="response-suggestions hidden">
+    <a href="#" class="element button response-link">Are you okay?</a>
+    <a href="#" class="element button response-link">What happened?</a>
+    <a href="#" class="element button response-link">Retry</a>
+  </div>
+
   <input id="user-input" class="element chat-input hidden" disabled type="text" placeholder="What would you like to say?">
 </div>
 

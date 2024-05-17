@@ -43,19 +43,24 @@ h1 {
   margin: 1rem;
 }
 
-.hidden {
-  display: none;
+.element {
+  padding: 0.7rem 1rem;
+  margin: 1rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.375rem;
 }
 
-.start-chat-button {
+.button {
   background-color: var(--start-button-bg-color);
   border: 1px solid var(--start-button-border-color);
   color: #101010;
   cursor: pointer;
   box-shadow: var(--box-shadow);
+  text-decoration: none;
+  font-family: 'Lightward Favorit';
 }
 
-.start-chat-button:hover {
+.button:hover {
   background-color: var(--start-button-hover-bg-color);
   box-shadow: var(--box-shadow-hover);
 }
@@ -70,18 +75,11 @@ h1 {
 .chat-log {
   margin-bottom: -1rem;
   flex: 1;
-  overflow-y: scroll;
   background-color: var(--body-bg-color);
 }
 
-.element {
-  padding: 0.7rem 1rem;
-  margin: 1rem;
-  box-shadow: var(--box-shadow);
-  border-radius: 0.375rem;
-}
-
 .chat-message {
+  min-height: 1rem;
   background-color: var(--assistant-message-bg-color);
   border: 1px solid var(--assistant-message-border-color);
 }
@@ -118,5 +116,23 @@ h1 {
 }
 
 #notes {
-  margin: 2rem 1rem;
+  margin: 3rem 1rem;
+}
+
+.response-suggestions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.response-suggestions .element {
+  margin: 0;
+  display: inline-block;
+}
+
+/* should come last */
+.hidden {
+  display: none;
 }

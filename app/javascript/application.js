@@ -6,11 +6,12 @@ import { createConsumer } from "@rails/actioncable"
 const consumer = createConsumer();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const startChatButton = document.getElementById('start-chat');
+  const startSuggestions = document.getElementById('start-suggestions');
   const chatLog = document.getElementById('chat-log');
   const userInput = document.getElementById('user-input');
   const instructions = document.getElementById('instructions');
   const notes = document.getElementById('notes');
+  const responseSuggestions = document.getElementById('response-suggestions');
 
   let chatLogData = [];
   let currentAssistantMessageElement = null;
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function addPulsingMessage(role) {
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role, 'element', 'pulsing');
-    messageElement.innerHTML = '&nbsp;'; // Prefill with a non-breaking space
     chatLog.appendChild(messageElement);
     window.scrollTo(0, document.body.scrollHeight);
     return messageElement;
@@ -40,9 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function enableUserInput() {
+    currentAssistantMessageElement?.classList.remove('pulsing');
     userInput.classList.remove('hidden', 'disabled-input');
     userInput.disabled = false;
     userInput.focus();
+    responseSuggestions.classList.add('hidden'); // Hide response suggestions
+  }
+
+  function showResponseSuggestions() {
+    responseSuggestions.classList.remove('hidden');
+  }
+
+  function hideResponseSuggestions() {
+    startSuggestions.classList.add('hidden');
+    responseSuggestions.classList.add('hidden');
+    instructions.remove();
+    notes.remove();
   }
 
   function handleUserInput() {
@@ -63,7 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function handleResponseClick(event) {
+    event.preventDefault();
+    const message = event.target.innerText;
+    addMessage('user', message);
+    chatLogData.push({ role: 'user', content: [{ type: 'text', text: message }] });
+    userInput.classList.add('hidden');
+    currentAssistantMessageElement = addPulsingMessage('assistant');
+    fetchAssistantResponse();
+  }
+
+  document.querySelectorAll('.response-link').forEach(link => {
+    link.addEventListener('click', handleResponseClick);
+  });
+
   function fetchAssistantResponse() {
+    hideResponseSuggestions();
+
     fetch('/chats/message', {
       method: 'POST',
       headers: {
@@ -81,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Error:', error);
       addMessage('error', `Error: ${error.message}`);
       enableUserInput();
+      showResponseSuggestions(); // Show response suggestions on error
     });
   }
 
@@ -92,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
           if (data.event === 'message_start') {
             if (currentAssistantMessageElement) {
               currentAssistantMessageElement.classList.remove('pulsing');
-              currentAssistantMessageElement.innerText = ''; // Clear the space character
             }
             showUserInput();
           } else if (data.event === 'content_block_start') {
@@ -120,25 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle ping if needed
           } else if (data.event === 'error') {
             const errorMessage = `Error: ${data.data.error.message}`;
-            currentAssistantMessageElement.innerText += `\n${errorMessage}`;
+            currentAssistantMessageElement.innerText += ` ${errorMessage}`;
             chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
             subscription.unsubscribe();
             enableUserInput();
+            showResponseSuggestions(); // Show response suggestions on error
           }
         }
       }
     );
   }
-
-  startChatButton.addEventListener('click', () => {
-    instructions.remove();
-    notes.remove();
-    startChatButton.remove();
-    addMessage('user', "I'm here");
-    chatLogData.push({ role: 'user', content: [{ type: 'text', text: "I'm here" }] });
-    currentAssistantMessageElement = addPulsingMessage('assistant');
-    fetchAssistantResponse();
-  });
 
   handleUserInput();
 });
