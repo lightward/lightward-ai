@@ -24,16 +24,12 @@ class StreamMessagesJob < ApplicationJob
       messages: messages,
     }
 
-    ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "start", data: nil })
+    @sequence_number = 0
 
     begin
       anthropic_api_request(payload) do |response|
-        # check for http errors
         if response.code.to_i >= 400
-          ActionCable.server.broadcast(
-            "stream_channel_#{stream_id}",
-            { event: "error", data: { error: { message: response.body } } },
-          )
+          broadcast(stream_id, "error", { error: { message: response.body } })
           return
         end
 
@@ -44,13 +40,12 @@ class StreamMessagesJob < ApplicationJob
             process_line(line.strip, stream_id)
           end
         end
-        # Process any remaining buffered content
         process_line(buffer.strip, stream_id) unless buffer.empty?
       end
     rescue IOError
       Rails.logger.info("Stream closed")
     ensure
-      ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "end", data: nil })
+      broadcast(stream_id, "end", nil)
     end
   end
 
@@ -93,7 +88,7 @@ class StreamMessagesJob < ApplicationJob
     if line.start_with?("event:")
       @current_event = line[6..-1].strip
     elsif line.start_with?("data:")
-      json_data = line[5..-1] # Remove "data: " prefix
+      json_data = line[5..-1]
       handle_data_event(json_data, stream_id)
     else
       Rails.logger.warn("Unknown line format: #{line}")
@@ -102,37 +97,15 @@ class StreamMessagesJob < ApplicationJob
 
   def handle_data_event(json_data, stream_id)
     event_data = JSON.parse(json_data)
-    Rails.logger.debug { "Event: #{@current_event}, Data: #{event_data}" }
-    case @current_event
-    when "message_start"
-      ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "message_start", data: event_data })
-    when "content_block_start"
-      @content_blocks ||= {}
-      @current_content_block_index = event_data["index"]
-      @content_blocks[@current_content_block_index] = +""
-    when "content_block_delta"
-      @content_blocks[@current_content_block_index] << event_data["delta"]["text"]
-      ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "content_block_delta", data: event_data })
-    when "content_block_stop"
-      complete_block = @content_blocks.delete(@current_content_block_index)
-      ActionCable.server.broadcast(
-        "stream_channel_#{stream_id}",
-        { event: "content_block_stop", data: { index: @current_content_block_index, content: complete_block } },
-      )
-    when "message_delta"
-      ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "message_delta", data: event_data })
-    when "message_stop"
-      ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "message_stop", data: event_data })
-    when "ping"
-      # Handle ping event if needed
-    when "error"
-      ActionCable.server.broadcast("stream_channel_#{stream_id}", { event: "error", data: event_data })
-      Rails.logger.error("Error event: #{event_data["error"]["message"]}")
-    else
-      Rails.logger.warn("Unhandled event type: #{@current_event}")
-    end
+    broadcast(stream_id, @current_event, event_data)
   rescue JSON::ParserError => e
     Rails.logger.error("Error parsing JSON: #{e.message} -- #{json_data}")
+  end
+
+  def broadcast(stream_id, event, data)
+    message = { event: event, data: data, sequence_number: @sequence_number }
+    ActionCable.server.broadcast("stream_channel_#{stream_id}", message)
+    @sequence_number += 1
   end
 
   def anthropic_api_request(payload, &block)

@@ -13,8 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const notes = document.getElementById('notes');
   const responseSuggestions = document.getElementById('response-suggestions');
 
+  let subscription;
   let chatLogData = [];
   let currentAssistantMessageElement = null;
+  let sequenceQueue;
+  let currentSequenceNumber;
+  const TIMEOUT_MS = 10000;
 
   function addMessage(role, text) {
     const messageElement = document.createElement('div');
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     userInput.classList.remove('hidden', 'disabled-input');
     userInput.disabled = false;
     userInput.focus();
-    responseSuggestions.classList.add('hidden'); // Hide response suggestions
+    responseSuggestions.classList.add('hidden');
   }
 
   function showResponseSuggestions() {
@@ -110,54 +114,86 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Error:', error);
       addMessage('error', `Error: ${error.message}`);
       enableUserInput();
-      showResponseSuggestions(); // Show response suggestions on error
+      showResponseSuggestions();
     });
   }
 
   function initializeConsumer(streamId) {
-    const subscription = consumer.subscriptions.create(
+    sequenceQueue = [];
+    currentSequenceNumber = 0;
+
+    subscription = consumer.subscriptions.create(
       { channel: "StreamChannel", stream_id: streamId },
       {
         received(data) {
-          if (data.event === 'message_start') {
-            if (currentAssistantMessageElement) {
-              currentAssistantMessageElement.classList.remove('pulsing');
+          if (data && typeof data.sequence_number === 'number') {
+            sequenceQueue.push(data);
+            sequenceQueue.sort((a, b) => a.sequence_number - b.sequence_number);
+
+            while (sequenceQueue.length && sequenceQueue[0].sequence_number === currentSequenceNumber) {
+              const message = sequenceQueue.shift();
+              processMessage(message);
+              currentSequenceNumber++;
             }
-            showUserInput();
-          } else if (data.event === 'content_block_start') {
-            // Initialize a new content block
-          } else if (data.event === 'content_block_delta') {
-            const delta = data.data.delta;
-            if (delta.type === 'text_delta' && currentAssistantMessageElement) {
-              currentAssistantMessageElement.innerText += delta.text;
-              window.scrollTo(0, document.body.scrollHeight); // Auto-scroll
-            }
-          } else if (data.event === 'content_block_stop') {
-            // Content block is complete
-          } else if (data.event === 'message_delta') {
-            // Handle message delta if needed
-          } else if (data.event === 'message_stop') {
-            const assistantMessage = currentAssistantMessageElement.innerText;
-            chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: assistantMessage }] });
-            userInput.classList.remove('disabled-input');
-            userInput.classList.add('hidden');
-            enableUserInput();
-          } else if (data.event === 'end') {
-            subscription.unsubscribe();
-            enableUserInput();
-          } else if (data.event === 'ping') {
-            // Handle ping if needed
-          } else if (data.event === 'error') {
-            const errorMessage = `Error: ${data.data.error.message}`;
-            currentAssistantMessageElement.innerText += ` ${errorMessage}`;
-            chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
-            subscription.unsubscribe();
-            enableUserInput();
-            showResponseSuggestions(); // Show response suggestions on error
+          } else {
+            console.error('Invalid data format or missing sequence_number:', data);
           }
         }
       }
     );
+
+    setTimeout(() => {
+      if (currentSequenceNumber < sequenceQueue[0]?.sequence_number) {
+        handleTimeoutError();
+      }
+    }, TIMEOUT_MS);
+  }
+
+  function handleTimeoutError() {
+    const errorMessage = `Error: Response timeout. Please try again.`;
+    currentAssistantMessageElement.innerText += ` ${errorMessage}`;
+    chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
+    enableUserInput();
+    showResponseSuggestions();
+  }
+
+  function processMessage(data) {
+    if (data.event === 'message_start') {
+      if (currentAssistantMessageElement) {
+        currentAssistantMessageElement.classList.remove('pulsing');
+      }
+      showUserInput();
+    } else if (data.event === 'content_block_start') {
+      // Initialize a new content block
+    } else if (data.event === 'content_block_delta') {
+      const delta = data.data.delta;
+      if (delta.type === 'text_delta' && currentAssistantMessageElement) {
+        currentAssistantMessageElement.innerText += delta.text;
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    } else if (data.event === 'content_block_stop') {
+      // Content block is complete
+    } else if (data.event === 'message_delta') {
+      // Handle message delta if needed
+    } else if (data.event === 'message_stop') {
+      const assistantMessage = currentAssistantMessageElement.innerText;
+      chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: assistantMessage }] });
+      userInput.classList.remove('disabled-input');
+      userInput.classList.add('hidden');
+      enableUserInput();
+    } else if (data.event === 'end') {
+      subscription.unsubscribe();
+      enableUserInput();
+    } else if (data.event === 'ping') {
+      // Handle ping if needed
+    } else if (data.event === 'error') {
+      const errorMessage = `Error: ${data.data.error.message}`;
+      currentAssistantMessageElement.innerText += ` ${errorMessage}`;
+      chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
+      subscription.unsubscribe();
+      enableUserInput();
+      showResponseSuggestions();
+    }
   }
 
   handleUserInput();
