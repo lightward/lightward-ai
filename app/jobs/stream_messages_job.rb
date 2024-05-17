@@ -11,6 +11,10 @@ class StreamMessagesJob < ApplicationJob
   queue_as :default
 
   def perform(chat_log, stream_id)
+    @sequence_number = 0
+
+    wait_for_ready(stream_id)
+
     system_prompt = read_system
     conversation_starters = read_conversation_starters
 
@@ -27,8 +31,6 @@ class StreamMessagesJob < ApplicationJob
       system: system_prompt,
       messages: messages,
     }
-
-    @sequence_number = 0
 
     begin
       anthropic_api_request(payload) do |response|
@@ -57,6 +59,16 @@ class StreamMessagesJob < ApplicationJob
   end
 
   private
+
+  def wait_for_ready(stream_id)
+    timeout = 10.seconds.from_now
+    sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
+
+    unless Rails.cache.read("stream_ready_#{stream_id}")
+      broadcast(stream_id, "error", { error: { message: "Stream not ready in time" } })
+      raise "Stream not ready in time"
+    end
+  end
 
   def read_system
     system = []

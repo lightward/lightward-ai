@@ -125,6 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
     subscription = consumer.subscriptions.create(
       { channel: "StreamChannel", stream_id: streamId },
       {
+        connected() {
+          // Send a "ready" message to the server
+          this.perform('ready');
+        },
         received(data) {
           if (data && typeof data.sequence_number === 'number') {
             sequenceQueue.push(data);

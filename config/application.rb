@@ -61,5 +61,8 @@ module LightwardAi
     # information to avoid inadvertent exposure of personally identifiable information (PII). If you
     # want to log everything, set the level to "debug".
     config.log_level = ENV.fetch("LOG_LEVEL", "info")
+
+    # Caching
+    config.cache_store = :memory_store
   end
 end
