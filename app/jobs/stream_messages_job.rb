@@ -132,14 +132,27 @@ class StreamMessagesJob < ApplicationJob
   end
 
   def handle_rate_limit_error(response, stream_id)
+    requests_limit = response["anthropic-ratelimit-requests-limit"]
+    requests_remaining = response["anthropic-ratelimit-requests-remaining"]
     requests_reset = Time.zone.parse(response["anthropic-ratelimit-requests-reset"])
+
+    tokens_limit = response["anthropic-ratelimit-tokens-limit"]
+    tokens_remaining = response["anthropic-ratelimit-tokens-remaining"]
     tokens_reset = Time.zone.parse(response["anthropic-ratelimit-tokens-reset"])
 
-    earlier_reset = [requests_reset, tokens_reset].min
-    reset_type = earlier_reset == requests_reset ? "request" : "token"
+    Rails.logger.warn("Rate limit exceeded: " \
+      "requests_limit=#{requests_limit}, " \
+      "requests_remaining=#{requests_remaining}, " \
+      "requests_reset=#{requests_reset}, " \
+      "tokens_limit=#{tokens_limit}, " \
+      "tokens_remaining=#{tokens_remaining}, " \
+      "tokens_reset=#{tokens_reset}")
 
-    human_readable_reset = distance_of_time_in_words(Time.now, earlier_reset)
-    error_message = "Rate limit exceeded for #{reset_type}s. Try again in #{human_readable_reset}. :)"
+    applicable_reset = [requests_reset, tokens_reset].max
+    reset_type = applicable_reset == requests_reset ? "request" : "token"
+
+    human_readable_reset = distance_of_time_in_words(Time.zone.now, applicable_reset).sub("about ", "~")
+    error_message = "Rate limit exceeded for #{reset_type}s. The limit will clear in #{human_readable_reset}. :)"
 
     broadcast(stream_id, "error", { error: { message: error_message } })
   end
