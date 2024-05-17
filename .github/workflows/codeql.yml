@@ -19,6 +19,7 @@ jobs:
       matrix:
         language:
           - ruby
+          - javascript-typescript
 
     steps:
       - name: Checkout repository
