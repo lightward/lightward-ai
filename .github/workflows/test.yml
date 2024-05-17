@@ -46,17 +46,17 @@ jobs:
       - name: Security audit application code
         run: bin/brakeman --quiet --confidence-level 1 --format github
 
-  # rspec:
-  #   runs-on: ubuntu-latest
+  rspec:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: ${{ inputs.sha }}
-  #     - name: Install Ruby and gems
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         bundler-cache: true
-  #     - name: Run rspec tests
-  #       run: bin/rspec --format RSpec::Github::Formatter --format documentation --force-color
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rspec tests
+        run: bin/rspec --format RSpec::Github::Formatter --format documentation --force-color

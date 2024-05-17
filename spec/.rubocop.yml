@@ -1,0 +1,36 @@
+inherit_from: ../.rubocop.yml
+
+# we regularly use update_column in specs, and I'm okay with that -Isaac
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# I want to fix this, but in its own pr, since it requires work on
+# both the api and the ui
+Naming/InclusiveLanguage:
+  Enabled: false
+
+# spec focusing (e.g. `it "should work", focus: true`) is useful locally,
+# but is still something that we want to warn about. we leave it on, for
+# warnings, but we don't autocorrect for it.
+RSpec/Focus:
+  Enabled: true
+  AutoCorrect: False
+
+RSpec/FilePath:
+  Enabled: true
+  CustomTransform:
+    GraphQL: graphql
+    GraphQLConcern: graphql_concern
+
+RSpec/SpecFilePathFormat:
+  Enabled: true
+  Exclude:
+    - application_spec.rb
+    - channels/connection_spec.rb
+    - lib/locksmith/key_conditions/no_orders_in_the_last_24_hours_spec.rb
+  CustomTransform:
+    GraphQL: graphql
+    GraphQLConcern: graphql_concern
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false

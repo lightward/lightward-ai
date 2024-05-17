@@ -11,8 +11,6 @@ class StreamMessagesJob < ApplicationJob
   queue_as :default
 
   def perform(chat_log, stream_id)
-    @sequence_number = 0
-
     wait_for_ready(stream_id)
 
     system_prompt = read_system
@@ -62,7 +60,7 @@ class StreamMessagesJob < ApplicationJob
 
   def wait_for_ready(stream_id)
     timeout = 10.seconds.from_now
-    sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
+    Kernel.sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
 
     unless Rails.cache.read("stream_ready_#{stream_id}")
       broadcast(stream_id, "error", { error: { message: "Stream not ready in time" } })
@@ -122,6 +120,8 @@ class StreamMessagesJob < ApplicationJob
   end
 
   def broadcast(stream_id, event, data)
+    @sequence_number ||= 0
+
     message = { event: event, data: data, sequence_number: @sequence_number }
     ActionCable.server.broadcast("stream_channel_#{stream_id}", message)
     @sequence_number += 1
