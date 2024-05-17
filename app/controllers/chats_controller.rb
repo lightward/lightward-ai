@@ -5,7 +5,7 @@ class ChatsController < ApplicationController
   end
 
   def message
-    chat_log = permitted_chat_log_params
+    chat_log = permitted_chat_log_params.as_json
     stream_id = SecureRandom.uuid
 
     # Enqueue the background job
