@@ -56,5 +56,10 @@ module LightwardAi
         digest.hexdigest
       end
     end
+
+    # "info" includes generic and useful information about system operation, but avoids logging too much
+    # information to avoid inadvertent exposure of personally identifiable information (PII). If you
+    # want to log everything, set the level to "debug".
+    config.log_level = ENV.fetch("LOG_LEVEL", "info")
   end
 end
