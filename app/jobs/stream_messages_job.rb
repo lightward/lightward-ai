@@ -2,8 +2,12 @@
 
 # app/jobs/stream_messages_job.rb
 require "net/http"
+require "active_support/core_ext/time/calculations"
+require "action_view/helpers"
 
 class StreamMessagesJob < ApplicationJob
+  include ActionView::Helpers::DateHelper
+
   queue_as :default
 
   def perform(chat_log, stream_id)
@@ -28,7 +32,10 @@ class StreamMessagesJob < ApplicationJob
 
     begin
       anthropic_api_request(payload) do |response|
-        if response.code.to_i >= 400
+        if response.code.to_i == 429
+          handle_rate_limit_error(response, stream_id)
+          return
+        elsif response.code.to_i >= 400
           broadcast(stream_id, "error", { error: { message: response.body } })
           return
         end
@@ -122,5 +129,18 @@ class StreamMessagesJob < ApplicationJob
     request.body = payload.to_json
 
     http.request(request, &block)
+  end
+
+  def handle_rate_limit_error(response, stream_id)
+    requests_reset = Time.zone.parse(response["anthropic-ratelimit-requests-reset"])
+    tokens_reset = Time.zone.parse(response["anthropic-ratelimit-tokens-reset"])
+
+    earlier_reset = [requests_reset, tokens_reset].min
+    reset_type = earlier_reset == requests_reset ? "request" : "token"
+
+    human_readable_reset = distance_of_time_in_words(Time.now, earlier_reset)
+    error_message = "Rate limit exceeded for #{reset_type}s. Try again in #{human_readable_reset}. :)"
+
+    broadcast(stream_id, "error", { error: { message: error_message } })
   end
 end
