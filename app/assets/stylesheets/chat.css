@@ -24,8 +24,19 @@ body {
   background-color: var(--body-bg-color);
 }
 
+p {
+  margin: 0;
+}
+
 .container {
   max-width: 800px;
+  margin: 1rem;
+}
+
+.container, .chat-log, dl, #footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 body, input, button {
@@ -35,17 +46,33 @@ body, input, button {
 a {
   font-family: 'Lightward Favorit Lining';
   text-decoration: none;
+  color: #101010;
+}
+
+a:hover {
+  color: var(--start-button-border-color);
 }
 
 h1 {
   font-weight: 200;
   font-size: 2rem;
-  margin: 1rem;
+  margin: 0;
+}
+
+dl {
+  gap: 0.5rem;
+}
+
+dl, dd {
+  margin: 0;
+}
+
+dt {
+  font-weight: 400;
 }
 
 .element {
   padding: 0.7rem 1rem;
-  margin: 1rem;
   box-shadow: var(--box-shadow);
   border-radius: 0.375rem;
 }
@@ -73,7 +100,7 @@ h1 {
 }
 
 .chat-log {
-  margin-bottom: -1rem;
+  margin-bottom: 1rem;
   flex: 1;
   background-color: var(--body-bg-color);
 }
@@ -115,16 +142,19 @@ h1 {
   pointer-events: none;
 }
 
-#notes {
-  margin: 3rem 1rem;
+#instructions {
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+
+#footer {
+  gap: 1.5rem;
 }
 
 .response-suggestions {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .response-suggestions .element {

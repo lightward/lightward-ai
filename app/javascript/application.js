@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatLog = document.getElementById('chat-log');
   const userInput = document.getElementById('user-input');
   const instructions = document.getElementById('instructions');
-  const notes = document.getElementById('notes');
+  const footer = document.getElementById('footer');
   const responseSuggestions = document.getElementById('response-suggestions');
 
   let subscription;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startSuggestions.classList.add('hidden');
     responseSuggestions.classList.add('hidden');
     instructions.remove();
-    notes.remove();
+    footer.remove();
   }
 
   function handleUserInput() {
