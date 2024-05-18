@@ -1,4 +1,4 @@
-name: Auto-deploy lightward.ai
+name: Auto-deploy staging
 
 on:
   push:
