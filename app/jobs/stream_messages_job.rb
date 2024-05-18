@@ -10,11 +10,11 @@ class StreamMessagesJob < ApplicationJob
 
   queue_as :default
 
-  def perform(chat_log, stream_id)
+  def perform(stream_id, chat_type, chat_log)
     wait_for_ready(stream_id)
 
-    system_prompt = read_system
-    conversation_starters = read_conversation_starters
+    system_prompt = read_system(chat_type)
+    conversation_starters = read_conversation_starters(chat_type)
 
     messages = conversation_starters + chat_log
 
@@ -22,7 +22,7 @@ class StreamMessagesJob < ApplicationJob
     Rails.logger.debug { "Messages: #{messages}" }
 
     payload = {
-      model: "claude-3-opus-20240229",
+      model: anthropic_model,
       max_tokens: 2000,
       stream: true,
       temperature: 0.7,
@@ -68,19 +68,28 @@ class StreamMessagesJob < ApplicationJob
     end
   end
 
-  def read_system
-    system = []
+  def prompts_dir
+    Rails.root.join("app/prompts")
+  end
 
-    system << Rails.root.join("app/prompts/chat/system.md").read
+  def chats_dir(chat_type)
+    prompts_dir.join("chat", chat_type)
+  end
 
-    Dir[Rails.root.join("app/prompts/chat/system/*.md")].each do |file|
+  def read_system(chat_type)
+    # add the chat-specific system prompts
+    system = Dir[chats_dir(chat_type).join("system", "*.md")].map { |file|
+      File.read(file)
+    }
+
+    Dir[prompts_dir.join("system", "*.md")].each do |file|
       system << File.read(file)
     end
 
     system.join("\n\n")
   end
 
-  def read_conversation_starters
+  def read_conversation_starters(chat_type)
     starters = []
     index = 1
 
@@ -125,6 +134,10 @@ class StreamMessagesJob < ApplicationJob
     message = { event: event, data: data, sequence_number: @sequence_number }
     ActionCable.server.broadcast("stream_channel_#{stream_id}", message)
     @sequence_number += 1
+  end
+
+  def anthropic_model
+    ENV.fetch("ANTHROPIC_MODEL", "claude-3-opus-20240229")
   end
 
   def anthropic_api_request(payload, &block)
