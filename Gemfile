@@ -8,8 +8,6 @@ gem "rails", "~> 7.1.3"
 gem "sprockets-rails"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
-gem "turbo-rails"
-gem "stimulus-rails"
 gem "dotenv"
 gem "tzinfo-data"
 
