@@ -1,0 +1,25 @@
+name: Auto-deploy staging
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fly-deploy:
+    name: Fly deploy
+    needs: fly-secrets
+    uses: lightward/.github-private/.github/workflows/fly-deploy.yml@main
+    secrets: inherit
+    with:
+      changelog: ${{ github.event.release.body }}
+      commitish: ${{ github.event.release.tag_name }}
+      deeplink: ${{ github.event.release.html_url }}
+      environment: staging.lightward.ai
+
+  fly-secrets:
+    name: Fly secrets
+    uses: ./.github/workflows/fly-secrets.yml
+    secrets: inherit
+    with:
+      environment: staging.lightward.ai

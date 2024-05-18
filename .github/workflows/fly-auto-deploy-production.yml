@@ -1,9 +1,9 @@
-name: Auto-deploy lightward.ai
+name: Auto-deploy production
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - published
 
 jobs:
   fly-deploy:
@@ -23,3 +23,4 @@ jobs:
     secrets: inherit
     with:
       environment: lightward.ai
+      stage_only: true
