@@ -9,16 +9,12 @@ class ChatsController < ApplicationController
     stream_id = SecureRandom.uuid
 
     # Enqueue the background job
-    StreamMessagesJob.perform_later(stream_id, chat_type, chat_log)
+    StreamMessagesJob.perform_later(stream_id, chat_log)
 
     render(json: { stream_id: stream_id })
   end
 
   private
-
-  def chat_type
-    "lightward"
-  end
 
   def permitted_chat_log_params
     params.require(:chat_log).map do |log_entry|
