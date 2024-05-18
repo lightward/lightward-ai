@@ -27,11 +27,11 @@ RSpec.describe(ChatsController) do
     end
 
     context "with valid chat_log params" do
-      it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it "enqueues the StreamMessagesJob and returns a chat_id", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
         post :message, params: { chat_log: valid_chat_log }
 
         expect(response).to(have_http_status(:ok))
-        expect(JSON.parse(response.body)).to(eq("stream_id" => "test-uuid"))
+        expect(JSON.parse(response.body)).to(eq("chat_id" => "test-uuid"))
 
         permitted_params = valid_chat_log.map { |entry|
           ActionController::Parameters.new(entry).permit(:role, content: [:type, :text]).to_h.with_indifferent_access

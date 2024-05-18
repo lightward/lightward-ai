@@ -5,8 +5,8 @@ require "rails_helper"
 
 RSpec.describe(StreamMessagesJob) do
   let(:chat_log) { [{ role: "user", content: [{ type: "text", text: "Hello" }] }] }
-  let(:stream_id) { "test_stream_id" }
-  let(:stream_ready_key) { "stream_ready_#{stream_id}" }
+  let(:chat_id) { "test_chat_id" }
+  let(:stream_ready_key) { "stream_ready_#{chat_id}" }
   let(:http) { instance_double(Net::HTTP) }
   let(:request) { instance_double(Net::HTTP::Post) }
   let(:response) { instance_double(Net::HTTPResponse) }
@@ -32,9 +32,9 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "broadcasts an error and raises an exception", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        expect { job.perform(stream_id, chat_log) }.to(raise_error("Stream not ready in time"))
+        expect { job.perform(chat_id, chat_log) }.to(raise_error("Stream not ready in time"))
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "error",
           data: { error: { message: "Stream not ready in time" } },
           sequence_number: 0,
@@ -64,9 +64,9 @@ RSpec.describe(StreamMessagesJob) do
 
       it "handles the rate limit error" do # rubocop:disable RSpec/ExampleLength
         freeze_time do
-          job.perform(stream_id, chat_log)
+          job.perform(chat_id, chat_log)
           expect(ActionCable.server).to(have_received(:broadcast).with(
-            "stream_channel_#{stream_id}",
+            "stream_channel_#{chat_id}",
             event: "error",
             data: { error: { message: a_string_matching(/Rate limit exceeded for .*s/) } },
             sequence_number: 0,
@@ -84,11 +84,11 @@ RSpec.describe(StreamMessagesJob) do
         logger = instance_spy(Logger)
         allow(Rails).to(receive(:logger).and_return(logger))
 
-        job.perform(stream_id, chat_log)
+        job.perform(chat_id, chat_log)
 
         expect(logger).to(have_received(:info).with("Stream closed"))
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "end",
           data: nil,
           sequence_number: 0,
@@ -107,7 +107,7 @@ RSpec.describe(StreamMessagesJob) do
         logger = instance_spy(Logger)
         allow(Rails).to(receive(:logger).and_return(logger))
 
-        job.perform(stream_id, chat_log)
+        job.perform(chat_id, chat_log)
 
         expect(logger).to(have_received(:warn).with("Unknown line format: unknown: message"))
       end
@@ -121,16 +121,16 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "processes the response and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(chat_id, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "message",
           data: { "message" => "Hello, world!" },
           sequence_number: 0,
         ))
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "end",
           data: nil,
           sequence_number: 1,
@@ -146,22 +146,22 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "processes each line and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(chat_id, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "message",
           data: { "message" => "Hello" },
           sequence_number: 0,
         ))
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "message",
           data: { "message" => "World" },
           sequence_number: 1,
         ))
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "end",
           data: nil,
           sequence_number: 2,
@@ -177,16 +177,16 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "processes the data event and broadcasts it", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(chat_id, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "message",
           data: { "text" => "Hello" },
           sequence_number: 0,
         ))
         expect(ActionCable.server).to(have_received(:broadcast).with(
-          "stream_channel_#{stream_id}",
+          "stream_channel_#{chat_id}",
           event: "end",
           data: nil,
           sequence_number: 1,
@@ -197,10 +197,10 @@ RSpec.describe(StreamMessagesJob) do
 
   describe "#broadcast" do
     it "sends the correct message via ActionCable" do # rubocop:disable RSpec/ExampleLength
-      job.send(:broadcast, stream_id, "test_event", { test: "data" })
+      job.send(:broadcast, chat_id, "test_event", { test: "data" })
 
       expect(ActionCable.server).to(have_received(:broadcast).with(
-        "stream_channel_#{stream_id}",
+        "stream_channel_#{chat_id}",
         event: "test_event",
         data: { test: "data" },
         sequence_number: 0,

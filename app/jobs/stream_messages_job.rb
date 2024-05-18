@@ -10,8 +10,11 @@ class StreamMessagesJob < ApplicationJob
 
   queue_as :default
 
-  def perform(stream_id, chat_log)
-    wait_for_ready(stream_id)
+  def perform(message_id)
+    wait_for_ready(message_id)
+
+    message = ChatMessage.find(message_id)
+    chat_messages = ChatMessage.by_chat(message.chat_id).map(&:to_anthropic_user_message)
 
     payload = {
       model: Anthropic.model,
@@ -19,74 +22,101 @@ class StreamMessagesJob < ApplicationJob
       stream: true,
       temperature: 0.7,
       system: Anthropic.system_prompt,
-      messages: Anthropic.conversation_starters + chat_log,
+      messages: Anthropic.conversation_starters + chat_messages,
     }
 
     begin
       Anthropic.api_request(payload) do |response|
         if response.code.to_i == 429
-          handle_rate_limit_error(response, stream_id)
+          handle_rate_limit_error(response, message_id)
         elsif response.code.to_i >= 400
-          broadcast(stream_id, "error", { error: { message: response.body } })
+          broadcast(message_id, "error", { error: { message: response.body } })
         else
+          text = +""
           buffer = +""
           response.read_body do |chunk|
             buffer << chunk
             until (line = buffer.slice!(/.+\n/)).nil?
-              process_line(line.strip, stream_id)
+              text << process_line(line.strip, message_id)
             end
           end
-          process_line(buffer.strip, stream_id) unless buffer.empty?
+          text << process_line(buffer.strip, message_id) unless buffer.empty?
+
+          ChatMessage.create!(
+            chat_id: message.chat_id,
+            role: "assistant",
+            text: text,
+          )
         end
       end
     rescue IOError
       Rails.logger.info("Stream closed")
     ensure
-      broadcast(stream_id, "end", nil)
+      broadcast(message_id, "end", nil)
     end
   end
 
   private
 
-  def wait_for_ready(stream_id)
+  def wait_for_ready(message_id)
     timeout = 10.seconds.from_now
-    Kernel.sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
+    ready = false
 
-    unless Rails.cache.read("stream_ready_#{stream_id}")
-      broadcast(stream_id, "error", { error: { message: "Stream not ready in time" } })
+    loop do
+      Kernel.sleep(0.1)
+      ready = ChatMessage.client_is_ready?(message_id)
+
+      break if ready
+      break if Time.current > timeout
+    end
+
+    unless ready
+      broadcast(message_id, "error", { error: { message: "Stream not ready in time" } })
       raise "Stream not ready in time"
     end
   end
 
-  def process_line(line, stream_id)
-    return if line.empty?
+  def process_line(line, message_id)
+    return "" if line.empty?
 
     if line.start_with?("event:")
       @current_event = line[6..-1].strip
+      ""
     elsif line.start_with?("data:")
       json_data = line[5..-1]
-      handle_data_event(json_data, stream_id)
+      handle_data_event(json_data, message_id)
     else
       Rails.logger.warn("Unknown line format: #{line}")
+      "Error"
     end
   end
 
-  def handle_data_event(json_data, stream_id)
+  def handle_data_event(json_data, message_id)
     event_data = JSON.parse(json_data)
-    broadcast(stream_id, @current_event || "message", event_data)
+    broadcast(message_id, @current_event || "message", event_data)
+
+    case event_data["type"]
+    when "content_block_start"
+      event_data.dig("content_block", "text")
+    when "content_block_delta"
+      event_data.dig("delta", "text")
+    else
+      ""
+    end
   rescue JSON::ParserError => e
     Rails.logger.error("Error parsing JSON: #{e.message} -- #{json_data}")
+    "Error"
   end
 
-  def broadcast(stream_id, event, data)
+  def broadcast(message_id, event, data)
     @sequence_number ||= 0
 
     message = { event: event, data: data, sequence_number: @sequence_number }
-    ActionCable.server.broadcast("stream_channel_#{stream_id}", message)
+    ActionCable.server.broadcast("stream_channel_#{message_id}", message)
     @sequence_number += 1
   end
 
-  def handle_rate_limit_error(response, stream_id)
+  def handle_rate_limit_error(response, message_id)
     requests_limit = response["anthropic-ratelimit-requests-limit"]
     requests_remaining = response["anthropic-ratelimit-requests-remaining"]
     requests_reset = Time.zone.parse(response["anthropic-ratelimit-requests-reset"])
@@ -109,6 +139,6 @@ class StreamMessagesJob < ApplicationJob
     human_readable_reset = distance_of_time_in_words(Time.zone.now, applicable_reset).sub("about ", "~")
     error_message = "Rate limit exceeded for #{reset_type}s. The limit will clear in #{human_readable_reset}. :)"
 
-    broadcast(stream_id, "error", { error: { message: error_message } })
+    broadcast(message_id, "error", { error: { message: error_message } })
   end
 end

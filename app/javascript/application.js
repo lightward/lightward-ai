@@ -12,16 +12,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const responseSuggestions = document.getElementById('response-suggestions');
 
   let subscription;
-  let chatLogData = [];
   let currentAssistantMessageElement = null;
   let sequenceQueue;
   let currentSequenceNumber;
   const TIMEOUT_MS = 10000;
 
-  function addMessage(role, text) {
+  function getChatId() {
+    return window.location.pathname.split('/').pop();
+  }
+
+  function hide(node) {
+    node.classList.add('hidden');
+  }
+
+  function show(node) {
+    node.classList.remove('hidden');
+  }
+
+  function addMessage(role, contentText) {
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role, 'element');
-    messageElement.innerText = text;
+    messageElement.innerText = contentText;
     chatLog.appendChild(messageElement);
     window.scrollTo(0, document.body.scrollHeight);
     return messageElement;
@@ -36,63 +47,65 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showUserInput() {
-    userInput.classList.remove('hidden');
-    userInput.classList.add('disabled-input');
+    show(userInput);
     userInput.disabled = true;
   }
 
   function enableUserInput() {
     currentAssistantMessageElement?.classList.remove('pulsing');
-    userInput.classList.remove('hidden', 'disabled-input');
+    show(userInput);
     userInput.disabled = false;
     userInput.focus();
-    responseSuggestions.classList.add('hidden');
+    hide(responseSuggestions);
   }
 
   function showResponseSuggestions() {
-    responseSuggestions.classList.remove('hidden');
+    show(responseSuggestions);
   }
 
   function hideResponseSuggestions() {
-    startSuggestions.classList.add('hidden');
-    responseSuggestions.classList.add('hidden');
+    hide(startSuggestions);
+    hide(responseSuggestions);
     instructions.remove();
     footer.remove();
   }
 
   function handleUserInput() {
     userInput.addEventListener('keypress', function(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        const userMessage = userInput.value;
-        if (userMessage.trim()) {
-          addMessage('user', userMessage);
-          chatLogData.push({ role: 'user', content: [{ type: 'text', text: userMessage }] });
-          userInput.value = '';
-          userInput.blur();
-          userInput.classList.add('hidden');
-          currentAssistantMessageElement = addPulsingMessage('assistant');
-          fetchAssistantResponse();
-        }
-      }
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+
+      const text = userInput.value;
+      if (!text.trim()) return;
+
+      // ui updates
+      addMessage('user', text);
+      userInput.value = '';
+      userInput.blur();
+      hide(userInput);
+      currentAssistantMessageElement = addPulsingMessage('assistant');
+
+      // fire the request
+      fetchAssistantResponse(text);
     });
   }
 
   function handleResponseClick(event) {
     event.preventDefault();
-    const message = event.target.innerText;
-    addMessage('user', message);
-    chatLogData.push({ role: 'user', content: [{ type: 'text', text: message }] });
-    userInput.classList.add('hidden');
+
+    const text = event.target.innerText;
+    addMessage('user', text);
+    hide(userInput);
     currentAssistantMessageElement = addPulsingMessage('assistant');
-    fetchAssistantResponse();
+
+    fetchAssistantResponse(text);
   }
 
   document.querySelectorAll('.response-link').forEach(link => {
     link.addEventListener('click', handleResponseClick);
   });
 
-  function fetchAssistantResponse() {
+  function fetchAssistantResponse(text) {
     hideResponseSuggestions();
 
     fetch('/chats/message', {
@@ -101,12 +114,15 @@ document.addEventListener('DOMContentLoaded', () => {
         'Content-Type': 'application/json',
         'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
       },
-      body: JSON.stringify({ chat_log: chatLogData })
+      body: JSON.stringify({ chat_id: getChatId(), message: { role: 'user', text } })
     })
     .then(response => response.json())
     .then(data => {
-      const streamId = data.stream_id;
-      initializeConsumer(streamId);
+      const messageId = data.message_id;
+      initializeConsumer(messageId);
+
+      const chatId = data.chat_id;
+      adjustPathname(`/${chatId}`);
     })
     .catch(error => {
       console.error('Error:', error);
@@ -116,12 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function initializeConsumer(streamId) {
+  function adjustPathname(pathname) {
+    if (window.location.pathname !== pathname) {
+      window.history.pushState({}, '', pathname);
+    }
+  }
+
+  function initializeConsumer(messageId) {
     sequenceQueue = [];
     currentSequenceNumber = 0;
 
     subscription = consumer.subscriptions.create(
-      { channel: "StreamChannel", stream_id: streamId },
+      { channel: "StreamChannel", message_id: messageId },
       {
         connected() {
           // Send a "ready" message to the server
@@ -154,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleTimeoutError() {
     const errorMessage = `Error: Response timeout. Please try again.`;
     currentAssistantMessageElement.innerText += ` ${errorMessage}`;
-    chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
     enableUserInput();
     showResponseSuggestions();
   }
@@ -178,10 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (data.event === 'message_delta') {
       // Handle message delta if needed
     } else if (data.event === 'message_stop') {
-      const assistantMessage = currentAssistantMessageElement.innerText;
-      chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: assistantMessage }] });
       userInput.classList.remove('disabled-input');
-      userInput.classList.add('hidden');
+      hide(userInput);
       enableUserInput();
     } else if (data.event === 'end') {
       subscription.unsubscribe();
@@ -191,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (data.event === 'error') {
       const errorMessage = `Error: ${data.data.error.message}`;
       currentAssistantMessageElement.innerText += ` ${errorMessage}`;
-      chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
       subscription.unsubscribe();
       enableUserInput();
       showResponseSuggestions();

@@ -1,24 +1,40 @@
-<div id="chat-container" class="chat-container">
-  <div id="chat-log" class="chat-log">
-    <div id="start-suggestions" class="response-suggestions">
+<div id="chat-container" class="stack chat-container">
+  <div id="chat-log" class="stack chat-log">
+    <% if @chat_messages.any? %>
+      <% @chat_messages.each do |chat_message| %>
+        <div class="chat-message element <%= chat_message.role %>">
+          <%= chat_message.text.split("\n\n").map { |p| h(p) }.join("<br><br>").html_safe %>
+        </div>
+      <% end %>
+    <% end %>
+    <div id="start-suggestions" class="response-suggestions <% if @chat_messages.any? %>hidden<% end %>">
       <a href="#" class="element button response-link">I'm a slow reader</a>
       <a href="#" class="element button response-link">I'm a fast reader</a>
       <span id="instructions">← tap one</span>
     </div>
   </div>
 
-  <div id="response-suggestions" class="response-suggestions hidden">
-    <a href="#" class="element button response-link">Are you okay?</a>
-    <a href="#" class="element button response-link">What happened?</a>
-    <a href="#" class="element button response-link">Retry</a>
-  </div>
+  <div id="input-options" class="stack">
+    <div id="response-suggestions" class="response-suggestions hidden">
+      <a href="#" class="element button response-link">Are you okay?</a>
+      <a href="#" class="element button response-link">What happened?</a>
+      <a href="#" class="element button response-link">Retry</a>
+    </div>
 
-  <input id="user-input" class="element chat-input hidden" disabled type="text" placeholder="What would you like to say?">
+    <input
+      id="user-input"
+      class="element chat-input <% unless @chat_messages.any? %>hidden<% end %>"
+      autofocus
+      <% unless @chat_messages.any? %>disabled<% end %>
+      type="text"
+      placeholder="What would you like to say?"
+    >
+  </div>
 </div>
 
-<div id="footer">
-  <p>No history is kept. If you hit refresh, you'll start over.</p>
-  <dl>
+<div id="footer" class="stack">
+  <%# <p>No history is kept. If you hit refresh, you'll start over.</p> %>
+  <dl class="stack">
     <dt>More?</dt>
     <dd><a href="https://apps.shopify.com/locksmith" target="_blank">Locksmith</a></dd>
     <dd><a href="https://apps.shopify.com/mechanic" target="_blank">Mechanic</a></dd>

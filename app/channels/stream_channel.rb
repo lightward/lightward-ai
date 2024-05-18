@@ -2,17 +2,15 @@
 
 class StreamChannel < ApplicationCable::Channel
   def subscribed
-    stream_id = params[:stream_id]
-    stream_from("stream_channel_#{stream_id}")
+    message_id = params[:message_id]
+    stream_from("stream_channel_#{message_id}")
   end
 
   def ready
-    stream_id = params[:stream_id]
-    Rails.cache.write("stream_ready_#{stream_id}", true, expires_in: 5.minutes)
+    message_id = params[:message_id]
+    ChatMessage.client_ready!(message_id)
   end
 
   def unsubscribed
-    stream_id = params[:stream_id]
-    Rails.cache.delete("stream_ready_#{stream_id}")
   end
 end

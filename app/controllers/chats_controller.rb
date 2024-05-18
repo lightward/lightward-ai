@@ -2,23 +2,50 @@
 
 class ChatsController < ApplicationController
   def index
+    @chat_messages = []
+  end
+
+  def show
+    @chat_messages = ChatMessage.by_chat(params[:chat_id])
+
+    raise ActiveRecord::RecordNotFound if @chat_messages.none?
+
+    render(action: :index)
   end
 
   def message
-    chat_log = permitted_chat_log_params.as_json
-    stream_id = SecureRandom.uuid
+    raise "Invalid role: only user is supported" unless message_params[:role] == "user"
+    raise "Invalid message" if message_params[:text].blank?
+
+    # save the message
+    message = ChatMessage.create!(
+      chat_id: chat_id,
+      role: message_params[:role],
+      text: message_params[:text],
+    )
 
     # Enqueue the background job
-    StreamMessagesJob.perform_later(stream_id, chat_log)
+    StreamMessagesJob.perform_later(message.id)
 
-    render(json: { stream_id: stream_id })
+    render(json: { chat_id: message.chat_id, message_id: message.id })
   end
 
   private
 
-  def permitted_chat_log_params
-    params.require(:chat_log).map do |log_entry|
-      log_entry.permit(:role, content: [:type, :text])
-    end
+  def chat_id
+    @chat_id ||= calculate_chat_id
+  end
+
+  def calculate_chat_id
+    provisional_chat_id = params[:chat_id].presence
+
+    return SecureRandom.uuid if provisional_chat_id.blank?
+    return SecureRandom.uuid if ChatMessage.by_chat(provisional_chat_id.to_s).none?
+
+    provisional_chat_id
+  end
+
+  def message_params
+    params.require(:message).permit(:role, :text)
   end
 end
