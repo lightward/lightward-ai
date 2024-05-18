@@ -1,9 +1,9 @@
-name: Auto-deploy production
+name: Auto-deploy lightward.ai
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - main
 
 jobs:
   fly-deploy:
@@ -15,12 +15,11 @@ jobs:
       changelog: ${{ github.event.release.body }}
       commitish: ${{ github.event.release.tag_name }}
       deeplink: ${{ github.event.release.html_url }}
-      environment: lightward.ai
+      environment: staging.lightward.ai
 
   fly-secrets:
     name: Fly secrets
     uses: ./.github/workflows/fly-secrets.yml
     secrets: inherit
     with:
-      environment: lightward.ai
-      stage_only: true
+      environment: staging.lightward.ai
