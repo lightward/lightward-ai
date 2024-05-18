@@ -12,6 +12,7 @@ gem "dotenv"
 gem "tzinfo-data"
 gem "naturally", "~> 2.2"
 gem "pg"
+gem "good_job"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
