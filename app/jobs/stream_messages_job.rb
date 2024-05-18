@@ -10,44 +10,34 @@ class StreamMessagesJob < ApplicationJob
 
   queue_as :default
 
-  def perform(chat_log, stream_id)
+  def perform(stream_id, chat_log)
     wait_for_ready(stream_id)
 
-    system_prompt = read_system
-    conversation_starters = read_conversation_starters
-
-    messages = conversation_starters + chat_log
-
-    Rails.logger.debug { "System: #{system_prompt}" }
-    Rails.logger.debug { "Messages: #{messages}" }
-
     payload = {
-      model: "claude-3-opus-20240229",
+      model: Anthropic.model,
       max_tokens: 2000,
       stream: true,
       temperature: 0.7,
-      system: system_prompt,
-      messages: messages,
+      system: Anthropic.system_prompt,
+      messages: Anthropic.conversation_starters + chat_log,
     }
 
     begin
-      anthropic_api_request(payload) do |response|
+      Anthropic.api_request(payload) do |response|
         if response.code.to_i == 429
           handle_rate_limit_error(response, stream_id)
-          return
         elsif response.code.to_i >= 400
           broadcast(stream_id, "error", { error: { message: response.body } })
-          return
-        end
-
-        buffer = +""
-        response.read_body do |chunk|
-          buffer << chunk
-          until (line = buffer.slice!(/.+\n/)).nil?
-            process_line(line.strip, stream_id)
+        else
+          buffer = +""
+          response.read_body do |chunk|
+            buffer << chunk
+            until (line = buffer.slice!(/.+\n/)).nil?
+              process_line(line.strip, stream_id)
+            end
           end
+          process_line(buffer.strip, stream_id) unless buffer.empty?
         end
-        process_line(buffer.strip, stream_id) unless buffer.empty?
       end
     rescue IOError
       Rails.logger.info("Stream closed")
@@ -68,37 +58,6 @@ class StreamMessagesJob < ApplicationJob
     end
   end
 
-  def read_system
-    system = []
-
-    system << Rails.root.join("app/prompts/chat/system.md").read
-
-    Dir[Rails.root.join("app/prompts/chat/system/*.md")].each do |file|
-      system << File.read(file)
-    end
-
-    system.join("\n\n")
-  end
-
-  def read_conversation_starters
-    starters = []
-    index = 1
-
-    loop do
-      user_file = Rails.root.join("app", "prompts", "chat", "#{index}-user.md")
-      assistant_file = Rails.root.join("app", "prompts", "chat", "#{index + 1}-assistant.md")
-
-      break unless File.exist?(user_file) && File.exist?(assistant_file)
-
-      starters << { role: "user", content: [{ type: "text", text: File.read(user_file) }] }
-      starters << { role: "assistant", content: [{ type: "text", text: File.read(assistant_file) }] }
-
-      index += 2
-    end
-
-    starters
-  end
-
   def process_line(line, stream_id)
     return if line.empty?
 
@@ -114,7 +73,7 @@ class StreamMessagesJob < ApplicationJob
 
   def handle_data_event(json_data, stream_id)
     event_data = JSON.parse(json_data)
-    broadcast(stream_id, @current_event, event_data)
+    broadcast(stream_id, @current_event || "message", event_data)
   rescue JSON::ParserError => e
     Rails.logger.error("Error parsing JSON: #{e.message} -- #{json_data}")
   end
@@ -125,22 +84,6 @@ class StreamMessagesJob < ApplicationJob
     message = { event: event, data: data, sequence_number: @sequence_number }
     ActionCable.server.broadcast("stream_channel_#{stream_id}", message)
     @sequence_number += 1
-  end
-
-  def anthropic_api_request(payload, &block)
-    uri = URI("https://api.anthropic.com/v1/messages")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-
-    request = Net::HTTP::Post.new(uri.path, {
-      "Content-Type": "application/json",
-      "anthropic-version": "2023-06-01",
-      "anthropic-beta": "messages-2023-12-15",
-      "x-api-key": ENV.fetch("ANTHROPIC_API_KEY", nil),
-    })
-    request.body = payload.to_json
-
-    http.request(request, &block)
   end
 
   def handle_rate_limit_error(response, stream_id)

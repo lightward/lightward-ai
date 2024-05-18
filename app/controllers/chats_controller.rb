@@ -9,7 +9,7 @@ class ChatsController < ApplicationController
     stream_id = SecureRandom.uuid
 
     # Enqueue the background job
-    StreamMessagesJob.perform_later(chat_log, stream_id)
+    StreamMessagesJob.perform_later(stream_id, chat_log)
 
     render(json: { stream_id: stream_id })
   end
