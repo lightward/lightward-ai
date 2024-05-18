@@ -2,8 +2,18 @@
 
 module Anthropic
   class << self
+    def default_model
+      if Rails.env.production?
+        # this should the maximum complexity model
+        "claude-3-opus-20240229"
+      else
+        # this should be the least expensive/complex model
+        "claude-3-haiku-20240307"
+      end
+    end
+
     def model
-      @model ||= ENV.fetch("ANTHROPIC_MODEL", "claude-3-opus-20240229")
+      ENV["ANTHROPIC_MODEL"].presence || default_model
     end
 
     def api_request(payload, &block)
