@@ -4,6 +4,8 @@ require "nokogiri"
 
 module Prompts
   class << self
+    attr_accessor :system_prompts, :starters
+
     def default_anthropic_model
       if Rails.env.production?
         # this should be the maximum complexity model
@@ -98,6 +100,11 @@ module Prompts
 
         array
       end
+    end
+
+    def reset!
+      @system_prompts = nil
+      @starters = nil
     end
   end
 end
