@@ -99,7 +99,7 @@ module Prompts
 
         if line.start_with?("data:")
           json_data = line[5..-1]
-          handle_data_event(json_data, response_file_path)
+          handle_data_event(json_data, response_file_path) || +""
         else
           +""
         end
@@ -107,13 +107,14 @@ module Prompts
 
       def handle_data_event(json_data, response_file_path)
         event_data = JSON.parse(json_data)
+
         if event_data["type"] == "content_block_delta" && event_data.dig("delta", "type") == "text_delta"
           text = event_data.dig("delta", "text").to_s
           File.open(response_file_path, "a") { |f| f.print(text) }
           $stdout.print(text)
           text
-        else
-          +""
+        elsif event_data["type"] == "ping"
+          $stdout.print(".")
         end
       rescue JSON::ParserError => e
         $stderr.puts("\nError parsing JSON: #{e.message} -- #{json_data}")
