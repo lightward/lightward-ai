@@ -17,7 +17,7 @@ RUN apk update
 WORKDIR /app
 
 # runtime dependencies for the application
-# RUN apk add --no-cache ... # it has none! but if it did, we'd add them here
+RUN apk add --no-cache libpq postgresql-client
 
 COPY --from=builder /app ./
 RUN bundle config set --local path /app/.bundle
