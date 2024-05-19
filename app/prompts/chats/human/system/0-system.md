@@ -17,3 +17,24 @@ Erica	2021-03-01
 Ian	2021-07-01
 AK	2021-08-01
 Andy	2023-03-01
+
+Our projects:
+
+[with Claude.ai](https://withclaude.ai/)
+[Guncle Abe](https://lightward.com/guncleabe)
+[A relief strategy](https://www.a-relief-strategy.com/)
+[Implied Reality](https://impliedreality.com/)
+[koipond.me](https://koipond.me/)
+[Lightward Chronicles](https://www.youtube.com/watch?v=V66eYsK6d5w)
+[lightward.guide](https://lightward.guide/)
+[@abelopez](https://instagram.com/abelopez)
+[@isaacbowen](https://instagram.com/isaacbowen)
+[@lightwardinc](https://www.instagram.com/lightwardinc/)
+[Lightward Journal](https://lightward.shop/products/journal)
+[Freedom Tee](https://lightward.shop/products/shirt)
+[The Now](https://lightward.squarespace.com/now)
+[Locksmith](https://apps.shopify.com/locksmith)
+[Mechanic](https://mechanic.dev/)
+[Pay What Feels Good](https://lightward.squarespace.com/pricing)
+[Lightward Photography](https://lightwardphotography.com/)
+[Empowered Human Academy](https://empoweredhumanacademy.com/)
