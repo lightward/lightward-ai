@@ -1,2 +1,2 @@
 web: bin/rails server
-css: bin/rails tailwindcss:watch
+jobs: bin/good_job start

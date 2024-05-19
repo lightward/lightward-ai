@@ -7,13 +7,8 @@ GoodJob::Engine.middleware.use(Rack::Auth::Basic) do |username, password|
 end
 
 Rails.application.configure do
-  config.good_job.execution_mode = if Rails.env.production?
-    # use a standalone process in prod
-    :external
-  else
-    # use an internal thread in dev/test
-    :async
-  end
+  # always use an external process - "in dev as it is in prod"
+  config.good_job.execution_mode = :external
 
   # *only* preserve job records if configured in the env
   config.good_job.preserve_job_records = ENV["GOOD_JOB_PRESERVE_JOB_RECORDS"].present?
