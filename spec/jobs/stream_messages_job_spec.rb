@@ -8,7 +8,7 @@ RSpec.describe(StreamMessagesJob) do
   let(:stream_id) { "test_stream_id" }
   let(:stream_ready_key) { "stream_ready_#{stream_id}" }
   let(:http) { instance_double(Net::HTTP) }
-  let(:request) { instance_double(Net::HTTP::Post) }
+  let(:request) { instance_double(Net::HTTP::Post, body: "{}") }
   let(:response) { instance_double(Net::HTTPResponse) }
   let(:job) { described_class.new }
 
