@@ -14,16 +14,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_081025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chat_messages", force: :cascade do |t|
-    t.uuid "chat_id", null: false
-    t.text "role", null: false
-    t.text "text", null: false
-    t.boolean "client_ready", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_id", "created_at"], name: "index_chat_messages_on_chat_id_and_created_at"
-  end
-
   create_table "good_job_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
