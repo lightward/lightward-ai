@@ -39,7 +39,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
   describe ".system_prompt" do
     it "returns a string with system prompts" do
-      expect(described_class.system_prompt("human")).to(include("You are an AI representation of Lightward's philosophy."))
+      expect(described_class.system_prompt("human")).to(include("Hey there. :) I'm delighted to meet you."))
     end
   end
 
