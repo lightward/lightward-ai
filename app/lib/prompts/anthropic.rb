@@ -28,9 +28,7 @@ module Prompts
         http.use_ssl = true
 
         request = Net::HTTP::Post.new(uri.path, {
-          "Content-Type": "application/json",
-          "anthropic-version": "2023-06-01",
-          "anthropic-beta": "messages-2023-12-15",
+          "content-type": "application/json",
           "x-api-key": ENV.fetch("ANTHROPIC_API_KEY", nil),
         })
         request.body = payload.to_json
