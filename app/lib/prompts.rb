@@ -40,11 +40,11 @@ module Prompts
       Rails.root.join("app/prompts")
     end
 
-    def system_prompt(chat_type)
+    def system_prompt(prompt_type)
       @system_prompts ||= {}
-      @system_prompts[chat_type] ||= generate_system_xml(
+      @system_prompts[prompt_type] ||= generate_system_xml(
         prompts_dir.join("system"),
-        prompts_dir.join("chats", chat_type, "system"),
+        prompts_dir.join(prompt_type, "system"),
       )
     end
 
@@ -84,14 +84,14 @@ module Prompts
       end
     end
 
-    def conversation_starters(chat_type)
+    def conversation_starters(prompt_type)
       @starters ||= {}
-      @starters[chat_type] ||= begin
-        chats_dir = prompts_dir.join("chats", chat_type)
+      @starters[prompt_type] ||= begin
+        prompt_dir = prompts_dir.join(prompt_type)
         array = []
 
         # Get all files in the chat directory
-        files = Dir.glob(chats_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
+        files = Dir.glob(prompt_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
 
         files.each_with_index do |file, index|
           role = index.even? ? "user" : "assistant"

@@ -40,13 +40,13 @@ module Prompts
         http.request(request, &block)
       end
 
-      def accumulate_response(messages, chat_type, response_file_path, attempts:)
+      def accumulate_response(messages, prompt_type, response_file_path, attempts:)
         payload = {
           model: model,
           max_tokens: 4000,
           stream: true,
           temperature: 0.7,
-          system: Prompts.system_prompt(chat_type),
+          system: Prompts.system_prompt(prompt_type),
           messages: messages,
         }
 
@@ -90,7 +90,7 @@ module Prompts
         if max_tokens_reached && attempts.positive?
           messages << { role: "assistant", content: [{ type: "text", text: complete_response.strip }] }
           messages << { role: "user", content: [{ type: "text", text: "Please continue." }] }
-          accumulate_response(messages, chat_type, response_file_path, attempts: attempts - 1)
+          accumulate_response(messages, prompt_type, response_file_path, attempts: attempts - 1)
         end
       end
 

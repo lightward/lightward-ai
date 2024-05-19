@@ -11,9 +11,9 @@ require "time"
 module Prompts
   module GitBook
     class << self
-      def update_contents
+      def update_contents(prompt_type)
         logger = Logger.new($stdout)
-        prompts_dir = Rails.root.join("app/prompts")
+        prompts_dir = Rails.root.join("app/prompts", prompt_type)
 
         gitbook_dirs = Dir.glob("#{prompts_dir}/**/gitbook").select { |dir| File.directory?(dir) }
 
@@ -109,10 +109,7 @@ module Prompts
           datetime = time_element.attr("datetime") || time_element.attr("dateTime")
           if datetime
             utc_time = Time.parse(datetime).utc
-            logger.info("Replacing <time> content with UTC time: #{utc_time.iso8601}")
             time_element.content = utc_time.iso8601
-          else
-            logger.warn("<time> element without datetime attribute found.")
           end
         end
 
