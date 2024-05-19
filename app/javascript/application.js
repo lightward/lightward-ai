@@ -188,6 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (data.event === 'content_block_delta') {
       const delta = data.data.delta;
       if (delta.type === 'text_delta' && currentAssistantMessageElement) {
+        let text = delta.text;
+
+        // if there's a space at the end, make sure the `innerText` assignment magic doesn't lose it
+        if (text.match(/ $/)) text = `${text.trimRight()}&#32;`;
+
         currentAssistantMessageElement.innerText += delta.text;
         window.scrollTo(0, document.body.scrollHeight);
       }
