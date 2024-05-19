@@ -40,7 +40,7 @@ module Prompts
         http.request(request, &block)
       end
 
-      def accumulate_response(messages, chat_type, response_file_path, attempts: 3)
+      def accumulate_response(messages, chat_type, response_file_path, attempts:)
         payload = {
           model: model,
           max_tokens: 4000,

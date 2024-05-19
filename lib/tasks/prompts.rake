@@ -17,6 +17,6 @@ namespace :prompts do
     FileUtils.mkdir_p(response_file_path.dirname)
     File.write(response_file_path, "")
 
-    Prompts::Anthropic.accumulate_response(messages, chat_type, response_file_path)
+    Prompts::Anthropic.accumulate_response(messages, chat_type, response_file_path, attempts: 9999)
   end
 end
