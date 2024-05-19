@@ -11,7 +11,7 @@ namespace :prompts do
   end
 
   desc "Execute API request to Anthropic with streaming for a specific chat type"
-  task :chat, [:prompt_type] => :environment do |_t, args|
+  task :anthropic, [:prompt_type] => :environment do |_t, args|
     prompt_type = args[:prompt_type]
     raise "Chat type must be provided" unless prompt_type
 
