@@ -11,9 +11,9 @@ require "time"
 module Prompts
   module GitBook
     class << self
-      def update_contents
+      def update_contents(prompt_type)
         logger = Logger.new($stdout)
-        prompts_dir = Rails.root.join("app/prompts")
+        prompts_dir = Rails.root.join("app/prompts", prompt_type)
 
         gitbook_dirs = Dir.glob("#{prompts_dir}/**/gitbook").select { |dir| File.directory?(dir) }
 

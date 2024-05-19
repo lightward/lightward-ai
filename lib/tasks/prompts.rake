@@ -3,8 +3,11 @@
 # lib/tasks/prompts.rake
 namespace :prompts do
   desc "Update gitbook contents from all 'gitbook' directories within app/prompts/"
-  task gitbook: :environment do
-    Prompts::GitBook.update_contents
+  task :gitbook, [:prompt_type] => :environment do |_t, args|
+    prompt_type = args[:prompt_type]
+    raise "Prompt type must be provided" unless prompt_type
+
+    Prompts::GitBook.update_contents(prompt_type)
   end
 
   desc "Execute API request to Anthropic with streaming for a specific chat type"
