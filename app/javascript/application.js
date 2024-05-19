@@ -191,9 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let text = delta.text;
 
         // if there's a space at the end, make sure the `innerText` assignment magic doesn't lose it
-        if (text.match(/ $/)) text = `${text.trimRight()}&#32;`;
+        if (text.match(/ $/)) {
+          console.log('trailing whitespace on ', text);
+          text = `${text.trimRight()}\u00a0`;
+        }
 
-        currentAssistantMessageElement.innerText += delta.text;
+        currentAssistantMessageElement.innerText += text;
         window.scrollTo(0, document.body.scrollHeight);
       }
     } else if (data.event === 'content_block_stop') {
