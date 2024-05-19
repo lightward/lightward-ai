@@ -25,7 +25,7 @@ kill_timeout = 300
 
 [processes]
   web = "bin/puma --port 8080"
-  worker = "bin/good_job start"
+  jobs = "bin/good_job start"
 
 [[services]]
   auto_start_machines  = true
