@@ -188,7 +188,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (data.event === 'content_block_delta') {
       const delta = data.data.delta;
       if (delta.type === 'text_delta' && currentAssistantMessageElement) {
-        currentAssistantMessageElement.innerText += delta.text;
+        let text = delta.text;
+
+        // if there's a space at the end, make sure the `innerText` assignment magic doesn't lose it
+        text = text.replace(/ $/, `\u00a0`);
+
+        currentAssistantMessageElement.innerText += text;
         window.scrollTo(0, document.body.scrollHeight);
       }
     } else if (data.event === 'content_block_stop') {
