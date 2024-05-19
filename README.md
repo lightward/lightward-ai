@@ -2,6 +2,14 @@
 
 :)
 
+## Booting in dev
+
+This is a multi-process app, so use `bin/dev` to start them. `rails s` won't cut it. :)
+
+```sh
+bin/dev
+```
+
 ## Tasks
 
 Download updated GitBook docs from everywhere:
