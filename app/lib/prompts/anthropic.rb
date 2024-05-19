@@ -29,6 +29,7 @@ module Prompts
 
         request = Net::HTTP::Post.new(uri.path, {
           "content-type": "application/json",
+          "anthropic-version": "2023-06-01",
           "x-api-key": ENV.fetch("ANTHROPIC_API_KEY", nil),
         })
         request.body = payload.to_json
