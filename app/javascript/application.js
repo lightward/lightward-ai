@@ -192,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // if there's a space at the end, make sure the `innerText` assignment magic doesn't lose it
         if (text.match(/ $/)) {
-          console.log('trailing whitespace on ', text);
           text = `${text.trimRight()}\u00a0`;
         }
 
