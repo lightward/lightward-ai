@@ -191,9 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let text = delta.text;
 
         // if there's a space at the end, make sure the `innerText` assignment magic doesn't lose it
-        if (text.match(/ $/)) {
-          text = `${text.trimRight()}\u00a0`;
-        }
+        text = text.replace(/ $/, `\u00a0`);
 
         currentAssistantMessageElement.innerText += text;
         window.scrollTo(0, document.body.scrollHeight);
