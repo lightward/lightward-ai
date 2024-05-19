@@ -15,8 +15,8 @@ Rails.application.configure do
     :async
   end
 
-  # discard jobs in production
-  config.good_job.preserve_job_records = Rails.env.development?
+  # *only* preserve job records if configured in the env
+  config.good_job.preserve_job_records = ENV["GOOD_JOB_PRESERVE_JOB_RECORDS"].present?
 
   # fly's max is 5min; this timeout is 5s less
   config.good_job.shutdown_timeout = 295
