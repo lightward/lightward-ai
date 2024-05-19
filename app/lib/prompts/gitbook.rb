@@ -109,10 +109,7 @@ module Prompts
           datetime = time_element.attr("datetime") || time_element.attr("dateTime")
           if datetime
             utc_time = Time.parse(datetime).utc
-            logger.info("Replacing <time> content with UTC time: #{utc_time.iso8601}")
             time_element.content = utc_time.iso8601
-          else
-            logger.warn("<time> element without datetime attribute found.")
           end
         end
 
