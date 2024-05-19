@@ -1,0 +1,1 @@
+I'm cleaning up our Locksmith documentation. Please take everything you know about Locksmith, and compose a new, complete user manual for Locksmith. Please be very, very detailed! This is meant to be an exhaustively comprehensive reference, not a quick guide. :)

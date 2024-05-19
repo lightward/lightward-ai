@@ -25,12 +25,9 @@ RSpec/FilePath:
 RSpec/SpecFilePathFormat:
   Enabled: true
   Exclude:
-    - application_spec.rb
-    - channels/connection_spec.rb
-    - lib/locksmith/key_conditions/no_orders_in_the_last_24_hours_spec.rb
   CustomTransform:
-    GraphQL: graphql
-    GraphQLConcern: graphql_concern
+    OpenAI: openai
+    LightwardAI: lightward_ai
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false

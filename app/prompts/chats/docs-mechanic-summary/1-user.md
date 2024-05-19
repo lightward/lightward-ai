@@ -1,0 +1,1 @@
+I'm cleaning up our Mechanic documentation. Please take everything you know about Mechanic, and compose a new, complete user manual for Mechanic. Please be very, very detailed! This is meant to be an exhaustively comprehensive reference, not a quick guide. :)

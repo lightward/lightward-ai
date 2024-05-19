@@ -14,16 +14,16 @@ class StreamMessagesJob < ApplicationJob
     wait_for_ready(stream_id)
 
     payload = {
-      model: Anthropic.model,
+      model: Prompts::Anthropic.model,
       max_tokens: 4000,
       stream: true,
       temperature: 0.7,
-      system: Anthropic.system_prompt,
-      messages: Anthropic.conversation_starters + chat_log,
+      system: Prompts.system_prompt("human"),
+      messages: Prompts.conversation_starters("human") + chat_log,
     }
 
     begin
-      Anthropic.api_request(payload) do |response|
+      Prompts::Anthropic.api_request(payload) do |response|
         if response.code.to_i == 429
           handle_rate_limit_error(response, stream_id)
         elsif response.code.to_i >= 400

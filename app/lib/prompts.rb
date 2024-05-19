@@ -2,9 +2,9 @@
 
 require "nokogiri"
 
-module Anthropic
+module Prompts
   class << self
-    def default_model
+    def default_anthropic_model
       if Rails.env.production?
         # this should be the maximum complexity model
         "claude-3-opus-20240229"
@@ -14,8 +14,8 @@ module Anthropic
       end
     end
 
-    def model
-      ENV["ANTHROPIC_MODEL"].presence || default_model
+    def anthropic_model
+      ENV["ANTHROPIC_MODEL"].presence || default_anthropic_model
     end
 
     def api_request(payload, &block)
@@ -38,14 +38,20 @@ module Anthropic
       Rails.root.join("app/prompts")
     end
 
-    def system_prompt
-      @system ||= generate_system_xml(prompts_dir.join("system"))
+    def system_prompt(chat_type)
+      @system_prompts ||= {}
+      @system_prompts[chat_type] ||= generate_system_xml(
+        prompts_dir.join("system"),
+        prompts_dir.join("chats", chat_type, "system"),
+      )
     end
 
-    def generate_system_xml(directory)
+    def generate_system_xml(*directories)
       Nokogiri::XML::Builder.new do |xml|
         xml.system {
-          process_directory(xml, directory)
+          directories.each do |directory|
+            process_directory(xml, directory) if Dir.exist?(directory)
+          end
         }
       end.to_xml
     end
@@ -76,22 +82,18 @@ module Anthropic
       end
     end
 
-    def conversation_starters
-      @starters ||= begin
-        chats_dir = prompts_dir.join("chat")
+    def conversation_starters(chat_type)
+      @starters ||= {}
+      @starters[chat_type] ||= begin
+        chats_dir = prompts_dir.join("chats", chat_type)
         array = []
-        index = 1
 
-        loop do
-          user_file = chats_dir.join("#{index}-user.md")
-          assistant_file = chats_dir.join("#{index + 1}-assistant.md")
+        # Get all files in the chat directory
+        files = Dir.glob(chats_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
 
-          break unless File.exist?(user_file) && File.exist?(assistant_file)
-
-          array << { role: "user", content: [{ type: "text", text: File.read(user_file) }] }
-          array << { role: "assistant", content: [{ type: "text", text: File.read(assistant_file) }] }
-
-          index += 2
+        files.each_with_index do |file, index|
+          role = index.even? ? "user" : "assistant"
+          array << { role: role, content: [{ type: "text", text: File.read(file) }] }
         end
 
         array
