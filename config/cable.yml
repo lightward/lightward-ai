@@ -1,9 +1,9 @@
 development:
-  adapter: async
+  adapter: postgresql
 
 test:
   adapter: test
 
 production:
-  adapter: async
+  adapter: postgresql
   # TODO switch to postgres! yay!
