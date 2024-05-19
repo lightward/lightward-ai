@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require "nokogiri"
+
 module Anthropic
   class << self
     def default_model
       if Rails.env.production?
-        # this should the maximum complexity model
+        # this should be the maximum complexity model
         "claude-3-opus-20240229"
       else
         # this should be the least expensive/complex model
@@ -37,11 +39,40 @@ module Anthropic
     end
 
     def system_prompt
-      @system ||= begin
-        files = Dir[prompts_dir.join("system", "*.md")]
-        sorted_files = Naturally.sort(files)
+      @system ||= generate_system_xml(prompts_dir.join("system"))
+    end
 
-        sorted_files.map { |file| File.read(file) }.join("\n\n")
+    def generate_system_xml(directory)
+      Nokogiri::XML::Builder.new do |xml|
+        xml.system {
+          process_directory(xml, directory)
+        }
+      end.to_xml
+    end
+
+    def process_directory(xml, directory)
+      files = Dir[File.join(directory, "**", "*.md")].reject { |file|
+        file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
+      }
+      sorted_files = Naturally.sort(files)
+
+      sorted_files.each do |file|
+        relative_path = Pathname.new(file).relative_path_from(directory)
+        add_file_to_xml(xml, relative_path, File.read(file))
+      end
+    end
+
+    def add_file_to_xml(xml, relative_path, content)
+      components = relative_path.each_filename.to_a
+
+      components.inject(xml) do |parent, component|
+        if component.end_with?(".md")
+          parent.file(name: component, content_type: "markdown") {
+            parent.cdata(content)
+          }
+        else
+          parent.send(component.tr("-", "_").to_sym) # Use sanitized tag names
+        end
       end
     end
 

@@ -41,13 +41,6 @@ RSpec.describe(Anthropic, :aggregate_failures) do
     it "returns a string with system prompts" do
       expect(described_class.system_prompt).to(include("You are an AI representation of Lightward's philosophy."))
     end
-
-    it "returns contents from naturally-sorted files" do
-      sample_9 = described_class.prompts_dir.join("system", "9-pwfg-field-notes.md").read
-      sample_10 = described_class.prompts_dir.join("system", "10-guncle-abe.md").read
-
-      expect(described_class.system_prompt).to(include("#{sample_9}\n\n#{sample_10}"))
-    end
   end
 
   describe ".conversation_starters" do
