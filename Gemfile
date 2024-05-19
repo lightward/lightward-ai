@@ -11,6 +11,9 @@ gem "importmap-rails"
 gem "dotenv"
 gem "tzinfo-data"
 gem "naturally", "~> 2.2"
+gem "nokogiri"
+gem "httparty"
+gem "reverse_markdown"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
