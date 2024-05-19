@@ -73,8 +73,8 @@ module Prompts
 
       components.inject(xml) do |parent, component|
         if component.end_with?(".md")
-          parent.file(name: component, content_type: "markdown") {
-            parent.cdata(content)
+          parent.file(name: component) {
+            parent.text(content) # Directly adding the content
           }
         else
           parent.send(component.tr("-", "_").to_sym) # Use sanitized tag names
