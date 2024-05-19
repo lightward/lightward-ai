@@ -17,6 +17,7 @@ gem "reverse_markdown"
 gem "loofah"
 gem "pg"
 gem "good_job"
+gem "solid_cache"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
