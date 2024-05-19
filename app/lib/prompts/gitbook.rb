@@ -97,11 +97,11 @@ module Prompts
       end
 
       def clean_html_content(main_content, logger)
-        # Remove HTML comments
-        html = main_content.inner_html.gsub(/<!--.*?-->/m, "")
+        # Use Loofah to sanitize the HTML content
+        sanitized_html = Loofah.fragment(main_content.inner_html).scrub!(:prune).to_html
 
-        # Parse the HTML fragment
-        document = Nokogiri::HTML.fragment(html)
+        # Parse the sanitized HTML fragment
+        document = Nokogiri::HTML.fragment(sanitized_html)
 
         # Replace <time> elements with their UTC equivalent
         time_elements = document.css("time")
