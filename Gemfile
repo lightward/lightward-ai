@@ -14,6 +14,7 @@ gem "naturally", "~> 2.2"
 gem "nokogiri"
 gem "httparty"
 gem "reverse_markdown"
+gem "loofah"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

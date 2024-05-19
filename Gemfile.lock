@@ -362,6 +362,7 @@ DEPENDENCIES
   guard-rubocop
   httparty
   importmap-rails
+  loofah
   naturally (~> 2.2)
   nokogiri
   puma (>= 5.0)
