@@ -33,7 +33,7 @@ p {
   margin: 1rem;
 }
 
-.container, .chat-log, dl, #footer {
+.container, .chat-container, .chat-log, .tools, dl, #footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -90,7 +90,6 @@ dt {
 }
 
 .chat-log {
-  margin-bottom: 1rem;
   flex: 1;
   background-color: var(--body-bg-color);
 }
@@ -141,7 +140,7 @@ dt {
   gap: 1.5rem;
 }
 
-#footer a {
+.tools a, #footer a {
   font-family: 'Lightward Favorit Lining';
   text-decoration: none;
   color: #101010;

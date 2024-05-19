@@ -1,4 +1,3 @@
-// app/javascript/application.js
 import { createConsumer } from "@rails/actioncable"
 
 const consumer = createConsumer();
@@ -10,13 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const instructions = document.getElementById('instructions');
   const footer = document.getElementById('footer');
   const responseSuggestions = document.getElementById('response-suggestions');
+  const startOverButton = document.getElementById('start-over-button');
 
   let subscription;
-  let chatLogData = [];
+  let chatLogData = JSON.parse(localStorage.getItem('chatLogData')) || [];
   let currentAssistantMessageElement = null;
   let sequenceQueue;
   let currentSequenceNumber;
   const TIMEOUT_MS = 10000;
+
+  // Load chat log from localStorage
+  if (chatLogData.length) {
+    startSuggestions.classList.add('hidden');
+    startOverButton.classList.remove('hidden');
+    enableUserInput();
+
+    chatLogData.forEach(message => {
+      addMessage(message.role, message.content[0].text);
+    });
+
+    // if the last message was from the user, send it to the assistant
+    if (chatLogData[chatLogData.length - 1].role === 'user') {
+      currentAssistantMessageElement = addPulsingMessage('assistant');
+      submitUserInput(chatLogData[chatLogData.length - 1].content[0].text);
+    }
+  }
 
   function addMessage(role, text) {
     const messageElement = document.createElement('div');
@@ -64,16 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     userInput.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') {
         event.preventDefault();
-        const userMessage = userInput.value;
-        if (userMessage.trim()) {
-          addMessage('user', userMessage);
-          chatLogData.push({ role: 'user', content: [{ type: 'text', text: userMessage }] });
-          userInput.value = '';
-          userInput.blur();
-          userInput.classList.add('hidden');
-          currentAssistantMessageElement = addPulsingMessage('assistant');
-          fetchAssistantResponse();
-        }
+        submitUserInput(userInput.value);
       }
     });
   }
@@ -91,6 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.response-link').forEach(link => {
     link.addEventListener('click', handleResponseClick);
   });
+
+  function submitUserInput(userMessage) {
+    addMessage('user', userMessage);
+    chatLogData.push({ role: 'user', content: [{ type: 'text', text: userMessage }] });
+    userInput.value = '';
+    userInput.blur();
+    userInput.classList.add('hidden');
+    currentAssistantMessageElement = addPulsingMessage('assistant');
+    fetchAssistantResponse();
+  }
 
   function fetchAssistantResponse() {
     hideResponseSuggestions();
@@ -196,7 +214,18 @@ document.addEventListener('DOMContentLoaded', () => {
       enableUserInput();
       showResponseSuggestions();
     }
+
+    // Persist chat log data to localStorage
+    localStorage.setItem('chatLogData', JSON.stringify(chatLogData));
   }
+
+  // Handle start over button click
+  startOverButton.addEventListener('click', () => {
+    if (confirm('Are you sure you want to start over? This will clear the chat log.')) {
+      localStorage.removeItem('chatLogData');
+      location.reload();
+    }
+  });
 
   handleUserInput();
 });
