@@ -12,8 +12,6 @@ Note that you'll see another "+ Add key condition" link, appearing in the key se
 
 Using the example from earlier, in which a secret link condition is combined with a passcode condition, here's a demonstration:
 
- ![](https://www.locksmith.guide/~gitbook/image?url=https%3A%2F%2F277214568-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F-MUeGWHuijBPr8Og1Gta%252Fuploads%252Fyyy08XwjL1HbrJQhbUbr%252F2024-04-16%252023.34.42.gif%3Falt%3Dmedia%26token%3D06d980b1-36b7-46fa-ad7f-a5917cb39577&width=768&dpr=4&quality=100&sign=d6d31262a00f5339bd798866d56de08b4c499c8248dc21ae4cc7cf69b3a15849)
-
 [PreviousIP address keys](/keys/more/ip-address-keys)[NextNewsletter keys](/keys/more/newsletter-keys)
 
 Last updated 2024-04-17T03:40:02Z
