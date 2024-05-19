@@ -1,3 +1,8 @@
+# NB: this thing *is not* compatible with pgbouncer transaction pooling! we're
+# using postgres for pubsub, and LISTEN is (as of this writing) not compatible
+# with transaction pooling.
+# https://www.pgbouncer.org/features.html#sql-feature-map-for-pooling-modes
+
 default: &default
   pool: <%= ENV["DATABASE_CONNECTION_POOL_SIZE"].presence || 5 %>
 
