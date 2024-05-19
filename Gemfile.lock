@@ -326,6 +326,10 @@ GEM
       rubocop (~> 1.51)
     ruby-progressbar (1.13.0)
     shellany (0.0.1)
+    solid_cache (0.6.0)
+      activejob (>= 7)
+      activerecord (>= 7)
+      railties (>= 7)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -392,6 +396,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-shopify
+  solid_cache
   sprockets-rails
   tzinfo-data
   web-console

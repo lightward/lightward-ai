@@ -67,5 +67,8 @@ module LightwardAi
 
     # Use GoodJob (i.e. postgres) for ActiveJob
     config.active_job.queue_adapter = :good_job
+
+    # Use solid_cache (i.e. postgres again) for our ActiveSupport::Cache::Store
+    config.cache_store = :solid_cache_store
   end
 end
