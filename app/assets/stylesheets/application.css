@@ -136,7 +136,12 @@ dt {
   padding-right: 1rem;
 }
 
+.tools {
+  margin-top: 0.5rem;
+}
+
 #footer {
+  margin-top: 1rem;
   gap: 1.5rem;
 }
 
