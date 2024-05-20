@@ -62,8 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     currentAssistantMessageElement?.classList.remove('pulsing');
     userInput.classList.remove('hidden', 'disabled-input');
     userInput.disabled = false;
-    userInput.focus();
+    startOverButton.classList.remove('hidden');
     responseSuggestions.classList.add('hidden');
+
+    // autofocus if we're not on a touch screen
+    if (!('ontouchstart' in window)) {
+      userInput.focus();
+    }
   }
 
   function showResponseSuggestions() {
