@@ -273,10 +273,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleUserInput();
   } catch (error) {
+    // hide the loading message, if found
+    const loadingMessage = document.getElementById('loading-message');
+    if (loadingMessage) loadingMessage.remove();
+
     // render error message and re-throw
     const errorMessage = document.createElement('div');
     errorMessage.classList.add('error');
-    errorMessage.innerText = 'Something went wrong! Come back in a bit?';
+    errorMessage.innerText = '🧑‍🚒 Ran into an error! Can you ping a Lightward human for help?';
 
     // clear out the chat container
     const chatContainer = document.getElementById('chat-container');
