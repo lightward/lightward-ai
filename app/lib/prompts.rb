@@ -44,21 +44,18 @@ module Prompts
       @system_prompts[prompt_type] ||= generate_system_xml(
         prompts_dir.join("system"),
         prompts_dir.join(prompt_type, "system"),
-        additional_system_prompt_dir,
+        additional_system_prompt_files,
       )
     end
 
-    def additional_system_prompt_dir
+    def additional_system_prompt_files
       additional_dir = ENV.fetch("LIGHTWARD_AI_ADDITIONAL_SYSTEM_PROMPT_DIR", nil)
-      return unless additional_dir.present? && Dir.exist?(additional_dir)
+      return [] unless additional_dir.present? && Dir.exist?(additional_dir)
 
-      Dir[File.join(additional_dir, "**", "*")].reject do |file|
-        gitignored?(additional_dir, file) || binary_file?(file)
-      end
-    end
-
-    def gitignored?(base_dir, file)
-      FastIgnore.new(root: base_dir).allowed?(file) == false
+      ignore_filter = FastIgnore.new(root: additional_dir)
+      Dir.glob("#{additional_dir}/**/*").reject { |file|
+        ignore_filter.allowed?(file) == false || binary_file?(file)
+      }
     end
 
     def binary_file?(file)
@@ -87,12 +84,11 @@ module Prompts
 
       sorted_files.each do |file|
         relative_path = Pathname.new(file).relative_path_from(directory)
-        add_file_to_xml(xml, relative_path, File.read(file).strip)
+        add_file_to_xml(xml, relative_path, read_file(file))
       end
     end
 
     def process_additional_files(xml, files)
-      Rails.logger.info("Processing additional system prompt directory...")
       sorted_files = Naturally.sort(files)
 
       sorted_files.each do |file|
@@ -100,24 +96,28 @@ module Prompts
           "LIGHTWARD_AI_ADDITIONAL_SYSTEM_PROMPT_DIR",
           nil,
         ))
-        add_file_to_xml(xml, relative_path, File.read(file).strip)
+        add_file_to_xml(xml, relative_path, read_file(file))
       end
-
-      Rails.logger.info("Finished processing additional system prompt directory.")
     end
 
     def add_file_to_xml(xml, relative_path, content)
       components = relative_path.each_filename.to_a
 
-      components.inject(xml) do |parent, component|
-        if component.end_with?(".md")
-          parent.file(name: component) {
+      components.each_with_object(xml) do |component, parent|
+        parent.file(name: component) do
+          if component.end_with?(".md")
             parent.text(content)
-          }
-        else
-          parent.send(component.tr("-", "_").to_sym)
+          else
+            parent.cdata(content)
+          end
         end
       end
+    end
+
+    def read_file(file)
+      content = File.read(file, mode: "r:bom|utf-8")
+      content.encode!("UTF-8", invalid: :replace, undef: :replace, replace: "")
+      content.strip
     end
 
     def conversation_starters(prompt_type)
@@ -130,7 +130,7 @@ module Prompts
 
         files.each_with_index do |file, index|
           role = index.even? ? "user" : "assistant"
-          array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
+          array << { role: role, content: [{ type: "text", text: read_file(file) }] }
         end
 
         array
