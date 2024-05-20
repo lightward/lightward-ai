@@ -238,7 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Handle start over button click
-  startOverButton.addEventListener('click', () => {
+  startOverButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
     if (confirm('Are you sure you want to start over? This will clear the chat log.')) {
       localStorage.removeItem('chatLogData');
       location.reload();
