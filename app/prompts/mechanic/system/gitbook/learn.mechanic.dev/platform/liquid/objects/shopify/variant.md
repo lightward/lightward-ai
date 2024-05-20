@@ -13,6 +13,4 @@
 - The related product object: {{ variant.product }}
 - The related metafields object: {{ variant.metafields }}
 
-[PreviousTransaction object](/platform/liquid/objects/shopify/transaction)[NextMechanic tags](/platform/liquid/tags)
-
 Last updated 2021-04-05T20:03:29Z

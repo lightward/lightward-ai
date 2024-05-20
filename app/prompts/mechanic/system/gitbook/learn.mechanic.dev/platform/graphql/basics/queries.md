@@ -147,6 +147,4 @@ https://graphql.org/learn/queries/
 
 https://www.howtographql.com/basics/2-core-concepts/
 
-[PreviousShopify Admin API GraphiQL explorer](/platform/graphql/basics/shopify-admin-api-graphiql-explorer)[NextMutations](/platform/graphql/basics/mutations)
-
 Last updated 2021-04-05T20:03:32Z

@@ -132,6 +132,4 @@ There are two techniques available for "steering" the task towards desired outco
 1. Use defined preview events to control preview event data, without ever having to add preview-related code to the task itself. This is the cleanest way to control data provided by the event during preview.
 2. Use stub data to dynamically swap in preview-friendly values. This is generally not necessary for preview event data, but may be necessary when querying Shopify for data during a task: because the Shopify API is disabled during preview, using stub data can be useful for swapping in realistic values that would be returned during a live run.
 
-[PreviousCustom validation](/core/tasks/options/custom-validation)[NextDefining preview events](/core/tasks/previews/events)
-
 Last updated 2023-10-31T15:10:21Z

@@ -23,6 +23,4 @@ The Mechanic staff commission these from developers in the Mechanic community. I
 
 Head to https://mechanic.canny.io/task-requests. :)
 
-[PreviousContributing](/resources/task-library/contributing)[NextSlack community](/resources/slack)
-
 Last updated 2022-01-19T04:05:16Z

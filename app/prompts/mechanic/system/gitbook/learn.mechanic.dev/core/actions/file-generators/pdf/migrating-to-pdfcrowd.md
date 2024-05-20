@@ -51,6 +51,4 @@ Copy
 
 ## 
 
-[PreviousPDF](/core/actions/file-generators/pdf)[NextPlaintext](/core/actions/file-generators/plaintext)
-
 Last updated 2023-10-13T19:50:12Z

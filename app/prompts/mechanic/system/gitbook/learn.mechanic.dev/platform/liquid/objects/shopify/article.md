@@ -13,6 +13,4 @@
 - The related blog object: {{ article.blog }}
 - The related metafields object: {{ article.metafields }}
 
-[PreviousShopify REST Admin API](/platform/liquid/objects/shopify)[NextBlog object](/platform/liquid/objects/shopify/blog)
-
 Last updated 2021-04-05T20:03:33Z

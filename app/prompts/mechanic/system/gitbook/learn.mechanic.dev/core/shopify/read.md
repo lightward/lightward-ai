@@ -7,6 +7,4 @@ Mechanic supports several methods of reading data. The following articles discus
 - Bulk operations
 - The Shopify action
 
-[PreviousReconciling missing events](/core/shopify/events/reconciling-missing-events)[NextLiquid objects](/core/shopify/read/liquid-objects)
-
 Last updated 2021-05-04T04:43:58Z

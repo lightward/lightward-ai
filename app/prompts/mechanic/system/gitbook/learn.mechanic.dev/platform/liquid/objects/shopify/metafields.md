@@ -10,6 +10,4 @@ To retrieve the value of a modern metafield, use resource.metafields.namespace.k
 
 To retrieve the value of a deprecated metafield, use resource.metafields.namespace.key.
 
-[PreviousLocation object](/platform/liquid/objects/shopify/location)[NextMetafield object](/platform/liquid/objects/shopify/metafields/metafield-object)
-
 Last updated 2021-07-28T18:03:28Z

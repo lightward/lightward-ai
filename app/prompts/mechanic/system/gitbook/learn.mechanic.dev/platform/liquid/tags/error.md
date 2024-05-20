@@ -62,6 +62,4 @@ Copy
       }
     }
 
-[Previousassign](/platform/liquid/tags/assign)[Nextlog](/platform/liquid/tags/log)
-
 Last updated 2021-04-05T20:03:25Z

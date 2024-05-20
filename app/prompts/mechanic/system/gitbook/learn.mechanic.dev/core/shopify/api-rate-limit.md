@@ -30,6 +30,4 @@ This setting can be found in the Mechanic account settings, in the Permissions a
 
 Once configured, this custom API token will be used for all user-configured Shopify operations, wherever supported. (It will not be used when querying for publications, since this resource is only accessible to public apps like Mechanic.)
 
-[PreviousShopify admin action links](/core/shopify/admin-action-links)[NextAPI versions](/core/shopify/api-versions)
-
 Last updated 2022-05-29T15:24:02Z

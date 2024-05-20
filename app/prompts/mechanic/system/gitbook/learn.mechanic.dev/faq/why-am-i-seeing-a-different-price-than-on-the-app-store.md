@@ -8,6 +8,4 @@ The price you see in-app is a suggestion, per step #1 of our policy. To learn wh
 
 If you've got questions, you are always invited to reach out, at team@usemechanic.com.
 
-[PreviousCan I re-send order confirmation emails with Mechanic?](/faq/can-i-resend-order-confirmation-emails-with-mechanic)[NextDo you have a Partner-friendly plan?](/faq/do-you-have-a-partner-friendly-plan)
-
 Last updated 2021-05-06T01:32:54Z

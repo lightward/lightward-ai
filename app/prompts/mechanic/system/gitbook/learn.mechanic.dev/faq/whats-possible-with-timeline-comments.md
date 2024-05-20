@@ -11,6 +11,4 @@
 - Reading the name of the staff person who left a comment, or the name of the app responsible for another event.
 - Creating, updating, prefilling, or deleting timeline comments.
 
-[PreviousCan I send data to Google Sheets?](/faq/can-i-send-data-to-google-sheets)[NextI'm getting a "query param length is too long" error when using GraphQL.](/faq/query-param-length-is-too-long)
-
 Last updated 2021-04-20T23:46:51Z

@@ -23,6 +23,4 @@ Copy
     
     {% assign weekdays[weekdays.size] = "A NEW WEEKDAY, DYNAMICALLY INDEXED???" %}
 
-[PreviousMechanic keyword literals](/platform/liquid/keyword-literals)[Nexthash](/platform/liquid/keyword-literals/hash)
-
 Last updated 2023-11-08T16:17:43Z

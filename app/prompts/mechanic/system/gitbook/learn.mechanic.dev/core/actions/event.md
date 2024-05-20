@@ -264,6 +264,4 @@ Copy
       {% endaction %}
     {% endunless %}
 
-[PreviousEmail](/core/actions/email)[NextFiles](/core/actions/files)
-
 Last updated 2023-11-18T19:38:52Z

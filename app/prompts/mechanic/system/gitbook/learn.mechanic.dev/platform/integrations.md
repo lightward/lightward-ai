@@ -16,6 +16,4 @@ The Mechanic task library has a limited selection of tasks integrating with thir
 
 If you don't find a match in the task library, consider a custom task to achieve your integration. Start here: "I need something custom!"
 
-[PreviousBulk operations](/platform/graphql/bulk-operations)[NextAppstle Subscriptions](/platform/integrations/appstle-subscriptions)
-
 Last updated 2023-07-28T19:43:42Z

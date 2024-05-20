@@ -25,6 +25,4 @@ This feature is useful if a Mechanic account is experiencing (or will experience
 
 You can add, update, and remove event filters at any time. Any changes go into effect immediately.
 
-[PreviousEvent topics](/platform/events/topics)[NextGraphQL](/platform/graphql)
-
 Last updated 2023-01-02T22:06:35Z

@@ -127,6 +127,4 @@ URL
 
 For a detailed review of usage, see Shopify Flow.
 
-[PreviousIntegrations](/core/actions/integrations)[NextReport Toaster](/core/actions/integrations/report-toaster)
-
 Last updated 2021-11-08T20:19:43Z

@@ -84,6 +84,4 @@ Copy
 
 Your fingerprint should be composed of data that identifies a resource as perfectly unique. By doing so, you'll be debouncing event resources, instead of an entire event stream.
 
-[PreviousTagging Shopify resources](/techniques/tagging-shopify-resources)[NextResponding to action results](/techniques/responding-to-action-results)
-
 Last updated 2022-06-30T21:33:40Z

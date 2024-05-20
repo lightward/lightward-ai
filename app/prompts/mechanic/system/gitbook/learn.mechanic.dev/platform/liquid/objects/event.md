@@ -15,6 +15,4 @@ The Event object describes an incoming event.
 - event.created\_at – the date and time at which Mechanic received the event
 - event.parent – if applicable, a reference to the event that used an Event action to create this event; parents are available up to five generations deep (e.g. {{ event.parent.parent.parent.parent.parent }}), but no further In preview mode, this object also contains a "preview" attribute, as in event.preview, set to true. (In all other modes, event objects do not have this property.) When this attribute is present, the task should render actions that are indicative of what the merchant should expect the task to do – and these "preview" actions will be shown to the merchant. These actions will also be used to determine what Shopify permissions Mechanic will request from the merchant. Learn more about preview actions
 
-[PreviousCache object](/platform/liquid/objects/cache)[NextOptions object](/platform/liquid/objects/options)
-
 Last updated 2023-03-16T23:37:25Z

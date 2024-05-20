@@ -15,6 +15,4 @@ This object is always a hash, containing the following keys:
 
 This object is most useful for scheduling follow-up work for itself, using the "task\_ids" option in the "event" action.
 
-[PreviousOptions object](/platform/liquid/objects/options)[NextShopify REST Admin API](/platform/liquid/objects/shopify)
-
 Last updated 2021-04-05T20:03:27Z

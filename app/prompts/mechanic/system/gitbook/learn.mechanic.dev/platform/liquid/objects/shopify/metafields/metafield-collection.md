@@ -22,6 +22,4 @@ A metafield collection object is an iterable set of metafields, which also suppo
 - Shop
 - Variant
 
-[PreviousMetafield representation object](/platform/liquid/objects/shopify/metafields/metafield-representation-object)[NextOrder object](/platform/liquid/objects/shopify/order)
-
 Last updated 2021-07-28T17:45:18Z

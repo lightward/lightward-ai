@@ -8,6 +8,4 @@ To talk about adjusting new and existing Mechanic subscriptions for your stores,
 
 Development stores, or other stores that will never see customer traffic, usually qualify for a super-extended free trial.
 
-[PreviousCan I add a time delay to my task?](/faq/can-i-add-a-time-delay-to-my-task)[NextHow can I reduce memory usage of my task?](/faq/how-can-i-reduce-memory-usage-of-my-task)
-
 Last updated 2023-07-11T20:59:40Z

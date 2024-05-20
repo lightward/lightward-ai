@@ -147,6 +147,4 @@ Copy
       }
     }
 
-[PreviousReport Toaster](/platform/integrations/report-toaster)[NextRun links](/platform/integrations/run-links)
-
 Last updated 2023-07-28T19:51:48Z

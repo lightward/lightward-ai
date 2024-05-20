@@ -66,7 +66,7 @@ module Prompts
 
       sorted_files.each do |file|
         relative_path = Pathname.new(file).relative_path_from(directory)
-        add_file_to_xml(xml, relative_path, File.read(file))
+        add_file_to_xml(xml, relative_path, File.read(file).strip)
       end
     end
 
@@ -95,7 +95,7 @@ module Prompts
 
         files.each_with_index do |file, index|
           role = index.even? ? "user" : "assistant"
-          array << { role: role, content: [{ type: "text", text: File.read(file) }] }
+          array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
         end
 
         array

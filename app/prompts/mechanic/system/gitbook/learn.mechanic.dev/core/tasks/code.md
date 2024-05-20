@@ -14,6 +14,4 @@ A task must purposefully consider its preview, so as to accurately communicate i
 
 To find many examples of task code, browse https://github.com/lightward/mechanic-tasks.
 
-[PreviousSubscriptions](/core/tasks/subscriptions)[NextEnvironment variables](/core/tasks/code/environment-variables)
-
 Last updated 2023-11-18T19:40:33Z

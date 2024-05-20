@@ -20,6 +20,4 @@ Related FAQ: Can my Mechanic concurrency limit be raised?
 - Use GraphQL to query Shopify, to keep your data usage efficient. (To learn more, see Interacting with Shopify.)
 - For options for ordering execution of runs, see Ordering.
 
-[PreviousScheduling](/core/runs/scheduling)[NextOrdering](/core/runs/ordering)
-
 Last updated 2023-03-20T16:22:06Z

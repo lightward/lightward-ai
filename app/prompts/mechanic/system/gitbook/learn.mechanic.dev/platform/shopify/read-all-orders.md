@@ -10,6 +10,4 @@ Mechanic has a platform policy of requiring as few permissions as necessary. As 
 
 Find the "Read all orders" option by opening Mechanic's settings, via the "Settings" link in the main app navigation. Or, navigate directly to https://admin.shopify.com/apps/mechanic/settings.
 
-[PreviousCustom authentication](/platform/shopify/custom-authentication)[NextWebhooks](/platform/webhooks)
-
 Last updated 2023-03-08T17:13:46Z

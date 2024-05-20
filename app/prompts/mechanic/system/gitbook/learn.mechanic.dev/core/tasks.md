@@ -35,6 +35,4 @@ Copy
 
     {"name":"Customer signup alerts","options":{"email_recipient __email_required":"aesha@example.com","email_subject__ required":"A new customer has signed up: {{ customer.email }}","email_body __multiline_required":"Hi! View this customer's details online:\n\nhttps://{{ shop.domain }}/admin/customers/{{ customer.id }}\n\n-Mechanic"},"script":"{% action \"email\" %}\n {\n \"to\": {{ options.email_recipient__ email_required | json }},\n \"subject\": {{ options.email_subject __required | json }},\n \"body\": {{ options.email_body__ multiline_required | newline_to_br | json }},\n \"from_display_name\": {{ shop.name | json }}\n }\n{% endaction %}","subscriptions":["shopify/customers/create"],"online_store_javascript":null,"order_status_javascript":null,"docs":null,"subscriptions_template":"shopify/customers/create","shopify_api_version":"2022-04","liquid_profiling":false,"perform_action_runs_in_sequence":false,"halt_action_run_sequence_on_error":false,"preview_event_definitions":[]}
 
-[PreviousParent and child events](/core/events/parent-and-child-events)[NextSubscriptions](/core/tasks/subscriptions)
-
 Last updated 2023-08-13T23:23:57Z

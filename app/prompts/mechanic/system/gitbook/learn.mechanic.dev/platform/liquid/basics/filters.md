@@ -14,6 +14,4 @@ Copy
     
     {% assign full_name = customer.first_name | append: " " | append: customer.last_name %}
 
-[PreviousComments](/platform/liquid/basics/comments)[NextOperators](/platform/liquid/basics/operators)
-
 Last updated 2024-05-08T16:18:39Z

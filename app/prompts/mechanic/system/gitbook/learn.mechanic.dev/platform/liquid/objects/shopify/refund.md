@@ -11,6 +11,4 @@
 - The related order object: {{ refund.order }
 - An array of refund line items, each containing a line item object: {{ refund.refund\_line\_items.first.line\_item }}
 
-[PreviousProduct image object](/platform/liquid/objects/shopify/product-image)[NextShipping zone object](/platform/liquid/objects/shopify/shipping-zone)
-
 Last updated 2021-04-05T20:03:29Z

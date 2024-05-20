@@ -22,6 +22,4 @@ The error details can be any JSON value. This value will be represented to the u
 
 Error objects are most easily generated using the error tag.
 
-[PreviousAction objects](/core/tasks/code/action-objects)[NextLog objects](/core/tasks/code/log-objects)
-
 Last updated 2022-01-23T18:11:38Z

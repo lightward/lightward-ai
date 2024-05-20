@@ -9,6 +9,4 @@
 - Every property from the Fulfillment Order resource in the Shopify REST Admin API
 - The related order object: {{ fulfillment\_order.order }}
 
-[PreviousFulfillment object](/platform/liquid/objects/shopify/fulfillment)[NextFulfillment event object](/platform/liquid/objects/shopify/fulfillment-event)
-
 Last updated 2023-11-01T20:20:11Z

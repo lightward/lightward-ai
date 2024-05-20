@@ -21,6 +21,4 @@ Content in this section was compiled from the following Shopify resources:
 - https://shopify.github.io/liquid/
 - https://shopify.dev/docs/themes/liquid/reference/basics
 
-[PreviousLiquid](/platform/liquid)[NextSyntax](/platform/liquid/basics/syntax)
-
 Last updated 2023-11-08T16:16:29Z

@@ -6,6 +6,4 @@ A read-only demo is available here - https://shopify.dev/tools/graphiql-admin-ap
 
 A full app is available for install on your Shopify store: https://shopify-graphiql-app.shopifycloud.com/login
 
-[PreviousBasics](/platform/graphql/basics)[NextQueries](/platform/graphql/basics/queries)
-
 Last updated 2021-04-05T20:03:30Z

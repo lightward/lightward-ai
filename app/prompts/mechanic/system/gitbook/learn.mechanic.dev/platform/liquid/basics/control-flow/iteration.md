@@ -69,6 +69,4 @@ Copy
       {% endif %}
     {% endfor %}
 
-[PreviousCondition](/platform/liquid/basics/control-flow/condition)[NextWhitespace](/platform/liquid/basics/whitespace)
-
 Last updated 2021-04-05T20:03:19Z

@@ -15,6 +15,4 @@ For tasks that respond to events on Shopify resources, we recommend the followin
 
 ## Example
 
-[PreviousResponding to events](/core/shopify/events)[NextReading data](/core/shopify/read)
-
 Last updated 2021-09-29T14:53:49Z

@@ -17,6 +17,4 @@ Mechanic Liquid is the implementation of open-source Liquid used here, within Me
 - Mechanic objects represent specific Mechanic and Shopify resources.
 - Mechanic tags make it easier for task writers to render JSON objects. These tags include action, log, and error. We've also enhanced the assign tag to support assigning values within arrays and hashes.
 
-[PreviousRun links](/platform/integrations/run-links)[NextBasics](/platform/liquid/basics)
-
 Last updated 2024-01-22T19:20:40Z

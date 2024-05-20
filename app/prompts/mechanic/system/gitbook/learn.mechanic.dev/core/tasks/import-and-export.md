@@ -24,6 +24,4 @@ When viewing the task list on the Mechanic home screen, use the "Export" button 
 
 When working in the task editor for a specific task, use the "Export" button to copy a JSON representation of the current task to the clipboard.
 
-[PreviousPerform action runs in sequence](/core/tasks/advanced-settings/perform-action-runs-in-sequence)[NextActions](/core/actions)
-
 Last updated 2024-01-18T02:00:29Z

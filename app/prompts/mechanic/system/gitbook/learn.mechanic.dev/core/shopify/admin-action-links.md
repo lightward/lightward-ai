@@ -202,6 +202,4 @@ Copy
 
 Because this task straightforwardly references the order environment variable, this task is a good candidate for a subscription to mechanic/user/order. Once modified in that way, the task will be able to send PDF invoices on demand, whenever a user sends orders to the task via a "Send to Mechanic" link.
 
-[PreviousWriting data](/core/shopify/write)[NextAPI rate limit](/core/shopify/api-rate-limit)
-
 Last updated 2023-11-24T02:37:55Z

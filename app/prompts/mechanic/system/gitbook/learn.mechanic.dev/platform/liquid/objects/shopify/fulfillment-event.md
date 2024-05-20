@@ -10,6 +10,4 @@
 - The related order object: {{ fulfillment\_event.order }}
 - The related fulfillment object: {{ fulfillment\_event.fulfillment }}
 
-[PreviousFulfillment order object](/platform/liquid/objects/shopify/fulfillment-order)[NextGift card object](/platform/liquid/objects/shopify/gift-card)
-
 Last updated 2021-04-05T20:03:26Z

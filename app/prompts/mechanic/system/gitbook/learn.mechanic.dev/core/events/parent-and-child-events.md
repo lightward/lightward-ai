@@ -40,6 +40,4 @@ As written, this task will "fan out": it will generate 1 child event, which will
 
 Importantly, note the "task\_id" option, applied to the Event action. This option ensures that only this task, and no other, will respond to the new event. While it's unlikely that any other task will subscribe to "user/fan/out" events, this option is important for ensuring expected behavior.
 
-[PreviousTopics](/core/events/topics)[NextTasks](/core/tasks)
-
 Last updated 2023-08-13T23:22:04Z

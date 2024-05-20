@@ -16,6 +16,4 @@ How to access it
 - The shop object
 - The price rule object
 
-[PreviousCustomer object](/platform/liquid/objects/shopify/customer-object)[NextDispute object](/platform/liquid/objects/shopify/dispute)
-
 Last updated 2021-04-05T20:03:27Z

@@ -27,6 +27,4 @@ Pushing data to Google Sheets requires an intermediary service, like IFTTT or Za
 
 Then, use the "http" action to send data to the webhook URL that IFTTT or Zapier provides. Learn more about this general technique with our tutorial: Triggering tasks with IFTTT.
 
-[PreviousHow do marketing preferences work with Mechanic?](/faq/how-do-marketing-preferences-work-with-mechanic)[NextWhat's possible with timeline comments?](/faq/whats-possible-with-timeline-comments)
-
 Last updated 2021-10-08T16:07:48Z

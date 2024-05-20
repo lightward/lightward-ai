@@ -153,6 +153,4 @@ Copy
       }
     }
 
-[Previousliquid](/platform/liquid/tags/liquid)[Nextassign](/platform/liquid/tags/assign)
-
 Last updated 2024-01-23T00:39:00Z

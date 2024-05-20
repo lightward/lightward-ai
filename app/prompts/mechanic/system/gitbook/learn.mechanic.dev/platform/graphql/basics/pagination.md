@@ -38,6 +38,4 @@ https://shopify.dev/concepts/graphql/pagination
 
 https://graphql.org/learn/pagination/
 
-[PreviousMutations](/platform/graphql/basics/mutations)[NextBulk operations](/platform/graphql/bulk-operations)
-
 Last updated 2021-04-05T20:03:31Z

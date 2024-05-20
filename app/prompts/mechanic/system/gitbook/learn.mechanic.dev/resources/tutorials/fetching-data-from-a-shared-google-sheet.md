@@ -38,6 +38,4 @@ Using the reference information available in these docs, write your own Mechanic
 
 If you have any questions, head to our community Slack.
 
-[PreviousCreating scheduled CSV feeds](/resources/tutorials/creating-scheduled-csv-feeds)[NextEvents](/core/events)
-
 Last updated 2023-10-30T14:56:45Z

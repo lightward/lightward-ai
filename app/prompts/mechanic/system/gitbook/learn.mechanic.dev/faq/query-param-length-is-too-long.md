@@ -8,6 +8,4 @@ Learn about this technique using the Shopify action, or with the shopify Liquid 
 
 If your query isn't using any particularly large string values, you may need to split your query into several pieces instead.
 
-[PreviousWhat's possible with timeline comments?](/faq/whats-possible-with-timeline-comments)[NextCan my Mechanic concurrency limit be raised?](/faq/can-my-mechanic-concurrency-limit-be-raised)
-
 Last updated 2022-04-13T14:12:15Z

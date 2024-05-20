@@ -16,6 +16,4 @@ Copy
     
     {% log header: header, claims: claims, input: input, signature: signature %}
 
-[PreviousWorking with external APIs](/techniques/working-with-external-apis)[NextAWS request signatures](/techniques/working-with-external-apis/aws-request-signatures)
-
 Last updated 2023-11-08T15:16:45Z

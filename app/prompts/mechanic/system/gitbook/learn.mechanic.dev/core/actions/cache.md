@@ -168,6 +168,4 @@ Copy
 
     {% action "cache", "del", "foo" %}
 
-[PreviousActions](/core/actions)[NextEcho](/core/actions/echo)
-
 Last updated 2023-10-31T14:55:04Z

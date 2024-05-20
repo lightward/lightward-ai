@@ -13,6 +13,4 @@
 - {{ customer.unsubscribe\_url }}, containing the Mechanic-hosted URL where the customer can mark their own customer account as not accepting marketing; see How do I add an unsubscribe link to my emails?
 - The related metafields object: {{ customer.metafields }}
 
-[PreviousCollection object](/platform/liquid/objects/shopify/collection)[NextDiscount code object](/platform/liquid/objects/shopify/discount-code)
-
 Last updated 2021-06-14T23:13:27Z

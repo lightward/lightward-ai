@@ -9,6 +9,4 @@ These filters are still a part of Mechanic Liquid, but are no longer documented 
 - base64url Replaced by base64\_url\_safe\_encode
 - decode\_base64url Replaced by base64\_url\_safe\_decode
 
-[PreviousShopify Liquid filters](/platform/liquid/filters/shopify)[NextMechanic keyword literals](/platform/liquid/keyword-literals)
-
 Last updated 2023-11-08T16:15:13Z

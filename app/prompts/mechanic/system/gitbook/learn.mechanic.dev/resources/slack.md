@@ -6,6 +6,4 @@ Join the Mechanic Slack workspace
 
 Got some code to share in Slack? Use code snippets to share code with line numbers, and syntax highlighting, in a way that doesn't take up lots of vertical space in the channel. Don't share lots of code without a snippet!
 
-[PreviousRequesting](/resources/task-library/requesting)[NextTutorials](/resources/tutorials)
-
 Last updated 2023-10-30T06:50:18Z

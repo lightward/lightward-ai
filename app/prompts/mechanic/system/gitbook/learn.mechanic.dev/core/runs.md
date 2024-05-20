@@ -88,6 +88,4 @@ The run has been performed, without errors
 
  |
 
-[PreviousZIP](/core/actions/file-generators/zip)[NextScheduling](/core/runs/scheduling)
-
 Last updated 2023-11-18T20:08:47Z

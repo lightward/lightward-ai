@@ -153,6 +153,4 @@ To bring over your email colors, go back to the "Notifications" area in Shopify,
 
 To bring over your shop's logo, see our How do I send images with my emails? guide – see the "Embedding images" section.
 
-[PreviousFinding a resource ID](/techniques/finding-a-resource-id)[NextSecuring Mechanic webhooks](/techniques/securing-mechanic-webhooks)
-
 Last updated 2024-04-28T17:54:59Z

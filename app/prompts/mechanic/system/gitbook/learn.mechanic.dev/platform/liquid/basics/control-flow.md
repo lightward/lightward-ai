@@ -4,6 +4,4 @@ In Liquid, control flow determines what code is evaluated. By using control flow
 
 Control flow can be determined using conditions, or by iteration.
 
-[PreviousOperators](/platform/liquid/basics/operators)[NextCondition](/platform/liquid/basics/control-flow/condition)
-
 Last updated 2023-11-08T16:09:27Z

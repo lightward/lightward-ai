@@ -66,6 +66,4 @@ https://www.shopify.com/partners/blog/getting-started-with-graphql
 
 https://graphql.org/learn/queries/
 
-[PreviousQueries](/platform/graphql/basics/queries)[NextPagination](/platform/graphql/basics/pagination)
-
 Last updated 2021-07-21T20:04:35Z

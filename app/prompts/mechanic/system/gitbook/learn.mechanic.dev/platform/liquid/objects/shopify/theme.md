@@ -11,6 +11,4 @@
 - Every property from the Theme resource in the Shopify REST Admin API
 - An array of asset objects: {{ theme.assets }}
 
-[PreviousShop object](/platform/liquid/objects/shopify/shop)[NextTheme asset object](/platform/liquid/objects/shopify/theme-asset)
-
 Last updated 2021-04-05T20:03:36Z

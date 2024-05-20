@@ -15,6 +15,4 @@
 - The shop object
 - The discount code object
 
-[PreviousOrder risk object](/platform/liquid/objects/shopify/order-risk)[NextProduct object](/platform/liquid/objects/shopify/product)
-
 Last updated 2021-04-05T20:03:31Z

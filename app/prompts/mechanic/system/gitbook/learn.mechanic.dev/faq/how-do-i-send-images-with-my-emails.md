@@ -33,6 +33,4 @@ Copy
 
     "body": {{ email_body | unindent | json }}
 
-[PreviousHow do I add an unsubscribe link to my emails?](/faq/how-do-i-add-an-unsubscribe-link-to-my-emails)[NextCan I re-send order confirmation emails with Mechanic?](/faq/can-i-resend-order-confirmation-emails-with-mechanic)
-
 Last updated 2023-10-21T20:28:35Z

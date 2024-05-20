@@ -107,6 +107,4 @@ Copy
 
 These examples use add\_tag and remove\_tag, which are Liquid filters unique to Mechanic (see Mechanic's list of supported filters).
 
-[PreviousWriting a high-quality task](/techniques/writing-a-high-quality-task)[NextDebouncing events](/techniques/debouncing-events)
-
 Last updated 2021-04-17T19:33:29Z

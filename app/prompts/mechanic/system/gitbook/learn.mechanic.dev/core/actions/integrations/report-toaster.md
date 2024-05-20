@@ -8,6 +8,4 @@ Find a complete reference for this action in the Integrations section:
 
 → Platform / Integrations / Report Toaster / Action
 
-[PreviousFlow](/core/actions/integrations/flow)[NextShopify](/core/actions/shopify)
-
 Last updated 2022-01-05T19:39:49Z

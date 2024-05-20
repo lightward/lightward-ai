@@ -58,6 +58,4 @@ Copy
       {% action "cache", "setex", "monitor-10min", 600, now %}
     {% endif %}
 
-[PreviousSecuring Mechanic webhooks](/techniques/securing-mechanic-webhooks)[NextFAQ](/faq)
-
 Last updated 2023-11-18T20:16:03Z

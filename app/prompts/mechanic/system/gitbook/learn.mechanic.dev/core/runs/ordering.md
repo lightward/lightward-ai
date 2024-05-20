@@ -21,6 +21,4 @@ The best tool to leverage here is the Event action, coupled with action sequence
 
 One more tool is worth mentioning: tasks may subscribe to mechanic/actions/perform to be re-triggered when each of their own actions are performed. For more on this strategy, see Responding to action results.
 
-[PreviousConcurrency](/core/runs/concurrency)[NextRetries](/core/runs/retries)
-
 Last updated 2021-04-05T20:03:10Z

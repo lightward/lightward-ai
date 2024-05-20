@@ -109,6 +109,4 @@ Copy
     {"log":"oh my!"}
     {"action":{"type":"email","options":{"to":"hello@example.com"}}}
 
-[PreviousMechanic tags](/platform/liquid/tags)[Nextaction](/platform/liquid/tags/action)
-
 Last updated 2024-01-23T02:39:12Z

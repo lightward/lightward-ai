@@ -15,6 +15,4 @@ This property of the customer object points to a Mechanic-powered URL that...
 
 If your task code doesn't have a customer object, you might have to write some different Liquid code to achieve the same ends. The idea is to call the unsubscribe\_url attribute of the appropriate customer object, regardless of what specific variable holds the customer object.
 
-[PreviousMy task added a tag, but now the tag is missing – why?](/faq/my-task-added-a-tag-but-now-the-tag-is-missing-why)[NextHow do I send images with my emails?](/faq/how-do-i-send-images-with-my-emails)
-
 Last updated 2021-06-14T23:12:53Z

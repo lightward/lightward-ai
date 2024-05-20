@@ -17,6 +17,4 @@ To integrate PayPal transactions into your Shopify orders, leverage the Import P
 - Install the task: https://tasks.mechanic.dev/import-paypal-transactions-as-shopify-orders
 - Configure the task to taste and save :) Here's a sample configuration:
 
-[PreviousHow can I reduce memory usage of my task?](/faq/how-can-i-reduce-memory-usage-of-my-task)
-
 Last updated 2024-04-19T18:27:05Z

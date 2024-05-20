@@ -19,6 +19,4 @@ This object is always a hash. The keys always correspond to lookups (i.e. {{ opt
 
 For more on using this object (and implicitly constructing the merchant-facing configuration form), see Task options.
 
-[PreviousEvent object](/platform/liquid/objects/event)[NextTask object](/platform/liquid/objects/task)
-
 Last updated 2021-04-05T20:03:28Z

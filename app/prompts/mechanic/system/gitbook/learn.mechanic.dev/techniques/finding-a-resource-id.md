@@ -10,6 +10,4 @@ Copy
 
 And in this example, the ID is still the number at the very end.
 
-[PreviousAWS request signatures](/techniques/working-with-external-apis/aws-request-signatures)[NextMigrating templates from Shopify to Mechanic](/techniques/migrating-templates-from-shopify-to-mechanic)
-
 Last updated 2024-03-12T16:56:27Z

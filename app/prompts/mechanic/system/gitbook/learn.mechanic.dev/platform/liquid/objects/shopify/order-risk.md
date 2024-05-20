@@ -9,6 +9,4 @@
 
 - Every property from the Order Risk resource in the Shopify REST Admin API
 
-[PreviousOrder object](/platform/liquid/objects/shopify/order)[NextPrice rule object](/platform/liquid/objects/shopify/price-rule)
-
 Last updated 2021-04-05T20:03:33Z

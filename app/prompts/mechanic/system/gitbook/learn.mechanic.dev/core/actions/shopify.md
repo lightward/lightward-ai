@@ -407,6 +407,4 @@ Copy
       }
     }
 
-[PreviousReport Toaster](/core/actions/integrations/report-toaster)[NextFile generators](/core/actions/file-generators)
-
 Last updated 2023-07-27T19:49:23Z

@@ -12,6 +12,4 @@ Mechanic itself doesn't offer any guarantees about IP addresses used for outgoin
 
 Mechanic works with Postmark to use DKIM message signing and Return-Path routes, both of which are strong signals for deliverability. The requisite DNS configuration for these features is part of validating any custom email address used in Mechanic.
 
-[PreviousCan my Mechanic concurrency limit be raised?](/faq/can-my-mechanic-concurrency-limit-be-raised)[NextCan Mechanic read or manage customer subscriptions?](/faq/can-mechanic-read-or-manage-customer-subscriptions)
-
 Last updated 2023-03-13T23:07:32Z

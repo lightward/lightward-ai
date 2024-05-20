@@ -16,6 +16,4 @@ Our support team assists with platform issues and issues with tasks from Mechani
 - Partner Directory: We recommend hiring a developer if the issue requires more in-depth technical expertise. Our partner directory lists qualified developers familiar with Mechanic task development.
 - Finding a Developer: Visit our partner directory at partners.mechanic.dev to find a developer who can customize or optimize your task. If you want to be matched with a suitable developer, use our matchmaking service.
 
-[Previous"I need something custom!"](/custom)[NextHire a Mechanic developer](/hire-a-developer)
-
 Last updated 2023-11-23T22:15:26Z

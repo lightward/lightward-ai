@@ -22,6 +22,4 @@ Make sure to take advantage of the documentation found here, beginning with the 
 
 Finally, join Mechanic's Slack workspace at slack.mechanic.dev to exchange support with the community. The #general channel is a great place to start, and it's filled with people who are using Mechanic to solve problems every day. :)
 
-[PreviousIntroduction](/)[Next"I need help with my custom task!"](/custom-help)
-
 Last updated 2023-11-16T17:19:37Z

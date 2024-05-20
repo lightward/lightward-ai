@@ -18,6 +18,4 @@ Copy
     
     aws: {{ kSigning }}
 
-[PreviousJSON Web Signatures](/techniques/working-with-external-apis/json-web-signatures)[NextFinding a resource ID](/techniques/finding-a-resource-id)
-
 Last updated 2023-11-08T15:00:49Z

@@ -20,6 +20,4 @@ Start learning about previews here: Core / Tasks / Previews
 
 Having trouble getting your permissions and previews to line up? Try asking in our community Slack workspace. Sharing your task code there is a good way to get suggestions about how to move forward. :)
 
-[PreviousWhy are my tasks delayed or not running?](/faq/why-are-my-tasks-delayed-or-not-running)[NextHow do I preview email attachments?](/faq/how-do-i-preview-email-attachments)
-
 Last updated 2023-03-22T16:21:15Z

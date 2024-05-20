@@ -62,6 +62,4 @@ Copy
 
     shopify/customers/create{% if options.wait_one_hour__boolean %}+1.hour{% endif %}
 
-[PreviousTasks](/core/tasks)[NextCode](/core/tasks/code)
-
 Last updated 2024-05-07T15:14:21Z

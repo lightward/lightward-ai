@@ -6,6 +6,4 @@ Learn more about our approach to this here: Platform / Policies / Plans / Develo
 
 Did you know we have a Slack workspace you can join? It's true! This is the right place to ask implementation questions, and to compare notes with other problem-solvers. Come join us!
 
-[PreviousDoes my theme need to be updated for Mechanic?](/faq/does-my-theme-need-to-be-updated-for-mechanic)[NextWhy don't I see any events in my task's activity?](/faq/why-dont-i-see-any-events-in-my-tasks-activity)
-
 Last updated 2021-07-10T22:03:39Z

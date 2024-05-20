@@ -52,6 +52,4 @@ Save the page.
 
 Open up the page you just created, and you should see the contents of your feed. :) If you have any questions, head to our community Slack.
 
-[PreviousTriggering tasks from a contact form](/resources/tutorials/triggering-tasks-from-a-contact-form)[NextFetching data from a shared Google sheet](/resources/tutorials/fetching-data-from-a-shared-google-sheet)
-
 Last updated 2023-10-30T06:18:36Z

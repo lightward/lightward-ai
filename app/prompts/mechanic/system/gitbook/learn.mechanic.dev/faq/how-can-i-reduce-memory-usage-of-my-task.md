@@ -20,6 +20,4 @@ A single task run has a limited amount of memory available to it, but you can ge
 
 Task runs responding to mechanic/shopify/bulk\_operation are allocated more memory than regular task runs. If you aren't already using one, consider whether your use case could be achieved using a bulk operation.
 
-[PreviousCan I add another store to my existing Mechanic subscription?](/faq/can-i-add-another-store-to-my-existing-mechanic-subscription)[NextHow do I connect PayPal to Shopify with Mechanic?](/faq/how-do-i-connect-paypal-to-shopify-with-mechanic)
-
 Last updated 2024-01-21T19:23:44Z

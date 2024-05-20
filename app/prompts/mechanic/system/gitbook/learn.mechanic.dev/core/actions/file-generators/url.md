@@ -41,6 +41,4 @@ Copy
       }
     }
 
-[PreviousPlaintext](/core/actions/file-generators/plaintext)[NextZIP](/core/actions/file-generators/zip)
-
 Last updated 2022-05-05T17:56:14Z

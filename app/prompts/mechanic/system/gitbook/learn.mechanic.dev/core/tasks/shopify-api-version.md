@@ -26,6 +26,4 @@ Shopify may, at times, mark certain API features as deprecated. If a Mechanic ac
 
 The selector for a task's Shopify API version is available in Advanced mode, below the task code area.
 
-[PreviousStub data](/core/tasks/previews/stub-data)[NextAdvanced settings](/core/tasks/advanced-settings)
-
 Last updated 2022-04-02T01:19:57Z

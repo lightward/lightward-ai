@@ -34,6 +34,4 @@ If you run into this scenario, the right thing to do is ask the app developer to
 
 If you're using tasks from Mechanic's library, this should only happen as a result of misconfiguration. If you've written your own tasks, do make sure that you're using GraphQL for managing Shopify tags (see Tagging Shopify resources for more on that subject).
 
-[PreviousCan I read data back from my webhook submission?](/faq/can-i-read-data-back-from-my-webhook-submission)[NextHow do I add an unsubscribe link to my emails?](/faq/how-do-i-add-an-unsubscribe-link-to-my-emails)
-
 Last updated 2022-06-09T18:33:56Z

@@ -49,6 +49,4 @@ In Mechanic, our Liquid implementation includes additional support for construct
 
 Mechanic performs work using queues of runs, with no limit on how large each queue can become. If there is a sudden surge of incoming events for a Shopify store, the store's dedicated Mechanic queue could become delayed. This is an important difference between Mechanic and many other systems: in a high-traffic period, Mechanic will never refuse incoming events for a store; instead, it will process each one as soon as possible, by putting them into a run queue. The rate at which Mechanic processes work varies, depending on concurrency and the Shopify API rate limit.
 
-[Next"I need something custom!"](/custom)
-
 Last updated 2024-05-08T16:18:39Z

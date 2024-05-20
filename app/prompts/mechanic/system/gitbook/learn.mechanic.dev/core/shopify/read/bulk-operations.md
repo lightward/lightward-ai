@@ -106,6 +106,4 @@ Copy
 - ... you only need a little bit of data. Use the shopify filter instead.
 - ... you're responding to a Shopify event, and the data you need comes along with the event data. Use Liquid objects instead.
 
-[PreviousGraphQL in Liquid](/core/shopify/read/graphql-in-liquid)[NextThe Shopify action](/core/shopify/read/the-shopify-action)
-
 Last updated 2024-01-21T19:23:44Z

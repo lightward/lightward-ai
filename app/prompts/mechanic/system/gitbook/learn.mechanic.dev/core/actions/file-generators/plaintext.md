@@ -31,6 +31,4 @@ Copy
       }
     }
 
-[PreviousMigrating to Pdfcrowd](/core/actions/file-generators/pdf/migrating-to-pdfcrowd)[NextURL](/core/actions/file-generators/url)
-
 Last updated 2022-05-05T17:56:14Z

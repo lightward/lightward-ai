@@ -24,6 +24,4 @@ For example, a product\_reference metafield representation object contains a pro
 
 A metafield representation object can only be retrieved via metafield collection lookup: resource.metafields.namespace.key.
 
-[PreviousMetafield object](/platform/liquid/objects/shopify/metafields/metafield-object)[NextMetafield collection object](/platform/liquid/objects/shopify/metafields/metafield-collection)
-
 Last updated 2021-07-28T17:45:18Z

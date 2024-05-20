@@ -18,6 +18,4 @@ For a review of how Mechanic uses bulk operations, start here: Reading data / Bu
 
 https://shopify.dev/tutorials/perform-bulk-operations-with-admin-api
 
-[PreviousPagination](/platform/graphql/basics/pagination)[NextIntegrations](/platform/integrations)
-
 Last updated 2024-01-21T19:23:44Z

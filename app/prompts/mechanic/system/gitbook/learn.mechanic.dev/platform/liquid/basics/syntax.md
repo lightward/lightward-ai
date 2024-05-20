@@ -33,6 +33,4 @@ Copy
     
     {{ message }}
 
-[PreviousBasics](/platform/liquid/basics)[NextData types](/platform/liquid/basics/types)
-
 Last updated 2023-11-08T15:48:43Z

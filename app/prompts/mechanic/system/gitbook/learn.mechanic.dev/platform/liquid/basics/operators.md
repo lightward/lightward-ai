@@ -280,6 +280,4 @@ Copy
       {% comment %} do something {% endcomment %}
     {% endif %}
 
-[PreviousFilters](/platform/liquid/basics/filters)[NextControl flow](/platform/liquid/basics/control-flow)
-
 Last updated 2021-06-08T21:37:52Z

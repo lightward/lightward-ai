@@ -89,6 +89,4 @@ Copy
         {% assign cancel_reason = "It was something unknown." %}
     {% endcase %}
 
-[PreviousControl flow](/platform/liquid/basics/control-flow)[NextIteration](/platform/liquid/basics/control-flow/iteration)
-
 Last updated 2021-06-08T21:38:15Z
