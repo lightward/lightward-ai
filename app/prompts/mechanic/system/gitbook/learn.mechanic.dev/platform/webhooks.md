@@ -408,6 +408,4 @@ This means that the caller must use another avenue for retrieving the results of
 - For calls with variable or multiple callers, use the webhook request ID by reading the x-request-id response header in your client code, and by referencing event.webhook\_request\_id in your task's Liquid code in. Tasks responding to the webhook event should store their results keyed by that UUID, using an external storage mechanism (possibly via the HTTP or FTP actions).
 - For calls triggered by customer activity on an online Shopify storefront, consider (a) requiring the customer to be logged in, (b) sending the customer ID in the webhook request data, (c) storing task results in a customer metafield (using the Shopify action), and (d) using storefront Liquid to render the content of that metafield, polling until a value is present.
 
-[Previous"Read all orders"](/platform/shopify/read-all-orders)[NextPreventing action loops](/techniques/preventing-action-loops)
-
 Last updated 2023-04-02T21:54:06Z

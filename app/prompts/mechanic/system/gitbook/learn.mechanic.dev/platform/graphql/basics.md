@@ -18,6 +18,4 @@ In the example below, three HTTP request are required to collect the same inform
 
 ### GraphQL API: single HTTP request
 
-[PreviousGraphQL](/platform/graphql)[NextShopify Admin API GraphiQL explorer](/platform/graphql/basics/shopify-admin-api-graphiql-explorer)
-
 Last updated 2021-04-05T20:03:30Z

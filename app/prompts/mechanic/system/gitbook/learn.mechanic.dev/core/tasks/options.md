@@ -130,6 +130,4 @@ Options that allow text input are evaluated for Liquid when a task processes an 
 
 Liquid code in task options have access to the same set of environment variables that are made available to the task code, including event, shop, cache, and any event subject variables.
 
-[PreviousLog objects](/core/tasks/code/log-objects)[NextCustom validation](/core/tasks/options/custom-validation)
-
 Last updated 2022-05-05T16:15:02Z

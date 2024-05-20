@@ -87,6 +87,4 @@ Mechanic has some built-in features to prevent action loops:
 
 Preventing action loops is crucial for maintaining the efficiency and reliability of your Mechanic tasks. By implementing conditional checks or using a timestamp-based approach, you can ensure that your tasks operate as intended without causing unintended loops.
 
-[PreviousWebhooks](/platform/webhooks)[NextWriting a high-quality task](/techniques/writing-a-high-quality-task)
-
 Last updated 2023-09-21T22:10:52Z

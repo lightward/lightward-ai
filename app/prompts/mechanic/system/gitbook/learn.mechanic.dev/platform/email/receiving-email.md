@@ -35,6 +35,4 @@ Specifically, you'll have access to these attributes, all available in the email
 - "to" – a string containing the full "To" list, including names and email addresses
 - "to\_full" – an array, containing objects with the keys "email", "name", and "mailbox\_hash"
 
-[PreviousEmail](/platform/email)[NextCustom email addresses](/platform/email/custom-email-domain)
-
 Last updated 2024-01-14T14:31:14Z

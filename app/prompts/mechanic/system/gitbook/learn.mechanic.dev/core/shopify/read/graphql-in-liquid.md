@@ -100,6 +100,4 @@ Note: GraphQL queries (excluding whitespace) are limited to 50,000 characters. T
 - ... it's easier and more readable to use Liquid objects, unless performance becomes an issue. Ultimately, the most important thing is that your task works well tomorrow – and that includes making sure that whoever works on it next understands what you're doing. If that means using a quick-and-simple Liquid lookup over a moderately-more-complex GraphQL lookup, go for it.
 - ... you find yourself staring at nested loops. Looping through all orders is one thing – it's quite another to loop through pages of orders and loop through pages of line items within each order. For those scenarios, whenever possible, use a bulk operation.
 
-[PreviousLiquid objects](/core/shopify/read/liquid-objects)[NextBulk operations](/core/shopify/read/bulk-operations)
-
 Last updated 2022-04-13T14:10:58Z

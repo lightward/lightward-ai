@@ -8,6 +8,4 @@ This is a super common path, and the Mechanic community is here to help. :)
 
 If you already have a developer on your team, or have an existing connection to a developer, send them this article and see if they can help you!
 
-[Previous"I need help with my custom task!"](/custom-help)[NextTask library](/resources/task-library)
-
 Last updated 2023-11-14T19:26:20Z

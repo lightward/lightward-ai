@@ -29,6 +29,4 @@ For example, if you change a product's title, then save it, then notice a mistak
 
 Read more about this from Shopify
 
-[PreviousDo you have a Partner-friendly plan?](/faq/do-you-have-a-partner-friendly-plan)[NextMy task is failing because of a permissions problem. Why?](/faq/my-task-is-failing-because-of-a-permissions-problem)
-
 Last updated 2023-03-21T00:51:24Z

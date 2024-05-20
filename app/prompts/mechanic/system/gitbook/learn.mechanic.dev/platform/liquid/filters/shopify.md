@@ -77,6 +77,4 @@ Shopify Liquid includes many filters that are not supported by Mechanic. If a fi
 - url\_decode
 - url\_encode
 
-[PreviousMechanic filters](/platform/liquid/filters)[NextDeprecated filters](/platform/liquid/filters/deprecated)
-
 Last updated 2024-03-13T20:00:00Z

@@ -14,6 +14,4 @@ For an example implementation, see the Auto-tag products when their variants cha
 
 ## 
 
-[PreviousInteracting with Shopify](/core/shopify)[NextReconciling missing events](/core/shopify/events/reconciling-missing-events)
-
 Last updated 2021-09-28T22:25:31Z

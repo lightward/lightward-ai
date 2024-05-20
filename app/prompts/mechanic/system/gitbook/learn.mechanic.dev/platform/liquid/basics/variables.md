@@ -36,6 +36,4 @@ Copy
       }
     {% endcapture %}
 
-[PreviousData types](/platform/liquid/basics/types)[NextComments](/platform/liquid/basics/comments)
-
 Last updated 2021-04-05T20:03:07Z

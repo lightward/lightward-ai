@@ -41,6 +41,4 @@ Copy
       }
     }
 
-[PreviousFile generators](/core/actions/file-generators)[NextPDF](/core/actions/file-generators/pdf)
-
 Last updated 2022-05-05T17:54:11Z

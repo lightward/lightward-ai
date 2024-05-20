@@ -19,6 +19,4 @@ Mechanic allows developers several ways to generate custom User events:
 - The Event action can be used with any User event topic
 - Webhooks may be configured to generate events using any User event topic
 
-[PreviousEvents](/core/events)[NextParent and child events](/core/events/parent-and-child-events)
-
 Last updated 2023-08-13T23:22:03Z

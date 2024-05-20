@@ -39,6 +39,4 @@ During task development, it can be useful to set up a task to only render log ob
 
 Only failed action runs may be retried.
 
-[PreviousOrdering](/core/runs/ordering)[NextInteracting with Shopify](/core/shopify)
-
 Last updated 2022-05-05T21:56:57Z

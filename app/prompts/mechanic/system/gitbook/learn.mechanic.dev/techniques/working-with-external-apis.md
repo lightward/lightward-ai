@@ -24,6 +24,4 @@ To create events using third-party data, use one of these techniques:
 - Task: Send new customer signups to IFTTT
 - Task: Add new customers to GetResponse
 
-[PreviousResponding to action results](/techniques/responding-to-action-results)[NextJSON Web Signatures](/techniques/working-with-external-apis/json-web-signatures)
-
 Last updated 2023-11-08T14:58:39Z

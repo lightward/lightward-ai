@@ -83,6 +83,4 @@ Copy
       {% action "echo", "done" %}
     {% endif %}
 
-[PreviousEnvironment variables](/core/tasks/code/environment-variables)[NextError objects](/core/tasks/code/error-objects)
-
 Last updated 2023-11-18T19:40:33Z

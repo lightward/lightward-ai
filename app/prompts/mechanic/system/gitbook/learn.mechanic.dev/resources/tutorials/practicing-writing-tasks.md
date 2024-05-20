@@ -18,6 +18,4 @@ Working on getting better at task-writing? See Writing a high-quality task.
 - 10. Move to GraphQL for scanning customers See Querying Shopify to learn about looping through results using cursors
 - 11. Move to GraphQL bulk operations for scanning customers
 
-[PreviousCreating a Mechanic webhook](/resources/tutorials/creating-a-mechanic-webhook)[NextTriggering tasks from a contact form](/resources/tutorials/triggering-tasks-from-a-contact-form)
-
 Last updated 2023-08-13T23:25:19Z

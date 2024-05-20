@@ -116,6 +116,4 @@ Copy
       }
     }
 
-[PreviousBase64](/core/actions/file-generators/base64)[NextMigrating to Pdfcrowd](/core/actions/file-generators/pdf/migrating-to-pdfcrowd)
-
 Last updated 2023-10-13T20:01:06Z

@@ -15,6 +15,4 @@ Cache data is unavailable during task preview.
 - Using cache endpoints to share data
 - Using the cache
 
-[PreviousAction object](/platform/liquid/objects/action)[NextEvent object](/platform/liquid/objects/event)
-
 Last updated 2023-10-31T15:10:21Z

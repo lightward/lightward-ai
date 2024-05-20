@@ -11,6 +11,4 @@
 
 - Every property from the Location resource in the Shopify REST Admin API
 
-[PreviousLine item object](/platform/liquid/objects/shopify/line-item)[NextMetafields](/platform/liquid/objects/shopify/metafields)
-
 Last updated 2021-04-05T20:03:32Z

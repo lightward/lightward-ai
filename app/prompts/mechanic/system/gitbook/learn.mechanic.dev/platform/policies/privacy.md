@@ -38,6 +38,4 @@ We may update this privacy policy from time to time in order to reflect, for exa
 
 For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at team@usemechanic.com.
 
-[PreviousPricing](/platform/policies/pricing)[NextCache](/platform/cache)
-
 Last updated 2021-04-18T02:26:51Z

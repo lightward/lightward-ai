@@ -116,6 +116,4 @@ Image
 
  |
 
-[PreviousAdvanced settings](/core/tasks/advanced-settings)[NextJavaScript](/core/tasks/advanced-settings/javascript)
-
 Last updated 2022-04-02T01:21:56Z

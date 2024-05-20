@@ -11,6 +11,4 @@
 - The related location object: {{ fulfillment.location }}
 - An array of line item objects: {{ fulfillment.line\_items }}
 
-[PreviousDraft order object](/platform/liquid/objects/shopify/draft-order)[NextFulfillment order object](/platform/liquid/objects/shopify/fulfillment-order)
-
 Last updated 2023-11-01T19:38:45Z

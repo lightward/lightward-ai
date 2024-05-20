@@ -29,6 +29,4 @@ Or, combine to be even more selective: shop.orders.any.paid.unshipped shop.order
 
 Out of the box, only orders from the last 60 days are accessible. To give Mechanic access to your complete order history, enable "read all orders".
 
-[PreviousMetafield collection object](/platform/liquid/objects/shopify/metafields/metafield-collection)[NextOrder risk object](/platform/liquid/objects/shopify/order-risk)
-
 Last updated 2023-11-01T19:43:58Z

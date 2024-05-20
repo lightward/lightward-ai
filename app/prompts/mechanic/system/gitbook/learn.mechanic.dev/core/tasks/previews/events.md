@@ -57,6 +57,4 @@ Preview event definitions are stored along with the task itself, and thus are pr
 
 Because definitions are a part of the task itself, they're appropriate for use as a testing tool, allowing the developer to verify that a task behaves as intended at every stage of the task's development.
 
-[PreviousPreviews](/core/tasks/previews)[NextStub data](/core/tasks/previews/stub-data)
-
 Last updated 2023-08-13T23:39:31Z

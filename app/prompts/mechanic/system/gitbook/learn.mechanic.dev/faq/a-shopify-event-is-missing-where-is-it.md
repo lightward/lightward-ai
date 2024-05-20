@@ -10,6 +10,4 @@ If the event is well and truly missing, email team@usemechanic.com for further a
 
 To learn more about this, see Reconciling missing events.
 
-[PreviousHow do I stop a large batch of runs?](/faq/how-do-i-stop-a-large-batch-of-runs)[NextDoes Mechanic have an affiliate program?](/faq/does-mechanic-have-an-affiliate-program)
-
 Last updated 2021-10-24T17:13:57Z

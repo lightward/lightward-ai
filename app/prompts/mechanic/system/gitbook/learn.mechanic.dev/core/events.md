@@ -10,6 +10,4 @@ Events are fed into Mechanic by the responsible party – for events that are ab
 
 Incoming events may be selectively skipped using event filters.
 
-[PreviousFetching data from a shared Google sheet](/resources/tutorials/fetching-data-from-a-shared-google-sheet)[NextTopics](/core/events/topics)
-
 Last updated 2023-07-31T17:36:21Z

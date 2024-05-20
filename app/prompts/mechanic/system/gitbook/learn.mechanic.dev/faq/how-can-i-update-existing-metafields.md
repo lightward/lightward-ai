@@ -62,6 +62,4 @@ Copy
       }
     {% endaction %}
 
-[PreviousHow do I preview email attachments?](/faq/how-do-i-preview-email-attachments)[NextCan I query external APIs?](/faq/can-i-query-external-apis)
-
 Last updated 2022-05-19T15:49:30Z

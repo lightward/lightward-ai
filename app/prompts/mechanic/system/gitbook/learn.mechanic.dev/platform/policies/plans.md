@@ -11,6 +11,4 @@ Mechanic does not have different plans. The following details apply to every Mec
 
 Mechanic is Partner-friendly! If you have a Mechanic account used exclusively for development or testing, receiving no customer traffic, send the core team an email at team@usemechanic.com. We can usually help out by granting a super-extended trial period. :)
 
-[PreviousData](/platform/policies/data)[NextPricing](/platform/policies/pricing)
-
 Last updated 2023-07-31T17:28:21Z

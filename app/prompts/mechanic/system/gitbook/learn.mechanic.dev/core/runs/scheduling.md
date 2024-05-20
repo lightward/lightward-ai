@@ -36,6 +36,4 @@ Task runs that are scheduled for the future will always use a task's latest conf
 
 If a task is disabled or deleted at the time a task run comes due, the task run will still perform at the scheduled time, but will fail instantly.
 
-[PreviousRuns](/core/runs)[NextConcurrency](/core/runs/concurrency)
-
 Last updated 2022-05-13T17:25:30Z

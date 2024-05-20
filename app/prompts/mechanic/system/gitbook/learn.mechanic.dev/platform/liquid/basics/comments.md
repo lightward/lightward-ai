@@ -53,6 +53,4 @@ Copy
       echo topic
     %}
 
-[PreviousVariables](/platform/liquid/basics/variables)[NextFilters](/platform/liquid/basics/filters)
-
 Last updated 2023-11-08T16:20:48Z

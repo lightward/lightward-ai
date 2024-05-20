@@ -205,6 +205,4 @@ Copy
       }
     }
 
-[PreviousIntegrations](/platform/integrations)[NextJudge.me](/platform/integrations/judge.me)
-
 Last updated 2023-08-01T16:23:59Z

@@ -11,6 +11,4 @@
 - The related variant object: {{ line\_item.variant }}
 - An array of properties, that also supports lookups by attribute name: {% for prop in line\_item.properties %}{% if prop.name == "Delivery window" %}{{ prop.value }}{% endif %}{% endfor %}, or {{ line\_item.properties["Delivery window"] }}
 
-[PreviousInventory level object](/platform/liquid/objects/shopify/inventory-level)[NextLocation object](/platform/liquid/objects/shopify/location)
-
 Last updated 2021-04-05T20:03:28Z

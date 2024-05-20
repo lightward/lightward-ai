@@ -10,6 +10,4 @@ The Mechanic community can request new tasks – see Requesting.
 
 The task library is open for contributions, by way of pull requests – see Contributing.
 
-[PreviousHire a Mechanic developer](/hire-a-developer)[NextContributing](/resources/task-library/contributing)
-
 Last updated 2023-08-07T18:39:19Z

@@ -28,6 +28,4 @@ Copy
     {% assign words = lines | split: newline %}
     {% assign tags = lines | replace: newline, ", " %}
 
-[Previoushash](/platform/liquid/keyword-literals/hash)[NextMechanic objects](/platform/liquid/objects)
-
 Last updated 2021-04-05T20:03:23Z

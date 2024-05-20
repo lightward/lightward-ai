@@ -33,6 +33,4 @@ Copy
 
 Shopify's notification templates may be manually migrated over to Mechanic. To learn more, see Migrating templates from Shopify to Mechanic.
 
-[PreviousDMARC](/platform/email/dmarc)[NextError handling](/platform/error-handling)
-
 Last updated 2022-04-11T10:27:58Z

@@ -868,6 +868,4 @@ Copy
 
 Returns an array of values found in the supplied hash.
 
-[PreviousLiquid console](/platform/liquid/console)[NextShopify Liquid filters](/platform/liquid/filters/shopify)
-
 Last updated 2024-05-08T16:57:38Z

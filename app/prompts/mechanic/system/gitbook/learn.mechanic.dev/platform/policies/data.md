@@ -67,6 +67,4 @@ The content of event data varies based on the tasks configured for your Mechanic
 4. The next day, Mechanic is removed from the store's apps list.
 5. 15 days later, because Mechanic has been uninstalled, Mechanic deletes the order creation event even though it is not considered complete.
 
-[PreviousPolicies](/platform/policies)[NextPlans](/platform/policies/plans)
-
 Last updated 2023-10-10T14:57:03Z

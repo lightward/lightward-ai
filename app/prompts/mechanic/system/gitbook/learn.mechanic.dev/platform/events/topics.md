@@ -246,6 +246,4 @@ Mechanic invites third-party app developers to develop Mechanic integrations, ma
 
 Third-party services can often be connected to Mechanic using webhooks.
 
-[PreviousEvents](/platform/events)[NextEvent filters](/platform/events/filters)
-
 Last updated 2024-04-04T16:56:16Z

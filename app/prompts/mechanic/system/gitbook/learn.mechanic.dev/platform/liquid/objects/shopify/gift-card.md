@@ -15,6 +15,4 @@ Note: This API is only available to Shopify Plus stores, who have configured the
 - The related order object: {{ gift\_card.order }}
 - The related customer object: {{ gift\_card.customer }}
 
-[PreviousFulfillment event object](/platform/liquid/objects/shopify/fulfillment-event)[NextInventory item object](/platform/liquid/objects/shopify/inventory-item)
-
 Last updated 2021-04-05T20:03:25Z

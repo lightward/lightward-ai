@@ -29,6 +29,4 @@ Copy
     {{ customer.name -}}
     {{- customer.name }}
 
-[PreviousIteration](/platform/liquid/basics/control-flow/iteration)[NextLiquid console](/platform/liquid/console)
-
 Last updated 2021-04-05T20:03:22Z

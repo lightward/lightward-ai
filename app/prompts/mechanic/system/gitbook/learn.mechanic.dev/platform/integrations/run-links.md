@@ -38,6 +38,4 @@ Breaking this down, the URL consists of the following:
 
 Repeat the ids[] query parameter as needed, for each relevant resource ID.
 
-[PreviousShopify Flow](/platform/integrations/shopify-flow)[NextLiquid](/platform/liquid)
-
 Last updated 2023-08-03T15:13:27Z

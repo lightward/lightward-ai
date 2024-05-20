@@ -12,6 +12,4 @@
 - The related variant object: {{ inventory\_level.variant }}
 - The related location object: {{ inventory\_level.location }}
 
-[PreviousInventory item object](/platform/liquid/objects/shopify/inventory-item)[NextLine item object](/platform/liquid/objects/shopify/line-item)
-
 Last updated 2021-04-05T20:03:26Z

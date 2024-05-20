@@ -62,6 +62,4 @@ Copy
       }
     }
 
-[Previouserror](/platform/liquid/tags/error)[NextShopify](/platform/shopify)
-
 Last updated 2021-04-05T20:03:26Z

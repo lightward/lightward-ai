@@ -4,6 +4,4 @@ As of this writing, Shopify doesn't have a simple API for re-sending order confi
 
 However, you can use Mechanic to trigger order-related emails on demand (sample task), and you can re-use your email notifications from Shopify (documentation).
 
-[PreviousHow do I send images with my emails?](/faq/how-do-i-send-images-with-my-emails)[NextWhy am I seeing a different price than on the app store?](/faq/why-am-i-seeing-a-different-price-than-on-the-app-store)
-
 Last updated 2021-05-24T19:16:03Z

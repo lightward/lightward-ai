@@ -177,6 +177,4 @@ Copy
       {% endif %}
     {% endfor %}
 
-[PreviousDefining preview events](/core/tasks/previews/events)[NextShopify API version](/core/tasks/shopify-api-version)
-
 Last updated 2022-05-05T16:16:08Z

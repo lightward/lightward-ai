@@ -8,6 +8,4 @@ Shopify Plus accounts can configure this in the store's Mechanic settings.
 
 Before saving a new access token, you must ensure that the custom app has every access scope that Mechanic requires.
 
-[PreviousShopify](/platform/shopify)[Next"Read all orders"](/platform/shopify/read-all-orders)
-
 Last updated 2023-06-07T16:32:12Z

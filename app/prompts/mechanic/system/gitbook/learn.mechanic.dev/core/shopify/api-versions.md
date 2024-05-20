@@ -33,6 +33,4 @@ Deprecation warnings can be dismissed by doing one of the following:
 - Disabling the task
 - Deleting the task
 
-[PreviousAPI rate limit](/core/shopify/api-rate-limit)[NextPolicies](/platform/policies)
-
 Last updated 2023-09-03T15:10:56Z

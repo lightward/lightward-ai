@@ -16,6 +16,4 @@ Log objects are most easily generated using the log tag.
 
 Log objects appear wherever task run results are visible, including the task preview and when viewing an event.
 
-[PreviousError objects](/core/tasks/code/error-objects)[NextOptions](/core/tasks/options)
-
 Last updated 2023-04-25T20:37:19Z

@@ -19,6 +19,4 @@ The simplest way to access a usable version of a metafield value is via the meta
 - For modern metafields, use resource.metafields.namespace.key.metafield to retrieve the metafield object itself. Use resource.metafields.namespace.key to access the metafield representation object for that metafield.
 - For deprecated metafields, use resource.metafields.namespace.key to retrieve the parsed, appropriately-typed metafield value.
 
-[PreviousMetafields](/platform/liquid/objects/shopify/metafields)[NextMetafield representation object](/platform/liquid/objects/shopify/metafields/metafield-representation-object)
-
 Last updated 2021-07-28T17:45:18Z

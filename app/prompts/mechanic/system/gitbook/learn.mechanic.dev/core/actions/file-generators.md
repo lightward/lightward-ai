@@ -147,6 +147,4 @@ Adds generated files to a multipart/form-data HTTP request
 
  |
 
-[PreviousShopify](/core/actions/shopify)[NextBase64](/core/actions/file-generators/base64)
-
 Last updated 2023-11-10T23:34:12Z

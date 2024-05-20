@@ -29,6 +29,4 @@ For clarity: looking up a single resource by ID will only result in a single RES
 - A set of shipping zones {% for shipping\_zone in shop.shipping\_zones %}
 - The related metafields object {{ shop.metafields }}
 
-[PreviousShipping zone object](/platform/liquid/objects/shopify/shipping-zone)[NextTheme object](/platform/liquid/objects/shopify/theme)
-
 Last updated 2024-04-26T19:18:52Z

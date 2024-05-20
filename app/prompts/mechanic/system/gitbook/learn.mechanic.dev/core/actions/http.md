@@ -307,6 +307,4 @@ Copy
         response_body: action.run.result.body %}
     {% endif %}
 
-[PreviousFTP](/core/actions/ftp)[NextIntegrations](/core/actions/integrations)
-
 Last updated 2023-11-18T19:38:52Z

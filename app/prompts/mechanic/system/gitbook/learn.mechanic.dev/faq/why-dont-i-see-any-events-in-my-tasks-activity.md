@@ -17,12 +17,8 @@ If you're not sure what to check next, or what to look for in your task setup, l
 
 Event visibility filters can be adjusted on the fly, for an individual list of recent activity. Here's an example, using the recent activity list on the Mechanic homepage:
 
- ![](https://learn.mechanic.dev/~gitbook/image?url=https%3A%2F%2Fd33v4339jhl8k0.cloudfront.net%2Fdocs%2Fassets%2F5ddd799f2c7d3a7e9ae472fc%2Fimages%2F5e28a1e42c7d3a7e9ae69bd7%2F5e28a1e3b2a6d.gif&width=768&dpr=4&quality=100&sign=beb8921521777f6a8c7a9fb2b31006840487d6c84703e7f5cbf355ecf03345bf)
-
 These settings are available anywhere you see an activity list.
 
 You can also use your Mechanic account settings to set the default values for these settings. To find these, open the Mechanic home screen, scroll down to the "Your account" area, then click the "Manage settings" link.
-
-[PreviousDo you have a plan for development stores?](/faq/do-you-have-a-plan-for-development-stores)[NextCan I read data back from my webhook submission?](/faq/can-i-read-data-back-from-my-webhook-submission)
 
 Last updated 2021-10-24T17:10:26Z

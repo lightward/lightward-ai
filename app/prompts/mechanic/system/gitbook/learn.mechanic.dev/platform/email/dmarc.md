@@ -20,6 +20,4 @@ Once you've got your DMARC policy configured (no matter what strategy or tooling
 
 - https://dmarcian.com/dmarc-inspector/
 
-[PreviousCustom email addresses](/platform/email/custom-email-domain)[NextEmail templates](/platform/email/templates)
-
 Last updated 2024-01-14T14:15:45Z

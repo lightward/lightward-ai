@@ -25,6 +25,4 @@ It's a bit of a risky move, because this sort of makes it look like we have pric
 
 Per step #2 of the policy, if a suggested price works for you, you're free to accept it immediately and proceed. Per the rest of the policy, if that price doesn't feel good to you, write in to team@usemechanic.com, and we'll work together to find one that feels good to everyone. :)
 
-[PreviousPlans](/platform/policies/plans)[NextPrivacy](/platform/policies/privacy)
-
 Last updated 2023-06-06T19:51:32Z

@@ -296,6 +296,4 @@ Copy
       "definition": {....}
     }
 
-[PreviousLocksmith](/platform/integrations/locksmith)[NextShopify Flow](/platform/integrations/shopify-flow)
-
 Last updated 2023-07-28T17:54:04Z

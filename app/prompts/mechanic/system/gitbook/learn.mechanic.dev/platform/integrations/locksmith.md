@@ -118,6 +118,4 @@ Webhooks can be enabled by visiting your Locksmith Settings page, and clicking "
 
 Please email team@uselocksmith.com if you need help enabling webhooks to be sent to Mechanic.
 
-[PreviousJudge.me](/platform/integrations/judge.me)[NextReport Toaster](/platform/integrations/report-toaster)
-
 Last updated 2023-09-25T19:43:59Z

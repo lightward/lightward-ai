@@ -16,6 +16,4 @@ For this kind of work, we recommend an execution sequence that looks like this:
 
 - Demonstration: Fetch an external configuration file
 
-[PreviousHow can I update existing metafields?](/faq/how-can-i-update-existing-metafields)[NextWhy can't I access the Shopify API during preview mode?](/faq/why-cant-i-access-the-shopify-api-during-preview-mode)
-
 Last updated 2021-04-18T02:00:07Z

@@ -143,6 +143,4 @@ Copy
 
 You can install our error reporter task here.
 
-[PreviousEmail templates](/platform/email/templates)[NextEvents](/platform/events)
-
 Last updated 2023-11-18T20:16:03Z

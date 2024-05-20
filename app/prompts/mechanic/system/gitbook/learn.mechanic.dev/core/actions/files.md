@@ -131,6 +131,4 @@ Copy
       {% endaction %}
     {% endif %}
 
-[PreviousEvent](/core/actions/event)[NextFTP](/core/actions/ftp)
-
 Last updated 2023-11-18T19:38:52Z

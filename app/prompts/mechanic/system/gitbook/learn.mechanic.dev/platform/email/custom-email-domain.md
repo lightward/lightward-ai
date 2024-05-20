@@ -30,6 +30,4 @@ Mechanic requires verification of domain name ownership via DNS record. Once a c
 
 DMARC is also critical for email deliverability! It's an administrator responsibility for the email domain used for sending. Mechanic can't take care of this for you, but we do have documentation: learn more about Mechanic and DMARC here.
 
-[PreviousReceiving email](/platform/email/receiving-email)[NextDMARC](/platform/email/dmarc)
-
 Last updated 2024-01-14T14:15:45Z

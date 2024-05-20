@@ -13,6 +13,4 @@ Working on getting better at task-writing? See Practicing writing tasks.
 - ⚠️ Recall that Shopify doesn't guarantee webhook deliverability. During Shopify service interruptions, webhooks can be severely delayed. And, we've seen some cases in which Shopify completely fails to deliver webhooks – very rare, but it does happen. For more on this, and what to do about it, see Reconciling missing events.
 - Include a test mode that only renders logs – no actions. When test mode is enabled, the task should log a summary of what the task would actually do if test mode were disabled. Use a boolean – something like {% if options.test\_mode\_\_boolean %}. This is very useful for debugging, before setting a task live.
 
-[PreviousPreventing action loops](/techniques/preventing-action-loops)[NextTagging Shopify resources](/techniques/tagging-shopify-resources)
-
 Last updated 2023-09-21T22:04:49Z

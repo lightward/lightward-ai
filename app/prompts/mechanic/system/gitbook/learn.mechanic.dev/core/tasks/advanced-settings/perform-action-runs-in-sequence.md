@@ -11,6 +11,4 @@ Action run sequences are enforced within each task run. This means that a task c
 
 To explain by example: a task that responds to mechanic/scheduler/10min, generating a sequence of 5 actions that each take 1 minute to run, will never see those actions overlap. However, if the task generated 15 actions instead, the actions would begin to overlap, as the task generates 15-minute action sequences every 10 minutes.
 
-[PreviousJavaScript](/core/tasks/advanced-settings/javascript)[NextImport and export](/core/tasks/import-and-export)
-
 Last updated 2022-05-05T16:34:54Z

@@ -30,6 +30,4 @@ Copy
       .then(response => response.json())
       .then(data => console.log('Received data from cache endpoint', data));
 
-[PreviousCache](/platform/cache)[NextEmail](/platform/email)
-
 Last updated 2021-09-14T19:33:55Z

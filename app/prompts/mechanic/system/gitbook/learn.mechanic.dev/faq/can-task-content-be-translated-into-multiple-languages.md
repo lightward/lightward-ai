@@ -8,6 +8,4 @@ In other cases, task code can be customized to allow for specifying multiple tra
 
 New to task customization? Start here: "I need something custom!"
 
-[PreviousCan Mechanic read or manage customer subscriptions?](/faq/can-mechanic-read-or-manage-customer-subscriptions)[NextCan I add a time delay to my task?](/faq/can-i-add-a-time-delay-to-my-task)
-
 Last updated 2022-12-28T23:19:48Z

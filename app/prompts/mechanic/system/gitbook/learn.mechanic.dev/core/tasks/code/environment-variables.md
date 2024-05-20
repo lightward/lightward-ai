@@ -89,6 +89,4 @@ In Mechanic, Shopify variables always contain data from Shopify events, which ar
 
 For example, while Shopify themes support customer.name, Mechanic does not (because Shopify's REST representation of the customer resource does not contain a "name" property). On the other hand, Mechanic supports customer.created\_at, while Shopify themes do not.
 
-[PreviousCode](/core/tasks/code)[NextAction objects](/core/tasks/code/action-objects)
-
 Last updated 2023-10-31T15:10:21Z

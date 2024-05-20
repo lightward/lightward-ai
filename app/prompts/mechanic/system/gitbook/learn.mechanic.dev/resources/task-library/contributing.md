@@ -30,6 +30,4 @@ We follow the same process any open-source project does when it comes to code ma
 10. After you submit your first pull request, you will be required to read and accept our CLA. The CLA assistant will leave a comment, giving you a statement of agreement that you must paste into a comment of your own.
 11. This process could sound confusing if you haven't done it before, but once you've done it once, it's simple and it is also pretty exciting to go through the process. The other bonus is, you'll be ready to submit a pull request to any open-source software project in the future. If you need help please out to us in the community Slack workspace.
 
-[PreviousTask library](/resources/task-library)[NextRequesting](/resources/task-library/requesting)
-
 Last updated 2022-12-05T16:20:14Z

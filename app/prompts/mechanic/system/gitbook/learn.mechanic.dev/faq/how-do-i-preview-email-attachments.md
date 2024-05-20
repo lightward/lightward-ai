@@ -25,6 +25,4 @@ Copy
 
 Using this technique gives you a dedicated workspace, in the form of a task, for iterating on your file attachments. Once you have your attachment-generating code the way you want it, bring that code back to your original task.
 
-[PreviousMy task is failing because of a permissions problem. Why?](/faq/my-task-is-failing-because-of-a-permissions-problem)[NextHow can I update existing metafields?](/faq/how-can-i-update-existing-metafields)
-
 Last updated 2021-04-18T00:57:02Z

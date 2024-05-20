@@ -15,6 +15,4 @@
 - An array of related product image objects: {{ product.images }}
 - The related metafields object: {{ product.metafields }}
 
-[PreviousPrice rule object](/platform/liquid/objects/shopify/price-rule)[NextProduct image object](/platform/liquid/objects/shopify/product-image)
-
 Last updated 2021-04-05T20:03:30Z

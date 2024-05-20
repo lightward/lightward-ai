@@ -108,6 +108,4 @@ Copy
 
 Requires enabling the Mechanic integration within Judge.me; see Judge.me's integration announcement.
 
-[PreviousAppstle Subscriptions](/platform/integrations/appstle-subscriptions)[NextLocksmith](/platform/integrations/locksmith)
-
 Last updated 2023-07-28T19:44:59Z

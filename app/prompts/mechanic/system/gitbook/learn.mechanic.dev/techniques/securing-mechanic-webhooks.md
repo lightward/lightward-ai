@@ -88,6 +88,4 @@ In this way, the signature will only be valid within a 60-minute interval.
 
 Bear in mind, with this strategy, timeliness becomes important! A queue delay could push the event past the rounding, resulting in a new time value, and invalidating the request signature.
 
-[PreviousMigrating templates from Shopify to Mechanic](/techniques/migrating-templates-from-shopify-to-mechanic)[NextMonitoring Mechanic](/techniques/monitoring)
-
 Last updated 2021-10-07T23:16:06Z

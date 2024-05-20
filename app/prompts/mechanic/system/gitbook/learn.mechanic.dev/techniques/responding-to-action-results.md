@@ -85,6 +85,4 @@ Copy
       {% action "echo", "done" %}
     {% endif %}
 
-[PreviousDebouncing events](/techniques/debouncing-events)[NextWorking with external APIs](/techniques/working-with-external-apis)
-
 Last updated 2023-11-18T20:05:58Z

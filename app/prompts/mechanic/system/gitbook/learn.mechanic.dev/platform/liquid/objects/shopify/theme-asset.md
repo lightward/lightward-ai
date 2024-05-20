@@ -9,6 +9,4 @@
 
 - Every property from the Asset resource in the Shopify REST Admin API
 
-[PreviousTheme object](/platform/liquid/objects/shopify/theme)[NextTransaction object](/platform/liquid/objects/shopify/transaction)
-
 Last updated 2021-04-05T20:03:29Z

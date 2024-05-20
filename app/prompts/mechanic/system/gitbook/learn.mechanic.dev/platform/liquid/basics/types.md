@@ -171,6 +171,4 @@ Copy
       {{ value }}
     {% endfor %}
 
-[PreviousSyntax](/platform/liquid/basics/syntax)[NextVariables](/platform/liquid/basics/variables)
-
 Last updated 2022-08-11T06:43:18Z

@@ -17,6 +17,4 @@ If these steps don't reveal the issue and a path for resolving it, write to team
 
 If you want to compare notes with other users, head to slack.mechanic.dev.
 
-[PreviousFAQ](/faq)[NextHow do I stop a large batch of runs?](/faq/how-do-i-stop-a-large-batch-of-runs)
-
 Last updated 2023-11-30T11:15:36Z

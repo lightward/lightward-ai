@@ -18,6 +18,4 @@ Copy
     
     {% action "cache", "set", "a_positive_number_to_remember", options.a_positive_number__required_number %}
 
-[PreviousOptions](/core/tasks/options)[NextPreviews](/core/tasks/previews)
-
 Last updated 2022-05-05T16:15:10Z

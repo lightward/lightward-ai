@@ -27,6 +27,4 @@ Copy
       {{ size_abbreviation }}: {{ size_label }}
     {% endfor %}
 
-[Previousarray](/platform/liquid/keyword-literals/array)[Nextnewline](/platform/liquid/keyword-literals/newline)
-
 Last updated 2021-09-23T15:49:20Z

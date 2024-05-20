@@ -6,6 +6,4 @@ Furthermore, Mechanic does not allow bulk emailing. Only transactional email mes
 
 Learn more: Mechanic email restrictions
 
-[PreviousWhy can't I access the Shopify API during preview mode?](/faq/why-cant-i-access-the-shopify-api-during-preview-mode)[NextCan I send data to Google Sheets?](/faq/can-i-send-data-to-google-sheets)
-
 Last updated 2021-04-18T17:19:39Z

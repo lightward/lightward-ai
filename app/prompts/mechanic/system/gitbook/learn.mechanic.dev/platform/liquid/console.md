@@ -24,6 +24,4 @@ Because of this, the Liquid console can be used for examining what a task had ac
 
 Looking at a child event? Try using {% log event.parent %} in the console to inspect data available from the parent. Or, to examine data from an ancestor event further back, try {% log event.parent.parent %}.
 
-[PreviousWhitespace](/platform/liquid/basics/whitespace)[NextMechanic filters](/platform/liquid/filters)
-
 Last updated 2023-11-08T16:17:44Z
