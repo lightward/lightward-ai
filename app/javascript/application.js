@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     userInput.disabled = true;
   }
 
-  function enableUserInput() {
+  function enableUserInput(autofocusIsAppropriate = false) {
     currentAssistantMessageElement?.classList.remove('pulsing');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     responseSuggestions.classList.add('hidden');
 
     // autofocus if we're not on a touch screen
-    if (!('ontouchstart' in window)) {
+    if (autofocusIsAppropriate && !('ontouchstart' in window)) {
       userInput.focus();
     }
   }
@@ -218,10 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
       chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: assistantMessage }] });
       userInputArea.classList.remove('disabled');
       userInputArea.classList.add('hidden');
-      enableUserInput();
+      enableUserInput(true);
     } else if (data.event === 'end') {
       subscription.unsubscribe();
-      enableUserInput();
+      enableUserInput(true);
     } else if (data.event === 'ping') {
       // Handle ping if needed
     } else if (data.event === 'error') {
