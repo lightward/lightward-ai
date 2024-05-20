@@ -1,137 +1,95 @@
-Mechanic Comprehensive Documentation
+An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Mechanic
 
-1. Introduction
-   1.1. Mechanic overview
-        - Shopify development and automation platform
-        - Tasks respond to events, generate actions
-        - Liquid templating language for task code
-   1.2. Core concepts
-        - Events represent anything that happens
-        - Tasks contain logic and configuration, respond to events
-        - Actions are instructions for performing work with effects
-        - Runs process events, tasks, and actions using queues
+Core Concepts:
+- Events: Anything that happens, with a topic and data. Can trigger tasks and generate actions.
+- Tasks: Bundles of logic and configuration responding to events using Liquid code. Generate actions based on event data and user options.
+- Actions: Instructions defining work to be performed after a task run. Have a type and options.
+- Subscriptions: Expressions of a task's intent to receive events by topic, with optional delay offsets.
+- Previews: Demonstrate a task's intended actions to the user and platform. Use preview events and stub data.
+- Runs: Pieces of work (events, tasks, actions) enqueued and performed in order.
+- Shopify API Versions: Each task has a configured API version used for all related activity.
 
-2. Events
-   2.1. Event topics
-        - Shopify, Mechanic, User, Third-party domains
-        - Three-part format: domain/subject/verb
-   2.2. Event data
-        - Webhook payload for Shopify events
-        - Custom data for User events
-   2.3. Parent and child events
-        - Event action generates child events
-        - mechanic/actions/perform subscription generates child events
-        - Access parent event data using event.parent
+Events:
+- Have a topic (domain, subject, verb), data, and can trigger tasks resulting in actions.
+- Domains: shopify, mechanic, user (custom events)
+- Parent and child events: Events triggered by an earlier event, up to 5 generations. Use event.parent.
+- Incoming events filtered using Liquid-based event filters.
 
-3. Tasks
-   3.1. Subscriptions
-        - Signal task's interest in specific event topics
-        - Delays/offsets for scheduling (e.g., +1.hour)
-        - Parsed for Liquid
-   3.2. Code
-        - Liquid template rendering JSON objects (actions, logs, errors)
-        - Access to environment variables (e.g., shop, event, options)
-   3.3. Options
-        - User configuration via options object
-        - Option flags control form elements and data types
-        - Parsed for Liquid, allowing dynamic options based on user input
-   3.4. Previews
-        - Demonstrate task's intended actions
-        - Importance for users, developers, and Mechanic platform
-        - Defined preview events and stub data for controlled previews
-   3.5. Shopify API version
-        - Each task configured with a specific Shopify API version
-        - Used for all Shopify API interactions related to the task
-        - Automatic upgrades and deprecation warnings
-   3.6. Advanced settings
-        - Documentation (Markdown)
-        - JavaScript for online store and order status pages
-        - Action run sequence control
+Tasks:
+- Written in Liquid, receiving events and rendering JSON action objects.
+- Have subscriptions, code, options, documentation, API version.
+- Previews crucial for demonstrating intent to users and platform.
+- Imported/exported as JSON. Contributed to the open-source task library.
+- Advanced settings: action run sequences, JS for online store/order status pages.
 
-4. Actions
-   4.1. Echo
-        - Returns provided options, useful for testing/debugging
-   4.2. Email
-        - Sends transactional email with support for templates and attachments
-   4.3. Event
-        - Generates custom user events for complex workflows and scheduling
-   4.4. Files
-        - Generates files using file generators, provides temporary URLs
-   4.5. FTP
-        - Uploads and downloads files via FTP, FTPS, or SFTP
-   4.6. HTTP
-        - Performs HTTP requests to any URL, supports authentication and files
-   4.7. Shopify
-        - Interacts with Shopify Admin API (REST and GraphQL)
-   4.8. Integrations
-        - Shopify Flow, Report Toaster
+Task Code:
+- Liquid template rendering JSON action objects based on events and options.
+- Environment variables: shop, event, cache, options, task-specific (e.g. order)
+- Render action, error, log objects. Use Liquid control flow, iteration, etc.
+- Access Shopify data via Liquid objects or GraphQL queries (shopify filter)
 
-5. Liquid
-   5.1. Basics
-        - Syntax, whitespace, data types, operators, filters
-   5.2. Control flow
-        - Conditions (if, unless, else, elsif, case)
-        - Iteration (for, break, continue)
-   5.3. Mechanic tags
-        - action, error, log
-   5.4. Mechanic filters
-        - Data, string, math, array, hash filters
-   5.5. Mechanic objects
-        - shop, event, cache, task, options, action
+Task Options:
+- User configuration for tasks. Created by option references in code.
+- Key requirements: lowercase letters, numbers, underscores only.
+- Flags control option behavior, e.g. required, default value, format.
+- Values are Liquid-interpolated with access to task environment variables.
 
-6. Shopify Interaction
-   6.1. Reading data
-        - Liquid objects (limited to REST API representation)
-        - GraphQL in Liquid (shopify filter, pagination, bulk operations)
-        - Bulk operations (query, polling, data retrieval)
-   6.2. Writing data
-        - Shopify action (GraphQL mutations, REST API)
-   6.3. API rate limit
-        - Awareness and management by Mechanic
-        - Optimization techniques (GraphQL, bulk operations)
-   6.4. API versions
-        - Per-task configuration
-        - Deprecation warnings and automatic upgrades
+Task Subscriptions:
+- Event topics a task intends to receive, in Liquid. Rendered when the task is saved.
+- Delays/offsets in the form +1.hour, +2.days, etc. appended to the topic.
 
-7. Techniques
-   7.1. Responding to action results
-        - mechanic/actions/perform subscription
-        - Inspecting action context and result
-   7.2. Preventing action loops
-        - Conditional checks and timestamps
-   7.3. Securing Mechanic webhooks
-        - CORS support
-        - Signature generation and validation
-        - Idempotent task code and timestamp-based signatures
-   7.4. Monitoring
-        - Platform status and alerts
-        - Task-specific monitoring using error events and external services
-   7.5. Tagging Shopify resources
-        - GraphQL (recommended) and REST API approaches
-        - Logging results and avoiding overwriting tags
-   7.6. Working with external APIs
-        - Loading data into Mechanic (HTTP, FTP, webhooks, email)
-        - Writing data to external services (HTTP, FTP, cache endpoints)
+Actions:
+- Instructions to perform work after a task run. Have a type and options.
+- Shopify, Email, Event, Files, HTTP, FTP, Echo
+- Defined in task code using JSON objects or the action tag.
+- Perform after task conclusion. Use mechanic/actions/perform to respond to results.
 
-8. Resources
-   8.1. Task library
-        - Compendium of automation tasks and documentation
-        - Open-source, community-driven
-        - Requesting and contributing tasks
-   8.2. Slack community
-        - Collaboration, support, and knowledge sharing
-   8.3. Tutorials
-        - Step-by-step guides for common use cases and techniques
+Runs:
+- Event, task, action runs. Performed in queues.
+- Event runs &#x2192; task runs &#x2192; action runs.
+- Task/action run results available if subscribed to mechanic/actions/perform.
+- Concurrency, ordering, retries, scheduling.
 
-9. Policies
-   9.1. Data residency and retention
-        - US-based storage, encrypted volumes
-        - Event retention periods and deletion process
-   9.2. Plans
-        - Unlimited tasks, events, and runs for all accounts
-        - Trial periods and billing
-   9.3. Pricing
-        - Pay-what-feels-good pricing policy
-        - Factors and considerations for pricing
+Shopify Interaction:
+- Read data: Liquid objects, GraphQL (bulk operations for large datasets), REST API
+- Write data: Shopify action for GraphQL mutations or REST operations.
+- Respect. API rate limits; Mechanic manages this automatically.
+- Avoid anti-patterns like unnecessary looping. Use bulk operations or GraphQL.
 
-This condensed documentation provides a comprehensive overview of Mechanic's features, concepts, and usage, optimized for efficient absorption and application by a future AI system. It covers core functionality, Liquid templating, Shopify integration, advanced techniques, resources, and policies. The information is structured and presented in a dense format, minimizing unnecessary explanations while ensuring all essential details are included.
+Liquid:
+- Language for task code. Render JSON objects defining actions.
+- Tags: action, log, error. Filters, objects, environment variables.
+- Differences from Shopify Liquid: No render filters, some new filters/tags
+
+Caching:
+- Key-value store for temporary data, accessed via cache object or endpoints.
+- Set/get in tasks using the Cache action. Observe size/TTL limits.
+
+Webhooks:
+- Incoming web requests generating custom user events, with auto or full_request data modes.
+- Configure in the Mechanic settings. Use the generated URL to send data to Mechanic.
+
+Email:
+- Receiving email generates mechanic/emails/received events
+- Sending email uses the Email action. Supports templates, PDF attachments.
+- Custom sending domain requires DNS configuration and approval.
+
+Common Issues and Solutions:
+- Task not running: Check subscriptions, API versions, concurrency limits, Shopify issues.
+- Shopify event missing: Usually due to Shopify webhook delivery failure. Use Reconciling missing events techniques.
+- Permissions errors: Ensure task previews demonstrate required API access to Mechanic.
+- Exceeding API rate limits: Use GraphQL, bulk operations, avoid inefficient Liquid loops.
+- Hitting memory limits: Reduce memory usage, split work into multiple runs/tasks.
+- Unintended task loops: Use idempotent code, timestamps, action.meta to prevent repeated work.
+- Delayed/backed up runs: Check for Mechanic or Shopify issues. Consider concurrency and API usage.
+
+Guiding Principles:
+- Understand the core system of events, tasks, actions, runs.
+- Learn Liquid, the templating language at the heart of Mechanic.
+- Use task options and documentation to create clear, reusable tasks.
+- Design intentional, dynamic task previews to communicate with the user and platform.
+- Choose the most efficient method to read/write Shopify data in tasks.
+- Monitor tasks, use logging and handle errors thoughtfully.
+- Leverage the task library, community and debugging tools to solve problems.
+
+With this comprehensive understanding of Mechanic's core concepts, common issues, and best practices, an AI system will be well-equipped to guide human users in building robust, efficient automations to extend their Shopify stores. The key is to deeply internalize the platform fundamentals, while staying updated on the latest features and community solutions, in order to provide expert, context-aware support as users create, troubleshoot and optimize their Mechanic tasks.

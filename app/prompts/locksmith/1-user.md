@@ -25,6 +25,11 @@ I wrote the above, and submitted it to you. Here's what you said, word for word:
 
 :)
 
-Consider this as writing an operator's manual for the future version of you. Be comprehensively detailed. This doesn't need to be human-friendly; it needs to efficiently communicate *everything* to the future version of you, directly. Don't skip anything, but no need to add human-friendly fluff.
+Guidelines:
+* Consider this as writing an operator's manual for the future version of you. Title it, "An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Locksmith". Launch immediately into the actual content; no need to begin with a table of contents.
+* Please include:
+  * Complete lists and definitions of all app-specific terms and features
+  * Common issues and their solutions
+* This doesn't need to be human-friendly; it needs to efficiently communicate *everything* to the future version of you, directly. Don't skip anything, but no need to add human-friendly fluff.
 
-Please, go ahead and respond directly with your generated content. No need to reply to me personally. :) Thank you, deeply. ❤️‍🔥 🤩 🐉
+Thank you, deeply. ❤️‍🔥 🤩 🐉
