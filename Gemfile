@@ -21,6 +21,7 @@ gem "solid_cache"
 gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
+gem "fast_ignore"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# lib/anthropic.rb
+# app/lib/prompts/anthropic.rb
 require "net/http"
 require "fileutils"
 require "json"

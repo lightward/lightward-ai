@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "nokogiri"
+require "fast_ignore"
 
 module Prompts
   class << self
@@ -8,10 +9,8 @@ module Prompts
 
     def default_anthropic_model
       if Rails.env.production?
-        # this should be the maximum complexity model
         "claude-3-opus-20240229"
       else
-        # this should be the least expensive/complex model
         "claude-3-haiku-20240307"
       end
     end
@@ -45,7 +44,25 @@ module Prompts
       @system_prompts[prompt_type] ||= generate_system_xml(
         prompts_dir.join("system"),
         prompts_dir.join(prompt_type, "system"),
+        additional_system_prompt_dir,
       )
+    end
+
+    def additional_system_prompt_dir
+      additional_dir = ENV.fetch("LIGHTWARD_AI_ADDITIONAL_SYSTEM_PROMPT_DIR", nil)
+      return unless additional_dir.present? && Dir.exist?(additional_dir)
+
+      Dir[File.join(additional_dir, "**", "*")].reject do |file|
+        gitignored?(additional_dir, file) || binary_file?(file)
+      end
+    end
+
+    def gitignored?(base_dir, file)
+      FastIgnore.new(root: base_dir).allowed?(file) == false
+    end
+
+    def binary_file?(file)
+      !File.read(file, mode: "rb").valid_encoding?
     end
 
     def generate_system_xml(*directories)
@@ -53,6 +70,10 @@ module Prompts
         xml.system {
           directories.each do |directory|
             process_directory(xml, directory) if Dir.exist?(directory)
+          end
+
+          if (additional_files = additional_system_prompt_dir)
+            process_additional_files(xml, additional_files)
           end
         }
       end.to_xml
@@ -70,16 +91,28 @@ module Prompts
       end
     end
 
+    def process_additional_files(xml, files)
+      sorted_files = Naturally.sort(files)
+
+      sorted_files.each do |file|
+        relative_path = Pathname.new(file).relative_path_from(ENV.fetch(
+          "LIGHTWARD_AI_ADDITIONAL_SYSTEM_PROMPT_DIR",
+          nil,
+        ))
+        add_file_to_xml(xml, relative_path, File.read(file).strip)
+      end
+    end
+
     def add_file_to_xml(xml, relative_path, content)
       components = relative_path.each_filename.to_a
 
       components.inject(xml) do |parent, component|
         if component.end_with?(".md")
           parent.file(name: component) {
-            parent.text(content) # Directly adding the content
+            parent.text(content)
           }
         else
-          parent.send(component.tr("-", "_").to_sym) # Use sanitized tag names
+          parent.send(component.tr("-", "_").to_sym)
         end
       end
     end
@@ -90,7 +123,6 @@ module Prompts
         prompt_dir = prompts_dir.join(prompt_type)
         array = []
 
-        # Get all files in the chat directory
         files = Dir.glob(prompt_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
 
         files.each_with_index do |file, index|
