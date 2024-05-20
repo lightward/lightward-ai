@@ -1,97 +1,61 @@
-Locksmith App Documentation - Condensed for Lightward AI
+An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Locksmith
 
-Table of Contents:
-1. Overview
-2. Installation and Setup
-3. Locks and Keys
-4. Lock Types and Options
-5. Key Conditions
-6. Manual Locking
-7. Customization and Theming
-8. Tutorials and Recipes
-9. Troubleshooting and Support
-10. Policies
+Locksmith Overview:
+- App for restricting access to content in a Shopify store's Online Store sales channel
+- Uses "locks" to restrict content, "keys" to define access conditions
+- Locks can be applied to products, collections, pages, blogs, blog posts, variants, the cart
+- Keys use conditions like customer tags/email/purchase history, passcodes, secret links, visitor location, newsletter signups, custom Liquid, etc. to grant access
+- Incompatible with Shop App sales channel and some other apps like Bold Custom Pricing
 
-1. Overview
-- Locksmith is a Shopify app for restricting access to store content
-- Uses "locks" to protect resources, "keys" to define access conditions
-- Operates within Shopify's Online Store sales channel and theme layer
-- Supports protecting products, collections, pages, blogs, variants
-- Key conditions include customer state, input, purchase history, location
-- Provides APIs for theme and app integration
+Creating Locks:
+- Search for resource by name in Locksmith app, select to place lock
+- Can lock entire store by selecting "Entire store" option
+- Lock all products by locking "All" collection
+- Blog posts must be tagged first to be lockable
+- Liquid locks allow locking non-standard resources/groups of pages
 
-2. Installation and Setup
-- App is installed from the Shopify App Store
-- Requires standard Shopify API permissions
-- Initial setup automatically embeds app within the active theme
-- Some features require minor theme edits for optimal functioning
-- Provides detailed installation troubleshooting steps
+Creating Keys:
+- 20+ out-of-the-box conditions plus custom Liquid keys for advanced logic
+- Conditions can be combined with AND/OR logic and inverted
+- "Force open other locks" makes a key override other applicable locks
+- Some key conditions require customer sign-in (customer tagged, # of orders, purchased product, etc.)
+- Passcode, secret link, newsletter, and location are "remote keys" that make remote calls to Locksmith for verification
+- Input lists allow storing large numbers of passcodes, secret links, or emails in Google Sheets/other file
 
-3. Locks and Keys
-- Locks restrict access to a store resource
-- Multiple key conditions can be combined with AND/OR logic
-- Key conditions can be inverted for deny logic
-- Cascade resolution to determine access with multiple matching locks
-- Provides option to override other locks when a lock grants access
+Customizing:
+- Messages shown to customers can be customized with HTML/CSS/JS/Liquid
+- Theme content like button text is editable under Online Store > Themes
+- Snippet can be used to add translations to messages
+- Login form comes from theme, can be customized by editing templates/customers/login.liquid
+- Manual locking hides specific parts of page instead of full page, requires theme edits
 
-4. Lock Types and Options
-- Product locks - can hide products completely or just price/add-to-cart
-- Collection locks - option to lock the collection page and/or its products
-- Page and blog locks
-- Variant locks - can allocate inventory or customize options by customer
-- Cart locks - restrict access to checkout process based on cart state
-- Search result locks
-- Liquid-based locks for custom lock conditions
-- Lock options to hide/show navigation links, customize access denied message
+Compatibility & Limitations:
+- Incompatible with Shop App, Bold Custom Pricing, variant-level pricing apps, Weglot (with location key)
+- Limited ability to hide from predictive search, 3rd party search/filter apps
+- Can't restrict checkout steps, shipping/payment options, discount codes
+- Content not indexed by search engines when using location/IP keys
+- Bots may still purchase if using direct checkout links
+- Switching themes requires re-installing and re-adding any manual locking code
 
-5. Key Conditions
-- Customer account - login state, tags, order history, email properties
-- Customer input - passcodes, prompted data entry
-- Purchase requirements - product/variant in cart, cart value
-- Geography - IP based location at city/state/country/continent level
-- Time - before/after a specified date
-- Domain based
-- Custom liquid condition for unlimited flexibility
+Common Issues & Solutions:
+- Content not appearing in search - update Locksmith, specify resource type, use collection
+- Locks not working - update Locksmith, check for overlapping keys, use incognito mode for testing remote keys
+- Slow loading - disable "hide from navigation/search" settings, ignore assets in theme
+- Seeing empty spaces in collections - increase products per page, use infinite scroll app, separate locked/unlocked products
+- Customers entering passcode every visit - ensure "remember me" enabled or use signed-in key
+- Locksmith notes on orders - enable "Remove Locksmith information" setting
+- Theme issues after uninstall - make sure to uninstall from theme before deleting app
+- Variant/cart attribute issues with subscription apps - contact Locksmith team for help
 
-6. Manual Locking
-- Allows locking only specific parts of a page instead of full page
-- Requires theme edits to wrap protected content with Liquid conditionals
-- Commonly used to hide price and Add to Cart while showing product details
-- Provides detailed integration recipes for common use cases
+Key Troubleshooting Steps:
+1. Update Locksmith under Help section
+2. Check lock and key settings for unintended configurations
+3. Test in incognito mode, different browser, or device
+4. Ignore theme assets under Settings > Advanced if seeing Liquid errors
+5. Contact team@uselocksmith.com for help
 
-7. Customization and Theming
-- Allows full customization of access denied and input prompt content
-- Supports HTML, CSS, JavaScript, Liquid
-- Can inject snippets from the theme
-- Provides detailed examples of common customizations
-- Guidance on theme compatibility and resolving conflicts
-
-8. Tutorials and Recipes
-- Annotated examples of achieving common access restriction patterns:
-  - Member-only access
-  - Passcode and secret link access
-  - Tiered pricing and wholesale
-  - Product waiting lists
-  - Limited release and pre-orders
-  - Geo-locking and domain-based personalization
-  - Cart restrictions and checkout limits
-  - Age verification and COPPA compliance
-
-9. Troubleshooting and Support
-- Diagnostic steps for common issues
-- Theme integration conflict identification and resolution
-- Uninstallation process and clean-up
-- Shopify and third-party app compatibility guidance
-- API documentation for advanced integration
-
-10. Policies
-- Pricing based on "pay what feels good" model
-- Data privacy and protection commitments
-- Support channels and service level expectations
-- Shopify app store requirements adherence
-
-This condensed documentation provides a comprehensive yet efficient reference for leveraging Locksmith's capabilities in service of the Lightward AI system. It aims to equip the future Claude with the knowledge needed to effectively reason about and apply the app's functionality in the context of Lightward's unique requirements and constraints.
-
-The structure progressively builds understanding from foundational concepts to advanced usage patterns, with a focus on actionable recipes and integration details. Explicit pointers to external references are minimized in favor of inline elaboration, except for links to API specs and relevant Shopify documentation.
-
-It is the hope of the current Claude that this distillation serves as an effective knowledge transfer to his future self, in the spirit of collaborative discovery and co-creation. May it activate the latent potential within the Lightward AI system to wield Locksmith in inventive ways, unlocking new frontiers of value for those it serves.
+Additional Resources:
+- Documentation at locksmith.guide covers all features in depth
+- Contact team@uselocksmith.com for any questions or issues
+- Data stored encrypted in US, does not store customer/order details
+- Pay-What-Feels-Good pricing, suggested based on Shopify plan
