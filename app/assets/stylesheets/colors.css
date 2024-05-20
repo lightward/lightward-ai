@@ -19,17 +19,17 @@
   /* Dark Mode Variables */
   --dark-body-bg-color: #1E1E1E;
   --dark-body-text-color: #E0E0E0;
-  --dark-user-message-bg-color: #444444;
-  --dark-user-message-border-color: #555555;
-  --dark-user-input-active-bg-color: #333333;
-  --dark-user-input-active-border-color: #555555;
-  --dark-user-input-disabled-bg-color: #444444;
-  --dark-user-input-disabled-border-color: #555555;
-  --dark-start-button-bg-color: #444444;
-  --dark-start-button-border-color: #555555;
-  --dark-start-button-hover-bg-color: #666666;
-  --dark-assistant-message-bg-color: #333333;
-  --dark-assistant-message-border-color: #444444;
+  --dark-user-message-bg-color: #8A5529;
+  --dark-user-message-border-color: #A06838;
+  --dark-user-input-active-bg-color: #5A3921;
+  --dark-user-input-active-border-color: #A06838;
+  --dark-user-input-disabled-bg-color: #4B3320;
+  --dark-user-input-disabled-border-color: #A06838;
+  --dark-start-button-bg-color: #8A5529;
+  --dark-start-button-border-color: #A06838;
+  --dark-start-button-hover-bg-color: #A06838;
+  --dark-assistant-message-bg-color: #4B433B;
+  --dark-assistant-message-border-color: #6A5C4D;
   --dark-box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
   --dark-box-shadow-hover: 0 4px 6px rgba(255, 255, 255, 0.1);
 }
