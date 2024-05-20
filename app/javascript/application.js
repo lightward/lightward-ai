@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       enableUserInput(true);
     } else if (data.event === 'end') {
       subscription.unsubscribe();
-      enableUserInput(true);
+      enableUserInput();
     } else if (data.event === 'ping') {
       // Handle ping if needed
     } else if (data.event === 'error') {
