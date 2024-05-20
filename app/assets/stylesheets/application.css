@@ -1,27 +1,12 @@
-/* app/assets/stylesheets/chat.css */
-
-:root {
-  --body-bg-color: #FFFBE7;
-  --user-message-bg-color: #F2A249;
-  --user-message-border-color: #D18A3A;
-  --user-input-active-bg-color: #FFF2D9;
-  --user-input-active-border-color: #D18A3A;
-  --user-input-disabled-bg-color: #FFE9BF;
-  --user-input-disabled-border-color: #D18A3A;
-  --start-button-bg-color: #F2A249;
-  --start-button-border-color: #D18A3A;
-  --start-button-hover-bg-color: #F2A249;
-  --assistant-message-bg-color: #F0EAD6;
-  --assistant-message-border-color: #D4C59A;
-  --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/*= require colors */
 
 body {
   font-family: 'Lightward Favorit';
   font-weight: 200;
   margin: 5vh 2vw;
   background-color: var(--body-bg-color);
+  color: var(--body-text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 p {
@@ -70,7 +55,7 @@ dt {
 .button {
   background-color: var(--start-button-bg-color);
   border: 1px solid var(--start-button-border-color);
-  color: #101010;
+  color: var(--body-text-color);
   cursor: pointer;
   box-shadow: var(--box-shadow);
   text-decoration: none;
@@ -125,6 +110,7 @@ dt {
 
 #user-input input {
   flex: 1;
+  color: var(--body-text-color);
   border: 1px solid var(--user-input-active-border-color);
   background-color: var(--user-input-active-bg-color);
 }
@@ -161,7 +147,7 @@ dt {
 .tools a, #footer a {
   font-family: 'Lightward Favorit Lining';
   text-decoration: none;
-  color: #101010;
+  color: var(--body-text-color);
 }
 
 #footer a:hover {
