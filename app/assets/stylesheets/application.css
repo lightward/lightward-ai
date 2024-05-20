@@ -179,6 +179,11 @@ dt {
   display: inline-block;
 }
 
+#video-intro {
+  width: 100%;
+  max-width: 600px;
+}
+
 /* should come last */
 .hidden {
   display: none !important;
