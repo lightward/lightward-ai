@@ -105,16 +105,6 @@ dt {
   border: 1px solid var(--user-message-border-color);
 }
 
-.chat-input {
-  border: 1px solid var(--user-input-active-border-color);
-  background-color: var(--user-input-active-bg-color);
-}
-
-.chat-input.disabled {
-  border: 1px solid var(--user-input-disabled-border-color);
-  background-color: var(--user-input-disabled-bg-color);
-}
-
 .pulsing {
   animation: pulsing 1.5s infinite;
 }
@@ -125,10 +115,29 @@ dt {
   100% { opacity: 0.5; filter: blur(1px); }
 }
 
-.disabled-input {
+#user-input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: norap;
+  gap: 0.5rem;
+}
+
+#user-input input {
+  flex: 1;
+  border: 1px solid var(--user-input-active-border-color);
+  background-color: var(--user-input-active-bg-color);
+}
+
+#user-input.disabled {
   opacity: 0.5;
   filter: blur(1px);
   pointer-events: none;
+}
+
+#user-input.disabled input {
+  border: 1px solid var(--user-input-disabled-border-color);
+  background-color: var(--user-input-disabled-bg-color);
 }
 
 #instructions {
@@ -168,5 +177,5 @@ dt {
 
 /* should come last */
 .hidden {
-  display: none;
+  display: none !important;
 }
