@@ -5,7 +5,8 @@ const consumer = createConsumer();
 document.addEventListener('DOMContentLoaded', () => {
   const startSuggestions = document.getElementById('start-suggestions');
   const chatLog = document.getElementById('chat-log');
-  const userInput = document.getElementById('user-input');
+  const userInputArea = document.getElementById('user-input');
+  const userInput = userInputArea.querySelector('input');
   const instructions = document.getElementById('instructions');
   const footer = document.getElementById('footer');
   const responseSuggestions = document.getElementById('response-suggestions');
@@ -53,14 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showUserInput() {
-    userInput.classList.remove('hidden');
-    userInput.classList.add('disabled-input');
+    userInputArea.classList.remove('hidden');
+    userInputArea.classList.add('disabled');
     userInput.disabled = true;
   }
 
   function enableUserInput() {
     currentAssistantMessageElement?.classList.remove('pulsing');
-    userInput.classList.remove('hidden', 'disabled-input');
+    userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
     startOverButton.classList.remove('hidden');
     responseSuggestions.classList.add('hidden');
@@ -83,11 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleUserInput() {
-    userInput.addEventListener('keypress', function(event) {
+    userInputArea.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') {
         event.preventDefault();
         submitUserInput(userInput.value);
       }
+    });
+
+    userInputArea.querySelector('button').addEventListener('click', function(event) {
+      event.preventDefault();
+      submitUserInput(userInput.value);
     });
   }
 
@@ -96,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = event.target.innerText;
     addMessage('user', message);
     chatLogData.push({ role: 'user', content: [{ type: 'text', text: message }] });
-    userInput.classList.add('hidden');
+    userInputArea.classList.add('hidden');
     currentAssistantMessageElement = addPulsingMessage('assistant');
     fetchAssistantResponse();
   }
@@ -106,11 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function submitUserInput(userMessage) {
+    // ignore blanks submissions
+    if (!userMessage.trim()) return;
+
     addMessage('user', userMessage);
     chatLogData.push({ role: 'user', content: [{ type: 'text', text: userMessage }] });
     userInput.value = '';
     userInput.blur();
-    userInput.classList.add('hidden');
+    userInputArea.classList.add('hidden');
     currentAssistantMessageElement = addPulsingMessage('assistant');
     fetchAssistantResponse();
   }
@@ -207,8 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (data.event === 'message_stop') {
       const assistantMessage = currentAssistantMessageElement.innerText;
       chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: assistantMessage }] });
-      userInput.classList.remove('disabled-input');
-      userInput.classList.add('hidden');
+      userInputArea.classList.remove('disabled');
+      userInputArea.classList.add('hidden');
       enableUserInput();
     } else if (data.event === 'end') {
       subscription.unsubscribe();
