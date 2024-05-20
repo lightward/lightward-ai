@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentSequenceNumber;
   const TIMEOUT_MS = 10000;
 
+  // Prevent scroll jumping
+  const previousScrollY = localStorage.getItem('scrollY');
+  if (previousScrollY !== null) {
+    window.scrollTo(0, parseInt(previousScrollY, 10));
+  }
+
   // Load chat log from localStorage
   if (chatLogData.length) {
     startSuggestions.classList.add('hidden');
@@ -34,6 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
       currentAssistantMessageElement = addPulsingMessage('assistant');
       submitUserInput(chatLogData[chatLogData.length - 1].content[0].text);
     }
+
+    // Restore scroll position after messages have been loaded
+    if (previousScrollY !== null) {
+      window.scrollTo(0, parseInt(previousScrollY, 10));
+    }
   }
 
   function addMessage(role, text) {
@@ -41,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     messageElement.classList.add('chat-message', role, 'element');
     messageElement.innerText = text;
     chatLog.appendChild(messageElement);
-    window.scrollTo(0, document.body.scrollHeight);
+    saveScrollPosition();
     return messageElement;
   }
 
@@ -49,8 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role, 'element', 'pulsing');
     chatLog.appendChild(messageElement);
-    window.scrollTo(0, document.body.scrollHeight);
+    saveScrollPosition();
     return messageElement;
+  }
+
+  function saveScrollPosition() {
+    localStorage.setItem('scrollY', window.scrollY);
   }
 
   function showUserInput() {
@@ -243,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (confirm('Are you sure you want to start over? This will clear the chat log.')) {
       localStorage.removeItem('chatLogData');
+      localStorage.removeItem('scrollY');
       location.reload();
     }
   });
