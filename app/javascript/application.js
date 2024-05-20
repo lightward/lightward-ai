@@ -199,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
         text = text.replace(/ $/, `\u00a0`);
 
         currentAssistantMessageElement.innerText += text;
-        window.scrollTo(0, document.body.scrollHeight);
       }
     } else if (data.event === 'content_block_stop') {
       // Content block is complete
