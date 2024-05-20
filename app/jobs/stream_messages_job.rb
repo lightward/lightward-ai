@@ -11,7 +11,11 @@ class StreamMessagesJob < ApplicationJob
   queue_as :default
 
   def perform(stream_id, chat_log)
+    newrelic("StreamMessagesJob: start", stream_id: stream_id)
+
     wait_for_ready(stream_id)
+
+    newrelic("StreamMessagesJob: ready", stream_id: stream_id)
 
     payload = {
       model: Prompts::Anthropic.model,
@@ -24,6 +28,10 @@ class StreamMessagesJob < ApplicationJob
 
     begin
       Prompts::Anthropic.api_request(payload) do |response|
+        if response.code.to_i >= 400
+          newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
+        end
+
         if response.code.to_i == 429
           handle_rate_limit_error(response, stream_id)
         elsif response.code.to_i >= 400
@@ -37,11 +45,14 @@ class StreamMessagesJob < ApplicationJob
             end
           end
           process_line(buffer.strip, stream_id) unless buffer.empty?
+          newrelic("StreamMessagesJob: success", stream_id: stream_id)
         end
       end
     rescue IOError
+      newrelic("StreamMessagesJob: stream closed", stream_id: stream_id)
       Rails.logger.info("Stream closed")
     ensure
+      newrelic("StreamMessagesJob: end", stream_id: stream_id)
       broadcast(stream_id, "end", nil)
     end
   end
@@ -53,6 +64,7 @@ class StreamMessagesJob < ApplicationJob
     Kernel.sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
 
     unless Rails.cache.read("stream_ready_#{stream_id}")
+      newrelic("StreamMessagesJob: ready timeout", stream_id: stream_id)
       broadcast(stream_id, "error", { error: { message: "Stream not ready in time" } })
       raise "Stream not ready in time"
     end
@@ -110,5 +122,9 @@ class StreamMessagesJob < ApplicationJob
     error_message = "Rate limit exceeded for #{reset_type}s. The limit will clear in #{human_readable_reset}. :)"
 
     broadcast(stream_id, "error", { error: { message: error_message } })
+  end
+
+  def newrelic(event_name, **data)
+    ::NewRelic::Agent.record_custom_event(event_name, **data)
   end
 end

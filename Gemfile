@@ -18,6 +18,9 @@ gem "loofah"
 gem "pg"
 gem "good_job"
 gem "solid_cache"
+gem "rollbar"
+gem "oj" # per rollbar recommendation
+gem "newrelic_rpm"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
