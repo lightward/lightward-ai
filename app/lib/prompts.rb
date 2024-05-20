@@ -69,11 +69,11 @@ module Prompts
       Nokogiri::XML::Builder.new do |xml|
         xml.system {
           directories.each do |directory|
-            process_directory(xml, directory) if Dir.exist?(directory)
-          end
-
-          if (additional_files = additional_system_prompt_dir)
-            process_additional_files(xml, additional_files)
+            if directory.is_a?(Array)
+              process_additional_files(xml, directory)
+            elsif Dir.exist?(directory)
+              process_directory(xml, directory)
+            end
           end
         }
       end.to_xml
@@ -92,6 +92,7 @@ module Prompts
     end
 
     def process_additional_files(xml, files)
+      Rails.logger.info("Processing additional system prompt directory...")
       sorted_files = Naturally.sort(files)
 
       sorted_files.each do |file|
@@ -101,6 +102,8 @@ module Prompts
         ))
         add_file_to_xml(xml, relative_path, File.read(file).strip)
       end
+
+      Rails.logger.info("Finished processing additional system prompt directory.")
     end
 
     def add_file_to_xml(xml, relative_path, content)
