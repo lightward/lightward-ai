@@ -90,6 +90,9 @@ module Prompts
         # a space* between them (e.g. "PreviousPost Title")
         markdown_content.sub!(/\n^\[(Previous|Next)\S.*(\n|$)/, "")
 
+        # Prepend the URL to the markdown content
+        markdown_content = "[Original URL: #{url}]\n\n" + markdown_content
+
         uri = URI(url)
         path = uri.path.empty? || uri.path == "/" ? "index.md" : "#{uri.path}.md"
         file_path = File.join(gitbook_dir, domain, path)
