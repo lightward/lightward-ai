@@ -18,12 +18,15 @@ Rails.application.routes.draw do
   ]
 
   # Custom route for arbitrary URLs from pre-approved hostnames using a constraint lambda
-  get "with/*hostname(/:path)",
+  get "with/*location",
     to: "chats#with",
     format: false,
     constraints: lambda { |req|
+      location = req.params[:location]
+      uri = URI.parse("https://#{location}")
+      hostname = uri.hostname
+
       # allow an exact match in the approved list, or a www prefix of anything in the approved list
-      hostname = req.params[:hostname]
       approved_hostnames.any? { |approved| hostname == approved || hostname == "www.#{approved}" }
     }
 

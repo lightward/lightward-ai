@@ -37,7 +37,7 @@ RSpec.describe(ChatsController) do
           ActionController::Parameters.new(entry).permit(:role, content: [:type, :text]).to_h.with_indifferent_access
         }
 
-        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", array_including(permitted_params[0], permitted_params[1])))
+        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", array_including(permitted_params[0], permitted_params[1]), nil))
       end
     end
 

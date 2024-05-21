@@ -3,11 +3,10 @@
 module Prompts
   module WithContent
     class << self
-      def prepare_with_content(hostname, path)
-        with_content_key = calculate_with_content_key(hostname, path)
+      def prepare_with_content(uri_requested)
+        with_content_key = calculate_with_content_key(uri_requested)
 
         Rails.cache.fetch(with_content_key, expires_in: 10.minutes) do
-          uri_requested = "https://#{hostname}/#{path}"
           response = HTTParty.get(uri_requested)
 
           sanitized_body = Loofah.fragment(response.body).scrub!(:prune).to_html
@@ -25,8 +24,8 @@ module Prompts
         with_content_key
       end
 
-      def get_with_content(hostname, path)
-        with_content_key = calculate_with_content_key(hostname, path)
+      def get_with_content(uri_requested)
+        with_content_key = calculate_with_content_key(uri_requested)
 
         Rails.cache.read(with_content_key)
       end
@@ -35,8 +34,8 @@ module Prompts
         Rails.cache.read(with_content_key) || { error: "Additional context was requested, but was not found." }
       end
 
-      def calculate_with_content_key(hostname, path)
-        Digest::SHA256.hexdigest("#{hostname}/#{path}?#{Rails.application.secret_key_base}")
+      def calculate_with_content_key(uri_requested)
+        Digest::SHA256.hexdigest("#{uri_requested}?#{Rails.application.secret_key_base}")
       end
     end
   end

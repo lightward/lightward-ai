@@ -28,10 +28,10 @@ class StreamMessagesJob < ApplicationJob
           [system message:
             the user has arrived at your doorstep via a url that looks like this:
 
-            http://lightward.ai/with/[some lightward hostname]/[*some path on that hostname]
+            http://lightward.ai/with/[hostname]/[pathname]
 
             it's possible that they followed a link that took them here, or that a Lightward human gave them this
-            Lightward AI link. anyone can build links like this, though only lightward-approved hostnames are allowed.
+            Lightward AI link. anyone can build links like this, so who knows!
 
             their intent is to show you the contents at [hostname]/[pathname], for their own reasons. please treat
             their arrival here as an intent to begin a conversation about the content they're showing you.
@@ -43,6 +43,10 @@ class StreamMessagesJob < ApplicationJob
             the possibility that the user miscommunicated the URL somehow, or that the server is down - who knows! :)
             please confirm for them the URL you're looking at with them, letting them know whatever you've found
             there, and help them with whatever they need. :)
+
+            bear in mind that we're only allowing lightward.ai/with/* URLs that specify resources published by
+            Lightward. whatever content is found there, Lightward Inc humans had a hand in it. :) bear this in mind,
+            because you might learn more about what Lightward is up to this way! :D
 
             :) thank you!
           ]
