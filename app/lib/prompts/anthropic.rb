@@ -4,6 +4,7 @@
 require "net/http"
 require "fileutils"
 require "json"
+require "time"
 
 module Prompts
   module Anthropic
@@ -36,7 +37,37 @@ module Prompts
 
         Rails.logger.debug { "Anthropic API request: #{request.body.first(1000)} [...] #{request.body.last(1000)}" }
 
-        http.request(request, &block)
+        http.request(request) do |response|
+          record_rate_limit_event(response)
+          yield response
+        end
+      end
+
+      def record_rate_limit_event(response)
+        rate_limit_data = {
+          requests_limit: response["anthropic-ratelimit-requests-limit"],
+          requests_remaining: response["anthropic-ratelimit-requests-remaining"],
+          requests_reset: response["anthropic-ratelimit-requests-reset"],
+          tokens_limit: response["anthropic-ratelimit-tokens-limit"],
+          tokens_remaining: response["anthropic-ratelimit-tokens-remaining"],
+          tokens_reset: response["anthropic-ratelimit-tokens-reset"],
+        }
+
+        rate_limit_data[:requests_reset_ttl] = calculate_ttl(rate_limit_data[:requests_reset])
+        rate_limit_data[:tokens_reset_ttl] = calculate_ttl(rate_limit_data[:tokens_reset])
+
+        ::NewRelic::Agent.record_custom_event("AnthropicAPIRateLimit", **rate_limit_data)
+      end
+
+      def calculate_ttl(reset_time)
+        return unless reset_time
+
+        reset_time_obj = begin
+          Time.zone.parse(reset_time)
+        rescue
+          nil
+        end
+        reset_time_obj ? (reset_time_obj - Time.zone.now).to_i : nil
       end
 
       def accumulate_response(messages, prompt_type, response_file_path, attempts:)
