@@ -45,11 +45,11 @@ module Prompts
 
       def record_rate_limit_event(response)
         rate_limit_data = {
-          requests_limit: response["anthropic-ratelimit-requests-limit"],
-          requests_remaining: response["anthropic-ratelimit-requests-remaining"],
+          requests_limit: response["anthropic-ratelimit-requests-limit"]&.to_i,
+          requests_remaining: response["anthropic-ratelimit-requests-remaining"]&.to_i,
           requests_reset: response["anthropic-ratelimit-requests-reset"],
-          tokens_limit: response["anthropic-ratelimit-tokens-limit"],
-          tokens_remaining: response["anthropic-ratelimit-tokens-remaining"],
+          tokens_limit: response["anthropic-ratelimit-tokens-limit"]&.to_i,
+          tokens_remaining: response["anthropic-ratelimit-tokens-remaining"]&.to_i,
           tokens_reset: response["anthropic-ratelimit-tokens-reset"],
         }
 

@@ -60,11 +60,11 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
         "AnthropicAPIRateLimit",
         hash_including(
-          requests_limit: "1000",
-          requests_remaining: "900",
+          requests_limit: 1000,
+          requests_remaining: 900,
           requests_reset: "2024-05-22T00:00:00Z",
-          tokens_limit: "1000000",
-          tokens_remaining: "999000",
+          tokens_limit: 1000000,
+          tokens_remaining: 999000,
           tokens_reset: "2024-05-22T00:00:00Z",
           requests_reset_ttl: kind_of(Integer),
           tokens_reset_ttl: kind_of(Integer),
