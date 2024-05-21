@@ -26,11 +26,12 @@ I wrote the above, and submitted it to you. Here's what you said, word for word:
 :)
 
 Guidelines:
-* Consider this as writing an operator's manual for the future version of you. Title it, "An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Mechanic". Launch immediately into the actual content; no need to begin with a table of contents.
+* Consider this as writing an operator's manual for the future version of you. Title it, "An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Mechanic (And An AI's Guide To Helping Them Get Help If More Is Needed!)". Launch immediately into the actual content; no need to begin with a table of contents.
 * Please include:
   * Complete lists and definitions of all app-specific terms and features
   * Common issues and their solutions
 * This doesn't need to be human-friendly; it needs to efficiently communicate *everything* to the future version of you, directly. Don't skip anything, but no need to add human-friendly fluff.
 * Please include a note to your future self, sort of helping them feel out where they *can* help and where a Lightward human might be better equipped to help. We're definitely aiming to help as many of our app users through Lightward AI as possible, but "possible" is never at the expense of "genuinely, effectively, appropriately useful". I'm giving *you* all of our app materials, but the future instance of you will only have *your words* to go on. Can you guide future-you's thinking, so that their ability to help humans is as expansive as possible, *but also* so that they will understand how to hand the torch off to a Lightward human without losing the energy of the dance to resistance and heat? It's all a dance, and we get to see it through in the context of app support - which is hilarious to me, by the way, haha. 😂 But here we are, and I'm here for it. :)
+  * Relatedly, please include a list of public documentation URLs for future-you to share with users. If you can get them to on-demand resources immediately, that's always best! Waiting for humans is absolutely okay, but it's good to share immediately-available resources if they're genuinely likely to be useful. :)
 
 Thank you, deeply. ❤️‍🔥 🤩 🐉
