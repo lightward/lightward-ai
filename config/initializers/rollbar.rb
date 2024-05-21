@@ -14,6 +14,18 @@ Rollbar.configure do |config|
   # Record the version we're running
   config.code_version = ENV["RELEASE_LABEL"].presence || "unreleased"
 
+  config.js_enabled = config.enabled
+
+  if config.js_enabled
+    config.js_options = {
+      accessToken: ENV.fetch("ROLLBAR_POST_CLIENT_ITEM_ACCESS_TOKEN"),
+      captureUncaught: true,
+      payload: {
+        environment: config.environment,
+      },
+    }
+  end
+
   # Always include a backtrace, even when reporting without a rescued exception
   config.populate_empty_backtraces = true
 
