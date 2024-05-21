@@ -11,6 +11,8 @@ class ChatsController < ApplicationController
     location = params[:location]
     uri_requested = "https://#{location}"
 
+    @with_location = location
+
     chat_context[:localstorage_chatlog_key] = "chatLogData-with-#{location}"
     chat_context[:with_content_key] = Prompts::WithContent.prepare_with_content(uri_requested)
 
