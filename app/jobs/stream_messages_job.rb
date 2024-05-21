@@ -13,6 +13,8 @@ class StreamMessagesJob < ApplicationJob
   def perform(stream_id, chat_log)
     newrelic("StreamMessagesJob: start", stream_id: stream_id)
 
+    chat_log = Prompts.clean_chat_log(chat_log)
+
     wait_for_ready(stream_id)
 
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)

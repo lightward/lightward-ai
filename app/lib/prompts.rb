@@ -102,6 +102,18 @@ module Prompts
       end
     end
 
+    def clean_chat_log(chat_log)
+      cleaned_log = []
+      chat_log.each do |entry|
+        if cleaned_log.empty? || cleaned_log.last["role"] != entry["role"]
+          cleaned_log << entry
+        else
+          cleaned_log.last["content"].concat(entry["content"])
+        end
+      end
+      cleaned_log
+    end
+
     def reset!
       @system_prompts = nil
       @starters = nil
