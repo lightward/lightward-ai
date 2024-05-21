@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/visitor-location-keys]
+
 # Visitor location keys
 
 How to restrict access to the content in your Shopify Online Store based on the location of the IP visitor's IP address

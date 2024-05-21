@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/customer-account-keys]
+
 # Customer account keys
 
 Many of Locksmith's key conditions use the customer account system that comes by default with all Shopify stores to check for specific customer attributes before granting access. These are detailed below.

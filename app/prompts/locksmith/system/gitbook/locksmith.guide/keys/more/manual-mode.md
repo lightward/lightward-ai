@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/manual-mode]
+
 # Manual mode
 
 In some cases, you may want your keys to unlock certain parts of the page - like keeping the product price or add-to-cart hidden, until a customer qualifies for one of your keys.

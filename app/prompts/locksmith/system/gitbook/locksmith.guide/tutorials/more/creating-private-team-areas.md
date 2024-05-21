@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/creating-private-team-areas]
+
 # Creating private team areas
 
 Locksmith can be used to create separate areas of your store for different teams, clubs, organizations, or other groups. These areas are intended to be private, only for the eyes of those members.

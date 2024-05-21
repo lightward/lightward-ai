@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/policies/pricing]
+
 # Locksmith's pricing policy: Pay what feels good
 
 (2020-03-20) A note, in light of COVID-19: This has been our official pricing policy since January 2020. It took us a while to distill what we know/feel down to this specific policy; but, this is the heart of how we've operated from the beginning, and it's how we handle pricing for all of our offerings (see lightward.com). While this way of doing business has proved integral for many of our existing customers, it's all the more important as the world finds its way forward.

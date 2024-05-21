@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/combining-key-conditions]
+
 # Combining key conditions
 
 At times, you'll want to permit visitors to access a resource if several conditions are met. This can be a method of increasing security: you might, for example, require visitors to arrive at your sale collection via a secret link, but then you'll want them to also provide their personal passcode.

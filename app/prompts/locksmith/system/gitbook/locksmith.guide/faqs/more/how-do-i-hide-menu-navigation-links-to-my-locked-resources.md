@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/how-do-i-hide-menu-navigation-links-to-my-locked-resources]
+
 # How do I hide menu navigation links to my locked resources
 
 The following Locksmith lock types all have a lock option that can be used to conditionally hide menu navigation links to locked resources:

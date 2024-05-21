@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/locking-the-customer-registration-form]
+
 # Locking the customer registration form
 
 To try this out, open up Locksmith, and start typing "registration", like so:

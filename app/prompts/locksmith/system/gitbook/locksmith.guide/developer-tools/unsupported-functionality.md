@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/developer-tools/unsupported-functionality]
+
 # Unsupported functionality
 
 Here's a list of interesting ways to interact with Locksmith. None of these are officially supported. We can't troubleshoot your custom code. :)

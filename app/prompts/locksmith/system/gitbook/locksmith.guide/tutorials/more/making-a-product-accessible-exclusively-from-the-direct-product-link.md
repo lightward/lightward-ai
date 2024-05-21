@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/making-a-product-accessible-exclusively-from-the-direct-product-link]
+
 # Making a product accessible exclusively from the direct product link
 
 This can be useful for merchants that don't need a product to be "secure", but still want to keep customers from finding the product by accident.

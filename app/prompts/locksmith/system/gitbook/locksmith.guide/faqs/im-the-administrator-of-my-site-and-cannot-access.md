@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/im-the-administrator-of-my-site-and-cannot-access]
+
 # I'm the administrator of my site and I cannot access pages because of Locksmith locks.
 
 Locksmith locks your customer facing website so that it can only be accessed under certain circumstances. Some merchants set up more nuanced conditions and Locksmith can get in the way as you navigate your own website.

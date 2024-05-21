@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/locking-variants]
+
 # Locking variants
 
 Manage pricing and other options by creating multiple variants, and use Locksmith to manage access.

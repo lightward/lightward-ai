@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/testing-locksmith-on-unpublished-themes]
+
 # Testing Locksmith on unpublished themes
 
 By default, Locksmith will only automatically install itself to and update itself on the currently published theme, and does not automatically install itself to unpublished themes. However, there is a way to test Locksmith on unpublished themes.

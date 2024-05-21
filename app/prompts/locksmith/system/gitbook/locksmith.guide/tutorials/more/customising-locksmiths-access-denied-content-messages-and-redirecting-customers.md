@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/customising-locksmiths-access-denied-content-messages-and-redirecting-customers]
+
 # Customising Locksmith’s "Access denied content" messages, and redirecting customers
 
 Locksmith access denied content is presented to customers who are signed in, but don’t meet the access requirements of the lock (e.g. the customer doesn’t have the specific customer tag that is required for access). Or when the lock has no keys.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/why-are-my-customers-seeing-a-recaptcha-when-logging-in]
+
 # Why are my customers seeing a reCAPTCHA when logging in?
 
 While Locksmith does often use the information of already-signed-in customers to decided whether or not to grant access (depending on your settings), Locksmith does this by using the account system provided by Shopify for your store, and does not create its own, or directly edit the sign in process in any way.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/shopify-markets]
+
 # Showing content only to specific Markets
 
 How to use the Locksmith app to restrict content in your different Markets on your Shopify: Online Store sales channel

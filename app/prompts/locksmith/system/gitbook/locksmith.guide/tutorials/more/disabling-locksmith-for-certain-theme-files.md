@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/disabling-locksmith-for-certain-theme-files]
+
 # Disabling Locksmith for certain theme files
 
 How to tell Locksmith to completely ignore specific files in your theme

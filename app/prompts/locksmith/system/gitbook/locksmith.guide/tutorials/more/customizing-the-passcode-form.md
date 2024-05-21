@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/customizing-the-passcode-form]
+
 # Customizing the passcode form
 
 Locksmith gives you flexibility in how you can customize the passcode form!

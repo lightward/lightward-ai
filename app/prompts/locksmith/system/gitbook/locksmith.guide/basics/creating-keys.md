@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/basics/creating-keys]
+
 # Creating keys
 
 Explore the types of key conditions that Locksmith makes available to you!

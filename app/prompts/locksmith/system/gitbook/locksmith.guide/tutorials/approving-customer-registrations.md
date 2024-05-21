@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/approving-customer-registrations]
+
 # Approving customer registrations
 
 How to use the Locksmith app to approve customer registrations on your Shopify Online Store

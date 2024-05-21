@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/secret-link-keys]
+
 # Secret link keys
 
 Note: Some marketing and email services (such as Klaviyo or Mailchimp) may automatically add tracking information to the end of a URL to monitor clicks or other metrics. This code will also need to be separated from the secret link's extension code using an ampersand (&). See the Secret link formatting section of this guide for more information.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/passcode-specific-redirects]
+
 # Passcode-specific redirects
 
 It's possible to use Locksmith's passcode keys to redirect visitors to specific URLs, based on which passcode they enter. Using this technique, a single page (or other locked resource) can act as a kind of switching station, pointing visitors to the content that's appropriate for them.

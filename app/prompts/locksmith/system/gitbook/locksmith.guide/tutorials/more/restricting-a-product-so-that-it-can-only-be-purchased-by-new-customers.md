@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/restricting-a-product-so-that-it-can-only-be-purchased-by-new-customers]
+
 # Restricting a product so that it can only be purchased by new customers
 
 In this guide, we'll show you how to set up a product so that it can only be purchased by customers who haven't yet made a purchase. This is great for samples and first time free products.

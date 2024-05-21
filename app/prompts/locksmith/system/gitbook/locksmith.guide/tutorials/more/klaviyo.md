@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/klaviyo]
+
 # Grow your subscriber lists with Klaviyo
 
 To get started, navigate to the lock you'd like to use in Locksmith, then add the Klaviyo key, like so:

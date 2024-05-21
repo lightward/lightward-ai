@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/locking-products-by-tag]
+
 # Locking products by tag
 
 Locksmith won't lock by tag using the Locksmith search bar. The good news is that you can make this happen with an automated collection in Shopify.

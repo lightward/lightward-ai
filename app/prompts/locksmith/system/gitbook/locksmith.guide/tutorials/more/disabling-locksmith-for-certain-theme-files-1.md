@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/disabling-locksmith-for-certain-theme-files-1]
+
 # Disabling Locksmith for certain theme files
 
 Locksmith does its work by adding its code to your theme's files. Sometimes you may want to keep Locksmith from modifying a file in particular, whether it's for a customization, or some other reason.

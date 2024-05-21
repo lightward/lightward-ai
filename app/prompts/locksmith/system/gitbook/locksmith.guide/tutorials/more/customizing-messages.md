@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/customizing-messages]
+
 # Customizing messages
 
 Most of the messages that Locksmith shows to your customers on the front end of your store are completely customizable!

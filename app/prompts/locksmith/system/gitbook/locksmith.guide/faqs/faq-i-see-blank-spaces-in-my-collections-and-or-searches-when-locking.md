@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/faq-i-see-blank-spaces-in-my-collections-and-or-searches-when-locking]
+
 # FAQ: I see blank spaces in my collections and/or searches when locking
 
 Some strategies to improve the appearance of your collections and searches when Locksmith is filtering out products

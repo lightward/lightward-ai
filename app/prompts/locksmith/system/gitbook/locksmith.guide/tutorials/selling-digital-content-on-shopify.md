@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/selling-digital-content-on-shopify]
+
 # Selling digital content on Shopify
 
 How to use the Locksmith app to sell digital content on Shopify

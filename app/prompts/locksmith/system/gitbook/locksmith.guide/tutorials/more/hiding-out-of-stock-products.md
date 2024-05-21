@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/hiding-out-of-stock-products]
+
 # Hiding out-of-stock products
 
 The best way to hide out-of-stock products is to create a automated collection containing these products, which is then protected with Locksmith.

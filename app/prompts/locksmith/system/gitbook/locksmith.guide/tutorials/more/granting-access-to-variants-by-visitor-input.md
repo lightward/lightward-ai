@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/granting-access-to-variants-by-visitor-input]
+
 # Granting access to variants by visitor input
 
 Locksmith's variant locking feature results in automatic hiding of variants that the visitor doesn't have access to. If you're using keys that are based on things that don't require customer input (say, "permit if the customer is signed in"), then revealing those variants is automatic: if the customer qualifies, the variants appear.

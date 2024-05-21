@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/locking-products-by-vendor]
+
 # Locking products by vendor
 
 Locksmith can search for and lock products based on the product vendor. A lock can be created for all products from a specific vendor by searching for the name of that vendor in the search bar on the Locksmith app's homepage.

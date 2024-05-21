@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/locking-the-search-results-page-in-your-store]
+
 # Locking the search results page in your store
 
 To get started, search for "search" from within Locksmith, like so:

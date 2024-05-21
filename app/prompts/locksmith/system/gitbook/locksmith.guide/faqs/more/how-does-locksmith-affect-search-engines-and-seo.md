@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/how-does-locksmith-affect-search-engines-and-seo]
+
 # How does Locksmith affect search engines and SEO?
 
 How Locksmith helps hide your locked products/content from Google and other search engines

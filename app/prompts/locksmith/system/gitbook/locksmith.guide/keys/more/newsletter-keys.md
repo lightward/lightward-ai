@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/newsletter-keys]
+
 # Newsletter keys
 
 Use Locksmith to only grant access to customers that subscribe to your newsletter

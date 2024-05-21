@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/mailchimp]
+
 # Use Mailchimp to collect customer emails
 
 Mailchimp is a great way to stay in touch with your customers (and it's free!).

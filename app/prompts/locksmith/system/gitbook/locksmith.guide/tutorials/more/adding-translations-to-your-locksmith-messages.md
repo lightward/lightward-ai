@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/adding-translations-to-your-locksmith-messages]
+
 # Adding translations to your Locksmith messages
 
 This guide shows you how to use the translation filter built into Liquid to simplify translating your Locksmith messages

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/liquid-locking-basics]
+
 # Liquid locking basics
 
 Locksmith has a feature to create "Liquid" locks, which allows you to lock pages in your store that are otherwise not searchable using the basic "Add lock" resource search in Locksmith.

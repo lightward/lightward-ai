@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/basics/removing-locksmith]
+
 # Removing Locksmith
 
 If you've been using Locksmith to protect your shop, uninstallation means two things:

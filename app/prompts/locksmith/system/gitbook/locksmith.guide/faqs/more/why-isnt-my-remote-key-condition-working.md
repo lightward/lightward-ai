@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/why-isnt-my-remote-key-condition-working]
+
 # Why isn't my passcode, secret link, newsletter, or location key working?
 
 Tip: we call these "remote key conditions", because they involve making remote calls to Locksmith for verification.

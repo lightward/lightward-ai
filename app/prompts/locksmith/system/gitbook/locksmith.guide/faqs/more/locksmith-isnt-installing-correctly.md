@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/locksmith-isnt-installing-correctly]
+
 # Locksmith isn't installing correctly!
 
 On very rare occasions, Locksmith runs into an issue processing a particular asset in your theme, and can't perfectly complete the installation. If this is happening, Locksmith will let you know within the app, like this:

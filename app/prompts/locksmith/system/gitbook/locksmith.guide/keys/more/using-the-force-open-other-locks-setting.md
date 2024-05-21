@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/using-the-force-open-other-locks-setting]
+
 # Using the "Force open other locks" setting
 
 How to deal with multiple overlapping locks preventing customers from accessing the content inside them

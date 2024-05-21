@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/passcode-keys]
+
 # Passcode keys
 
 Passcode keys are a simple way to grant access to content without needing to require sign in or registration. After you use the Locksmith search bar to create a lock on the product or collection that you want to lock, choose one of the passcode conditions from the conditions list under "Keys":

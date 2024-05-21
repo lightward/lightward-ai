@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/developer-tools/locksmith-variables]
+
 # Locksmith variables
 
 Locksmith comes with two opportunities for programmatic interaction: manual mode, and the storefront API. Both APIs expose a set of variables, representing Locksmith's understanding of the resource in play, and the current visitor's authorization for that resource.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/offering-different-variants-by-postal-code]
+
 # Offering different variants by postal code
 
 In this tutorial, we'll talk about configuring a Shopify store to...

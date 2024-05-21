@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/has-purchased]
+
 # "Has purchased..." key
 
 Granting access to content in your store only after the appropriate purchase has been made

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/how-to-use-a-private-browsing-session]
+
 # How to use a private browsing session
 
 When testing Locksmith configurations, it's frequently useful to open a private browsing session, thus guaranteeing that neither Locksmith nor Shopify will remember any of your previous activity, giving you a clean slate to test with.

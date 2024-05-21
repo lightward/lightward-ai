@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/redirecting-using-locksmith]
+
 # Redirecting using Locksmith
 
 How to use the Locksmith app's redirecting features to make sure your customers arrive on the intended page

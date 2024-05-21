@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/locksmith-is-not-working-with-my-page-builder-app]
+
 # Locksmith is not working with my page builder app
 
 Merchants frequently have issues with Locksmith and page building apps such as GemPages or PageFly.

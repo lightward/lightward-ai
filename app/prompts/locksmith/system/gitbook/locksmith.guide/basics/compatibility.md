@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/basics/compatibility]
+
 # Compatibility with other apps and Shopify features
 
 Locksmith works in and around the online storefront theme layer – an arena shared by many, many other apps. Locksmith's interoperability is excellent; its internal Liquid engine is very good at injecting its code in the right places, without causing issues for themes or apps. Because of this, in the vast majority of cases, you won't need to worry about Locksmith's compatibility.

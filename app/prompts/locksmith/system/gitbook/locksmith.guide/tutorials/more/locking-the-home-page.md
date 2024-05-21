@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/locking-the-home-page]
+
 # Locking the home page
 
 How to create a lock that covers the home page of your Online Store sales channel in Shopify

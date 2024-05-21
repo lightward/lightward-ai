@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/app-integrations/easy-appointment-booking]
+
 # Easy Appointment Booking
 
 Use Locksmith to sell services with Easy Appointment Booking

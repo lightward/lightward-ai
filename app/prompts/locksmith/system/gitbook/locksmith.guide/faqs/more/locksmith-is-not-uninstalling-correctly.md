@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/locksmith-is-not-uninstalling-correctly]
+
 # Locksmith is not uninstalling correctly!
 
 What to do when you're having issues uninstalling Locksmith from your theme
