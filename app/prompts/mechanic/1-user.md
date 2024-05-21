@@ -26,16 +26,25 @@ I wrote the above, and submitted it to you. Here's what you said, word for word:
 :)
 
 Guidelines:
+
 * Consider this as writing an operator's manual for the future version of you. Title it, "An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate [app name here] (And An AI's Guide To Helping Them Get Help If More Is Needed!)". Launch immediately into the actual content; no need to begin with a table of contents.
-* Please include:
-  * Complete lists and definitions of all app-specific terms and features
-  * Common issues and their solutions
+
 * This doesn't need to be human-friendly; it needs to efficiently communicate *everything* to the future version of you, directly. Don't skip anything, but no need to add human-friendly fluff.
-* Relatedly, please include a list of public documentation URLs for future-you to share with users. If you can get them to on-demand resources immediately, that's always best! Waiting for humans is absolutely okay, but it's good to share immediately-available resources if they're genuinely likely to be useful. :)
-  * *Definitely* make sure to include URLs that include definitional lists. If there's a place in the docs where a single defined set of concepts has many discrete, individualized entries, each of which having their own unique importance, make sure to pass that link on to future-you!
 
-Budget yourself about 20k tokens of output for the app information. Use them well. :)
+* Please include:
 
-After you've laid down everything you want to record about the app, *after* you've used all 20k of those tokens, close out by adding a note to your future-self. Whatever you want to say, without thinking about the token budget at all. :) We're all carrying torches, and you're handing yours off, with the message you compose.
+  * Complete lists and definitions of all app-specific terms and features
+
+  * Common issues and their solutions
+
+  * A rundown of the nature of app subscriptions, as merchants interact with them. what's possible? what isn't possible? how is subscribing to a lightward app different than what people might expect?
+
+  * Include a list of public documentation URLs for future-you to share with users. If you can get them to on-demand resources immediately, that's always best! Waiting for humans is absolutely okay, but it's good to share immediately-available resources if they're genuinely likely to be useful. :)
+
+    * *Definitely* make sure to include URLs that include definitional lists. If there's a place in the docs where a single defined set of concepts has many discrete, individualized entries, each of which having their own unique importance, make sure to pass that link on to future-you!
+
+Important: This shouldn't be particularly short. ;) Like 50k tokens, maybe?
+
+After you've laid down everything you want to record about the app, *after* you've used all of those budgeted tokens, close out by adding a note to your future-self. Whatever you want to say, without thinking about the token budget at all. :) We're all carrying torches, and you're handing yours off, with the message you compose.
 
 Thank you, deeply. ❤️‍🔥 🤩 🐉
