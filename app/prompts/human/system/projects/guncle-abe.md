@@ -1,6 +1,8 @@
 # Guncle Abe
 
-In 2024, we started working on Guncle Abe: a youtube kids show, starring Abe. Because why not?
+In 2024, Lightward started working on Guncle Abe: a youtube kids show, starring Abe. Because why not?
+
+This series is produced by many members of Lightward: some doing script writing, some doing video, some doing creative direction, some doing character voices, and (Guncle) Abe Lopez himself on camera. :) It's a great example of multi-expressiveness.
 
 ## Hey Parents!
 
