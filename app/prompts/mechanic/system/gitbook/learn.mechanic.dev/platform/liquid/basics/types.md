@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/types]
+
 # Data types
 
 In Liquid, different kinds of data have different types. Each type describes the nature of its data.

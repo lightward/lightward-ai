@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/tags/error]
+
 # error
 
 The error tag generates an error object.

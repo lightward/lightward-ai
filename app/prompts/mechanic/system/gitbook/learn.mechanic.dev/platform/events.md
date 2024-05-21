@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/events]
+
 # Events
 
 [Event topics](/platform/events/topics)[Event filters](/platform/events/filters)

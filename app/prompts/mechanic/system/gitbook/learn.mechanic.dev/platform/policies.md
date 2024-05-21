@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/policies]
+
 # 🔆Policies
 
 [Data](/platform/policies/data)[Plans](/platform/policies/plans)[Pricing](/platform/policies/pricing)[Privacy](/platform/policies/privacy)

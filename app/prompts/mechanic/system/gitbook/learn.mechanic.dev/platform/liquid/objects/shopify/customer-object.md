@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/customer-object]
+
 # Customer object
 
 ## How to access it

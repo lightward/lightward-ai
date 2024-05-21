@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/email]
+
 # Email
 
 The Email action is for sending email. ✅ It supports the store's email templates, and supports attachments constructed by file generators.

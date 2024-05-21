@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/filters/shopify]
+
 # Shopify Liquid filters
 
 In addition to Mechanic Liquid's own unique filters, Mechanic supports all of the following filters from Shopify Liquid.

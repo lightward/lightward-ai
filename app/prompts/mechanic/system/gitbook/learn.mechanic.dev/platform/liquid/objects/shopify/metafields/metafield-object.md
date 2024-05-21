@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/metafields/metafield-object]
+
 # Metafield object
 
 This page is part of a series: see Metafields for an overview on how Mechanic's Liquid implementation thinks about metafields.

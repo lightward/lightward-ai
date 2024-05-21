@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/tagging-shopify-resources]
+
 # Tagging Shopify resources
 
 Merchants commonly use Mechanic for adding or removing tags from customers, orders, products, and other Shopify resources.

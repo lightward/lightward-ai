@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-do-i-send-images-with-my-emails]
+
 # How do I send images with my emails?
 
 Adding images to Mechanic-generated emails is a job that always involves code. If this is your first time eyeing custom Mechanic code, start here: "I need something custom!".

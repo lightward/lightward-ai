@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/events]
+
 # Responding to events
 
 Shopify uses webhooks to notify apps like Mechanic about new activity. Mechanic supports every type of Shopify webhook in its set of Shopify event topics. By setting up subscriptions to these topics, a task may respond to any supported type of Shopify activity.

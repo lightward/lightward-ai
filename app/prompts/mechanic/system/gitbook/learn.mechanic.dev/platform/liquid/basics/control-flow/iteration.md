@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/control-flow/iteration]
+
 # Iteration
 
 Iteration tags control the flow of code, running that code multiple times against successive values in an array.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/console]
+
 # Liquid console
 
 Mechanic's Liquid console is available in the footer of every page of the Mechanic Shopify app. It's a useful scratchpad for testing Mechanic Liquid, without having to think about the output restrictions of task previews. The console includes information about the final rendering context for each Liquid submission, which can be useful in understanding how Mechanic Liquid works.

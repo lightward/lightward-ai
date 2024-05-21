@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/shopify/custom-authentication]
+
 # Custom authentication
 
 In extraordinary cases, Mechanic can be configured to route Shopify API requests through a custom Shopify app. This may be necessary when a store's Mechanic tasks need to perform work in a way that is only possible via a custom app (e.g. accessing select Shopify APIs, or working with a Shopify API rate limit negotiated for a specific custom app).

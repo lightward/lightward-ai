@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects]
+
 # Mechanic objects
 
 Mechanic makes a variety of Liquid environment variables available, containing specific Liquid objects. (The shop variable, for example, is always available and always contains the Shop object.)

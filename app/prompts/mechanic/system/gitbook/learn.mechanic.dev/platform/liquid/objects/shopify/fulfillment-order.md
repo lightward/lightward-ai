@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/fulfillment-order]
+
 # Fulfillment order object
 
 ## How to access it

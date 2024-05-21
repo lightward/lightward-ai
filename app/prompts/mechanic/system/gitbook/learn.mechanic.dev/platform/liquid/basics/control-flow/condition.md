@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/control-flow/condition]
+
 # Condition
 
 Condition tags are useful for making decisions about what code to run, based on some specific value under inspection.

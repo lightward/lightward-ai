@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/tutorials/practicing-writing-tasks]
+
 # Practicing writing tasks
 
 In our own internal education, we've found that the following exercises work particularly well. They're all in sequence – the task to create for each subsequent exercise modifies the code you wrote previously.

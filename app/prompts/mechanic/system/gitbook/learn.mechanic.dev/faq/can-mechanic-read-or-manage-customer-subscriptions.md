@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-mechanic-read-or-manage-customer-subscriptions]
+
 # Can Mechanic read or manage customer subscriptions?
 
 No. Shopify does have well-developed APIs for customer subscription contracts, but they don't currently allow one app to read or manage subscriptions created by another app. (Shopify does have a read\_all\_subscription\_contracts scope, but they haven't elected to approve this scope for any third-party apps just yet.)

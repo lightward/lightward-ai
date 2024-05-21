@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/whitespace]
+
 # Whitespace
 
 Outside of Liquid statements, all whitespace is preserved. This can result in whitespace that is unwieldy (for example, while formatting GraphQL queries).

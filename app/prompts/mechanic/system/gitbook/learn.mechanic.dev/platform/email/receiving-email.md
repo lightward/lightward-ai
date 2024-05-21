@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/email/receiving-email]
+
 # Receiving email
 
 Every Shopify store that uses Mechanic has its own, dedicated email address, named after the store's myshopify.com subdomain and located at mail.usemechanic.com. A store at example.myshopify.com would be assigned the address example@mail.usemechanic.com.

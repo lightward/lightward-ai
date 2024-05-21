@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/previews/stub-data]
+
 # Stub data
 
 Stub data is hard-coded into a task, providing an unchanging source of data for previews. It is an important tool when generating dynamic preview actions. Stub data may be used for user-defined variables, but may also override environment variables as needed.

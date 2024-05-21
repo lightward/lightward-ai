@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/events/reconciling-missing-events]
+
 # Reconciling missing events
 
 Shopify does not offer a strict guarantee on webhook delivery. In rare cases (and usually in high-volume situations), we've observed Shopify fail to send a webhook.
@@ -14,5 +16,7 @@ For tasks that respond to events on Shopify resources, we recommend the followin
 2. Add a Mechanic scheduler subscription, like mechanic/scheduler/15min. Then, update the task code so that these scheduled runs are used to scan for and process new orders in the last 15 minutes that have not yet been processed. This is the reconciliation step, ensuring that all new orders are ultimately processed, one way or another.
 
 ## Example
+
+[![Logo](https://tasks.mechanic.dev/assets/app-icon-c6c258589397b49dec674973fa07824b6917b2f6f981499d3ef940a7bfbcd66e.png)Demonstration: Auto-tag new orders, with scheduled reconciliation – Mechanic, ecommerce automation platform for Shopify](https://tasks.mechanic.dev/demonstration-auto-tag-new-orders-with-reconciliation)
 
 Last updated 2021-09-29T14:53:49Z

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/comments]
+
 # Comments
 
 This page's content comes from https://shopify.dev/docs/api/liquid/tags#comment.

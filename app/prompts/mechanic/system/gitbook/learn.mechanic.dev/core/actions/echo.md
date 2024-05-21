@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/echo]
+
 # Echo
 
 The Echo action has no effects: it returns the options that are given. This action can be useful for testing or debugging, by temporarily replacing some other action with an Echo action having the same options. In this way, a developer can safely get feedback on what data is in play, without side effects.

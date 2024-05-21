@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/keyword-literals/array]
+
 # array
 
 The array keyword literal may be used in any Liquid code to instantiate an array.

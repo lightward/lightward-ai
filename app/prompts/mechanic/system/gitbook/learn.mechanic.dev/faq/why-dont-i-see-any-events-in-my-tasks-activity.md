@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/why-dont-i-see-any-events-in-my-tasks-activity]
+
 # Why don't I see any events in my task's activity?
 
 This FAQ is about event filtering. If you're working on Shopify events specifically, refer also to A Shopify event is missing. Where is it?.

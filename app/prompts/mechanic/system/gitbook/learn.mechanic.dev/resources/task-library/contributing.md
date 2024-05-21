@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/task-library/contributing]
+
 # Contributing
 
 Mechanic's task library is a central resource for the entire community, and is continually enriched through contributions, via pull requests on GitHub.

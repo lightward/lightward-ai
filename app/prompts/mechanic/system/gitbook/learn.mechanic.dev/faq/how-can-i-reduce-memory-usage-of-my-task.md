@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-can-i-reduce-memory-usage-of-my-task]
+
 # How can I reduce memory usage of my task?
 
 Instant fixes are hard to come by for this kind of problem. If you need help with your task code, here's where to find assistance.

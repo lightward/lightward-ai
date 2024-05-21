@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/integrations/report-toaster]
+
 # Report Toaster
 
 Report Toaster is a reporting and analytics app, which offers an integration with Mechanic. Use the Report Toaster action to perform operations with their service.

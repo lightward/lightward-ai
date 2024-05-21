@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/tags/liquid]
+
 # liquid
 
 The liquid tag is used for writing multiple Liquid expressions within a single tag.

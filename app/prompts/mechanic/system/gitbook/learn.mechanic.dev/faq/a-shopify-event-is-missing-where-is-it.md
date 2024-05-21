@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/a-shopify-event-is-missing-where-is-it]
+
 # A Shopify event is missing. Where is it?
 
 This FAQ is about Shopify events specifically. For a more general treatment of this question, refer to Why don't I see any events in my task's activity?.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/runs/ordering]
+
 # Ordering
 
 In general, Mechanic's run system does not guarantee the execution order for runs that have been created at the same time (see Concurrency). This applies to all kinds of runs: events, tasks, and actions.

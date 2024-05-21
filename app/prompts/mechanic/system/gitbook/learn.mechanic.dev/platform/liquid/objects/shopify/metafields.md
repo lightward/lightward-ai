@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/metafields]
+
 # Metafields
 
 Mechanic's Liquid implementation contains three object types that address Shopify's metafield system:

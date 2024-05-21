@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/policies/privacy]
+
 # Privacy
 
 ## Mechanic Privacy Policy

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/task-library]
+
 # 🧑‍💻Task library
 
 Mechanic's task library is a compendium of e-commerce automation tasks and documentation, written by the Mechanic community and the Mechanic core team. Hosted on GitHub, everything is open-sourced under the highly permissive MIT license, making all library tasks appropriate for re-use and modification.

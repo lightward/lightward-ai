@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/options/custom-validation]
+
 # Custom validation
 
 A task may enforce custom validation for options by including validation logic in its code, inspecting the current value of an option and rendering an error object if the option does not meet its criteria.

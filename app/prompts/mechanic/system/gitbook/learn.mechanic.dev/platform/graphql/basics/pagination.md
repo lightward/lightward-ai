@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/graphql/basics/pagination]
+
 # Pagination
 
 Shopify uses cursor-based pagination, and this is a concept you will frequently use in your Mechanic tasks. Shopify has excellent coverage on the topics, I highly recommend reviewing their documentation.

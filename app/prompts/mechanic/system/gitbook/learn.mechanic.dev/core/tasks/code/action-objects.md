@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/code/action-objects]
+
 # Action objects
 
 An action object defines work to be performed by an action, after the task is fully finished rendering. Action objects are most easily generated using the action tag.

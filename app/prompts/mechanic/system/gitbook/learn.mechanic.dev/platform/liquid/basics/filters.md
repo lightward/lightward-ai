@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/filters]
+
 # Filters
 
 Filters transform a value into something else. Filters are separated by the pipe symbol: |. Filters can be chained, performing several transformations in a sequence.

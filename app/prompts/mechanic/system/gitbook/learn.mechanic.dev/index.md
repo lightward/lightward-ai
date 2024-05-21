@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/]
+
 # ⛩️Introduction
 
 I'm glad you're here. :) –Isaac

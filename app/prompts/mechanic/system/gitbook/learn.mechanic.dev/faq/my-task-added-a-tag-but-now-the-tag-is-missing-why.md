@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/my-task-added-a-tag-but-now-the-tag-is-missing-why]
+
 # My task added a tag, but now the tag is missing – why?
 
 In most cases, this comes down to someone else – or something else, like another app – working on the tagged resource simultaneously. Mechanic tasks are more or less additional apps, so also keep an eye out for potential conflicts in your own task library.

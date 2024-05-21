@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/graphql/basics/queries]
+
 # Queries
 
 GraphQL is a powerful query language that allows you to request data from a GraphQL server like Shopify's APIs. Queries are capable from requesting specific fields of single resources, nested resources, and lists of resources.

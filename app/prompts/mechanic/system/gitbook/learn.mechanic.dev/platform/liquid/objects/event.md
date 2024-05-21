@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/event]
+
 # Event object
 
 The Event object describes an incoming event.

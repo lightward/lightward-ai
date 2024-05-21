@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/file-generators/base64]
+
 # Base64
 
 The Base64 file generator accepts a base64-encoded string, and returns a file containing the decoded value.

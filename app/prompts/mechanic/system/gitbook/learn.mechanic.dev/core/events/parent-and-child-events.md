@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/events/parent-and-child-events]
+
 # Parent and child events
 
 In specific cases, events may be triggered by activity associated with an earlier event. In these scenarios, we describe the subsequent event as a child event, and the preceding event as a parent event.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/working-with-external-apis/aws-request-signatures]
+
 # AWS request signatures
 
 The "hmac\_sha256" filter comes from Shopify Liquid, but the "binary" option is unique to Mechanic Liquid.

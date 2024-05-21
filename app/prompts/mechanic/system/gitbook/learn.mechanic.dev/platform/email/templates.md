@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/email/templates]
+
 # Email templates
 
 A Mechanic account may be configured with one or more email templates, used by the Email action to render email content using a Liquid that can be shared across tasks. Email templates have access to Liquid template variables named after each option in the Email action, including any custom options added by the task author.

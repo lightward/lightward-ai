@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/previews/events]
+
 # Defining preview events
 
 During task preview, Mechanic scans the task's subscriptions. For each event topic found, Mechanic constructs a synthetic preview event, resembling one that the task might encounter during live use.

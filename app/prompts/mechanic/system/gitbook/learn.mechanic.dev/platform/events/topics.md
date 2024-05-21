@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/events/topics]
+
 # Event topics
 
 A complete index

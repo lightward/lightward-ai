@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-non-owners-install-mechanic]
+
 # Can non-owners install Mechanic?
 
 Usually! A fresh install of Mechanic requires permission for reading online store content, like pages and blog posts. Any staff users who have access to that content in the Shopify admin will be able to install Mechanic.

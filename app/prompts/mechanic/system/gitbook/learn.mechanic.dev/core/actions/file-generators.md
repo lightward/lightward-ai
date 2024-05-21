@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/file-generators]
+
 # File generators
 
 File generators are invoked by actions to create new files, using options provided by the action, and handing the resulting file back to the action for further use. In this way, tasks can make choices about what files to generate, and what to do with the results.

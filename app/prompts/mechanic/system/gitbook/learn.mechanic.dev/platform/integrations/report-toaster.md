@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/integrations/report-toaster]
+
 # Report Toaster
 
 Mechanic allows developers to integrate directly with Report Toaster to retrieve and update data. Use Report Toaster's powerful reporting engine to retrieve and operate on your Shopify data.

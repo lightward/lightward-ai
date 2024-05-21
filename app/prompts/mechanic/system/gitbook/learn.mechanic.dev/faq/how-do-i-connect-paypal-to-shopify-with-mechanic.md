@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-do-i-connect-paypal-to-shopify-with-mechanic]
+
 # How do I connect PayPal to Shopify with Mechanic?
 
 To integrate PayPal transactions into your Shopify orders, leverage the Import PayPal transactions as Shopify orders Mechanic task. Follow the steps provided to seamlessly connect the two platforms. ❤️

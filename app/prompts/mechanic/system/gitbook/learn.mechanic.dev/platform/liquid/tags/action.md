@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/tags/action]
+
 # action
 
 The action tag renders an action object in JSON, which in turn defines work to be performed by an action.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/custom]
+
 # 🙋"I need something custom!"
 
 Great! Mechanic is made for this. Here's where to start. :)

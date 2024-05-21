@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/cache/endpoints]
+
 # Cache endpoints
 
 Cache endpoints are private JSON APIs for accessing data from the Mechanic cache. Like webhooks, cache endpoints may be called from a Shopify online storefront (and from other origins). This makes for a flexible way to generate, collect, or transform data into something you can pull in to your online customer experiences.

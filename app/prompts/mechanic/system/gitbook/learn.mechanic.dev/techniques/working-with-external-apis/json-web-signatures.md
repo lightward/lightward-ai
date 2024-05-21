@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/working-with-external-apis/json-web-signatures]
+
 # JSON Web Signatures
 
 From Wikipedia:

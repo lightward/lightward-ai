@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/action]
+
 # Action object
 
 The Action object describes an action that was defined, and the run that was performed for that action.

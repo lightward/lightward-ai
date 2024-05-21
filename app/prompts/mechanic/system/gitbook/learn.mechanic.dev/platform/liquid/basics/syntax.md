@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/syntax]
+
 # Syntax
 
 Liquid is a template language, which means that it uses special syntax to mark the places where Liquid code starts and ends. In this way, Liquid code can be used to fill in calculated values in a larger document.

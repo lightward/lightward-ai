@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/variables]
+
 # Variables
 
 Like other language, Liquid stores information in variables. There are two Liquid tags that facilitate creating variables: assign, and capture.

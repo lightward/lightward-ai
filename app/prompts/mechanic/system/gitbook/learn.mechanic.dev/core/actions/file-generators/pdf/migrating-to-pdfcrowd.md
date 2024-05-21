@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/file-generators/pdf/migrating-to-pdfcrowd]
+
 # Migrating to Pdfcrowd
 
 Mechanic accounts created prior to July 12, 2021 default to using wkhtmltopdf instead of Pdfcrowd. This rendering engine uses a version of WebKit from 2012, and therefore does not support many features of the modern web.

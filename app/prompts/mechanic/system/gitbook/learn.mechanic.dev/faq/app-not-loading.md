@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/app-not-loading]
+
 # The app isn't loading. What do I do?
 
 Deep breaths! We can figure this out. :)

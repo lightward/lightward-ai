@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/previews]
+
 # Previews
 
 A task uses its preview to demonstrate what actions the task intends to generate. Among other purposes (see below), this is also how tasks request the Shopify permissions they require.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/options]
+
 # Options
 
 Tasks accept user configuration via options. Options are created dynamically, by reference: each option referenced in a task's code results in that option being added to the task's configuration form. In the option reference {{ options.foo\_bar\_\_required }}, the option key is foo\_bar\_\_required. The appearance and behavior of the option's form element is based on flags in in the option key – in this example, only the "required" flag is in use.

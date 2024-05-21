@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-do-i-stop-a-large-batch-of-runs]
+
 # How do I stop a large batch of runs?
 
 If you reading this, you may be looking at a very large batch of task or action runs, all related to a single task, none of which you want to actually run. And, because there are so many queued up, your Mechanic account is prevented from processing incoming events.

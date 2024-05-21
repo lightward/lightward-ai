@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/inventory-level]
+
 # Inventory level object
 
 ## How to access it

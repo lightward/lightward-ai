@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/api-rate-limit]
+
 # API rate limit
 
 Mechanic has native awareness of Shopify's Admin API rate limit, and will accordingly manage the execution of operations that require access to the Shopify API. Mechanic users do not need to manage the API rate limit themselves.

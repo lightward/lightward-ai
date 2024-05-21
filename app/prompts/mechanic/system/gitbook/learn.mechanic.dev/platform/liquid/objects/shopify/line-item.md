@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/line-item]
+
 # Line item object
 
 ## How to access it

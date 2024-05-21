@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid]
+
 # Liquid
 
 Everything in Mechanic is about tasks, and tasks are written in Liquid – the same template language that Shopify uses for their online store themes, and for many other purposes.

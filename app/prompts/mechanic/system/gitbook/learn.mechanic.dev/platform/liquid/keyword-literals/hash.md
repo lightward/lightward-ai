@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/keyword-literals/hash]
+
 # hash
 
 The hash keyword literal may be used in any Liquid code to instantiate a hash.

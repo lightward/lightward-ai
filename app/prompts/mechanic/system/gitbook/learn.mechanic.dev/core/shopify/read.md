@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/read]
+
 # Reading data
 
 Mechanic supports several methods of reading data. The following articles discuss usage, and when each technique might (or might not) be appropriate:

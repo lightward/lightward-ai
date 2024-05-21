@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-i-query-external-apis]
+
 # Can I query external APIs?
 
 For more general information on third-party APIs, including more options for reading and writing data, see Working with external APIs.

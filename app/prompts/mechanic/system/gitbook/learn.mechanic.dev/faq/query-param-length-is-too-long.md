@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/query-param-length-is-too-long]
+
 # I'm getting a "query param length is too long" error when using GraphQL.
 
 This error is about the length of the GraphQL query as a whole (which Shopify limits to 50,000 characters in total), and not about specific strings within the query. (Using an example from the Mechanic task library, this scenario could return this error if the list of list of SKUs is extremely long.)

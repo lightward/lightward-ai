@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/keyword-literals/newline]
+
 # newline
 
 The newline keyword literal represents the newline control character: \n. It's useful for navigating or assembling strings.

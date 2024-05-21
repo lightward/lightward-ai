@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/email/custom-email-domain]
+
 # Custom email addresses
 
 By default, Mechanic sends mail from an address built from the Shopify store's domain. Mechanic also supports sending from a custom email address.

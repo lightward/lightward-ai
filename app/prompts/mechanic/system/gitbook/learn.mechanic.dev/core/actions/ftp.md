@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/ftp]
+
 # FTP
 
 Upload and download files via FTP, FTPS, or SFTP.

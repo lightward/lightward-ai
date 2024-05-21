@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/filters/deprecated]
+
 # Deprecated filters
 
 These filters are still a part of Mechanic Liquid, but are no longer documented or supported.

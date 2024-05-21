@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/migrating-templates-from-shopify-to-mechanic]
+
 # Migrating templates from Shopify to Mechanic
 
 Shopify notification templates can be manually migrated over to Mechanic in order to generate order-related material on-demand in Mechanic. This could look like triggering an order confirmation email, or generating a PDF invoice.

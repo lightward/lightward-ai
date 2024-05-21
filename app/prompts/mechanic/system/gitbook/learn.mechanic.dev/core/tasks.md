@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks]
+
 # Tasks
 
 In Mechanic, a task is a bundle of logic and configuration, that responds to and interprets events. The result of a task can define actions, which are the task's opportunities to have an effect on the world.

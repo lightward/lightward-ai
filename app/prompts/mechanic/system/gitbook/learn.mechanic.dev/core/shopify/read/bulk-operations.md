@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/read/bulk-operations]
+
 # Bulk operations
 
 Mechanic supports Shopify's bulk operations GraphQL API, allows developers to submit a query to Shopify for asynchronous processing, and making the results available to the task once complete.

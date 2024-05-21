@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/code/log-objects]
+
 # Log objects
 
 Log objects are useful for recording information for later reference. They have no side-effects. Carefully chosen log objects can massively simplify post-hoc debugging, especially (as we've found) when investigating merchant bug reports.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/read/liquid-objects]
+
 # Liquid objects
 
 Mechanic-flavored Liquid comes with a complement of Liquid objects, each of which is tied to a resource in the Shopify Admin REST API. Many objects support access to related objects via lookups (e.g. {{ shop.customers[customer\_id].orders.first }}); in this way, the REST API can be traversed by resource.

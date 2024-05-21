@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/read/the-shopify-action]
+
 # The Shopify action
 
 The Shopify action allows developers to submit any request to the Shopify Admin API. By responding to action results, the data returned by Shopify can be retrieved, and re-used by the calling task.

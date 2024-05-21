@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/draft-order]
+
 # Draft order object
 
 ## How to access it

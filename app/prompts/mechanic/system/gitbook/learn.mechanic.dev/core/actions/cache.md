@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/cache]
+
 # Cache
 
 The Cache action allows developers to interact with the store's Mechanic cache, using commands inspired by Redis. Cache entries have a key, a value containing up to 256 kilobytes, and a ttl value ("Time To Live") in seconds, defaulting to the maximum of 60 days (i.e. 5184000 seconds).

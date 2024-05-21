@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/graphql/bulk-operations]
+
 # Bulk operations
 
 Fetching large amounts of data can exhaust the Shopify API limit for your Mechanic account, slowing down other tasks, and running the risk of consuming too much time or memory for your Mechanic workers.

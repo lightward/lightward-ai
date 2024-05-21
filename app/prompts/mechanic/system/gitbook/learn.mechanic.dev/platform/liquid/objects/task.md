@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/task]
+
 # Task object
 
 Only available within a task, the task object contains attributes describing the current task itself.

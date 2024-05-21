@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/advanced-settings/perform-action-runs-in-sequence]
+
 # Perform action runs in sequence
 
 Mechanic's run system works asynchronously, performing as much work as possible, as quickly as possible. However, there are cases where it's important that actions run in a sequence – one after the other.

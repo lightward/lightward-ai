@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/integrations/appstle-subscriptions]
+
 # Appstle Subscriptions
 
 ### What is Appstle Subscriptions?
