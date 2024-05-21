@@ -8,11 +8,11 @@ https://www.rich-text-to-markdown.com/
 
 ## Tasks
 
-Download updated GitBook docs from everywhere:
+Download updated Sitemaps docs from everywhere:
 
 ```sh
-rake "prompts:gitbook[locksmith]"
-rake "prompts:gitbook[mechanic]"
+rake "prompts:sitemaps[locksmith]"
+rake "prompts:sitemaps[mechanic]"
 ```
 
 Write updated app docs summaries to tmp/prompts/:

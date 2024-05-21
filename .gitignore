@@ -39,3 +39,6 @@
 
 .DS_Store
 .byebug_history
+
+# We're crawling lots of content y'all
+app/prompts/*/system/sitemaps/*
