@@ -2,13 +2,9 @@
 
 Here's where the prompts go. :)
 
-You might want this:
+This is useful if you want one-off markdown conversions: https://www.rich-text-to-markdown.com/
 
-https://www.rich-text-to-markdown.com/
-
-## Tasks
-
-Download updated Sitemaps docs from everywhere:
+Within the system/ directories, there are sitemap/ directories. Within those, only domain.txt files are commited to git. You'll need to populate these directories with their actual contents, when you're ready:
 
 ```sh
 rake "prompts:sitemaps[lightward]"
@@ -16,7 +12,7 @@ rake "prompts:sitemaps[locksmith]"
 rake "prompts:sitemaps[mechanic]"
 ```
 
-Write updated app docs summaries to tmp/prompts/:
+When you're ready to generate primers from each prompt directory, _do it_:
 
 ```sh
 ANTHROPIC_MODEL="claude-3-opus-20240229" rake "prompts:anthropic[lightward]"
