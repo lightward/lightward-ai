@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/why-arent-my-locks-working]
+
 # Why aren't my locks working?
 
 ## First thing to try: Update Locksmith

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/policies/pricing]
+
 # Pricing
 
 > Prefer to listen? 🔊 Hear a spoken version of this policy

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/policies/usage-agreement]
+
 # Usage agreement
 
 The annotated edition!

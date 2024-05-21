@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/policies/data]
+
 # Data policy
 
 Locksmith only accesses what it needs to, and only stores on its servers what it must. We work hard to make securing your content easy, while keeping our systems safe and efficient in the process.

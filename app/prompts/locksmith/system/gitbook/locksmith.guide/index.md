@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/]
+
 # Quick Start
 
 Basic guide to using the Locksmith app to restrict access to content in your Shopify Online Store

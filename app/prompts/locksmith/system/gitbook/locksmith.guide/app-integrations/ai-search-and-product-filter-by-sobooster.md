@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/app-integrations/ai-search-and-product-filter-by-sobooster]
+
 # AI Search & Product Filter by Sobooster
 
 AI Search & Product Filter is a Shopify app designed to help improve your store's search and filter experience, and help customers find products quickly using an AI-powered Search Engine.

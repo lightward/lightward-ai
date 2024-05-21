@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics]
+
 # Basics
 
 Mechanic uses Liquid, a template language created by Shopify. If you have worked with the code behind Shopify themes, you've worked with Liquid.

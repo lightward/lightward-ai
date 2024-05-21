@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/securing-mechanic-webhooks]
+
 # Securing Mechanic webhooks
 
 Mechanic webhooks are configured properly for CORS, which makes them suitable for submissions from your online store's frontend.

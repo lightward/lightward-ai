@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/what-should-i-do-if-my-site-is-loading-slowly]
+
 # What should I do if my site is loading slowly?
 
 If your online storefront is showing poor performance after installing Locksmith or adjusting Locksmith settings, it's possible that an unintentionally aggressive Locksmith configuration is to blame.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/inverting-conditions-in-locksmith]
+
 # Inverting conditions in Locksmith
 
 There are many instances in which it is useful for a key to grant access if the opposite of your key condition is true.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/shopify/read-all-orders]
+
 # "Read all orders"
 
 When order access is required, Mechanic defaults to requesting access to the last 60 days of a store's order history. Users can choose to give Mechanic access to all orders, across the store's entire history, by enabling the "Read all orders" option.

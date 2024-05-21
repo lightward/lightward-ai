@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/my-task-is-failing-because-of-a-permissions-problem]
+
 # My task is failing because of a permissions problem. Why?
 
 If you're creating a new task, and writing a script to go with it, you might see an error like this when you start running it for the first time:

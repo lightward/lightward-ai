@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/file-generators/zip]
+
 # ZIP
 
 The ZIP file generator accepts an options object, specifying a set of files (themselves defined using file generators) to be compressed into a single ZIP file. The resulting ZIP file may optionally be password-protected.

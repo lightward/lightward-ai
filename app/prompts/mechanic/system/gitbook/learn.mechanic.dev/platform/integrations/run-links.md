@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/integrations/run-links]
+
 # Run links
 
 Mechanic run links give your users a useful point of entry.

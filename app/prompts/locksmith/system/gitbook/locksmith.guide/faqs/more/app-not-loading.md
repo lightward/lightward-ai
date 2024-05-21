@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/app-not-loading]
+
 # The app isn't loading. What do I do?
 
 Deep breaths! We can figure this out. :)

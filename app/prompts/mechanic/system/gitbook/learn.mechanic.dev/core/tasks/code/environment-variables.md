@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/code/environment-variables]
+
 # Environment variables
 
 A task's Liquid code always has access to a set of environment variables, defined by Mechanic.

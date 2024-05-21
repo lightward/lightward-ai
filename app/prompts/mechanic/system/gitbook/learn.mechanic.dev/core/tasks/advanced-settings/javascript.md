@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/advanced-settings/javascript]
+
 # JavaScript
 
 Shopify allows apps to inject JavaScript into the online storefront, and into order status pages. (This is facilitated by ScriptTag in the Shopify API.)

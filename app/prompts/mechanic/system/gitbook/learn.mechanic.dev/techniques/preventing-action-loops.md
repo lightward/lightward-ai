@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/preventing-action-loops]
+
 # Preventing action loops
 
 ### How to Prevent Action Loops in Mechanic Tasks

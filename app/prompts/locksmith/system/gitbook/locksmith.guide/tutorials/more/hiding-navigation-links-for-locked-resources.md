@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/hiding-navigation-links-for-locked-resources]
+
 # Hiding navigation links for locked resources
 
 Use the Locksmith app to hide navigation links in your Shopify Online Store channel

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-i-add-a-time-delay-to-my-task]
+
 # Can I add a time delay to my task?
 
 Almost certainly! The feature you're looking for is called a subscription offset, and it allows you to specify a delay period in minutes, hours, or days.

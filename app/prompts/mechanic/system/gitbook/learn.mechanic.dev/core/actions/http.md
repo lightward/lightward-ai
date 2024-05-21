@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/http]
+
 # HTTP
 
 The HTTP action performs HTTP requests. It is commonly used to invoke third-party APIs.

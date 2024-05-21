@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-i-send-data-to-google-sheets]
+
 # Can I send data to Google Sheets?
 
 Yes! There are two options: One uses the IMPORTDATA function within Google Sheets to pull data from your store into your spreadsheet. The other lets you dynamically push new data to Google Sheets, using their REST API.

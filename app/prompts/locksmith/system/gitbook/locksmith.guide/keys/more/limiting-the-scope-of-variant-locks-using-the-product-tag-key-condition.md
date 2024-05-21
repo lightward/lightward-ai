@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/limiting-the-scope-of-variant-locks-using-the-product-tag-key-condition]
+
 # Limiting the scope of variant locks using the product tag key condition
 
 By default, Locksmith's variant locks apply to all matching option/value combinations. For example, you'll typically see something like this:

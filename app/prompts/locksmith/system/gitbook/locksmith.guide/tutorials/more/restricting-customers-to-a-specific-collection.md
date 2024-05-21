@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/restricting-customers-to-a-specific-collection]
+
 # Restricting customers to a specific collection
 
 With Locksmith, it is simple to lock down a specific collection, so that it can only be viewed by a specific set of customers. However, some merchants want to take it one step further and make sure that those customers can only access their collection, while the rest of the store is restricted to them.

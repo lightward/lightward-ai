@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/cache]
+
 # Cache
 
 Each Mechanic account has a simple key-value cache, which may be written to using Cache actions, and read from using the cache object and cache endpoints.

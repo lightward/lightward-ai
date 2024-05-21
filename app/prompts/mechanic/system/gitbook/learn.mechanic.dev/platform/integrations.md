@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/integrations]
+
 # Integrations
 
 Mechanic maintains several official integration points:

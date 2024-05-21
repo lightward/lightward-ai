@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/grant-access-for-a-limited-time-when-using-passcodes-or-secret-links]
+
 # Grant access for a limited time when using passcodes or secret links
 
 How to use Locksmith's 'timeout' feature to limit access time

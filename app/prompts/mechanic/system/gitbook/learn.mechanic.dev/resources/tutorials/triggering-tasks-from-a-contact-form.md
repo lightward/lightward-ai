@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/tutorials/triggering-tasks-from-a-contact-form]
+
 # Triggering tasks from a contact form
 
 This tutorial walks you through setting up a custom task in Mechanic, which is called on Contact Form submission on your Shopify frontend, the contents of the form are passed to the task, which emails the contents in CSV format.

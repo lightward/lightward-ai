@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/cache]
+
 # Cache object
 
 The cache object is used for retrieving values stored in the shop's Mechanic cache. For more on this, see Using the cache.

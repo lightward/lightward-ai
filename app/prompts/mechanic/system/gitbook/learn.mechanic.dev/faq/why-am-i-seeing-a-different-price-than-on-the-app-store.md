@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/why-am-i-seeing-a-different-price-than-on-the-app-store]
+
 # Why am I seeing a different price than on the app store?
 
 We run with a Pay What Feels Good pricing policy.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-i-replace-shopifys-order-emails-with-mechanic]
+
 # Can I replace Shopify's order emails with Mechanic?
 
 To our knowledge, Shopify Plus stores are able to disable Shopify's own order confirmation emails. Apart from that, most customer-facing order notifications cannot be disabled, but a few can!

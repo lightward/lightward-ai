@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/policies/privacy]
+
 # Privacy policy
 
 ## Locksmith Privacy Policy

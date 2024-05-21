@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/theme]
+
 # Theme object
 
 ## How to access it

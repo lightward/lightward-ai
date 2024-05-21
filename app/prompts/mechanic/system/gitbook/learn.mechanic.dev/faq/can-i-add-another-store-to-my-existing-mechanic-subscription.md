@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-i-add-another-store-to-my-existing-mechanic-subscription]
+
 # Can I add another store to my existing Mechanic subscription?
 
 Every customer-facing Shopify store needs its own Mechanic subscription.

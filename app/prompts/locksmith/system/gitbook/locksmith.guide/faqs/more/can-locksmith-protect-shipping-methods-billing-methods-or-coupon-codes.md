@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/can-locksmith-protect-shipping-methods-billing-methods-or-coupon-codes]
+
 # Can Locksmith protect shipping methods, billing methods, or coupon codes?
 
 No - It's not possible to protect shipping methods, billing methods, or coupon codes.

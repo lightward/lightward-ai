@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/tags/log]
+
 # log
 
 The log tag generates a log object.

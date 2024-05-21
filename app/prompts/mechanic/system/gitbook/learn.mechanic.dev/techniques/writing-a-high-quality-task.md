@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/writing-a-high-quality-task]
+
 # Writing a high-quality task
 
 Here are some best practices we've found, as a community, about writing tasks that improve life for everyone.

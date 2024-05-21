@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/shopify]
+
 # Shopify
 
 [Custom authentication](/platform/shopify/custom-authentication)["Read all orders"](/platform/shopify/read-all-orders)

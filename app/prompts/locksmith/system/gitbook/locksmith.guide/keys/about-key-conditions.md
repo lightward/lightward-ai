@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/about-key-conditions]
+
 # About key conditions
 
 In Locksmith, customer access is always granted using keys – simple statements that describe the conditions for access.

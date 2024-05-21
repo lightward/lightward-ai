@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/hiding-prices]
+
 # Hiding product prices and/or the add to cart button
 
 How to use the Locksmith app to hide specific page content on your Shopify Online Store

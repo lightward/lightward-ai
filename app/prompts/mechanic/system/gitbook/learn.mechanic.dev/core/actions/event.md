@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/event]
+
 # Event
 
 The Event action is for generating custom events in the User event domain. It's used to queue up follow-up work, either immediately or in the future, and can be useful when designing complex workloads, separating work between tasks.

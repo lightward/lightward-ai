@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/integrations/shopify-flow]
+
 # Shopify Flow
 
 Mechanic allows developers to integrate their work with Shopify Flow via an official Flow connector, sending triggers to Shopify using Mechanic's Flow action, and receiving events from Shopify using custom event topics in the user domain.

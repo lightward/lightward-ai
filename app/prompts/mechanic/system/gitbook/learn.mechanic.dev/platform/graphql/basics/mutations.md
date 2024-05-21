@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/graphql/basics/mutations]
+
 # Mutations
 
 GraphQL mutations create, update, or delete objects in the Shopify GraphQL admin API. A mutation has a name, takes input data, and specifies fields to return in the response.

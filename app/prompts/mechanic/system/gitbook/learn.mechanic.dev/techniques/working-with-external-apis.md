@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/working-with-external-apis]
+
 # Working with external APIs
 
 ## Loading data into Mechanic

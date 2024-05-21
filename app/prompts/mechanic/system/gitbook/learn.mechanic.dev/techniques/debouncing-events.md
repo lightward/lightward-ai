@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/debouncing-events]
+
 # Debouncing events
 
 There are cases when events unavoidably come in more often than is strictly useful. (We've seen this happen when used with webhooks, called by a vendor – the vendor may call that webhook far more often than desired.)

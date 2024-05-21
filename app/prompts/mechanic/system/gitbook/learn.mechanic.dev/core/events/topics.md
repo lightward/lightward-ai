@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/events/topics]
+
 # Topics
 
 To make events easy to identify, each event has a topic. Tasks signal their interest in specific event topics using subscriptions.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/responding-to-action-results]
+
 # Responding to action results
 
 Action runs are performed asynchronously, like all Mechanic runs. This means their results aren't available to the Liquid task code that defined them.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/ip-address-keys]
+
 # IP address keys
 
 Locksmith supports permitting visitors based on their IP address.

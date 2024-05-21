@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/integrations/flow]
+
 # Flow
 
 The Flow action sends data to Shopify Flow, arriving as one of four possible Flow triggers.

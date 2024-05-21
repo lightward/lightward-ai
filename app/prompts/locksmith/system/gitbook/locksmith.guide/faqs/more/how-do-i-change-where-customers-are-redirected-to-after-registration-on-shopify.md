@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/how-do-i-change-where-customers-are-redirected-to-after-registration-on-shopify]
+
 # How do I change where customers are redirected to after registration on Shopify
 
 This guide is specific to Locksmith key conditions that require a customer to sign into a store account.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/events]
+
 # Events
 
 In Mechanic, an event represents anything that happens. This could be an order being paid, or a customer record being created, or a fulfillment being delivered.

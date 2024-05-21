@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/gift-card]
+
 # Gift card object
 
 Note: This API is only available to Shopify Plus stores, who have configured their Mechanic account with a custom Shopify API password.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/graphql/basics/shopify-admin-api-graphiql-explorer]
+
 # Shopify Admin API GraphiQL explorer
 
 In the next sections, you'll learn about queries, mutations, and bulk operations. Shopify has provided a fantastic tool called the Admin Api GraphiQL explorer to help learn and work with the GraphQL API. The best way to learn GraphQL is to start writing queries and reviewing the data that is returned.

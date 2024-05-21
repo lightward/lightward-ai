@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/developer-tools/locksmith-admin-api]
+
 # Locksmith Admin API
 
 Locksmith's Admin API can be used to query Locksmith to get information about your locks, keys, and settings. As a REST API, it closely resembles Shopify's own REST Admin API.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/restricting-the-cart-for-mixed-products-and-combinations-of-products]
+
 # Restricting the cart for mixed products and combinations of products
 
 This is an incomplete guide! In an effort to share the information we have as soon as possible, this guide has been started and published here in what we consider to be an incomplete state. If something is missing, please let us know by emailing us at team@uselocksmith.com.

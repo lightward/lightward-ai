@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-do-i-preview-email-attachments]
+
 # How do I preview email attachments?
 
 ### What won't work

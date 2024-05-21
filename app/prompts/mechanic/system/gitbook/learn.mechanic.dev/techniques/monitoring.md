@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/techniques/monitoring]
+
 # Monitoring Mechanic
 
 Mechanic is frequently used for business-critical operations. The Mechanic team closely monitors the platform (and shares status information at status.mechanic.dev), but it can be useful to set up task-specific monitoring, specific to the visibility needs of each business.

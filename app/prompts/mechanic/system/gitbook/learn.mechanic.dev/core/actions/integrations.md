@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/integrations]
+
 # Integrations
 
 [Flow](/core/actions/integrations/flow)[Report Toaster](/core/actions/integrations/report-toaster)

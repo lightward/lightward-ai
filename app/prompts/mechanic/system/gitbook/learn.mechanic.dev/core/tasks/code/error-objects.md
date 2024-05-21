@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/code/error-objects]
+
 # Error objects
 
 When a task renders an error object, the task run will be marked as failed, and no rendered action runs will be performed. This is a good way to communicate an intentional failure to the user, when your Liquid code detects a certain condition.

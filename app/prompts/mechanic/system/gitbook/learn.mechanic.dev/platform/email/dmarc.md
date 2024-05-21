@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/email/dmarc]
+
 # DMARC
 
 DMARC is an email authentication measure, increasingly important for deliverability. Learn more about DMARC here.

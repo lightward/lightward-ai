@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/price-tiers]
+
 # Setting up multiple price tiers
 
 How to use the Locksmith app set up restricted prices levels on your Shopify Online Store

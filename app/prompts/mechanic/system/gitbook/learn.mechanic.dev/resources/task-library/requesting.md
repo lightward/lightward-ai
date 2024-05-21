@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/task-library/requesting]
+
 # Requesting
 
 The Mechanic community maintains a board of task requests, where anyone can submit their idea for an addition to the Mechanic task library.

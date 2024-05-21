@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/locksmith-wholesale]
+
 # Creating restricted wholesale products
 
 How to use the Locksmith app to restrict access to wholesale products or wholesale-only content in your Shopify Online Store

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/my-featured-collections-on-my-home-page-only-show-one-product.]
+
 # My featured collections on my home page only show one product.
 
 This error happens on specific themes (notably, the "Minimal" theme and similiar themes). There is a minor incompatibility with theses themes, but we can get it patched up for you pretty quickly!

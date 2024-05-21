@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-can-i-update-existing-metafields]
+
 # How can I update existing metafields?
 
 Metafields may be managed using the Shopify action, whether you use REST or GraphQL. While metafields can be uniquely referenced for a resource, using their namespace and key, any updates to them must include the metafield ID.

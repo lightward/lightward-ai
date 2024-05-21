@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/integrations/locksmith]
+
 # Locksmith
 
 Access control, for anything in your online store :)

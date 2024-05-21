@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-my-mechanic-concurrency-limit-be-raised]
+
 # Can my Mechanic concurrency limit be raised?
 
 Perhaps! This question can come up when the Mechanic queue for a particular store becomes backlogged, delaying task activity. Queue concurrency is controlled by each store's Mechanic concurrency limit.

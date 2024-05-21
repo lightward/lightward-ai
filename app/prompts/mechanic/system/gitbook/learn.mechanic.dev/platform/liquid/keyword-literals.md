@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/keyword-literals]
+
 # Mechanic keyword literals
 
 [array](/platform/liquid/keyword-literals/array)[hash](/platform/liquid/keyword-literals/hash)[newline](/platform/liquid/keyword-literals/newline)

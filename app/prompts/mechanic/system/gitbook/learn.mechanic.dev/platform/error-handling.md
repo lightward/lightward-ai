@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/error-handling]
+
 # Error handling
 
 Get actionable visibility into event, task, and action errors

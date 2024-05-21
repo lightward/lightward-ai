@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/automatically-hide-from-sitemaps-and-manage-seo-metafield]
+
 # Automatically managing the seo.hidden metafield using Locksmith
 
 How to set up your Locksmith locks to automatically manage the seo.hidden metafield for any content covered by them.

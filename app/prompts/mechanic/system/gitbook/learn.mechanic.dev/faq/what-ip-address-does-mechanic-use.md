@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/what-ip-address-does-mechanic-use]
+
 # What IP address does Mechanic use?
 
 In general, Mechanic uses dynamically-assigned IP addresses, and does not support static or fixed IP addresses for outgoing or inbound requests.

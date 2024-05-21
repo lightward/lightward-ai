@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/subscriptions]
+
 # Subscriptions
 
 A task subscription is the expression of a task's intent to receive certain events, filtering by topic. A subscription consists of an event topic, optionally combined with a time offset, which creates a delay.
@@ -19,6 +21,10 @@ A subscription with an offset looks like shopify/customers/create+1.hour.
 To learn more about scheduling work with Mechanic, see Scheduling.
 
 In practice, large offsets can make debugging difficult in practice! If you're thinking about work to be done weeks or months or years from now, consider running an hourly or daily task that scans for work that's due to be done, instead of scheduling tasks for the distant future.
+
+In some cases, the first task run on a new mechanic/scheduler/daily task may not be performed when expected.
+
+To illustrate: if a user creates a task at 9am Monday, subscribing to mechanic/scheduler/daily+10.hours, they will have to wait until the following midnight before the mechanic/scheduler/daily event is created. When that event's run is performed, the task's subscription offset will be calculated and applied, and the task run will be enqueued for 10 hours later. This means that the task will run for the first time on 10am Tuesday, not 10am Monday.
 
 The Shopify variables available to tasks always contain data drawn from the event itself. If a task has a offset event subscription, this data may be outdated by the time the task runs.
 
@@ -62,4 +68,4 @@ Copy
 
     shopify/customers/create{% if options.wait_one_hour__boolean %}+1.hour{% endif %}
 
-Last updated 2024-05-07T15:14:21Z
+Last updated 2024-05-20T18:13:26Z

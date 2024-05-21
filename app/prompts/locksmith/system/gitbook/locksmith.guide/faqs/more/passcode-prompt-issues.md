@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/passcode-prompt-issues]
+
 # My passcode or newsletter prompt is not updating on my store when I change it.
 
 Locksmith allows you to set messages at different scopes. It is possible to set the messages up for individual passcode or newsletter key conditions which can allow for greater flexibility. When present, a key-condition-level message will always override messages set up at the lock-level.

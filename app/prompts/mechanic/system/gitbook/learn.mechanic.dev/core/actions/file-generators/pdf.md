@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/file-generators/pdf]
+
 # PDF
 
 The PDF file generator accepts an object containing an HTML string, and uses Pdfcrowd to render it as a PDF document. Pdfcrowd employs the Chromium Embedded Framework for HTML rendering, which uses the same foundation as Google Chrome. This allows Mechanic to generate PDFs with modern CSS and JavaScript features, including chart libraries and web fonts.

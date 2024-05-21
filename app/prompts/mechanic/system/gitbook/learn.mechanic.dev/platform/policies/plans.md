@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/policies/plans]
+
 # Plans
 
 Mechanic does not have different plans. The following details apply to every Mechanic account:

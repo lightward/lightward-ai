@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/admin-action-links]
+
 # Shopify admin action links
 
 Use these access points within the Shopify admin to send resources like orders and customers to Mechanic for processing.

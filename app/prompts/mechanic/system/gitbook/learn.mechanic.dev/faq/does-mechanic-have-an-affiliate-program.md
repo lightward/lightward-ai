@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/does-mechanic-have-an-affiliate-program]
+
 # Does Mechanic have an affiliate program?
 
 No, Mechanic does not have an affiliate program. :)

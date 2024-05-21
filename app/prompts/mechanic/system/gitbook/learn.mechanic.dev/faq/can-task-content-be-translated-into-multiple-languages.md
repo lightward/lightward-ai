@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/can-task-content-be-translated-into-multiple-languages]
+
 # Can task content be translated into multiple languages?
 
 The tasks in Mechanic's library don't generally include provisions for content translations/localizations – this can be a relevant concern for customer-facing messaging, like email.

@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/how-do-i-hide-my-shopify-stores-header-and-footer]
+
 # How do I hide my Shopify store's header and footer
 
 The Locksmith can be used to lock most resources in your store, preventing their content from appearing between the header and footer of the site. However, Locksmith doesn't have a built in way to lock or hide the header and footer in your theme.

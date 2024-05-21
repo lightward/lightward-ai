@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/custom-help]
+
 # 🧑‍💻"I need help with my custom task!"
 
 ### What support is included with my Mechanic subscription?

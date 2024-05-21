@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/editing-the-confirmation-message]
+
 # Confirmation key condition
 
 Ask for a simple confirmation before granting access to content in your Shopify Online Store sales channel.

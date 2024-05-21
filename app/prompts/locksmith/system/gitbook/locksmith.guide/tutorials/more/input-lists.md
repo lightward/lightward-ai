@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/input-lists]
+
 # Input lists
 
 How to use Locksmith's Input List feature to work with large numbers of inputs
@@ -61,6 +63,7 @@ When configuring your key condition, select the "Permit if the customer has an e
 
 More information on using customer account key conditions here:
 
+[pageCustomer account keys](/keys/customer-account-keys)
 ### Passcodes
 
 When configuring your key condition, select the "Permit if the customer gives a passcode from an input list…" option to have Locksmith compare customer input with items in your input list
@@ -69,6 +72,7 @@ As with Locksmith's other passcode conditions, you may configure this condition 
 
 More information on using passcodes here:
 
+[pagePasscode keys](/keys/passcode-keys)
 ### Secret links
 
 When configuring your key condition, select the "Permit if the customer arrives using a secret link code from an input list…" option to match the visitor's current URL with items in your input list:
@@ -92,5 +96,7 @@ Feel free to combine either option with other query parameters, like so:
 As with Locksmith's other secret link condition, you may configure this condition to "remember" returning customers who are logged in. If this option is enabled, Locksmith will compare previously-accepted secret link codes from the customer's records with current items in the selected input list. This means that removing previously-used items from the input list will result in the relevant returning customers being "forgotten".
 
 More information on using secret links here:
+
+[pageSecret link keys](/keys/secret-link-keys)
 
 Last updated 2022-11-09T05:56:34Z

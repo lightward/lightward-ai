@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/customizing-the-registration-form]
+
 # Customizing the registration form
 
 First thing to know is that Locksmith uses the built in customer account system that comes with your store! This means it doesn't create a separate registration form, sign-in form, or customer database.

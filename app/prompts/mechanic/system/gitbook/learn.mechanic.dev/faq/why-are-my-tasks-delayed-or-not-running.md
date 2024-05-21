@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/why-are-my-tasks-delayed-or-not-running]
+
 # Why are my tasks delayed or not running?
 
 In general, there are two reasons why a task might be delayed, or might not be appearing to run:

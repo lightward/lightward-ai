@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/events/filters]
+
 # Event filters
 
 An event filter is a small Liquid template that processes an incoming event, before handing the event off to the run system. If the template renders false, the event will be ignored. This makes event filters a light-weight mechanism for purposefully filtering out events, often for performance reasons.

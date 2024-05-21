@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-do-marketing-preferences-work-with-mechanic]
+
 # How do marketing preferences work with Mechanic?
 
 Mechanic does not enforce a customer's marketing preferences on your behalf. It is your responsibility to respect their preference, as recorded in Shopify, and to give the customer an opportunity to unsubscribe if appropriate. If GDPR applies to you and your customers, this set of laws is also your responsibility to uphold, so far as it applies to sending email.

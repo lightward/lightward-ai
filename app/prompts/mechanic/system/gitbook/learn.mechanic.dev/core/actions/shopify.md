@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/shopify]
+
 # Shopify
 
 The Shopify action sends requests to the Shopify admin API. It supports both REST and GraphQL requests.

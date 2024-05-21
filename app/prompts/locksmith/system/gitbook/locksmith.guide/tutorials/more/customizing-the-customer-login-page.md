@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/customizing-the-customer-login-page]
+
 # Customizing the customer login page
 
 Customizing the login form shown on a page locked by Locksmith in your Shopify Online Shop

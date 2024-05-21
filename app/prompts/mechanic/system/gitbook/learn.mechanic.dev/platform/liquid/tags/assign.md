@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/tags/assign]
+
 # assign
 
 The assign tag is a native feature of Liquid. In Mechanic-flavored Liquid, the assign tag is extended to support assigning within arrays and hashes.

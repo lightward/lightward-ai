@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/webhooks]
+
 # Webhooks
 
 A Mechanic webhook allows data to be submitted directly to Mechanic, resulting in a new event having a particular topic, containing the submitted data. Webhooks are called with simple HTTP POST requests, which means they can be called from any programming language, and from many applications.

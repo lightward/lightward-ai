@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/tutorials/creating-scheduled-csv-feeds]
+
 # Creating scheduled CSV feeds
 
 In this tutorial, you'll learn how to create a feed of your shop's data, and make it available on your online store, at a URL like https://example.com/pages/feed.

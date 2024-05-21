@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/shopify-api-version]
+
 # Shopify API version
 
 Each task is configured with a specific Shopify API version, defaulting to the latest version at the time of the task's creation.

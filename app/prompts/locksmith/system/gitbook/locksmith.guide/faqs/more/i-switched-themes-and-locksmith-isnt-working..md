@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/i-switched-themes-and-locksmith-isnt-working.]
+
 # I switched themes, and Locksmith isn't working.
 
 ## The solution: trigger a new Locksmith install for your theme

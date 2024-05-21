@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/why-cant-i-access-the-shopify-api-during-preview-mode]
+
 # Why can't I access the Shopify API during preview mode?
 
 A task is always run in response to an event. However, for several purposes, Mechanic may also run your task with a preview event, without performing any of the actions the task generates.

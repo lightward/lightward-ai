@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/can-locksmith-hide-content-from-my-in-store-search]
+
 # Can Locksmith hide content from my in-store search?
 
 How to adjust your lock settings to prevent your content from being found via your in-store search

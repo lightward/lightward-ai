@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/how-to-access-your-browsers-dev-tools]
+
 # How to access your browser's dev tools
 
 For any browser right click on an element on a page and select "Inspect", then select the relevant tab in the DevTools panel (Ctrl + Shift + I or Command + Option + I)

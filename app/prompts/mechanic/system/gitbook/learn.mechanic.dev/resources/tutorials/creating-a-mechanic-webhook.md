@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/tutorials/creating-a-mechanic-webhook]
+
 # Creating a Mechanic webhook
 
 Webhooks are the nearly ubiquitous carriers of information to and from services across the internet - services like IFTTT, Zapier, Stripe, PayPal, JotForm, and countless more. You can use webhooks to send information from these services into Mechanic, where you can then perform any logic and actions you need.

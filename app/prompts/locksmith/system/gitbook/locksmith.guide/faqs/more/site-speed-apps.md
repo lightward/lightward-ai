@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/site-speed-apps]
+
 # I'm having trouble using Locksmith with a site speed optimization app.
 
 Locksmith isn't supported in combination with site speed optimization apps. It may work with some, but we don't offer support for this combination.

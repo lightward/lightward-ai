@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/do-you-have-a-partner-friendly-plan]
+
 # Do you have a Partner-friendly plan?
 
 If you have a store that will never see customer traffic, then we can help out with this. :) Mechanic doesn't have separate plans, but we do grant super-extended trial periods for development stores. Write in to team@usemechanic.com, making sure to include your store name, and we'll help you out.

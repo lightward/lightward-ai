@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/discount-code]
+
 # Discount code object
 
 How to access it

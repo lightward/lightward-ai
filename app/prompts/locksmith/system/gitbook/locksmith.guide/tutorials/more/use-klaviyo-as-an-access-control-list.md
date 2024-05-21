@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/use-klaviyo-as-an-access-control-list]
+
 # Use Klaviyo as an access control list
 
 By default, our Klaviyo key condition signs up your customers for your Klaviyo mailing list, when they submit their email address. However, this key condition also supports using Klaviyo to establish a list of email addresses who are preauthorized for your content.

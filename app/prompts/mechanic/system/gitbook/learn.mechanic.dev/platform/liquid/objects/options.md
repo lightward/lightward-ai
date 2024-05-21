@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/options]
+
 # Options object
 
 Only available within a task, the options object contains all values provided by merchants while configuring the task.

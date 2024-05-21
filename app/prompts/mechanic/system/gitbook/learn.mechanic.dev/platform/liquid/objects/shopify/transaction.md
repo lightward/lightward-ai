@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/transaction]
+
 # Transaction object
 
 ## The transaction object

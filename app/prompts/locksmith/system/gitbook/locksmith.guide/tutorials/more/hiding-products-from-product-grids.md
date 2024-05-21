@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/hiding-products-from-product-grids]
+
 # Hiding products from product-grids
 
 How to set up Locksmith locks to hide from collections, in-store searches, and any other product grids in your Shopify Online Store

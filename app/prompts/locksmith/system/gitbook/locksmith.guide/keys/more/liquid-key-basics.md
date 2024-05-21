@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/liquid-key-basics]
+
 # Liquid key basics
 
 Locksmith allows you to create a custom keys that use Liquid to determine whether or not the current visitor has access. This gives you a few more options than what comes with Locksmith's out-of-the-box key conditions.

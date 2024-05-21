@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/tasks/code]
+
 # Code
 
 A task's code is a Liquid template. In the same way that a Shopify storefront might use a Liquid template to receive requests and render HTML, a task uses its Liquid code to receive events, and render a series of JSON objects. These JSON objects define actions, logs, and errors.

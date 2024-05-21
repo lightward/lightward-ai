@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/fulfillment-event]
+
 # Fulfillment event object
 
 ## How to access it

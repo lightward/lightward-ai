@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/developer-tools/locksmith-storefront-api]
+
 # Locksmith Storefront API
 
 Locksmith includes a JavaScript-friendly Storefront API, embedded in your online store. This API can be used to check the current visitor's current authorization status for the resources that you name. For example, a search app could use this API to make sure a visitor has access to each of the resources that are in a set of search results, before showing those results to the visitor.

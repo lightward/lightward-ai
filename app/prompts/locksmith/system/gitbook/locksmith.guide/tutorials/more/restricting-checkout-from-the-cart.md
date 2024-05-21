@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/restricting-checkout-from-the-cart]
+
 # Restricting checkout from the cart
 
 How to use the Locksmith app to add checkout restrictions on your Shopify Online Store

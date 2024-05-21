@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/keys/more/excluding-content-from-locks]
+
 # Excluding content from locks
 
 How to use Locksmith's "always permit" key condition to make sure your some of your content doesn't become locked
@@ -17,5 +19,7 @@ You may need to create multiple locks like this if you have multiple areas of yo
 ## Related feature: the force open other locks setting
 
 The force open other locks setting is useful if you have multiple locks with overlapping content. This usually means locked collections with some of the same products. If this is you, check out our guide here:
+
+[pageUsing the "Force open other locks" setting](/keys/more/using-the-force-open-other-locks-setting)
 
 Last updated 2022-11-23T17:16:13Z

@@ -1,10 +1,12 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/protecting-against-bots]
+
 # Protecting against bots
 
 A strategy to protect your products from bots and unapproved resellers purchasing from your Shopify Online Store
 
 Many merchants that sell collectors items, limited edition items, or other types of highly exclusive items are plagued by bots purchasing their products, and come to Locksmith for help:
 
-Locksmith itself is NOT able to completely prevent bots and other unapproved resellers from purchasing from your store.
+Locksmith is NOT able to prevent bots and other unapproved resellers from purchasing from your store.
 
 This is because direct-to-checkout links, which allow products to be purchased without even visiting the Online Store, exist within the Shopify platform, and it's not possible for apps to get involved with this layer.
 
@@ -48,4 +50,4 @@ Remember: Locksmith alone is not enough to prevent bots from purchasing the prod
 
 For questions or help with setup, contact us via email at team@uselocksmith.com!
 
-Last updated 2022-08-30T22:07:13Z
+Last updated 2024-05-20T17:50:39Z

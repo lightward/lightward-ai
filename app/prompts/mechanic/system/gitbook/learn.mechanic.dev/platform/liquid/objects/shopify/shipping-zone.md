@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/objects/shopify/shipping-zone]
+
 # Shipping zone object
 
 How to access it

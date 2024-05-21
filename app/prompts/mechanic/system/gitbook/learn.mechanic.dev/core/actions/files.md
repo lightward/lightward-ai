@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/files]
+
 # Files
 
 The Files action evaluates its options using file generators, temporarily storing the resulting files and making them available via a randomized Mechanic URL.

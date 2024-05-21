@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/how-to-clear-cache-for-a-single-website]
+
 # How to clear cache for a single website
 
 This guide is geared towards merchants on Shopify using the Locksmith app. If you are arriving from elsewhere, you may still find it useful - simply down scroll to the section for the browser you are using.

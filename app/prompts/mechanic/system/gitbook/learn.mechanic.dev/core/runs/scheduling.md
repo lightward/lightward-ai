@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/runs/scheduling]
+
 # Scheduling
 
 Event and task runs may be scheduled to perform in the future. They will not have any effect until they are performed. This means that their eventual performance may be impacted by changes to a store's Mechanic account, prior to the scheduled performance time.

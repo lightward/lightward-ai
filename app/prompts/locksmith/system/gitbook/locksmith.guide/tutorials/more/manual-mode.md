@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/tutorials/more/manual-mode]
+
 # 🛠️Manual mode
 
 Restricting access to only specific parts of a page in your Shopify Online Store

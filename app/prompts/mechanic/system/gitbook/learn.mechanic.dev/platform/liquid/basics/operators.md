@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/platform/liquid/basics/operators]
+
 # Operators
 
 An operator is a statement that evaluates some code, and makes a decision about what to do next. Operators can be used for comparing two values, inspecting a single value, or evaluating whether or not some code returns true.

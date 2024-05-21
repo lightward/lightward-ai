@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/faq/how-do-i-add-an-unsubscribe-link-to-my-emails]
+
 # How do I add an unsubscribe link to my emails?
 
 Mechanic doesn't permit bulk email messages, in which the same content is sent to many customers at once. As a rule of thumb: if an email requires an unsubscribe link, it shouldn't be sent using Mechanic. (Learn more about this.)

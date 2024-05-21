@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/shopify/api-versions]
+
 # API versions
 
 The Shopify API supports versioning for their REST and GraphQL admin APIs. (Learn more: shopify.dev/api/usage/versioning.)

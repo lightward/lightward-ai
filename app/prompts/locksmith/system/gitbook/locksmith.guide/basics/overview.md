@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/basics/overview]
+
 # A Locksmith Overview
 
 Locksmith is a simple yet powerful tool to help you make sure the right people see the right things in your Shopify store. In the spirit of the name of our app - ✨ Locksmith ✨ - you'll be using "locks" to determine what content in your store is restricted and using "keys" to denote how, when, and who gets access.

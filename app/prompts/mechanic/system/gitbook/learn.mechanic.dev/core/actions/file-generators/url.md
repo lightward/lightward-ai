@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/core/actions/file-generators/url]
+
 # URL
 
 The URL file generator accepts a string as its options, containing a valid URL. This generator downloads the file at that URL, returning the results.

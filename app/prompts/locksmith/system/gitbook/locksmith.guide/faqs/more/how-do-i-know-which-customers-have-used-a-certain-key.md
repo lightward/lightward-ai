@@ -1,3 +1,5 @@
+[Original URL: https://www.locksmith.guide/faqs/more/how-do-i-know-which-customers-have-used-a-certain-key]
+
 # How do I know which customers have used a certain key?
 
 Locksmith does not keep any usage statistics. However this guide suggests some workarounds which might help in certain cases.

@@ -1,3 +1,5 @@
+[Original URL: https://learn.mechanic.dev/resources/tutorials/fetching-data-from-a-shared-google-sheet]
+
 # Fetching data from a shared Google sheet
 
 In this tutorial, you'll learn how to publish a Google sheet to the web as a comma-separated values (CSV) file and then fetch that data from Mechanic.
