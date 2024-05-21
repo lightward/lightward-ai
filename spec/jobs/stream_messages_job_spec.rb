@@ -2,23 +2,19 @@
 
 # spec/jobs/stream_messages_job_spec.rb
 require "rails_helper"
+require "webmock/rspec"
 
 RSpec.describe(StreamMessagesJob) do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:chat_log) { [{ role: "user", content: [{ type: "text", text: "Hello" }] }] }
   let(:stream_id) { "test_stream_id" }
   let(:stream_ready_key) { "stream_ready_#{stream_id}" }
-  let(:http) { instance_double(Net::HTTP) }
-  let(:request) { instance_double(Net::HTTP::Post, body: "{}") }
-  let(:response) { instance_double(Net::HTTPResponse) }
   let(:job) { described_class.new }
 
   before do
     allow(Rails.cache).to(receive(:read).with(stream_ready_key).and_return(true))
     allow(ActionCable.server).to(receive(:broadcast))
-    allow(Net::HTTP).to(receive(:new).and_return(http))
-    allow(Net::HTTP::Post).to(receive(:new).and_return(request))
-    allow(http).to(receive(:use_ssl=))
-    allow(request).to(receive(:body=))
   end
 
   describe "#perform" do
@@ -45,21 +41,18 @@ RSpec.describe(StreamMessagesJob) do
     context "when API responds with a rate limit error" do
       let(:headers) do
         {
-          "anthropic-ratelimit-requests-limit" => ["100"],
-          "anthropic-ratelimit-requests-remaining" => ["0"],
-          "anthropic-ratelimit-requests-reset" => [10.seconds.from_now.to_s],
-          "anthropic-ratelimit-tokens-limit" => ["1000"],
-          "anthropic-ratelimit-tokens-remaining" => ["0"],
-          "anthropic-ratelimit-tokens-reset" => [10.seconds.from_now.to_s],
+          "anthropic-ratelimit-requests-limit" => "100",
+          "anthropic-ratelimit-requests-remaining" => "0",
+          "anthropic-ratelimit-requests-reset" => 10.seconds.from_now.to_s,
+          "anthropic-ratelimit-tokens-limit" => "1000",
+          "anthropic-ratelimit-tokens-remaining" => "0",
+          "anthropic-ratelimit-tokens-reset" => 10.seconds.from_now.to_s,
         }
       end
 
       before do
-        allow(http).to(receive(:request).and_yield(response))
-        allow(response).to(receive_messages(code: "429", body: "", to_hash: headers))
-        headers.each_key do |key|
-          allow(response).to(receive(:[]).with(key).and_return(headers[key].first))
-        end
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(status: 429, body: "", headers: headers)
       end
 
       it "handles the rate limit error" do # rubocop:disable RSpec/ExampleLength
@@ -77,7 +70,8 @@ RSpec.describe(StreamMessagesJob) do
 
     context "when API responds with a connection error" do
       before do
-        allow(http).to(receive(:request).and_raise(IOError))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_raise(IOError)
       end
 
       it "logs the stream closed message", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
@@ -98,9 +92,8 @@ RSpec.describe(StreamMessagesJob) do
 
     context "when API responds with an unknown message type" do
       before do
-        allow(http).to(receive(:request).and_yield(response))
-        allow(response).to(receive(:code).and_return("200"))
-        allow(response).to(receive(:read_body).and_yield("data: {}\nunknown: message\n"))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(status: 200, body: "data: {}\nunknown: message\n")
       end
 
       it "logs a warning" do
@@ -115,9 +108,8 @@ RSpec.describe(StreamMessagesJob) do
 
     context "when the stream is ready and the API request is successful" do
       before do
-        allow(http).to(receive(:request).and_yield(response))
-        allow(response).to(receive(:code).and_return("200"))
-        allow(response).to(receive(:read_body).and_yield("data: {\"message\": \"Hello, world!\"}\n"))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(status: 200, body: "data: {\"message\": \"Hello, world!\"}\n")
       end
 
       it "processes the response and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
@@ -140,9 +132,8 @@ RSpec.describe(StreamMessagesJob) do
 
     context "when the response contains multiple lines of data" do
       before do
-        allow(http).to(receive(:request).and_yield(response))
-        allow(response).to(receive(:code).and_return("200"))
-        allow(response).to(receive(:read_body).and_yield("data: {\"message\": \"Hello\"}\ndata: {\"message\": \"World\"}\n"))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(status: 200, body: "data: {\"message\": \"Hello\"}\ndata: {\"message\": \"World\"}\n")
       end
 
       it "processes each line and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
@@ -171,9 +162,8 @@ RSpec.describe(StreamMessagesJob) do
 
     context "when the response contains valid data events" do
       before do
-        allow(http).to(receive(:request).and_yield(response))
-        allow(response).to(receive(:code).and_return("200"))
-        allow(response).to(receive(:read_body).and_yield("event: message\ndata: {\"text\": \"Hello\"}\n"))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(status: 200, body: "event: message\ndata: {\"text\": \"Hello\"}\n")
       end
 
       it "processes the data event and broadcasts it", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
