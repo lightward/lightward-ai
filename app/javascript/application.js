@@ -4,6 +4,7 @@ const consumer = createConsumer();
 
 document.addEventListener('DOMContentLoaded', () => {
   try {
+    const chatContext = JSON.parse(document.getElementById('chat-context-data').textContent);
     const loadingMessage = document.getElementById('loading-message');
     const chatContainer = document.getElementById('chat-container');
     const startSuggestions = document.getElementById('start-suggestions');
@@ -15,9 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const responseSuggestions = document.getElementById('response-suggestions');
     const startOverButton = document.getElementById('start-over-button');
 
-    let subscription;
-    let chatLogData = JSON.parse(localStorage.getItem('chatLogData')) || [];
+    const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
+    const chatLogData = JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
+
     let currentAssistantMessageElement = null;
+    let subscription;
     let sequenceQueue;
     let currentSequenceNumber;
     const TIMEOUT_MS = 10000;
@@ -139,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!userMessage.trim()) return;
 
       addMessage('user', userMessage);
-      chatLogData.push({ role: 'user', content: [{ type: 'text', text: userMessage }] });
+      chatLogData.push({role: 'user', content: [{ type: 'text', text: userMessage }] });
       userInput.value = '';
       userInput.blur();
       userInputArea.classList.add('hidden');
@@ -150,13 +153,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchAssistantResponse() {
       hideResponseSuggestions();
 
+      const conversationData = {
+        with_content_key: chatContext.with_content_key,
+        chat_log: chatLogData,
+      };
+
       fetch('/chats/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
         },
-        body: JSON.stringify({ chat_log: chatLogData })
+        body: JSON.stringify(conversationData)
       })
       .then(response => response.json())
       .then(data => {
@@ -257,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Persist chat log data to localStorage
-      localStorage.setItem('chatLogData', JSON.stringify(chatLogData));
+      localStorage.setItem(chatLogDataLocalstorageKey, JSON.stringify(chatLogData));
     }
 
     // Handle start over button click
@@ -265,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
 
       if (confirm('Are you sure you want to start over? This will clear the chat log.')) {
-        localStorage.removeItem('chatLogData');
+        localStorage.removeItem(chatLogDataLocalstorageKey);
         localStorage.removeItem('scrollY');
         location.reload();
       }

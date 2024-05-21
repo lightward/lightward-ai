@@ -10,14 +10,47 @@ class StreamMessagesJob < ApplicationJob
 
   queue_as :default
 
-  def perform(stream_id, chat_log)
+  def perform(stream_id, chat_log, with_content_key = nil)
     newrelic("StreamMessagesJob: start", stream_id: stream_id)
 
     chat_log = Prompts.clean_chat_log(chat_log)
 
     wait_for_ready(stream_id)
-
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)
+
+    if with_content_key && chat_log.first["content"].is_a?(Array)
+      with_content = Prompts::WithContent.get_with_content_by_key(with_content_key)
+
+      # append it to the content array of the initial user message
+      chat_log.first["content"] << {
+        type: "text",
+        text: <<~eod.strip,
+          [system message:
+            the user has arrived at your doorstep via a url that looks like this:
+
+            http://lightward.ai/with/[some lightward hostname]/[*some path on that hostname]
+
+            it's possible that they followed a link that took them here, or that a Lightward human gave them this
+            Lightward AI link. anyone can build links like this, though only lightward-approved hostnames are allowed.
+
+            their intent is to show you the contents at [hostname]/[pathname], for their own reasons. please treat
+            their arrival here as an intent to begin a conversation about the content they're showing you.
+
+            instead of saying "the URL you tried to access", say things like "the URL you've shared with me".
+
+            we went and fetched the actual content for you, and we're supplying you with the complete server response,
+            including response code, headers and the sanitized body. please guide the user accordingly, bearing in mind
+            the possibility that the user miscommunicated the URL somehow, or that the server is down - who knows! :)
+            please confirm for them the URL you're looking at with them, letting them know whatever you've found
+            there, and help them with whatever they need. :)
+
+            :) thank you!
+          ]
+
+          #{with_content.to_json}
+        eod
+      }
+    end
 
     payload = {
       model: Prompts::Anthropic.model,
