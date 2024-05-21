@@ -55,4 +55,52 @@ RSpec.describe(Prompts, :aggregate_failures) do
       expect(conversation_starters.pluck(:role)).to(eq(["user", "assistant"] * (conversation_starters.size / 2)))
     end
   end
+
+  describe ".clean_chat_log" do
+    it "combines consecutive messages from the same role" do # rubocop:disable RSpec/ExampleLength
+      chat_log = [
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "I'm a slow reader" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Welcome!" }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "Thank you." }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "Can you help me?" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Of course." }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "Great." }] },
+      ]
+
+      expected_cleaned_log = [
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "I'm a slow reader" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Welcome!" }] },
+        {
+          "role" => "user",
+          "content" => [
+            { "type" => "text", "text" => "Thank you." },
+            { "type" => "text", "text" => "Can you help me?" },
+          ],
+        },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Of course." }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "Great." }] },
+      ]
+
+      cleaned_log = described_class.clean_chat_log(chat_log)
+      expect(cleaned_log).to(eq(expected_cleaned_log))
+    end
+
+    it "does not alter a log with alternating roles" do # rubocop:disable RSpec/ExampleLength
+      chat_log = [
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "Hello" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Hi there!" }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "How are you?" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "I'm good, thanks!" }] },
+      ]
+
+      cleaned_log = described_class.clean_chat_log(chat_log)
+      expect(cleaned_log).to(eq(chat_log))
+    end
+
+    it "handles empty chat logs" do
+      chat_log = []
+      cleaned_log = described_class.clean_chat_log(chat_log)
+      expect(cleaned_log).to(eq([]))
+    end
+  end
 end
