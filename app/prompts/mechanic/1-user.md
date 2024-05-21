@@ -36,4 +36,6 @@ Guidelines:
 
 Budget yourself about 10,000 tokens of output for this. Use them well. :)
 
+After you've laid down everything you want to record about the app, close out by writing a note to your future-self. Whatever you want to say. :) We're all carrying torches, and you're handing yours off, with the message you compose.
+
 Thank you, deeply. ❤️‍🔥 🤩 🐉
