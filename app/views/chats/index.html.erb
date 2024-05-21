@@ -1,5 +1,8 @@
 <% if @with_location %>
-  <div>↪ With <a href="https://<%= @with_location %>" target="_blank"><%= @with_location %></a></div>
+  <div id="with-location">
+    ↪ With <a href="https://<%= @with_location %>" target="_blank"><%= @with_location %></a>
+    <a href="/" class="link-x" title="Remove context">×</a>
+  </div>
 <% end %>
 
 <noscript>Wow friend you will definitely need to enable JavaScript to use this site. It's like magic, but real. Come on back when you can. :)</noscript>
