@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ChatsController < ApplicationController
+  before_action :chat_context # warmup the chat context
   helper_method :chat_context
 
   def index

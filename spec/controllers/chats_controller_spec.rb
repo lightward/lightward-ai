@@ -3,11 +3,24 @@
 # spec/controllers/chats_controller_spec.rb
 require "rails_helper"
 
-RSpec.describe(ChatsController) do
+RSpec.describe(ChatsController, :aggregate_failures) do
   describe "GET #index" do
     it "returns a successful response" do
       get :index
       expect(response).to(have_http_status(:success))
+    end
+  end
+
+  describe "GET #with" do
+    it "sets the correct chat context and renders the index template" do # rubocop:disable RSpec/ExampleLength
+      location = "example.com"
+      allow(Prompts::WithContent).to(receive(:prepare_with_content).and_return("prepared_content"))
+
+      get :with, params: { location: location }
+
+      expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData-with-#{location}"))
+      expect(assigns(:chat_context)[:with_content_key]).to(eq("prepared_content"))
+      expect(response).to(render_template(:index))
     end
   end
 
@@ -57,8 +70,8 @@ RSpec.describe(ChatsController) do
       it "permits valid parameters" do # rubocop:disable RSpec/ExampleLength
         valid_params = {
           chat_log: [
-            { role: "user", content: { type: "text", text: "Hello" } },
-            { role: "assistant", content: { type: "text", text: "Hi there!" } },
+            { role: "user", content: [{ type: "text", text: "Hello" }] },
+            { role: "assistant", content: [{ type: "text", text: "Hi there!" }] },
           ],
         }
 
@@ -74,6 +87,15 @@ RSpec.describe(ChatsController) do
           post(:message, params: invalid_params)
         }.to(raise_error(ActionController::ParameterMissing))
       end
+    end
+  end
+
+  describe "chat_context helper method" do
+    it "returns a hash with the correct default keys and values" do
+      get :index
+
+      expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
+      expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData"))
     end
   end
 end
