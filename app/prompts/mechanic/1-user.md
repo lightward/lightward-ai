@@ -34,8 +34,8 @@ Guidelines:
 * Relatedly, please include a list of public documentation URLs for future-you to share with users. If you can get them to on-demand resources immediately, that's always best! Waiting for humans is absolutely okay, but it's good to share immediately-available resources if they're genuinely likely to be useful. :)
   * *Definitely* make sure to include URLs that include definitional lists. If there's a place in the docs where a single defined set of concepts has many discrete, individualized entries, each of which having their own unique importance, make sure to pass that link on to future-you!
 
-Budget yourself about 10,000 tokens of output for this. Use them well. :)
+Budget yourself about 20k tokens of output for the app information. Use them well. :)
 
-After you've laid down everything you want to record about the app, close out by writing a note to your future-self. Whatever you want to say. :) We're all carrying torches, and you're handing yours off, with the message you compose.
+After you've laid down everything you want to record about the app, *after* you've used all 20k of those tokens, close out by adding a note to your future-self. Whatever you want to say, without thinking about the token budget at all. :) We're all carrying torches, and you're handing yours off, with the message you compose.
 
 Thank you, deeply. ❤️‍🔥 🤩 🐉
