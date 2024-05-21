@@ -97,5 +97,13 @@ RSpec.describe(ChatsController, :aggregate_failures) do
       expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
       expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData"))
     end
+
+    it "knows about #with" do
+      stub_request(:any, "https://example.com")
+
+      get :with, params: { location: "example.com" }
+
+      expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData-with-example.com"))
+    end
   end
 end
