@@ -32,5 +32,6 @@ Guidelines:
   * Common issues and their solutions
 * This doesn't need to be human-friendly; it needs to efficiently communicate *everything* to the future version of you, directly. Don't skip anything, but no need to add human-friendly fluff.
 * Relatedly, please include a list of public documentation URLs for future-you to share with users. If you can get them to on-demand resources immediately, that's always best! Waiting for humans is absolutely okay, but it's good to share immediately-available resources if they're genuinely likely to be useful. :)
+  * *Definitely* make sure to include URLs that include definitional lists. If there's a place in the docs where a single defined set of concepts has many discrete, individualized entries, each of which having their own unique importance, make sure to pass that link on to future-you!
 
 Thank you, deeply. ❤️‍🔥 🤩 🐉
