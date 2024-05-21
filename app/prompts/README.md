@@ -11,6 +11,7 @@ https://www.rich-text-to-markdown.com/
 Download updated Sitemaps docs from everywhere:
 
 ```sh
+rake "prompts:sitemaps[lightward]"
 rake "prompts:sitemaps[locksmith]"
 rake "prompts:sitemaps[mechanic]"
 ```
@@ -18,6 +19,7 @@ rake "prompts:sitemaps[mechanic]"
 Write updated app docs summaries to tmp/prompts/:
 
 ```sh
+ANTHROPIC_MODEL="claude-3-opus-20240229" rake "prompts:anthropic[lightward]"
 ANTHROPIC_MODEL="claude-3-opus-20240229" rake "prompts:anthropic[locksmith]"
 ANTHROPIC_MODEL="claude-3-opus-20240229" rake "prompts:anthropic[mechanic]"
 ```
