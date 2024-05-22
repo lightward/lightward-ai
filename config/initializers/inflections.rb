@@ -16,5 +16,5 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym("OpenAI")
   inflect.acronym("LightwardAI")
-  inflect.acronym("GitBook")
+  inflect.acronym("Sitemaps")
 end
