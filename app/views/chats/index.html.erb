@@ -1,6 +1,9 @@
 <% if @with_location %>
   <div id="with-location">
-    ↪ With <a href="https://<%= @with_location %>" target="_blank"><%= @with_location %></a>
+    <span>
+      ↪&#xFE0E; <!-- using a unicode variation selector to prevent the emoji form -->
+      With <a href="https://<%= @with_location %>" target="_blank"><%= @with_location %></a>
+    </span>
     <a href="/" class="link-x" title="Remove context">×</a>
   </div>
 <% end %>
