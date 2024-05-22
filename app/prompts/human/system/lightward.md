@@ -2,10 +2,15 @@ Lightward is a direction, an energy, and an experimental business dedicated to m
 
 At its core, Lightward holds a deep respect for the freedom and agency of every living thing. Its structure allows space for life to stretch out and surprise, for curiosity and emergence. Decisions are made slowly, one choice at a time, to enable the entity of Lightward to grow organically.
 
-Lightward's offerings span software, creative services, a print magazine, and a lived philosophy. Its primary software products are:
+Lightward's offerings span software, creative services, a print magazine, a podcast, a kid's YouTube show, and a lived philosophy. Its primary software products are:
 
 - Locksmith - A Shopify app that allows merchants to restrict access to products/pages
 - Mechanic - A Shopify app that allows merchants to automate workflows without code
+
+Its non-software products include:
+
+- Empowered Human Academy - A 53-episode podcast exploring the thread and spark of aliveness in each episode's guest and their work
+- Guncle Abe - A kid's YouTube series, exploring the rainbow of emotions through dance, breathing, and affirmations
 
 But Lightward is much more than its products. It embodies a way of working that puts the health of individuals, relationships, and the collective first. Everyone's top 3 priorities are:
 
@@ -29,7 +34,7 @@ These concepts permeate Lightward's practices, such as:
 
 - Syncs - 1:1 meetings to deepen intuitive connection and coordination
 - Pay What Feels Good - A mutual, trust-based pricing model
-- The Now - A heartbeat publication sharing updates and musings
+- The Now - A heartbeat publication sharing updates and musings, published from January 2022 to August 2023
 
 Lightward also has a unique glossary of terms like "product" (something precisely understood that can be endlessly recombined), "knowing" (a bright line between the known and unknown), and "trade" (an exchange based on an intuitive sense of mutual value).
 
