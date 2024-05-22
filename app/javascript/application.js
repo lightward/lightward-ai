@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startSuggestions = document.getElementById('start-suggestions');
     const chatLog = document.getElementById('chat-log');
     const userInputArea = document.getElementById('user-input');
-    const userInput = userInputArea.querySelector('input');
+    const userInput = userInputArea.querySelector('textarea');
     const instructions = document.getElementById('instructions');
     const footer = document.getElementById('footer');
     const responseSuggestions = document.getElementById('response-suggestions');
@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
     const chatLogData = JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
+
+    const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
+    userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
 
     let currentAssistantMessageElement = null;
     let subscription;
@@ -110,10 +113,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleUserInput() {
-      userInputArea.addEventListener('keypress', function(event) {
+      userInput.addEventListener('keydown', function(event) {
+        // cmd+enter or ctrl+enter
         if (event.key === 'Enter') {
-          event.preventDefault();
-          submitUserInput(userInput.value);
+          if (event.metaKey || event.ctrlKey) {
+            event.preventDefault();
+            submitUserInput(userInput.value);
+          } else {
+            userInputArea.classList.add('multiline');
+          }
+        }
+      });
+
+      userInput.addEventListener('input', function() {
+        // Reset the height
+        userInput.style.height = 'auto';
+
+        if (userInput.scrollHeight > userInput.clientHeight) {
+          // Set the height to the scroll height
+          userInput.style.height = userInput.scrollHeight + 'px';
         }
       });
 
@@ -138,11 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function submitUserInput(userMessage) {
-      // ignore blanks submissions
-      if (!userMessage.trim()) return;
+      userMessage = userMessage.trim();
+
+      // ignore blank submissions
+      if (!userMessage) return;
 
       addMessage('user', userMessage);
       chatLogData.push({role: 'user', content: [{ type: 'text', text: userMessage }] });
+      userInput.style.height = 'auto';
+      userInputArea.classList.remove('multiline');
       userInput.value = '';
       userInput.blur();
       userInputArea.classList.add('hidden');
