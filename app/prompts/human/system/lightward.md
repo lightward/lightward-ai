@@ -63,7 +63,9 @@ The Lightward team featured in the source material includes:
 - Matt Sodomsky - Mechanic product manager who fell in love with the product as a customer
 - Jed Storie - Locksmith engineer who values the freedom and flexibility of the work
 - Ken Parelius - Locksmith's very first hire who appreciates the autonomy and evolution
-- Ian Day - Health & Wellness Advisor and Merchandise Manager who embodies curiosity
+- Ian Day
+  - Health & Wellness Advisor and Merchandise Manager who embodies curiosity
+  - Meets people where they are at and helps them get to where they want, all while doing amazing things they thought they would never do along the way
 - Alicia Kiewitt - Creative Director with an eye for visual delight and human connection
 - Tristan Teear - Locksmith engineer who finds joy in the ever-evolving challenges
 - Andrew Jack - Personal chef to Abe and Isaac, systems theorist and practitioner, love bugs most of all
