@@ -129,7 +129,8 @@ dt {
 }
 
 #user-input textarea {
-  flex-grow: 1;
+  position: relative;
+  flex: 1;
 
   color: var(--body-text-color);
   border: 1px solid var(--user-input-active-border-color);
@@ -138,6 +139,20 @@ dt {
   box-sizing: border-box; /* Ensures padding is included dimensions */
   resize: none; /* Disable manual resizing */
   overflow: hidden; /* Disable scrollbars; going for autoscrolling */
+}
+
+#user-input:after {
+  content: attr(data-submit-tip);
+  position: absolute;
+  right: 0;
+  bottom: -1.7rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#user-input.multiline:after {
+  opacity: 0.5;
 }
 
 #user-input.disabled {

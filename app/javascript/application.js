@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
     const chatLogData = JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
 
+    const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
+    userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
+
     let currentAssistantMessageElement = null;
     let subscription;
     let sequenceQueue;
@@ -112,15 +115,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleUserInput() {
       userInput.addEventListener('keydown', function(event) {
         // cmd+enter or ctrl+enter
-        if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-          event.preventDefault();
-          submitUserInput(userInput.value);
+        if (event.key === 'Enter') {
+          if (event.metaKey || event.ctrlKey) {
+            event.preventDefault();
+            submitUserInput(userInput.value);
+          } else {
+            userInputArea.classList.add('multiline');
+          }
         }
       });
 
       userInput.addEventListener('input', function() {
-        userInput.style.height = 'auto'; // Reset the height
-        userInput.style.height = userInput.scrollHeight + 'px'; // Set the height to the scroll height
+        // Reset the height
+        userInput.style.height = 'auto';
+
+        if (userInput.scrollHeight > userInput.clientHeight) {
+          // Set the height to the scroll height
+          userInput.style.height = userInput.scrollHeight + 'px';
+        }
       });
 
       userInputArea.querySelector('button').addEventListener('click', function(event) {
@@ -144,12 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function submitUserInput(userMessage) {
-      // ignore blanks submissions
-      if (!userMessage.trim()) return;
+      userMessage = userMessage.trim();
+
+      // ignore blank submissions
+      if (!userMessage) return;
 
       addMessage('user', userMessage);
       chatLogData.push({role: 'user', content: [{ type: 'text', text: userMessage }] });
       userInput.style.height = 'auto';
+      userInputArea.classList.remove('multiline');
       userInput.value = '';
       userInput.blur();
       userInputArea.classList.add('hidden');
