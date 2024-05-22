@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startSuggestions = document.getElementById('start-suggestions');
     const chatLog = document.getElementById('chat-log');
     const userInputArea = document.getElementById('user-input');
-    const userInput = userInputArea.querySelector('input');
+    const userInput = userInputArea.querySelector('textarea');
     const instructions = document.getElementById('instructions');
     const footer = document.getElementById('footer');
     const responseSuggestions = document.getElementById('response-suggestions');
@@ -110,11 +110,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleUserInput() {
-      userInputArea.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
+      userInput.addEventListener('keydown', function(event) {
+        // cmd+enter or ctrl+enter
+        if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
           event.preventDefault();
           submitUserInput(userInput.value);
         }
+      });
+
+      userInput.addEventListener('input', function() {
+        userInput.style.height = 'auto'; // Reset the height
+        userInput.style.height = userInput.scrollHeight + 'px'; // Set the height to the scroll height
       });
 
       userInputArea.querySelector('button').addEventListener('click', function(event) {
@@ -143,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       addMessage('user', userMessage);
       chatLogData.push({role: 'user', content: [{ type: 'text', text: userMessage }] });
+      userInput.style.height = 'auto';
       userInput.value = '';
       userInput.blur();
       userInputArea.classList.add('hidden');

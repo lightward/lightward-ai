@@ -1,12 +1,9 @@
 /*= require colors */
 
 body {
-  font-family: 'Lightward Favorit';
-  font-weight: 200;
   margin: 5vh 2vw;
   background-color: var(--body-bg-color);
-  color: var(--body-text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 a {
@@ -28,8 +25,12 @@ p {
   gap: 1rem;
 }
 
-body, input, button {
+body, textarea, button {
   font-size: 100%;
+  font-family: 'Lightward Favorit';
+  font-weight: 200;
+  color: var(--body-text-color);
+  transition: color 0.3s ease;
 }
 
 h1 {
@@ -127,11 +128,16 @@ dt {
   gap: 0.5rem;
 }
 
-#user-input input {
-  flex: 1;
+#user-input textarea {
+  flex-grow: 1;
+
   color: var(--body-text-color);
   border: 1px solid var(--user-input-active-border-color);
   background-color: var(--user-input-active-bg-color);
+
+  box-sizing: border-box; /* Ensures padding is included dimensions */
+  resize: none; /* Disable manual resizing */
+  overflow: hidden; /* Disable scrollbars; going for autoscrolling */
 }
 
 #user-input.disabled {
@@ -140,7 +146,7 @@ dt {
   pointer-events: none;
 }
 
-#user-input.disabled input {
+#user-input.disabled textarea {
   border: 1px solid var(--user-input-disabled-border-color);
   background-color: var(--user-input-disabled-bg-color);
 }
