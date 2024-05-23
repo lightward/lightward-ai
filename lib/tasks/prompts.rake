@@ -17,10 +17,9 @@ namespace :prompts do
 
     messages = Prompts.conversation_starters(prompt_type)
     response_file_path = Rails.root.join(
-      "app",
+      "tmp",
       "prompts",
       prompt_type,
-      "responses",
       "response-#{prompt_type}-#{Time.zone.now.iso8601}.md",
     )
     FileUtils.mkdir_p(response_file_path.dirname)

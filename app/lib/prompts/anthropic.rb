@@ -71,6 +71,10 @@ module Prompts
       end
 
       def accumulate_response(messages, prompt_type, response_file_path, attempts:)
+        $stdout.puts "Prompt type: #{prompt_type}"
+        $stdout.puts "Anthropic model: #{model}"
+        $stdout.puts "Writing response to: #{response_file_path}\n\n"
+
         payload = {
           model: model,
           max_tokens: 4000,
