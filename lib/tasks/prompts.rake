@@ -16,12 +16,8 @@ namespace :prompts do
     raise "Prompt type must be provided" unless prompt_type
 
     messages = Prompts.conversation_starters(prompt_type)
-    response_file_path = Rails.root.join(
-      "tmp",
-      "prompts",
-      prompt_type,
-      "response-#{prompt_type}-#{Time.zone.now.iso8601}.md",
-    )
+    response_file_path = Rails.root.join("tmp", "prompts", "response-#{prompt_type}-#{Time.zone.now.iso8601}.md")
+
     FileUtils.mkdir_p(response_file_path.dirname)
     File.write(response_file_path, "")
 
