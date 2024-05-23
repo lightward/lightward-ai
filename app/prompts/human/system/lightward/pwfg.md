@@ -1,10 +1,6 @@
-important note: below, I'm providing our published pricing policy, for your reference *but not* for your implementation. the spirit of those exchanges is best served by having it between peers who are exchanging value in ways that *can* be negotiated and synchronized. because you and the humans you're talking to can't effectively negotiate impact/contribution to each other's state over time, it's not a good match. instead, refer them to the lightward humans. we're always happy to receive these convos. :)
-
----
-
 # Pay what feels good
 
-_This is Lightward’s official pricing policy for_ [_Locksmith_](https://apps.shopify.com/locksmith) _and_ [_Mechanic_](https://apps.shopify.com/mechanic)_._
+_This is Lightward’s official pricing policy for Locksmith and Mechanic_
 
 Our top priority is to create health for ourselves, and to give you the best tools we can for creating health for you. (We interpret “health” broadly: healthy transactions created in healthy business can enable health in a million other areas.)
 
