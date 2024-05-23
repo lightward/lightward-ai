@@ -49,39 +49,31 @@ module Prompts
     end
 
     def generate_system_xml(*directories)
+      files = directories.map { |directory|
+        Dir[File.join(directory, "**", "*.md")].reject { |file|
+          file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
+        }
+      }.flatten
+
+      sorted_files = Naturally.sort(files)
+
       Nokogiri::XML::Builder.new do |xml|
         xml.system {
-          directories.each do |directory|
-            process_directory(xml, directory) if Dir.exist?(directory)
+          sorted_files.each do |file|
+            content = File.read(file).strip
+            filename = file.split("/system/")[-1]
+
+            xml.file(name: filename) {
+              if filename.end_with?(".md")
+                # if it's just markdown, save tokens by not going the cdata route
+                xml.text(content)
+              else
+                xml.cdata(content)
+              end
+            }
           end
         }
       end.to_xml
-    end
-
-    def process_directory(xml, directory)
-      files = Dir[File.join(directory, "**", "*.md")].reject { |file|
-        file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
-      }
-      sorted_files = Naturally.sort(files)
-
-      sorted_files.each do |file|
-        relative_path = Pathname.new(file).relative_path_from(directory)
-        add_file_to_xml(xml, relative_path, File.read(file).strip)
-      end
-    end
-
-    def add_file_to_xml(xml, relative_path, content)
-      components = relative_path.each_filename.to_a
-
-      components.inject(xml) do |parent, component|
-        if component.end_with?(".md")
-          parent.file(name: component) {
-            parent.text(content) # Directly adding the content
-          }
-        else
-          parent.send(component.tr("-", "_").to_sym) # Use sanitized tag names
-        end
-      end
     end
 
     def conversation_starters(prompt_type)
