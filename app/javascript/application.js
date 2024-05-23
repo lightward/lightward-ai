@@ -95,9 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
       startOverButton.classList.remove('hidden');
       responseSuggestions.classList.add('hidden');
 
-      // autofocus if we're not on a touch screen
+      // autofocus if we're not on a touch screen and if the input is in view
       if (autofocusIsAppropriate && !('ontouchstart' in window)) {
-        userInput.focus();
+        if (userInputArea.getBoundingClientRect().top < window.innerHeight) {
+          userInput.focus();
+        }
       }
     }
 
@@ -126,11 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       userInput.addEventListener('input', function() {
-        // Reset the height
-        userInput.style.height = 'auto';
-
+        // expand the textarea as needed. it'll be reset when the user submits their message. it
+        // doesn't auto-shrink, and that actually feels appropriate? we keep whatever space the
+        // user has hollowed out for themselves, and we only reset it when they've decided they're
+        // complete. :)
         if (userInput.scrollHeight > userInput.clientHeight) {
-          // Set the height to the scroll height
           userInput.style.height = userInput.scrollHeight + 'px';
         }
       });
@@ -182,7 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       fetch('/chats/message', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
         body: JSON.stringify(conversationData)
       })
       .then(response => response.json())
