@@ -182,10 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       fetch('/chats/message', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(conversationData)
       })
       .then(response => response.json())
