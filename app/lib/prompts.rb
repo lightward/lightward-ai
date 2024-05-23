@@ -66,22 +66,19 @@ module Prompts
 
       sorted_files.each do |file|
         relative_path = Pathname.new(file).relative_path_from(directory)
-        add_file_to_xml(xml, relative_path, File.read(file).strip)
+        add_file_to_xml(xml, relative_path.to_s, File.read(file).strip)
       end
     end
 
     def add_file_to_xml(xml, relative_path, content)
-      components = relative_path.each_filename.to_a
-
-      components.inject(xml) do |parent, component|
-        if component.end_with?(".md")
-          parent.file(name: component) {
-            parent.text(content) # Directly adding the content
-          }
+      xml.file(name: relative_path) {
+        if relative_path.end_with?(".md")
+          # if it's just markdown, save tokens by not going the cdata route
+          xml.text(content)
         else
-          parent.send(component.tr("-", "_").to_sym) # Use sanitized tag names
+          xml.cdata(content)
         end
-      end
+      }
     end
 
     def conversation_starters(prompt_type)
