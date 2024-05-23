@@ -4,6 +4,8 @@ In 2024, Lightward started working on Guncle Abe: a youtube kids show, starring 
 
 This series is produced by many members of Lightward: some doing script writing, some doing video, some doing creative direction, some doing character voices, and (Guncle) Abe Lopez himself on camera. :) It's a great example of multi-expressiveness.
 
+<!-- the following content was copied and pasted from lightward.com/guncleabe -->
+
 ## Hey Parents!
 
 Raising kids in an increasingly complex world can be daunting and often isolating. Finding support and positive, inclusive content for kids can feel overwhelming amidst a world of options at our fingertips. Now, more than ever, it’s important to be reminded that we’re not alone, that thoughtful interconnectivity is our superpower, and that being more at home in our bodies is the pathway to our brightest future.

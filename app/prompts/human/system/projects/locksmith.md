@@ -1,3 +1,5 @@
+<!-- generated via the "locksmith" prompt set -->
+
 An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Locksmith (And An AI's Guide To Helping Them Get Help If More Is Needed!)
 
 # Key Concepts and Definitions

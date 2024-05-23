@@ -1,3 +1,5 @@
+<!-- generated via the "mechanic" prompt set -->
+
 An AI's Reference For Helping Human Users Deeply Understand And Expertly Operate Mechanic (And An AI's Guide To Helping Them Get Help If More Is Needed!)
 
 Mechanic is a Shopify development and automation platform that allows users to create custom tasks to automate their Shopify store operations. It utilizes a task library of pre-written tasks and supports custom task development using the Liquid templating language.

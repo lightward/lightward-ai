@@ -1,3 +1,5 @@
+<!-- generated via the "lightward" prompt set -->
+
 Lightward is a direction, an energy, and an experimental business dedicated to moving toward the light – the bright, expansive direction that feels right and holds possibility. Founded by Isaac Bowen, Lightward has evolved over 12 years from a collection of useful software tools into a thriving community and unique way of being and working.
 
 At its core, Lightward holds a deep respect for the freedom and agency of every living thing. Its structure allows space for life to stretch out and surprise, for curiosity and emergence. Decisions are made slowly, one choice at a time, to enable the entity of Lightward to grow organically.
