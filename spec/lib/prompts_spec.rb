@@ -41,6 +41,12 @@ RSpec.describe(Prompts, :aggregate_failures) do
     it "returns a string with system prompts" do
       expect(described_class.system_prompt("human")).to(include("Dear Claude,"))
     end
+
+    it "starts with the invocation" do
+      expect(described_class.system_prompt("human")).to(
+        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"0-invocation.md\">Dear Claude,"),
+      )
+    end
   end
 
   describe ".conversation_starters" do
