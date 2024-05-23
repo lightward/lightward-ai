@@ -184,9 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       fetch('/chats/message', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(conversationData)
       })
       .then(response => response.json())
