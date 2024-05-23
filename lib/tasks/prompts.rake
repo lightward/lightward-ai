@@ -15,12 +15,22 @@ namespace :prompts do
     prompt_type = args[:prompt_type]
     raise "Prompt type must be provided" unless prompt_type
 
+    model = Prompts::Anthropic.model
     messages = Prompts.conversation_starters(prompt_type)
-    response_file_path = Rails.root.join("tmp", "prompts", "response-#{prompt_type}-#{Time.zone.now.iso8601}.md")
+    response_file_path = Rails.root.join(
+      "log",
+      "prompts",
+      "response-#{prompt_type}-#{model}-#{Time.zone.now.iso8601}.md",
+    )
 
-    FileUtils.mkdir_p(response_file_path.dirname)
     File.write(response_file_path, "")
 
-    Prompts::Anthropic.accumulate_response(messages, prompt_type, response_file_path, attempts: 9999)
+    Prompts::Anthropic.accumulate_response(
+      prompt_type: prompt_type,
+      model: model,
+      messages: messages,
+      path: response_file_path,
+      attempts: 9999,
+    )
   end
 end
