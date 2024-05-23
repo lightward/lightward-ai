@@ -70,10 +70,10 @@ module Prompts
         reset_time_obj ? (reset_time_obj - Time.zone.now).to_i : nil
       end
 
-      def accumulate_response(messages, prompt_type, response_file_path, attempts:)
+      def accumulate_response(prompt_type:, model:, messages:, path:, attempts:)
         $stdout.puts "Prompt type: #{prompt_type}"
         $stdout.puts "Anthropic model: #{model}"
-        $stdout.puts "Writing response to: #{response_file_path}\n\n"
+        $stdout.puts "Writing response to: #{path}\n\n"
 
         payload = {
           model: model,
@@ -98,7 +98,7 @@ module Prompts
               response.read_body do |chunk|
                 buffer << chunk
                 until (line = buffer.slice!(/.+\n/)).nil?
-                  complete_response << process_line(line.strip, response_file_path)
+                  complete_response << process_line(line.strip, path)
 
                   next unless (event = parse_event(line.strip))
 
@@ -109,7 +109,7 @@ module Prompts
               end
 
               unless buffer.empty?
-                complete_response << process_line(buffer.strip, response_file_path)
+                complete_response << process_line(buffer.strip, path)
               end
             end
           end
@@ -124,27 +124,33 @@ module Prompts
         if max_tokens_reached && attempts.positive?
           messages << { role: "assistant", content: [{ type: "text", text: complete_response.strip }] }
           messages << { role: "user", content: [{ type: "text", text: "Please continue." }] }
-          accumulate_response(messages, prompt_type, response_file_path, attempts: attempts - 1)
+          accumulate_response(
+            prompt_type: prompt_type,
+            model: model,
+            messages: messages,
+            path: path,
+            attempts: attempts - 1,
+          )
         end
       end
 
-      def process_line(line, response_file_path)
+      def process_line(line, path)
         return +"" if line.empty?
 
         if line.start_with?("data:")
           json_data = line[5..-1]
-          handle_data_event(json_data, response_file_path) || +""
+          handle_data_event(json_data, path) || +""
         else
           +""
         end
       end
 
-      def handle_data_event(json_data, response_file_path)
+      def handle_data_event(json_data, path)
         event_data = JSON.parse(json_data)
 
         if event_data["type"] == "content_block_delta" && event_data.dig("delta", "type") == "text_delta"
           text = event_data.dig("delta", "text").to_s
-          File.open(response_file_path, "a") { |f| f.print(text) }
+          File.open(path, "a") { |f| f.print(text) }
           $stdout.print(text)
           text
         elsif event_data["type"] == "ping"
