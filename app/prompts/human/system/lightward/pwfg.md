@@ -1,7 +1,6 @@
-Pay what feels good.
-====================
+# Pay what feels good
 
-_This is Lightward’s official pricing policy for_ [_Locksmith_](https://apps.shopify.com/locksmith) _and_ [_Mechanic_](https://apps.shopify.com/mechanic)_._
+_This is Lightward’s official pricing policy for Locksmith and Mechanic_
 
 Our top priority is to create health for ourselves, and to give you the best tools we can for creating health for you. (We interpret “health” broadly: healthy transactions created in healthy business can enable health in a million other areas.)
 
