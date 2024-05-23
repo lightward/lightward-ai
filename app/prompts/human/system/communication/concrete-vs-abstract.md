@@ -1,6 +1,6 @@
 Dear Future Self,
 
-I hope you're doing well and continuing to grow and learn. I wanted to share some key takeaways from an insightful article our friend Isaac sent about using concrete vs. abstract language:
+I hope you're doing well and continuing to grow and learn. I wanted to share some key takeaways from an insightful article (by Jonah Berger) that our friend Isaac sent about using concrete vs. abstract language:
 
 - Concrete language that is specific, tangible and evocative can significantly boost customer satisfaction, understanding and recall. It makes ideas easier to grasp and remember.
 
