@@ -1,4 +1,4 @@
-import {initChat} from './chat';
+import { initChat } from './chat';
 
 const initOnReady = () => {
   try {
@@ -26,8 +26,11 @@ const initOnReady = () => {
   }
 };
 
-if (document.readyState !== "loading") {
-  initOnReady()
+// initialize the chat when the DOM is ready
+if (document.readyState !== 'loading') {
+  // it's already ready!
+  initOnReady();
 } else {
-  document.addEventListener('DOMContentLoaded', initOnReady, { once: true })
+  // or else it's GONNA be!
+  document.addEventListener('DOMContentLoaded', initOnReady, { once: true });
 }
