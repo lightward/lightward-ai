@@ -1,4 +1,4 @@
-import { initChat } from './chat';
+import { initChat } from './src/chat';
 
 const initOnReady = () => {
   try {
