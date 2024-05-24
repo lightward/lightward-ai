@@ -11,7 +11,12 @@ class StreamMessagesJob < ApplicationJob
   queue_as :default
 
   def perform(stream_id, chat_log, with_content_key = nil)
-    newrelic("StreamMessagesJob: start", stream_id: stream_id)
+    newrelic(
+      "StreamMessagesJob: start",
+      stream_id: stream_id,
+      chat_log_size: chat_log.to_json.size,
+      chat_log_depth: chat_log.size,
+    )
 
     chat_log = Prompts.clean_chat_log(chat_log)
 
