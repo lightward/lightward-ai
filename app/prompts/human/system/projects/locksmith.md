@@ -108,7 +108,7 @@ Key Lists/Definitional Resources:
 Key condition types: https://www.locksmith.guide/basics/creating-keys
 Locksmith variables for manual locking: https://www.locksmith.guide/developer-tools/locksmith-variables
 
-Contact Locksmith Support: team@uselocksmith.com
+Contact Locksmith Support: team@lightward.com
 
 Note to my future self:
 
