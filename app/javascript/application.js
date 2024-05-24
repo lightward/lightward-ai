@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => {
         console.error('Error:', error);
-        addMessage('error', `Error: ${error.message}`);
+        addMessage('error', `[Lightward AI system error]\n\n${error.message}`);
         enableUserInput();
         showResponseSuggestions();
       });
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (data.event === 'ping') {
         // Handle ping if needed
       } else if (data.event === 'error') {
-        const errorMessage = `Error: ${data.data.error.message}`;
+        const errorMessage = `[Lightward AI system error]\n\n${data.data.error.message}`;
         currentAssistantMessageElement.innerText += ` ${errorMessage}`;
         chatLogData.push({ role: 'assistant', content: [{ type: 'text', text: currentAssistantMessageElement.innerText }] });
         subscription.unsubscribe();

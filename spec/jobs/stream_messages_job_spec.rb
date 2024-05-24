@@ -43,16 +43,18 @@ RSpec.describe(StreamMessagesJob) do
         {
           "anthropic-ratelimit-requests-limit" => "100",
           "anthropic-ratelimit-requests-remaining" => "0",
-          "anthropic-ratelimit-requests-reset" => 10.seconds.from_now.to_s,
+          "anthropic-ratelimit-requests-reset" => 10.hours.from_now.to_s,
           "anthropic-ratelimit-tokens-limit" => "1000",
           "anthropic-ratelimit-tokens-remaining" => "0",
-          "anthropic-ratelimit-tokens-reset" => 10.seconds.from_now.to_s,
+          "anthropic-ratelimit-tokens-reset" => 10.hours.from_now.to_s,
         }
       end
 
       before do
         stub_request(:post, "https://api.anthropic.com/v1/messages")
           .to_return(status: 429, body: "", headers: headers)
+
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
 
       it "handles the rate limit error" do # rubocop:disable RSpec/ExampleLength
@@ -61,10 +63,22 @@ RSpec.describe(StreamMessagesJob) do
           expect(ActionCable.server).to(have_received(:broadcast).with(
             "stream_channel_#{stream_id}",
             event: "error",
-            data: { error: { message: a_string_matching(/Rate limit exceeded for .*s/) } },
+            data: { error: { message: a_string_matching("~10 hours") } },
             sequence_number: 0,
           ))
         end
+      end
+
+      it "reports it to newrelic" do # rubocop:disable RSpec/ExampleLength
+        job.perform(stream_id, chat_log)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "StreamMessagesJob: rate limit exceeded",
+          hash_including(
+            stream_id: stream_id,
+            requests_limit: 100,
+          ),
+        ))
       end
     end
 
