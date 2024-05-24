@@ -160,10 +160,25 @@ class StreamMessagesJob < ApplicationJob
       "tokens_reset=#{tokens_reset}")
 
     applicable_reset = [requests_reset, tokens_reset].max
-    reset_type = applicable_reset == requests_reset ? "request" : "token"
+
+    newrelic(
+      "StreamMessagesJob: rate limit exceeded",
+      stream_id: stream_id,
+      reset_in: applicable_reset - Time.zone.now,
+      requests_limit: requests_limit.to_i,
+      requests_remaining: requests_remaining.to_i,
+      requests_reset: requests_reset,
+      tokens_limit: tokens_limit.to_i,
+      tokens_remaining: tokens_remaining.to_i,
+      tokens_reset: tokens_reset,
+    )
 
     human_readable_reset = distance_of_time_in_words(Time.zone.now, applicable_reset).sub("about ", "~")
-    error_message = "Rate limit exceeded for #{reset_type}s. The limit will clear in #{human_readable_reset}. :)"
+    error_message = <<~eod.strip
+      The platform needs some time to cool down. :) To rest, if you will.
+
+      We'll be back in #{human_readable_reset}. 😴 See you then, perhaps? You're always invited. :)
+    eod
 
     broadcast(stream_id, "error", { error: { message: error_message } })
   end
