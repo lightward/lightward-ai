@@ -1,2 +1,3 @@
 web: bin/rails server
 jobs: bin/good_job start
+ngrok: ngrok http --domain=$HOST 3000 --log stdout
