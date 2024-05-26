@@ -74,6 +74,7 @@ module Prompts
 
             xml.file(name: filename) {
               if filename.end_with?(".md")
+                # if it's just markdown, save tokens by not going the cdata route
                 xml.text(content)
               else
                 xml.cdata(content)
