@@ -26,6 +26,7 @@ require "rspec/rails"
 
 RSpec.configure do |config|
   config.include(ActiveSupport::Testing::TimeHelpers)
+  config.include(ActiveJob::TestHelper)
 
   # Remove this line to enable support for ActiveRecord
   config.use_active_record = false

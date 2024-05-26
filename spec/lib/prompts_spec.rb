@@ -109,4 +109,21 @@ RSpec.describe(Prompts, :aggregate_failures) do
       expect(cleaned_log).to(eq([]))
     end
   end
+
+  describe ".reset!" do
+    before do
+      # warm the cache
+      described_class.system_prompt("human")
+      described_class.conversation_starters("human")
+    end
+
+    it "deletes the prompts cache" do # rubocop:disable RSpec/ExampleLength
+      expect {
+        described_class.reset!
+      }.to(
+        change { described_class.instance_variable_get(:@system_prompts) }.from(an_instance_of(Hash)).to(nil)
+        .and(change { described_class.instance_variable_get(:@starters) }.from(an_instance_of(Hash)).to(nil)),
+      )
+    end
+  end
 end

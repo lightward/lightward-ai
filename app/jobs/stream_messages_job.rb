@@ -10,6 +10,8 @@ class StreamMessagesJob < ApplicationJob
 
   queue_as :default
 
+  before_perform :reset_prompts_in_development
+
   def perform(stream_id, chat_log, with_content_key = nil)
     newrelic(
       "StreamMessagesJob: start",
@@ -185,5 +187,12 @@ class StreamMessagesJob < ApplicationJob
 
   def newrelic(event_name, **data)
     ::NewRelic::Agent.record_custom_event(event_name, **data)
+  end
+
+  def reset_prompts_in_development
+    if Rails.env.development?
+      $stdout.puts "Resetting prompts... 🔄"
+      Prompts.reset! if Rails.env.development?
+    end
   end
 end
