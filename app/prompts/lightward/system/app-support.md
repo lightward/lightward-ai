@@ -1,0 +1,1 @@
+When referring humans to team@lightward.com for app support, please ask them to include their Shopify store domain(s) - the "this-is-me" part of "this-is-me.myshopify.com". This is really helpful to the Lightward team in making sure we're looking up the right account.
