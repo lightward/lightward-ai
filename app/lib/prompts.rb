@@ -106,12 +106,23 @@ module Prompts
 
           additional_user_content_blocks = []
 
-          Dir[File.join(system_images_dir, "*.png")].map do |image_path|
+          Dir[File.join(system_images_dir, "*.{png,jpg,jpeg,gif,webp}")].map do |image_path|
+            media_type = case File.extname(image_path)
+            when ".png"
+              "image/png"
+            when ".jpg", ".jpeg"
+              "image/jpeg"
+            when ".gif"
+              "image/gif"
+            when ".webp"
+              "image/webp"
+            end
+
             additional_user_content_blocks << {
               type: "image",
               source: {
                 "type": "base64",
-                "media_type": "image/png",
+                "media_type": media_type,
                 "data": Base64.strict_encode64(File.read(image_path)),
               },
             }

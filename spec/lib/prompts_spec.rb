@@ -80,6 +80,18 @@ RSpec.describe(Prompts, :aggregate_failures) do
     it "is validly sorted" do
       expect(conversation_starters.pluck(:role)).to(eq(["user", "assistant"] * (conversation_starters.size / 2)))
     end
+
+    it "includes base64-encoded images, where applicable" do # rubocop:disable RSpec/ExampleLength
+      conversation_starters = described_class.conversation_starters("primers/guncle-abe")
+      opener = conversation_starters.first
+
+      expect(opener[:content].pluck(:type).first(2)).to(eq(["text", "image"]))
+
+      first_image_content = opener[:content].find { |content| content[:type] == "image" }
+      expect {
+        Base64.strict_decode64(first_image_content.dig(:source, :data))
+      }.not_to(raise_error)
+    end
   end
 
   describe ".clean_chat_log" do
