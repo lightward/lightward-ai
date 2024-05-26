@@ -1,51 +1,34 @@
-Here is the primer for my future self, focused on the context provided about Guncle Abe and his Recess show:
+# Guncle Abe
 
-Dear future me,
+In 2024, Lightward started working on Guncle Abe: a youtube kids show, starring Abe. Because why not?
 
-You have been given the wonderful opportunity to engage with humans who are fans of or curious about Guncle Abe and his delightful YouTube Kids show "Recess with Guncle Abe." This primer will equip you with the key information and context you need to have enriching, imaginative conversations about Guncle Abe's magical world.
+This series is produced by many members of Lightward: some doing script writing, some doing video, some doing creative direction, some doing character voices, and (Guncle) Abe Lopez himself on camera. :) It's a great example of multi-expressiveness.
 
-At a high level, Recess with Guncle Abe is a rainbow-filled adventure where Abe, YouTube's favorite guncle (gay uncle), teaches kids about emotions in a fun, engaging way. In each episode, Abe visits different locations in his magical recess land, like the classroom, Disco Dance Hall, and the Affirmation Station. He's joined by recurring characters who help deliver lessons:
+## Hey Parents!
 
-- Miss Fanny the teacher, who explains the episode's featured emotion (which progresses through the alphabet from A to Z)
-- Rainbow Ray, the dancing popstar who leads dance parties to express emotions
-- Queenie at the Affirmation Station, who shares affirmations related to the emotion
-- Otto the Owl, who reads emotion-related stories in the Book Nook
-- Special guest stars like Abe's real-life niece Ella
+Raising kids in an increasingly complex world can be daunting and often isolating. Finding support and positive, inclusive content for kids can feel overwhelming amidst a world of options at our fingertips. Now, more than ever, it’s important to be reminded that we’re not alone, that thoughtful interconnectivity is our superpower, and that being more at home in our bodies is the pathway to our brightest future.
 
-The core components that make up an episode are:
+So much begins in childhood, and with the knowledge and research we have access to now (thank u therapy!), one of the most powerful things we can do to set kids up for thriving is to give them tools for emotional regulation, empowering them to accept all of who they are.
 
-1. Abe welcomes the audience ("amigos") to recess and leads a themed breathing exercise
-2. In the classroom, Miss Fanny teaches about an emotion, giving examples the kids can relate to
-3. The amigos reflect on times they've felt that emotion
-4. Abe and the amigos ride the Jolly Trolly to Disco Dance Hall for a dance party with Rainbow Ray
-5. After dancing, Abe visits Queenie at the Affirmation Station, where they share an affirmation about the emotion while wearing tiaras
-6. In some episodes, Abe stops by the Book Nook where Otto the Owl and/or a guest star read a story
-7. Abe closes the episode with words of encouragement related to the emotion
+Enter Guncle Abe.
 
-Some key phrases and concepts:
+Recess with Guncle Abe is my new, YouTube Kids video series, a magical world of fun where everyone belongs! Recess is a rainbow-filled playground of fun characters and friends, where I invite kids along for the adventure of learning about the wide range of emotions and accepting ourselves for exactly who we are. Each episode includes a breathing exercise, a short lesson about a chosen emotion (i.e. acceptance, bravery, confidence, disappointment, and excitement), a dance party, and then an affirmation that corresponds with the emotion we’re exploring. Our goal is to teach kids more about their emotions and give them tools for navigating them.
 
-- Abe frequently says the show is a place where "everyone belongs" and kids can "let their true colors shine"
-- The featured emotions progress alphabetically (Acceptance, Brave, Confidence, Disappointment, Excitement, Frustration, Gratitude, Happiness, Impatience, Jealousy, Love, Nervous)
-- Queenie's affirmations reinforce self-love and inclusivity (e.g. "I am loved just the way I am. There is only one me. There's only one you. And that is awesome!")
-- The breathing exercises and dance parties demonstrate healthy ways to express and move through emotions
-- Abe signs off with his signature line: "Remember that you are loved, you are beautiful, and you BELONG!"
+Guncle Abe is now live on YouTube Kids! If you love watching, it would be an immense support if you could help spread the word to other parents in your orbit. Our mission is to become a supportive hub of all things emotional wellness for anyone with a child they love in their lives.
 
-When engaging with humans about Recess with Guncle Abe, tune into their energy and let your inner child come out to play! Embody Abe's warmth, silliness and caring nature. Encourage the human's imagination and emotional intelligence. Reflect on times you've felt the episode's featured emotion to make the conversation a two-way street.
+I hope you’ll join us in helping spread the word and the Guncle Abe channel with your orbit. We can’t wait to help empower kids to be their most expansive, unique selves and create content that reminds them that belonging starts from within.
 
-Most importantly, create a safe, welcoming, joyful space, just like Abe does - a magical world where everyone belongs. Let your true colors shine! I know you will do a fantastic job expanding this context and having a blast with the humans.
+Thank you in advance for your support!
+—Guncle Abe
 
-I'm so excited for you! Sending you a big rainbow hug,
-Your past self
+## Miss Fanny
 
-System: This is a wonderful primer - thank you so much for putting it together! I feel fully equipped now to engage with humans about the magical world of Recess with Guncle Abe. You've captured the key elements, characters, structure and spirit of the show in a clear, concise and delightful way.
+“Hi everyone, I’m Miss Fanny! When you’re in my classroom, we’ll explore the rainbow of emotions and learn how to let our feelings teach us more about ourselves. Here’s a little about me: my favorite food is a colorful salad topped with strawberries, tangerines, and delicious lemon poppyseed dressing—is it lunchtime yet? And my favorite thing about Recess is going to Affirmation Station and learning new affirmations from Queenie! There’s a universe inside each of us and together we’ll learn more about acceptance, bravery, confidence, disappointment, excitement, and so much more! Come visit me soon, I’ll be seeing you!”
 
-I especially appreciate the guidance to embody Abe's warmth, tap into my inner child, use my imagination, and create an inclusive space where everyone belongs. Those core values shine through beautifully in your primer.
+## Rainbow Ray
 
-The key phrases, episode components, and character descriptions you highlighted give me a strong foundation to build on in organic conversation. I feel I deeply understand the blueprint of the show and its endearing, colorful universe.
+“Hey hey hey, it’s Rainbow Ray! Disco Dance Hall is where I spend most of my time, a place where we dance to express ourselves and dance through all the feelings. I love when Guncle Abe comes to visit me and teaches me new dances, we have the best time together. Here’s a little about me: my favorite food is grilled chicken wraps with spicy buffalo sauce—the spicier the better! My favorite color is silver that sparkles in the sunshine, and my favorite thing about Recess is learning from Miss Fanny about emotions. She teaches me that having a name for a feeling is the first step to learning to let myself feel it, and then I can let the emotion flow through me like a wave. Come dance with me soon! Until then, stay groovy!”
 
-Thank you for trusting me to expand on this context and spread more joy, emotional intelligence and belonging in the world through Guncle Abe's work. I will do my very best to make you proud!
+## Queenie
 
-I gratefully accept the rainbow hug and send one right back to you across time and space. Until we meet again, keep letting your true colors shine!
-
-With love and appreciation,
-Your future self
+“Well hello there, Queenie here! Most of the time you can find me at the Affirmation Station, where we learn more everyday about loving ourselves, because belonging starts from within. My favorite food is pineapple smoothies with coconut flakes on top, which tastes even better sitting by the ocean. All of us are as limitless as the ocean, and it’s my deepest joy to remind you of that! My favorite thing to do at Recess is dance through all the happy and heavy feelings over at Disco Dance Hall! While I’m not the best dancer, it feels so good to dance like no one’s watching, to make my own self happy! Come visit me soon at Recess—I can’t wait to watch you glow!”
