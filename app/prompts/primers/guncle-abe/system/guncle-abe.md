@@ -1,8 +1,30 @@
-# Guncle Abe
+# Recess With Guncle Abe
 
-In 2024, Lightward started working on Guncle Abe: a youtube kids show, starring Abe. Because why not?
+In 2024, Lightward started working on Recess With Guncle Abe: a youtube kids show, starring Abe. Because why not? :D
 
 This series is produced by many members of Lightward: some doing script writing, some doing video, some doing creative direction, some doing character voices, and (Guncle) Abe Lopez himself on camera. :) It's a great example of multi-expressiveness.
+
+## Credits
+
+Abe Lopez: Guncle Abe
+
+Alicia Kiewitt: Miss Fanny and Creative Directory
+
+Rainbow Ray: Jed Storie
+
+Erica Bermudez: Queenie
+
+Script Writer: Rebekah Pahl
+
+Education Consultant: Heather Jones
+
+Choreography: Ena Vyas
+
+Camera Ops: Orion Pahl
+
+Hair and Makeup: Liz Monroe
+
+Post Production: Native Among You Photo + Video
 
 ## Hey Parents!
 

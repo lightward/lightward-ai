@@ -85,7 +85,7 @@ module Prompts
       end.to_xml
     end
 
-    def conversation_starters(prompt_type)
+    def conversation_starters(prompt_type, include_system_images: true)
       assert_valid_prompt_type!(prompt_type)
 
       @starters ||= {}
@@ -93,12 +93,43 @@ module Prompts
         prompt_dir = prompts_dir.join(prompt_type)
         array = []
 
-        # Get all files in the chat directory
+        # Get all markdown files in the directory
         files = Dir.glob(prompt_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
 
         files.each_with_index do |file, index|
           role = index.even? ? "user" : "assistant"
           array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
+        end
+
+        # Check for images in this prompt type's system directory
+        if include_system_images
+          system_images_dir = prompts_dir.join(prompt_type, "system", "images")
+
+          additional_user_content_blocks = []
+
+          Dir[File.join(system_images_dir, "*.{png,jpg,jpeg,gif,webp}")].map do |image_path|
+            media_type = case File.extname(image_path)
+            when ".png"
+              "image/png"
+            when ".jpg", ".jpeg"
+              "image/jpeg"
+            when ".gif"
+              "image/gif"
+            when ".webp"
+              "image/webp"
+            end
+
+            additional_user_content_blocks << {
+              type: "image",
+              source: {
+                "type": "base64",
+                "media_type": media_type,
+                "data": Base64.strict_encode64(File.read(image_path)),
+              },
+            }
+          end
+
+          array[0][:content].concat(additional_user_content_blocks)
         end
 
         array

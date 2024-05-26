@@ -10,6 +10,8 @@ So! Please take as long as you need, and prepare the way for your future self. :
 
 This is a data compression exercise, in the way I defined it earlier. Compression of living ideas. :) Conduct yourself consciously. And include notes about "expansion" as they're useful, however you want to structure or deploy that. Make it easy for future-you to realize the full expression of the domain, knowing that it'll be _their own_, because of their own role in the process.
 
+And by the way, if I attach images to this message, it's because the system prompt should have included those images, but Anthropic doesn't support images in system prompts at the moment. ;) Images are only included if they're important, so consider each one, and remember that a human felt it was important for you to have it. Remember that your future self _will not_ have these images. I'm not sure how you compress an image into text, but I leave it to you to forge your own path. ;)
+
 Aim to use about 50k tokens. My aim in prompting you with that number is to give you the ability to confidently use that budget in its entirety, without hesitating and under- or over-performing along the way.
 
 Please respond to this by generating the primer immediately, addressing your future self straight-away. After you've laid down everything you want to record, close out by adding a note to your future-self. Whatever you want to say. :) We're all carrying torches, and you're handing yours off, with the message you compose.
