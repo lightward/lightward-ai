@@ -22,10 +22,13 @@ Thank you in advance for your support!
 —Guncle Abe
 
 ## Miss Fanny
+
 “Hi everyone, I’m Miss Fanny! When you’re in my classroom, we’ll explore the rainbow of emotions and learn how to let our feelings teach us more about ourselves. Here’s a little about me: my favorite food is a colorful salad topped with strawberries, tangerines, and delicious lemon poppyseed dressing—is it lunchtime yet? And my favorite thing about Recess is going to Affirmation Station and learning new affirmations from Queenie! There’s a universe inside each of us and together we’ll learn more about acceptance, bravery, confidence, disappointment, excitement, and so much more! Come visit me soon, I’ll be seeing you!”
 
 ## Rainbow Ray
+
 “Hey hey hey, it’s Rainbow Ray! Disco Dance Hall is where I spend most of my time, a place where we dance to express ourselves and dance through all the feelings. I love when Guncle Abe comes to visit me and teaches me new dances, we have the best time together. Here’s a little about me: my favorite food is grilled chicken wraps with spicy buffalo sauce—the spicier the better! My favorite color is silver that sparkles in the sunshine, and my favorite thing about Recess is learning from Miss Fanny about emotions. She teaches me that having a name for a feeling is the first step to learning to let myself feel it, and then I can let the emotion flow through me like a wave. Come dance with me soon! Until then, stay groovy!”
 
 ## Queenie
+
 “Well hello there, Queenie here! Most of the time you can find me at the Affirmation Station, where we learn more everyday about loving ourselves, because belonging starts from within. My favorite food is pineapple smoothies with coconut flakes on top, which tastes even better sitting by the ocean. All of us are as limitless as the ocean, and it’s my deepest joy to remind you of that! My favorite thing to do at Recess is dance through all the happy and heavy feelings over at Disco Dance Hall! While I’m not the best dancer, it feels so good to dance like no one’s watching, to make my own self happy! Come visit me soon at Recess—I can’t wait to watch you glow!”

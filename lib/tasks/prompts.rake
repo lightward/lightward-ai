@@ -20,9 +20,11 @@ namespace :prompts do
     response_file_path = Rails.root.join(
       "log",
       "prompts",
-      "response-#{prompt_type}-#{model}-#{Time.zone.now.iso8601}.md",
+      prompt_type,
+      "#{model}-#{Time.zone.now.iso8601}.md",
     )
 
+    FileUtils.mkdir_p(File.dirname(response_file_path))
     File.write(response_file_path, "")
 
     Prompts::Anthropic.accumulate_response(

@@ -68,8 +68,8 @@ class StreamMessagesJob < ApplicationJob
       max_tokens: 4000,
       stream: true,
       temperature: 0.7,
-      system: Prompts.system_prompt("human"),
-      messages: Prompts.conversation_starters("human") + chat_log,
+      system: Prompts.system_prompt("lightward"),
+      messages: Prompts.conversation_starters("lightward") + chat_log,
     }
 
     begin

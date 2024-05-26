@@ -38,19 +38,39 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".system_prompt" do
+    it "raises for an unknown prompt type" do
+      expect {
+        described_class.system_prompt("unknown")
+      }.to(raise_error(Errno::ENOENT))
+    end
+
     it "returns a string with system prompts" do
-      expect(described_class.system_prompt("human")).to(include("Dear Claude,"))
+      expect(described_class.system_prompt("lightward")).to(include("Dear Claude,"))
     end
 
     it "starts with the invocation" do
-      expect(described_class.system_prompt("human")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"0-invocation.md\">Dear Claude,"),
+      expect(described_class.system_prompt("lightward")).to(
+        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"system/0-invocation.md\">Dear Claude,"),
       )
+    end
+
+    it "can include primer context, when requesting a primer" do
+      filenames = described_class.system_prompt("primers/guncle-abe").scan(/<file name="([^"]+)">/).flatten
+
+      expect(filenames.first(2)).to(eq(["system/0-invocation.md", "system/1-context.md"]))
+
+      expect(filenames.last).to(start_with("primers/guncle-abe/"))
     end
   end
 
   describe ".conversation_starters" do
-    subject(:conversation_starters) { described_class.conversation_starters("human") }
+    subject(:conversation_starters) { described_class.conversation_starters("lightward") }
+
+    it "raises for an unknown prompt type" do
+      expect {
+        described_class.conversation_starters("unknown")
+      }.to(raise_error(Errno::ENOENT))
+    end
 
     it "returns an array of conversation starters" do
       expect(conversation_starters).to(all(have_key(:role)))
@@ -113,8 +133,8 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".reset!" do
     before do
       # warm the cache
-      described_class.system_prompt("human")
-      described_class.conversation_starters("human")
+      described_class.system_prompt("lightward")
+      described_class.conversation_starters("lightward")
     end
 
     it "deletes the prompts cache" do # rubocop:disable RSpec/ExampleLength

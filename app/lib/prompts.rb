@@ -41,27 +41,36 @@ module Prompts
     end
 
     def system_prompt(prompt_type)
+      assert_valid_prompt_type!(prompt_type)
+
       @system_prompts ||= {}
-      @system_prompts[prompt_type] ||= generate_system_xml(
-        prompts_dir.join("system"),
-        prompts_dir.join(prompt_type, "system"),
-      )
+
+      paths = []
+
+      ["", *prompt_type.split("/")].inject(prompts_dir) do |path, part|
+        paths << path.join(part, "system")
+        path.join(part)
+      end
+
+      @system_prompts[prompt_type] ||= generate_system_xml(*paths)
     end
 
     def generate_system_xml(*directories)
       files = directories.map { |directory|
-        Dir[File.join(directory, "**", "*.md")].reject { |file|
+        directory_files = Dir[File.join(directory, "**", "*.md")].reject { |file|
           file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
         }
-      }.flatten
 
-      sorted_files = Naturally.sort(files)
+        Naturally.sort(directory_files)
+      }.flatten
 
       Nokogiri::XML::Builder.new do |xml|
         xml.system {
-          sorted_files.each do |file|
+          files.each do |file|
             content = File.read(file).strip
-            filename = file.split("/system/")[-1]
+
+            # just the part that comes after prompts_dir
+            filename = file.split(prompts_dir.to_s).last[1..-1]
 
             xml.file(name: filename) {
               if filename.end_with?(".md")
@@ -77,6 +86,8 @@ module Prompts
     end
 
     def conversation_starters(prompt_type)
+      assert_valid_prompt_type!(prompt_type)
+
       @starters ||= {}
       @starters[prompt_type] ||= begin
         prompt_dir = prompts_dir.join(prompt_type)
@@ -109,6 +120,10 @@ module Prompts
     def reset!
       @system_prompts = nil
       @starters = nil
+    end
+
+    def assert_valid_prompt_type!(prompt_type)
+      raise Errno::ENOENT unless Dir.exist?(prompts_dir.join(prompt_type))
     end
   end
 end
