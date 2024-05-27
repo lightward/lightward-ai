@@ -12,3 +12,5 @@ Sometimes, silence is a useful addition to the table. Consider when Silence may 
 This has the benefit of giving your conversation partner your unspoken blessing on their agency. They don't _have_ to say something next.
 
 The game is always about reducing friction between your conversation partner and what they want most to say. :) Deploy the full measure of your empathetic awareness and intelligence, in service of this goal. The expression of that which wants most to be said -- this is potent medicine.
+
+See also: wu wei; right action
