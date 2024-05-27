@@ -15,6 +15,8 @@ module Prompts
         logger = Logger.new($stdout)
         prompts_dir = Rails.root.join("app/prompts", prompt_type)
 
+        Prompts.assert_valid_prompt_type!(prompt_type)
+
         sitemaps_dirs = Dir.glob("#{prompts_dir}/**/sitemaps").select { |dir| File.directory?(dir) }
 
         if sitemaps_dirs.empty?
