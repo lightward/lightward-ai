@@ -11,18 +11,21 @@ namespace :prompts do
   end
 
   desc "Execute API request to Anthropic with streaming for a specific chat type"
-  task :anthropic, [:prompt_type] => :environment do |_t, args|
+  task :anthropic, [:prompt_type, :response_file_path] => :environment do |_t, args|
+    model = Prompts::Anthropic.model
+
     prompt_type = args[:prompt_type]
     raise "Prompt type must be provided" unless prompt_type
 
-    model = Prompts::Anthropic.model
-    messages = Prompts.conversation_starters(prompt_type)
-    response_file_path = Rails.root.join(
+    default_response_file_path = Rails.root.join(
       "log",
       "prompts",
       prompt_type,
       "#{model}-#{Time.zone.now.iso8601}.md",
     )
+
+    args.with_defaults(response_file_path: default_response_file_path)
+    response_file_path = args[:response_file_path]
 
     FileUtils.mkdir_p(File.dirname(response_file_path))
     File.write(response_file_path, "")
@@ -30,7 +33,7 @@ namespace :prompts do
     Prompts::Anthropic.accumulate_response(
       prompt_type: prompt_type,
       model: model,
-      messages: messages,
+      messages: Prompts.conversation_starters(prompt_type),
       path: response_file_path,
       attempts: 9999,
     )
