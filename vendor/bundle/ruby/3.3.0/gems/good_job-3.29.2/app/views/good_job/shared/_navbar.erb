@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand-lg border-bottom bg-body sticky-top">
+  <div class="container-fluid">
+    <%= link_to t(".name"), root_path, class: "navbar-brand mb-0 h1" %>
+
+    <div class="d-lg-none d-flex flex-fill justify-content-end me-2">
+      <span class="navbar-text">
+        <%= render_icon "globe", class: "align-text-bottom" %>
+        <small><%= Rails.env.capitalize %></small>
+      </span>
+    </div>
+
+    <button class="navbar-toggler position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto" data-controller="async-values" data-async-values-url-value="<%= metrics_primary_nav_path %>">
+        <li class="nav-item">
+          <%= link_to jobs_path, class: ["nav-link", ("active" if controller_name == 'jobs')] do %>
+            <%= t(".jobs") %>
+            <span data-async-values-target="value" data-async-values-key="jobs_count" class="badge bg-secondary rounded-pill d-none"></span>
+        <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to batches_path, class: ["nav-link", ("active" if controller_name == 'batches')] do %>
+            <%= t ".batches" %>
+            <span data-async-values-target="value" data-async-values-key="batches_count" class="badge bg-secondary rounded-pill  d-none"></span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to cron_entries_path, class: ["nav-link", ("active" if controller_name == 'cron_entries')] do %>
+            <%= t(".cron_schedules") %>
+            <span data-async-values-target="value" data-async-values-key="cron_entries_count" class="badge bg-secondary rounded-pill d-none"></span>
+        <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to processes_path, class: ["nav-link", ("active" if controller_name == 'processes')] do %>
+            <%= t(".processes") %>
+            <span data-async-values-target="value" data-async-values-key="processes_count" data-async-values-zero-class="bg-danger" class="badge bg-secondary rounded-pill d-none"></span>
+          <% end %>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item d-none d-lg-flex align-items-center">
+          <span class="navbar-text">
+            <%= render_icon "globe", class: "align-text-bottom" %>
+            <small><%= Rails.env.capitalize %></small>
+          </span>
+        </li>
+
+        <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+          <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-secondary"></div>
+          <hr class="d-lg-none my-2 text-secondary">
+        </li>
+
+        <li class="nav-item d-flex flex-column justify-content-center">
+          <div class="form-check form-switch m-0">
+            <%= check_box_tag "live_poll", params.fetch("poll", 30), (GoodJob.configuration.dashboard_live_poll_enabled && params[:poll].present?), role: "switch", class: "form-check-input", disabled: !GoodJob.configuration.dashboard_live_poll_enabled %>
+            <label class="form-check-label navbar-text p-0" for="live_poll">
+              <%= t(".live_poll") %>
+            </label>
+          </div>
+        </li>
+
+        <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+          <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-secondary"></div>
+          <hr class="d-lg-none my-2 text-secondary">
+        </li>
+
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" type="button" id="localeOptions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= I18n.locale %>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end min-w-auto" aria-labelledby="localeOptions">
+            <% possible_locales = I18n.available_locales %>
+            <% possible_locales.reject { |locale| locale == I18n.locale }.each do |locale| %>
+              <li><%= link_to locale, url_for(locale: locale), class: "dropdown-item" %></li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+          <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-secondary"></div>
+          <hr class="d-lg-none my-2 text-secondary">
+        </li>
+
+        <li class="nav-item dropdown" data-controller="theme">
+          <button class="nav-link dropdown-toggle" data-theme-target="dropdown" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme">
+            <%= render_icon "circle_half" %>
+            <span class="visually-hidden"><%= t(".theme.theme") %></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+            <li>
+              <button type="button" class="dropdown-item" data-theme-target="button" data-theme-value-param="light" data-action="theme#change" aria-pressed="true">
+                <%= render_icon "sun_fill" %>
+                <%= t(".theme.light") %>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="dropdown-item" data-theme-target="button" data-theme-value-param="dark" data-action="theme#change" aria-pressed="false">
+                <%= render_icon "moon_stars_fill" %>
+                <%= t(".theme.dark") %>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="dropdown-item btn btn-link" data-theme-target="button" data-theme-value-param="auto" data-action="theme#change" aria-pressed="false">
+                <%= render_icon "circle_half" %>
+                <%= t(".theme.auto") %>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

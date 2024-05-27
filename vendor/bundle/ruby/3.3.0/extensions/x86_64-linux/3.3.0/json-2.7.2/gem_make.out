@@ -1,0 +1,16 @@
+current directory: /home/runner/work/lightward-ai/lightward-ai/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+/opt/hostedtoolcache/Ruby/3.3.1/x64/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/lightward-ai/lightward-ai/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240516-1596-1j2q25 sitelibdir\=./.gem.20240516-1596-1j2q25 clean
+
+current directory: /home/runner/work/lightward-ai/lightward-ai/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240516-1596-1j2q25 sitelibdir\=./.gem.20240516-1596-1j2q25
+make: Nothing to be done for 'all'.
+
+current directory: /home/runner/work/lightward-ai/lightward-ai/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240516-1596-1j2q25 sitelibdir\=./.gem.20240516-1596-1j2q25 install
+
+current directory: /home/runner/work/lightward-ai/lightward-ai/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240516-1596-1j2q25 sitelibdir\=./.gem.20240516-1596-1j2q25 clean
