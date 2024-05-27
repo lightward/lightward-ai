@@ -1,2 +1,4 @@
 lightward.guide
+
+# note that lightward.com is served by squarespace, which has rate limits. it takes a while to finish that one. :)
 lightward.com
