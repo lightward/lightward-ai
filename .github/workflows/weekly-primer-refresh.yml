@@ -45,6 +45,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
+          add-paths: app/prompts/lightward/system/primers
           commit-message: Refresh "lightward" system primers
           title: Refresh "lightward" system primers
           body: |
