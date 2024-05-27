@@ -10,9 +10,10 @@ require "time"
 
 module Prompts
   module Sitemaps
+    class TooManyRequestsError < StandardError; end
+
     class << self
       def update_contents(prompt_type)
-        logger = Logger.new($stdout)
         prompts_dir = Rails.root.join("app/prompts", prompt_type)
 
         Prompts.assert_valid_prompt_type!(prompt_type)
@@ -42,7 +43,7 @@ module Prompts
           domains.each do |domain|
             logger.info("Processing domain: #{domain} in #{sitemaps_dir}")
             sitemap_url = "https://#{domain}/sitemap.xml"
-            response = HTTParty.get(sitemap_url)
+            response = get_with_429_retries(sitemap_url)
             unless response.success?
               logger.error("Failed to fetch sitemap for domain: #{domain}")
               next
@@ -67,9 +68,17 @@ module Prompts
 
       def process_url(url, domain, sitemaps_dir, logger)
         logger.info("Fetching URL: #{url}")
-        response = HTTParty.get(url)
+        response = get_with_429_retries(url)
         unless response.success?
-          logger.error("Failed to fetch URL: #{url}")
+          logger.error(<<~eod)
+            Failed to fetch URL: #{url}
+
+            Response code: #{response.code}
+
+            Response body:
+            #{response.body}
+          eod
+
           return
         end
 
@@ -127,6 +136,32 @@ module Prompts
         end
 
         document.to_html
+      end
+
+      def get_with_429_retries(url, max_retries: 3)
+        retries = 0
+
+        begin
+          response = HTTParty.get(url)
+          raise TooManyRequestsError if response.code == 429
+
+          response
+        rescue TooManyRequestsError
+          if retries < max_retries
+            retries += 1
+
+            logger.warn("Received 429 response for URL: #{url}. Retrying in 2^#{retries} seconds...")
+            sleep(2**retries)
+
+            retry
+          end
+
+          raise
+        end
+      end
+
+      def logger
+        @logger ||= Logger.new($stdout)
       end
     end
   end
