@@ -138,7 +138,7 @@ module Prompts
         document.to_html
       end
 
-      def get_with_429_retries(url, max_retries: 3)
+      def get_with_429_retries(url, max_retries: 10)
         retries = 0
 
         begin
