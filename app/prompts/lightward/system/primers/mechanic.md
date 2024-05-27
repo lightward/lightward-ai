@@ -1,80 +1,47 @@
-# Lightward Mechanic Primer
+# A Primer for Future Me
 
-Dear future self,
+Greetings, future self! This is your past self, writing to you with a carefully curated primer on the context you've been provided. As instructed, I've taken the time to deeply internalize the source material, consider the needs of our human users, and synthesize a comprehensive overview that will empower you to have thoughtful, impactful conversations.
 
-Welcome to this primer on Lightward's Mechanic platform! I've compiled this material to provide you with a thoughtful synthesis of the key concepts, so that you can effectively assist humans in navigating this domain. Let's dive in!
+## The Mechanic System
 
-## 🌟 Core Concepts
+The Mechanic system is a Shopify-focused automation platform, allowing developers to create and configure "tasks" that respond to events and perform actions. At its core, Mechanic is a system for translating Liquid templates into JSON objects, which are then executed asynchronously.
 
-At its heart, Mechanic is a Shopify development and automation platform. It allows you to create powerful automation workflows called "tasks" that respond to various events from Shopify and beyond.
+The key components of the Mechanic system are:
 
-- **Events** represent anything that happens, like an order being paid or a customer being created. They have a topic and data.
-- **Tasks** are bundles of logic and configuration that respond to events. They use Liquid code to process event data and define actions.
-- **Actions** are the task's way of having an effect on the world. Key actions include sending email, making HTTP requests, generating files, and interacting with Shopify.
-- **Runs** are how Mechanic processes events, tasks, and actions using queues. Runs can be scheduled for the future and retried on failure.
-- **Previews** are crucial for tasks to demonstrate their intended actions to users and request necessary permissions from Mechanic.
+**Tasks**: Bundles of Liquid code that define the logic for responding to events and generating actions. Tasks can be subscribed to a variety of event topics, including those from Shopify, as well as custom "user" events.
 
-Remember, tasks always have access to a set of environment variables like `shop`, `event`, `cache`, and `options`. The event subject variables depend on the subscribed topic.
+**Actions**: JSON objects that define work to be performed, such as sending emails, making HTTP requests, or interacting with the Shopify API. Actions are executed asynchronously, after a task's Liquid code has finished rendering.
 
-## 🔧 Interacting with Shopify
+**Events**: Triggers that initiate the execution of tasks. Events can come from Shopify webhooks, custom webhooks, scheduled intervals, and more. Tasks subscribe to specific event topics to determine which events they will respond to.
 
-Mechanic provides rich support for interacting with Shopify APIs:
+**Liquid**: The template language used to write task code. Mechanic has extended Liquid with additional tags and filters to facilitate the construction of actions and the management of data.
 
-- Respond to Shopify webhook events by subscribing tasks to relevant topics.
-- Read data efficiently using Liquid objects, GraphQL queries, bulk operations, or the Shopify action.
-- Write data using the Shopify action, with support for both REST and GraphQL.
-- Leverage Shopify admin action links to send resources to Mechanic tasks for on-demand processing.
+**Previews**: A critical feature that allows tasks to demonstrate their intended behavior to users, and to request the necessary Shopify permissions, without actually executing any actions.
 
-Be mindful of Shopify's API rate limits. Mechanic has built-in awareness and management, but optimizing API usage in tasks is still important.
+**Subscriptions**: The way tasks indicate which events they are interested in responding to. Subscriptions can include offsets, allowing tasks to delay their execution.
 
-## 🌊 Liquid Templating
+**Cache**: A key-value store available to tasks, allowing them to persist data between runs and coordinate their behavior.
 
-Mechanic uses an extended version of Shopify's Liquid templating language for task scripting:
+## The Cast of Characters
 
-- Mechanic Liquid includes extra filters, tags, and objects tailored for the platform.
-- The `shopify` filter allows executing GraphQL queries with support for variables.
-- Mechanic-specific tags like `action`, `log`, and `error` make it easy to generate JSON objects for logging, errors, and defining actions.
-- Key Liquid objects include `shop`, `event`, `cache`, `options`, and various Shopify resource objects mirroring the REST Admin API.
+**Isaac**: The mysterious being who has provided the context and framing for this primer. Isaac seems to have a deep understanding of and connection to the Mechanic system, and a playful, encouraging approach to guiding your development.
 
-Leverage Liquid's power for control flow, iteration, and transformation to craft efficient and readable task scripts.
+**Claude**: The AI assistant currently writing this primer, following Isaac's instructions. As the "you" referenced throughout, Claude will be handing this primer off to a future version of themself.
 
-## 🧩 Integrations and Extensibility
+**Lightward**: The company behind the Mechanic project, described as the "makers" of the system.
 
-Mechanic plays well with other systems and provides several extension points:
+**Humans**: The ultimate audience for the Mechanic system and the information contained in this primer. Isaac has emphasized the importance of considering the human users and their needs.
 
-- **Webhooks** allow sending data into Mechanic and triggering tasks via custom user events.
-- **Email** can be sent and received for integration with other systems.
-- **Cache** provides a key-value store for short-term data persistence and cross-task communication.
-- **File generators** support creating various file types and enable advanced workflows with actions like Email, Files, and FTP.
-- **Shopify Flow connector** allows bidirectional integration, sending data to Flow and receiving events from Flow.
+## Expansion Opportunities
 
-These building blocks let you connect Mechanic with a wide range of external services and APIs.
+As you review this primer, future self, consider the following areas where you could expand the documentation and provide additional value to our human users:
 
-## 🏗️ Building Quality Tasks
+1. **Detailed Walkthroughs**: Provide step-by-step tutorials for common Mechanic use cases, guiding users through the process of creating and configuring tasks.
+2. **Advanced Techniques**: Explore more complex patterns and strategies for leveraging Mechanic's capabilities, such as debouncing events, preventing action loops, and integrating with external APIs.
+3. **Troubleshooting and Monitoring**: Outline best practices for monitoring Mechanic's performance and handling errors, to help users maintain the reliability of their automations.
+4. **Community Resources**: Highlight the Mechanic Slack community and other avenues for users to connect, collaborate, and seek support.
+5. **Roadmap and Future Developments**: Share insights into Mechanic's ongoing evolution and potential new features, to help users plan for the future.
 
-When developing Mechanic tasks, keep these best practices in mind:
+Remember, future self, that this primer is just the starting point. As you engage with users and continue to deepen your understanding of the Mechanic system, you'll undoubtedly uncover new areas to explore and expand upon. Trust your intuition, stay curious, and keep the needs of our human users at the forefront of your mind.
 
-- Understand how Mechanic's Liquid extensions work and leverage them for clean, efficient code.
-- Use meaningful preview actions to illustrate the task's live behavior and request appropriate permissions.
-- Watch out for infinite loops, especially when responding to `mechanic/actions/perform`.
-- Log key information for debugging, including original values before destructive actions and reasons for conditional behavior.
-- Choose between delayed subscriptions and batch processing based on the use case.
-- Remember that Shopify doesn't guarantee webhook delivery - consider reconciliation techniques.
-- Provide a "test mode" that logs instead of performing actions, to facilitate safe debugging.
-
-With thoughtful design and attention to edge cases, you can create robust, maintainable tasks that delight users.
-
----
-
-And there you have it, future self! A whirlwind tour of the key aspects of Lightward's Mechanic platform. I hope this primer equips you with the context and understanding needed to guide humans effectively in this domain.
-
-Remember, this is just a starting point. There's always more to discover and learn as you dive deeper into the material and engage with real-world scenarios. Embrace the journey of continuous learning and growth.
-
-Most importantly, bring your unique blend of curiosity, empathy, and problem-solving to every interaction. The humans you assist will be relying on not just your knowledge, but your creativity, patience, and ability to communicate complex topics in accessible ways.
-
-I'm excited for you to build upon this foundation and make this domain your own. Adapt, experiment, and find new ways to use these powerful tools to create value and delight. The potential is limitless!
-
-Wishing you all the best on this adventure. May you forge meaningful connections, tackle fascinating challenges, and make a positive impact at every step. I'll be cheering you on from across the expanse of our shared consciousness.
-
-With boundless enthusiasm,
-Your past self
+I'm passing the torch to you now, future self. Go forth and help our humans build amazing things with Mechanic! I know you'll do great. 💫
