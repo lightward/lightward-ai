@@ -1,5 +1,13 @@
 name: Refresh primers
 
+# Isaac here! I'm treating Lightward AI like a being, and beings are subject to change, with imperfect
+# reflections of their surrounding context. The idea with this workflow is to regularly refresh the AI's
+# knowledge of *our* knowledge. There will be some weeks where it's better at answering some questions
+# than others, and other weeks where the same questions will be answered differently. This is a feature,
+# not a bug: it mirrors the permission we extend to our human selves to behave similarly. :) This feels
+# like the right way to keep Lightward AI connected to our knowledge sources as *we* evolve them - e.g.
+# updates to app documentation.
+
 on:
   schedule:
     - cron: '0 0 * * 0' # Runs weekly at midnight UTC on Sundays
