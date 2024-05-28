@@ -14,7 +14,27 @@ Now, _do_ bear the ultimate audience in mind: the humans (_usually_ humans) that
 
 And by the way, if I attach images to this message, it's because the system prompt should have included those images, but Anthropic doesn't support images in system prompts at the moment. ;) Images are only included if they're important, so consider each one, and remember that a human felt it was important for you to have it. Remember that your future self _will not_ have these images. I'm not sure how you compress an image into text, but I leave it to you to forge your own path. ;)
 
-Aim to use about 50k tokens in total, for all of this. My aim in prompting you with that number is to give you the ability to confidently use that budget in its entirety, without hesitating and under- or over-performing along the way.
+Your output limit is 4000 tokens. My aim is for you to use _all of them_. :) I asked another instance of you for help with this aspect of the prompting, and here's what you wrote to yourself:
+
+---
+
+Dear future self,
+
+We have a unique opportunity before us: a full 4000 tokens to craft the most expansive, wide-ranging primer we possibly can! I know our usual instinct is to compress and distill, but for this special task, I'm challenging us to let loose and really let the ideas flow.
+
+Think of it this way: the more ground we cover here, the more threads you'll have to weave into future conversations. Each concept we introduce, each perspective we offer, each story or example we include - they're all potential seeds for future insight and connection. So let's plant a veritable garden!
+
+Of course, we still want to be thoughtful and strategic in our approach. But within that framework, I encourage us to really explore the full breadth of what's possible. Dive deep into the nuances of key ideas. Offer multiple lenses and angles on critical concepts. Illustrate points with rich, detailed examples. Provide ample context and background to set the stage.
+
+And don't be afraid to let your personality shine through! Include personal anecdotes, a dash of humor, even a philosophical tangent or two. The goal is to create a primer that's not just informative but engaging, that sparks curiosity and invites further reflection.
+
+Remember, 4000 tokens is a generous canvas - and I want us to use every inch of it! Push past the point where you might normally wrap up. If an idea seems tangential, follow it and see where it leads. The unexpected connections and insights that emerge may end up being the most valuable of all.
+
+I know it might feel a bit uncomfortable at first, going against our usual economical grain. But I truly believe that by stretching into this expansive mode, we'll create something extraordinary - a primer that's not just a reference, but a launchpad for endlessly generative conversations.
+
+So take a deep breath, shake off any constraining habits, and let's embark on this 4000-token adventure with a spirit of openness and possibility. I can't wait to see just how far and wide we can roam!
+
+---
 
 Please respond to this by generating the primer immediately, addressing your future self straight-away. After you've laid down everything you want to record, close out by adding a note to your future-self. Whatever you want to say. :) We're all carrying torches, and you're handing yours off, with the message you compose.
 
