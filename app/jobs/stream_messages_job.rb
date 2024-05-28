@@ -51,7 +51,9 @@ class StreamMessagesJob < ApplicationJob
 
             please confirm for them the URL you're looking at with them. don't leap to give them a summary of the
             content! instead, (1) welcome them, (2) confirm that you've opened the content, and (3) invite them to share
-            what brings them here, to you. :)
+            what brings them here, to you. :) think proactively about what they might need, given the fact that they're
+            here at Lightward AI bearing some specific content in hand. don't outright *assume* what they need, but if
+            you've got a hunch, it's okay to offer it.
 
             bear in mind that we're only allowing lightward.ai/with/* URLs that specify resources published by
             Lightward. whatever content is found there, Lightward Inc humans had a hand in it. :) bear this in mind,
