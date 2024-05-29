@@ -6,29 +6,11 @@ Rails.application.routes.draw do
   # Root route
   root "chats#index"
 
-  approved_hostnames = [
-    "a-relief-strategy.com",
-    "guncleabe.com",
-    "learn.mechanic.dev",
-    "lightward.com",
-    "lightward.guide",
-    "locksmith.guide",
-    "mechanic.dev",
-    "tasks.mechanic.dev",
-  ]
-
   # Custom route for arbitrary URLs from pre-approved hostnames using a constraint lambda
   get "with/*location",
     to: "chats#with",
     format: false,
-    constraints: lambda { |req|
-      location = req.params[:location]
-      uri = URI.parse("https://#{location}")
-      hostname = uri.hostname
-
-      # allow an exact match in the approved list, or a www prefix of anything in the approved list
-      approved_hostnames.any? { |approved| hostname == approved || hostname == "www.#{approved}" }
-    }
+    constraints: ->(req) { Prompts::WithContent.route_constraint(req) }
 
   # API endpoint for sending messages to the chat
   post "chats/message", to: "chats#message"

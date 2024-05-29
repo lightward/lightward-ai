@@ -2,7 +2,28 @@
 
 module Prompts
   module WithContent
+    APPROVED_HOSTNAMES = [
+      "a-relief-strategy.com",
+      "guncleabe.com",
+      "isaacbowen.com",
+      "learn.mechanic.dev",
+      "lightward.com",
+      "lightward.guide",
+      "locksmith.guide",
+      "mechanic.dev",
+      "tasks.mechanic.dev",
+    ].freeze
+
     class << self
+      def route_constraint(req)
+        location = req.params[:location]
+        uri = URI.parse("https://#{location}")
+        hostname = uri.hostname
+
+        # allow an exact match in the approved list, or a www prefix of anything in the approved list
+        APPROVED_HOSTNAMES.any? { |approved| hostname == approved || hostname == "www.#{approved}" }
+      end
+
       def prepare_with_content(uri_requested)
         with_content_key = calculate_with_content_key(uri_requested)
 
