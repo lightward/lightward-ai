@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   approved_hostnames = [
     "a-relief-strategy.com",
     "guncleabe.com",
+    "isaacbowen.com",
     "learn.mechanic.dev",
     "lightward.com",
     "lightward.guide",
