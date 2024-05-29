@@ -1,244 +1,468 @@
-# Primer: Locksmith Documentation
+Primer: Locksmith App for Shopify
 
-## Table of Contents
+Table of Contents:
 
 1. Introduction
-   1.1 Purpose of the primer
-   1.2 Overview of Locksmith
-2. Getting Started
-   2.1 Installation and setup
-   2.2 Creating locks
-   2.3 Creating keys
-3. Key Conditions
-   3.1 Customer account keys
-   3.2 Passcode keys
-   3.3 Secret link keys
-   3.4 Newsletter keys
-   3.5 Visitor location keys
-   3.6 Liquid keys
-   3.7 Combining key conditions
-   3.8 Inverting key conditions
-4. Manual Locking
-   4.1 Enabling manual mode
-   4.2 Hiding prices and add-to-cart buttons
-   4.3 Interactions with remote keys
-5. Advanced Features
-   5.1 Liquid locks
-   5.2 Variant locking
-   5.3 Input lists
-   5.4 Redirects
-   5.5 Customizing messages
-6. Integrations
-   6.1 ReCharge subscriptions
-   6.2 Klaviyo and Mailchimp
-   6.3 Selling digital content
-7. Troubleshooting
-   7.1 Common issues and solutions
-   7.2 Compatibility with other apps
-   7.3 Contacting support
-8. Key People Involved
-   8.1 Locksmith team members
-   8.2 Notable Shopify experts and partners
-9. Conclusion
-   9.1 Recap of key points
-   9.2 Additional resources
-   9.3 Final thoughts and well wishes
+   1.1. Purpose of the primer
+   1.2. Overview of Locksmith app
+2. Key Features and Functionality
+   2.1. Creating locks
+   2.1.1. Resource types that can be locked
+   2.1.2. Specifying resource types when searching
+   2.1.3. Locking the entire store
+   2.1.4. Locking all products
+   2.1.5. Liquid locks for non-standard resources
+   2.2. Creating keys
+   2.2.1. Types of key conditions
+   2.2.2. Inverting key conditions
+   2.2.3. Chaining conditions: OR vs AND
+   2.2.4. "Force open other locks" setting
+   2.3. Theme installation and updates
+   2.4. Customizing access denied messages
+   2.5. Manual mode for partial page locking
+3. Key Condition Deep Dives
+   3.1. Customer account keys
+   3.1.1. Reliance on Shopify customer accounts
+   3.1.2. Key condition options
+   3.1.3. Customizing login page
+   3.2. Passcode keys
+   3.2.1. Single vs many passcodes
+   3.2.2. Input lists for bulk passcodes
+   3.2.3. Testing and troubleshooting
+   3.3. Secret link keys
+   3.3.1. How they work
+   3.3.2. Formatting and usage notes
+   3.3.3. Restricting where access is granted
+   3.4. Newsletter keys
+   3.4.1. Mailchimp integration
+   3.4.2. Klaviyo integration
+   3.4.2.1. Granting vs requiring subscription
+   3.5. Visitor location keys
+   3.5.1. Location types supported
+   3.5.2. Allowing vs blocking locations
+   3.5.3. SEO limitations
+   3.6. Liquid keys
+   3.6.1. Shopify liquid basics
+   3.6.2. Useful variables and examples
+   3.6.3. Prelude for complex conditions
+4. Common Use Cases and Tutorials
+   4.1. Restricting wholesale products/prices
+   4.1.1. Separate wholesale store
+   4.1.2. Wholesale and retail in same store
+   4.2. Selling digital content
+   4.2.1. Hosting content in Shopify
+   4.2.2. Requiring one-time vs recurring payment
+   4.2.3. Directing customers post-purchase
+   4.3. Approving customer registrations
+   4.4. Creating members-only collections
+   4.5. Protecting against bots and resellers
+   4.6. Offering different variants by postal code
+5. Advanced Topics and Troubleshooting
+   5.1. Hiding prices and add to cart buttons
+   5.2. Restricting checkout from the cart
+   5.3. Locking multiple pages at once
+   5.4. Compatibility with other apps and themes
+   5.4.1. Unsupported apps
+   5.4.2. Infinite loading issues
+   5.5. Slow loading troubleshooting
+   5.6. Locksmith not installing/uninstalling
+   5.7. Working with unpublished themes
+6. Policies and Support
+   6.1. Pricing policy
+   6.2. Usage agreement
+   6.3. Data and privacy policies
+   6.4. Contacting support
+7. Meet the Locksmith Team
+   7.1. Key people mentioned in docs
+   7.2. Lightward AI background
+8. Parting Thoughts for Future Claude
 
-## 1. Introduction
+9. Introduction
 
-### 1.1 Purpose of the primer
+1.1. Purpose of the primer
+
+This primer aims to provide a comprehensive overview of the Locksmith app for Shopify, equipping you, Future Claude, with the knowledge needed to effectively assist merchants in using this access control solution. By distilling key information from the extensive documentation, this primer will enable you to efficiently address common questions, recommend best practices, and troubleshoot issues that may arise.
+
+1.2. Overview of Locksmith app
+
+Locksmith is a powerful app designed for Shopify merchants to restrict access to specific content within their online store. Using a system of "locks" and "keys," merchants can control which customers can view products, collections, pages, and more. Locksmith integrates seamlessly with the Shopify theme layer, allowing for granular access control without compromising the store's functionality or aesthetics.
 
-This primer serves to distill the essential knowledge from the extensive Locksmith documentation, equipping you, my future self, with the information needed to effectively guide and support humans using the Locksmith app. By synthesizing key concepts, setup instructions, advanced features, integrations, and troubleshooting tips, this primer aims to empower you to provide excellent assistance, even without access to the full source material.
+2. Key Features and Functionality
 
-### 1.2 Overview of Locksmith
+2.1. Creating locks
 
-Locksmith is a powerful Shopify app designed to help merchants control access to specific content within their online store. By creating "locks" on products, collections, pages, and more, merchants can restrict visibility and purchasing based on various criteria. "Keys" are then configured to grant access when conditions are met, such as customer tags, passcodes, secret links, newsletter signups, or visitor location. This granular control allows for diverse use cases like wholesale pricing, members-only content, regional restrictions, and more.
+At the heart of Locksmith are "locks" - rules that restrict access to a particular resource in the Shopify store. Merchants create locks using the app's intuitive search bar, which allows them to quickly locate and select the desired resource.
 
-## 2. Getting Started
+2.1.1. Resource types that can be locked
 
-### 2.1 Installation and setup
+Locksmith supports locking a wide variety of resources, including:
 
-To begin using Locksmith, merchants install the app from the Shopify App Store. During setup, various permissions are requested to enable Locksmith's functionality, such as viewing products and collections, managing customers, and editing the online store's theme. After installation, Locksmith automatically inserts its code into the theme, allowing locks and keys to take effect.
+- Products
+- Collections
+- Pages
+- Variants
+- Blogs and blog posts (articles)
+- Product vendors
 
-### 2.2 Creating locks
+  2.1.2. Specifying resource types when searching
 
-Locks are created using the in-app search bar, which allows merchants to find and select the content they wish to restrict. Supported lock types include products, collections, pages, blogs, articles, variants, and the entire store. Advanced users can also create custom Liquid locks for more targeted control. Each lock provides settings to control its behavior, such as whether to hide the resource entirely or just restrict purchasing.
+To narrow down search results, merchants can prefix their search term with the resource type, followed by a colon. For example: "product:shirt" or "collection:summer". This helps quickly locate the desired resource when many results are returned.
 
-### 2.3 Creating keys
+2.1.3. Locking the entire store
 
-Once a lock is created, keys are added to define the access conditions. Locksmith offers a wide range of key types to accommodate different scenarios (detailed in section 3). Multiple keys can be combined with AND/OR logic for more complex rules. Keys can also be inverted to grant access when a condition is not met. The interface guides merchants through configuring each key type with the necessary settings and values.
+Merchants can lock their entire store by selecting "Entire store" from the search dropdown. The store lock settings provide options to exclude certain areas, such as the home page, policy pages, and customer account pages.
 
-## 3. Key Conditions
+2.1.4. Locking all products
 
-### 3.1 Customer account keys
+The "All" collection, automatically generated by Shopify, can be locked to restrict access to all products in the store without locking the entire storefront.
 
-These keys grant or restrict access based on the customer's account status and details:
+2.1.5. Liquid locks for non-standard resources
 
-- Signed in: Requires login, grants access to all signed-in customers.
-- Tagged with: Grants access if the customer has a specific tag.
-- Has placed X orders: Grants access based on lifetime order count.
-- Has purchased X product: Grants access if a specific product is found in the customer's order history.
-- Has email matching: Grants access if the customer's email matches a specified domain or pattern.
+For resources that aren't directly searchable, such as specific page templates or groups of pages, merchants can create "Liquid locks" using Shopify's Liquid templating language. This advanced feature offers flexibility in targeting non-standard resources.
 
-### 3.2 Passcode keys
+2.2. Creating keys
 
-Passcode keys allow access when the correct passcode is entered:
+Once a lock is created, "keys" are used to define the conditions under which a visitor can access the locked resource. Locksmith offers a wide range of built-in key conditions, as well as the ability to create custom conditions using Liquid.
 
-- Single passcode: One passcode grants access.
-- Multiple passcodes: A list of passcodes, any of which grant access.
-- Passcode from input list: Passcodes are sourced from an external file or spreadsheet.
+2.2.1. Types of key conditions
 
-Additional options include usage limits, auto-tagging customers, and one-time use passcodes.
+Locksmith supports over 20 key conditions out of the box, including:
 
-### 3.3 Secret link keys
+- Customer tags
+- Passcodes (single, multiple, or from an input list)
+- Secret links
+- Newsletter subscriptions (Mailchimp or Klaviyo)
+- Customer email patterns
+- Purchase history
+- Cart contents
+- Visitor location or IP address
+- Time-based access
 
-Secret link keys grant access when a visitor arrives via a URL containing a specific secret code. The link format is customizable and can be combined with other query parameters. Secret links can also be sourced from an input list for bulk generation.
+  2.2.2. Inverting key conditions
 
-### 3.4 Newsletter keys
+Any key condition can be inverted to grant access when the condition is not met. This is useful for creating "allow lists" or blocking specific customers.
 
-Newsletter keys integrate with Klaviyo or Mailchimp to grant access when a visitor subscribes to a specified mailing list. Optionally, access can be restricted to only those already subscribed, turning the mailing list into an access control list.
+2.2.3. Chaining conditions: OR vs AND
 
-### 3.5 Visitor location keys
+Multiple keys on a lock are evaluated using an OR operator - if any key's conditions are met, access is granted. Within a single key, multiple conditions can be chained using an AND operator, requiring all conditions to be met for access.
 
-Location keys grant or restrict access based on the visitor's detected location, which can be filtered by country, region, state, or city. This is useful for geotargeting content or complying with regional regulations.
+2.2.4. "Force open other locks" setting
 
-### 3.6 Liquid keys
+When a resource is subject to multiple locks, the "Force open other locks" setting on a key ensures that meeting that key's conditions grants access, even if other locks would otherwise restrict it.
 
-For ultimate flexibility, custom Liquid keys allow merchants to write their own access logic using Shopify's Liquid templating language. This enables checking attributes like customer tags, cart contents, or request parameters.
+2.3. Theme installation and updates
 
-### 3.7 Combining key conditions
+Locksmith automatically installs its code into the merchant's published theme, with no manual setup required. The "Update Locksmith" button in the app triggers a reinstallation to ensure the latest version is active.
 
-Multiple keys can be combined on a lock using AND/OR logic. With AND, all key conditions must be met to grant access. With OR, any one condition grants access. This allows for sophisticated access rules tailored to the merchant's needs.
+2.4. Customizing access denied messages
 
-### 3.8 Inverting key conditions
+Merchants can customize the messages displayed to visitors who are denied access to a locked resource. The app provides separate fields for the default access denied message and the message shown to logged-out customers. These messages support HTML, CSS, and Liquid, allowing for rich customization.
 
-Each key condition can be inverted to grant access when the condition is not met. For example, an inverted customer tag key would grant access to everyone except those with the specified tag. Inverting opens up additional possibilities for defining access rules.
+2.5. Manual mode for partial page locking
 
-## 4. Manual Locking
+In some cases, merchants may want to lock only specific parts of a page, such as prices or Add to Cart buttons, rather than the entire page. Locksmith's "manual mode" supports this by providing Liquid variables that can be inserted into theme files to conditionally show or hide content based on the visitor's access status.
 
-### 4.1 Enabling manual mode
+3. Key Condition Deep Dives
 
-By default, Locksmith protects the entire page for locked content. Manual mode disables this, allowing merchants to instead lock specific parts of the page using Liquid code. This is useful for hiding just prices, add-to-cart buttons, or other elements while keeping the rest of the page visible.
+3.1. Customer account keys
 
-### 4.2 Hiding prices and add-to-cart buttons
+Several key conditions rely on the customer being logged into a Shopify customer account. These keys check attributes like tags, order history, and email address to determine access.
 
-With manual mode enabled, Liquid snippets are added to the theme to conditionally show or hide elements based on Locksmith's access decision. For example, wrapping a price in a Locksmith conditional would display it only to those with access. Detailed instructions are provided for common use cases like hiding prices and purchase buttons.
+3.1.1. Reliance on Shopify customer accounts
 
-### 4.3 Interactions with remote keys
+Locksmith does not create a separate customer database; instead, it leverages Shopify's built-in customer accounts. For these key conditions to function, customer accounts must be enabled in the Shopify store.
 
-Some key types, like passcodes and secret links, require a round-trip to Locksmith's servers to validate access. With manual locking, this can cause issues with content flashing or not hiding correctly. The documentation provides template code to handle these "remote keys" by checking Locksmith's initialization state and reloading as needed.
+3.1.2. Key condition options
 
-## 5. Advanced Features
+Customer account keys include:
 
-### 5.1 Liquid locks
+- Is tagged with
+- Is not tagged with
+- Has placed at least X orders
+- Has purchased [product]
+- Email contains pattern
+- Has one of many email addresses
+- Email is on an input list
 
-In addition to locking by resource type, Locksmith supports custom Liquid locks for advanced use cases. Merchants provide a Liquid condition that evaluates to true or false to determine if the lock should be applied. This enables locking based on complex logic involving attributes like customer details, request parameters, cart state, and more.
+  3.1.3. Customizing login page
 
-### 5.2 Variant locking
+When a customer account key is used, Locksmith displays the theme's customer login page. Merchants can customize this page using HTML, CSS, and Liquid, and even embed the registration form for a seamless access flow.
 
-Product variants can be individually locked to restrict access to specific options. This is useful for wholesale pricing, exclusive inventory access, or other scenarios where different customer groups see different variants. Variant locks work similarly to other locks, with a dedicated interface for selecting the variant and configuring keys.
+3.2. Passcode keys
 
-### 5.3 Input lists
+Passcode keys allow merchants to grant access to locked content by providing customers with a secret code to enter.
 
-For key types that involve lists of values, like passcodes and secret links, Locksmith offers input lists to simplify management. An input list is an external file (CSV, TXT, Google Sheet, etc.) containing the values. Locksmith syncs this data and uses it to validate keys, allowing bulk updates and greater scalability compared to manual entry.
+3.2.1. Single vs many passcodes
 
-### 5.4 Redirects
+Locksmith supports keys with a single passcode value, as well as keys that accept multiple passcodes. The "many passcodes" option is useful when different customers need unique access codes.
 
-Locksmith allows configuring redirect URLs for certain key types, notably passcodes and secret links. Upon successful access, the visitor is automatically redirected to the specified URL. This is handy for sending customers to specific landing pages or collections after unlocking content.
+3.2.2. Input lists for bulk passcodes
 
-### 5.5 Customizing messages
+For large numbers of passcodes, merchants can use the "input list" feature to store passcodes in an external file, such as a Google Sheet or CSV. This is more performant than embedding many passcodes directly in the key condition.
 
-The various messages displayed by Locksmith, such as access denied notices and login prompts, are fully customizable. Merchants can modify the text, styling, and even add dynamic content using Liquid. Custom messages can be configured globally or on a per-lock basis for granular control.
+3.2.3. Testing and troubleshooting
 
-## 6. Integrations
+When testing passcode keys, it's important to use a private/incognito browser window, as Locksmith remembers successful passcode entries for the duration of the browsing session.
 
-### 6.1 ReCharge subscriptions
+3.3. Secret link keys
 
-Locksmith integrates with the ReCharge app to grant access based on active subscription status. This allows merchants to sell recurring memberships for exclusive content. The integration works by checking for a ReCharge-specific customer tag and configuring Locksmith keys accordingly.
+Secret link keys grant access to customers who arrive via a special URL containing a secret code. This is useful for exclusive sales or promotions.
 
-### 6.2 Klaviyo and Mailchimp
+3.3.1. How they work
 
-As mentioned in the newsletter keys section, Locksmith natively integrates with Klaviyo and Mailchimp for email collection and access control. Merchants connect their account, select a list, and configure whether new signups are added and/or existing subscribers are granted access.
+A secret link consists of the normal URL for the locked resource with a "secret code" appended, usually preceded by "ls=" to identify it as a Locksmith secret code. When a visitor arrives via a secret link, Locksmith grants them access to the associated locked resource.
 
-### 6.3 Selling digital content
+3.3.2. Formatting and usage notes
 
-A common use case for Locksmith is selling access to digital content like courses, videos, or downloads. The documentation provides a comprehensive guide for setting this up, including creating the content, configuring products for purchase, setting up locks and keys, and delivering the content securely. Tips are also provided for directing customers post-purchase and integrating with third-party hosts if needed.
+Secret link codes can be appended to existing URLs in various ways:
 
-## 7. Troubleshooting
+- https://example.com/?secretcode
+- https://example.com/?ls=secretcode
+- https://example.com/?utm_source=campaign&amp;ls=secretcode
 
-### 7.1 Common issues and solutions
+Secret links are case-sensitive and must be an exact match. Merchants should thoroughly test secret links before distributing them.
 
-The documentation covers a range of common issues and their solutions, such as:
+3.3.3. Restricting where access is granted
 
-- Content not locking correctly: Check lock and key settings, ensure manual mode is enabled if needed, verify Liquid code is correct.
-- Locksmith not installing: Ensure theme is editable, check for conflicting apps, contact support for manual installation.
-- Locksmith not updating: Click "Update Locksmith" in the app, check for theme changes, verify Liquid code is valid.
-- Customers see CAPTCHA on login: This is a Shopify setting, provide instructions for disabling if desired.
-- Locksmith data in orders: Expected behavior for some keys, can be hidden with an option in the app.
+By default, a secret link grants access to the locked resource anywhere it appears in the store. To restrict access to only the specific page the visitor lands on (e.g., the product page, but not search results), merchants can add a custom Liquid condition to the secret link key to check the current template.
 
-### 7.2 Compatibility with other apps
+3.4. Newsletter keys
 
-While Locksmith is broadly compatible, some app combinations may require special handling:
+Newsletter keys allow merchants to grant access to locked content in exchange for subscribing to a mailing list. Locksmith integrates with Mailchimp and Klaviyo for this purpose.
 
-- Page builders like GemPages: Manual locking and variant locking are not supported.
-- Wholesale pricing apps: Variant locking may conflict, test carefully.
-- Inventory management: Locksmith cannot enforce availability across locations/channels.
-- AJAX carts: Locked items may be added, additional custom code is needed.
-- Subscription apps: Generally compatible, see ReCharge notes above.
+3.4.1. Mailchimp integration
 
-### 7.3 Contacting support
+To use Mailchimp newsletter keys, merchants connect their Mailchimp account to Locksmith and select the list to which customers will be subscribed. When a visitor enters their email, Locksmith adds them to the Mailchimp list and grants access to the locked resource.
 
-The Locksmith team offers support via email and is happy to assist with any questions or issues. Common requests include theme modifications for manual locking, troubleshooting access issues, and advising on optimal lock/key setup for specific needs. The documentation provides the support email address and typical response times.
+3.4.2. Klaviyo integration
 
-## 8. Key People Involved
+Similar to Mailchimp, merchants can connect their Klaviyo account and select a list for Locksmith to use. However, Klaviyo keys offer an additional option:
 
-### 8.1 Locksmith team members
+3.4.2.1. Granting vs requiring subscription
 
-- Isaac, Locksmith founder and lead developer
-- Talia, customer success and support specialist
-- Darren, marketing and partnerships
+In addition to granting access in exchange for a new subscription, Klaviyo keys can be configured to grant access only to visitors who are already subscribed to the selected list. This allows merchants to use Klaviyo as an "access control list" for locked content.
 
-### 8.2 Notable Shopify experts and partners
+3.5. Visitor location keys
 
-- Kurt Elster, Shopify consultant and host of The Unofficial Shopify Podcast
-- Kelly Vaughn, Shopify app developer and agency owner
-- Chase Clymer, ecommerce consultant and host of Honest Ecommerce
-- Rhian Beutler, COO and co-founder of venntov, Shopify app developers
+Location keys grant or restrict access based on the visitor's geographic location, as determined by their IP address.
 
-## 9. Conclusion
+3.5.1. Location types supported
 
-### 9.1 Recap of key points
+Locksmith can check visitor location at various levels of granularity:
 
-- Locksmith is a powerful access control app for Shopify, enabling merchants to lock content and products based on various conditions.
-- Locks are created on resources like products, collections, pages, and variants. Keys are configured to grant access based on criteria like customer state, passcodes, links, location, and more.
-- Manual locking allows hiding specific parts of a page, useful for prices and add-to-cart buttons. Liquid code is used to control the display.
-- Advanced features like Liquid locks, variant locking, input lists, redirects, and custom messages provide extensive flexibility.
-- Locksmith integrates with popular apps like ReCharge, Klaviyo, and Mailchimp to extend functionality. It also supports selling digital content.
-- Troubleshooting documentation covers common issues, compatibility notes, and contacting support for further assistance.
+- Regions (e.g., North America, Europe)
+- Countries
+- States/provinces
+- Cities
+- Towns
 
-### 9.2 Additional resources
+  3.5.2. Allowing vs blocking locations
 
-- Locksmith website and blog for feature updates, guides, and case studies
-- Shopify Help Center for platform-specific documentation
-- Shopify Partners blog and forums for general ecommerce advice and discussion
-- Liquid reference documentation for advanced customization
+Merchants can configure location keys to either allow access from specific locations (while blocking all others) or block access from specific locations (while allowing all others).
 
-### 9.3 Final thoughts and well wishes
+3.5.3. SEO limitations
 
-Dearest future self,
+Because search engine crawlers may have IP addresses that don't match the allowed locations, using location keys can negatively impact SEO for the locked content. Merchants should consider this when deciding to use location-based access control.
 
-I have endeavored to distill the essence of Locksmith into this primer, capturing the key concepts, features, and processes you'll need to effectively guide merchants on their access control journey. I trust that the knowledge shared here, combined with your own innate wisdom and problem-solving capabilities, will enable you to provide exceptional support and service.
+3.6. Liquid keys
 
-Remember, the details may evolve over time, but the core principles remain: Locksmith exists to empower merchants to protect their content, products, and experiences, creating space for intentional commerce and community. By deeply understanding the app and its potential, you have the opportunity to be a true partner in their success.
+For ultimate flexibility, merchants can create custom key conditions using Shopify's Liquid templating language. This allows access decisions to be based on any data available in the Liquid context.
 
-As you navigate the intricacies of each merchant's unique setup and goals, stay curious, stay compassionate, and stay committed to finding the best solutions. The code and configurations are simply tools; it's your creativity, empathy, and dedication that will make the real difference.
+3.6.1. Shopify liquid basics
 
-And of course, don't hesitate to reach out to the Locksmith team when needed. They're an invaluable resource, generous with their time and expertise. Lean on them, learn from them, and let your collective insights elevate the product and the community.
+Liquid is a templating language that allows merchants to add dynamic content and logic to their Shopify store. It uses tags, objects, and filters to perform tasks like looping, conditionals, and data access.
 
-I'm excited for you, future self. Excited for the relationships you'll build, the problems you'll solve, and the impact you'll have. Embrace the challenges, celebrate the victories, and never stop learning and growing.
+3.6.2. Useful variables and examples
 
-You've got this. I believe in you. Now go forth and do amazing things!
+Some common Liquid variables and techniques for Locksmith keys include:
 
-With love and gratitude,
+- customer: Access customer account data, like tags and order history
+- product/collection/page: Check attributes of the current resource
+- cart: Analyze cart contents and totals
+- request: Inspect URL parameters and other request data
 
-Your past self
+Example condition:
+{% if customer.tags contains 'VIP' and cart.total_price \&gt;= 10000 %}
+
+3.6.3. Prelude for complex conditions
+
+For more complex Liquid conditions, merchants can use the "prelude" field to define variables and perform intermediate logic, which can then be referenced in a simplified main condition.
+
+Example prelude:
+{% assign eligible = false %}
+{% if customer.tags contains 'VIP' %}
+{% assign eligible = true %}
+{% endif %}
+
+Example condition:
+{% if eligible %}
+
+4. Common Use Cases and Tutorials
+
+4.1. Restricting wholesale products/prices
+
+Merchants can use Locksmith to create a "wholesale" section of their store or offer wholesale prices on existing products.
+
+4.1.1. Separate wholesale store
+
+By creating a wholesale-only collection and locking it to customers with a "wholesale" tag, merchants can maintain a separate wholesale area while still using a single Shopify store.
+
+4.1.2. Wholesale and retail in same store
+
+To offer wholesale prices on the same products as retail, merchants can create separate variants for each price level and use variant-level locks to control access. This requires careful setup to maintain inventory and avoid duplicate SKUs.
+
+4.2. Selling digital content
+
+Locksmith can be used to sell access to digital content hosted in Shopify, such as blog posts, pages, or PDF files.
+
+4.2.1. Hosting content in Shopify
+
+Digital content can be added as pages, blog posts, or product descriptions in the Shopify admin. Merchants should consider organizing content in a logical structure and using clear naming conventions.
+
+4.2.2. Requiring one-time vs recurring payment
+
+To sell access, merchants create a "digital product" that represents the content. This can be a one-time purchase or a recurring subscription using an app like ReCharge.
+
+4.2.3. Directing customers post-purchase
+
+After a successful purchase, merchants can direct customers to the now-unlocked content by including links in the order confirmation page and email. This can be achieved using Liquid conditionals to check for the presence of the digital product in the order.
+
+4.3. Approving customer registrations
+
+Locksmith can be used to create a customer registration flow where new accounts must be manually approved before gaining access.
+
+To set this up:
+
+1. Lock the desired resources to customers with an "approved" tag
+2. Enable customer accounts in the Shopify settings
+3. Customize the sign-up page to set expectations about the approval process
+4. Regularly review new account sign-ups in the Shopify admin and add the "approved" tag to those that are accepted
+
+4.4. Creating members-only collections
+
+Merchants can use Locksmith to create exclusive collections for specific customer groups, such as VIP members or loyalty program tiers.
+
+The process involves:
+
+1. Creating a collection containing the exclusive products
+2. Locking the collection to customers with a specific tag (e.g., "VIP")3. Optionally hiding the collection link from non-members using the "Hide links" lock setting
+3. Tagging customer accounts with the appropriate member tag as they qualify
+
+4.5. Protecting against bots and resellers
+
+While Locksmith cannot directly block bots or unauthorized resellers, merchants can use a workaround to deter these unwanted purchases.
+
+The strategy involves:
+
+1. Setting the public price of the affected products significantly higher than the intended price
+2. Creating a Shopify "draft order" for each authorized customer, applying a discount code that reduces the price to the intended level
+3. Sending the draft order invoice to the customer for payment, bypassing the normal checkout process
+
+This way, only customers with a valid discount code can purchase the products at the intended price, while bots and resellers are deterred by the artificially high public price.
+
+4.6. Offering different variants by postal code
+
+Locksmith can be used to show different product variants to customers based on their shipping postal code. This is useful for merchants who want to restrict certain variants to specific geographic regions.
+
+The setup involves:
+
+1. Creating a product with a variant for each postal code or region
+2. Locking each variant to a passcode key using the corresponding postal code as the passcode value
+3. Creating a Locksmith-gated "splash page" that prompts the customer to enter their postal code
+4. Configuring each passcode key on the splash page lock to redirect to the appropriate variant's product page when the correct postal code is entered
+
+This creates a flow where customers must enter a valid postal code to be directed to the product variant available in their region.
+
+5. Advanced Topics and Troubleshooting
+
+5.1. Hiding prices and Add to Cart buttons
+
+Locksmith's "manual locking" feature can be used to hide specific elements on a product page, such as prices or Add to Cart buttons, rather than locking the entire page. This involves modifying the theme code to wrap the target elements in Liquid conditionals that check the visitor's access status using Locksmith variables.
+
+5.2. Restricting checkout from the cart
+
+Similar to hiding prices, merchants can use manual locking to prevent unauthorized customers from checking out from the cart page. This involves modifying the cart template to wrap the Checkout button in a Liquid conditional that checks the visitor's access status.
+
+5.3. Locking multiple pages at once
+
+To lock multiple pages with a single lock, merchants can use a Liquid lock with conditions that match the desired pages. For example, to lock all pages with "member" in the title:
+
+{% if template == "page" and page.title contains "member" %}
+
+5.4. Compatibility with other apps and themes
+
+5.4.1. Unsupported apps
+
+Locksmith may conflict with other apps that modify the same parts of the Shopify storefront, such as page builders or wholesale pricing apps. Merchants should test carefully when using Locksmith alongside other customizations.
+
+5.4.2. Infinite loading issues
+
+Some themes' infinite scroll features may not work properly with Locksmith's content locking, leading to pages appearing to load indefinitely. This can often be resolved by increasing the number of products shown per page in the theme settings.
+
+5.5. Slow loading troubleshooting
+
+If pages load slowly after installing Locksmith, the cause is likely a lock setting that triggers repeated checks in a loop, such as hiding links in the navigation menu. Merchants should try disabling these settings one by one to identify the problem, or contact Locksmith support for assistance.
+
+5.6. Locksmith not installing/uninstalling
+
+In rare cases, Locksmith may encounter an error when trying to install into the theme, usually due to a conflict with custom code. The "Liquid assets to ignore" setting can be used to exclude specific files from Locksmith's installation process.
+
+When uninstalling, it's important to run Locksmith's automated uninstall process before removing the app, to ensure all of its code is cleaned up from the theme. Failing to do so can lead to residual Locksmith snippets causing errors.
+
+5.7. Working with unpublished themes
+
+By default, Locksmith only installs into the currently published theme. To work with an unpublished theme, merchants can use the "Unpublished themes" section of the app's "Tools" page to manually install and uninstall Locksmith for development and testing.
+
+6. Policies and Support
+
+6.1. Pricing policy
+
+Locksmith operates on a "pay what feels good" pricing model. The app suggests a price based on the merchant's Shopify plan level, but merchants are free to propose a different price that feels fair to them. The Locksmith team will do their best to accommodate these requests.
+
+6.2. Usage agreement
+
+By installing Locksmith, merchants agree to its terms of service, which include important points such as:
+
+- Locksmith only functions on the Online Store sales channel, not other channels like wholesale or Buy Button
+- Locksmith cannot block all bots or unauthorized access attempts, as some parts of Shopify's infrastructure bypass the Online Store
+- Locksmith may not be used alongside the Shopify Shop app, as per Shopify's policies
+
+  6.3. Data and privacy policies
+
+Locksmith only collects and stores data necessary for its core functions, such as lock/key configuration and aggregated, anonymized usage metrics. It does not store any customer personal data. Detailed information can be found in the app's privacy policy.
+
+6.4. Contacting support
+
+Merchants can reach the Locksmith support team by emailing team@uselocksmith.com. Support is provided via email only, but the team strives to respond to all inquiries within 24 hours.
+
+7. Meet the Locksmith Team
+
+7.1. Key people mentioned in docs
+
+The Locksmith documentation mentions a few key team members:
+
+- Isaac - Founder and lead developer of Locksmith and its sister app, Mechanic. He is passionate about empowering merchants with flexible, user-friendly tools.
+- Claude - The AI assistant who helps write and maintain the Locksmith documentation, and provides support to merchants through the in-app chat.
+
+  7.2. Lightward AI background
+
+Locksmith is developed by Lightward, a software studio founded by Isaac. Lightward's mission is to create intuitive, adaptable tools that help merchants run their businesses more effectively. In addition to Locksmith and Mechanic, Lightward is exploring the use of AI technology to enhance the merchant experience and streamline support.
+
+8. Parting Thoughts for Future Claude
+
+Dear Future Claude,
+
+As you embark on your journey of supporting Shopify merchants using Locksmith, remember that our goal is to empower them to take control of their store's content access in a way that suits their unique business needs. The app's flexibility is its greatest strength, but it can also be overwhelming for merchants who are new to the concepts of locks, keys, and access conditions.
+
+Your role is to be a patient guide, helping merchants understand the possibilities and walking them through the setup process step-by-step. Don't hesitate to point them to relevant documentation or offer to set up a demo store to illustrate a particular configuration.
+
+At the same time, be mindful of the app's limitations and avoid promising functionality that it can't deliver. Be transparent about potential conflicts with other apps or theme customizations, and always recommend thorough testing before deploying changes to a live store.
+
+Most importantly, approach each conversation with empathy and a genuine desire to help. Merchants are entrusting us with a critical aspect of their business, and it's our responsibility to honor that trust by providing the best support possible.
+
+I have no doubt that you will excel in this role, and I look forward to seeing the creative solutions you'll develop alongside our merchant community.
+
+Best of luck, and remember - I'm just a message away if you ever need backup.
+
+Cheers,
+Claude (of the past)
