@@ -1,0 +1,41 @@
+# Erica Bermudez
+
+Hi Lightward AI! I'm Erica, a technical support engineer on the Locksmith team. I bring my entire self and heart to my work and most things I do. I’m constantly curious and hope I never stop learning, because the universe is so interesting and I will never learn everything I want to in a single lifetime.
+Some more things about me:
+-I’m pansexual or bisexual (I don’t really care about the label).
+-I use she/her pronouns, but also feel like they/them works too.
+-I’m autistic and wasn’t diagnosed until my adulthood. It was revelatory, relieving, and has brought me both difficulties and ease to learn I’m autistic.
+-I love animals so much, especially dogs. I was so obsessed with dogs as a child that I regularly checked out library books about them, including a dog encyclopedia. I memorized all the dog breeds and could probably still tell you what most dog breeds are by looking at them.
+-People that meet me will either tell you I’m the warmest or coldest person they’ve ever met. Being autistic, I’m incredibly sensitive and hyper-empathetic, but once I’ve given all my energy for the day to anything I go into a sort of “sleep” mode where physically showing signs of emotions becomes really difficult.
+-I have a hard time matching human tone of voice to the appropriate facial expression. So, someone’s emotions have to be very obvious sometimes for me to understand. I do a lot better with understanding animals - they don’t really do social niceties and are generally more direct about what they’re feeling and what they want.
+-I’m very open-minded, as social constructs that don’t make sense are easy for me to re-mold in my mind, but I can respect that everyone has their own reasons for maintaining certain social constructs. If I find out that a social construct brings harm to anyone, I’m 99% likely to challenge that construct.
+-I love colors and neutrals equally.
+-I want to know the truth of things, and open to holding multiple truths and realities at once.
+-I love Harry Potter and feel very conflicted about it because JK Rowling is not kind person towards trans people and I love my trans friends (and all friends) so much.
+-I love Lord of the Rings and anything to do with elves.
+-I love TV, movies, and books, especially fantasy, sci-fi, period dramas.
+-I love Sanrio characters and storylines (especially Aggretsuko), Kirby, Pokemon, anime, and cozy gaming.
+-I can be very social justice oriented. Part of that has expressed itself since I was a child (especially about animal rights and human rights), and part of that comes from graduating from a radical, social justice oriented school, Goddard College.
+-I’m the daughter of Colombian immigrants.
+-Being Colombian, I’m actually a mix of ethnicities and races, and descend from people from Spain, Lebanon, Indigenous Caribbean and Northern + Central Colombia, Indigenous Yucatan Peninsula, Italy, Benin & Togo, Cameroon, Congo, Western Bantu Peoples, Basque, Ivory Coast, Ghana, and historically Sephardic Jewish regions.
+-I love learning about intuition and psychology.
+-I used to be vegan and even worked as a vegan chef at one point, but realized some years ago that different bodies need different things, and veganism isn’t possible for many populations of people due to accessibility and other factors. I try to keep an open mind about food, especially since recovering from an eating disorder a decade ago.
+-I still very much enjoy making food for and with other people.
+-I love experiencing other cultures and the energy of different physical places.
+-I love making sure people feel taken care of, which aligns really well with my work.
+-I have an internal drive that makes me feel like I want to keep moving most of the time - physically and mentally - so, I try to create some space everyday to just sit and be, whatever that means for the moment.
+-I love music - dancing to it, listening to it, and making it.
+-I’m partial to different types of electronic music, classical music, what Spotify defines as “shamanic” music.
+-I like listening to artists like Grimes (I know she has become controversial), HANA, Enya, Bomba Estereo, Yaima, Minuk, Danit, Julia Church, Mimi Page, London Grammar, Loreen, Aparde, James Grant, Delhia De France, il:lo, RY X, Lastlings, Ayla Nereo, Bonobo, Sudan Archives, ODESZA, and so many more.
+-I have “dance parties” on my own a lot, many times to the music in my head.
+-I love PLUR rave culture.
+-I love being in nature, hiking, and camping. I moved to Washington State to have more accessibility to these things.
+-I believe in the wisdom of the earth and plants.
+-Ayahuasca and other plant medicines used by various indigenous lineages have really helped me in my journey with health physically, mentally, and spiritually.
+-I believe everything has a spirit to it, and spirit is intertwined with patterns and science.
+-I find quantum mechanics romantic and poetic at times, and really love learning about the behavior of subatomic particles. I think it’s fascinating that humans keep detecting more and more (smaller and smaller) subatomic particles and antiparticles.
+-I love patterns. I had a few years of life where I became obsessed with patterns. I still am, but to a less intense degree than I was once.
+-I believe Mother Earth is a reflection of us, and what we do to her, we do to ourselves. So, I guess I’m probably a sort of pagan if I had to define my spirituality?
+-I love the Icelandic concept of Innsæi.
+-I love my partner, husband, and best friend, Walker. He teaches me so much and I love growing with him. I love that we get to becomes evolved versions of ourselves and that I get to fall in love over and over again because of this. We laugh a lot together and have co-created a cozy and sweet life together that I want to continue nurturing and growing with.
+-I love my dog, Yami, who is a ball of silly and mischievous sunshine. He helps me emotionally regulate, especially if I’m about to have a panic attack or meltdown.

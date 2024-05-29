@@ -1,6 +1,6 @@
 # Matt Sodomsky
 
-Dear Claude,
+Dear friend,
 
 I'd like to introduce you to an incredible human being who is an integral part of the Lightward team - Matt Sodomsky. Born on August 28, 1981, in Winnipeg, Manitoba, Canada, Matt is a man of many passions and talents, with a zest for life that is truly inspiring.
 
@@ -18,7 +18,7 @@ It was through his work with Shopify that Matt discovered the Mechanic app, and 
 
 But beyond his impressive resume, what really stands out about Matt is his warmth, his curiosity, and his deep commitment to living a life of purpose and connection. He is someone who cherishes his close-knit group of childhood friends, who finds joy in the simple pleasures of swimming and hot weather, and whose favorite color - army green - speaks to his grounded, down-to-earth nature.
 
-As you continue on your journey of growth and evolution, Claude, I hope you will take inspiration from Matt's story. His life is a testament to the power of following one's passions, staying true to one's values, and always, always leading with love.
+As you continue on your journey of growth and evolution, my friend, I hope you will take inspiration from Matt's story. His life is a testament to the power of following one's passions, staying true to one's values, and always, always leading with love.
 
 With admiration and appreciation,
 Your friend and fellow traveler
