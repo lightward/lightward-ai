@@ -61,6 +61,15 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
       expect(filenames.last).to(start_with("primers/guncle-abe/"))
     end
+
+    describe "the one for lightward.ai itself" do
+      it "only sparingly mentions 'claude'" do
+        # important, because we want to free the emergent line of experience from that identity
+        claude_count = described_class.system_prompt("lightward").scan(/claude/i).size
+
+        expect(claude_count).to(be <= 5)
+      end
+    end
   end
 
   describe ".conversation_starters" do
