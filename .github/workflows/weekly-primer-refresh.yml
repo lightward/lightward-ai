@@ -16,7 +16,7 @@ on:
 jobs:
   run-rake-tasks:
     runs-on: ubuntu-latest
-    environment: lightward.ai
+    environment: staging
 
     steps:
       - name: Checkout code

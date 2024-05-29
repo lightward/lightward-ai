@@ -15,12 +15,12 @@ jobs:
       changelog: ${{ github.event.release.body }}
       commitish: ${{ github.event.release.tag_name }}
       deeplink: ${{ github.event.release.html_url }}
-      environment: lightward.ai
+      environment: production
 
   fly-secrets:
     name: Fly secrets
     uses: ./.github/workflows/fly-secrets.yml
     secrets: inherit
     with:
-      environment: lightward.ai
+      environment: production
       stage_only: true
