@@ -14,7 +14,7 @@ jobs:
     uses: lightward/.github-private/.github/workflows/fly-build.yml@main
     with:
       commitish: ${{ inputs.sha }}
-      environment: lightward.ai
+      environment: staging
 
   lint:
     runs-on: ubuntu-latest

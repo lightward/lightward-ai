@@ -11,7 +11,7 @@ on:
       environment:
         description: Environment
         required: true
-        default: staging.lightward.ai
+        default: staging
         type: environment
       notes:
         description: Deploy notes
