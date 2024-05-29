@@ -142,6 +142,23 @@ RSpec.describe(StreamMessagesJob) do
           sequence_number: 1,
         ))
       end
+
+      it "reports it to newrelic" do # rubocop:disable RSpec/ExampleLength
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+
+        job.perform(stream_id, chat_log)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "Anthropic API call",
+          hash_including(
+            stream_id: stream_id,
+            request_chunk_count: a_value > 20_000,
+            request_content_length: a_value > 150_000,
+            response_chunk_count: 1,
+            response_content_length: 35,
+          ),
+        ))
+      end
     end
 
     context "when the response contains multiple lines of data" do

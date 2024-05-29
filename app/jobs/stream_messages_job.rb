@@ -77,7 +77,7 @@ class StreamMessagesJob < ApplicationJob
     }
 
     begin
-      Prompts::Anthropic.api_request(payload) do |response|
+      Prompts::Anthropic.api_request(payload) do |request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
         end
@@ -87,14 +87,12 @@ class StreamMessagesJob < ApplicationJob
         elsif response.code.to_i >= 400
           broadcast(stream_id, "error", { error: { message: response.body } })
         else
-          buffer = +""
-          response.read_body do |chunk|
-            buffer << chunk
-            until (line = buffer.slice!(/.+\n/)).nil?
-              process_line(line.strip, stream_id)
-            end
-          end
-          process_line(buffer.strip, stream_id) unless buffer.empty?
+          handle_streaming_response(
+            request: request,
+            response: response,
+            stream_id: stream_id,
+          )
+
           newrelic("StreamMessagesJob: success", stream_id: stream_id)
         end
       end
@@ -108,6 +106,38 @@ class StreamMessagesJob < ApplicationJob
   end
 
   private
+
+  def handle_streaming_response(request:, response:, stream_id:)
+    request_chunk_count = request.body.scan(/\s+/).size
+    request_content_length = request.body.size
+
+    response_chunk_count = 0
+    response_content_length = 0
+
+    buffer = +""
+
+    response.read_body do |chunk|
+      response_chunk_count += 1
+      response_content_length += chunk.size
+
+      buffer << chunk
+
+      until (line = buffer.slice!(/.+\n/)).nil?
+        process_line(line.strip, stream_id)
+      end
+    end
+
+    process_line(buffer.strip, stream_id) unless buffer.empty?
+
+    newrelic(
+      "Anthropic API call",
+      stream_id: stream_id,
+      request_chunk_count: request_chunk_count,
+      request_content_length: request_content_length,
+      response_chunk_count: response_chunk_count,
+      response_content_length: response_content_length,
+    )
+  end
 
   def wait_for_ready(stream_id)
     timeout = 10.seconds.from_now

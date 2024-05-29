@@ -39,7 +39,7 @@ module Prompts
 
         http.request(request) do |response|
           record_rate_limit_event(response)
-          yield response
+          yield request, response
         end
       end
 
@@ -88,7 +88,7 @@ module Prompts
         max_tokens_reached = false
 
         begin
-          api_request(payload) do |response|
+          api_request(payload) do |_request, response|
             if response.code.to_i == 429
               $stderr.puts("\nRate limit exceeded: #{response.body}")
             elsif response.code.to_i >= 400

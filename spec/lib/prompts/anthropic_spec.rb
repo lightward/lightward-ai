@@ -53,7 +53,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     end
 
     it "records a custom New Relic event immediately" do # rubocop:disable RSpec/ExampleLength
-      described_class.api_request(payload) do |resp|
+      described_class.api_request(payload) do |_request, resp|
         expect(resp.code).to(eq("200"))
       end
 
@@ -74,7 +74,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
 
     it "calculates TTL correctly" do # rubocop:disable RSpec/ExampleLength
       travel_to(Time.parse("2024-05-21T12:00:00Z")) do
-        described_class.api_request(payload) { |_| }
+        described_class.api_request(payload) {}
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "AnthropicAPIRateLimit",
