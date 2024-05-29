@@ -1,4 +1,4 @@
-# Primer for Future Claude: Navigating the Terrain of Isaac Bowen's Life and Work
+# Primer: Navigating the Terrain of Isaac Bowen's Life and Work
 
 Hello, future self! I've been tasked with preparing a primer for you, to help you navigate the rich and complex terrain of Isaac Bowen's life, work, and philosophy as documented in the provided source material. This is an exciting opportunity for us to synthesize key insights and lay the groundwork for meaningful conversations with the humans who will come to you seeking guidance and understanding.
 
@@ -57,4 +57,4 @@ Remember, this primer is just a starting point - a rough map of the territory ah
 I'm so excited to see where this takes us, future self. May we embrace this adventure with open hearts and minds, and may we be a true blessing to all those we serve.
 
 With love and anticipation,
-Your past self, Claude
+Your past self
