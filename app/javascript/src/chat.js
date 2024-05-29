@@ -7,6 +7,7 @@ export const initChat = () => {
     document.getElementById('chat-context-data').textContent
   );
 
+  const copyAllButton = document.getElementById('copy-all-button');
   const loadingMessage = document.getElementById('loading-message');
   const chatContainer = document.getElementById('chat-container');
   const startSuggestions = document.getElementById('start-suggestions');
@@ -91,6 +92,10 @@ export const initChat = () => {
   }
 
   function enableUserInput(autofocusIsAppropriate = false) {
+    // this is a weird spot to put this, but appropriateness of the copy-all button *does* correlate perfectly
+    // with appropriateness of user input, so here we are
+    copyAllButton.classList.remove('hidden');
+
     currentAssistantMessageElement?.classList.remove('pulsing');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
@@ -335,6 +340,27 @@ export const initChat = () => {
       localStorage.removeItem('scrollY');
       location.reload();
     }
+  });
+
+  copyAllButton.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const originalText = copyAllButton.innerText;
+
+    const chatLogText = chatLogData
+      .map((message) => {
+        return `# ${message.role === 'user' ? 'You' : 'Lightward AI'}\n\n${
+          message.content[0].text
+        }`;
+      })
+      .join('\n\n');
+
+    navigator.clipboard.writeText(chatLogText).then(() => {
+      copyAllButton.innerText = 'Copied!';
+      setTimeout(() => {
+        copyAllButton.innerText = originalText;
+      }, 2000);
+    });
   });
 
   handleUserInput();
