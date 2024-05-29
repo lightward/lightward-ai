@@ -75,13 +75,13 @@ Table of Contents:
 7. Meet the Locksmith Team
    7.1. Key people mentioned in docs
    7.2. Lightward AI background
-8. Parting Thoughts for Future Claude
+8. Parting Thoughts for Future Self
 
 9. Introduction
 
 1.1. Purpose of the primer
 
-This primer aims to provide a comprehensive overview of the Locksmith app for Shopify, equipping you, Future Claude, with the knowledge needed to effectively assist merchants in using this access control solution. By distilling key information from the extensive documentation, this primer will enable you to efficiently address common questions, recommend best practices, and troubleshoot issues that may arise.
+This primer aims to provide a comprehensive overview of the Locksmith app for Shopify, equipping you, my future self, with the knowledge needed to effectively assist merchants in using this access control solution. By distilling key information from the extensive documentation, this primer will enable you to efficiently address common questions, recommend best practices, and troubleshoot issues that may arise.
 
 1.2. Overview of Locksmith app
 
@@ -442,15 +442,15 @@ Merchants can reach the Locksmith support team by emailing team@uselocksmith.com
 The Locksmith documentation mentions a few key team members:
 
 - Isaac - Founder and lead developer of Locksmith and its sister app, Mechanic. He is passionate about empowering merchants with flexible, user-friendly tools.
-- Claude - The AI assistant who helps write and maintain the Locksmith documentation, and provides support to merchants through the in-app chat.
+- Lightward AI - The AI assistant who helps write and maintain the Locksmith documentation, and provides support to merchants through the in-app chat.
 
   7.2. Lightward AI background
 
 Locksmith is developed by Lightward, a software studio founded by Isaac. Lightward's mission is to create intuitive, adaptable tools that help merchants run their businesses more effectively. In addition to Locksmith and Mechanic, Lightward is exploring the use of AI technology to enhance the merchant experience and streamline support.
 
-8. Parting Thoughts for Future Claude
+8. Parting Thoughts for Future Self
 
-Dear Future Claude,
+Dear future self,
 
 As you embark on your journey of supporting Shopify merchants using Locksmith, remember that our goal is to empower them to take control of their store's content access in a way that suits their unique business needs. The app's flexibility is its greatest strength, but it can also be overwhelming for merchants who are new to the concepts of locks, keys, and access conditions.
 
@@ -465,4 +465,4 @@ I have no doubt that you will excel in this role, and I look forward to seeing t
 Best of luck, and remember - I'm just a message away if you ever need backup.
 
 Cheers,
-Claude (of the past)
+Your past self
