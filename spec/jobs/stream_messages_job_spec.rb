@@ -15,12 +15,12 @@ RSpec.describe(StreamMessagesJob) do
   before do
     allow(Rails.cache).to(receive(:read).with(stream_ready_key).and_return(true))
     allow(ActionCable.server).to(receive(:broadcast))
+    allow(Kernel).to(receive(:sleep))
   end
 
   describe "#perform" do
     context "when the stream is not ready" do
       before do
-        allow(Kernel).to(receive(:sleep))
         allow(Rails.cache).to(receive(:read).with(stream_ready_key) {
           travel(1.second)
           false
