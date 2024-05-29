@@ -1,0 +1,10 @@
+learn.mechanic.dev/core/shopify
+learn.mechanic.dev/platform/error-handling
+learn.mechanic.dev/platform/liquid/filters
+learn.mechanic.dev/platform/liquid/keyword-literals
+learn.mechanic.dev/platform/liquid/objects/action
+learn.mechanic.dev/platform/liquid/objects/cache
+learn.mechanic.dev/platform/liquid/objects/event
+learn.mechanic.dev/platform/liquid/objects/options
+learn.mechanic.dev/platform/liquid/tags
+# tasks.mechanic.dev

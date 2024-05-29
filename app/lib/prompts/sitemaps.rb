@@ -40,8 +40,9 @@ module Prompts
             next
           end
 
-          domains.each do |domain|
-            logger.info("Processing domain: #{domain} in #{sitemaps_dir}")
+          domains.each do |domain_entry|
+            domain, path_prefix = parse_domain_entry(domain_entry)
+            logger.info("Processing domain: #{domain} with path prefix: #{path_prefix} in #{sitemaps_dir}")
             sitemap_url = "https://#{domain}/sitemap.xml"
             response = get_with_429_retries(sitemap_url)
             unless response.success?
@@ -58,12 +59,22 @@ module Prompts
             end
 
             urls.each do |url|
+              next unless url.start_with?("https://#{domain}/#{path_prefix}")
+
               process_url(url, domain, sitemaps_dir, logger)
             end
           end
         end
 
         logger.info("Update process completed.")
+      end
+
+      def parse_domain_entry(domain_entry)
+        if domain_entry.include?("/")
+          domain_entry.split("/", 2)
+        else
+          [domain_entry, ""]
+        end
       end
 
       def process_url(url, domain, sitemaps_dir, logger)
@@ -151,7 +162,7 @@ module Prompts
             retries += 1
 
             logger.warn("Received 429 response for URL: #{url}. Retrying in 2^#{retries} seconds...")
-            sleep(2**retries)
+            Kernel.sleep(2**retries)
 
             retry
           end
