@@ -48,12 +48,6 @@ export const initChat = () => {
       addMessage(message.role, message.content[0].text);
     });
 
-    // if the last message was from the user, send it to the assistant
-    if (chatLogData[chatLogData.length - 1].role === 'user') {
-      currentAssistantMessageElement = addPulsingMessage('assistant');
-      submitUserInput(chatLogData[chatLogData.length - 1].content[0].text);
-    }
-
     // Restore scroll position after messages have been loaded
     if (previousScrollY !== null) {
       window.scrollTo(0, parseInt(previousScrollY, 10));
