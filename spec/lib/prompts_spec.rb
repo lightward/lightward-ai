@@ -4,33 +4,6 @@
 require "rails_helper"
 
 RSpec.describe(Prompts, :aggregate_failures) do
-  describe ".anthropic_model" do
-    it "reflects ANTHROPIC_MODEL" do
-      ENV["ANTHROPIC_MODEL"] = "foo"
-      expect(described_class.anthropic_model).to(eq("foo"))
-    end
-
-    it "can fall back to the default" do
-      ENV.delete("ANTHROPIC_MODEL")
-      expect(described_class.anthropic_model).to(eq(described_class.default_anthropic_model))
-
-      ENV["ANTHROPIC_MODEL"] = ""
-      expect(described_class.anthropic_model).to(eq(described_class.default_anthropic_model))
-    end
-  end
-
-  describe ".default_anthropic_model" do
-    it "has a default for dev vs prod" do
-      ENV.delete("ANTHROPIC_MODEL")
-
-      Rails.env = "development"
-      expect(described_class.default_anthropic_model).to(eq("claude-3-haiku-20240307"))
-
-      Rails.env = "production"
-      expect(described_class.default_anthropic_model).to(eq("claude-3-opus-20240229"))
-    end
-  end
-
   describe ".prompts_dir" do
     it "returns a directory that exists and has markdown files" do
       expect(Dir.exist?(described_class.prompts_dir)).to(be(true))

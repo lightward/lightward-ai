@@ -6,36 +6,6 @@ module Prompts
   class << self
     attr_accessor :system_prompts, :starters
 
-    def default_anthropic_model
-      if Rails.env.production?
-        # this should be the maximum complexity model
-        "claude-3-opus-20240229"
-      else
-        # this should be the least expensive/complex model
-        "claude-3-haiku-20240307"
-      end
-    end
-
-    def anthropic_model
-      ENV["ANTHROPIC_MODEL"].presence || default_anthropic_model
-    end
-
-    def api_request(payload, &block)
-      uri = URI("https://api.anthropic.com/v1/messages")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-
-      request = Net::HTTP::Post.new(uri.path, {
-        "Content-Type": "application/json",
-        "anthropic-version": "2023-06-01",
-        "anthropic-beta": "messages-2023-12-15",
-        "x-api-key": ENV.fetch("ANTHROPIC_API_KEY", nil),
-      })
-      request.body = payload.to_json
-
-      http.request(request, &block)
-    end
-
     def prompts_dir
       Rails.root.join("app/prompts")
     end
