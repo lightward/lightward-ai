@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   post "chats/message", to: "chats#message"
 
   # Webhook endpoints
-  post "webhooks/helpscout", to: "webhooks#helpscout"
+  post "webhooks/helpscout", to: "helpscout#receive"
 end
