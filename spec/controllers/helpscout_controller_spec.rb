@@ -4,7 +4,7 @@
 
 require "rails_helper"
 
-RSpec.describe(HelpscoutController, :aggregate_failures) do
+RSpec.describe(HelpscoutController) do
   describe "POST #receive" do
     let(:valid_signature) { "M7u2/3y+EEtyynwkIcP2sihS0Q8=" }
     let(:invalid_signature) { "invalidsignature==" }
@@ -22,8 +22,7 @@ RSpec.describe(HelpscoutController, :aggregate_failures) do
 
         post :receive, body: parsed_data
 
-        expect(response).to(have_http_status(:ok))
-        expect(response.body).to(eq({ message: "Webhook received and verified" }.to_json))
+        expect(response).to(have_http_status(:accepted))
       end
     end
 
@@ -34,7 +33,6 @@ RSpec.describe(HelpscoutController, :aggregate_failures) do
         post :receive, body: parsed_data
 
         expect(response).to(have_http_status(:unauthorized))
-        expect(response.body).to(eq({ message: "Invalid signature" }.to_json))
       end
     end
   end

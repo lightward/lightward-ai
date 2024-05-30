@@ -8,9 +8,7 @@ require "action_view/helpers"
 class StreamMessagesJob < ApplicationJob
   include ActionView::Helpers::DateHelper
 
-  queue_as :default
-
-  before_perform :reset_prompts_in_development
+  queue_with_priority PRIORITY_STREAM_MESSAGES
 
   def perform(stream_id, chat_log, with_content_key = nil)
     newrelic(
