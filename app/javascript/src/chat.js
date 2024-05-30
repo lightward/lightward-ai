@@ -347,15 +347,42 @@ export const initChat = () => {
 
     const originalText = copyAllButton.innerText;
 
-    const chatLogText = chatLogData
+    const chatLogPlaintext = chatLogData
       .map((message) => {
-        return `# ${message.role === 'user' ? 'You' : 'Lightward AI'}\n\n${
-          message.content[0].text
-        }`;
+        const role = message.role === 'user' ? 'You' : 'Lightward AI';
+        const content = message.content
+          .map((content) => content.text)
+          .join('\n');
+
+        return `# ${role}\n\n${content}`;
       })
       .join('\n\n');
 
-    navigator.clipboard.writeText(chatLogText).then(() => {
+    const chatLogRichtext = chatLogData
+      .map((message) => {
+        const role = message.role === 'user' ? 'You' : 'Lightward AI';
+        const content = message.content
+          .map((content) => content.text)
+          .join('\n\n');
+        const blockquote = `<blockquote>${content
+          .split('\n')
+          .join('<br>')}</blockquote>`;
+
+        return `<b>${role}</b><br>${blockquote}`;
+      })
+      .join('<br><br>');
+
+    const plaintextBlob = new Blob([chatLogPlaintext], { type: 'text/plain' });
+    const richtextBlob = new Blob([chatLogRichtext], { type: 'text/html' });
+
+    const data = [
+      new ClipboardItem({
+        'text/plain': plaintextBlob,
+        'text/html': richtextBlob,
+      }),
+    ];
+
+    navigator.clipboard.write(data).then(() => {
       copyAllButton.innerText = 'Copied!';
       setTimeout(() => {
         copyAllButton.innerText = originalText;
