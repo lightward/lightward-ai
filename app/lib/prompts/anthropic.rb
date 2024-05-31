@@ -43,6 +43,25 @@ module Prompts
         end
       end
 
+      def process_messages(
+        prompt_type,
+        messages,
+        model: Prompts::Anthropic.model,
+        stream: false,
+        &block
+      )
+        payload = {
+          model: model,
+          max_tokens: 4000,
+          stream: stream,
+          temperature: 0.7,
+          system: Prompts.system_prompt(prompt_type),
+          messages: Prompts.conversation_starters(prompt_type) + messages,
+        }
+
+        api_request(payload, &block)
+      end
+
       def record_rate_limit_event(response)
         rate_limit_data = {
           requests_limit: response["anthropic-ratelimit-requests-limit"]&.to_i,
@@ -70,25 +89,16 @@ module Prompts
         reset_time_obj ? (reset_time_obj - Time.zone.now).to_i : nil
       end
 
-      def accumulate_response(prompt_type:, model:, messages:, path:, attempts:)
+      def accumulate_response(prompt_type, model:, messages: [], path:, attempts:)
         $stdout.puts "Prompt type: #{prompt_type}"
         $stdout.puts "Anthropic model: #{model}"
         $stdout.puts "Writing response to: #{path}\n\n"
-
-        payload = {
-          model: model,
-          max_tokens: 4000,
-          stream: true,
-          temperature: 0.7,
-          system: Prompts.system_prompt(prompt_type),
-          messages: messages,
-        }
 
         complete_response = +""
         max_tokens_reached = false
 
         begin
-          api_request(payload) do |_request, response|
+          process_messages(prompt_type, messages, model: model, stream: true) do |_request, response|
             if response.code.to_i == 429
               $stderr.puts("\nRate limit exceeded: #{response.body}")
             elsif response.code.to_i >= 400
@@ -125,7 +135,7 @@ module Prompts
           messages << { role: "assistant", content: [{ type: "text", text: complete_response.strip }] }
           messages << { role: "user", content: [{ type: "text", text: "Please continue." }] }
           accumulate_response(
-            prompt_type: prompt_type,
+            prompt_type,
             model: model,
             messages: messages,
             path: path,

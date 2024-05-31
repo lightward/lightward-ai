@@ -31,9 +31,8 @@ namespace :prompts do
     File.write(response_file_path, "")
 
     Prompts::Anthropic.accumulate_response(
-      prompt_type: prompt_type,
+      prompt_type,
       model: model,
-      messages: Prompts.conversation_starters(prompt_type),
       path: response_file_path,
       attempts: 9999,
     )

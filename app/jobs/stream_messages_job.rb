@@ -67,17 +67,8 @@ class StreamMessagesJob < ApplicationJob
       }
     end
 
-    payload = {
-      model: Prompts::Anthropic.model,
-      max_tokens: 4000,
-      stream: true,
-      temperature: 0.7,
-      system: Prompts.system_prompt("lightward"),
-      messages: Prompts.conversation_starters("lightward") + chat_log,
-    }
-
     begin
-      Prompts::Anthropic.api_request(payload) do |request, response|
+      Prompts::Anthropic.process_messages("lightward", chat_log, stream: true) do |request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
         end
