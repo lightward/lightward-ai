@@ -1,9 +1,57 @@
 # frozen_string_literal: true
 
+require "httparty"
+
 module Helpscout
+  class ResponseError < StandardError; end
+
   class << self
     def webhook_secret_key
       ENV.fetch("HELPSCOUT_WEBHOOK_SECRET_KEY")
+    end
+
+    def app_id
+      ENV.fetch("HELPSCOUT_APP_ID")
+    end
+
+    def app_secret
+      ENV.fetch("HELPSCOUT_APP_SECRET")
+    end
+
+    def fetch_conversation(id, with_threads: true)
+      token = cached_auth_token
+      url = "https://api.helpscout.net/v2/conversations/#{id}"
+      url += "?embed=threads" if with_threads
+
+      response = HTTParty.get(url, headers: {
+        "Authorization" => "Bearer #{token}",
+        "Content-Type" => "application/json",
+      })
+
+      if response.code == 200
+        JSON.parse(response.body)
+      else
+        raise ResponseError, "Failed to fetch conversation: #{response.code}\n\n#{response.body}".strip
+      end
+    end
+
+    private
+
+    def cached_auth_token
+      Rails.cache.fetch("helpscout_auth_token", expires_in: 2.hours) do
+        response = HTTParty.post("https://api.helpscout.net/v2/oauth2/token", body: {
+          grant_type: "client_credentials",
+          client_id: app_id,
+          client_secret: app_secret,
+        })
+
+        if response.code == 200
+          token_data = JSON.parse(response.body)
+          token_data["access_token"]
+        else
+          raise ResponseError, "Failed to fetch auth token: #{response.code}\n\n#{response.body}".strip
+        end
+      end
     end
   end
 end
