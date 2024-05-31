@@ -18,6 +18,10 @@ module Helpscout
       ENV.fetch("HELPSCOUT_APP_SECRET")
     end
 
+    def user_id
+      ENV.fetch("HELPSCOUT_USER_ID").to_i
+    end
+
     def fetch_conversation(id, with_threads: true)
       token = cached_auth_token
       url = "https://api.helpscout.net/v2/conversations/#{id}"
@@ -32,6 +36,47 @@ module Helpscout
         JSON.parse(response.body)
       else
         raise ResponseError, "Failed to fetch conversation: #{response.code}\n\n#{response.body}".strip
+      end
+    end
+
+    def create_note(conversation_id, body)
+      token = cached_auth_token
+
+      response = HTTParty.post(
+        "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes",
+        headers: {
+          "Authorization" => "Bearer #{token}",
+          "Content-Type" => "application/json",
+        },
+        body: {
+          text: body,
+          user: user_id,
+        }.to_json,
+      )
+
+      if response.code != 201
+        raise ResponseError, "Failed to create note: #{response.code}\n\n#{response.body}".strip
+      end
+    end
+
+    def create_draft_reply(conversation_id, body)
+      token = cached_auth_token
+
+      response = HTTParty.post(
+        "https://api.helpscout.net/v2/conversations/#{conversation_id}/reply",
+        headers: {
+          "Authorization" => "Bearer #{token}",
+          "Content-Type" => "application/json",
+        },
+        body: {
+          text: body,
+          draft: true,
+          user: user_id,
+        }.to_json,
+      )
+
+      if response.code != 201
+        raise ResponseError, "Failed to create draft reply: #{response.code}\n\n#{response.body}".strip
       end
     end
 
