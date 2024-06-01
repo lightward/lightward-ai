@@ -68,7 +68,7 @@ class StreamMessagesJob < ApplicationJob
     end
 
     begin
-      Prompts::Anthropic.process_messages("lightward", chat_log, stream: true) do |request, response|
+      Prompts::Anthropic.process_messages("chat", chat_log, stream: true) do |request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
         end

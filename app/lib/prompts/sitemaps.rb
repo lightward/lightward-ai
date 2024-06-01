@@ -104,9 +104,31 @@ module Prompts
         # Further clean up any remaining HTML tags
         markdown_content = Nokogiri::HTML(markdown_content).text.strip
 
-        # Remove previous/next links - they always look like "Previous" or "Next" followed by the title *without
-        # a space* between them (e.g. "PreviousPost Title")
+        # Remove gitbook's previous/next links - they always look like "Previous" or "Next" followed by the title
+        # *without a space* between them (e.g. "PreviousPost Title")
         markdown_content.sub!(/\n^\[(Previous|Next)\S.*(\n|$)/, "")
+
+        # Remove some redundant elements from tasks.mechanic.dev content
+        if domain == "tasks.mechanic.dev"
+          # rubocop:disable Layout/LineLength
+          safe_to_remove_these_lines = [
+            "Mechanic is a development and ecommerce automation platform for Shopify. :)",
+            "[Get Mechanic](https://apps.shopify.com/mechanic?ref=lightward&utm_source=mechanic&utm_campaign=task-library)",
+            "15-day free trial – unlimited tasks",
+            "Mechanic is designed to benefit everybody: merchants, customers, developers, agencies, Shopifolks, everybody.",
+            "That’s why we make it easy to configure automation without code, why we make it easy to tweak the underlying code once tasks are installed, and why we publish it all here for everyone to learn from.",
+            "(By the way, have you seen our documentation? Have you joined the Slack community?)",
+            "Open source",
+            "Task code is written in Mechanic Liquid, an extension of open-source Liquid enhanced for automation. [Learn more](https://learn.mechanic.dev/platform/liquid)",
+            "Love, [Lightward](https://lightward.com/)",
+            "[Need some help?](https://learn.mechanic.dev/)",
+          ]
+          # rubocop:enable Layout/LineLength
+
+          safe_to_remove_these_lines.each do |line|
+            markdown_content.sub!(line, "")
+          end
+        end
 
         # Prepend the URL to the markdown content
         markdown_content = "[Original URL: #{url}]\n\n" + markdown_content
