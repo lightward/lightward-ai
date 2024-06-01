@@ -10,10 +10,6 @@ a {
   color: var(--body-text-color);
 }
 
-a.patreon-link {
-  font-weight: 400;
-}
-
 p {
   margin: 0;
 }
@@ -26,7 +22,8 @@ p {
 .container,
 .chat-container,
 .chat-log,
-.tools,
+#intro,
+#tools,
 dl,
 #footer {
   display: flex;
@@ -207,7 +204,8 @@ dt {
   padding-right: 1rem;
 }
 
-.tools {
+#intro,
+#tools {
   margin-top: 0.5rem;
 }
 

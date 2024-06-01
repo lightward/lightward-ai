@@ -14,10 +14,12 @@ export const initChat = () => {
   const chatLog = document.getElementById('chat-log');
   const userInputArea = document.getElementById('user-input');
   const userInput = userInputArea.querySelector('textarea');
-  const instructions = document.getElementById('instructions');
   const footer = document.getElementById('footer');
   const responseSuggestions = document.getElementById('response-suggestions');
   const startOverButton = document.getElementById('start-over-button');
+
+  const intro = document.getElementById('intro');
+  const tools = document.getElementById('tools');
 
   const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
   const chatLogData =
@@ -41,7 +43,6 @@ export const initChat = () => {
   // Load chat log from localStorage
   if (chatLogData.length) {
     startSuggestions.classList.add('hidden');
-    startOverButton.classList.remove('hidden');
     enableUserInput();
 
     chatLogData.forEach((message) => {
@@ -94,7 +95,11 @@ export const initChat = () => {
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
     userInput.placeholder = 'What would you like to say?';
+
     startOverButton.classList.remove('hidden');
+    intro.classList.add('hidden');
+    tools.classList.remove('hidden');
+
     responseSuggestions.classList.add('hidden');
 
     // autofocus if we're not on a touch screen and if the input is in view
@@ -112,7 +117,6 @@ export const initChat = () => {
   function hideResponseSuggestions() {
     startSuggestions.classList.add('hidden');
     responseSuggestions.classList.add('hidden');
-    instructions.remove();
     footer.remove();
   }
 
@@ -180,6 +184,10 @@ export const initChat = () => {
     userInput.value = '';
     userInput.blur();
     userInputArea.classList.add('hidden');
+
+    intro.classList.add('hidden');
+    tools.classList.remove('hidden');
+
     currentAssistantMessageElement = addPulsingMessage('assistant');
     fetchAssistantResponse();
   }
