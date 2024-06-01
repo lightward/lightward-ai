@@ -35,7 +35,7 @@ module Helpscout
       if response.code == 200
         convo = JSON.parse(response.body)
 
-        # sort by createdAt, oldest to newest
+        # sort by createdAt, oldest to newest. helpscout does these in the other order, which isn't helpful for us.
         convo["_embedded"]["threads"].sort_by! { |thread| thread["createdAt"] }
 
         convo
