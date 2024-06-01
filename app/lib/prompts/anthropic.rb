@@ -37,10 +37,14 @@ module Prompts
 
         Rails.logger.debug { "Anthropic API request: #{request.body.first(1000)} [...] #{request.body.last(1000)}" }
 
+        result = nil
+
         http.request(request) do |response|
           record_rate_limit_event(response)
-          yield request, response
+          result = yield request, response
         end
+
+        result
       end
 
       def process_messages(

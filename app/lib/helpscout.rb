@@ -39,6 +39,17 @@ module Helpscout
       end
     end
 
+    def conversation_concludes_with_assistant?(conversation)
+      # threads are in order of most recent to last, so we want the first thread
+      threads = conversation.dig("_embedded", "threads") || []
+      latest_thread = threads.first
+
+      return false if latest_thread.nil?
+
+      latest_thread_user_id = latest_thread.dig("createdBy", "id")
+      latest_thread_user_id == user_id
+    end
+
     def create_note(conversation_id, body)
       token = cached_auth_token
 

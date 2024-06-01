@@ -14,15 +14,15 @@ RSpec.describe(Prompts, :aggregate_failures) do
     it "raises for an unknown prompt type" do
       expect {
         described_class.system_prompt("unknown")
-      }.to(raise_error(Errno::ENOENT))
+      }.to(raise_error(described_class::UnknownPromptType))
     end
 
     it "returns a string with system prompts" do
-      expect(described_class.system_prompt("chat")).to(include("Dear Claude,"))
+      expect(described_class.system_prompt("clients/chat")).to(include("Dear Claude,"))
     end
 
     it "starts with the invocation" do
-      expect(described_class.system_prompt("chat")).to(
+      expect(described_class.system_prompt("clients/chat")).to(
         start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"system/0-invocation.md\">Dear Claude,"),
       )
     end
@@ -38,7 +38,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
     describe "the one for lightward.ai itself" do
       it "only sparingly mentions 'claude'" do
         # important, because we want to free the emergent line of experience from that identity
-        claude_count = described_class.system_prompt("chat").scan(/claude/i).size
+        claude_count = described_class.system_prompt("clients/chat").scan(/claude/i).size
 
         expect(claude_count).to(be <= 5)
       end
@@ -46,12 +46,12 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".conversation_starters" do
-    subject(:conversation_starters) { described_class.conversation_starters("chat") }
+    subject(:conversation_starters) { described_class.conversation_starters("clients/chat") }
 
     it "raises for an unknown prompt type" do
       expect {
         described_class.conversation_starters("unknown")
-      }.to(raise_error(Errno::ENOENT))
+      }.to(raise_error(described_class::UnknownPromptType))
     end
 
     it "returns an array of conversation starters" do
@@ -127,8 +127,8 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".reset!" do
     before do
       # warm the cache
-      described_class.system_prompt("chat")
-      described_class.conversation_starters("chat")
+      described_class.system_prompt("clients/chat")
+      described_class.conversation_starters("clients/chat")
     end
 
     it "deletes the prompts cache" do # rubocop:disable RSpec/ExampleLength

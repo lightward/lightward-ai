@@ -2,7 +2,6 @@
 
 # spec/jobs/stream_messages_job_spec.rb
 require "rails_helper"
-require "webmock/rspec"
 
 RSpec.describe(StreamMessagesJob) do
   include ActiveSupport::Testing::TimeHelpers

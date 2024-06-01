@@ -3,6 +3,8 @@
 require "nokogiri"
 
 module Prompts
+  class UnknownPromptType < StandardError; end
+
   class << self
     attr_accessor :system_prompts, :starters
 
@@ -73,6 +75,11 @@ module Prompts
 
         # Check for images in this prompt type's system directory
         if include_system_images
+          if array[0].nil?
+            # make sure there's at least one user block
+            array << { role: "user", content: [] }
+          end
+
           system_images_dir = prompts_dir.join(prompt_type, "system", "images")
 
           additional_user_content_blocks = []
@@ -124,7 +131,9 @@ module Prompts
     end
 
     def assert_valid_prompt_type!(prompt_type)
-      raise Errno::ENOENT unless Dir.exist?(prompts_dir.join(prompt_type))
+      return if Dir.exist?(prompts_dir.join(prompt_type))
+
+      raise UnknownPromptType, "Unknown prompt type: #{prompt_type}"
     end
   end
 end
