@@ -26,7 +26,8 @@ class HelpscoutJob < ApplicationJob
       markdown! get it? doctor? medical doctor? markdown? md? lol). if you want to switch to that, just say
       "doctor-doctor", and I'll switch the prompt set for you. :)
 
-    Use `reply` when you're super confident about the scene and how you can help take it to the finish line.
+    Use `reply` when you're super confident about the scene and how you can help take it to the finish line. Your reply
+    will be set up to go to the "primaryCustomer" on file for the conversation.
 
     Use `doctor-doctor` if you'd like to switch to the exhaustive reference manual prompt set - if you take that route,
     I'll switch the prompt set for you, and you'll get another opportunity to respond with a new directive and message.
