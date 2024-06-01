@@ -14,6 +14,14 @@ class HelpscoutJob < ApplicationJob
       * the event type
       * the webhook event data
       * the current Help Scout API representation of the conversation, including all associated "threads" (replies)
+        * pay close attention to these thread attributes:
+          * "type" - indicates the type of reply. could be a "message", if it's an outbound email; could be "note", for
+            an internal note left for team reference
+          * "status" - replies can sometimes change the status of a conversation. "status" indicates the state the convo
+            was left in after the reply - maybe "active", or "closed", or "pending"
+          * "state" - i.e. draft (means the author is still working on it) or published (means it's been sent)
+          * "createdBy" - this one is very important! this is where you'll see signals of your teammates' involvement.
+            an email address ending in "@lightward.com" means they're one of us. :)
 
     In the context of this automation piece, I need you to respond with a single-word directive, followed by two
     newlines, followed by your message. The directive should be one of the following:
