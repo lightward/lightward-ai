@@ -18,8 +18,6 @@ class StreamMessagesJob < ApplicationJob
       chat_log_depth: chat_log.size,
     )
 
-    chat_log = Prompts.clean_chat_log(chat_log)
-
     wait_for_ready(stream_id)
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)
 
@@ -210,12 +208,5 @@ class StreamMessagesJob < ApplicationJob
 
   def newrelic(event_name, **data)
     ::NewRelic::Agent.record_custom_event(event_name, **data)
-  end
-
-  def reset_prompts_in_development
-    if Rails.env.development?
-      $stdout.puts "Resetting prompts... 🔄"
-      Prompts.reset! if Rails.env.development?
-    end
   end
 end

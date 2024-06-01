@@ -60,7 +60,7 @@ module Prompts
           stream: stream,
           temperature: 0.7,
           system: Prompts.system_prompt(prompt_type),
-          messages: Prompts.conversation_starters(prompt_type) + messages,
+          messages: Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages),
         }
 
         api_request(payload, &block)

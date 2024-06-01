@@ -11,4 +11,13 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
+
+  private
+
+  def reset_prompts_in_development
+    if Rails.env.development?
+      $stdout.puts "Resetting prompts... 🔄"
+      Prompts.reset! if Rails.env.development?
+    end
+  end
 end

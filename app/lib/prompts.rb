@@ -116,6 +116,8 @@ module Prompts
     def clean_chat_log(chat_log)
       cleaned_log = []
       chat_log.each do |entry|
+        entry = entry.deep_stringify_keys
+
         if cleaned_log.empty? || cleaned_log.last["role"] != entry["role"]
           cleaned_log << entry
         else

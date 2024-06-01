@@ -103,16 +103,26 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
   end
 
   describe ".process_messages" do
-    let(:messages) { [{ role: "user", content: [{ type: "text", text: "hello" }] }] }
+    let(:conversation_starters) {
+      [
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "there" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "hi" }] },
+      ]
+    }
 
-    it "sends a payload with the messages" do # rubocop:disable RSpec/ExampleLength
+    let(:messages) { [{ "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] }] }
+
+    before do
       allow(Prompts).to(receive(:system_prompt).with("foo").and_return("system-prompt"))
-      allow(Prompts).to(receive(:conversation_starters).with("foo").and_return(["conversation-starters"]))
+      allow(Prompts).to(receive(:conversation_starters).with("foo").and_return(conversation_starters))
       allow(described_class).to(receive_messages(
         api_request: "result",
         model: "model",
       ))
+    end
 
+    it "sends a payload with the messages" do # rubocop:disable RSpec/ExampleLength
       result = described_class.process_messages("foo", messages)
       expect(result).to(eq("result"))
 
@@ -122,7 +132,17 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
         stream: false,
         temperature: 0.7,
         system: "system-prompt",
-        messages: ["conversation-starters"] + messages,
+        messages: [
+          {
+            "role" => "user",
+            "content" => [
+              { "type" => "text", "text" => "hello" },
+              { "type" => "text", "text" => "there" },
+            ],
+          },
+          { "role" => "assistant", "content" => [{ "type" => "text", "text" => "hi" }] },
+          { "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] },
+        ],
       }))
     end
   end
