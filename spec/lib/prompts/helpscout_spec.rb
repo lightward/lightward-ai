@@ -27,7 +27,7 @@ RSpec.describe(Helpscout) do
       expect(result["id"]).to(eq(conversation_id))
     end
 
-    it "orders threads chronologically, oldest to newest" do
+    it "orders threads chronologically, oldest to newest", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .to_return(status: 200, body: conversation_response.to_json, headers: { "Content-Type" => "application/json" })
 
@@ -35,6 +35,9 @@ RSpec.describe(Helpscout) do
 
       threads = result["_embedded"]["threads"]
       expect(threads).to(eq(threads.sort_by { |thread| thread["createdAt"] }))
+
+      # it *should* be resorting them. assert that.
+      expect(threads).not_to(eq(conversation_response["_embedded"]["threads"]))
     end
 
     it "fetches conversation without threads" do
