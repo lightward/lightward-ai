@@ -56,6 +56,7 @@ class HelpscoutJob < ApplicationJob
     helpscout_primary_customer_id = helpscout_conversation.dig("primaryCustomer", "id")
 
     return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
+    return if helpscout_conversation["status"] == "closed"
 
     messages = []
 
