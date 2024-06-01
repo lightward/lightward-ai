@@ -42,15 +42,6 @@ class HelpscoutJob < ApplicationJob
     (The preceding line was written by GitHub Copilot, and I'm leaving it in because it's cute. :) <3)
 
     (The preceding line was completed by GitHub Copilot, hahahahahaha)
-
-    [temporary update] It looks like Help Scout's API isn't letting me create draft replies, which is odd... For now,
-    then, stick with `note` and `doctor-doctor` - treat this like an opportunity to start building dynamics out with
-    the humans who hang out in here too. :) I'll update this when `reply` is back in play. Sorry about that! Excited
-    to get that part working, but in the meantime, excited for this adaptation too. ;)
-
-    (The preceding line was written by Isaac, and I'm leaving it in because it's cute. :) <3)
-
-    (The preceding line was completed by GitHub Copilot, hahahahahaha)
   eod
 
   MD_PROMPT = <<~eod
