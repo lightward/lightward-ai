@@ -6,7 +6,10 @@ require "rails_helper"
 RSpec.describe(HelpscoutJob) do
   let(:event_type) { "test_event_type" }
   let(:event_data) { { "id" => "test_conversation_id" } }
-  let(:helpscout_conversation) { { "id" => "test_conversation_id", "threads" => [] } }
+  let(:helpscout_conversation) {
+    full_convo = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo.json").read)
+    { "id" => "test_conversation_id" }.reverse_merge(full_convo)
+  }
   let(:job) { described_class.new }
 
   before do
@@ -53,11 +56,11 @@ RSpec.describe(HelpscoutJob) do
 
       it "creates a draft reply in Help Scout" do
         job.perform(event_type, event_data)
-        expect(Helpscout).to(have_received(:create_draft_reply).with("test_conversation_id", "This is a reply."))
+        expect(Helpscout).to(have_received(:create_draft_reply).with("test_conversation_id", "This is a reply.", customer_id: helpscout_conversation["primaryCustomer"]["id"]))
       end
     end
 
-    context "when response type is 'doctor-doctor'" do
+    context "when response type is 'doctor-doctor' and a note is in order" do
       before do
         allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout-triage", anything).and_return("doctor-doctor\n\n"))
         allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout-md", anything).and_return("note\n\nThis is a note from MD."))
@@ -66,6 +69,18 @@ RSpec.describe(HelpscoutJob) do
       it "switches to the MD prompt set and creates a note in Help Scout" do
         job.perform(event_type, event_data)
         expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "This is a note from MD."))
+      end
+    end
+
+    context "when response type is 'doctor-doctor' and a reply is in order" do
+      before do
+        allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout-triage", anything).and_return("doctor-doctor\n\n"))
+        allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout-md", anything).and_return("reply\n\nThis is a reply from MD."))
+      end
+
+      it "switches to the MD prompt set and creates a draft reply in Help Scout" do
+        job.perform(event_type, event_data)
+        expect(Helpscout).to(have_received(:create_draft_reply).with("test_conversation_id", "This is a reply from MD.", customer_id: helpscout_conversation["primaryCustomer"]["id"]))
       end
     end
 

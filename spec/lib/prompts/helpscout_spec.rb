@@ -3,7 +3,6 @@
 # spec/helpscout_spec.rb
 
 require "rails_helper"
-require "httparty"
 
 RSpec.describe(Helpscout) do
   describe ".fetch_conversation" do
@@ -13,6 +12,7 @@ RSpec.describe(Helpscout) do
       {
         "id" => conversation_id,
         "subject" => "Test Conversation",
+        "_embedded" => { "threads" => [] },
       }
     end
 
@@ -48,6 +48,123 @@ RSpec.describe(Helpscout) do
       expect {
         described_class.fetch_conversation(conversation_id, with_threads: true)
       }.to(raise_error(Helpscout::ResponseError, "Failed to fetch conversation: 404\n\noh no!"))
+    end
+  end
+
+  describe ".conversation_concludes_with_assistant?" do
+    let(:user_id) { 456 }
+    let(:conversation) do
+      {
+        "_embedded" => {
+          "threads" => [
+            { "createdBy" => { "id" => user_id } },
+          ],
+        },
+      }
+    end
+
+    before do
+      allow(described_class).to(receive(:user_id).and_return(user_id))
+    end
+
+    it "returns true if the latest thread was created by the assistant" do
+      result = described_class.conversation_concludes_with_assistant?(conversation)
+      expect(result).to(be_truthy)
+    end
+
+    it "returns false if the latest thread was not created by the assistant" do
+      conversation["_embedded"]["threads"].first["createdBy"]["id"] = 789
+      result = described_class.conversation_concludes_with_assistant?(conversation)
+      expect(result).to(be_falsey)
+    end
+
+    it "returns false if there are no threads" do
+      conversation["_embedded"]["threads"] = []
+      result = described_class.conversation_concludes_with_assistant?(conversation)
+      expect(result).to(be_falsey)
+    end
+  end
+
+  describe ".create_note" do
+    let(:conversation_id) { 123 }
+    let(:auth_token) { "fake_auth_token" }
+    let(:note_body) { "This is a note" }
+
+    before do
+      allow(described_class).to(receive_messages(cached_auth_token: auth_token, user_id: 456))
+    end
+
+    it "creates a note successfully" do # rubocop:disable RSpec/ExampleLength
+      stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: { text: note_body, user: 456 }.to_json,
+        )
+        .to_return(status: 201, body: "", headers: {})
+
+      expect {
+        described_class.create_note(conversation_id, note_body)
+      }.not_to(raise_error)
+    end
+
+    it "raises an error if creating the note fails" do # rubocop:disable RSpec/ExampleLength
+      stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: { text: note_body, user: 456 }.to_json,
+        )
+        .to_return(status: 400, body: "error", headers: {})
+
+      expect {
+        described_class.create_note(conversation_id, note_body)
+      }.to(raise_error(Helpscout::ResponseError, "Failed to create note: 400\n\nerror"))
+    end
+  end
+
+  describe ".create_draft_reply" do
+    let(:conversation_id) { 123 }
+    let(:auth_token) { "fake_auth_token" }
+    let(:reply_body) { "This is a draft reply" }
+    let(:customer_id) { 789 }
+
+    before do
+      allow(described_class).to(receive_messages(cached_auth_token: auth_token, user_id: 456))
+    end
+
+    it "creates a draft reply successfully" do # rubocop:disable RSpec/ExampleLength
+      stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/reply")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: {
+            text: reply_body,
+            draft: true,
+            user: 456,
+            customer: { id: customer_id },
+          }.to_json,
+        )
+        .to_return(status: 201, body: "", headers: {})
+
+      expect {
+        described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id)
+      }.not_to(raise_error)
+    end
+
+    it "raises an error if creating the draft reply fails" do # rubocop:disable RSpec/ExampleLength
+      stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/reply")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: {
+            text: reply_body,
+            draft: true,
+            user: 456,
+            customer: { id: customer_id },
+          }.to_json,
+        )
+        .to_return(status: 400, body: "error", headers: {})
+
+      expect {
+        described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id)
+      }.to(raise_error(Helpscout::ResponseError, "Failed to create draft reply: 400\n\nerror"))
     end
   end
 

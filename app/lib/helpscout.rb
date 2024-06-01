@@ -70,7 +70,7 @@ module Helpscout
       end
     end
 
-    def create_draft_reply(conversation_id, body)
+    def create_draft_reply(conversation_id, body, customer_id:)
       token = cached_auth_token
 
       response = HTTParty.post(
@@ -83,6 +83,9 @@ module Helpscout
           text: body,
           draft: true,
           user: user_id,
+          customer: {
+            id: customer_id,
+          },
         }.to_json,
       )
 

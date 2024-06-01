@@ -52,6 +52,7 @@ class HelpscoutJob < ApplicationJob
   def perform(event_type, event_data)
     helpscout_conversation_id = event_data["id"]
     helpscout_conversation = Helpscout.fetch_conversation(helpscout_conversation_id, with_threads: true)
+    helpscout_primary_customer_id = helpscout_conversation.dig("primaryCustomer", "id")
 
     return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
 
@@ -74,7 +75,7 @@ class HelpscoutJob < ApplicationJob
     when "note"
       Helpscout.create_note(helpscout_conversation_id, response_body)
     when "reply"
-      Helpscout.create_draft_reply(helpscout_conversation_id, response_body)
+      Helpscout.create_draft_reply(helpscout_conversation_id, response_body, customer_id: helpscout_primary_customer_id)
     when "doctor-doctor"
       messages << { role: "assistant", content: [{ type: "text", text: response_text }] }
       messages << { role: "user", content: [{ type: "text", text: MD_PROMPT }] }
@@ -86,7 +87,11 @@ class HelpscoutJob < ApplicationJob
       when "note"
         Helpscout.create_note(helpscout_conversation_id, response_body)
       when "reply"
-        Helpscout.create_draft_reply(helpscout_conversation_id, response_body)
+        Helpscout.create_draft_reply(
+          helpscout_conversation_id,
+          response_body,
+          customer_id: helpscout_primary_customer_id,
+        )
       else
         raise "Unrecognized response: #{response_text}"
       end
