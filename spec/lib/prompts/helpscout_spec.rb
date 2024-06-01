@@ -6,13 +6,6 @@ require "rails_helper"
 require "httparty"
 
 RSpec.describe(Helpscout) do
-  before do
-    ENV["HELPSCOUT_WEBHOOK_SECRET_KEY"] = "fake_webhook_secret_key"
-    ENV["HELPSCOUT_APP_ID"] = "fake_app_id"
-    ENV["HELPSCOUT_APP_SECRET"] = "fake_app_secret"
-    ENV["HELPSCOUT_USER_ID"] = "fake_user_id"
-  end
-
   describe ".fetch_conversation" do
     let(:conversation_id) { 123 }
     let(:auth_token) { "fake_auth_token" }
