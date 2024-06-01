@@ -1,12 +1,22 @@
 # frozen_string_literal: true
 
-# This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"
+
 ENV["RAILS_ENV"] ||= "test"
+
+# some basic required env vars
+ENV["HELPSCOUT_WEBHOOK_SECRET_KEY"] = "fake_webhook_secret_key"
+ENV["HELPSCOUT_APP_ID"] = "fake_app_id"
+ENV["HELPSCOUT_APP_SECRET"] = "fake_app_secret"
+ENV["HELPSCOUT_USER_ID"] = "fake_user_id"
+
 require_relative "../config/environment"
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
 require "rspec/rails"
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

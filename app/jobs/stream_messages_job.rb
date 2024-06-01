@@ -8,9 +8,7 @@ require "action_view/helpers"
 class StreamMessagesJob < ApplicationJob
   include ActionView::Helpers::DateHelper
 
-  queue_as :default
-
-  before_perform :reset_prompts_in_development
+  queue_with_priority PRIORITY_STREAM_MESSAGES
 
   def perform(stream_id, chat_log, with_content_key = nil)
     newrelic(
@@ -19,8 +17,6 @@ class StreamMessagesJob < ApplicationJob
       chat_log_size: chat_log.to_json.size,
       chat_log_depth: chat_log.size,
     )
-
-    chat_log = Prompts.clean_chat_log(chat_log)
 
     wait_for_ready(stream_id)
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)
@@ -68,7 +64,7 @@ class StreamMessagesJob < ApplicationJob
     end
 
     begin
-      Prompts::Anthropic.process_messages("chat", chat_log, stream: true) do |request, response|
+      Prompts::Anthropic.process_messages("clients/chat", chat_log, stream: true) do |request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
         end
@@ -212,12 +208,5 @@ class StreamMessagesJob < ApplicationJob
 
   def newrelic(event_name, **data)
     ::NewRelic::Agent.record_custom_event(event_name, **data)
-  end
-
-  def reset_prompts_in_development
-    if Rails.env.development?
-      $stdout.puts "Resetting prompts... 🔄"
-      Prompts.reset! if Rails.env.development?
-    end
   end
 end

@@ -37,10 +37,14 @@ module Prompts
 
         Rails.logger.debug { "Anthropic API request: #{request.body.first(1000)} [...] #{request.body.last(1000)}" }
 
+        result = nil
+
         http.request(request) do |response|
           record_rate_limit_event(response)
-          yield request, response
+          result = yield request, response
         end
+
+        result
       end
 
       def process_messages(
@@ -56,7 +60,7 @@ module Prompts
           stream: stream,
           temperature: 0.7,
           system: Prompts.system_prompt(prompt_type),
-          messages: Prompts.conversation_starters(prompt_type) + messages,
+          messages: Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages),
         }
 
         api_request(payload, &block)

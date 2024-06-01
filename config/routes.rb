@@ -14,4 +14,7 @@ Rails.application.routes.draw do
 
   # API endpoint for sending messages to the chat
   post "chats/message", to: "chats#message"
+
+  # Webhook endpoints
+  post "webhooks/helpscout", to: "helpscout#receive"
 end
