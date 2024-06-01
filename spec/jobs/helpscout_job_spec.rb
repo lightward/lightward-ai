@@ -38,6 +38,20 @@ RSpec.describe(HelpscoutJob) do
       end
     end
 
+    context "when the conversation is closed" do
+      before do
+        fixture = Rails.root.join("spec/fixtures/helpscout_convo_closed.json").read
+
+        allow(Helpscout).to(receive(:fetch_conversation).and_return(JSON.parse(fixture)))
+      end
+
+      it "does not send a response", :aggregate_failures do
+        job.perform(event_type, event_data)
+        expect(Helpscout).not_to(have_received(:create_note))
+        expect(Helpscout).not_to(have_received(:create_draft_reply))
+      end
+    end
+
     context "when response type is 'note'" do
       before do
         allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout-triage", anything).and_return("note\n\nThis is a note."))

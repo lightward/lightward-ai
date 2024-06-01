@@ -8,26 +8,36 @@ RSpec.describe(Helpscout) do
   describe ".fetch_conversation" do
     let(:conversation_id) { 123 }
     let(:auth_token) { "fake_auth_token" }
-    let(:conversation_response) do
-      {
-        "id" => conversation_id,
-        "subject" => "Test Conversation",
-        "_embedded" => { "threads" => [] },
-      }
-    end
+    let(:conversation_response) {
+      conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo.json").read)
+      conversation.merge("id" => conversation_id)
+    }
 
     before do
       allow(described_class).to(receive(:cached_auth_token).and_return(auth_token))
     end
 
-    it "fetches conversation with threads" do
+    it "fetches conversation with threads by default" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
         .to_return(status: 200, body: conversation_response.to_json, headers: { "Content-Type" => "application/json" })
 
-      result = described_class.fetch_conversation(conversation_id, with_threads: true)
+      result = described_class.fetch_conversation(conversation_id)
 
-      expect(result).to(eq(conversation_response))
+      expect(result["id"]).to(eq(conversation_id))
+    end
+
+    it "orders threads chronologically, oldest to newest", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
+        .to_return(status: 200, body: conversation_response.to_json, headers: { "Content-Type" => "application/json" })
+
+      result = described_class.fetch_conversation(conversation_id)
+
+      threads = result["_embedded"]["threads"]
+      expect(threads).to(eq(threads.sort_by { |thread| thread["createdAt"] }))
+
+      # it *should* be resorting them. assert that.
+      expect(threads).not_to(eq(conversation_response["_embedded"]["threads"]))
     end
 
     it "fetches conversation without threads" do
@@ -37,7 +47,7 @@ RSpec.describe(Helpscout) do
 
       result = described_class.fetch_conversation(conversation_id, with_threads: false)
 
-      expect(result).to(eq(conversation_response))
+      expect(result["id"]).to(eq(conversation_id))
     end
 
     it "raises an error if the response is not successful" do # rubocop:disable RSpec/ExampleLength

@@ -14,6 +14,14 @@ class HelpscoutJob < ApplicationJob
       * the event type
       * the webhook event data
       * the current Help Scout API representation of the conversation, including all associated "threads" (replies)
+        * pay close attention to these thread attributes:
+          * "type" - indicates the type of reply. could be a "message", if it's an outbound email; could be "note", for
+            an internal note left for team reference
+          * "status" - replies can sometimes change the status of a conversation. "status" indicates the state the convo
+            was left in after the reply - maybe "active", or "closed", or "pending"
+          * "state" - i.e. draft (means the author is still working on it) or published (means it's been sent)
+          * "createdBy" - this one is very important! this is where you'll see signals of your teammates' involvement.
+            an email address ending in "@lightward.com" means they're one of us. :)
 
     In the context of this automation piece, I need you to respond with a single-word directive, followed by two
     newlines, followed by your message. The directive should be one of the following:
@@ -32,10 +40,18 @@ class HelpscoutJob < ApplicationJob
     Use `doctor-doctor` if you'd like to switch to the exhaustive reference manual prompt set - if you take that route,
     I'll switch the prompt set for you, and you'll get another opportunity to respond with a new directive and message.
 
-    Use `note` for all other reasons. Maybe you're not sure what to do (in which case, please explain why so we can help
-    improve your prompt set, and/or so we can pick up the baton from you), or maybe you *are* sure what to do and it's
-    *nothing*, haha, and you're explaining why. :) Or maybe it's something else! This is definitely the best "or
-    something else" option.
+    Use `note` for all other reasons:
+      * Maybe you're not sure what to do
+        * In which case, please explain why so we can help improve your prompt set, and/or so we can pick up the
+          investigation where you left off!
+      * Maybe you want to contribute, but you don't want to take the lead on replying
+        * Totally fine. ;) Explain why, though, when this happens, so that your teammates understand your perspective!
+      * Maybe you're quite certain that the conversation is well in hand already without you
+        * This applies *if* any other teammember looking at the conversation would agree that it's obviously already
+          in good shape as-is, without your input
+        * In which case, just briefly check in. :) It's important to acknowledge that you saw the thing, but don't
+          clutter the conversation with verbosity if it's not needed!
+      * Maybe there's some other reason! :) You can use `note` for *anything* you want to share with or ask the team.
 
     Thanks for playing! <3 :D
 
@@ -56,6 +72,7 @@ class HelpscoutJob < ApplicationJob
     helpscout_primary_customer_id = helpscout_conversation.dig("primaryCustomer", "id")
 
     return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
+    return if helpscout_conversation["status"] == "closed"
 
     messages = []
 

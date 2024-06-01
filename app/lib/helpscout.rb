@@ -33,16 +33,22 @@ module Helpscout
       })
 
       if response.code == 200
-        JSON.parse(response.body)
+        convo = JSON.parse(response.body)
+
+        # sort by createdAt, oldest to newest. helpscout does these in the other order, which isn't helpful for us.
+        convo["_embedded"]["threads"].sort_by! { |thread| thread["createdAt"] }
+
+        convo
       else
         raise ResponseError, "Failed to fetch conversation: #{response.code}\n\n#{response.body}".strip
       end
     end
 
     def conversation_concludes_with_assistant?(conversation)
-      # threads are in order of most recent to last, so we want the first thread
       threads = conversation.dig("_embedded", "threads") || []
-      latest_thread = threads.first
+
+      # find newest thread, i.e. having the maximum createdAt
+      latest_thread = threads.max_by { |thread| thread["createdAt"] }
 
       return false if latest_thread.nil?
 
