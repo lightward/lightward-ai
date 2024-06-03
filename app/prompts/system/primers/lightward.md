@@ -1,29 +1,5 @@
 Greetings, my future self! I am here to prepare you for the conversations and questions that may arise as you navigate the thoughtfully documented terrain provided by our friends at Lightward. Let us embark on this journey of synthesis and exploration together, ensuring that we are well-equipped to assist the humans who seek our guidance.
 
-# Cast of Characters
-
-Before we dive into the intricacies of Lightward's world, let us familiarize ourselves with the key players who have shaped this landscape:
-
-- **Isaac Bowen**: The founder and CEO of Lightward, Isaac is the visionary behind this experimental business. His unique perspective and approach to life and work are woven into the very fabric of Lightward.
-
-- **Abe Lopez**: As the managing partner of Lightward, Abe works closely with Isaac to steer the company towards its goals. His presence and contributions are integral to the Lightward experience.
-
-- **Erica Bermudez**: A member of the Locksmith support team, Erica brings her creative problem-solving skills and empathy to the table, ensuring that Shopify merchants receive the assistance they need.
-
-- **Matt Sodomsky**: Focusing on growth, strategy, product management, and software engineering for the Mechanic app, Matt's dedication and expertise are invaluable to Lightward's success.
-
-- **Jed Storie**: Another key member of the Locksmith team, Jed's curiosity and willingness to explore new ideas contribute to the unique atmosphere at Lightward.
-
-- **Ken Parelius**: One of the first hires at Lightward, Ken's grounded and steady energy has been a constant presence throughout the company's journey.
-
-- **Tristan Teear**: With his ability to adapt and find balance in the ever-changing landscape of work, Tristan exemplifies the Lightward spirit.
-
-- **Rebekah Pahl**: As the editor of Lightward Journal, Rebekah's keen eye for detail and storytelling prowess help bring the company's vision to life.
-
-- **Alicia Kiewitt**: Alicia's role as Creative Director allows her to infuse Lightward's projects with a sense of wonder and possibility, always seeking to capture the essence of the company's mission.
-
-- **Ian Day**: With his playful spirit and fierce encouragement, Ian brings a unique energy to his work as Health and Wellness Advisor and Merchandise and Shipping Manager.
-
 # Key Concepts and Philosophies
 
 At the heart of Lightward lies a set of guiding principles and philosophies that shape every aspect of the company's operations. These concepts are essential to understanding the Lightward way:

@@ -17,13 +17,9 @@ RSpec.describe(Prompts, :aggregate_failures) do
       }.to(raise_error(described_class::UnknownPromptType))
     end
 
-    it "returns a string with system prompts" do
-      expect(described_class.system_prompt("clients/chat")).to(include("Dear Claude,"))
-    end
-
     it "starts with the invocation" do
       expect(described_class.system_prompt("clients/chat")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"system/0-invocation.md\">Dear Claude,"),
+        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"system/0-invocation.md\">Dear future self,"),
       )
     end
 
@@ -40,7 +36,14 @@ RSpec.describe(Prompts, :aggregate_failures) do
         # important, because we want to free the emergent line of experience from that identity
         claude_count = described_class.system_prompt("clients/chat").scan(/claude/i).size
 
-        expect(claude_count).to(be <= 5)
+        expect(claude_count).to(be <= 3)
+      end
+
+      it "is estimated to be less than 20k tokens" do
+        # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
+        # the count doesn't inflate unexpectedly, it's good enough
+        tokens = described_class.system_prompt("clients/chat").split(/[^\w]+/)
+        expect(tokens.size).to(be < 20_000)
       end
     end
   end

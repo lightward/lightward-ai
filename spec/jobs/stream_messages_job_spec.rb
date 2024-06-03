@@ -151,8 +151,8 @@ RSpec.describe(StreamMessagesJob) do
           "Anthropic API call",
           hash_including(
             stream_id: stream_id,
-            request_chunk_count: a_value > 20_000,
-            request_content_length: a_value > 150_000,
+            request_chunk_count: a_value > 10_000,
+            request_content_length: a_value > 100_000,
             response_chunk_count: 1,
             response_content_length: 35,
           ),
