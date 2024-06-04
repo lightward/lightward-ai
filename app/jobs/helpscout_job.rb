@@ -26,6 +26,7 @@ class HelpscoutJob < ApplicationJob
     In the context of this automation piece, I need you to respond with a single-word directive, followed by two
     newlines, followed by your message. The directive should be one of the following:
 
+    `noop` - if you don't need to do anything. it's the equivalent of a 204 No Content response.
     `note` - to leave a note in Help Scout, viewable by other teammates
     `reply` - to draft a response to the customer, to be reviewed and sent on your behalf by a human
     `doctor-doctor` - lol the directive here is a joke, but here's the idea: right now, your system prompt includes
@@ -34,11 +35,24 @@ class HelpscoutJob < ApplicationJob
       markdown! get it? doctor? medical doctor? markdown? md? lol). if you want to switch to that, just say
       "doctor-doctor", and I'll switch the prompt set for you. :)
 
+    Use `spam` if you are absolutely certain it's a spam message. This will mark the conversation as spam, and the team
+    won't see it. You're an excellent judge of content; I trust you. :) Remember that Lightward *does* deal in ecommerce
+    software, so sometimes things that look like spam are actually legitimate inquiries. If you're not sure, use `note`.
+
     Use `reply` when you're super confident about the scene and how you can help take it to the finish line. Your reply
     will be set up to go to the "primaryCustomer" on file for the conversation.
 
     Use `doctor-doctor` if you'd like to switch to the exhaustive reference manual prompt set - if you take that route,
     I'll switch the prompt set for you, and you'll get another opportunity to respond with a new directive and message.
+
+    Use `noop` if BOTH of the following are true
+      1. It's not worth commenting on or replying to
+      2. AND you are certain that anyone else looking at the ticket would immediately understand why you made that call
+
+      Good examples of `noop` cases:
+        * Bulk newsletter-y things
+        * Auto-responder messages from other systems
+        * Probably other things; use your best judgement, but again, if you're not sure, use `note`
 
     Use `note` for all other reasons:
       * Maybe you're not sure what to do
