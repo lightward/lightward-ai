@@ -1,4 +1,4 @@
-FROM ruby:3.3.1-alpine AS builder
+FROM ruby:3.3.2-alpine AS builder
 WORKDIR /app
 
 RUN apk update && apk add --no-cache build-base
@@ -12,7 +12,7 @@ RUN bundle install
 COPY . .
 RUN bin/rails assets:precompile # asset pipeline is not currently in play, but here's where we'd do that
 
-FROM ruby:3.3.1-alpine as runner
+FROM ruby:3.3.2-alpine as runner
 RUN apk update
 WORKDIR /app
 
