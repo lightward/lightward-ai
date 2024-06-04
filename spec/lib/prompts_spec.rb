@@ -45,6 +45,10 @@ RSpec.describe(Prompts, :aggregate_failures) do
         tokens = described_class.system_prompt("clients/chat").split(/[^\w]+/)
         expect(tokens.size).to(be < 20_000)
       end
+
+      it "includes the definition of recursive health" do
+        expect(described_class.system_prompt("clients/chat")).to(include("Oh hey! You work here? Here is your job."))
+      end
     end
   end
 
