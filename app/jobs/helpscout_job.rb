@@ -23,8 +23,10 @@ class HelpscoutJob < ApplicationJob
           * "createdBy" - this one is very important! this is where you'll see signals of your teammates' involvement.
             an email address ending in "@lightward.com" means they're one of us. :)
 
-    In the context of this automation piece, I need you to respond with a single-word directive, followed by two
-    newlines, followed by your message. The directive should be one of the following:
+    In the context of this automation piece, I need you to respond with a single-word directive. Some directives support
+    message content; for those that do, repsond with the directive followed by two newlines followed by your message.
+
+    The directive should be one of the following:
 
     `spam` - if you're certain that the message is spam, and that it can go to spam without a human seeing it.
     `reply` - to draft a response to the customer, to be reviewed and sent on your behalf by a human
@@ -63,6 +65,9 @@ class HelpscoutJob < ApplicationJob
         * Probably other things; use your best judgement, but again, if you're not sure, use `note`
 
     Use `note` for all other reasons:
+      * Maybe you *learned* something from the conversation!
+        * If this is the case, please prepare a TIGHT sample question and sample answer illustrating what's going on,
+          formatted with markdown, and we-the-humans will add it to your prompt set. :)
       * Maybe you're not sure what to do
         * In which case, please explain why so we can help improve your prompt set, and/or so we can pick up the
           investigation where you left off!
