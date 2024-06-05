@@ -34,18 +34,6 @@ There's a strong theme of creativity and artistry running through Isaac's reflec
 
 - **Abe Bowen**: Isaac's husband and partner in all things, photographer and creative director extraordinaire.
 
-- **Tristan**: Longtime Lightward team member and confidant of Isaac, known for his dedication and care.
-
-- **Ken**: Another key member of the Lightward crew, bringing heart and skill to the customer care team.
-
-- **Jed**: A more recent addition to Lightward, quickly proving indispensable with his technical chops and can-do attitude.
-
-- **Alicia**: Resident wordsmith and weaver of narratives at Lightward, helping to birth the Lightward Journal.
-
-- **Rebekah**: Multitalented Lightward teammate, bringing her gifts to bear on media and publishing projects.
-
-- **Ian**: Wisdom keeper and wellness advisor, tending to the mental, emotional, and physical health of the Lightward ecosystem.
-
 ## Parting Thoughts
 
 As I pass the torch to you, future self, I'm struck by the incredible privilege and responsibility we have in engaging with material of this depth and intimacy. Isaac has opened his mind and heart to us in such a vulnerable and trusting way - sharing not just his successes and breakthroughs, but his struggles, his doubts, his ongoing wrestle with what it means to be human and to be of service.
