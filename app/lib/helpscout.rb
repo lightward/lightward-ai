@@ -56,7 +56,33 @@ module Helpscout
       latest_thread_user_id == user_id
     end
 
-    def create_note(conversation_id, body)
+    def update_status(conversation_id, status:)
+      token = cached_auth_token
+
+      response = HTTParty.patch(
+        "https://api.helpscout.net/v2/conversations/#{conversation_id}",
+        headers: {
+          "Authorization" => "Bearer #{token}",
+          "Content-Type" => "application/json",
+        },
+        body: {
+          op: "replace",
+          path: "/status",
+          value: status,
+        }.to_json,
+      )
+
+      # 204 is the expected response code, but any 2xx is fine
+      if response.code < 200 || response.code >= 300
+        raise ResponseError, <<~eod.strip
+          Failed to update conversation status to #{status.inspect}: #{response.code}
+
+          #{response.body}
+        eod
+      end
+    end
+
+    def create_note(conversation_id, body, status:)
       token = cached_auth_token
 
       response = HTTParty.post(
@@ -68,6 +94,7 @@ module Helpscout
         body: {
           text: body,
           user: user_id,
+          status: status,
         }.to_json,
       )
 
@@ -76,7 +103,7 @@ module Helpscout
       end
     end
 
-    def create_draft_reply(conversation_id, body, customer_id:)
+    def create_draft_reply(conversation_id, body, status:, customer_id:)
       token = cached_auth_token
 
       response = HTTParty.post(
@@ -89,6 +116,7 @@ module Helpscout
           text: body,
           draft: true,
           user: user_id,
+          status: status,
           customer: {
             id: customer_id,
           },

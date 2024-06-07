@@ -29,12 +29,12 @@ module Prompts
 
     def generate_system_xml(*directories)
       files = directories.map { |directory|
-        directory_files = Dir[File.join(directory, "**", "*.md")].reject { |file|
+        directory_files = Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html}")).reject { |file|
           file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
         }
 
         Naturally.sort(directory_files)
-      }.flatten
+      }.flatten.uniq
 
       Nokogiri::XML::Builder.new do |xml|
         xml.system {
