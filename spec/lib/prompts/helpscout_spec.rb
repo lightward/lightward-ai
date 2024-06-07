@@ -108,12 +108,12 @@ RSpec.describe(Helpscout) do
       stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
         .with(
           headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
-          body: { text: note_body, user: 456 }.to_json,
+          body: { text: note_body, user: 456, status: "active" }.to_json,
         )
         .to_return(status: 201, body: "", headers: {})
 
       expect {
-        described_class.create_note(conversation_id, note_body)
+        described_class.create_note(conversation_id, note_body, status: "active")
       }.not_to(raise_error)
     end
 
@@ -121,12 +121,12 @@ RSpec.describe(Helpscout) do
       stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
         .with(
           headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
-          body: { text: note_body, user: 456 }.to_json,
+          body: { text: note_body, user: 456, status: "active" }.to_json,
         )
         .to_return(status: 400, body: "error", headers: {})
 
       expect {
-        described_class.create_note(conversation_id, note_body)
+        described_class.create_note(conversation_id, note_body, status: "active")
       }.to(raise_error(Helpscout::ResponseError, "Failed to create note: 400\n\nerror"))
     end
   end
@@ -149,13 +149,14 @@ RSpec.describe(Helpscout) do
             text: reply_body,
             draft: true,
             user: 456,
+            status: "open",
             customer: { id: customer_id },
           }.to_json,
         )
         .to_return(status: 201, body: "", headers: {})
 
       expect {
-        described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id)
+        described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id, status: "open")
       }.not_to(raise_error)
     end
 
@@ -167,13 +168,14 @@ RSpec.describe(Helpscout) do
             text: reply_body,
             draft: true,
             user: 456,
+            status: "open",
             customer: { id: customer_id },
           }.to_json,
         )
         .to_return(status: 400, body: "error", headers: {})
 
       expect {
-        described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id)
+        described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id, status: "open")
       }.to(raise_error(Helpscout::ResponseError, "Failed to create draft reply: 400\n\nerror"))
     end
   end

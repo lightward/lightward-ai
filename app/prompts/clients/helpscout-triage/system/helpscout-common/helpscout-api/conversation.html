@@ -1,0 +1,3163 @@
+<!-- view-source:https://developer.helpscout.com/mailbox-api/endpoints/conversations/get/ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Get Conversation | Help Scout Developers</title>
+
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link
+      rel="stylesheet"
+      href="/css/main.css?v=52793570a20f27e323933f2f8f3ae258"
+    />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <script
+      src="/js/developer.js?v=6239c7cbeaa62b276439a02dee1c32bd"
+      async
+      defer
+    ></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-R3KHRW717V"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-R3KHRW717V');
+    </script>
+
+    <script src="/js/fontfaceobserver.js"></script>
+    <script>
+      (function () {
+        var font400 = new FontFaceObserver('Aktiv Grotesk', { weight: 400 });
+        var font500 = new FontFaceObserver('Aktiv Grotesk', { weight: 500 });
+        var font700 = new FontFaceObserver('Aktiv Grotesk', { weight: 700 });
+
+        Promise.all([font400.load(), font500.load(), font700.load()])
+          .then(function () {
+            document.documentElement.className += ' fonts-loaded';
+          })
+          .catch(function () {
+            console.log('Aktiv Grotesk failed to load');
+          });
+      })();
+    </script>
+
+    <script
+      charset="ISO-8859-1"
+      src="//fast.wistia.com/assets/external/E-v1.js"
+      async
+      defer
+    ></script>
+  </head>
+
+  <body class="tx-smooth">
+    <div class="s-docs-layout">
+      <aside class="s-docs-layout__sidebar t-bg-grey-200">
+        <div class="c-nav-sidebar">
+          <div class="o-scrolly">
+            <div class="o-scrolly__item">
+              <div
+                class="c-nav-sidebar__header u-centralize t-bg-blue-500 t-tx-white"
+              >
+                <button
+                  class="c-button c-button--link c-nav-sidebar__toggle t-tx-white"
+                  id="js-nav-sidebar-toggle"
+                >
+                  <i class="icon icon-menu c-icon c-icon--32"></i>
+                </button>
+                <div class="c-nav-sidebar__header-content">
+                  <div class="c-logo u-pad-v-2">
+                    <a href="/" class="u-d-block" title="Help Scout Developers">
+                      <img
+                        src="/images/hs-developer-logo-wh.svg"
+                        width="174"
+                        height="32"
+                        title="Help Scout Developers"
+                        alt="Help Scout Developers"
+                        class="c-logo__image"
+                      />
+                      <span class="u-sr-only">
+                        <h1>Help Scout Developers</h1>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="o-scrolly__block">
+              <div
+                class="js-SidebarNav c-nav-sidebar__menu u-mrg-b-10@md u-pad-b-5@md"
+                id="js-nav-sidebar-menu"
+              >
+                <div class="c-nav-header">
+                  <div class="o-flexy o-flexy--just-left o-flexy--gap-md">
+                    <div class="o-flexy__item">
+                      <a href="/" class="c-nav-header__back" title="Back"
+                        ><i
+                          class="icon icon-caret-left c-icon c-icon--12 u-d-block"
+                        ></i
+                      ></a>
+                    </div>
+                    <div class="o-flexy__block tx-center u-mrg-l-0">
+                      <strong class="t-tx-charcoal-500"> Mailbox API </strong>
+                    </div>
+                  </div>
+                </div>
+                <ul
+                  class="c-nav c-nav--stacked c-nav--md is-active c-nav--level-1"
+                  role="navigation"
+                  aria-label="Sidebar nav level 1"
+                >
+                  <li class="c-nav__item">
+                    <a
+                      href="/mailbox-api/"
+                      class="c-nav__link js-SidebarNav__link"
+                      ><div class="o-flexy">
+                        <div class="o-flexy__item">Overview</div>
+                        <div class="o-flexy__item">
+                          <i
+                            class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                          ></i>
+                        </div></div
+                    ></a>
+                    <ul
+                      class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-2"
+                      role="navigation"
+                      aria-label="Sidebar nav level 2"
+                    >
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/authentication/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Authentication</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/backward-compatibility/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">
+                              Backward compatibility and API updates
+                            </div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/content_type/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Content Types</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/errors/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Errors</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/http-methods/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">HTTP Methods</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/links/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Links to resources</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/pagination/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Pagination</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/rate-limiting/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Rate limiting</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/status_codes/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Status codes</div>
+                          </div></a
+                        >
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/overview/time/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Time</div>
+                          </div></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="c-nav__item is-active">
+                    <a
+                      href="/mailbox-api/endpoints/conversations/list/"
+                      class="c-nav__link js-SidebarNav__link is-active"
+                      ><div class="o-flexy">
+                        <div class="o-flexy__item">Endpoints</div>
+                        <div class="o-flexy__item">
+                          <i
+                            class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                          ></i>
+                        </div></div
+                    ></a>
+                    <ul
+                      class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav is-active c-nav--level-2"
+                      role="navigation"
+                      aria-label="Sidebar nav level 2"
+                    >
+                      <li class="c-nav__item is-active">
+                        <a
+                          href="/mailbox-api/endpoints/conversations/list/"
+                          class="c-nav__link js-SidebarNav__link is-active"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Conversations</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav is-active c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/attachments/delete/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Attachments</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/attachments/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Attachment
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/attachments/get-data/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Get Attachment Data
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/attachments/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Upload Attachment
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/custom_fields/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Custom fields</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/custom_fields/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Custom Fields
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/snooze/delete/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Snooze</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/snooze/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Snooze
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/snooze/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Snooze
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/tags/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Tags</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/tags/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">Update Tags</div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/threads/chat/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Threads</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/chat/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Chat Thread
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/customer/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Customer Thread
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/note/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">Create Note</div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/phone/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Phone Thread
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/reply/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Reply Thread
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/thread-source-json/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Get Thread Original Source
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/thread-source-rfc822/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Get Thread Original Source
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      List Threads
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/conversations/threads/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Thread
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Create Conversation
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/delete/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Delete Conversation
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item is-active">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/get/"
+                              class="c-nav__link js-SidebarNav__link is-active"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Get Conversation
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  List Conversations
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/conversations/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Update Conversation
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/customers/list/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Customers</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/address/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Address</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/address/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Address
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/address/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Address
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/address/get/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">Get Address</div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/address/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Address
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/chat_handles/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Chat handles</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/chat_handles/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Chat Handle
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/chat_handles/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Chat Handle
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/chat_handles/list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      List Chats Handles
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/chat_handles/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Chat Handles
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/emails/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Emails</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/emails/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Email
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/emails/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Email
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/emails/list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">List Emails</div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/emails/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Email
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/phones/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Phones</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/phones/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Phone
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/phones/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Phone
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/phones/list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">List Phones</div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/phones/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Phone
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/social_profiles/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Social profiles</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/social_profiles/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Social Profile
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/social_profiles/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Social Profile
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/social_profiles/list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      List Social Profiles
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/social_profiles/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Social Profile
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/websites/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Websites</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/websites/create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Website
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/websites/delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Website
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/websites/list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      List Websites
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/customers/websites/update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Website
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Create Customer</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/delete/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Delete Customer</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/delete-async/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Delete Customer Asynchronously
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/get/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Get Customer</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Customers</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/overwrite/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Overwrite Customer
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/customers/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Update Customer</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/mailboxes/list/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Mailboxes</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/mailboxes/saved_Replies/saved-replies-create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Saved Replies</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/mailboxes/saved_Replies/saved-replies-create/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Create Saved Reply
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/mailboxes/saved_Replies/saved-replies-delete/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Delete Saved Reply
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/mailboxes/saved_Replies/saved-replies-get/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Get Saved Reply
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/mailboxes/saved_Replies/saved-replies-list/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      List Saved Replies
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/mailboxes/saved_Replies/saved-replies-update/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Update Saved Reply
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/mailboxes/get/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Get Mailbox</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/mailboxes/mailbox-fields/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  List Mailbox Custom Fields
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/mailboxes/mailbox-folders/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  List Mailbox Folders
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/mailboxes/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Mailboxes</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/properties/create/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Properties</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/properties/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Create Customer Property Definition
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/properties/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  List Customer Property Definitions
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/properties/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Update Customer Properties
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/ratings/get/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Ratings</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/ratings/get/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Get Satisfaction Rating
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/reports/company/reports-company-overall/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Reports</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/company/reports-company-overall/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Company</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/company/reports-company-overall/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Company Overall Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/company/reports-company-customers-helped/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Company Customers Helped
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/company/reports-company-drilldown/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Company Drilldown
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/conversations/reports-conversations-overall/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Conversations</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-overall/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - Overall Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-volume-by-channel/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      All Channels - Volumes by Channel
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-busy-times/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - Busiest Time of Day
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-drilldown/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - Drilldown
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-field-drilldown/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - Drilldown by Field
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-new/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - New Conversations
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-new-drilldown/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - New Conversations
+                                      Drilldown
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/conversations/reports-conversations-received-messages/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Conversations - Received Messages
+                                      Statistics
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/docs/reports-docs-overall/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Docs</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/docs/reports-docs-overall/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Docs Overall Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/happiness/reports-happiness-overall/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Happiness</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/happiness/reports-happiness-overall/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Happiness Overall Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/happiness/reports-happiness-ratings/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Happiness Ratings Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/productivity/reports-productivity-overall/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Productivity</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/productivity/reports-productivity-overall/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Productivity Overall Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/productivity/reports-productivity-first-response-time/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Productivity - First Response Time
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/productivity/reports-productivity-replies-sent/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Productivity - Replies Sent
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/productivity/reports-productivity-resolution-time/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Productivity - Resolution Time
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/productivity/reports-productivity-resolved/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Productivity - Resolved
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/productivity/reports-productivity-respose-time/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      Productivity - Response Time
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/user/reports-user/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">User</div>
+                                <div class="o-flexy__item">
+                                  <i
+                                    class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                                  ></i>
+                                </div></div
+                            ></a>
+                            <ul
+                              class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-4"
+                              role="navigation"
+                              aria-label="Sidebar nav level 4"
+                            >
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User/Team Overall Report
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-conversation-history/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Conversation History
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-customer-helped/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Customers Helped
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-drilldown/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Drill-down
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-happiness/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Happiness
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-happiness-drilldown/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Happiness drilldown
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-replies/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Replies
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                              <li class="c-nav__item">
+                                <a
+                                  href="/mailbox-api/endpoints/reports/user/reports-user-resolutions/"
+                                  class="c-nav__link js-SidebarNav__link"
+                                  ><div class="o-flexy">
+                                    <div class="o-flexy__item">
+                                      User Resolutions
+                                    </div>
+                                  </div></a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/chat/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Chat Report</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/email/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Email Report</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/reports/phone/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Phone Report</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/tags/get/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Tags</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/tags/get/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Get Tag by ID</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/tags/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Tags</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/teams/list-team-members/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Teams</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/teams/list-team-members/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  List Team Members
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/teams/list-teams/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Teams</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/users/list/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Users</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/users/delete/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Delete User</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/users/me/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Get Resource Owner
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/users/get/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Get User</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/users/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Users</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/webhooks/create/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Webhooks</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/webhooks/create/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Create Webhook</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/webhooks/delete/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Delete Webhook</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/webhooks/get/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Get Webhook</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/webhooks/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Webhooks</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/webhooks/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">Update Webhook</div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="c-nav__item">
+                        <a
+                          href="/mailbox-api/endpoints/workflows/list/"
+                          class="c-nav__link js-SidebarNav__link"
+                          ><div class="o-flexy">
+                            <div class="o-flexy__item">Workflows</div>
+                            <div class="o-flexy__item">
+                              <i
+                                class="icon icon-caret-right tx-12 c-icon c-icon--12 js-nav-arrow c-nav__arrow"
+                              ></i>
+                            </div></div
+                        ></a>
+                        <ul
+                          class="c-nav c-nav--stacked c-nav--md c-nav--sub-nav c-nav--level-3"
+                          role="navigation"
+                          aria-label="Sidebar nav level 3"
+                        >
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/workflows/list/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">List Workflows</div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/workflows/run/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Run Manual Workflows
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                          <li class="c-nav__item">
+                            <a
+                              href="/mailbox-api/endpoints/workflows/update/"
+                              class="c-nav__link js-SidebarNav__link"
+                              ><div class="o-flexy">
+                                <div class="o-flexy__item">
+                                  Update workflow status
+                                </div>
+                              </div></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="c-nav__item">
+                    <a
+                      href="/mailbox-api/changelog/"
+                      class="c-nav__link js-SidebarNav__link"
+                      ><div class="o-flexy">
+                        <div class="o-flexy__item">Changelog</div>
+                      </div></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main class="s-docs-layout__main">
+        <div
+          class="o-container o-container--site u-pad-t-8 u-pad-h-5@sm u-pad-h-10@lg"
+        >
+          <div class="o-row">
+            <div class="o-col-12">
+              <section class="s-main-content" id="content">
+                <div class="o-row">
+                  <div class="o-col-9@xl s-docs">
+                    <header class="">
+                      <!--
+
+-->
+
+                      <div class="o-flexy o-flexy--gap-md"></div>
+
+                      <h1 class="">Get Conversation</h1>
+                    </header>
+
+                    <div
+                      id="s-docs"
+                      class="s-docs s-hs-docs s-hs-docs--get-conversation s-hs-docs--mailbox-api"
+                    >
+                      <div class="s-docs__top" id="hs-content-top"></div>
+
+                      <h2 id="request">Request</h2>
+
+                      <div class="language-http highlighter-rouge">
+                        <div class="c-clipboard-copy-container js-code-snippet">
+                          <div class="highlighter-rouge__wrapper">
+                            <div class="highlight">
+                              <pre
+                                class="highlight"
+                              ><code><span class="nf">GET</span> <span class="nn">/v2/conversations/123</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer oauth_token</span>
+
+</code></pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h2 id="path-parameters">Path Parameters</h2>
+
+                      <p>
+                        <code class="language-plaintext highlighter-rouge"
+                          >/v2/conversations/{conversationId}</code
+                        >
+                      </p>
+
+                      <h2 id="url-parameters">URL Parameters</h2>
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Examples</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >embed</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >enumeration</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >embed=threads</code
+                              ><br />
+                            </td>
+                            <td>
+                              <br />
+                              Allows embedding/loading of sub-entities, allowed
+                              values are:<br />
+                              <code class="language-plaintext highlighter-rouge"
+                                >threads</code
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <h2 id="moved-or-merged-conversation">
+                        Moved or merged conversation
+                      </h2>
+
+                      <p>
+                        When a conversation is merged with another conversation,
+                        it is no longer accessible. The request will return a
+                        HTTP
+                        <code class="language-plaintext highlighter-rouge"
+                          >301 Moved Permanently</code
+                        >
+                        status code and the response will contain a
+                        <code class="language-plaintext highlighter-rouge"
+                          >Location</code
+                        >
+                        header with the URI of the new conversation for 60 days
+                        after the merge. After 60 days, the old conversation URL
+                        will return a
+                        <code class="language-plaintext highlighter-rouge"
+                          >404 Not Found</code
+                        >
+                        in response to a GET request.
+                      </p>
+
+                      <h2 id="response">Response</h2>
+
+                      <div class="language-http highlighter-rouge">
+                        <div class="c-clipboard-copy-container js-code-snippet">
+                          <div class="highlighter-rouge__wrapper">
+                            <div class="highlight">
+                              <pre
+                                class="highlight"
+                              ><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/hal+json</span>
+
+<span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+</span><span class="nl">"number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+</span><span class="nl">"threads"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"folderId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+</span><span class="nl">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"published"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"subject"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Help"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"preview"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Preview"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"mailboxId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+</span><span class="nl">"assignee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+</span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"first"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"last"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Robot"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"none@nowhere.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"createdBy"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+</span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bear@acme.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"createdAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-03-15T22:46:22Z"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"closedBy"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+</span><span class="nl">"closedByUser"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+</span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"first"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Clo"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"last"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ser"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"photoUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pic.jpg"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"closer@closers.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"closedAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-03-16T14:07:23Z"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"userUpdatedAt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-03-16T14:07:23Z"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"customerWaitingSince"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"time"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-07-24T20:18:33Z"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"friendly"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20 hours ago"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"source"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"via"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"tags"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">9150</span><span class="p">,</span><span class="w">
+</span><span class="nl">"color"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#929499"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"tag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"vip"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+</span><span class="nl">"cc"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"bear@normal.com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+</span><span class="nl">"bcc"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"bear@secret.com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+</span><span class="nl">"primaryCustomer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">238604</span><span class="p">,</span><span class="w">
+</span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"first"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Rob"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"last"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Robertovic"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"rob@acme.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"snooze"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"snoozedBy"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+</span><span class="nl">"snoozedUntil"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-06-03T12:00:00Z"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"unsnoozeOnCustomerReply"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"customFields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+</span><span class="nl">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Type"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8518"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Free"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">6688</span><span class="p">,</span><span class="w">
+</span><span class="nl">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Account Status"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"33077"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Trial"</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+</span><span class="nl">"\_embedded"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"threads"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"\_links"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"self"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"mailbox"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"primaryCustomer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"createdByCustomer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"closedBy"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"threads"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"assignee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nl">"web"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nl">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h2 id="response-fields">Response fields</h2>
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Path</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >id</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Unique identifier</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >number</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Number</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >threads</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Number of threads the conversation has</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >type</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Type of the conversation, one of: <br />
+                              <code class="language-plaintext highlighter-rouge"
+                                >chat</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >email</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >phone</code
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >folderId</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Id of the folder</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >status</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Status of the conversation, one of: <br />
+                              <code class="language-plaintext highlighter-rouge"
+                                >active</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >all</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >closed</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >open</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >pending</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >spam</code
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >state</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              State of the conversation, one of <br />
+                              <code class="language-plaintext highlighter-rouge"
+                                >deleted</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >draft</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >published</code
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >subject</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>Subject</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >preview</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Preview text from the most recent thread in the
+                              conversation
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >mailboxId</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Mailbox ID</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >assignee</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Object</code
+                              >
+                            </td>
+                            <td>
+                              Who the conversation is assigned to. Contains a
+                              name, id and email of the user
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >createdBy</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Object</code
+                              >
+                            </td>
+                            <td>
+                              Id, email and type of who created the conversation
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >createdAt</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>UTC time when the conversation was created</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >closedBy</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Id of the user that closed the conversation</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >closedAt</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>UTC time when the conversation was closed</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >userUpdatedAt</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              UTC time when the last user update occurred; equal
+                              to
+                              <code class="language-plaintext highlighter-rouge"
+                                >customerWaitingSince</code
+                              >
+                              if a no user action since the last customer action
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >customerWaitingSince</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Object</code
+                              >
+                            </td>
+                            <td>
+                              Object containing the timestamp of when the
+                              conversation was last updated
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >source.via</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Originating source of the conversation, one of:
+                              <br />
+                              <code class="language-plaintext highlighter-rouge"
+                                >user</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >customer</code
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >source.type</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Originating type of the conversation, one of:
+                              <br />
+                              <code class="language-plaintext highlighter-rouge"
+                                >api</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >beacon</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >channel</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >chat</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >consumer</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >coreapi</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >csv</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >cvs</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >desk</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >docs</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >email</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >emailfwd</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >heymarket</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >internal</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >jira</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >manual</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >mobile</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >notification</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >orchestration</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >support</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >unknown</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >uservoice</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >web</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >workflows</code
+                              ><br /><code
+                                class="language-plaintext highlighter-rouge"
+                                >zendesk</code
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >tags</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Array</code
+                              >
+                            </td>
+                            <td>List of tags</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >cc</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Array</code
+                              >
+                            </td>
+                            <td>List of emails that are cc’d</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >bcc</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Array</code
+                              >
+                            </td>
+                            <td>List of emails that are bcc’d</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >primaryCustomer</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Object</code
+                              >
+                            </td>
+                            <td>The primary customer in the conversation</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >customFields</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Array</code
+                              >
+                            </td>
+                            <td>
+                              <a href="./#custom-fields">Custom field</a> values
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >closedByUser</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Object</code
+                              >
+                            </td>
+                            <td>
+                              Object containing details of the user that closed
+                              the conversation
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >snooze</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Object</code
+                              >
+                            </td>
+                            <td>Snooze data</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >snooze.snoozedBy</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>The user that snoozed this conversation</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >snooze.snoozedUntil</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>Until when is this conversation snoozed</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >snooze.unsnoozeOnCustomerReply</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Boolean</code
+                              >
+                            </td>
+                            <td>
+                              Whether a new customer reply should automatically
+                              unsnooze this conversation
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >_embedded.threads</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Array</code
+                              >
+                            </td>
+                            <td>
+                              List of threads - embedded on demand - see the
+                              <code class="language-plaintext highlighter-rouge"
+                                >embed</code
+                              >
+                              param
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <h2 id="response-fields-1">Response fields</h2>
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Path</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >time</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              UTC time since the last reply sent to the customer
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >friendly</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Friendly string version of the waiting period
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <h2 id="response-fields-2">Response fields</h2>
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Path</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >id</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >Number</code
+                              >
+                            </td>
+                            <td>Custom field’s unique ID</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >name</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>Custom field’s name</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >value</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Custom field’s value. The value type depends on
+                              custom field type. It contains an option ID for
+                              the dropdown custom field type, for example.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >text</code
+                              >
+                            </td>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >String</code
+                              >
+                            </td>
+                            <td>
+                              Custom field’s text value. It is equal to
+                              <code class="language-plaintext highlighter-rouge"
+                                >value</code
+                              >
+                              for all the fields with the exception of dropdown
+                              - it contains option label in case of dropdowns.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <h2 id="resource-links">Resource Links</h2>
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Relation</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >mailbox</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../../mailboxes/get"
+                                >The mailbox of where the conversation
+                                resides</a
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >primaryCustomer</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../../customers/get"
+                                >The primary customer of the conversation</a
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >createdByCustomer</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../../customers/get"
+                                >The customer who created the conversation</a
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >createdByUser</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../../users/get"
+                                >The user who created the conversation</a
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >closedBy</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../../users/get"
+                                >The user who closed the conversation</a
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >threads</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../threads/list">conversation threads</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >assignee</code
+                              >
+                            </td>
+                            <td>
+                              <a href="../../users/get"
+                                >User who is assignee (owner) of the
+                                conversation</a
+                              >
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <code class="language-plaintext highlighter-rouge"
+                                >web</code
+                              >
+                            </td>
+                            <td>
+                              Link that will open this conversation in Help
+                              Scout web application (might require login)
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="o-col-3@xl js-spy-sidebar">
+                    <div
+                      id="table-of-contents"
+                      class="o-sticky u-mrg-b-10 u-pad-l-7@lg c-floating-sidebar-nav-container"
+                      data-spy="affix"
+                      data-offset-top="100"
+                      data-offset-bottom="200"
+                    >
+                      <p
+                        id="toc-header"
+                        class="tx-xs tx-uppercase tx-600 t-tx-grey-800 u-mrg-v-1 is-hidden"
+                      >
+                        Contents
+                      </p>
+                      <ul
+                        id="toc"
+                        class="nav c-floating-sidebar-nav rx-sidebar-nav-width"
+                      ></ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="u-pad-t-10 u-mrg-t-10 u-mrg-b-0">
+                <span class="u-mrg-r-2 t-tx-charcoal-200">↑</span
+                ><a href="#" class="t-tx-charcoal-200 tx-sm">Back to top</a>
+              </div>
+
+              <hr class="u-mrg-t-10 u-mrg-b-2" />
+
+              <div class="u-pad-b-10">
+                <div class="o-flexy@md u-pad-b-8">
+                  <div class="o-flexy__item">
+                    <ul class="c-list c-list--inline">
+                      <li class="u-mrg-r-6">
+                        <a
+                          href="https://secure.helpscout.net"
+                          class="tx-sm c-link c-link--plain t-tx-charcoal-200"
+                          >Customer Login</a
+                        >
+                      </li>
+
+                      <li class="u-mrg-r-6">
+                        <a
+                          href="https://www.helpscout.net"
+                          class="tx-sm c-link c-link--plain t-tx-charcoal-200"
+                          >Visit Help Scout</a
+                        >
+                      </li>
+
+                      <li class="u-mrg-r-6">
+                        <a
+                          href="http://status.helpscout.net"
+                          class="tx-sm c-link c-link--plain t-tx-charcoal-200"
+                          >Status</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="o-flexy__item">
+                    <div class="u-mrg-v-5 t-tx-charcoal-200 tx-sm">
+                      &copy;
+                      <a
+                        href="http://helpscout.net"
+                        class="c-link c-link--plain t-tx-charcoal-200 tx-sm"
+                        >Help Scout</a
+                      >
+                      2024
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="c-overlay" class="c-overlay">
+                <div class="c-overlay__content"></div>
+                <div class="c-overlay__background"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="text/javascript">
+      var SEEDDATA = { packs: [] };
+    </script>
+
+    <!-- beacon embed -->
+
+    <script type="text/javascript">
+      !(function (e, n) {
+        (window.Beacon = n =
+          function (e, n, d) {
+            window.Beacon.readyQueue.push({ method: e, options: n, data: d });
+          }),
+          (n.readyQueue = []);
+        var t = e.getElementsByTagName('script')[0],
+          o = e.createElement('script');
+        (o.type = 'text/javascript'),
+          (o.async = !0),
+          (o.src = 'https://beacon-v2.helpscout.net'),
+          t.parentNode.insertBefore(o, t);
+      })(document, window.Beacon || function () {});
+    </script>
+    <script>
+      window.Beacon('init', 'aa90d610-923a-4528-95cc-934136cc7712');
+    </script>
+
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        'script',
+        '//www.google-analytics.com/analytics.js',
+        'ga'
+      );
+      ga('create', 'UA-5226593-6', 'helpscout.net');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

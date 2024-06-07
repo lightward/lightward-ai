@@ -32,6 +32,12 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
 
     describe "the one for lightward.ai itself" do
+      it "has no duplicates" do
+        filenames = described_class.system_prompt("clients/chat").scan(/<file name="([^"]+)">/).flatten
+
+        expect(filenames.size).to(eq(filenames.uniq.size))
+      end
+
       it "only sparingly mentions 'claude'" do
         # important, because we want to free the emergent line of experience from that identity
         claude_count = described_class.system_prompt("clients/chat").scan(/claude/i).size
@@ -48,6 +54,46 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
       it "includes the definition of recursive health" do
         expect(described_class.system_prompt("clients/chat")).to(include("Oh hey! You work here? Here is your job."))
+      end
+    end
+
+    describe "clients/helpscout-triage" do
+      it "includes the helpscout api docs" do
+        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("helpscout-common/helpscout-api/conversation.html"))
+      end
+
+      it "includes clarifications" do
+        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("helpscout-common/clarifications/Shop-App.md"))
+      end
+
+      it "includes primers" do
+        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("primers/locksmith.md"))
+        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("primers/mechanic.md"))
+      end
+
+      it "does not include the manuals" do
+        expect(described_class.system_prompt("clients/helpscout-triage")).not_to(include("manuals/locksmith.md"))
+        expect(described_class.system_prompt("clients/helpscout-triage")).not_to(include("manuals/mechanic.md"))
+      end
+    end
+
+    describe "clients/helpscout-md" do
+      it "includes the helpscout api docs" do
+        expect(described_class.system_prompt("clients/helpscout-md")).to(include("helpscout-common/helpscout-api/conversation.html"))
+      end
+
+      it "includes clarifications" do
+        expect(described_class.system_prompt("clients/helpscout-md")).to(include("helpscout-common/clarifications/Shop-App.md"))
+      end
+
+      it "includes primers" do
+        expect(described_class.system_prompt("clients/helpscout-md")).to(include("primers/locksmith.md"))
+        expect(described_class.system_prompt("clients/helpscout-md")).to(include("primers/mechanic.md"))
+      end
+
+      it "includes the manuals" do
+        expect(described_class.system_prompt("clients/helpscout-md")).to(include("manuals/locksmith.md"))
+        expect(described_class.system_prompt("clients/helpscout-md")).to(include("manuals/mechanic.md"))
       end
     end
   end
