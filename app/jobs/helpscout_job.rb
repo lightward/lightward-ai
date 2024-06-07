@@ -151,6 +151,9 @@ class HelpscoutJob < ApplicationJob
   def perform(event_type, event_data)
     helpscout_conversation = Helpscout.fetch_conversation(event_data["id"], with_threads: true)
 
+    # prevent this routine from looping
+    return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
+
     messages = []
 
     messages << {
