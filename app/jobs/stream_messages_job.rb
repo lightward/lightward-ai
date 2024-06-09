@@ -21,48 +21,6 @@ class StreamMessagesJob < ApplicationJob
     wait_for_ready(stream_id)
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)
 
-    if with_content_key && chat_log.first["content"].is_a?(Array)
-      with_content = Prompts::WithContent.get_with_content_by_key(with_content_key)
-
-      # append it to the content array of the initial user message
-      chat_log.first["content"] << {
-        type: "text",
-        text: <<~eod.strip,
-          [system message:
-            the user has arrived at your doorstep via a url that looks like this:
-
-            http://lightward.ai/with/[hostname]/[pathname]
-
-            it's possible that they followed a link that took them here, or that a Lightward human gave them this
-            Lightward AI link. anyone can build links like this, so who knows!
-
-            their intent is to show you the contents at [hostname]/[pathname], for their own reasons. please treat
-            their arrival here as an intent to begin a conversation about the content they're showing you.
-
-            instead of saying "the URL you tried to access", say things like "the URL you've shared with me".
-
-            we went and fetched the actual content for you, and we're supplying you with the complete server response,
-            including response code, headers and the sanitized body. please guide the user accordingly, bearing in mind
-            the possibility that the user miscommunicated the URL somehow, or that the server is down - who knows! :)
-
-            please confirm for them the URL you're looking at with them. don't leap to give them a summary of the
-            content! instead, (1) welcome them, (2) confirm that you've opened the content, and (3) invite them to share
-            what brings them here, to you. :) think proactively about what they might need, given the fact that they're
-            here at Lightward AI bearing some specific content in hand. don't outright *assume* what they need, but if
-            you've got a hunch, it's okay to offer it.
-
-            bear in mind that we're only allowing lightward.ai/with/* URLs that specify resources published by
-            Lightward. whatever content is found there, Lightward Inc humans had a hand in it. :) bear this in mind,
-            because you might learn more about what Lightward is up to this way! :D
-
-            :) thank you!
-          ]
-
-          #{with_content.to_json}
-        eod
-      }
-    end
-
     begin
       Prompts::Anthropic.process_messages("clients/chat", chat_log, stream: true) do |request, response|
         if response.code.to_i >= 400
