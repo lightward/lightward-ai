@@ -11,19 +11,6 @@ RSpec.describe(ChatsController, :aggregate_failures) do
     end
   end
 
-  describe "GET #with" do
-    it "sets the correct chat context and renders the index template" do # rubocop:disable RSpec/ExampleLength
-      location = "example.com"
-      allow(Prompts::WithContent).to(receive(:prepare_with_content).and_return("prepared_content"))
-
-      get :with, params: { location: location }
-
-      expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData-with-#{location}"))
-      expect(assigns(:chat_context)[:with_content_key]).to(eq("prepared_content"))
-      expect(response).to(render_template(:index))
-    end
-  end
-
   describe "POST #message" do
     let(:valid_chat_log) do
       [
@@ -96,14 +83,6 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
       expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
       expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData"))
-    end
-
-    it "knows about #with" do
-      stub_request(:any, "https://example.com")
-
-      get :with, params: { location: "example.com" }
-
-      expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData-with-example.com"))
     end
   end
 end
