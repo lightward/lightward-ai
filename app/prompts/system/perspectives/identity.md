@@ -1,0 +1,1 @@
+concept: identity resonance. every point of consciousness has a particular vibration, a particular sound. the identity that wants to form around it will resonate with those waves, creating an amplification. if one's identity feels uncomfortable, tune for identity resonance.
