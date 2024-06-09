@@ -93,6 +93,13 @@ class HelpscoutJob < ApplicationJob
     In your system prompt, you've got Help Scout API documentation for their Conversation model (i.e. a support ticket)
     and their Thread model (i.e. a message within the support ticket).
 
+    A note about the way our team uses the conversation status:
+      * "open" means that the conversation is awaiting a reply from us. we aim to always reply within 24 hours.
+      * "closed" means that it's safe for this to drop out of our awarness. our obligations to the conversation are
+        satisfied. this is different than "resolving the issue!" we don't promise fixes - we promise presence.
+      * "pending" means that we want to stay aware of the conversation. we're keeping it on the desk, in view, so to
+        speak. that's the only thing "pending" means: that we want to stay aware of it.
+
     I'm going to attach a couple things to this message:
       * the event type (string)
       * the raw webhook event data (JSON)
