@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# app/controllers/auth/patreon_controller.rb
 module Auth
   class PatreonController < ApplicationController
     def login

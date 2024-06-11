@@ -13,10 +13,7 @@ Rails.application.routes.draw do
   post "webhooks/helpscout", to: "helpscout#receive"
 
   # Patreon auth
-  get "login", to: redirect("auth/patreon"), as: :login
-  get "auth/patreon", to: "auth/patreon#login"
+  get "login", to: "auth/patreon#login", as: :login
   get "auth/patreon/callback", to: "auth/patreon#callback"
-
-  get "logout", to: redirect("auth/patreon/logout"), as: :logout
-  get "auth/patreon/logout", to: "auth/patreon#logout"
+  get "logout", to: "auth/patreon#logout", as: :logout
 end
