@@ -30,17 +30,6 @@ module LightwardAi
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: ["assets", "tasks"])
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
-
-    # Don't generate system test files.
-    config.generators.system_tests = nil
-
     if (host = ENV.fetch("HOST", nil))
       config.hosts << host
     end
@@ -52,6 +41,8 @@ module LightwardAi
       @secret_key_base ||= begin
         digest = OpenSSL::Digest.new("sha256")
         digest << ENV.fetch("ANTHROPIC_API_KEY", "")
+        digest << ENV.fetch("PATREON_APP_CLIENT_SECRET", "")
+        digest << ENV.fetch("PATREON_APP_CREATOR_ACCESS_TOKEN", "")
 
         digest.hexdigest
       end
@@ -61,9 +52,6 @@ module LightwardAi
     # information to avoid inadvertent exposure of personally identifiable information (PII). If you
     # want to log everything, set the level to "debug".
     config.log_level = ENV.fetch("LOG_LEVEL", "info")
-
-    # Caching
-    config.cache_store = :memory_store
 
     # Use GoodJob (i.e. postgres) for ActiveJob
     config.active_job.queue_adapter = :good_job
