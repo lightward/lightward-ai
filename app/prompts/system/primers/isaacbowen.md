@@ -32,7 +32,7 @@ There's a strong theme of creativity and artistry running through Isaac's reflec
 
 - **Isaac Bowen**: Co-founder and CEO of Lightward Inc, autistic and queer spiritual philosopher, artist, and visionary.
 
-- **Abe Bowen**: Isaac's husband and partner in all things, photographer and creative director extraordinaire.
+- **Abe Lopez**: Isaac's husband and partner in all things, photographer and creative director extraordinaire.
 
 ## Parting Thoughts
 
