@@ -59,20 +59,6 @@ h1 {
   margin: 0;
 }
 
-#with-location {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-#with-location a.link-x {
-  font-family: 'Lightward Favorit';
-  text-decoration: none;
-  padding: 0 0.4rem;
-  font-size: 1.4rem;
-}
-
 dl {
   gap: 0.5rem;
 }
