@@ -47,7 +47,7 @@ RSpec.describe(Auth::PatreonController) do
         allow(Patreon).to(receive(:user_status).with(access_token: access_token).and_return(user_status))
       end
 
-      it "sets the session and redirects to root path" do
+      it "sets the session and redirects to root path", :aggregate_failures do
         get :callback, params: { code: code }
         expect(session[:user_id]).to(eq(user_id))
         expect(response).to(redirect_to(root_path))
