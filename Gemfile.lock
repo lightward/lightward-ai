@@ -106,11 +106,21 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.11)
       tzinfo
+    faraday (2.9.1)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-mashify (0.1.1)
+      faraday (~> 2.0)
+      hashie
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.1.0)
+      net-http
     ffi (1.16.3)
     formatador (1.1.0)
     fugit (1.11.0)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
+    gli (2.21.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     good_job (3.29.3)
@@ -138,6 +148,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     hashdiff (1.1.0)
+    hashie (5.0.0)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -172,9 +183,12 @@ GEM
     minitest (5.23.1)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    multipart-post (2.4.1)
     mutex_m (0.2.0)
     naturally (2.2.1)
     nenv (0.3.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.12)
       date
       net-protocol
@@ -321,6 +335,12 @@ GEM
       rubocop (~> 1.51)
     ruby-progressbar (1.13.0)
     shellany (0.0.1)
+    slack-ruby-client (2.3.0)
+      faraday (>= 2.0)
+      faraday-mashify
+      faraday-multipart
+      gli
+      hashie
     solid_cache (0.6.0)
       activejob (>= 7)
       activerecord (>= 7)
@@ -341,6 +361,7 @@ GEM
     tzinfo-data (1.2024.1)
       tzinfo (>= 1.0.0)
     unicode-display_width (2.5.0)
+    uri (0.13.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -394,6 +415,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-shopify
+  slack-ruby-client
   solid_cache
   sprockets-rails
   tzinfo-data
