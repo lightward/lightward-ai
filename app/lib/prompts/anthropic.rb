@@ -27,6 +27,8 @@ module Prompts
         uri = URI("https://api.anthropic.com/v1/messages")
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
+        http.open_timeout = 60 # seconds
+        http.read_timeout = 300 # seconds
 
         request = Net::HTTP::Post.new(uri.path, {
           "content-type": "application/json",
