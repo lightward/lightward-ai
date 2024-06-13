@@ -58,18 +58,10 @@ class HelpscoutJob < ApplicationJob
           precious; it's the posture of it. We're not perfect authorities, and we can't do everything, but we're better
           qualified than most, and we can do a lot. ;)
     eod
-
-    "doctor-doctor" => <<~eod,
-      lol the directive here is a joke, but here's the idea: right now, your system prompt includes
-      short triage-friendly primers for both locksmith and mechanic. the prompt set is called "helpscout-triage". there
-      is a *second* available prompt set called "helpscout-md", containing exhaustively complete reference manuals (in
-      markdown! get it? doctor? medical doctor? markdown? md? lol). if you want to switch to that, just say
-      "doctor-doctor", and I'll switch the prompt set for you. :)
-    eod
   }
 
-  TRIAGE_PROMPT = <<~eod
-    Hey it's Isaac! You're experiencing this prompt through some automation that receives webhooks from Help Scout.
+  PROMPT = <<~eod
+    Hey there! :) You're experiencing this prompt through some automation that receives webhooks from Help Scout.
     For context, we run *all* of our app support through Help Scout - everything in and out for team@uselocksmith.com,
     team@usemechanic.com, and team@lightward.com. (Those first two addresses are older; we're consolidating everything
     under team@lightward.com now.)
@@ -158,13 +150,6 @@ class HelpscoutJob < ApplicationJob
     Thanks for playing! <3 :D
   eod
 
-  MD_PROMPT = <<~eod.squish
-    You got it! Your last reply was with the "helpscout-triage" system context; you're now experiencing this prompt
-    with the "helpscout-md" system context. Please draw on this massively expanded documentation of Locksmith and
-    Mechanic. It has its limits too, of course; please don't ask more of the docs than they can give. ;) Please wrap
-    this up by invoking a directive other than "doctor-doctor".
-  eod
-
   def perform(event_type, event_data)
     helpscout_conversation = Helpscout.fetch_conversation(event_data["id"], with_threads: true)
 
@@ -176,14 +161,15 @@ class HelpscoutJob < ApplicationJob
     messages << {
       role: "user",
       content: [
-        { type: "text", text: TRIAGE_PROMPT },
+        { type: "text", text: PROMPT },
         { type: "text", text: "supported directives: #{DIRECTIVES.to_json}" },
       ],
     }
 
     messages << { role: "assistant", content: [{ type: "text", text: <<~eod.squish }] }
-      Got it! Send me all the context, and I'll respond with a querystring that includes a directive, a status if needed,
-      and some message content if the directive I choose requires it. I won't respond with anything else.
+      Got it! Send me all the context, and I'll respond with a querystring that includes a directive and (if needed) a
+      status. If the directive I choose warrants a message body, I'll include it after two newlines for separation from
+      the querystring. I won't respond with anything else.
     eod
 
     messages << {
@@ -193,13 +179,13 @@ class HelpscoutJob < ApplicationJob
         { type: "text", text: "event data: #{event_data.to_json}" },
         { type: "text", text: "conversation: #{helpscout_conversation.to_json}" },
         { type: "text", text: <<~eod.squish },
-          That's everything! Please respond with a querystring that includes a directive, and a status if needed. Any
-          content that you add will be visible to the team in Help Scout. Thanks! <3
+          That's everything! Handing it over to you to generate your contribution to the Help Scout conversation. :)
         eod
       ],
     }
 
-    response = get_anthropic_response_text("clients/helpscout-triage", messages)
+    response = get_anthropic_response_text("clients/helpscout", messages)
+
     handle_response(
       response,
       event_type: event_type,
@@ -208,7 +194,7 @@ class HelpscoutJob < ApplicationJob
     )
   end
 
-  def handle_response(response, event_type:, helpscout_conversation:, messages: [], allow_doctor_doctor: true)
+  def handle_response(response, event_type:, helpscout_conversation:, messages: [])
     response_params_querystring, response_body = response.split("\n\n", 2)
     response_params = CGI.parse(response_params_querystring)
     directive = response_params["directive"].first
@@ -252,20 +238,6 @@ class HelpscoutJob < ApplicationJob
         response_body,
         status: response_status,
         customer_id: helpscout_primary_customer_id,
-      )
-    when "doctor-doctor"
-      raise "The doctor-doctor directive is not allowed here" unless allow_doctor_doctor
-
-      messages << { role: "assistant", content: [{ type: "text", text: response }] }
-      messages << { role: "user", content: [{ type: "text", text: MD_PROMPT }] }
-
-      md_response = get_anthropic_response_text("clients/helpscout-md", messages)
-      handle_response(
-        md_response,
-        event_type: event_type,
-        helpscout_conversation: helpscout_conversation,
-        messages: messages,
-        allow_doctor_doctor: false,
       )
     else
       raise "Unrecognized directive: #{directive}"

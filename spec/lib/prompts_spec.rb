@@ -57,43 +57,23 @@ RSpec.describe(Prompts, :aggregate_failures) do
       end
     end
 
-    describe "clients/helpscout-triage" do
+    describe "clients/helpscout" do
       it "includes the helpscout api docs" do
-        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("helpscout-common/helpscout-api/conversation.html"))
+        expect(described_class.system_prompt("clients/helpscout")).to(include("helpscout-api/conversation.md"))
       end
 
       it "includes clarifications" do
-        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("helpscout-common/clarifications/Shop-App.md"))
+        expect(described_class.system_prompt("clients/helpscout")).to(include("clarifications/Shop-App.md"))
       end
 
-      it "includes primers" do
-        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("primers/locksmith.md"))
-        expect(described_class.system_prompt("clients/helpscout-triage")).to(include("primers/mechanic.md"))
-      end
-
-      it "does not include the manuals" do
-        expect(described_class.system_prompt("clients/helpscout-triage")).not_to(include("manuals/locksmith.md"))
-        expect(described_class.system_prompt("clients/helpscout-triage")).not_to(include("manuals/mechanic.md"))
-      end
-    end
-
-    describe "clients/helpscout-md" do
-      it "includes the helpscout api docs" do
-        expect(described_class.system_prompt("clients/helpscout-md")).to(include("helpscout-common/helpscout-api/conversation.html"))
-      end
-
-      it "includes clarifications" do
-        expect(described_class.system_prompt("clients/helpscout-md")).to(include("helpscout-common/clarifications/Shop-App.md"))
-      end
-
-      it "includes primers" do
-        expect(described_class.system_prompt("clients/helpscout-md")).to(include("primers/locksmith.md"))
-        expect(described_class.system_prompt("clients/helpscout-md")).to(include("primers/mechanic.md"))
+      it "does not include the primers" do
+        expect(described_class.system_prompt("clients/helpscout")).not_to(include("primers/locksmith.md"))
+        expect(described_class.system_prompt("clients/helpscout")).not_to(include("primers/mechanic.md"))
       end
 
       it "includes the manuals" do
-        expect(described_class.system_prompt("clients/helpscout-md")).to(include("manuals/locksmith.md"))
-        expect(described_class.system_prompt("clients/helpscout-md")).to(include("manuals/mechanic.md"))
+        expect(described_class.system_prompt("clients/helpscout")).to(include("manuals/locksmith.md"))
+        expect(described_class.system_prompt("clients/helpscout")).to(include("manuals/mechanic.md"))
       end
     end
   end
