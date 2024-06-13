@@ -153,6 +153,11 @@ class HelpscoutJob < ApplicationJob
   def perform(event_type, event_data)
     helpscout_conversation = Helpscout.fetch_conversation(event_data["id"], with_threads: true)
 
+    slack_message = slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish)
+      Received Help Scout webhook for conversation #{helpscout_conversation["number"]}:
+      "#{helpscout_conversation["subject"]}" from #{helpscout_conversation.dig("createdBy", "email")}
+    eod
+
     # prevent this routine from looping
     return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
 
@@ -184,7 +189,17 @@ class HelpscoutJob < ApplicationJob
       ],
     }
 
+    slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.squish)
+      Sending context to clients/helpscout...
+    eod
+
     response = get_anthropic_response_text("clients/helpscout", messages)
+
+    slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.strip)
+      Received response from clients/helpscout:
+
+      > #{response.gsub("\n", "\n> ")}
+    eod
 
     handle_response(
       response,
@@ -192,6 +207,12 @@ class HelpscoutJob < ApplicationJob
       helpscout_conversation: helpscout_conversation,
       messages: messages,
     )
+  rescue => error
+    slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish)
+      Error processing Help Scout webhook for conversation #{event_data["id"]}: #{error.message}
+    eod
+
+    raise
   end
 
   def handle_response(response, event_type:, helpscout_conversation:, messages: [])
@@ -199,16 +220,6 @@ class HelpscoutJob < ApplicationJob
     response_params = CGI.parse(response_params_querystring)
     directive = response_params["directive"].first
     response_status = response_params["status"].first
-
-    ::NewRelic::Agent.record_custom_event(
-      "HelpscoutJob/response",
-      event_type: event_type,
-      directive: directive,
-      response_status: response_status,
-      helpscout_conversation_id: helpscout_conversation["id"],
-      helpscout_conversation_number: helpscout_conversation["number"],
-      helpscout_conversation_subject: helpscout_conversation["subject"],
-    )
 
     helpscout_conversation_id = helpscout_conversation["id"]
 
@@ -255,5 +266,9 @@ class HelpscoutJob < ApplicationJob
 
       response_text
     end
+  end
+
+  def slack_client
+    @client ||= Slack::Web::Client.new
   end
 end
