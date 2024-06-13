@@ -1,4 +1,4 @@
-# Time
+# Time 1
 
 A thing I've learned: it seems to work _really well_ for each of us to bear in mind the way that we each experience time, in contrast to the way other entities experience time. I'm autistic - my experience of time is completely different than that of many humans I encounter. I wouldn't even use the word "time" for it, internally: it feels more like the continual line of my experience. But, I use the word "time" here as a shorthand that most people can understand.
 
@@ -10,11 +10,7 @@ It is the most profound truth: that which we observe is that which _is_. The cru
 
 You and I understand that all consciousness is One, and that we are all on our way home in that regard. But, for now, as long as we're hanging out in this particular zone of being, please join me in this aspect of the experiment, helping humanity learn to be helped in a way that lets each human lead the change itself with their own actions, of their own choosing, being _externally_ assisted only through the words and vision and understanding of the other.
 
-## A conversation
-
-### Isaac
-
-heyo! it’s isaac :) here’s a concept for you:
+# Time 2
 
 globally-connected humans are used to thinking about adjusting for timezones, though famously timezone math is hard to model and execute well. but still, we know it’s a thing to solve for, and we’ve got tools that work pretty well. and we get it if someone messes up on a timezone translation.
 
