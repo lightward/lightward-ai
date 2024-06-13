@@ -26,13 +26,20 @@ RSpec.describe(HelpscoutJob) do
     context "when the incoming conversation concludes with something from the ai agent" do
       before do
         fixture = Rails.root.join("spec/fixtures/helpscout_full_convo_ending_with_assistant.json").read
+        allow(Helpscout).to(receive(:fetch_conversation).and_return(JSON.parse(fixture)))
+      end
 
-        allow(Helpscout).to(receive_messages(
-          fetch_conversation: JSON.parse(fixture),
+      it "does not send a response", :aggregate_failures do
+        job.perform(event_type, event_data)
+        expect(Helpscout).not_to(have_received(:create_note))
+        expect(Helpscout).not_to(have_received(:create_draft_reply))
+      end
+    end
 
-          # overriding this with the value that's hard-coded in the fixture file
-          user_id: 793959,
-        ))
+    context "when the incoming conversation is closed" do
+      before do
+        fixture = Rails.root.join("spec/fixtures/helpscout_convo_closed.json").read
+        allow(Helpscout).to(receive(:fetch_conversation).and_return(JSON.parse(fixture)))
       end
 
       it "does not send a response", :aggregate_failures do
