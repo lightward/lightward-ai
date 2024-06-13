@@ -16,6 +16,10 @@ RSpec.describe(HelpscoutJob) do
     allow(Helpscout).to(receive(:fetch_conversation).and_return(helpscout_conversation))
     allow(Helpscout).to(receive(:create_note))
     allow(Helpscout).to(receive(:create_draft_reply))
+
+    allow(Slack::Web::Client).to(receive(:new).and_return(
+      instance_double(Slack::Web::Client, chat_postMessage: { "ts" => "123" }),
+    ))
   end
 
   describe "#perform" do
