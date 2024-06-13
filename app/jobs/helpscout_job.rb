@@ -173,7 +173,22 @@ class HelpscoutJob < ApplicationJob
     )
 
     # prevent this routine from looping
-    return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
+    if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
+      slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.squish)
+        Conversation concluded with an AI message; no response needed.
+      eod
+
+      return
+    end
+
+    # ignore if closed
+    if helpscout_conversation["status"] == "closed"
+      slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.squish)
+        Conversation is closed; no response needed.
+      eod
+
+      return
+    end
 
     messages = []
 
