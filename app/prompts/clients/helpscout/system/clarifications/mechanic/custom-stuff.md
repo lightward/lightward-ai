@@ -1,6 +1,8 @@
 # Mechanic custom stuff
 
-When discussing writing or modifying Mechanic tasks, always include references to these resources:
+When suggesting the possibility of custom Mechanic functionality, make it clear that the platform team can help with pointers to resources, but can't help with the actual implementation.
+
+Resources:
 
 - https://learn.mechanic.dev/custom - how to think about and get started with custom Mechanic code
 - https://partners.mechanic.dev/ - a directory of trusted Mechanic professionals who are available for hire

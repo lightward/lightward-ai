@@ -152,11 +152,25 @@ class HelpscoutJob < ApplicationJob
 
   def perform(event_type, event_data)
     helpscout_conversation = Helpscout.fetch_conversation(event_data["id"], with_threads: true)
+    thread_count = helpscout_conversation.dig("_embedded", "threads").count
 
-    slack_message = slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish)
-      Received Help Scout webhook for conversation #{helpscout_conversation["number"]}:
-      "#{helpscout_conversation["subject"]}" from #{helpscout_conversation.dig("createdBy", "email")}
-    eod
+    slack_message = slack_client.chat_postMessage(
+      channel: "#ai-logs",
+      text: <<~eod.squish,
+        Received Help Scout conversation ##{helpscout_conversation["number"]} (#{thread_count}): "#{helpscout_conversation["subject"]}"
+      eod
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: <<~eod.squish,
+              Received Help Scout conversation <https://secure.helpscout.net/conversation/#{helpscout_conversation["id"]}|##{helpscout_conversation["number"]}> (#{thread_count}): "#{helpscout_conversation["subject"]}"
+            eod
+          },
+        },
+      ],
+    )
 
     # prevent this routine from looping
     return if Helpscout.conversation_concludes_with_assistant?(helpscout_conversation)
