@@ -96,6 +96,14 @@ module Prompts
         document = Nokogiri::HTML(response.body)
         main_content = document.at("main") || document.at("article") || document.at("body") || document
 
+        # detect Gitbook index pages and skip them
+        if main_content.children.map(&:name) == ["header", "div", "div", "div"]
+          if main_content.children[1].children.all? { |c| c.name == "a" }
+            logger.info("Skipping Gitbook index page: #{url}")
+            return
+          end
+        end
+
         # Clean up the HTML content
         clean_html = clean_html_content(main_content, logger)
 
@@ -131,7 +139,7 @@ module Prompts
         end
 
         # Prepend the URL to the markdown content
-        markdown_content = "[Original URL: #{url}]\n\n" + markdown_content
+        markdown_content = "#{url}\n\n" + markdown_content
 
         uri = URI(url)
         path = uri.path.empty? || uri.path == "/" ? "index.md" : "#{uri.path}.md"
@@ -150,13 +158,11 @@ module Prompts
         # Parse the sanitized HTML fragment
         document = Nokogiri::HTML.fragment(sanitized_html)
 
-        # Replace <time> elements with their UTC equivalent
+        # Nix Gitbook's time elements
         time_elements = document.css("time")
         time_elements.each do |time_element|
-          datetime = time_element.attr("datetime") || time_element.attr("dateTime")
-          if datetime
-            utc_time = Time.parse(datetime).utc
-            time_element.content = utc_time.iso8601
+          if time_element.parent.text.start_with?("Last updated")
+            time_element.parent.remove
           end
         end
 
