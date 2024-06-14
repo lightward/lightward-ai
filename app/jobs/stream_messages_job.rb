@@ -22,7 +22,7 @@ class StreamMessagesJob < ApplicationJob
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)
 
     begin
-      Prompts::Anthropic.process_messages("clients/chat", chat_log, stream: true) do |request, response|
+      Prompts::Anthropic.process_messages(chat_log, prompt_type: "clients/chat", stream: true) do |request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
         end

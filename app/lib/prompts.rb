@@ -12,19 +12,21 @@ module Prompts
       Rails.root.join("app/prompts")
     end
 
-    def system_prompt(prompt_type)
-      assert_valid_prompt_type!(prompt_type)
-
+    def system_prompt(*prompt_types)
       @system_prompts ||= {}
-
       paths = []
 
-      ["", *prompt_type.split("/")].inject(prompts_dir) do |path, part|
-        paths << path.join(part, "system")
-        path.join(part)
+      prompt_types.each do |prompt_type|
+        assert_valid_prompt_type!(prompt_type)
+
+        ["", *prompt_type.split("/")].inject(prompts_dir) do |path, part|
+          paths << path.join(part, "system")
+          path.join(part)
+        end
       end
 
-      @system_prompts[prompt_type] ||= generate_system_xml(prompt_type, paths)
+      prompt_type_key = prompt_types.join(",")
+      @system_prompts[prompt_type_key] ||= generate_system_xml(prompt_type_key, paths)
     end
 
     def generate_system_xml(prompt_type, directories)

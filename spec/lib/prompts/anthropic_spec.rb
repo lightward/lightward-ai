@@ -123,7 +123,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     end
 
     it "sends a payload with the messages" do # rubocop:disable RSpec/ExampleLength
-      result = described_class.process_messages("foo", messages)
+      result = described_class.process_messages(messages, prompt_type: "foo")
       expect(result).to(eq("result"))
 
       expect(described_class).to(have_received(:api_request).with({

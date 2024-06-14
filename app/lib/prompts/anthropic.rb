@@ -50,15 +50,15 @@ module Prompts
       end
 
       def process_messages(
-        prompt_type,
         messages,
-        extra_system: nil,
+        prompt_type:,
+        system_prompt_types: prompt_type,
         model: Prompts::Anthropic.model,
         stream: false,
         &block
       )
-        system = Prompts.system_prompt(prompt_type)
-        system += Prompts.system_prompt(extra_system) if extra_system
+        system_prompt_types ||= [prompt_type]
+        system = Prompts.system_prompt(*system_prompt_types)
 
         messages = Prompts.clean_chat_log(
           Prompts.conversation_starters(prompt_type) + messages,

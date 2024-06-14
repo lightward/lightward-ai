@@ -64,12 +64,19 @@ class HelpscoutJob < ApplicationJob
       ],
     }
 
+    mailbox_client = MAILBOX_CLIENTS[mailbox_id]
+    prompt_type = "clients/helpscout"
+    system_prompt_types = ["clients/helpscout", mailbox_client]
+
     slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.squish)
-      Sending context to clients/helpscout...
+      Sending context to #{[prompt_type, *system_prompt_types].uniq.join(", ")}...
     eod
 
-    mailbox_client = MAILBOX_CLIENTS[mailbox_id]
-    response = get_anthropic_response_text("clients/helpscout", messages, extra_system: mailbox_client)
+    response = get_anthropic_response_text(
+      messages,
+      prompt_type: "clients/helpscout",
+      system_prompt_types: ["clients/helpscout", mailbox_client],
+    )
 
     slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.strip)
       Received response from clients/helpscout:
@@ -84,7 +91,7 @@ class HelpscoutJob < ApplicationJob
       messages: messages,
     )
   rescue => error
-    slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish)
+    slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish, thread_ts: slack_message["ts"])
       Error processing Help Scout webhook for conversation #{event_data["id"]}: #{error.message}
     eod
 
@@ -131,8 +138,9 @@ class HelpscoutJob < ApplicationJob
     end
   end
 
-  def get_anthropic_response_text(prompt_type, messages, extra_system: nil)
-    Prompts::Anthropic.process_messages(prompt_type, messages, extra_system: extra_system) do |_request, response|
+  def get_anthropic_response_text(messages, prompt_type:, system_prompt_types: [prompt_type])
+    Prompts::Anthropic.process_messages(messages, prompt_type: prompt_type, system_prompt_types: system_prompt_types) do
+      |_request, response|
       if response.code != "200"
         raise "Anthropic API request failed: #{response.code} #{response.body}"
       end
