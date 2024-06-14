@@ -1,0 +1,113 @@
+{
+  "id": 2625340764,
+  "number": 79846,
+  "threads": 1,
+  "type": "email",
+  "folderId": 3494819,
+  "status": "active",
+  "state": "published",
+  "subject": "The Lighting Outlet has a question about Mechanic",
+  "preview": "The Lighting Outlet (thelightingoutlet.myshopify.com) sent you a message about Mechanic                      The Lighting Outlet      Hi Team, I hope this message finds you well. We are currently expe",
+  "mailboxId": 204960,
+  "createdBy": {
+    "id": 711603625,
+    "type": "customer",
+    "first": "The Lighting",
+    "last": "Outlet",
+    "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/03.png",
+    "email": "sales@thelightingoutlet.com.au"
+  },
+  "createdAt": "2024-06-14T05:57:22Z",
+  "closedBy": 0,
+  "closedByUser": {
+    "id": 0,
+    "type": "user",
+    "first": "unknown",
+    "last": "unknown",
+    "email": "unknown"
+  },
+  "userUpdatedAt": "2024-06-14T05:57:22Z",
+  "customerWaitingSince": {
+    "time": "2024-06-14T05:57:22Z",
+    "friendly": "12:57am"
+  },
+  "source": { "type": "email", "via": "customer" },
+  "tags": [],
+  "cc": [],
+  "bcc": [],
+  "primaryCustomer": {
+    "id": 711603625,
+    "type": "customer",
+    "first": "The Lighting",
+    "last": "Outlet",
+    "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/03.png",
+    "email": "sales@thelightingoutlet.com.au"
+  },
+  "customFields": [],
+  "_embedded": {
+    "threads": [
+      {
+        "id": 7899370728,
+        "type": "customer",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "\u003ctable class=\"ex-mail-priority-indicator ex-mail-priority-indicator--low\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;border-top-style:solid;height:0;border-top-color:#dfe3e8;padding:0;border-width:5px 0 0;\"\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003ctable class=\"ex-mail-body\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:20px 0;border-width:0;\"\u003e\u003c/td\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;width:470px;padding:20px 0;border-width:0;\"\u003e\n\u003ctable class=\"ex-mail-body__content\" align=\"center\" style=\"width:100%;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:0;border:1px solid #dfe3e8;\"\u003e\n\u003ctable class=\"ex-mail-sections\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:16px;border-width:0;\"\u003e\n\u003ctable class=\"ex-mail-section ex-mail-section--type-primary\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:0 8px 16px;border-width:0;\"\u003e\n\u003ctable style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:0;border-width:0;\"\u003e\n\u003ch1 style=\"margin-top:0;margin-bottom:0;font-size:15px;font-weight:400;line-height:20px;padding:0;\"\u003eThe Lighting Outlet (thelightingoutlet.myshopify.com) sent you a message about Mechanic\u003c/h1\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003ctable class=\"ex-mail-section\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;border-top-color:#dfe3e8;border-top-style:solid;padding:16px 8px 0;border-width:1px 0 0;\"\u003e\n\u003ctable class=\"ex-mail-media ex-mail-media--type-comment\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;table-layout:auto;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd width=\"40\" class=\"ex-mail-media__thumbnail\" style=\"margin-top:0;margin-bottom:0;width:40px;padding:0 15px 0 0;border-width:0;\" align=\"center\" valign=\"top\"\u003e\u003cimg alt=\"\" src=\"https://proxy.shopifycdn.com/fa9570bbbbf5df739dc692cde8a1c8fdc332ba03f4490b934fa5caae6fa41358/www.gravatar.com/avatar/ec21e272d4bb736679e94b3e396f7696.jpg?default=mm\u0026amp;size=40\" style=\"height:auto;line-height:0;text-decoration:none;vertical-align:top;width:auto;max-height:40px;max-width:40px;border-width:0;\" /\u003e\u003c/td\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:0;border-width:0;\" valign=\"top\"\u003e\n\u003ctable class=\"ex-mail-media__description\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;padding:0;\" cellpadding=\"0\" cellspacing=\"0\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd class=\"ex-mail-media__title\" style=\"margin-top:0;margin-bottom:0;white-space:nowrap;padding:0;border-width:0;\" valign=\"top\"\u003e\n\u003ch3 style=\"margin-top:0;margin-bottom:0;font-size:15px;font-weight:600;line-height:20px;padding:0;\"\u003eThe Lighting Outlet \u0026lt;sales@thelightingoutlet.com.au\u0026gt;\u003c/h3\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd colspan=\"2\" class=\"ex-mail-media__details\" style=\"margin-top:0;margin-bottom:0;padding:0;border-width:0;\" valign=\"top\"\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eHi Team,\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eI hope this message finds you well.\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eWe are currently experiencing issues with the Klaviyo API integration. Klaviyo has recently migrated to their latest API version, and as a result, the current API we are using in Mechanic is returning errors.\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eThese are the API endpoints affected:\u003cbr\u003e\n/v1/person/\u0026lt;person_id\u0026gt;/metric/\u0026lt;metric_id\u0026gt;/timeline\u003cbr\u003e\n/v2/people/search\u003cbr\u003e\n/v2/people/search\u003cbr\u003e\n/v2/list/\u0026lt;list_id\u0026gt;/subscribe\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eLegacy Endpoint Docs\u003cbr\u003e\nhttps://developers.klaviyo.com/en/v1-2/reference/profile-metric-timeline\u003cbr\u003e\nhttps://developers.klaviyo.com/en/v1-2/reference/get-profile-id\u003cbr\u003e\nhttps://developers.klaviyo.com/en/v1-2/reference/subscribe\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eNew Endpoint Docs (or Equivalent, for Legacy)\u003cbr\u003e\nhttps://developers.klaviyo.com/en/reference/get_events\u003cbr\u003e\nhttps://developers.klaviyo.com/en/reference/get_profiles\u003cbr\u003e\nhttps://developers.klaviyo.com/en/reference/subscribe_profiles\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eCould you please assist us in updating the API integration to align with Klaviyo's latest version?\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eLet us know if your need futher information.\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eYour prompt help in resolving this issue would be greatly appreciated.\u003c/p\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003eThanks a lot.\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/td\u003e\n\u003ctd style=\"margin-top:0;margin-bottom:0;padding:20px 0;border-width:0;\"\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\n\u003ctable border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"ex-mail-footer\" style=\"width:100%;border-collapse:collapse;border-spacing:0;margin-top:0;margin-bottom:0;font-size:10px;line-height:14px;padding:0;\"\u003e\n\u003ctbody\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd align=\"center\" valign=\"bottom\" style=\"margin-top:0;margin-bottom:0;padding:0;border-width:0;\"\u003e\u003cimg alt=\"\" width=\"160\" src=\"https://cdn.shopify.com/shopifycloud/partners/assets/mailer/shopify_partners_logo-4b891b86128f7706fc85e3f6270714154e667017de972501117a9511a8d21209.png\" style=\"height:auto;line-height:0;text-decoration:none;vertical-align:top;border-width:0;\" /\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\n\u003ctd align=\"center\" style=\"margin-top:0;margin-bottom:0;padding:8px 0 20px;border-width:0;\"\u003e\n\u003cp style=\"margin-top:0;margin-bottom:0;padding:0;\"\u003e\u003cspan class=\"ex-apple-link\"\u003e© Shopify | 151 O'Connor Street, Ottawa ON, K2P 2L8\u003c/span\u003e\u003c/p\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "source": { "type": "email", "via": "customer" },
+        "customer": {
+          "id": 711603625,
+          "first": "The Lighting",
+          "last": "Outlet",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/03.png",
+          "email": "sales@thelightingoutlet.com.au"
+        },
+        "createdBy": {
+          "id": 711603625,
+          "type": "customer",
+          "first": "The Lighting",
+          "last": "Outlet",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/03.png",
+          "email": "sales@thelightingoutlet.com.au"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "savedReplyId": 0,
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-14T05:57:22Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByCustomer": {
+            "href": "https://api.helpscout.net/v2/customers/711603625"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/711603625"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": { "href": "https://api.helpscout.net/v2/conversations/2625340764" },
+    "mailbox": { "href": "https://api.helpscout.net/v2/mailboxes/204960" },
+    "primaryCustomer": {
+      "href": "https://api.helpscout.net/v2/customers/711603625"
+    },
+    "createdByCustomer": {
+      "href": "https://api.helpscout.net/v2/customers/711603625"
+    },
+    "closedBy": { "href": "https://api.helpscout.net/v2/users/0" },
+    "threads": {
+      "href": "https://api.helpscout.net/v2/conversations/2625340764/threads"
+    },
+    "web": {
+      "href": "https://secure.helpscout.net/conversation/2625340764/79846"
+    }
+  }
+}

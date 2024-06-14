@@ -20,7 +20,7 @@ RSpec.describe(Helpscout) do
     it "fetches conversation with threads by default" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
-        .to_return(status: 200, body: conversation_response.to_json, headers: { "Content-Type" => "application/json" })
+        .to_return_json(status: 200, body: conversation_response)
 
       result = described_class.fetch_conversation(conversation_id)
 
@@ -29,7 +29,7 @@ RSpec.describe(Helpscout) do
 
     it "orders threads chronologically, oldest to newest", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
-        .to_return(status: 200, body: conversation_response.to_json, headers: { "Content-Type" => "application/json" })
+        .to_return_json(status: 200, body: conversation_response)
 
       result = described_class.fetch_conversation(conversation_id)
 
@@ -40,14 +40,25 @@ RSpec.describe(Helpscout) do
       expect(threads).not_to(eq(conversation_response["_embedded"]["threads"]))
     end
 
-    it "fetches conversation without threads" do
+    it "can fetch conversation without threads" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
-        .to_return(status: 200, body: conversation_response.to_json, headers: { "Content-Type" => "application/json" })
+        .to_return_json(status: 200, body: conversation_response)
 
       result = described_class.fetch_conversation(conversation_id, with_threads: false)
 
       expect(result["id"]).to(eq(conversation_id))
+    end
+
+    it "strips html out of email bodies", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
+        .to_return_json(status: 200, body: Rails.root.join("spec/fixtures/helpscout_full_convo_html_email.json").read)
+
+      result = described_class.fetch_conversation(conversation_id)
+
+      body = result["_embedded"]["threads"][0]["body"]
+      expect(body).to(include("Hi Team,\n\nI hope this message finds you well."))
+      expect(body).not_to(include("</p>"))
     end
 
     it "raises an error if the response is not successful" do # rubocop:disable RSpec/ExampleLength
@@ -197,7 +208,7 @@ RSpec.describe(Helpscout) do
           client_id: "fake_app_id",
           client_secret: "fake_app_secret",
         })
-        .to_return(status: 200, body: token_response.to_json, headers: { "Content-Type" => "application/json" })
+        .to_return_json(status: 200, body: token_response)
     end
 
     it "caches the auth token" do

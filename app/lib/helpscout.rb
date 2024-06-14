@@ -22,7 +22,7 @@ module Helpscout
       ENV.fetch("HELPSCOUT_USER_ID").to_i
     end
 
-    def fetch_conversation(id, with_threads: true)
+    def fetch_conversation(id, with_threads: true, convert_threads_to_markdown: true)
       token = cached_auth_token
       url = "https://api.helpscout.net/v2/conversations/#{id}"
       url += "?embed=threads" if with_threads
@@ -37,6 +37,16 @@ module Helpscout
 
         # sort by createdAt, oldest to newest. helpscout does these in the other order, which isn't helpful for us.
         convo["_embedded"]["threads"].sort_by! { |thread| thread["createdAt"] }
+
+        if convert_threads_to_markdown
+          convo["_embedded"]["threads"].each do |thread|
+            raw_html = thread["body"]
+            clean_html = Loofah.fragment(raw_html).scrub!(:prune).to_html
+            markdown = ReverseMarkdown.convert(clean_html, unknown_tags: :bypass)
+
+            thread["body"] = markdown
+          end
+        end
 
         convo
       else
