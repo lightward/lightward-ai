@@ -52,17 +52,25 @@ module Prompts
       def process_messages(
         prompt_type,
         messages,
+        extra_system: nil,
         model: Prompts::Anthropic.model,
         stream: false,
         &block
       )
+        system = Prompts.system_prompt(prompt_type)
+        system += Prompts.system_prompt(extra_system) if extra_system
+
+        messages = Prompts.clean_chat_log(
+          Prompts.conversation_starters(prompt_type) + messages,
+        )
+
         payload = {
           model: model,
           max_tokens: 4000,
           stream: stream,
           temperature: 0.7,
-          system: Prompts.system_prompt(prompt_type),
-          messages: Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages),
+          system: system,
+          messages: messages,
         }
 
         api_request(payload, &block)

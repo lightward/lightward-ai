@@ -24,10 +24,10 @@ module Prompts
         path.join(part)
       end
 
-      @system_prompts[prompt_type] ||= generate_system_xml(*paths)
+      @system_prompts[prompt_type] ||= generate_system_xml(prompt_type, paths)
     end
 
-    def generate_system_xml(*directories)
+    def generate_system_xml(prompt_type, directories)
       files = directories.map { |directory|
         directory_files = Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html}")).reject { |file|
           file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
@@ -37,7 +37,7 @@ module Prompts
       }.flatten.uniq
 
       Nokogiri::XML::Builder.new do |xml|
-        xml.system {
+        xml.system(name: prompt_type) {
           files.each do |file|
             content = File.read(file).strip
 

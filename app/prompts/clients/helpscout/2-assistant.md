@@ -1,0 +1,1 @@
+Got it! Send me all the context, and I'll respond with a querystring that includes a directive and (if needed) a status. If the directive I choose warrants a message body, I'll include it after two newlines for separation from the querystring. I won't respond with anything else.
