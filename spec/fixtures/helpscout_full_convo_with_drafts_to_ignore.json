@@ -1,0 +1,483 @@
+{
+  "id": 2621971541,
+  "number": 79700,
+  "threads": 6,
+  "type": "email",
+  "folderId": 3419189,
+  "status": "active",
+  "state": "published",
+  "subject": "Re: Installing Locksmith breaks GSAP animations/script on store",
+  "preview": "Nice, everything started working properly on my end. Appreciate your help with this issue!  Thanks, Danny",
+  "mailboxId": 201764,
+  "createdBy": {
+    "id": 615364606,
+    "type": "customer",
+    "first": "Danny",
+    "last": "Moutilika",
+    "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+    "email": "danny@reachmoonbase.com"
+  },
+  "createdAt": "2024-06-11T00:10:26Z",
+  "closedBy": 0,
+  "closedByUser": {
+    "id": 0,
+    "type": "user",
+    "first": "unknown",
+    "last": "unknown",
+    "email": "unknown"
+  },
+  "userUpdatedAt": "2024-06-14T16:59:08Z",
+  "customerWaitingSince": {
+    "time": "2024-06-14T16:59:08Z",
+    "friendly": "11:59am"
+  },
+  "source": { "type": "email", "via": "customer" },
+  "tags": [],
+  "cc": [],
+  "bcc": [],
+  "primaryCustomer": {
+    "id": 615364606,
+    "type": "customer",
+    "first": "Danny",
+    "last": "Moutilika",
+    "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+    "email": "danny@reachmoonbase.com"
+  },
+  "customFields": [],
+  "_embedded": {
+    "threads": [
+      {
+        "id": 7888732380,
+        "type": "customer",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "Hello Jed, hope everything is well! I'd appreciate some additional help here. I'm just getting around to fixing this page, but experiencing a weird issue.\u003cbr\u003e\u003cbr\u003eSo for production, the main script for all the pages is at cdn.loadprotocol.com/vlone-store/js/main/main.js, but for development I purposely removed all references to that script URL and instead I'm just using an ngrok one on a new version of the theme (\u003cstrong\u003evlone-shopify-theme-2023-afc748222b5300-20\u003c/strong\u003e) to do some testing. Whenever I install Locksmith, I keep finding it in the locksmith-content-variables.liquid file, line 126. Any idea where this is pulling from? I checked locally in vs code that the references to the loadprotocol URL doesn't exist anywhere in vlone-shopify-theme-2023-afc748222b5300-20 before locksmith install, but it keeps getting added and is causing a bunch of errors.\u003cbr\u003e\u003cbr\u003eThanks,\u003cbr\u003eDanny",
+        "source": { "type": "email", "via": "customer" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 615364606,
+          "type": "customer",
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "savedReplyId": 0,
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-11T00:10:26Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByCustomer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7888734127,
+        "type": "message",
+        "status": "active",
+        "state": "draft",
+        "action": {
+          "type": "original-author",
+          "associatedEntities": { "user": 793959 }
+        },
+        "body": "Hi Danny,\u003cbr\u003e\u003cbr\u003eThanks for reaching out about this! It sounds like there may be a reference to that production script URL in an unexpected place in your theme. \u003cbr\u003e\u003cbr\u003eHere are a few things to check:\u003cbr\u003e\u003cbr\u003e1. In the Shopify admin, go to Online Store \u0026gt; Themes and click the \"...\" menu next to your theme, then click \"Edit Code\". Use the search box in the top left to search all theme files for that production script URL. If it shows up anywhere, remove it.\u003cbr\u003e\u003cbr\u003e2. Check the \"Layout\" section of your theme files for any references to that URL in theme.liquid or other layout files. These can sometimes pull in scripts globally.\u003cbr\u003e\u003cbr\u003e3. Look for any references to that URL in the \"Snippets\" section as well. A snippet included on multiple pages could explain it showing up in unexpected places.\u003cbr\u003e\u003cbr\u003e4. Lastly, it's worth double checking the Locksmith app settings to see if that URL is referenced anywhere in the app configuration that might be getting pulled into the locksmith-content-variables.liquid file.\u003cbr\u003e\u003cbr\u003eLet me know if you find the reference in any of those places or if you have any other questions! I'm happy to take another look if you're still seeing that script URL getting added in unexpected ways after checking those areas.\u003cbr\u003e\u003cbr\u003eHope this helps point you in the right direction! Let me know how it goes.\u003cbr\u003e\u003cbr\u003e-Lightward AI",
+        "source": { "type": "api", "via": "user" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 793959,
+          "type": "user",
+          "first": "Lightward",
+          "last": "AI",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/793959.329930.png",
+          "email": "team@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-11T00:11:19Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/793959"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7891411963,
+        "type": "note",
+        "status": "active",
+        "state": "published",
+        "action": {
+          "type": "original-author",
+          "associatedEntities": { "user": 435759 }
+        },
+        "body": "\u003ca href=\"https://uselocksmith.com/admin/shops/lvdv-holdings\"\u003ehttps://uselocksmith.com/admin/shops/lvdv-holdings\u003c/a\u003e\u003cbr\u003e",
+        "source": { "type": "web", "via": "user" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 435759,
+          "type": "user",
+          "first": "Jed",
+          "last": "Storie",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
+          "email": "jed@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-11T18:35:26Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/435759"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7891420273,
+        "type": "message",
+        "status": "closed",
+        "state": "published",
+        "action": {
+          "type": "original-author",
+          "associatedEntities": { "user": 435759 }
+        },
+        "body": "Hey Danny,\u003cbr\u003e\u003cbr\u003eI'm not 100% sure what script you are referring to, but the Locksmith content variables holds your login and registration forms, in addition to whatever content you have added to your lock messages.\u003cbr\u003e\u003cbr\u003eDo your login, registration, or lock prompt messages contain references to this script?\u003cbr\u003e\u003cbr\u003e-Jed\u003cbr\u003e",
+        "source": { "type": "web", "via": "user" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 435759,
+          "type": "user",
+          "first": "Jed",
+          "last": "Storie",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
+          "email": "jed@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-11T18:41:11Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/435759"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7891433863,
+        "type": "message",
+        "status": "closed",
+        "state": "draft",
+        "action": {
+          "type": "original-author",
+          "associatedEntities": { "user": 793959 }
+        },
+        "body": "Hey Danny,\u003cbr\u003e\u003cbr\u003eApologies for the confusion! It sounds like there may be a reference to that production script URL lingering somewhere in your theme or Locksmith settings. \u003cbr\u003e\u003cbr\u003eI would recommend doing a thorough search through your theme files, especially in the Layout and Snippets sections, for any references to \"cdn.loadprotocol.com\". If you find it anywhere, remove it. \u003cbr\u003e\u003cbr\u003eIt's also worth double checking your Locksmith content settings (lock messages, login/registration forms, etc.) to see if that URL is referenced there, as the contents of those settings get pulled into the locksmith-content-variables.liquid file.\u003cbr\u003e\u003cbr\u003eIf you're still seeing that script get added after checking those areas, let me know and I'm happy to take another look! Feel free to send over read-only access to your theme files and Locksmith settings if needed.\u003cbr\u003e\u003cbr\u003eHope this helps point you in the right direction! Let me know if you have any other questions.\u003cbr\u003e\u003cbr\u003e-Lightward AI",
+        "source": { "type": "api", "via": "user" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 793959,
+          "type": "user",
+          "first": "Lightward",
+          "last": "AI",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/793959.329930.png",
+          "email": "team@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-11T18:42:13Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/793959"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7891471858,
+        "type": "customer",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "I accidentally removed that theme, so I will have to create a new version showing you what I mean. That script would keep getting included even though there was no reference to it from the login/registration form pages, which I confirmed by checking for any reference in the theme before uploading. Unless it's somehow pulling from the currently live theme, even though I'm installing on a non-live theme.\u003cbr\u003e\u003cbr\u003eWill follow up once I upload that.",
+        "source": { "type": "email", "via": "customer" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 615364606,
+          "type": "customer",
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "savedReplyId": 0,
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-11T18:54:12Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByCustomer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7894222164,
+        "type": "customer",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "ok so I've uploaded a theme called \"locksmith bug fix\"\u003cbr\u003e\u003cbr\u003ein vs code, I'm checking for any reference to this script prior to upload:\u003cbr\u003e\u003cimg alt=\"Screenshot 2024-06-12 at 11.46.50 AM.jpg\" width=\"562\" height=\"370\" src=\"https://d33v4339jhl8k0.cloudfront.net/inline/103446/d3b1a4332212ae8d2bcdbe0b9f8a82d07d4f0233/fc045d0b83010a22cc1f07802737716c751ce78b/Screenshot-2024-06-12-at-11-46-50--AM.jpg\"/\u003e\u003cbr\u003enow I go to Locksmith \u0026gt; Help \u0026gt; Unpublished Themes \u0026gt; Install, download the theme files after doing this and check if this script gets added in somewhere:\u003cbr\u003e\u003cimg alt=\"Screenshot 2024-06-12 at 11.46.05 AM.jpg\" width=\"562\" height=\"370\" src=\"https://d33v4339jhl8k0.cloudfront.net/inline/103446/e915c0700e982e2ba36fb1bd96be6d45f7ea2712/7c0c9c6689e567875d4941d9577621842be267d2/Screenshot-2024-06-12-at-11-46-05--AM.jpg\"/\u003e\u003cbr\u003eWhere would Locksmith be pulling the script from if it doesn't exist anywhere in the theme files I initially upload? I will uploaded zips of before/after theme so you can check that if you would like.\u003cbr\u003e\u003cbr\u003eThanks,\u003cbr\u003eDanny\u003cbr\u003e\u003ca href=\"https://drive.google.com/file/d/1xH0r8CdV-UH6GwkkqOjreD7Tvjj2T4Be/view?usp=drive_web\"\u003e\u003cimg class=\"ex-c1\" alt=\"\" src=\"https://ssl.gstatic.com/docs/doclist/images/icon_10_generic_list.png\"/\u003e theme after install.zip\u003c/a\u003e\u003cimg class=\"ex-gmail_chip_remove ex-c4\" src=\"//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/close_baseline_nv700_20dp.png\" alt=\"close_baseline_nv700_20dp.png\"/\u003e\u003cbr\u003e\u003ca href=\"https://drive.google.com/file/d/1tQ0oXIpDNUTTnPGzIhFnOtmFSWL6ERvy/view?usp=drive_web\"\u003e\u003cimg class=\"ex-c1\" alt=\"\" src=\"https://ssl.gstatic.com/docs/doclist/images/icon_10_generic_list.png\"/\u003e theme before install.zip\u003c/a\u003e\u003cimg class=\"ex-gmail_chip_remove ex-c4\" src=\"//ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/close_baseline_nv700_20dp.png\" alt=\"close_baseline_nv700_20dp.png\"/\u003e",
+        "source": { "type": "email", "via": "customer" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 615364606,
+          "type": "customer",
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "savedReplyId": 0,
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-12T15:49:12Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByCustomer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7894734635,
+        "type": "message",
+        "status": "closed",
+        "state": "published",
+        "action": {
+          "type": "original-author",
+          "associatedEntities": { "user": 435759 }
+        },
+        "body": "Hey Danny!\u003cbr\u003e\u003cbr\u003eThanks for the screenshots, that clears things up a bit.\u003cbr\u003e\u003cbr\u003eSo it looks like at one point some manual login content was added to this store on our admin side. When this happens, it overrides the content from the theme. This is typically a step that is taken when there are issues with the login form. I've removed the override content for now.\u003cbr\u003e\u003cbr\u003eYou shouldn't have issues with not being able to update the login content on published themes. It looks like the published theme's login page for locked pages is also still operational.\u003cbr\u003e\u003cbr\u003eLet me know how things are looking on your end.\u003cbr\u003e\u003cbr\u003e-Jed\u003cbr\u003e",
+        "source": { "type": "web", "via": "user" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 435759,
+          "type": "user",
+          "first": "Jed",
+          "last": "Storie",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
+          "email": "jed@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-12T19:06:49Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/435759"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      },
+      {
+        "id": 7901078617,
+        "type": "customer",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "Nice, everything started working properly on my end. Appreciate your help with this issue!\u003cbr\u003e\u003cbr\u003eThanks,\u003cbr\u003eDanny",
+        "source": { "type": "email", "via": "customer" },
+        "customer": {
+          "id": 615364606,
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "createdBy": {
+          "id": 615364606,
+          "type": "customer",
+          "first": "Danny",
+          "last": "Moutilika",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/02.png",
+          "email": "danny@reachmoonbase.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "savedReplyId": 0,
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-14T16:59:08Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByCustomer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/615364606"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": { "href": "https://api.helpscout.net/v2/conversations/2621971541" },
+    "mailbox": { "href": "https://api.helpscout.net/v2/mailboxes/201764" },
+    "primaryCustomer": {
+      "href": "https://api.helpscout.net/v2/customers/615364606"
+    },
+    "createdByCustomer": {
+      "href": "https://api.helpscout.net/v2/customers/615364606"
+    },
+    "closedBy": { "href": "https://api.helpscout.net/v2/users/0" },
+    "threads": {
+      "href": "https://api.helpscout.net/v2/conversations/2621971541/threads"
+    },
+    "web": {
+      "href": "https://secure.helpscout.net/conversation/2621971541/79700"
+    }
+  }
+}

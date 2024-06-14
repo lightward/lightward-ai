@@ -41,10 +41,10 @@ class HelpscoutJob < ApplicationJob
       return
     end
 
-    # ignore if closed
-    if helpscout_conversation["status"] == "closed"
+    # ignore if closed or spam
+    if ["closed", "spam"].include?(helpscout_conversation["status"])
       slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.squish)
-        Conversation is closed; no response needed.
+        Conversation is #{helpscout_conversation["status"]}; no response needed.
       eod
 
       return
