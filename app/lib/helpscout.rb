@@ -38,6 +38,9 @@ module Helpscout
         # sort by createdAt, oldest to newest. helpscout does these in the other order, which isn't helpful for us.
         convo["_embedded"]["threads"].sort_by! { |thread| thread["createdAt"] }
 
+        # ignore drafts
+        convo["_embedded"]["threads"].reject! { |thread| thread["state"] == "draft" }
+
         if convert_threads_to_markdown
           convo["_embedded"]["threads"].each do |thread|
             raw_html = thread["body"]

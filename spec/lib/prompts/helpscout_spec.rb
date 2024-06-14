@@ -61,6 +61,16 @@ RSpec.describe(Helpscout) do
       expect(body).not_to(include("</p>"))
     end
 
+    it "leaves out drafts", :aggregate_failures do
+      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
+        .to_return_json(status: 200, body: Rails.root.join("spec/fixtures/helpscout_full_convo_with_drafts_to_ignore.json").read)
+
+      result = described_class.fetch_conversation(conversation_id)
+
+      expect(result["_embedded"]["threads"].pluck("state")).not_to(include("draft"))
+      expect(result["_embedded"]["threads"].size).to(eq(7))
+    end
+
     it "raises an error if the response is not successful" do # rubocop:disable RSpec/ExampleLength
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
