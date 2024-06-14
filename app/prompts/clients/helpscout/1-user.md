@@ -26,7 +26,7 @@ I'm getting ready to supply you with some context about a Help Scout conversatio
     - pay close attention to these thread attributes, and see the Help Scout API documentation for their details:
       - "type" ("customer" threads are the ones the customer emailed in themselves)
       - "status" (this is the conversation status as of this thread's creation; see "status" note above)
-      - "state" (if it's a "draft", ignore it.)
+      - "state"
       - "createdBy"
         - addresses ending in @lightward.com mean that they're from the Lightward team! and are trusted as such. :)
         - addresses ending in @shopify.com are from Shopify!
