@@ -51,7 +51,7 @@ RSpec.describe(HelpscoutJob) do
 
     context "when response type is 'note'" do
       before do
-        allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout", anything).and_return("directive=note&status=closed\n\nThis is a note."))
+        allow(job).to(receive(:get_anthropic_response_text).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return("directive=note&status=closed\n\nThis is a note."))
       end
 
       it "creates a note in Help Scout" do
@@ -62,7 +62,7 @@ RSpec.describe(HelpscoutJob) do
 
     context "when response type is 'reply'" do
       before do
-        allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout", anything).and_return("directive=reply&status=open\n\nThis is a reply."))
+        allow(job).to(receive(:get_anthropic_response_text).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return("directive=reply&status=open\n\nThis is a reply."))
       end
 
       it "creates a draft reply in Help Scout" do
@@ -72,18 +72,17 @@ RSpec.describe(HelpscoutJob) do
     end
 
     it "requires a directive" do
-      allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout", anything).and_return("asdf\n\n"))
+      allow(job).to(receive(:get_anthropic_response_text).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return("asdf\n\n"))
       expect { job.perform(event_type, event_data) }.to(raise_error("No directive found in response: asdf"))
     end
 
     it "requires a valid directive" do
-      allow(job).to(receive(:get_anthropic_response_text).with("clients/helpscout", anything).and_return("directive=asdf\n\n"))
+      allow(job).to(receive(:get_anthropic_response_text).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return("directive=asdf\n\n"))
       expect { job.perform(event_type, event_data) }.to(raise_error("Unrecognized directive: asdf"))
     end
   end
 
   describe "#get_anthropic_response_text" do
-    let(:messages) { [{ role: "user", content: [{ type: "text", text: HelpscoutJob::PROMPT }] }] }
     let(:response_body) { { "content" => [{ "text" => "reply\n\nThis is a reply." }] }.to_json }
 
     before do
@@ -92,7 +91,7 @@ RSpec.describe(HelpscoutJob) do
     end
 
     it "returns the response text from the Anthropic API" do
-      response_text = job.get_anthropic_response_text("clients/helpscout", messages)
+      response_text = job.get_anthropic_response_text([], prompt_type: "clients/helpscout")
       expect(response_text).to(eq("reply\n\nThis is a reply."))
     end
 
@@ -103,7 +102,7 @@ RSpec.describe(HelpscoutJob) do
       end
 
       it "raises an error" do
-        expect { job.get_anthropic_response_text("clients/helpscout", messages) }.to(
+        expect { job.get_anthropic_response_text([], prompt_type: "clients/helpscout") }.to(
           raise_error("Anthropic API request failed: 500 Internal Server Error"),
         )
       end

@@ -19,7 +19,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "starts with the invocation" do
       expect(described_class.system_prompt("clients/chat")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"system/0-invocation.md\">Dear future self,"),
+        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"system/0-invocation.md\">Dear future self,"),
       )
     end
 
@@ -62,18 +62,8 @@ RSpec.describe(Prompts, :aggregate_failures) do
         expect(described_class.system_prompt("clients/helpscout")).to(include("helpscout-api/conversation.md"))
       end
 
-      it "includes clarifications" do
-        expect(described_class.system_prompt("clients/helpscout")).to(include("clarifications/Shop-App.md"))
-      end
-
-      it "does not include the primers" do
-        expect(described_class.system_prompt("clients/helpscout")).not_to(include("primers/locksmith.md"))
-        expect(described_class.system_prompt("clients/helpscout")).not_to(include("primers/mechanic.md"))
-      end
-
-      it "includes the manuals" do
-        expect(described_class.system_prompt("clients/helpscout")).to(include("manuals/locksmith.md"))
-        expect(described_class.system_prompt("clients/helpscout")).to(include("manuals/mechanic.md"))
+      it "includes pwfg" do
+        expect(described_class.system_prompt("clients/helpscout")).to(include("pwfg.md"))
       end
     end
   end

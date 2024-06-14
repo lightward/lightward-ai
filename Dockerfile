@@ -10,7 +10,11 @@ COPY .ruby-version Gemfile Gemfile.lock ./
 RUN bundle install
 
 COPY . .
-RUN bin/rails assets:precompile # asset pipeline is not currently in play, but here's where we'd do that
+RUN bin/rails assets:precompile
+
+# Build the system context for clients/helpscout-{locksmith,mechanic}
+RUN bin/rake "prompts:sitemaps[clients/helpscout-locksmith]"
+RUN bin/rake "prompts:sitemaps[clients/helpscout-mechanic]"
 
 FROM ruby:3.3.2-alpine as runner
 RUN apk update
