@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class HostcheckMiddleware
-  HOST = ENV.fetch("HOST")
-
   def initialize(app)
     @app = app
   end
