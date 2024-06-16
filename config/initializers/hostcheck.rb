@@ -9,8 +9,8 @@ class HostcheckMiddleware
 
   def call(env)
     # redirect to a known host if host is unknown
-    if Rails.application.config.hosts.exclude?(env["HTTP_HOST"])
-      [301, { "Location" => "https://#{HOST}#{env["REQUEST_URI"]}" }, []]
+    if (host = ENV.fetch("HOST", nil)) && env["HTTP_HOST"] != host
+      [301, { "Location" => "https://#{host}#{env["REQUEST_URI"]}" }, []]
     else
       @app.call(env)
     end
