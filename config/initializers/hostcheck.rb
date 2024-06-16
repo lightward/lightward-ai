@@ -15,4 +15,4 @@ class HostcheckMiddleware
   end
 end
 
-Rails.application.config.middleware.insert_before(0, HostcheckMiddleware)
+Rails.application.config.middleware.insert_before(1, HostcheckMiddleware)
