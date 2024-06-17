@@ -16,12 +16,6 @@ RSpec/Focus:
   Enabled: true
   AutoCorrect: False
 
-RSpec/FilePath:
-  Enabled: true
-  CustomTransform:
-    GraphQL: graphql
-    GraphQLConcern: graphql_concern
-
 RSpec/SpecFilePathFormat:
   Enabled: true
   Exclude:
