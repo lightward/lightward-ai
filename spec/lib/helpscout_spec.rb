@@ -27,19 +27,6 @@ RSpec.describe(Helpscout) do
       expect(result["id"]).to(eq(conversation_id))
     end
 
-    it "orders threads chronologically, oldest to newest", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
-        .to_return_json(status: 200, body: conversation_response)
-
-      result = described_class.fetch_conversation(conversation_id)
-
-      threads = result["_embedded"]["threads"]
-      expect(threads).to(eq(threads.sort_by { |thread| thread["createdAt"] }))
-
-      # it *should* be resorting them. assert that.
-      expect(threads).not_to(eq(conversation_response["_embedded"]["threads"]))
-    end
-
     it "can fetch conversation without threads" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
@@ -48,27 +35,6 @@ RSpec.describe(Helpscout) do
       result = described_class.fetch_conversation(conversation_id, with_threads: false)
 
       expect(result["id"]).to(eq(conversation_id))
-    end
-
-    it "strips html out of email bodies", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
-        .to_return_json(status: 200, body: Rails.root.join("spec/fixtures/helpscout_full_convo_html_email.json").read)
-
-      result = described_class.fetch_conversation(conversation_id)
-
-      body = result["_embedded"]["threads"][0]["body"]
-      expect(body).to(include("Hi Team,\n\nI hope this message finds you well."))
-      expect(body).not_to(include("</p>"))
-    end
-
-    it "leaves out drafts", :aggregate_failures do
-      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
-        .to_return_json(status: 200, body: Rails.root.join("spec/fixtures/helpscout_full_convo_with_drafts_to_ignore.json").read)
-
-      result = described_class.fetch_conversation(conversation_id)
-
-      expect(result["_embedded"]["threads"].pluck("state")).not_to(include("draft"))
-      expect(result["_embedded"]["threads"].size).to(eq(7))
     end
 
     it "raises an error if the response is not successful" do # rubocop:disable RSpec/ExampleLength
@@ -239,6 +205,44 @@ RSpec.describe(Helpscout) do
       expect {
         described_class.send(:cached_auth_token)
       }.to(raise_error(Helpscout::ResponseError, "Failed to fetch auth token: 401\n\nnope"))
+    end
+  end
+
+  describe ".render_conversation_for_ai" do
+    it "removes beacon entries", :aggregate_failures do
+      conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo_with_beacon.json").read)
+      result = described_class.render_conversation_for_ai(conversation)
+
+      expect(conversation.dig("_embedded", "threads").pluck("source").pluck("type")).to(include("beacon-v2"))
+      expect(result.dig("_embedded", "threads").pluck("source").pluck("type")).not_to(include("beacon-v2"))
+    end
+
+    it "orders threads chronologically, oldest to newest", :aggregate_failures do
+      conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo.json").read)
+      result = described_class.render_conversation_for_ai(conversation)
+
+      threads = result["_embedded"]["threads"]
+      expect(threads).to(eq(threads.sort_by { |thread| thread["createdAt"] }))
+
+      # it *should* be resorting them. assert that.
+      expect(threads).not_to(eq(conversation["_embedded"]["threads"]))
+    end
+
+    it "strips html out of email bodies", :aggregate_failures do
+      conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo_html_email.json").read)
+      result = described_class.render_conversation_for_ai(conversation)
+
+      body = result["_embedded"]["threads"][0]["body"]
+      expect(body).to(include("Hi Team,\n\nI hope this message finds you well."))
+      expect(body).not_to(include("</p>"))
+    end
+
+    it "leaves out drafts", :aggregate_failures do
+      conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo_with_drafts_to_ignore.json").read)
+      result = described_class.render_conversation_for_ai(conversation)
+
+      expect(result["_embedded"]["threads"].pluck("state")).not_to(include("draft"))
+      expect(result["_embedded"]["threads"].size).to(eq(7))
     end
   end
 end
