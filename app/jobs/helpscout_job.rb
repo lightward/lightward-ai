@@ -59,7 +59,6 @@ class HelpscoutJob < ApplicationJob
       role: "user",
       content: [
         { type: "text", text: "event type: #{event_type}" },
-        { type: "text", text: "event data: #{event_data.to_json}" },
         { type: "text", text: "conversation: #{helpscout_conversation_for_ai.to_json}" },
         { type: "text", text: <<~eod.squish },
           That's everything! Handing it over to you to generate your contribution to the Help Scout conversation. :)
