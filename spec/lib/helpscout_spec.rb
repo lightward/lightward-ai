@@ -241,4 +241,22 @@ RSpec.describe(Helpscout) do
       }.to(raise_error(Helpscout::ResponseError, "Failed to fetch auth token: 401\n\nnope"))
     end
   end
+
+  describe ".render_conversation_for_ai" do
+    it "cleans up beacon stuff" do # rubocop:disable RSpec/ExampleLength
+      conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo_with_Beacon.json").read)
+      result = described_class.render_conversation_for_ai(conversation)
+
+      expect(result.dig("_embedded", "threads", 0, "body")).to(eq(<<~eod.strip))
+        **Technical Information**
+
+        | IP Address | 159.242.97.27 |
+        | Location | Dorchester, United Kingdom |
+        | Operating System | Windows 10 10.0 |
+        | Browser/Version | Edge 126.0 |
+        | Device | Desktop |
+        | Authentication Mode | Secure |
+      eod
+    end
+  end
 end

@@ -57,6 +57,46 @@ module Helpscout
       end
     end
 
+    def render_conversation_for_ai(conversation)
+      conversation_for_ai = conversation.deep_dup
+
+      conversation_for_ai.slice!(
+        "id",
+        "number",
+        "subject",
+        "threads",
+        "status",
+        "state",
+        "subject",
+        "primaryCustomer",
+        "_embedded",
+      )
+
+      conversation_for_ai["_embedded"].slice!("threads")
+
+      conversation_for_ai["_embedded"]["threads"].each do |thread|
+        thread.slice!(
+          "type",
+          "status",
+          "state",
+          "source",
+          "customer",
+          "body",
+        )
+
+        next unless thread.dig("source", "type") == "beacon-v2"
+
+        # only keep the technical information
+        thread["body"] = if (match = thread["body"].match(/\*\*Technical Information\*\*\n(\n\|.*\|$)+/))
+          match[0]
+        else
+          ""
+        end
+      end
+
+      conversation_for_ai
+    end
+
     def conversation_concludes_with_assistant?(conversation)
       threads = conversation.dig("_embedded", "threads") || []
 

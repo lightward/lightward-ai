@@ -52,12 +52,15 @@ class HelpscoutJob < ApplicationJob
 
     messages = Prompts.conversation_starters("clients/helpscout")
 
+    # be selective about what we pass in to the ai
+    helpscout_conversation_for_ai = Helpscout.render_conversation_for_ai(helpscout_conversation)
+
     messages << {
       role: "user",
       content: [
         { type: "text", text: "event type: #{event_type}" },
         { type: "text", text: "event data: #{event_data.to_json}" },
-        { type: "text", text: "conversation: #{helpscout_conversation.to_json}" },
+        { type: "text", text: "conversation: #{helpscout_conversation_for_ai.to_json}" },
         { type: "text", text: <<~eod.squish },
           That's everything! Handing it over to you to generate your contribution to the Help Scout conversation. :)
         eod
