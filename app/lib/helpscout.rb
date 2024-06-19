@@ -22,7 +22,7 @@ module Helpscout
       ENV.fetch("HELPSCOUT_USER_ID").to_i
     end
 
-    def fetch_conversation(id, with_threads: true, convert_threads_to_markdown: true)
+    def fetch_conversation(id, with_threads: true)
       token = cached_auth_token
       url = "https://api.helpscout.net/v2/conversations/#{id}"
       url += "?embed=threads" if with_threads
@@ -33,25 +33,7 @@ module Helpscout
       })
 
       if response.code == 200
-        convo = JSON.parse(response.body)
-
-        # sort by createdAt, oldest to newest. helpscout does these in the other order, which isn't helpful for us.
-        convo["_embedded"]["threads"].sort_by! { |thread| thread["createdAt"] }
-
-        # ignore drafts
-        convo["_embedded"]["threads"].reject! { |thread| thread["state"] == "draft" }
-
-        if convert_threads_to_markdown
-          convo["_embedded"]["threads"].each do |thread|
-            raw_html = thread["body"]
-            clean_html = Loofah.fragment(raw_html).scrub!(:prune).to_html
-            markdown = ReverseMarkdown.convert(clean_html, unknown_tags: :bypass)
-
-            thread["body"] = markdown
-          end
-        end
-
-        convo
+        JSON.parse(response.body)
       else
         raise ResponseError, "Failed to fetch conversation: #{response.code}\n\n#{response.body}".strip
       end
@@ -68,30 +50,53 @@ module Helpscout
         "status",
         "state",
         "subject",
-        "primaryCustomer",
         "_embedded",
       )
 
       conversation_for_ai["_embedded"].slice!("threads")
 
+      # sort by createdAt, oldest to newest. helpscout does these in the other order, which isn't helpful for us.
+      conversation_for_ai["_embedded"]["threads"].sort_by! { |thread| thread["createdAt"] }
+
+      # ignore drafts
+      conversation_for_ai["_embedded"]["threads"].reject! { |thread| thread["state"] == "draft" }
+
+      # ignore beacon entries
+      conversation_for_ai["_embedded"]["threads"].reject! { |thread| thread.dig("source", "type") == "beacon-v2" }
+
+      # filter thread contents
       conversation_for_ai["_embedded"]["threads"].each do |thread|
         thread.slice!(
           "type",
           "status",
-          "state",
           "source",
-          "customer",
+          "createdBy",
           "body",
         )
 
-        next unless thread.dig("source", "type") == "beacon-v2"
+        # remove photoUrl, is unused
+        thread["createdBy"].except!("photoUrl")
 
-        # only keep the technical information
-        thread["body"] = if (match = thread["body"].match(/\*\*Technical Information\*\*\n(\n\|.*\|$)+/))
-          match[0]
-        else
-          ""
+        # remove all but the basic attachment info
+        if thread.dig("_embedded", "attachments")
+          thread["_embedded"]["attachments"].each do |attachment|
+            attachment.slice!(
+              "id",
+              "filename",
+              "mimeType",
+            )
+          end
         end
+
+        # convert to markdown. nb: helpscout sometimes represents stuff in markdown itself!
+        raw_html = thread["body"]
+        clean_html = Loofah.fragment(raw_html).scrub!(:prune).to_html
+        markdown = ReverseMarkdown.convert(clean_html, unknown_tags: :bypass)
+
+        # now that we're *definitely* in markdown, empty out image urls
+        markdown.gsub!(/\!\[.*?\]\(.*?\)/, "[image]")
+
+        thread["body"] = markdown
       end
 
       conversation_for_ai
