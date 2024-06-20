@@ -1,4 +1,5 @@
 import { createConsumer } from '@rails/actioncable';
+import TurndownService from 'turndown';
 
 const consumer = createConsumer();
 
@@ -145,6 +146,35 @@ export const initChat = () => {
         event.preventDefault();
         submitUserInput(userInput.value);
       });
+
+    // Handle paste event to convert HTML to markdown
+    userInput.addEventListener('paste', (event) => {
+      event.preventDefault();
+      const clipboardData = event.clipboardData || window.clipboardData;
+      const html = clipboardData.getData('text/html');
+      const plainText = clipboardData.getData('text/plain');
+
+      const turndownService = new TurndownService({
+        headingStyle: 'atx',
+        emDelimiter: '*',
+        codeBlockStyle: 'fenced',
+      });
+      const markdown = html ? turndownService.turndown(html) : plainText;
+
+      const start = userInput.selectionStart;
+      const end = userInput.selectionEnd;
+      userInput.value =
+        userInput.value.substring(0, start) +
+        markdown +
+        userInput.value.substring(end);
+      userInput.setSelectionRange(
+        start + markdown.length,
+        start + markdown.length
+      );
+
+      // Trigger input event to resize textarea
+      userInput.dispatchEvent(new Event('input'));
+    });
   }
 
   function handleResponseClick(event) {

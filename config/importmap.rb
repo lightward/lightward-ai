@@ -5,3 +5,4 @@ pin "application"
 pin "@rails/actioncable", to: "actioncable.esm.js"
 
 pin_all_from "app/javascript/src", under: "src", to: "src"
+pin "turndown" # @7.2.0
