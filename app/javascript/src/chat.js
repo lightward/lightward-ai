@@ -24,6 +24,8 @@ export const initChat = () => {
   const chatLogData =
     JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
 
+  const userInputLocalstorageKey = `${chatLogDataLocalstorageKey}/input`;
+
   const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
   userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
 
@@ -147,6 +149,9 @@ export const initChat = () => {
     });
 
     userInput.addEventListener('input', function () {
+      // Save input value to localStorage
+      localStorage.setItem(userInputLocalstorageKey, userInput.value);
+
       // expand the textarea as needed. it'll be reset when the user submits their message. it
       // doesn't auto-shrink, and that actually feels appropriate? we keep whatever space the
       // user has hollowed out for themselves, and we only reset it when they've decided they're
@@ -155,6 +160,15 @@ export const initChat = () => {
         userInput.style.height = userInput.scrollHeight + 'px';
       }
     });
+
+    // Load saved input value from localStorage
+    const savedInputValue = localStorage.getItem(userInputLocalstorageKey);
+    if (savedInputValue) {
+      userInput.value = savedInputValue;
+
+      // trigger input event to resize textarea
+      userInput.dispatchEvent(new Event('input'));
+    }
 
     userInputArea
       .querySelector('button')
