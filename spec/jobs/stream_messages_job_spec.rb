@@ -18,6 +18,19 @@ RSpec.describe(StreamMessagesJob) do
   end
 
   describe "#perform" do
+    it "uses the correct model and prompt type" do # rubocop:disable RSpec/ExampleLength
+      allow(Prompts::Anthropic).to(receive(:process_messages))
+
+      job.perform(stream_id, chat_log)
+
+      expect(Prompts::Anthropic).to(have_received(:process_messages).with(
+        chat_log,
+        prompt_type: "clients/chat",
+        stream: true,
+        model: Prompts::Anthropic::MORE_EMOTION,
+      ))
+    end
+
     context "when the stream is not ready" do
       before do
         allow(Rails.cache).to(receive(:read).with(stream_ready_key) {

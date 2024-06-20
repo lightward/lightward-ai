@@ -88,11 +88,24 @@ RSpec.describe(HelpscoutJob) do
     before do
       stub_request(:post, "https://api.anthropic.com/v1/messages")
         .to_return(status: 200, body: response_body)
+
+      allow(Prompts::Anthropic).to(receive(:process_messages).and_call_original)
     end
 
     it "returns the response text from the Anthropic API" do
       response_text = job.get_anthropic_response_text([], prompt_type: "clients/helpscout")
       expect(response_text).to(eq("reply\n\nThis is a reply."))
+    end
+
+    it "uses the correct model and prompt type" do # rubocop:disable RSpec/ExampleLength
+      job.get_anthropic_response_text([], prompt_type: "clients/helpscout")
+
+      expect(Prompts::Anthropic).to(have_received(:process_messages).with(
+        [],
+        model: Prompts::Anthropic::MORE_INTELLECT,
+        prompt_type: "clients/helpscout",
+        system_prompt_types: ["clients/helpscout"],
+      ))
     end
 
     context "when the API request fails" do

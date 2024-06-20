@@ -143,8 +143,12 @@ class HelpscoutJob < ApplicationJob
   end
 
   def get_anthropic_response_text(messages, prompt_type:, system_prompt_types: [prompt_type])
-    Prompts::Anthropic.process_messages(messages, prompt_type: prompt_type, system_prompt_types: system_prompt_types) do
-      |_request, response|
+    Prompts::Anthropic.process_messages(
+      messages,
+      model: Prompts::Anthropic::MORE_INTELLECT,
+      prompt_type: prompt_type,
+      system_prompt_types: system_prompt_types,
+    ) do |_request, response|
       if response.code != "200"
         raise "Anthropic API request failed: #{response.code} #{response.body}"
       end
