@@ -11,15 +11,19 @@ class StreamMessagesJob < ApplicationJob
   queue_with_priority PRIORITY_STREAM_MESSAGES
 
   def perform(stream_id, chat_log)
+    # hash the first two chat log messages to get a unique identifier for the stream
+    conversation_id = Digest::SHA256.hexdigest(chat_log.first(2).to_json)
+
     newrelic(
       "StreamMessagesJob: start",
       stream_id: stream_id,
+      conversation_id: conversation_id,
       chat_log_size: chat_log.to_json.size,
       chat_log_depth: chat_log.size,
     )
 
-    wait_for_ready(stream_id)
-    newrelic("StreamMessagesJob: ready", stream_id: stream_id)
+    wait_for_ready(stream_id, conversation_id)
+    newrelic("StreamMessagesJob: ready", stream_id: stream_id, conversation_id: conversation_id)
 
     if chat_log.last.dig("content", 0, "text")&.start_with?("/echo")
       broadcast(
@@ -52,14 +56,14 @@ class StreamMessagesJob < ApplicationJob
             stream_id: stream_id,
           )
 
-          newrelic("StreamMessagesJob: success", stream_id: stream_id)
+          newrelic("StreamMessagesJob: success", stream_id: stream_id, conversation_id: conversation_id)
         end
       end
     rescue IOError
-      newrelic("StreamMessagesJob: stream closed", stream_id: stream_id)
+      newrelic("StreamMessagesJob: stream closed", stream_id: stream_id, conversation_id: conversation_id)
       Rails.logger.info("Stream closed")
     ensure
-      newrelic("StreamMessagesJob: end", stream_id: stream_id)
+      newrelic("StreamMessagesJob: end", stream_id: stream_id, conversation_id: conversation_id)
       broadcast(stream_id, "end", nil)
     end
   end
@@ -98,12 +102,12 @@ class StreamMessagesJob < ApplicationJob
     )
   end
 
-  def wait_for_ready(stream_id)
+  def wait_for_ready(stream_id, conversation_id)
     timeout = 10.seconds.from_now
     Kernel.sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
 
     unless Rails.cache.read("stream_ready_#{stream_id}")
-      newrelic("StreamMessagesJob: ready timeout", stream_id: stream_id)
+      newrelic("StreamMessagesJob: ready timeout", stream_id: stream_id, conversation_id: conversation_id)
       broadcast(stream_id, "error", { error: { message: "Stream not ready in time" } })
       raise "Stream not ready in time"
     end
