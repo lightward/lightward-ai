@@ -50,7 +50,9 @@ class HelpscoutJob < ApplicationJob
       return
     end
 
-    messages = Prompts.conversation_starters("clients/helpscout")
+    messages = []
+
+    messages += Prompts.conversation_starters("clients/helpscout")
 
     # be selective about what we pass in to the ai
     helpscout_conversation_for_ai = Helpscout.render_conversation_for_ai(helpscout_conversation)
