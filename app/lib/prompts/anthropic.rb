@@ -12,7 +12,7 @@ module Prompts
       def default_model
         if Rails.env.production?
           # this should be the maximum complexity model
-          "claude-3-opus-20240229"
+          "claude-3-5-sonnet-20240620"
         else
           # this should be the least expensive/complex model
           "claude-3-haiku-20240307"

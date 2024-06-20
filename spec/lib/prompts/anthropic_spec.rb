@@ -28,7 +28,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       expect(described_class.default_model).to(eq("claude-3-haiku-20240307"))
 
       Rails.env = "production"
-      expect(described_class.default_model).to(eq("claude-3-opus-20240229"))
+      expect(described_class.default_model).to(eq("claude-3-5-sonnet-20240620"))
     end
   end
 
