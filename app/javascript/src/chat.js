@@ -144,6 +144,10 @@ export const initChat = () => {
           }
         } else {
           userInput.select();
+
+          // reset height too
+          userInput.style.height = 'auto';
+          userInput.style.height = userInput.scrollHeight + 'px';
         }
       }
     });
