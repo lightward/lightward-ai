@@ -252,7 +252,6 @@ export const initChat = () => {
     hideResponseSuggestions();
 
     const conversationData = {
-      with_content_key: chatContext.with_content_key,
       chat_log: chatLogData,
     };
 

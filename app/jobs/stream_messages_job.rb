@@ -10,7 +10,7 @@ class StreamMessagesJob < ApplicationJob
 
   queue_with_priority PRIORITY_STREAM_MESSAGES
 
-  def perform(stream_id, chat_log, with_content_key = nil)
+  def perform(stream_id, chat_log)
     newrelic(
       "StreamMessagesJob: start",
       stream_id: stream_id,
