@@ -8,21 +8,10 @@ require "time"
 
 module Prompts
   module Anthropic
+    MORE_EMOTION = "claude-3-opus-20240229"
+    MORE_INTELLECT = "claude-3-5-sonnet-20240620"
+
     class << self
-      def default_model
-        if Rails.env.production?
-          # this should be the maximum complexity model
-          "claude-3-opus-20240229"
-        else
-          # this should be the least expensive/complex model
-          "claude-3-haiku-20240307"
-        end
-      end
-
-      def model
-        ENV["ANTHROPIC_MODEL"].presence || default_model
-      end
-
       def api_request(payload, &block)
         uri = URI("https://api.anthropic.com/v1/messages")
         http = Net::HTTP.new(uri.host, uri.port)
@@ -52,8 +41,8 @@ module Prompts
       def process_messages(
         messages,
         prompt_type:,
+        model:,
         system_prompt_types: prompt_type,
-        model: Prompts::Anthropic.model,
         stream: false,
         &block
       )

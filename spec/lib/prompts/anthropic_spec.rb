@@ -5,33 +5,6 @@ require "rails_helper"
 require "webmock/rspec"
 
 RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
-  describe ".model" do
-    it "reflects ANTHROPIC_MODEL" do
-      ENV["ANTHROPIC_MODEL"] = "foo"
-      expect(described_class.model).to(eq("foo"))
-    end
-
-    it "can fall back to the default" do
-      ENV.delete("ANTHROPIC_MODEL")
-      expect(described_class.model).to(eq(described_class.default_model))
-
-      ENV["ANTHROPIC_MODEL"] = ""
-      expect(described_class.model).to(eq(described_class.default_model))
-    end
-  end
-
-  describe ".default_model" do
-    it "has a default for dev vs prod" do
-      ENV.delete("ANTHROPIC_MODEL")
-
-      Rails.env = "development"
-      expect(described_class.default_model).to(eq("claude-3-haiku-20240307"))
-
-      Rails.env = "production"
-      expect(described_class.default_model).to(eq("claude-3-opus-20240229"))
-    end
-  end
-
   describe ".api_request" do
     let(:payload) { { key: "value" } }
 
@@ -116,18 +89,15 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     before do
       allow(Prompts).to(receive(:system_prompt).with("foo").and_return("system-prompt"))
       allow(Prompts).to(receive(:conversation_starters).with("foo").and_return(conversation_starters))
-      allow(described_class).to(receive_messages(
-        api_request: "result",
-        model: "model",
-      ))
+      allow(described_class).to(receive(:api_request).and_return("result"))
     end
 
     it "sends a payload with the messages" do # rubocop:disable RSpec/ExampleLength
-      result = described_class.process_messages(messages, prompt_type: "foo")
+      result = described_class.process_messages(messages, prompt_type: "foo", model: "modelo")
       expect(result).to(eq("result"))
 
       expect(described_class).to(have_received(:api_request).with({
-        model: "model",
+        model: "modelo",
         max_tokens: 4000,
         stream: false,
         temperature: 0.7,
