@@ -21,6 +21,15 @@ class StreamMessagesJob < ApplicationJob
     wait_for_ready(stream_id)
     newrelic("StreamMessagesJob: ready", stream_id: stream_id)
 
+    if chat_log.last.dig("content", 0, "text")&.start_with?("/echo")
+      broadcast(
+        stream_id,
+        "error",
+        { error: { message: "Echo!\n\n#{chat_log.last.dig("content", 0, "text")[6..-1]}".strip } },
+      )
+      return
+    end
+
     begin
       Prompts::Anthropic.process_messages(chat_log, prompt_type: "clients/chat", stream: true) do |request, response|
         if response.code.to_i >= 400
