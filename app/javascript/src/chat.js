@@ -165,9 +165,9 @@ export const initChat = () => {
       }
     });
 
-    // Load saved input value from localStorage
+    // Load saved input value from localStorage, if the textarea's empty
     const savedInputValue = localStorage.getItem(userInputLocalstorageKey);
-    if (savedInputValue) {
+    if (savedInputValue && userInput.value === '') {
       userInput.value = savedInputValue;
 
       // trigger input event to resize textarea
