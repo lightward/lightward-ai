@@ -116,7 +116,6 @@ export const initChat = () => {
     startSuggestions.classList.add('hidden');
     responseSuggestions.classList.add('hidden');
     instructions.remove();
-    footer.remove();
   }
 
   function handleUserInput() {
@@ -250,6 +249,13 @@ export const initChat = () => {
 
   function fetchAssistantResponse() {
     hideResponseSuggestions();
+
+    // if this is the first message, hide the footer, for focus. otherwise, reveal it.
+    if (chatLogData.length === 1) {
+      footer.classList.add('hidden');
+    } else {
+      footer.classList.remove('hidden');
+    }
 
     const conversationData = {
       chat_log: chatLogData,
