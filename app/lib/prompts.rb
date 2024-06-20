@@ -26,7 +26,7 @@ module Prompts
       end
 
       prompt_type_key = prompt_types.join(",")
-      @system_prompts[prompt_type_key] ||= generate_system_xml(prompt_type_key, paths)
+      @system_prompts[prompt_type_key] ||= generate_system_xml(prompt_type_key, paths).freeze
     end
 
     def generate_system_xml(prompt_type, directories)
@@ -111,7 +111,7 @@ module Prompts
           array[0][:content].concat(additional_user_content_blocks)
         end
 
-        array
+        array.freeze
       end
     end
 
