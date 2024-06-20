@@ -118,6 +118,7 @@ export const initChat = () => {
   }
 
   function handleUserInput() {
+    // setup in anticipation of esc behavior
     userInput.style.height = 'auto';
 
     userInput.addEventListener('keydown', function (event) {
