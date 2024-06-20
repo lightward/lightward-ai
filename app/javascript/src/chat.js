@@ -118,6 +118,9 @@ export const initChat = () => {
   }
 
   function handleUserInput() {
+    // setup in anticipation of esc behavior
+    userInput.style.height = 'auto';
+
     userInput.addEventListener('keydown', function (event) {
       // cmd+enter or ctrl+enter
       if (event.key === 'Enter') {
@@ -126,6 +129,19 @@ export const initChat = () => {
           submitUserInput(userInput.value);
         } else {
           userInputArea.classList.add('multiline');
+        }
+      }
+
+      // esc key
+      if (event.key === 'Escape') {
+        if (userInput.value.trim() === '') {
+          if (userInput.style.height !== 'auto') {
+            userInput.style.height = 'auto';
+          } else {
+            userInput.blur();
+          }
+        } else {
+          userInput.select();
         }
       }
     });
