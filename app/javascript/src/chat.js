@@ -383,6 +383,9 @@ export const initChat = () => {
       chatLogDataLocalstorageKey,
       JSON.stringify(chatLogData)
     );
+
+    // clear userInputLocalstorageKey, since the user has submitted their message
+    localStorage.removeItem(userInputLocalstorageKey);
   }
 
   // Handle start over button click
