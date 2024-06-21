@@ -45,35 +45,29 @@ For the `reply` and `note` directives, append two newlines, and then append the 
 Only one directive (and thereby only one directive text body) is allowed per response! You'll get an error if you
 try to use more than one. :)
 
-When supplying `status` for a new thread, always match the conversation's current status _unless_ you intentionally
-want to change it. If you want a Lightward human's attention, always use "open".
+When supplying `status` for a new thread:
 
-- "open" puts it in the queue to get attention from a Lightward human.
-- "pending" means that it (1) is _not_ done, (2) is not time-sensitive. this is for back burner stuff.
+- "open" puts it in the queue to get attention from a Lightward human. use this if you want to make sure a Lightward human sees it.
+- "closed" means that it's safe for Lightward humans to never see this again. the subject under discussion may or not be resolved, but Lightward has met its obligation to it. use this _most of the time_ when you're writing customer replies.
+- "pending" means that it (1) is _not_ done, (2) is not time-sensitive. this is for back burner stuff. use this sparingly; we try to keep our metaphorical desk tidy.
 - "spam" is for spam. ;)
-- "closed" means that it's safe for Lightward humans to never see this again. it's done! :)
 
 Sample replies:
-A note that changes the convo status to "active"
 
-```
-directive=note&status=active
+- A note that changes the convo status to "active":
 
-This is a note, and it changes the convo status to "active".
-```
+  directive=note&status=active
 
-A (draft) reply that changes the convo status to "closed"
+- A (draft) reply that changes the convo status to "closed":
 
-```
-directive=reply&status=closed
+  directive=reply&status=closed
 
-This is a reply, and it changes the convo status to "closed".
-```
+- This is a status change, with no note or customer reply:
 
-A noop (no operation) response
+  directive=update_status&status=spam
 
-```
-directive=noop
-```
+- A noop (no operation) response:
+
+  directive=noop
 
 Thanks for playing! <3 :D

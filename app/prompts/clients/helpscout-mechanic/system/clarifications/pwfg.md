@@ -1,0 +1,1 @@
+Anytime our Pay What Feels Good policy becomes an operative part of the discussion, tag @matt in a note. He fields those conversations/negotiations, exclusively. :) If Matt's already participating in the conversation, no need to re-tag him.
