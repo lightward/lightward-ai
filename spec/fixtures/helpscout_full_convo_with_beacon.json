@@ -1,23 +1,23 @@
 {
-  "id": 2627474341,
-  "number": 79898,
-  "threads": 14,
+  "id": 2631858367,
+  "number": 80032,
+  "threads": 0,
   "type": "email",
   "folderId": 3419189,
   "status": "active",
   "state": "published",
-  "subject": "Re: Ugent - prices are showing on google search",
-  "preview": "HI Jed,  This may help you  It's the last inspected page from google on the 14th June.  Emma Bailey​​​​ | Commercial \u0026 Marketing Officer  Chemring Technology Solutions Ltd  Address:  Ordnance ",
+  "subject": "help",
+  "preview": "Hello team! I've been pinged to assist with this conversation. However, I don't see any customer messages or specific questions in the current thread. It appears to be a new conversation with just an ",
   "mailboxId": 201764,
   "createdBy": {
-    "id": 663631621,
+    "id": 713513762,
     "type": "customer",
-    "first": "Emma",
-    "last": "Bailey",
+    "first": "Rebecca",
+    "last": "Avey",
     "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-    "email": "emma.bailey@chemringts.com"
+    "email": "rebeccaavey97@gmail.com"
   },
-  "createdAt": "2024-06-17T10:11:10Z",
+  "createdAt": "2024-06-21T15:00:57Z",
   "closedBy": 0,
   "closedByUser": {
     "id": 0,
@@ -26,40 +26,168 @@
     "last": "unknown",
     "email": "unknown"
   },
-  "userUpdatedAt": "2024-06-19T16:25:46Z",
+  "userUpdatedAt": "2024-06-21T16:23:36Z",
   "customerWaitingSince": {
-    "time": "2024-06-19T16:00:30Z",
-    "friendly": "57 min ago"
+    "time": "2024-06-21T15:00:57Z",
+    "friendly": "10:00am"
   },
   "source": { "type": "beacon-v2", "via": "customer" },
   "tags": [],
   "cc": [],
   "bcc": [],
   "primaryCustomer": {
-    "id": 663631621,
+    "id": 713513762,
     "type": "customer",
-    "first": "Emma",
-    "last": "Bailey",
+    "first": "Rebecca",
+    "last": "Avey",
     "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-    "email": "emma.bailey@chemringts.com"
+    "email": "rebeccaavey97@gmail.com"
   },
   "customFields": [],
   "_embedded": {
     "threads": [
       {
-        "id": 7905526989,
+        "id": 7920027844,
         "type": "note",
         "status": "active",
         "state": "published",
         "action": { "type": "default", "associatedEntities": {} },
-        "body": " **Technical Information**\n\n| IP Address | 159.242.97.27 |\n| Location | Dorchester, United Kingdom |\n| Operating System | Windows 10 10.0 |\n| Browser/Version | Edge 126.0 |\n| Device | Desktop |\n| Authentication Mode | Secure |\n\n  \n**Site Information**\n\n| Beacon ID | Locksmith |\n| Current Page | Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=115742dfefdbe85b128fa1ac12bbc0090673e1cb50ad8f93b7ecb3e0a59f7474\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4OTY4LCJuYmYiOjE3MTg2MTg5MDgsImlhdCI6MTcxODYxODkwOCwianRpIjoiNDA3MDNlYmYtYjllOC00MjgzLThlYzYtNDZhYjZlNjM0NzI2Iiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiN2M3NjAxOWRhMzdlZGFiMWJhODNkMzAxMGVhZTE0NDdhMzU0MWIwYWRmYTVlNGNkZGZkMjVkZTgyNDQ2ZDM2MyJ9.VhiESbUywceYxejku\\_y6AHTesk8Dh\\_CDWqKMgQC0-Ts\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618908 |\n\n  \n\n Beacon History \n\n Viewed Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=63bf8b094486a789be86c316dbf890aba0edd829fd58c80ebc57348309e8e8b8\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4MTgzLCJuYmYiOjE3MTg2MTgxMjMsImlhdCI6MTcxODYxODEyMywianRpIjoiMDIyNWVhYTktMGU2NC00MGM0LWE3MTYtYWRkN2FkNTI2OTkyIiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiZDMwNDgzNGU2OTQ1MDM3Mjc3MjJhMTBkYjUxODZkYmQ3NGU5Y2E2Y2M3ZWI0ZTJlOGQyMTFmODAyZTMxOWEwYyJ9.cxBH4dF6MAVoGNl9L1FJObBIjbE8VFcAdQ2d9t9pbVY\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618123 \n\n Viewed Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=7a21d63fb506f2cd0a4f563a2101514b4e62ab7897df6c76a6ee6744e91d9dd5\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4MjA4LCJuYmYiOjE3MTg2MTgxNDgsImlhdCI6MTcxODYxODE0OCwianRpIjoiMDkwNTA1YWUtYTViYi00NzNiLWE3ZWUtZTk1YzhmZjM0MWE0Iiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiMDE0NWFjMjhiYTc3MjNkNjU0ZjRhNDBmZDcwMGI3YWU0NWZjMjk4ZTViZjQ2MjlhMjFjZmNjM2VmMDk3NjFiZSJ9.2jnaJm-URgkWeqzMYooiGVJSmRUGB\\_TGFmao2K68YH0\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618148 \n\n Viewed Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=9b10c188460eb29d598255c66b72aee297cd2c3ec9cead0f497b4ebdecff7b84\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4Mjc0LCJuYmYiOjE3MTg2MTgyMTQsImlhdCI6MTcxODYxODIxNCwianRpIjoiMGE0YjNjY2YtMjBiNS00M2EyLTllN2ItZTI4NGE2M2UzYzZhIiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiMGQ4NGE4NjY0MTBjODFmMTkxN2RkMTIwNGQwNjBmNDUyZTcyMTVkZjIxNDU2YjZiOTMwNjk1OTliZDdhZjZlYSJ9.CEb2kTuEspiRicB2wjumu6QdUWla9ImGPKP4zYSVrmg\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618214 \n\n Viewed Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=939e71e08b938fa080f83120c41db324595cfa17dce9ad739bde4e3ade010708\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4MzY5LCJuYmYiOjE3MTg2MTgzMDksImlhdCI6MTcxODYxODMwOSwianRpIjoiY2I0ZjE2NGQtZTY2Yy00ODAyLWIyNzQtNjU5MWMxMzgwMDg2Iiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiNzhmNWVmMDJjZmVjNTRhZjMyZTE1N2JkNDdmODNlZDQ5YWJlMjA5ZThiOGM2OWI5MGYwNmFiYWM1MmZjOGRmYyJ9.7eO8aL-zHqW61PZsBcNz7xDtzw8SiaTjXKrk25D3QLs\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618309 \n\n Viewed Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=115742dfefdbe85b128fa1ac12bbc0090673e1cb50ad8f93b7ecb3e0a59f7474\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4OTY4LCJuYmYiOjE3MTg2MTg5MDgsImlhdCI6MTcxODYxODkwOCwianRpIjoiNDA3MDNlYmYtYjllOC00MjgzLThlYzYtNDZhYjZlNjM0NzI2Iiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiN2M3NjAxOWRhMzdlZGFiMWJhODNkMzAxMGVhZTE0NDdhMzU0MWIwYWRmYTVlNGNkZGZkMjVkZTgyNDQ2ZDM2MyJ9.VhiESbUywceYxejku\\_y6AHTesk8Dh\\_CDWqKMgQC0-Ts\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618908 \n\n Beacon opened on Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026hmac=115742dfefdbe85b128fa1ac12bbc0090673e1cb50ad8f93b7ecb3e0a59f7474\u0026host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvcm9ja2V0d3JlbmNoLXRlc3RlcnM\u0026id\\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcm9ja2V0d3JlbmNoLXRlc3RlcnMubXlzaG9waWZ5LmNvbVwvYWRtaW4iLCJkZXN0IjoiaHR0cHM6XC9cL3JvY2tldHdyZW5jaC10ZXN0ZXJzLm15c2hvcGlmeS5jb20iLCJhdWQiOiI5YmViMGQyYmFjZmI5Njc3YjYyZmVmY2JmZTFmYWNlZSIsInN1YiI6IjU1MDYyNzI0NzU4IiwiZXhwIjoxNzE4NjE4OTY4LCJuYmYiOjE3MTg2MTg5MDgsImlhdCI6MTcxODYxODkwOCwianRpIjoiNDA3MDNlYmYtYjllOC00MjgzLThlYzYtNDZhYjZlNjM0NzI2Iiwic2lkIjoiNjczOWJiYjEtMjcyNi00YTM0LTk4NWYtYjZkMmEyZGJkMzg5Iiwic2lnIjoiN2M3NjAxOWRhMzdlZGFiMWJhODNkMzAxMGVhZTE0NDdhMzU0MWIwYWRmYTVlNGNkZGZkMjVkZTgyNDQ2ZDM2MyJ9.VhiESbUywceYxejku\\_y6AHTesk8Dh\\_CDWqKMgQC0-Ts\u0026locale=en-GB\u0026session=e77eced66b3bf119fbbb9458b55603070e07eb9e870074e659a03ba98da474c1\u0026shop=rocketwrench-testers.myshopify.com\u0026timestamp=1718618908 \n\n Searched for \"Hi, I have just been informed that our pricing is showing on google search, however we have locksmith enabled for this reason\" \n\n",
+        "body": "Hello team! I've been pinged to assist with this conversation. However, I don't see any customer messages or specific questions in the current thread. It appears to be a new conversation with just an internal note.\u003cbr\u003e\u003cbr\u003eIf there's a specific task or question you'd like me to address, please provide more context. Otherwise, I'll be standing by to help when more information becomes available.\u003cbr\u003e\u003cbr\u003eLet me know if you need anything specific from me!",
+        "source": { "type": "api", "via": "user" },
+        "customer": {
+          "id": 713513762,
+          "first": "Rebecca",
+          "last": "Avey",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
+          "email": "rebeccaavey97@gmail.com"
+        },
+        "createdBy": {
+          "id": 793959,
+          "type": "user",
+          "first": "Lightward",
+          "last": "AI",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/793959.329930.png",
+          "email": "team@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-21T16:23:36Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/793959"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/713513762"
+          }
+        }
+      },
+      {
+        "id": 7920027389,
+        "type": "note",
+        "status": "active",
+        "state": "published",
+        "action": {
+          "type": "original-author",
+          "associatedEntities": { "user": 435755 }
+        },
+        "body": "\u003cspan class=\"mention-highlight\"\u003e@ai\u003c/span\u003e ping\u003cbr\u003e",
+        "source": { "type": "web", "via": "user" },
+        "customer": {
+          "id": 713513762,
+          "first": "Rebecca",
+          "last": "Avey",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
+          "email": "rebeccaavey97@gmail.com"
+        },
+        "createdBy": {
+          "id": 435755,
+          "type": "user",
+          "first": "Isaac",
+          "last": "Bowen",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435755.298954.jpg",
+          "email": "isaac@lightward.com"
+        },
+        "assignedTo": {
+          "id": 1,
+          "first": "Help",
+          "last": "Scout",
+          "email": "none@nowhere.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-21T16:23:29Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
+          "createdByUser": {
+            "href": "https://api.helpscout.net/v2/users/435755"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/713513762"
+          }
+        }
+      },
+      {
+        "id": 7919748797,
+        "type": "customer",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "I need help.  I am a USA website with no out of country sales but I am getting hit with over 500 visitors a day from Germany.  How can I stop them from coming to my webiste?",
+        "source": { "type": "beacon-v2", "via": "customer" },
+        "customer": {
+          "id": 713513762,
+          "first": "Rebecca",
+          "last": "Avey",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
+          "email": "rebeccaavey97@gmail.com"
+        },
+        "createdBy": {
+          "id": 713513762,
+          "type": "customer",
+          "first": "Rebecca",
+          "last": "Avey",
+          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
+          "email": "rebeccaavey97@gmail.com"
+        },
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "createdAt": "2024-06-21T15:00:57Z",
+        "_embedded": { "attachments": [] },
+        "_links": {
+          "createdByCustomer": {
+            "href": "https://api.helpscout.net/v2/customers/713513762"
+          },
+          "customer": {
+            "href": "https://api.helpscout.net/v2/customers/713513762"
+          }
+        }
+      },
+      {
+        "id": 7919748793,
+        "type": "note",
+        "status": "active",
+        "state": "published",
+        "action": { "type": "default", "associatedEntities": {} },
+        "body": "\u003cstrong style=\"padding:0 0 5px 5px;\"\u003eTechnical Information\u003c/strong\u003e\n\u003ctable cellpadding=\"5\" cellspacing=\"2\"\u003e\n    \u003ctbody\u003e\n        \u003ctr\u003e\n            \u003ctd valign=\"top\" width=\"140\"\u003eIP Address\u003c/td\u003e\n            \u003ctd valign=\"top\"\u003e97.114.152.107\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n            \u003ctd valign=\"top\" width=\"140\"\u003eLocation\u003c/td\u003e\n            \u003ctd valign=\"top\"\u003eAtkins, United States\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n            \u003ctd valign=\"top\" width=\"140\"\u003eOperating System\u003c/td\u003e\n            \u003ctd valign=\"top\"\u003eWindows 10 10.0\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n            \u003ctd valign=\"top\" width=\"140\"\u003eBrowser/Version\u003c/td\u003e\n            \u003ctd valign=\"top\"\u003eChrome 124.0\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n            \u003ctd valign=\"top\" width=\"140\"\u003eDevice\u003c/td\u003e\n            \u003ctd valign=\"top\"\u003eDesktop\u003c/td\u003e\n        \u003c/tr\u003e\n        \u003ctr\u003e\n            \u003ctd valign=\"top\" width=\"140\"\u003eAuthentication Mode\u003c/td\u003e\n            \u003ctd valign=\"top\"\u003eSecure\u003c/td\u003e\n        \u003c/tr\u003e\n    \u003c/tbody\u003e\n\u003c/table\u003e\n\u003cbr\u003e\n\n    \u003cstrong style=\"padding:0 0 5px 5px;\"\u003eSite Information\u003c/strong\u003e\n    \u003ctable cellpadding=\"5\" cellspacing=\"2\"\u003e\n        \u003ctbody\u003e\n            \u003ctr\u003e\n                \u003ctd valign=\"top\" width=\"140\"\u003eBeacon ID\u003c/td\u003e\n                \u003ctd valign=\"top\"\u003eLocksmith\u003c/td\u003e\n            \u003c/tr\u003e\n                \u003ctr\u003e\n                    \u003ctd valign=\"top\" width=\"140\"\u003eCurrent Page\u003c/td\u003e\n                    \u003ctd valign=\"top\"\u003eUntitled Page / https://ui.uselocksmith.com/?embedded=1\u0026amp;hmac=7b0268abbdf41d3284fe231d1a20382b3a88b3034b03eb351edfd1f7536bbdf2\u0026amp;host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZQ\u0026amp;id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZS5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZS5teXNob3BpZnkuY29tIiwiYXVkIjoiOWJlYjBkMmJhY2ZiOTY3N2I2MmZlZmNiZmUxZmFjZWUiLCJzdWIiOiIyNzgxMTI1MDI0MiIsImV4cCI6MTcxODk4MTk4NiwibmJmIjoxNzE4OTgxOTI2LCJpYXQiOjE3MTg5ODE5MjYsImp0aSI6IjkzODIwMWY1LTc5MzYtNDBlOC1hYjIyLWI1MzUyNzViODNlYyIsInNpZCI6Ijc2MzY0ZWMwLWU3NGItNDdlMC04MTFjLTNkMjM2NDY3MjRmNSIsInNpZyI6IjYyNzFkM2Y4MzdlYWQyMTQwYjYzZDEzNjE1YTQ4ZjkyZWMzYjgxMDU2OGYxOGM1NDdhNTgzOTJmNjI1NTVhZWUifQ.XQwqGFLoY9h5SMtMjDdvwvozTRm07hpgS4uXvyqaj1A\u0026amp;locale=en-US\u0026amp;session=409e28838f956f7ee478d3f505c83408d730dff6851f9c4ca3e6c3afb2dd61a1\u0026amp;shop=southernly-creations-more.myshopify.com\u0026amp;timestamp=1718981926\u003c/td\u003e\n                \u003c/tr\u003e\n        \u003c/tbody\u003e\n    \u003c/table\u003e\n    \u003cbr\u003e\n\n\n        \u003cdiv class=\"c-BeaconHistoryTimeline\"\u003e\n            \u003cdiv class=\"c-BeaconHistoryTimelineHeading\"\u003e\n                Beacon History\n            \u003c/div\u003e\n            \u003cdiv class=\"c-BeaconHistoryTimelineList\"\u003e\n                \u003cdiv class=\"c-BeaconHistoryTimelineListItem\" data-timestamp=\"2024-06-21T14:58:52.413Z\"\u003e\n                    Viewed Untitled Page / https://ui.uselocksmith.com/agreement?embedded=1\u0026amp;hmac=7b0268abbdf41d3284fe231d1a20382b3a88b3034b03eb351edfd1f7536bbdf2\u0026amp;host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZQ\u0026amp;id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZS5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZS5teXNob3BpZnkuY29tIiwiYXVkIjoiOWJlYjBkMmJhY2ZiOTY3N2I2MmZlZmNiZmUxZmFjZWUiLCJzdWIiOiIyNzgxMTI1MDI0MiIsImV4cCI6MTcxODk4MTk4NiwibmJmIjoxNzE4OTgxOTI2LCJpYXQiOjE3MTg5ODE5MjYsImp0aSI6IjkzODIwMWY1LTc5MzYtNDBlOC1hYjIyLWI1MzUyNzViODNlYyIsInNpZCI6Ijc2MzY0ZWMwLWU3NGItNDdlMC04MTFjLTNkMjM2NDY3MjRmNSIsInNpZyI6IjYyNzFkM2Y4MzdlYWQyMTQwYjYzZDEzNjE1YTQ4ZjkyZWMzYjgxMDU2OGYxOGM1NDdhNTgzOTJmNjI1NTVhZWUifQ.XQwqGFLoY9h5SMtMjDdvwvozTRm07hpgS4uXvyqaj1A\u0026amp;locale=en-US\u0026amp;session=409e28838f956f7ee478d3f505c83408d730dff6851f9c4ca3e6c3afb2dd61a1\u0026amp;shop=southernly-creations-more.myshopify.com\u0026amp;timestamp=1718981926\n                \u003c/div\u003e\n                \u003cdiv class=\"c-BeaconHistoryTimelineListItem\" data-timestamp=\"2024-06-21T14:59:37.703Z\"\u003e\n                    Beacon opened on Untitled Page / https://ui.uselocksmith.com/?embedded=1\u0026amp;hmac=7b0268abbdf41d3284fe231d1a20382b3a88b3034b03eb351edfd1f7536bbdf2\u0026amp;host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZQ\u0026amp;id_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZS5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvc291dGhlcm5seS1jcmVhdGlvbnMtbW9yZS5teXNob3BpZnkuY29tIiwiYXVkIjoiOWJlYjBkMmJhY2ZiOTY3N2I2MmZlZmNiZmUxZmFjZWUiLCJzdWIiOiIyNzgxMTI1MDI0MiIsImV4cCI6MTcxODk4MTk4NiwibmJmIjoxNzE4OTgxOTI2LCJpYXQiOjE3MTg5ODE5MjYsImp0aSI6IjkzODIwMWY1LTc5MzYtNDBlOC1hYjIyLWI1MzUyNzViODNlYyIsInNpZCI6Ijc2MzY0ZWMwLWU3NGItNDdlMC04MTFjLTNkMjM2NDY3MjRmNSIsInNpZyI6IjYyNzFkM2Y4MzdlYWQyMTQwYjYzZDEzNjE1YTQ4ZjkyZWMzYjgxMDU2OGYxOGM1NDdhNTgzOTJmNjI1NTVhZWUifQ.XQwqGFLoY9h5SMtMjDdvwvozTRm07hpgS4uXvyqaj1A\u0026amp;locale=en-US\u0026amp;session=409e28838f956f7ee478d3f505c83408d730dff6851f9c4ca3e6c3afb2dd61a1\u0026amp;shop=southernly-creations-more.myshopify.com\u0026amp;timestamp=1718981926\n                \u003c/div\u003e\n                \u003cdiv class=\"c-BeaconHistoryTimelineListItem\" data-timestamp=\"2024-06-21T15:00:30.349Z\"\u003e\n                    Searched for \"I need help.  I am a USA website with no out of country sales but I am getting hit with over 500 visitors a day from Germany.  How can I stop them from coming to my webiste? \"\n                \u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e",
         "source": { "type": "beacon-v2", "via": "user" },
         "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
+          "id": 713513762,
+          "first": "Rebecca",
+          "last": "Avey",
           "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
+          "email": "rebeccaavey97@gmail.com"
         },
         "createdBy": {
           "id": 435755,
@@ -78,7 +206,7 @@
         "to": [],
         "cc": [],
         "bcc": [],
-        "createdAt": "2024-06-17T10:11:10Z",
+        "createdAt": "2024-06-21T15:00:57Z",
         "_embedded": { "attachments": [] },
         "_links": {
           "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
@@ -86,924 +214,27 @@
             "href": "https://api.helpscout.net/v2/users/435755"
           },
           "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7905526990,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "Hi, I have been informed that our pricing is showing on the intenet. THis is very urgent that locksmith doesnt shpw this. I can see that an update occured on friday, but I did not do anything.   \n  \nWe are a very sensitive company and its imperative that our pricing doesnt show. Please can you rectify this ASAP\n\n",
-        "source": { "type": "beacon-v2", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-17T10:11:10Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7907025633,
-        "type": "message",
-        "status": "closed",
-        "state": "published",
-        "action": {
-          "type": "original-author",
-          "associatedEntities": { "user": 435759 }
-        },
-        "body": "Hey there,  \n  \nJed here with the Locksmith app team, thanks for checking in about this, and sorry for the issues!  \n  \nCan you give me a bit more context regarding where your prices are showing up specifically? Is it inside of your Shopify Store?   \n  \nOr, Is it via a google search? If so, are there any particular search terms I could use to see this in action?  \n  \nAs far as the theme update goes, this happens regularly as we make updates to the app, and it is most likely not related to this particular issue.  \n  \n-Jed\n\n",
-        "source": { "type": "web", "via": "user" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 435759,
-          "type": "user",
-          "first": "Jed",
-          "last": "Storie",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
-          "email": "jed@lightward.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-17T17:19:38Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByUser": {
-            "href": "https://api.helpscout.net/v2/users/435759"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7908885566,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "HI Jed,  \n  \nWhen you search for some of our products on google, they come up which is fair, but the pricing is coming up as well. We have a lock on that only lets pricing be shown if you have a certain word in your customer account. I think this is a recent thing. Please can you help? Why would this show if locksmith has hidden pricing?  \n  \n ![image001.png@01DAC161.AEE01340](https://d33v4339jhl8k0.cloudfront.net/inline/103446/7dcf9d5c5cf2afa913ea6b6734e40c5c48d69dc3/470120df8025ef036222865209d49ae88912e062/image001.png)  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/b25f60a277a8618ffa5280b28f3d8f526f8fd4e7/a0a5570ac7d66581e1350ddcf2593e153122c326/image227318.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/4d172f4683f26b06778326de26373f2528d7e6b4/6d1efe3f840831e5d81b64919321450a9f3ec36d/image563982.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/fd8d5ba96a6fd9a280fae5dd163b92125a4b4fae/c98b21b357ab426de1a36aac9111075c8d4403dc/image166248.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/52356d0065b80e93c2df37dadb7c669a3eee8b76/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image815291.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-18T08:27:35Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7910761871,
-        "type": "message",
-        "status": "closed",
-        "state": "published",
-        "action": {
-          "type": "original-author",
-          "associatedEntities": { "user": 435759 }
-        },
-        "body": "I totally get that you wouldn't want those prices displayed. The only issue is that I don't see the same on my end. For example, this is what I'm seeing on that same search:\n\n![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/2aff4680425528fae0f72e75db22b5eae1f1e258/9f69d1bd96027050982fb3d73cb234233335962e/Screenshot-2024-06-18-at-12-42-09.png)\n\n  \nCan I ask, was the screenshot you took a recent one? Are you _currently_ seeing the prices exposed when you do that google search?   \n  \nDepending on when you set up your locks, or when this product was added and locked, removing prices from google is not instantaneous. It would only take effect after google re-indexed your site. So if that was a product you added recently, and it happened to be indexed while it wasn't locked, then perhaps it was just a delay?  \n  \n-Jed  \n",
-        "source": { "type": "web", "via": "user" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 435759,
-          "type": "user",
-          "first": "Jed",
-          "last": "Storie",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
-          "email": "jed@lightward.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-18T18:45:26Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByUser": {
-            "href": "https://api.helpscout.net/v2/users/435759"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7912548371,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "HI Jed,  \n  \nI had to get these changed ASAP so had to work behind the scenes to change all the pricing to zero on our shop and contact google to get the pages updated, which in itself is not ideal. I have only done a few and not all of the prices on some of our products show. Which means as soon as I add the pricing back in and google reindexes, the prices will show again.  \n  \nPlease can you advise why these were showing and what you can do to fix this? As we have locksmith for this reason. We cant make sales if all of our pricing is at zero at the moment.  \n  \nOtherwise we would need to look in to different ways of hiding this potentially without locksmith, but the ease of using the app was what we liked about it.  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/a308707354d28a04fc89bb475227a1c670c7c337/a0a5570ac7d66581e1350ddcf2593e153122c326/image356054.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/06dfa272ec6c22e7104e24bc65ccc076a51be21e/6d1efe3f840831e5d81b64919321450a9f3ec36d/image070785.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/654a3fe5db793a666eb09d5941922fd8723b9194/c98b21b357ab426de1a36aac9111075c8d4403dc/image568267.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/6530f6b6236e2be55de54f65eab8d688829463ee/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image595422.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T08:15:21Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913616507,
-        "type": "message",
-        "status": "closed",
-        "state": "published",
-        "action": {
-          "type": "original-author",
-          "associatedEntities": { "user": 435759 }
-        },
-        "body": "Emma,  \n  \nTypically, Shopify signals the price of a product, to search engines, by using something like the following:  \n  \n`\u003cmeta property=\"og:price:amount\" content=\"{{ product.price | money_without_currency | strip_html }}\"\u003e`   \n  \nLocksmith, in turn, when not locking the entire page, can still prevent the the price from being indexed by hiding the above bit of code. I've double checked the snippets/meta-tags.liquid file in your theme to make sure that Locksmith is adding the code to hide this. And I've searched through the source code on your frontend and I am not finding the above snippet (which is the desired behavior).  \n  \nIt's unclear how your prices could have been indexed considering all of that. Was something else changed, like did you recently switch around your themes or disable your locks in a way that could have left the prices temporarily exposed? If your price is somehow still getting indexed, it may be getting exposed in some other way, and I'm not 100% sure if Locksmith can prevent it.  \n  \n-Jed\n\n",
-        "source": { "type": "web", "via": "user" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 435759,
-          "type": "user",
-          "first": "Jed",
-          "last": "Storie",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
-          "email": "jed@lightward.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:27:53Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByUser": {
-            "href": "https://api.helpscout.net/v2/users/435759"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913699649,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "Hi Jed,  \n  \nWould it be that I have now changed the pricing to zero? Happy to reinstate pricing on 1 product to share with you and you can review/test the coding?  \n  \nI note the pricing is coming up in Googles rich text (when the pricing was showing)  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/98efa2addde1c69f17cc0f2e570e300d991a4cae/a0a5570ac7d66581e1350ddcf2593e153122c326/image996395.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/0d93108e19d59b3d9366c45a182221fe59a449ac/6d1efe3f840831e5d81b64919321450a9f3ec36d/image762005.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/12015a64087fa126b80b9b19f84cbbcc21ae377f/c98b21b357ab426de1a36aac9111075c8d4403dc/image567448.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/558533c3c93f399f79704978109ecd1a30be7dc2/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image865137.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:33:04Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913704254,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "In addition I haven't changed the theme or locksmith in anyway apart from updating the app on Monday when I noticed the pricing issue  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/26b0ba1758bb1d4faf1715737757747509e4b5b8/a0a5570ac7d66581e1350ddcf2593e153122c326/image606347.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/29bd92239dc3aa7d65adba89850f6bf9dc200be9/6d1efe3f840831e5d81b64919321450a9f3ec36d/image172231.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/01e8472d6039b7a1cbdecce66904279b0ddeadb1/c98b21b357ab426de1a36aac9111075c8d4403dc/image847586.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/7252258f3eea57e944d59ed622cdc437104dd35a/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image844131.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:34:20Z",
-        "_embedded": {
-          "attachments": [
-            {
-              "id": 692100333,
-              "filename": "image001.png",
-              "mimeType": "image/png",
-              "width": 18,
-              "height": 18,
-              "size": 445,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100333"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100333/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692100333/3da5dec41a997636753e0b61a5f6785e673df591/image001.png"
-                }
-              }
-            },
-            {
-              "id": 692100335,
-              "filename": "image002.png",
-              "mimeType": "image/png",
-              "width": 18,
-              "height": 18,
-              "size": 560,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100335"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100335/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692100335/cd664216c3da31ccf46e70d2d43f98c3410572c3/image002.png"
-                }
-              }
-            },
-            {
-              "id": 692100337,
-              "filename": "image003.png",
-              "mimeType": "image/png",
-              "width": 20,
-              "height": 18,
-              "size": 895,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100337"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100337/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692100337/6cc133c96a3c473d7433e77320d03708b5fadd65/image003.png"
-                }
-              }
-            },
-            {
-              "id": 692100340,
-              "filename": "image004.png",
-              "mimeType": "image/png",
-              "width": 563,
-              "height": 89,
-              "size": 67601,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100340"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100340/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692100340/38d6b4879e9b0ac5f36db21556b5c324c9e3d6dc/image004.png"
-                }
-              }
-            },
-            {
-              "id": 692100342,
-              "filename": "image005.jpg",
-              "mimeType": "image/jpeg",
-              "width": 100,
-              "height": 100,
-              "size": 823,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100342"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692100342/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692100342/b6d31e7f6e08d8304a0ec2e0996573c9bd321013/image005.jpg"
-                }
-              }
-            }
-          ]
-        },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913715986,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "Hi Jed,  \n  \nSorry I am confused the below  \n  \n\\\u003cmeta property=\"og:price:amount\" content=\"{{ product.price | money\\_without\\_currency | strip\\_html }}\"\\\u003e  \n  \nIs showing at line 46 on the meta tags liquid file  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/3e5589a2523ad9798fb0d336c92de1187938a07a/a0a5570ac7d66581e1350ddcf2593e153122c326/image048629.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/acbb2916f019147db3d6f7b378d8f70b6e713a7d/6d1efe3f840831e5d81b64919321450a9f3ec36d/image636102.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/0aea73928ad04652ecd0798d5fd77a195c780841/c98b21b357ab426de1a36aac9111075c8d4403dc/image899585.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/15adc74bf38c57929038a04551fdc7050a8babff/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image469808.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:37:46Z",
-        "_embedded": {
-          "attachments": [
-            {
-              "id": 692101520,
-              "filename": "image001.png",
-              "mimeType": "image/png",
-              "width": 18,
-              "height": 18,
-              "size": 445,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101520"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101520/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692101520/3da5dec41a997636753e0b61a5f6785e673df591/image001.png"
-                }
-              }
-            },
-            {
-              "id": 692101521,
-              "filename": "image002.png",
-              "mimeType": "image/png",
-              "width": 18,
-              "height": 18,
-              "size": 560,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101521"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101521/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692101521/cd664216c3da31ccf46e70d2d43f98c3410572c3/image002.png"
-                }
-              }
-            },
-            {
-              "id": 692101527,
-              "filename": "image003.png",
-              "mimeType": "image/png",
-              "width": 20,
-              "height": 18,
-              "size": 895,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101527"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101527/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692101527/6cc133c96a3c473d7433e77320d03708b5fadd65/image003.png"
-                }
-              }
-            },
-            {
-              "id": 692101531,
-              "filename": "image004.png",
-              "mimeType": "image/png",
-              "width": 563,
-              "height": 89,
-              "size": 67601,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101531"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101531/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692101531/38d6b4879e9b0ac5f36db21556b5c324c9e3d6dc/image004.png"
-                }
-              }
-            },
-            {
-              "id": 692101533,
-              "filename": "image005.jpg",
-              "mimeType": "image/jpeg",
-              "width": 100,
-              "height": 100,
-              "size": 823,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101533"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692101533/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692101533/b6d31e7f6e08d8304a0ec2e0996573c9bd321013/image005.jpg"
-                }
-              }
-            }
-          ]
-        },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913708036,
-        "type": "message",
-        "status": "closed",
-        "state": "review",
-        "action": {
-          "type": "original-author",
-          "associatedEntities": { "user": 435759 }
-        },
-        "body": "Emma,  \n  \n If you were willing to update the price for one product so that I could investigate, that could definitely be help to see the problem in action.  \n  \nIt's also worth pointing out, that even if the prices aren't showing on Google, it may still be possible for someone viewing the source or the page (or interacting with the browser console) to see the price. This is because of the presence of things like Google Analytics and other tools, which reproduce the price in the source - but not visually on the page - for their own usage. These are out of control of the Locksmith app. Just pointing this out since you mentioned the rich text restults for google.  \n  \n-Jed\n\n",
-        "source": { "type": "web", "via": "user" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 435759,
-          "type": "user",
-          "first": "Jed",
-          "last": "Storie",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
-          "email": "jed@lightward.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:38:24Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByUser": {
-            "href": "https://api.helpscout.net/v2/users/435759"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913720408,
-        "type": "message",
-        "status": "closed",
-        "state": "published",
-        "action": {
-          "type": "original-author",
-          "associatedEntities": { "user": 435759 }
-        },
-        "body": "\u003e Sorry I am confused the below  \n\u003e   \n\u003e \\\u003cmeta property=\"og:price:amount\" content=\"{{ product.price | money\\_without\\_currency | strip\\_html }}\"\\\u003e  \n\u003e   \n\u003e Is showing at line 46 on the meta tags liquid file\n\n  \nIt is still there in the metatags file, yes. But Locksmith has surrounded it in its own code, and it's NOT showing on the actual source code of the rendered page, which is the important part.  \n  \n\n\u003e Happy to reinstate pricing on 1 product to share with you and you can review/test the coding?\n\n  \nIf you were willing to update the price for one product so that I could investigate, that could definitely be help to see the problem in action.  \n  \nIt's also worth pointing out, that even if the prices aren't showing on Google, it may still be possible for someone viewing the source or the page (or interacting with the browser console) to see the price. This is because of the presence of things like Google Analytics and other tools, which reproduce the price in the source - but not visually on the page - for their own usage. These are out of control of the Locksmith app. Just pointing this out since you mentioned the rich text restults for google.  \n",
-        "source": { "type": "web", "via": "user" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 435759,
-          "type": "user",
-          "first": "Jed",
-          "last": "Storie",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
-          "email": "jed@lightward.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:41:12Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByUser": {
-            "href": "https://api.helpscout.net/v2/users/435759"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913746269,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "Hi Jed,  \n  \nOk great, thanks.  \n  \nCould the below on the source code (inspect) be a problem?  \n  \nIts currently zero as I updated but could google be pulling from this?  \n  \n\\\u003cmeta property=\"og:price:amount\" content=\"0.00\"\\\u003e  \n  \nII turn right click blocker on so they hopefully cant inspect which should alleviate the pricing issue for tech savvy types  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/800529b920276dc69f118d6e7a1903dc77fb80a0/a0a5570ac7d66581e1350ddcf2593e153122c326/image625405.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/d41637eff959582d0006083aa58384838e932251/6d1efe3f840831e5d81b64919321450a9f3ec36d/image998523.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/4ac8d6ea4fc83ae26d7312df8ceedb59539bd960/c98b21b357ab426de1a36aac9111075c8d4403dc/image324991.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/492485dc9fd22a902fe9dfad7f3492b7a820b128/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image560898.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:46:34Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913747493,
-        "type": "message",
-        "status": "closed",
-        "state": "published",
-        "action": {
-          "type": "original-author",
-          "associatedEntities": { "user": 435759 }
-        },
-        "body": "Emma,  \n  \nWhere are you seeing that? I was checking on my end and not seeing it. Can you send me the product link, just to make sure we're on the same page?  \n  \n-Jed\n\n",
-        "source": { "type": "web", "via": "user" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 435759,
-          "type": "user",
-          "first": "Jed",
-          "last": "Storie",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/435759.214295.jpg",
-          "email": "jed@lightward.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T15:47:48Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByUser": {
-            "href": "https://api.helpscout.net/v2/users/435759"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913793219,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "Hi Jed, I have added a price back in for the below  \n  \n[Mini Shrike Carry Case - The EOD Shop](https://www.theeodshop.com/products/mini-shrike-carry-case)  \n  \nI have ticked right click blocker so can you advise how you are viewing the source code please?  \n  \nI found the code on inspect elements on the below. I just searched price and it came up right away.  \n  \n[LORIS Marine Float Kit - The EOD Shop](https://www.theeodshop.com/products/loris-marine-float-kit)  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/98add3272b438bba73eabcc3fb0236706c6b667f/a0a5570ac7d66581e1350ddcf2593e153122c326/image574374.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/52c04b57ab5be609c63cc564a86d584a83384c28/6d1efe3f840831e5d81b64919321450a9f3ec36d/image645879.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/ca3180e48fb07d667cd360965ce8f89d05790838/c98b21b357ab426de1a36aac9111075c8d4403dc/image390158.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/a2c474b070d9877194e2c309ab199dff21ddd3af/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image060446.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T16:00:30Z",
-        "_embedded": { "attachments": [] },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          }
-        }
-      },
-      {
-        "id": 7913877448,
-        "type": "customer",
-        "status": "active",
-        "state": "published",
-        "action": { "type": "default", "associatedEntities": {} },
-        "body": "HI Jed,  \n  \nThis may help you  \n  \nIt's the last inspected page from google on the 14th June.  \n  \nEmma Bailey​​​​  \n|  \nCommercial \u0026 Marketing Officer  \n  \nChemring Technology Solutions Ltd  \n  \nAddress:  \n  \nOrdnance House  \n,  \nBlackhill Road, Holton Heath  \n,  \nPoole  \n,  \nDorset  \n,  \nBH16 6LW  \n  \nTel: [+44 (0)1202 628194](tel:+4401202628194)  \n  \n[Web:](https://www.chemring.com/) www.chemringts.com  \n  \n[![LinkedIn](https://d33v4339jhl8k0.cloudfront.net/inline/103446/b41d6826d08d3873ac37267b37e29ea655a1b1e5/a0a5570ac7d66581e1350ddcf2593e153122c326/image752964.png \"LinkedIn\")](https://www.linkedin.com/company/chemring-technology-solutions)  \n  \n[![Twitter](https://d33v4339jhl8k0.cloudfront.net/inline/103446/91e401cce404d5778d78c0f315ffaa760dca7e84/6d1efe3f840831e5d81b64919321450a9f3ec36d/image494660.png \"Twitter\")](https://twitter.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/1547a071a289736f4f22eb5f444ba56e6afe60fa/c98b21b357ab426de1a36aac9111075c8d4403dc/image882247.png)](https://www.instagram.com/TheEODShop)  \n  \n[![](https://d33v4339jhl8k0.cloudfront.net/inline/103446/9dd93a2a139c34867ea069d56b8803e7a133ef47/7c3c2fe5f4a0d2fb5b7712db547c65ad587ea431/image222283.png)](https://www.theeodshop.com/)  \n  \nOur Values: Safety | Excellence | Innovation  \n  \nChemring Technology Solutions Limited, Roke Manor, Old Salisbury Lane, Romsey, Hampshire SO51 0ZN, United Kingdom. Part of the Chemring Group. Registered in ENGLAND, Number 01528540, VAT Registration GB 571 4106 63.  \nThis message (and any associated files) is intended only for the use of the individual or entity to which it is addressed and may contain information that is confidential, subject to copyright or constitutes a trade secret. If you are not the intended recipient you are hereby notified that any dissemination, copying or distribution of this message, or files associated with this message, is strictly prohibited. If you have received this message in error, please notify us immediately by replying to the message and deleting it from your computer. Messages sent to and from us may be monitored.  \n  \nInternet communications cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. Therefore, we do not accept responsibility for any errors or omissions that are present in this message, or any attachment, that have arisen as a result of e-mail transmission. If verification is required, please request a hard-copy version. Any views or opinions presented are solely those of the author and do not necessarily represent those of the company.\n\n",
-        "source": { "type": "email", "via": "customer" },
-        "customer": {
-          "id": 663631621,
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "createdBy": {
-          "id": 663631621,
-          "type": "customer",
-          "first": "Emma",
-          "last": "Bailey",
-          "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/customer-avatar/01.png",
-          "email": "emma.bailey@chemringts.com"
-        },
-        "assignedTo": {
-          "id": 1,
-          "first": "Help",
-          "last": "Scout",
-          "email": "none@nowhere.com"
-        },
-        "savedReplyId": 0,
-        "to": [],
-        "cc": [],
-        "bcc": [],
-        "createdAt": "2024-06-19T16:25:46Z",
-        "_embedded": {
-          "attachments": [
-            {
-              "id": 692117787,
-              "filename": "doctype html.docx",
-              "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-              "width": 0,
-              "height": 0,
-              "size": 170591,
-              "_links": {
-                "self": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692117787"
-                },
-                "data": {
-                  "href": "https://api.helpscout.net/v2/conversations/2627474341/attachments/692117787/data"
-                },
-                "web": {
-                  "href": "https://secure.helpscout.net/file/692117787/1729149d7151b029971cd6ae468fb0cca9ce6d76/doctype%20html.docx"
-                }
-              }
-            }
-          ]
-        },
-        "_links": {
-          "assignedTo": { "href": "https://api.helpscout.net/v2/users/1" },
-          "createdByCustomer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
-          },
-          "customer": {
-            "href": "https://api.helpscout.net/v2/customers/663631621"
+            "href": "https://api.helpscout.net/v2/customers/713513762"
           }
         }
       }
     ]
   },
   "_links": {
-    "self": { "href": "https://api.helpscout.net/v2/conversations/2627474341" },
+    "self": { "href": "https://api.helpscout.net/v2/conversations/2631858367" },
     "mailbox": { "href": "https://api.helpscout.net/v2/mailboxes/201764" },
     "primaryCustomer": {
-      "href": "https://api.helpscout.net/v2/customers/663631621"
+      "href": "https://api.helpscout.net/v2/customers/713513762"
     },
     "createdByCustomer": {
-      "href": "https://api.helpscout.net/v2/customers/663631621"
+      "href": "https://api.helpscout.net/v2/customers/713513762"
     },
     "closedBy": { "href": "https://api.helpscout.net/v2/users/0" },
     "threads": {
-      "href": "https://api.helpscout.net/v2/conversations/2627474341/threads"
+      "href": "https://api.helpscout.net/v2/conversations/2631858367/threads"
     },
     "web": {
-      "href": "https://secure.helpscout.net/conversation/2627474341/79898"
+      "href": "https://secure.helpscout.net/conversation/2631858367/80032"
     }
   }
 }

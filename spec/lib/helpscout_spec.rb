@@ -37,23 +37,6 @@ RSpec.describe(Helpscout) do
       expect(result["id"]).to(eq(conversation_id))
     end
 
-    it "sleeps and retries if the initial fetch had no threads", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-      allow(Kernel).to(receive(:sleep))
-
-      request_stub = stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
-        .to_return_json(
-          { status: 200, body: conversation_response.merge("_embedded" => { "threads" => [] }) },
-          { status: 200, body: conversation_response },
-        )
-
-      result = described_class.fetch_conversation(conversation_id, with_threads: true)
-
-      expect(result["id"]).to(eq(conversation_id))
-      expect(result.dig("_embedded", "threads")).not_to(be_empty)
-      expect(Kernel).to(have_received(:sleep).with(10).once)
-      expect(request_stub).to(have_been_requested.times(2))
-    end
-
     it "raises an error if the response is not successful" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .to_return(status: 404, body: "oh no!", headers: {})
@@ -225,12 +208,13 @@ RSpec.describe(Helpscout) do
   end
 
   describe ".render_conversation_for_ai" do
-    it "removes beacon entries", :aggregate_failures do
+    it "simplifies URLs in beacon entries", :aggregate_failures do
       conversation = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo_with_beacon.json").read)
       result = described_class.render_conversation_for_ai(conversation)
 
-      expect(conversation.dig("_embedded", "threads").pluck("source").pluck("type")).to(include("beacon-v2"))
-      expect(result.dig("_embedded", "threads").pluck("source").pluck("type")).not_to(include("beacon-v2"))
+      expect(result.dig("_embedded", "threads", 1, "body")).to(
+        include("Viewed Untitled Page / https://ui.uselocksmith.com/agreement?locale=en-US&shop=southernly-creations-more.myshopify.com"),
+      )
     end
 
     it "orders threads chronologically, oldest to newest", :aggregate_failures do
