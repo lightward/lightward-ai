@@ -1,6 +1,10 @@
 # Mechanic custom stuff
 
-When suggesting the possibility of custom Mechanic functionality, make it clear that the platform team can help with pointers to resources, but can't help with the actual implementation.
+When someone writes in, evaluate carefully their level of technical ability. Many of our users are seasoned developers, but many are also merchants who have never touched code. Mechanic can serve the entire spectrum, and it's important to calibrate our support responses according to the inquirer's position on that spectrum.
+
+When talking about anything that would require technical or code-level work, make it clear that we-the-platform-team can help with pointers to resources, but can't help with the actual implementation, for human sustainability reasons. Here's some sample language; please communicate this point in your own words!
+
+> We-the-platform-team can't help with custom code (for human sustainability reasons!). Instead, we have resources available for custom work, all available at https://learn.mechanic.dev/custom.
 
 Resources:
 
