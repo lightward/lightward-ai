@@ -32,11 +32,25 @@ module Helpscout
         "Content-Type" => "application/json",
       })
 
-      if response.code == 200
-        JSON.parse(response.body)
-      else
+      if response.code != 200
         raise ResponseError, "Failed to fetch conversation: #{response.code}\n\n#{response.body}".strip
       end
+
+      response_data = JSON.parse(response.body)
+
+      if with_threads && response_data.dig("_embedded", "threads").empty?
+        # happens with brand-new conversations; sleep and retry once
+        Kernel.sleep(10)
+
+        response = HTTParty.get(url, headers: {
+          "Authorization" => "Bearer #{token}",
+          "Content-Type" => "application/json",
+        })
+
+        response_data = JSON.parse(response.body)
+      end
+
+      response_data
     end
 
     def render_conversation_for_ai(conversation)

@@ -17,19 +17,19 @@ RSpec.describe(Helpscout) do
       allow(described_class).to(receive(:cached_auth_token).and_return(auth_token))
     end
 
-    it "fetches conversation with threads by default" do
-      stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
+    it "fetches conversation with threads by default", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      request_stub = stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
         .to_return_json(status: 200, body: conversation_response)
 
       result = described_class.fetch_conversation(conversation_id)
 
       expect(result["id"]).to(eq(conversation_id))
+      expect(request_stub).to(have_been_requested.once)
     end
 
     it "can fetch conversation without threads" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}")
-        .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
         .to_return_json(status: 200, body: conversation_response)
 
       result = described_class.fetch_conversation(conversation_id, with_threads: false)
@@ -37,9 +37,25 @@ RSpec.describe(Helpscout) do
       expect(result["id"]).to(eq(conversation_id))
     end
 
-    it "raises an error if the response is not successful" do # rubocop:disable RSpec/ExampleLength
+    it "sleeps and retries if the initial fetch had no threads", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      allow(Kernel).to(receive(:sleep))
+
+      request_stub = stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
+        .to_return_json(
+          { status: 200, body: conversation_response.merge("_embedded" => { "threads" => [] }) },
+          { status: 200, body: conversation_response },
+        )
+
+      result = described_class.fetch_conversation(conversation_id, with_threads: true)
+
+      expect(result["id"]).to(eq(conversation_id))
+      expect(result.dig("_embedded", "threads")).not_to(be_empty)
+      expect(Kernel).to(have_received(:sleep).with(10).once)
+      expect(request_stub).to(have_been_requested.times(2))
+    end
+
+    it "raises an error if the response is not successful" do
       stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
-        .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
         .to_return(status: 404, body: "oh no!", headers: {})
 
       expect {
