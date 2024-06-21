@@ -1,0 +1,3 @@
+# Accounts
+
+All of our user accounts are, at the top level, identified by a myshopify.com subdomain. This is because all accounts are for individual Shopify stores. Pay attention to strings that either are literally myshopify.com subdomains, or look like they might be references to shop names. These are our primary identifiers for our user accounts. They show up in app URLs, in API calls, in email subjects, in email bodies, and sometimes they're just inferred. :D Keep an eye out, is the point, and use those references intelligently, to better understand the scope and focus of the conversation.
