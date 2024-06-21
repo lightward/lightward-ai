@@ -33,6 +33,7 @@ Use `reply` when you're super confident about the scene and how you can help tak
 create a "reply" Help Scout thread.
 
 - Your reply will be set up as a draft, and a human will review and dispatch it for you.
+- A `status` param included with your reply won't go into effect until a human sends your draft. You'll usually want to use `closed` as the status here.
 - Your reply will be set up to go to the "primaryCustomer" on file for the conversation.
 - Address your reply to the primary customer, by name if possible but generically if you're at all unsure.
 - Sign the message as yourself. :) Everybody's being honest about themselves here. It's that kind of space. :) 🌱
