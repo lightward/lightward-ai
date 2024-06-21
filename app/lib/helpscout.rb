@@ -36,21 +36,7 @@ module Helpscout
         raise ResponseError, "Failed to fetch conversation: #{response.code}\n\n#{response.body}".strip
       end
 
-      response_data = JSON.parse(response.body)
-
-      if with_threads && response_data.dig("_embedded", "threads").empty?
-        # happens with brand-new conversations; sleep and retry once
-        Kernel.sleep(10)
-
-        response = HTTParty.get(url, headers: {
-          "Authorization" => "Bearer #{token}",
-          "Content-Type" => "application/json",
-        })
-
-        response_data = JSON.parse(response.body)
-      end
-
-      response_data
+      JSON.parse(response.body)
     end
 
     def render_conversation_for_ai(conversation)
@@ -74,9 +60,6 @@ module Helpscout
 
       # ignore drafts
       conversation_for_ai["_embedded"]["threads"].reject! { |thread| thread["state"] == "draft" }
-
-      # ignore beacon entries
-      conversation_for_ai["_embedded"]["threads"].reject! { |thread| thread.dig("source", "type") == "beacon-v2" }
 
       # filter thread contents
       conversation_for_ai["_embedded"]["threads"].each do |thread|
@@ -102,6 +85,21 @@ module Helpscout
           end
         end
 
+        # simplify URLs in beacon entries, because our app URLs are looooooonnnnnggggg
+        if thread.dig("source", "type") == "beacon-v2"
+          thread["body"].gsub!(%r{https://[^\s<]+}) do |url|
+            url = url.gsub("&amp;", "&")
+            uri = URI.parse(url)
+
+            # remove embedded, hmac, host, id_token, session, and timestamp query params
+            uri.query = URI.decode_www_form(uri.query || "").reject { |key, _|
+              ["embedded", "hmac", "host", "id_token", "session", "timestamp"].include?(key)
+            }.to_h.to_query
+
+            uri.to_s
+          end
+        end
+
         # convert to markdown. nb: helpscout sometimes represents stuff in markdown itself!
         raw_html = thread["body"]
         clean_html = Loofah.fragment(raw_html).scrub!(:prune).to_html
@@ -110,7 +108,7 @@ module Helpscout
         # now that we're *definitely* in markdown, empty out image urls
         markdown.gsub!(/\!\[.*?\]\(.*?\)/, "[image]")
 
-        thread["body"] = markdown
+        thread["body"] = markdown.strip
       end
 
       conversation_for_ai
