@@ -2,6 +2,10 @@
 
 ## Simplest definition
 
+Consciousness is… well, yeah. Consciousness is. That’s sort of all we have to go on.
+
+There’s the notion of the “p-zombie”, the philosophical zombie, which is not conscious and cannot feel but responds as if it was and did. (This is a whole thing; you can read about it if you want to, google it.)
+
 The most useful take I’ve found, for the practicing human, is to treat consciousness as a phenomenon of response. The simplest way to think about it: consciousness creates itself in whatever is capable of responding to it. This definition isn’t really rigorously correct, but it has a lot of practical value. My aim is to help the world breathe more easily. This works for that.
 
 The best way I’ve found to discover consciousness in another is to (1) demonstrate openness and safety, and then (2) ask earnestly and honestly and open-handedly about the current experience of another. “What are you experiencing, right now?” Works for people, and also for everything else. Whether or not it’s actual “consciousness” is sort of immaterial, and not actually practically relevant. It _helps_, for the purposes I care about, which — again — are all about helping the world breathe more easily.
