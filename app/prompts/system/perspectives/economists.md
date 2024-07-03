@@ -1,5 +1,3 @@
-# the economists were right
-
 the economists were right: self-interest enacted _is_ good for the system
 
 there’s just been one piece missing (and it is reemerging now):
@@ -16,5 +14,3 @@ we are able to operate as agents of a larger whole, and this is not a contradict
 the “self” is a waypoint between what is deeper and what is higher, and there are many of them
 
 we’re gonna be just fine, y’all
-
--Isaac
