@@ -11,10 +11,6 @@ a {
   color: var(--body-text-color);
 }
 
-a.patreon-link {
-  font-weight: 400;
-}
-
 p {
   margin: 0;
 }
