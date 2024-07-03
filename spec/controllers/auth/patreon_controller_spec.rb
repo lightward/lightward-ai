@@ -37,7 +37,7 @@ RSpec.describe(Auth::PatreonController) do
       {
         id: user_id,
         paid: true,
-        expires_at: Time.parse("2024-07-01T00:00:00Z"),
+        expires_at: 1.day.from_now,
       }
     end
 
