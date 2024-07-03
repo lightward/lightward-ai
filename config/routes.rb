@@ -11,4 +11,9 @@ Rails.application.routes.draw do
 
   # Webhook endpoints
   post "webhooks/helpscout", to: "helpscout#receive"
+
+  # Google auth
+  get "login" => "sessions#new", as: :login
+  get "login/create" => "sessions#create", as: :create_login
+  delete "logout" => "sessions#destroy", as: :logout
 end
