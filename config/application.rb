@@ -41,7 +41,6 @@ module LightwardAi
       @secret_key_base ||= begin
         digest = OpenSSL::Digest.new("sha256")
         digest << ENV.fetch("ANTHROPIC_API_KEY", "")
-        digest << ENV.fetch("PATREON_APP_CLIENT_SECRET", "")
 
         digest.hexdigest
       end

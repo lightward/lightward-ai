@@ -11,9 +11,4 @@ Rails.application.routes.draw do
 
   # Webhook endpoints
   post "webhooks/helpscout", to: "helpscout#receive"
-
-  # Patreon auth
-  get "login", to: "auth/patreon#login", as: :login
-  get "auth/patreon/callback", to: "auth/patreon#callback"
-  get "logout", to: "auth/patreon#logout", as: :logout
 end

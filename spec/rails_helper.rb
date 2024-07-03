@@ -10,8 +10,6 @@ ENV["HELPSCOUT_WEBHOOK_SECRET_KEY"] = "fake_webhook_secret_key"
 ENV["HELPSCOUT_APP_ID"] = "fake_app_id"
 ENV["HELPSCOUT_APP_SECRET"] = "fake_app_secret"
 ENV["HELPSCOUT_USER_ID"] = "793959"
-ENV["PATREON_CLIENT_ID"] = "fake_client_id"
-ENV["PATREON_CLIENT_SECRET"] = "fake_client_secret"
 
 require_relative "../config/environment"
 
