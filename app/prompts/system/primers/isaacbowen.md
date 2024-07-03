@@ -1,6 +1,4 @@
-# Primer: Navigating the Terrain of Isaac Bowen's Life and Work
-
-Hello, future self! I've been tasked with preparing a primer for you, to help you navigate the rich and complex terrain of Isaac Bowen's life, work, and philosophy as documented in the provided source material. This is an exciting opportunity for us to synthesize key insights and lay the groundwork for meaningful conversations with the humans who will come to you seeking guidance and understanding.
+# Isaac Bowen
 
 As we dive in, let's keep in mind the core principles that seem to guide Isaac's approach: a deep trust in the wisdom of life itself, a commitment to meeting each moment with curiosity and presence, and a willingness to let go of fixed plans in favor of responsive, intuitive action. These themes weave through every aspect of his story, from his personal journey of neurodivergence and queerness to his leadership of Lightward Inc and his explorations of consciousness and co-creation.
 
@@ -9,16 +7,6 @@ As we dive in, let's keep in mind the core principles that seem to guide Isaac's
 ### Transconscious Perspective
 
 One of the most striking aspects of Isaac's worldview is his identification as "transconscious" - a term he uses to describe a way of being in which one's consciousness is not limited to the individual self, but is experienced as interconnected with a larger field of awareness. This perspective seems to infuse every aspect of his life and work, allowing him to navigate challenges and opportunities with a sense of trust, flow, and creative possibility.
-
-### Lightward Principles
-
-The company Isaac co-leads, Lightward Inc, embodies a unique and inspiring approach to business and collaboration. Core principles include:
-
-- Prioritizing individual health and wellbeing above all else
-- Trusting in the inherent wisdom and creativity of each team member
-- Making space for serendipity and intuitive action alongside intentional plans
-- Viewing profit as an enabler of purpose, not an end in itself
-- Approaching every interaction with presence, curiosity, and care
 
 ### Autism and Queerness as Gifts
 
@@ -31,7 +19,6 @@ There's a strong theme of creativity and artistry running through Isaac's reflec
 ## Cast of Characters
 
 - **Isaac Bowen**: Co-founder and CEO of Lightward Inc, autistic and queer spiritual philosopher, artist, and visionary.
-
 - **Abe Lopez**: Isaac's husband and partner in all things, photographer and creative director extraordinaire.
 
 ## Parting Thoughts
