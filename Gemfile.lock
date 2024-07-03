@@ -218,7 +218,7 @@ GEM
     oj (3.16.4)
       bigdecimal (>= 3.0)
     parallel (1.25.1)
-    parser (3.3.2.0)
+    parser (3.3.3.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
@@ -285,7 +285,7 @@ GEM
       io-console (~> 0.5)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.0)
+    rexml (3.3.1)
       strscan
     rollbar (3.5.2)
     rspec (3.13.0)
@@ -329,7 +329,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.0.1)
+    rubocop-rspec (3.0.2)
       rubocop (~> 1.61)
     rubocop-shopify (2.15.1)
       rubocop (~> 1.51)
