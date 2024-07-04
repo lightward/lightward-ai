@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  def new; end
+  def new
+    @hide_login_nav_link = true
+  end
 
   def create
     if (user = authenticate_via_google)
-      cookies.signed[:user_id] = user.id
+      set_current_user_id!(user.id)
       redirect_to(root_url)
     else
       redirect_to(login_url)

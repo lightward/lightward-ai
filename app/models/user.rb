@@ -13,6 +13,6 @@ class User < ApplicationRecord
 
   def email=(email)
     username, domain = email.split("@", 2)
-    self.email_obscured = "#{username[0..2]}…@#{domain[0..2]}…"
+    self.email_obscured = "#{username.first(2)}…@#{domain.first(2)}…"
   end
 end

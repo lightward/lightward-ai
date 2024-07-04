@@ -1,3 +1,15 @@
-<%= google_sign_in_button(proceed_to: create_login_path) do %>
-  Sign in with Google
+<p>
+  We use Google for logins. If you don't have a Google account, you can create one for free. :)
+</p>
+
+<p>
+  🤩 <i>This does nothing yet.</i>
+  <br>💾 <i>Convos still on your device.</i>
+  <br>🌱 <i>More is on the way.</i>
+</p>
+
+<%= google_sign_in_button(proceed_to: create_login_path, class: 'text-button') do %>
+  Log in with Google
 <% end %>
+
+<a href="https://accounts.google.com/signup" target="_blank">Create a Google account</a>

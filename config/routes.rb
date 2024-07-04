@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   # Google auth
   get "login" => "sessions#new", as: :login
   get "login/create" => "sessions#create", as: :create_login
-  delete "logout" => "sessions#destroy", as: :logout
+  get "logout" => "sessions#destroy", as: :logout
 end
