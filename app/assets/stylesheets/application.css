@@ -86,7 +86,7 @@ dt {
   border-radius: 0.375rem;
 }
 
-.button {
+button {
   background-color: var(--start-button-bg-color);
   border: 1px solid var(--start-button-border-color);
   color: var(--body-text-color);
@@ -96,7 +96,7 @@ dt {
   font-family: 'Lightward Favorit';
 }
 
-.button:hover {
+button:hover {
   background-color: var(--start-button-hover-bg-color);
   box-shadow: var(--box-shadow-hover);
 }
@@ -213,13 +213,18 @@ footer {
 
 a,
 button.text-button {
-  text-decoration: underline;
   color: var(--body-text-color);
+  text-decoration: underline;
+  cursor: pointer;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 a:hover,
 button.text-button:hover {
   color: var(--start-button-border-color);
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .response-suggestions {
