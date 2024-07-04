@@ -16,7 +16,7 @@ export const initChat = () => {
   const userInputArea = document.getElementById('user-input');
   const userInput = userInputArea.querySelector('textarea');
   const instructions = document.getElementById('instructions');
-  const footer = document.getElementById('footer');
+  const footer = document.getElementsByTagName('footer')[0];
   const responseSuggestions = document.getElementById('response-suggestions');
   const startOverButton = document.getElementById('start-over-button');
 

@@ -7,4 +7,22 @@ class ApplicationController < ActionController::Base
 
   # skipping csrf because right now we're a tiny little js app and I don't think this is needed
   skip_before_action :verify_authenticity_token
+
+  helper_method :current_user
+
+  protected
+
+  def set_current_user_id!(user_id) # rubocop:disable Naming/AccessorMethodName
+    cookies.encrypted.signed[:user_id] = user_id
+  end
+
+  def current_user_id
+    cookies.encrypted.signed[:user_id]
+  end
+
+  def current_user
+    return unless current_user_id
+
+    @current_user ||= User.find_by(id: current_user_id)
+  end
 end
