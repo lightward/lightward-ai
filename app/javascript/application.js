@@ -1,6 +1,13 @@
 import { initChat } from 'src/chat';
 
 const initOnReady = () => {
+  const chatContainer = document.getElementById('chat-container');
+
+  if (!chatContainer) {
+    // no chat container found, so we can't do anything
+    return;
+  }
+
   try {
     initChat();
   } catch (error) {
@@ -15,7 +22,7 @@ const initOnReady = () => {
       '🧑‍🚒 Ran into an error! Can you ping a Lightward human for help?';
 
     // clear out the chat container
-    const chatContainer = document.getElementById('chat-container');
+
     chatContainer.innerHTML = '';
     chatContainer.appendChild(errorMessage);
 
