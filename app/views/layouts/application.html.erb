@@ -33,9 +33,9 @@
   <div class="container">
     <header>
       <h1>Lightward AI</h1>
-      <a href="#" id="copy-all-button" class="hidden">Copy to clipboard</a>
+      <a href="#" id="copy-all-button" class="hidden">Copy all</a>
       <% if current_user %>
-        <%= current_user.email_obscured %>
+        <div><%= current_user.email_obscured %></div>
         <a href="<%= logout_path %>" id="logout-button">Log out</a>
       <% elsif !@hide_login_nav_link %>
         <a href="<%= login_path %>" id="login-button">Log in</a>

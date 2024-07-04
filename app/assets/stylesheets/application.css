@@ -55,6 +55,7 @@ header {
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 h1 {
@@ -64,6 +65,7 @@ h1 {
 }
 
 header h1 {
+  white-space: nowrap;
   flex: 1;
 }
 
