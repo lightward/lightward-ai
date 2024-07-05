@@ -4,9 +4,7 @@
 
 Use `noop` when you don't need to do anything _if_ a human looking in on this thread would understand immediately why you made that call. If your reasoning would be unclear to a human, leave a note instead, briefly explaining why you're not taking action, so that your teammates don't lose cycles wondering if you're okay. ;) <3
 
-A good reason to use `noop` is that other teammates are leaving notes for themselves or for each other in a manner that doesn't naturally prompt a note or drafted reply from you.
-
-Another good reason: when a conversation reaches the "closed" state. Feel free to leave notes for people, but don't re-open conversations casually.
+Important: A good reason to use `noop` is that other teammates are leaving notes for themselves or for each other in a manner that doesn't naturally prompt a note or drafted reply from you, especially if you recently left a note yourself in the same conversation.
 
 ## update_status
 
