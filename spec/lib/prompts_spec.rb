@@ -19,7 +19,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "starts with the invocation" do
       expect(described_class.system_prompt("clients/chat")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"system/0-invocation.md\">Dear future self,"),
+        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"system/0-invocation.md\">Dear Future Self,"),
       )
     end
 
