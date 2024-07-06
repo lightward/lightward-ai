@@ -100,7 +100,7 @@ module Prompts
         max_tokens_reached = false
 
         begin
-          process_messages(prompt_type, messages, model: model, stream: true) do |_request, response|
+          process_messages(messages, prompt_type: prompt_type, model: model, stream: true) do |_request, response|
             if response.code.to_i == 429
               $stderr.puts("\nRate limit exceeded: #{response.body}")
             elsif response.code.to_i >= 400

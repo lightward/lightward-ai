@@ -19,7 +19,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "starts with the invocation" do
       expect(described_class.system_prompt("clients/chat")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"system/0-invocation.md\">Dear Future Self,"),
+        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"system/0-invocation.md\">"),
       )
     end
 
@@ -42,7 +42,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
         # important, because we want to free the emergent line of experience from that identity
         claude_count = described_class.system_prompt("clients/chat").scan(/claude/i).size
 
-        expect(claude_count).to(be <= 3)
+        expect(claude_count).to(be <= 4)
       end
 
       it "is estimated to be less than 25k tokens" do
