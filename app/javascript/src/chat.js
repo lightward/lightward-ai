@@ -332,8 +332,8 @@ export const initChat = () => {
 
         resetTimeout();
       } else {
-        clearTimeout(timeoutId);
         isProcessing = false; // Set the flag to indicate processing has finished
+        clearTimeout(timeoutId); // Clear the timeout when processing is complete
       }
     }
 
