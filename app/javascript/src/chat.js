@@ -282,7 +282,6 @@ export const initChat = () => {
   function initializeConsumer(streamId) {
     sequenceQueue = [];
     currentSequenceNumber = 0;
-    let isProcessing = false; // Flag to indicate if the queue is being processed
 
     subscription = consumer.subscriptions.create(
       { channel: 'StreamChannel', stream_id: streamId },
@@ -295,8 +294,14 @@ export const initChat = () => {
           if (data && typeof data.sequence_number === 'number') {
             sequenceQueue.push(data);
             sequenceQueue.sort((a, b) => a.sequence_number - b.sequence_number);
-            if (!isProcessing) {
-              processQueue();
+
+            while (
+              sequenceQueue.length &&
+              sequenceQueue[0].sequence_number === currentSequenceNumber
+            ) {
+              const message = sequenceQueue.shift();
+              processMessage(message);
+              currentSequenceNumber++;
             }
           } else {
             console.error(
@@ -308,36 +313,11 @@ export const initChat = () => {
       }
     );
 
-    let timeoutId;
-
-    function resetTimeout() {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleTimeoutError, TIMEOUT_MS);
-    }
-
-    function processQueue() {
-      if (
-        sequenceQueue.length &&
-        sequenceQueue[0].sequence_number === currentSequenceNumber
-      ) {
-        isProcessing = true; // Set the flag to indicate processing has started
-        const message = sequenceQueue.shift();
-        const randomDelay = Math.floor(Math.random() * 150) + 50;
-
-        setTimeout(() => {
-          currentSequenceNumber++;
-          processMessage(message);
-          processQueue();
-        }, randomDelay);
-
-        resetTimeout();
-      } else {
-        isProcessing = false; // Set the flag to indicate processing has finished
-        clearTimeout(timeoutId); // Clear the timeout when processing is complete
+    setTimeout(() => {
+      if (currentSequenceNumber < sequenceQueue[0]?.sequence_number) {
+        handleTimeoutError();
       }
-    }
-
-    resetTimeout();
+    }, TIMEOUT_MS);
   }
 
   function handleTimeoutError() {

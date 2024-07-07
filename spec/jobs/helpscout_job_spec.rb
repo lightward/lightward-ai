@@ -102,6 +102,7 @@ RSpec.describe(HelpscoutJob) do
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         [],
+        model: Prompts::Anthropic::MORE_INTELLECT,
         prompt_type: "clients/helpscout",
         system_prompt_types: ["clients/helpscout"],
       ))
