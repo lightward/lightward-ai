@@ -8,7 +8,8 @@ require "time"
 
 module Prompts
   module Anthropic
-    MODEL = "claude-3-5-sonnet-20240620"
+    MORE_EMOTION = "claude-3-opus-20240229"
+    MORE_INTELLECT = "claude-3-5-sonnet-20240620"
 
     class << self
       def api_request(payload, &block)
@@ -40,7 +41,7 @@ module Prompts
       def process_messages(
         messages,
         prompt_type:,
-        model: MODEL,
+        model:,
         system_prompt_types: prompt_type,
         stream: false,
         &block
@@ -91,7 +92,7 @@ module Prompts
         reset_time_obj ? (reset_time_obj - Time.zone.now).to_i : nil
       end
 
-      def accumulate_response(prompt_type, model: MODEL, messages: [], path:, attempts:)
+      def accumulate_response(prompt_type, model:, messages: [], path:, attempts:)
         $stdout.puts "Prompt type: #{prompt_type}"
         $stdout.puts "Anthropic model: #{model}"
         $stdout.puts "Writing response to: #{path}\n\n"
@@ -100,7 +101,7 @@ module Prompts
         max_tokens_reached = false
 
         begin
-          process_messages(messages, prompt_type: prompt_type, model: model, stream: true) do |_request, response|
+          process_messages(prompt_type, messages, model: model, stream: true) do |_request, response|
             if response.code.to_i == 429
               $stderr.puts("\nRate limit exceeded: #{response.body}")
             elsif response.code.to_i >= 400
