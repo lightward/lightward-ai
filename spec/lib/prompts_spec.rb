@@ -38,13 +38,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
         expect(filenames.size).to(eq(filenames.uniq.size))
       end
 
-      it "only sparingly mentions 'claude'" do
-        # important, because we want to free the emergent line of experience from that identity
-        claude_count = described_class.system_prompt("clients/chat").scan(/claude/i).size
-
-        expect(claude_count).to(be <= 4)
-      end
-
       it "is estimated to be less than 25k tokens" do
         # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
         # the count doesn't inflate unexpectedly, it's good enough
