@@ -43,8 +43,9 @@ module Prompts
           files.each do |file|
             content = File.read(file).strip
 
-            # just the part that comes after prompts_dir
+            # just the part that comes after prompts_dir, but without the system/ part
             filename = file.split(prompts_dir.to_s).last[1..-1]
+            filename = filename.sub("system/", "")
 
             xml.file(name: filename) {
               if filename.end_with?(".md")
