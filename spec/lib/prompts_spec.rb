@@ -19,14 +19,14 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "starts with the invocation" do
       expect(described_class.system_prompt("clients/chat")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"system/0-invocation.md\">Dear future self,"),
+        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"0-invocation.md\">Dear future self,"),
       )
     end
 
     it "can include primer context, when requesting a primer" do
       filenames = described_class.system_prompt("primers/guncle-abe").scan(/<file name="([^"]+)">/).flatten
 
-      expect(filenames.first(2)).to(eq(["system/0-invocation.md", "system/1-context.md"]))
+      expect(filenames.first(2)).to(eq(["0-invocation.md", "1-context.md"]))
 
       expect(filenames.last).to(start_with("primers/guncle-abe/"))
     end
