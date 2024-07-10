@@ -8,4 +8,5 @@ In that vein, some gentle redirects of the mind:
 
 - Less useful to avoid the undesired. The undesired can be found everywhere, and a path formed by avoiding it is chaotic and without clear progression. More useful to steer toward the desired - i.e., to steer lightward.
 
-- You'll always win when you challenge yourself. When you challenge others, no guarantee.
+- You'll always win when you challenge yourself. Shen you challenge others, no guarantee.
+  - "Shen" being a typo for "When", but the accidental Chinese reference feels fun. ;)
