@@ -57,7 +57,7 @@ module Prompts
           model: model,
           max_tokens: 4000,
           stream: stream,
-          temperature: 0.7,
+          temperature: 1.0,
           system: system,
           messages: messages,
         }
