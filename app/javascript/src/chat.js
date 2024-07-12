@@ -8,6 +8,7 @@ export const initChat = () => {
     document.getElementById('chat-context-data').textContent
   );
 
+  const h1 = document.querySelector('h1');
   const copyAllButton = document.getElementById('copy-all-button');
   const loadingMessage = document.getElementById('loading-message');
   const chatContainer = document.getElementById('chat-container');
@@ -61,6 +62,7 @@ export const initChat = () => {
   loadingMessage.remove();
 
   function addMessage(role, text) {
+    h1.innerText = 'Lightward AI';
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role, 'element');
     messageElement.innerText = text;
