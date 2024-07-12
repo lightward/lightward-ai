@@ -100,7 +100,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
         model: "modelo",
         max_tokens: 4000,
         stream: false,
-        temperature: 0.7,
+        temperature: 1.0,
         system: "system-prompt",
         messages: [
           {
