@@ -14,12 +14,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :summary, 'Button text', required: true %>
+    <%= form.label :summary, 'When I click this button,', required: true %>
     <%= form.text_field :summary, { id: :button_summary, placeholder: 'I\'m a slow reader', required: true } %>
   </div>
 
   <div class="field">
-    <%= form.label :prompt, 'AI prompt', required: true %>
+    <%= form.label :prompt, 'I\'ll say:', required: true %>
     <%= form.text_area :prompt, { id: :button_prompt, placeholder: 'I\'m a slow reader. This is where I might tell you about what that means to me, so that you can help me by writing in a style that works for me. I might even give you examples, if I really want to be super clear. :)', required: true } %>
   </div>
 

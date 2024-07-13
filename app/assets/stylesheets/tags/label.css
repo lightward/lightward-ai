@@ -1,4 +1,0 @@
-label[required]::after {
-  content: '*';
-  margin-left: 0.2rem;
-}

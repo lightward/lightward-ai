@@ -1,0 +1,8 @@
+details summary {
+  cursor: pointer;
+}
+
+details[open] summary {
+  outline: none;
+  margin-bottom: 0.5rem;
+}
