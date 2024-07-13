@@ -1,17 +1,10 @@
 <table>
-  <thead>
-    <tr>
-      <th>Button</th>
-      <th style="width: 1%"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% if buttons.any? %>
       <% buttons.each do |button| %>
         <tr>
-          <td><%= button.summary %></td>
-          <td><%= render 'components/button_toggle', button: button %></td>
+          <td><%= link_to button.summary, button %></td>
+          <td style="width: 30%; text-align: right;"><%= render 'components/button_toggle', button: button %></td>
         </tr>
       <% end %>
     <% else %>

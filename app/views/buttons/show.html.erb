@@ -1,17 +1,14 @@
 <!-- app/views/buttons/show.html.erb -->
 
-<h1>Button 🌱</h1>
+<h1>Button</h1>
 
-<p><%= @button.summary %></p>
+<p>When I click this button,</p>
+<div class="chat-message assistant"><button disabled><%= @button.summary %></button></div>
 
-<blockquote>
-  <% if @button.prompt.present? %>
-    <%= @button.prompt %>
-  <% else %>
-    <em>(No prompt)</em>
-  <% end %>
-</blockquote>
+<p>I'll say:</p>
+<div class="chat-message assistant"><blockquote><%= @button.prompt %></blockquote></div>
 
-<%= render 'components/button_toggle', button: @button %>
-
-<%= link_to 'Back', buttons_path %>
+<div class="stack-horizontal">
+  <%= link_to 'Back', buttons_path %>
+  <%= render 'components/button_toggle', button: @button %>
+</div>

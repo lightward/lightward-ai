@@ -8,6 +8,10 @@ th {
   text-align: left;
 }
 
+table tbody:first-child tr:first-child td {
+  border: 0;
+}
+
 td {
   border-top: 1px solid var(--assistant-message-border-color);
 }
