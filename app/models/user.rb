@@ -24,12 +24,12 @@ class User < ApplicationRecord
   def create_default_buttons
     buttons.create!(
       summary: "I'm a slow reader",
-      prompt: "",
+      prompt: "I'm a slow reader",
     )
 
     buttons.create!(
       summary: "I'm a fast reader",
-      prompt: "",
+      prompt: "I'm a fast reader",
     )
   end
 end
