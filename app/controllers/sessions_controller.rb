@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       set_current_user_id!(user.id)
       redirect_to(root_url)
     else
-      redirect_to(login_url)
+      redirect_to(login_url, alert: t(:login_failed))
     end
   end
 

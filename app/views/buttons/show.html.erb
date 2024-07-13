@@ -1,0 +1,14 @@
+<!-- app/views/buttons/show.html.erb -->
+
+<h1>Button</h1>
+
+<p>When I click this button,</p>
+<div class="chat-message assistant"><button disabled><%= @button.summary %></button></div>
+
+<p>I'll say:</p>
+<div class="chat-message assistant"><blockquote><%= @button.prompt %></blockquote></div>
+
+<div class="stack-horizontal">
+  <%= link_to 'Back', buttons_path %>
+  <%= render 'components/button_toggle', button: @button %>
+</div>

@@ -1,0 +1,13 @@
+<prompt-button>
+  <template shadowrootmode="open">
+    <button part="button">
+      <% if defined? summary %>
+        <%= summary %>
+      <% else %>
+        <%= prompt %>
+      <% end %>
+    </button>
+  </template>
+
+  <%= prompt %>
+</prompt-button>

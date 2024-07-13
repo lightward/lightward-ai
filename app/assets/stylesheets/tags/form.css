@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form .field.checkbox {
+  flex-direction: row;
+}

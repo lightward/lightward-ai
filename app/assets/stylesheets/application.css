@@ -1,4 +1,5 @@
-/*= require colors */
+/*= require_tree ./concerns */
+/*= require_tree ./tags */
 
 body {
   margin: 5vh 2vw;
@@ -34,7 +35,7 @@ footer {
 
 body,
 textarea,
-button {
+input {
   font-size: 100%;
   font-family: 'Lightward Favorit';
   font-weight: 200;
@@ -61,11 +62,12 @@ header {
 
 h1 {
   font-weight: 200;
-  font-size: 2rem;
+  font-size: 1.4rem;
   margin: 0;
 }
 
 header h1 {
+  font-size: 2rem;
   flex: 1;
 }
 
@@ -82,25 +84,12 @@ dt {
   font-weight: 400;
 }
 
+textarea,
+input[type='text'],
 .element {
   padding: 0.7rem 1rem;
   box-shadow: var(--box-shadow);
   border-radius: 0.375rem;
-}
-
-button {
-  background-color: var(--start-button-bg-color);
-  border: 1px solid var(--start-button-border-color);
-  color: var(--body-text-color);
-  cursor: pointer;
-  box-shadow: var(--box-shadow);
-  text-decoration: none;
-  font-family: 'Lightward Favorit';
-}
-
-button:hover {
-  background-color: var(--start-button-hover-bg-color);
-  box-shadow: var(--box-shadow-hover);
 }
 
 .chat-container {
@@ -114,17 +103,6 @@ button:hover {
 .chat-log {
   flex: 1;
   background-color: var(--body-bg-color);
-}
-
-.chat-message {
-  min-height: 1rem;
-  background-color: var(--assistant-message-bg-color);
-  border: 1px solid var(--assistant-message-border-color);
-}
-
-.chat-message.user {
-  background-color: var(--user-message-bg-color);
-  border: 1px solid var(--user-message-border-color);
 }
 
 .pulsing {
@@ -146,7 +124,7 @@ button:hover {
   }
 }
 
-#user-input {
+#text-input {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -154,13 +132,14 @@ button:hover {
   gap: 0.5rem;
 }
 
-#user-input textarea {
+textarea,
+input[type='text'] {
   position: relative;
-  flex: 1;
+  flex-grow: 1;
 
   color: var(--body-text-color);
-  border: 1px solid var(--user-input-active-border-color);
-  background-color: var(--user-input-active-bg-color);
+  border: 1px solid var(--text-input-active-border-color);
+  background-color: var(--text-input-active-bg-color);
 
   box-sizing: border-box; /* Ensures padding is included dimensions */
   resize: none; /* Disable manual resizing */
@@ -169,7 +148,7 @@ button:hover {
 
 /* if we're on a device with a physical keyboard... */
 @media (hover: hover) {
-  #user-input:after {
+  #text-input:after {
     content: attr(data-submit-tip);
     position: absolute;
     right: 0;
@@ -179,23 +158,23 @@ button:hover {
     transition: opacity 0.3s ease;
   }
 
-  #user-input.multiline:after {
+  #text-input.multiline:after {
     opacity: 0.5;
   }
 }
 
-#user-input.disabled {
+#text-input.disabled {
   opacity: 0.5;
   filter: blur(1px);
   pointer-events: none;
 }
 
-#user-input.disabled textarea {
-  border: 1px solid var(--user-input-disabled-border-color);
-  background-color: var(--user-input-disabled-bg-color);
+#text-input.disabled textarea {
+  border: 1px solid var(--text-input-disabled-border-color);
+  background-color: var(--text-input-disabled-bg-color);
 }
 
-#user-input.disabled button {
+#text-input.disabled button {
   display: none;
 }
 
@@ -224,20 +203,22 @@ button.text-button {
 
 a:hover,
 button.text-button:hover {
-  color: var(--start-button-border-color);
+  color: var(--button-border-color);
   background-color: transparent;
   box-shadow: none;
 }
 
-.response-suggestions {
+.stack-vertical {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
 }
 
-.response-suggestions .element {
-  margin: 0;
-  display: inline-block;
+.stack-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 
 #video-intro {

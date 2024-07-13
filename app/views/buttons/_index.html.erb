@@ -1,0 +1,16 @@
+<table>
+  <tbody>
+    <% if buttons.any? %>
+      <% buttons.each do |button| %>
+        <tr>
+          <td><%= link_to button.summary, button %></td>
+          <td style="width: 30%; text-align: right;"><%= render 'components/button_toggle', button: button %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2">No buttons here!</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

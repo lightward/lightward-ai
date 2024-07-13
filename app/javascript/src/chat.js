@@ -1,5 +1,4 @@
 import { createConsumer } from '@rails/actioncable';
-import TurndownService from 'turndown';
 
 const consumer = createConsumer();
 
@@ -14,7 +13,7 @@ export const initChat = () => {
   const chatContainer = document.getElementById('chat-container');
   const startSuggestions = document.getElementById('start-suggestions');
   const chatLog = document.getElementById('chat-log');
-  const userInputArea = document.getElementById('user-input');
+  const userInputArea = document.getElementById('text-input');
   const userInput = userInputArea.querySelector('textarea');
   const instructions = document.getElementById('instructions');
   const footer = document.getElementsByTagName('footer')[0];
@@ -64,7 +63,7 @@ export const initChat = () => {
   function addMessage(role, text) {
     h1.innerText = 'Lightward AI';
     const messageElement = document.createElement('div');
-    messageElement.classList.add('chat-message', role, 'element');
+    messageElement.classList.add('chat-message', role);
     messageElement.innerText = text;
     chatLog.appendChild(messageElement);
     saveScrollPosition();
@@ -73,7 +72,7 @@ export const initChat = () => {
 
   function addPulsingMessage(role) {
     const messageElement = document.createElement('div');
-    messageElement.classList.add('chat-message', role, 'element', 'pulsing');
+    messageElement.classList.add('chat-message', role, 'pulsing');
     chatLog.appendChild(messageElement);
     saveScrollPosition();
     return messageElement;
@@ -91,8 +90,6 @@ export const initChat = () => {
   }
 
   function enableUserInput(autofocusIsAppropriate = false) {
-    // this is a weird spot to put this, but appropriateness of the copy-all button *does* correlate perfectly
-    // with appropriateness of user input, so here we are
     copyAllButton.classList.remove('hidden');
 
     currentAssistantMessageElement?.classList.remove('pulsing');
@@ -121,9 +118,6 @@ export const initChat = () => {
   }
 
   function handleUserInput() {
-    // setup in anticipation of esc behavior
-    userInput.style.height = 'auto';
-
     userInput.addEventListener('keydown', function (event) {
       // cmd+enter or ctrl+enter
       if (event.key === 'Enter') {
@@ -134,36 +128,11 @@ export const initChat = () => {
           userInputArea.classList.add('multiline');
         }
       }
-
-      // esc key
-      if (event.key === 'Escape') {
-        if (userInput.value.trim() === '') {
-          if (userInput.style.height !== 'auto') {
-            userInput.style.height = 'auto';
-          } else {
-            userInput.blur();
-          }
-        } else {
-          userInput.select();
-
-          // reset height too
-          userInput.style.height = 'auto';
-          userInput.style.height = userInput.scrollHeight + 'px';
-        }
-      }
     });
 
     userInput.addEventListener('input', function () {
       // Save input value to localStorage
       localStorage.setItem(userInputLocalstorageKey, userInput.value);
-
-      // expand the textarea as needed. it'll be reset when the user submits their message. it
-      // doesn't auto-shrink, and that actually feels appropriate? we keep whatever space the
-      // user has hollowed out for themselves, and we only reset it when they've decided they're
-      // complete. :)
-      if (userInput.scrollHeight > userInput.clientHeight) {
-        userInput.style.height = userInput.scrollHeight + 'px';
-      }
     });
 
     // Load saved input value from localStorage, if the textarea's empty
@@ -181,52 +150,26 @@ export const initChat = () => {
         event.preventDefault();
         submitUserInput(userInput.value);
       });
-
-    // Handle paste event to convert HTML to markdown
-    userInput.addEventListener('paste', (event) => {
-      event.preventDefault();
-      const clipboardData = event.clipboardData || window.clipboardData;
-      const html = clipboardData.getData('text/html');
-      const plainText = clipboardData.getData('text/plain');
-
-      const turndownService = new TurndownService({
-        headingStyle: 'atx',
-        emDelimiter: '*',
-        codeBlockStyle: 'fenced',
-      });
-      const markdown = html ? turndownService.turndown(html) : plainText;
-
-      const start = userInput.selectionStart;
-      const end = userInput.selectionEnd;
-      userInput.value =
-        userInput.value.substring(0, start) +
-        markdown +
-        userInput.value.substring(end);
-      userInput.setSelectionRange(
-        start + markdown.length,
-        start + markdown.length
-      );
-
-      // Trigger input event to resize textarea
-      userInput.dispatchEvent(new Event('input'));
-    });
   }
 
   function handleResponseClick(event) {
     event.preventDefault();
-    const message = event.target.innerText;
+    const message = event.target.innerHTML.trim();
+
     addMessage('user', message);
+
     chatLogData.push({
       role: 'user',
       content: [{ type: 'text', text: message }],
     });
+
     userInputArea.classList.add('hidden');
     currentAssistantMessageElement = addPulsingMessage('assistant');
     fetchAssistantResponse();
   }
 
-  document.querySelectorAll('.response-link').forEach((link) => {
-    link.addEventListener('click', handleResponseClick);
+  document.querySelectorAll('prompt-button').forEach((promptButton) => {
+    promptButton.addEventListener('prompt-button-click', handleResponseClick);
   });
 
   function submitUserInput(userMessage) {
@@ -325,12 +268,17 @@ export const initChat = () => {
   function handleTimeoutError() {
     const errorMessage = `Error: Response timeout. Please try again.`;
     currentAssistantMessageElement.innerText += ` ${errorMessage}`;
+
     chatLogData.push({
       role: 'assistant',
       content: [
-        { type: 'text', text: currentAssistantMessageElement.innerText },
+        {
+          type: 'text',
+          text: currentAssistantMessageElement.innerText,
+        },
       ],
     });
+
     enableUserInput();
     showResponseSuggestions();
   }
@@ -346,12 +294,7 @@ export const initChat = () => {
     } else if (data.event === 'content_block_delta') {
       const delta = data.data.delta;
       if (delta.type === 'text_delta' && currentAssistantMessageElement) {
-        let text = delta.text;
-
-        // if there's a space at the end, make sure the `innerText` assignment magic doesn't lose it
-        text = text.replace(/ $/, `\u00a0`);
-
-        currentAssistantMessageElement.innerText += text;
+        currentAssistantMessageElement.innerText += delta.text;
       }
     } else if (data.event === 'content_block_stop') {
       // Content block is complete
@@ -374,12 +317,19 @@ export const initChat = () => {
     } else if (data.event === 'error') {
       const errorMessage = `[Lightward AI system error]\n\n${data.data.error.message}`;
       currentAssistantMessageElement.innerText += ` ${errorMessage}`;
+
       chatLogData.push({
         role: 'assistant',
         content: [
-          { type: 'text', text: currentAssistantMessageElement.innerText },
+          {
+            type: 'text',
+            text: currentAssistantMessageElement.shadowRoot
+              .querySelector('zero-md')
+              .querySelector('script').textContent,
+          },
         ],
       });
+
       subscription.unsubscribe();
       enableUserInput();
       showResponseSuggestions();

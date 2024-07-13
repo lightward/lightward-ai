@@ -6,7 +6,7 @@ Rollbar.configure do |config|
   config.access_token = ENV.fetch("ROLLBAR_ACCESS_TOKEN", nil)
 
   # Disable if we don't have the config we need
-  config.enabled = config.access_token.present?
+  config.enabled = config.access_token.present? && !Rails.env.test?
 
   # Pin to the environment of choice
   config.environment = config.enabled ? ENV.fetch("ROLLBAR_ENV") : nil
