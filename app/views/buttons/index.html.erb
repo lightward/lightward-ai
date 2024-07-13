@@ -1,0 +1,10 @@
+<!-- app/views/buttons/index.html.erb -->
+
+<h1>Buttons</h1>
+
+<%= render 'index', buttons: @buttons %>
+
+<div class="stack-horizontal">
+  <%= link_to 'New button', new_button_path %>
+  <%= link_to 'Archived buttons', index_archived_buttons_path %>
+</div>

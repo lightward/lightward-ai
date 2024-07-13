@@ -28,4 +28,7 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  login_failed: 'Login failed'
+  button_created: 'Button created'
+  button_updated: 'Button updated'
+  button_hidden: 'Button hidden'

@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def authenticate_user!
+    return if current_user
+
+    redirect_to(login_path)
+  end
+
   def set_current_user_id!(user_id) # rubocop:disable Naming/AccessorMethodName
     cookies.encrypted.signed[:user_id] = user_id
   end

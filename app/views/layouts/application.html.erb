@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="https://fonts.lightward.io/lightward-favorit.css" />
 
   <%= stylesheet_link_tag "application" %>
-  <%= stylesheet_link_tag "application" %>
 
   <%# importmaps for old browsers %>
   <script async src="https://ga.jspm.io/npm:es-module-shims@1.10.0/dist/es-module-shims.js"></script>
@@ -50,11 +49,20 @@
       </h1>
 
       <a href="#" id="copy-all-button" class="hidden">Copy to clipboard</a>
+
       <% if current_user %>
+        <%= link_to 'Chat', :chat %>
+        <%= link_to 'Buttons', :buttons %>
         <div><%= current_user.email_obscured %></div>
         <a href="<%= logout_path %>" id="logout-button">Log out</a>
       <% end %>
     </header>
+
+    <% flash.each do |key, value| %>
+      <div class="flash-notice <%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
 
     <main>
       <%= yield %>

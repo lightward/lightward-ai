@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :buttons, only: [:index, :new, :create, :show] do
+    get :index_archived, on: :collection, path: "archived"
+    post :archive, on: :member
+    post :unarchive, on: :member
+  end
+
   mount GoodJob::Engine => "good_job"
 
   # Root route
-  root "chats#index"
+  root "chats#index", as: :chat
 
   # API endpoint for sending messages to the chat
   post "chats/message", to: "chats#message"

@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Button</th>
+      <th style="width: 1%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if buttons.any? %>
+      <% buttons.each do |button| %>
+        <tr>
+          <td><%= button.summary %></td>
+          <td><%= render 'components/button_toggle', button: button %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2">No buttons here!</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

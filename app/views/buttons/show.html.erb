@@ -1,0 +1,17 @@
+<!-- app/views/buttons/show.html.erb -->
+
+<h1>Button 🌱</h1>
+
+<p><%= @button.summary %></p>
+
+<blockquote>
+  <% if @button.prompt.present? %>
+    <%= @button.prompt %>
+  <% else %>
+    <em>(No prompt)</em>
+  <% end %>
+</blockquote>
+
+<%= render 'components/button_toggle', button: @button %>
+
+<%= link_to 'Back', buttons_path %>

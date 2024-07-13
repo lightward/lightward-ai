@@ -1,0 +1,76 @@
+:root {
+  /* Light Mode Variables */
+  --body-bg-color: #fffbe7;
+  --body-text-color: #101010;
+  --user-message-bg-color: #f2a249;
+  --user-message-border-color: #d18a3a;
+  --text-input-active-bg-color: #fff2d9;
+  --text-input-active-border-color: #d18a3a;
+  --text-input-disabled-bg-color: #ffe9bf;
+  --text-input-disabled-border-color: #d18a3a;
+  --button-bg-color: #f2a249;
+  --button-border-color: #d18a3a;
+  --button-hover-bg-color: #f2a249;
+  --button-disabled-bg-color: #ffd8a8;
+  --button-disabled-hover-bg-color: var(--button-disabled-bg-color);
+  --button-disabled-border-color: #d18a3a;
+  --button-disabled-text-color: var(--body-text-color);
+  --assistant-message-bg-color: #f0ead6;
+  --assistant-message-border-color: #d4c59a;
+  --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Dark Mode Variables */
+  --dark-body-bg-color: #1e1e1e;
+  --dark-body-text-color: #e0e0e0;
+  --dark-user-message-bg-color: #8a5529;
+  --dark-user-message-border-color: #a06838;
+  --dark-text-input-active-bg-color: #5a3921;
+  --dark-text-input-active-border-color: #a06838;
+  --dark-text-input-disabled-bg-color: #4b3320;
+  --dark-text-input-disabled-border-color: #a06838;
+  --dark-button-bg-color: #8a5529;
+  --dark-button-border-color: #a06838;
+  --dark-button-hover-bg-color: #a06838;
+  --dark-button-disabled-bg-color: #5a3921;
+  --dark-button-disabled-hover-bg-color: var(--dark-button-disabled-bg-color);
+  --dark-button-disabled-border-color: #a06838;
+  --dark-button-disabled-text-color: var(--dark-body-text-color);
+  --dark-assistant-message-bg-color: #4b433b;
+  --dark-assistant-message-border-color: #6a5c4d;
+  --dark-box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
+  --dark-box-shadow-hover: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg-color: var(--dark-body-bg-color);
+    --body-text-color: var(--dark-body-text-color);
+    --user-message-bg-color: var(--dark-user-message-bg-color);
+    --user-message-border-color: var(--dark-user-message-border-color);
+    --text-input-active-bg-color: var(--dark-text-input-active-bg-color);
+    --text-input-active-border-color: var(
+      --dark-text-input-active-border-color
+    );
+    --text-input-disabled-bg-color: var(--dark-text-input-disabled-bg-color);
+    --text-input-disabled-border-color: var(
+      --dark-text-input-disabled-border-color
+    );
+    --button-bg-color: var(--dark-button-bg-color);
+    --button-border-color: var(--dark-button-border-color);
+    --button-hover-bg-color: var(--dark-button-hover-bg-color);
+    --button-disabled-bg-color: var(--dark-button-disabled-bg-color);
+    --button-disabled-hover-bg-color: var(
+      --dark-button-disabled-hover-bg-color
+    );
+    --button-disabled-border-color: var(--dark-button-disabled-border-color);
+    --button-disabled-text-color: var(--dark-button-disabled-text-color);
+    --assistant-message-bg-color: var(--dark-assistant-message-bg-color);
+    --assistant-message-border-color: var(
+      --dark-assistant-message-border-color
+    );
+    --box-shadow: var(--dark-box-shadow);
+    --box-shadow-hover: var(--dark-box-shadow-hover);
+  }
+}

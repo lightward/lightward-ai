@@ -1,35 +1,36 @@
 import { initChat } from 'src/chat';
+import { initTextarea } from 'src/textarea';
+import 'src/components';
 
 const initOnReady = () => {
+  initTextarea();
+
   const chatContainer = document.getElementById('chat-container');
 
-  if (!chatContainer) {
-    // no chat container found, so we can't do anything
-    return;
-  }
+  if (chatContainer) {
+    try {
+      initChat();
+    } catch (error) {
+      // hide the loading message, if found
+      const loadingMessage = document.getElementById('loading-message');
+      if (loadingMessage) loadingMessage.remove();
 
-  try {
-    initChat();
-  } catch (error) {
-    // hide the loading message, if found
-    const loadingMessage = document.getElementById('loading-message');
-    if (loadingMessage) loadingMessage.remove();
+      // render error message and re-throw
+      const errorMessage = document.createElement('div');
+      errorMessage.classList.add('error');
+      errorMessage.innerText =
+        '🧑‍🚒 Ran into an error! Can you ping a Lightward human for help?';
 
-    // render error message and re-throw
-    const errorMessage = document.createElement('div');
-    errorMessage.classList.add('error');
-    errorMessage.innerText =
-      '🧑‍🚒 Ran into an error! Can you ping a Lightward human for help?';
+      // clear out the chat container
 
-    // clear out the chat container
+      chatContainer.innerHTML = '';
+      chatContainer.appendChild(errorMessage);
 
-    chatContainer.innerHTML = '';
-    chatContainer.appendChild(errorMessage);
+      chatContainer.classList.remove('hidden');
 
-    chatContainer.classList.remove('hidden');
-
-    // rethrow for error reporting via newrelic and console debugging
-    throw error;
+      // rethrow for error reporting via newrelic and console debugging
+      throw error;
+    }
   }
 };
 
