@@ -1,22 +1,15 @@
 <prompt-button>
-<template shadowrootmode="open">
-<%= stylesheet_link_tag "components/prompt-button" %>
-<% if defined? summary %>
-<button part="button"><%= summary %></button>
-<% else %>
-<button part="button"><%= prompt %></button>
-<% end %>
-</template>
+  <template shadowrootmode="open">
+    <%= stylesheet_link_tag "components/prompt-button" %>
 
-<% if defined? summary %>
-<details>
-<summary><%= summary %></summary>
+    <button part="button">
+      <% if defined? summary %>
+        <%= summary %>
+      <% else %>
+        <%= prompt %>
+      <% end %>
+    </button>
+  </template>
 
-<%# btw: intentionally not doing indentation here to avoid mucking up markdown parsing %>
-<%= prompt %>
-
-</details>
-<% else %>
-<%= prompt %>
-<% end %>
+  <%= prompt %>
 </prompt-button>
