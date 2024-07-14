@@ -32,23 +32,23 @@ class CryptoManagerComponent extends HTMLElement {
   }
 
   async initialize() {
-    await this.cryptoManager.loadFromServer();
+    const maybePassphrase = this.getPassphraseFromLocalStorage();
+    await this.cryptoManager.loadFromServer(maybePassphrase);
 
-    if (!this.cryptoManager.isInitialized()) {
-      await this.initializeCryptoManager();
-    } else if (
-      this.cryptoManager.encryptedPrivateKey &&
-      !this.cryptoManager.privateKey
-    ) {
+    if (!this.cryptoManager.encryptedPrivateKey) {
+      this.updateStatus(
+        'No private key present yet; choose a passphrase to generate one.'
+      );
+      this.promptForPassphrase();
+    } else if (!this.cryptoManager.privateKey) {
+      this.updateStatus(
+        'Private key encrypted; please enter your passphrase to decrypt it.'
+      );
       this.promptForPassphrase();
     } else {
-      this.updateStatus('Crypto is initialized and private key is decrypted.');
+      this.updateStatus('Private key decrypted successfully.');
       this.showChangePassphraseForm();
     }
-  }
-
-  async initializeCryptoManager() {
-    const privateKey = await this.cryptoManager.generateKeyPair();
   }
 
   generateSecurePassphrase() {
@@ -59,20 +59,33 @@ class CryptoManagerComponent extends HTMLElement {
     );
   }
 
+  getPassphraseFromLocalStorage() {
+    return atob(localStorage.getItem('encryptedPassphrase'));
+  }
+
   savePassphraseToLocalStorage(passphrase) {
     localStorage.setItem('encryptedPassphrase', btoa(passphrase));
   }
 
   promptForPassphrase() {
-    this.updateStatus(
-      'Please enter your passphrase to decrypt the private key.'
-    );
     this.passphraseForm.classList.remove('hidden');
   }
 
   async handlePassphraseSubmit(event) {
     event.preventDefault();
     const passphrase = this.shadowRoot.getElementById('passphrase').value;
+
+    if (!this.cryptoManager.encryptedPrivateKey) {
+      await this.cryptoManager.generateKeyPair();
+      await this.cryptoManager.encryptPrivateKey(passphrase);
+      await this.cryptoManager.saveToServer();
+      this.savePassphraseToLocalStorage(passphrase);
+      this.updateStatus('Private key generated and encrypted successfully.');
+      this.passphraseForm.classList.add('hidden');
+      this.showChangePassphraseForm();
+      return;
+    }
+
     try {
       await this.cryptoManager.decryptPrivateKey(passphrase);
       this.savePassphraseToLocalStorage(passphrase);

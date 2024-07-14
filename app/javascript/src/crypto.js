@@ -21,7 +21,7 @@ export class CryptoManager {
     );
 
     this.publicKey = keyPair.publicKey;
-    return keyPair.privateKey;
+    this.privateKey = keyPair.privateKey;
   }
 
   async encryptPrivateKey(passphrase) {
@@ -115,7 +115,7 @@ export class CryptoManager {
     return this.publicKey !== null && this.encryptedPrivateKey !== null;
   }
 
-  async loadFromServer() {
+  async loadFromServer(maybePassphrase) {
     try {
       const response = await fetch('/account', {
         method: 'GET',
@@ -141,6 +141,10 @@ export class CryptoManager {
         );
 
         this.salt = this.base64ToArrayBuffer(data.salt);
+
+        if (maybePassphrase) {
+          await this.decryptPrivateKey(maybePassphrase);
+        }
       }
 
       return true;
@@ -166,7 +170,7 @@ export class CryptoManager {
         credentials: 'same-origin',
         body: JSON.stringify({
           user: {
-            public_key: await this.exportPublicKey(this.publicKey),
+            public_key: await this.exportPublicKey(),
             encrypted_private_key: this.arrayBufferToBase64(
               this.encryptedPrivateKey
             ),
@@ -203,8 +207,11 @@ export class CryptoManager {
     );
   }
 
-  async exportPublicKey(publicKey) {
-    const exported = await window.crypto.subtle.exportKey('spki', publicKey);
+  async exportPublicKey() {
+    const exported = await window.crypto.subtle.exportKey(
+      'spki',
+      this.publicKey
+    );
     return this.arrayBufferToBase64(exported);
   }
 
