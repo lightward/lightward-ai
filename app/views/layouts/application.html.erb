@@ -16,6 +16,7 @@
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
 
   <link rel="stylesheet" href="https://fonts.lightward.io/lightward-favorit.css" />
 
@@ -55,7 +56,7 @@
       <% if current_user %>
         <%= link_to 'Chat', :chat %>
         <%= link_to 'Buttons', :buttons %>
-        <div><%= current_user.email_obscured %></div>
+        <%= link_to current_user.email_obscured, :user %>
         <a href="<%= logout_path %>" id="logout-button">Log out</a>
       <% end %>
     </header>

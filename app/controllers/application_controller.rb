@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
   # it's buggy (users have reported js errors that are resolved to this client) and also pretty invasive, privacy-wise
   newrelic_ignore_enduser
 
-  # skipping csrf because right now we're a tiny little js app and I don't think this is needed
-  skip_before_action :verify_authenticity_token
-
   helper_method :current_user
 
   protected

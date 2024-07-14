@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_13_221209) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_13_235407) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,6 +127,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_221209) do
     t.text "email_obscured", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "public_key"
+    t.text "encrypted_private_key"
+    t.text "salt"
     t.index ["google_id"], name: "index_users_on_google_id", unique: true
   end
 
