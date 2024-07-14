@@ -32,7 +32,7 @@ export class CryptoManager {
     this.encryptedPrivateKey = await window.crypto.subtle.encrypt(
       { name: 'AES-GCM', iv: this.salt },
       key,
-      await window.crypto.subtle.exportKey('pkcs8', privateKey)
+      await window.crypto.subtle.exportKey('pkcs8', this.privateKey)
     );
   }
 

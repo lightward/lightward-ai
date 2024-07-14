@@ -1,13 +1,9 @@
 import { initChat } from 'src/chat';
 import { initTextarea } from 'src/textarea';
-import 'src/components/button-toggle';
-import 'src/components/prompt-button';
-
 import { CryptoManager } from 'src/crypto';
-const cryptoManager = new CryptoManager();
-
-window.cryptoManager = cryptoManager;
-cryptoManager.loadFromServer();
+import 'src/components/button-toggle';
+import 'src/components/crypto-manager';
+import 'src/components/prompt-button';
 
 const initOnReady = () => {
   initTextarea();
