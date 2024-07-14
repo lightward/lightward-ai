@@ -1,11 +1,24 @@
 // crypto.js
 
-export class CryptoManager {
+export class CryptoManager extends EventTarget {
+  static getInstance() {
+    if (!CryptoManager.instance) {
+      CryptoManager.instance = new CryptoManager();
+    }
+
+    return CryptoManager.instance;
+  }
+
   constructor() {
     this.publicKey = null;
     this.privateKey = null;
     this.encryptedPrivateKey = null;
     this.salt = null;
+  }
+
+  emitEvent(eventName, detail = {}) {
+    const event = new CustomEvent(eventName, { detail });
+    this.dispatchEvent(event);
   }
 
   async generateKeyPair() {
@@ -64,6 +77,8 @@ export class CryptoManager {
       true,
       ['decrypt']
     );
+
+    this.emitEvent('decryptready');
   }
 
   async getKeyMaterial(passphrase) {
