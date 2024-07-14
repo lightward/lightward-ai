@@ -10,6 +10,8 @@ export class CryptoManager extends EventTarget {
   }
 
   constructor() {
+    super();
+
     this.publicKey = null;
     this.privateKey = null;
     this.encryptedPrivateKey = null;

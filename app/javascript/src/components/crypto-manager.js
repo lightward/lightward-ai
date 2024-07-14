@@ -3,7 +3,7 @@ import { CryptoManager } from 'src/crypto';
 class CryptoManagerComponent extends HTMLElement {
   constructor() {
     super();
-    this.cryptoManager = CryptoManager().getInstance();
+    this.cryptoManager = CryptoManager.getInstance();
   }
 
   connectedCallback() {
