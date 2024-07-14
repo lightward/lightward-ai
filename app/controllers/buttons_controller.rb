@@ -17,32 +17,44 @@ class ButtonsController < ApplicationController
     @button = buttons.find(params[:id])
   end
 
-  # GET /buttons/new
   def new
     @button = buttons.new
   end
 
-  # POST /buttons
+  def edit
+    @button = buttons.find(params[:id])
+  end
+
   def create
     @button = buttons.new(button_params)
 
     if @button.save
-      redirect_to(@button, notice: t(:button_created))
+      redirect_to(@button, notice: t(".success"))
     else
       render(:new)
+    end
+  end
+
+  def update
+    @button = buttons.find(params[:id])
+
+    if @button.update(button_params)
+      redirect_to(@button, notice: t(".success"))
+    else
+      render(:edit)
     end
   end
 
   def archive
     @button = buttons.find(params[:id])
     @button.archive!
-    redirect_to(buttons_path, notice: t(:button_archived))
+    redirect_to(buttons_path, notice: t(".success"))
   end
 
   def unarchive
     @button = buttons.find(params[:id])
     @button.unarchive!
-    redirect_to(buttons_path, notice: t(:button_unarchived))
+    redirect_to(buttons_path, notice: t(".success"))
   end
 
   private

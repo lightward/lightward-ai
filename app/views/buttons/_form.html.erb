@@ -15,7 +15,7 @@
 
   <div class="field">
     <%= form.label :summary, 'When I click this button,', required: true %>
-    <%= form.text_field :summary, { id: :button_summary, placeholder: 'I\'m a slow reader', required: true } %>
+    <%= form.text_field :summary, { id: :button_summary, placeholder: 'I\'m a slow reader', required: true, maxlength: 80 } %>
   </div>
 
   <div class="field">
@@ -23,7 +23,6 @@
     <%= form.text_area :prompt, { id: :button_prompt, placeholder: 'I\'m a slow reader. This is where I might tell you about what that means to me, so that you can help me by writing in a style that works for me. I might even give you examples, if I really want to be super clear. :)', required: true } %>
   </div>
 
-  <p>⚠️ Heads up: Buttons can't be edited. You can always archive them and make new ones, though. :)</p>
   <div class="actions">
     <%= form.submit %>
   </div>
