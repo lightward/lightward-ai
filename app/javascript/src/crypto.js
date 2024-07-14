@@ -25,6 +25,10 @@ export class CryptoManager {
   }
 
   async encryptPrivateKey(passphrase) {
+    if (!this.privateKey) {
+      throw new Error('Private key not available');
+    }
+
     this.salt = window.crypto.getRandomValues(new Uint8Array(16));
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
@@ -37,6 +41,13 @@ export class CryptoManager {
   }
 
   async decryptPrivateKey(passphrase) {
+    if (!this.encryptedPrivateKey) {
+      throw new Error('Encrypted private key not available');
+    }
+
+    // start from scratch pls
+    this.privateKey = null;
+
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
 
@@ -82,7 +93,7 @@ export class CryptoManager {
 
   async changePassphrase(oldPassphrase, newPassphrase) {
     await this.decryptPrivateKey(oldPassphrase);
-    await this.encryptPrivateKey(this.privateKey, newPassphrase);
+    await this.encryptPrivateKey(newPassphrase);
   }
 
   async encryptData(data) {
