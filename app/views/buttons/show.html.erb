@@ -10,5 +10,6 @@
 
 <div class="stack-horizontal">
   <%= link_to 'Back', buttons_path %>
+  <%= link_to 'Edit button', edit_button_path(@button) %>
   <%= render 'components/button_toggle', button: @button %>
 </div>

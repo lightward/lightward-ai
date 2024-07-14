@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :buttons, only: [:index, :new, :create, :show] do
+  resources :buttons, only: [:index, :new, :create, :show, :edit, :update] do
     get :index_archived, on: :collection, path: "archived"
     post :archive, on: :member
     post :unarchive, on: :member

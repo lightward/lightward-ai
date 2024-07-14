@@ -29,6 +29,13 @@
 
 en:
   login_failed: 'Login failed'
-  button_created: 'Button created'
-  button_updated: 'Button updated'
-  button_hidden: 'Button hidden'
+
+  buttons:
+    create:
+      success: 'Button created'
+    update:
+      success: 'Button updated'
+    archive:
+      success: 'Button archived'
+    unarchived:
+      succes: 'Button restored'

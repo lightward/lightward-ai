@@ -1,0 +1,9 @@
+<!-- app/views/buttons/edit.html.erb -->
+
+<h1>Edit button</h1>
+
+<%= render 'form', button: @button %>
+
+<div class="stack-horizontal">
+  <%= link_to 'Back', button_path(@button) %>
+</div>
