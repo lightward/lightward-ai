@@ -3,8 +3,11 @@ import { initTextarea } from 'src/textarea';
 import 'src/components/button-toggle';
 import 'src/components/prompt-button';
 
-import LightwardAI from 'src/lightwardai';
-window.LightwardAI = LightwardAI;
+import { CryptoManager } from 'src/crypto';
+const cryptoManager = new CryptoManager();
+
+window.cryptoManager = cryptoManager;
+cryptoManager.loadFromServer();
 
 const initOnReady = () => {
   initTextarea();
