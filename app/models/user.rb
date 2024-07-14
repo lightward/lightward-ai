@@ -19,6 +19,21 @@ class User < ApplicationRecord
     self.email_obscured = "#{username.first(2)}…@#{domain.first(2)}…"
   end
 
+  def encrypt(plaintext)
+    raise ArgumentError, "Argument must be a string" unless plaintext.is_a?(String)
+
+    raise ArgumentError, "Public key is missing" if public_key.blank?
+
+    # Convert the stored public key string to an OpenSSL::PKey::RSA object
+    rsa_public = OpenSSL::PKey::RSA.new(Base64.decode64(public_key))
+
+    # Encrypt the plaintext
+    encrypted = rsa_public.public_encrypt(plaintext, OpenSSL::PKey::RSA::PKCS1_OAEP_PADDING)
+
+    # Return the encrypted data as a Base64 encoded string
+    Base64.strict_encode64(encrypted)
+  end
+
   private
 
   def create_default_buttons

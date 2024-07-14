@@ -32,8 +32,7 @@ class CryptoManagerComponent extends HTMLElement {
   }
 
   async initialize() {
-    const maybePassphrase = this.getPassphraseFromLocalStorage();
-    await this.cryptoManager.loadFromServer(maybePassphrase);
+    await this.cryptoManager.autoload();
 
     if (!this.cryptoManager.encryptedPrivateKey) {
       this.updateStatus(
@@ -59,14 +58,6 @@ class CryptoManagerComponent extends HTMLElement {
     );
   }
 
-  getPassphraseFromLocalStorage() {
-    return atob(localStorage.getItem('encryptedPassphrase'));
-  }
-
-  savePassphraseToLocalStorage(passphrase) {
-    localStorage.setItem('encryptedPassphrase', btoa(passphrase));
-  }
-
   promptForPassphrase() {
     this.passphraseForm.classList.remove('hidden');
   }
@@ -79,7 +70,7 @@ class CryptoManagerComponent extends HTMLElement {
       await this.cryptoManager.generateKeyPair();
       await this.cryptoManager.encryptPrivateKey(passphrase);
       await this.cryptoManager.saveToServer();
-      this.savePassphraseToLocalStorage(passphrase);
+      CryptoManager.savePassphraseToLocalStorage(passphrase);
       this.updateStatus('Private key generated and encrypted successfully.');
       this.passphraseForm.classList.add('hidden');
       this.showChangePassphraseForm();
@@ -104,7 +95,7 @@ class CryptoManagerComponent extends HTMLElement {
     try {
       await this.cryptoManager.changePassphrase(oldPassphrase, newPassphrase);
       await this.cryptoManager.saveToServer();
-      this.savePassphraseToLocalStorage(newPassphrase);
+      CryptoManager.savePassphraseToLocalStorage(newPassphrase);
       this.updateStatus('Passphrase changed successfully.');
     } catch (error) {
       this.updateStatus(

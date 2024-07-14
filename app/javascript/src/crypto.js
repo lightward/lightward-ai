@@ -9,6 +9,14 @@ export class CryptoManager extends EventTarget {
     return CryptoManager.instance;
   }
 
+  static getPassphraseFromLocalStorage() {
+    return atob(localStorage.getItem('encryptedPassphrase'));
+  }
+
+  static savePassphraseToLocalStorage(passphrase) {
+    localStorage.setItem('encryptedPassphrase', btoa(passphrase));
+  }
+
   constructor() {
     super();
 
@@ -16,6 +24,8 @@ export class CryptoManager extends EventTarget {
     this.privateKey = null;
     this.encryptedPrivateKey = null;
     this.salt = null;
+    this.decryptready = false;
+    this.autoloading = false;
   }
 
   emitEvent(eventName, detail = {}) {
@@ -60,6 +70,8 @@ export class CryptoManager extends EventTarget {
       throw new Error('Encrypted private key not available');
     }
 
+    this.decryptready = false;
+
     // start from scratch pls
     this.privateKey = null;
 
@@ -80,6 +92,7 @@ export class CryptoManager extends EventTarget {
       ['decrypt']
     );
 
+    this.decryptready = true;
     this.emitEvent('decryptready');
   }
 
@@ -113,7 +126,7 @@ export class CryptoManager extends EventTarget {
     await this.encryptPrivateKey(newPassphrase);
   }
 
-  async encryptData(data) {
+  async encrypt(data) {
     return window.crypto.subtle.encrypt(
       {
         name: 'RSA-OAEP',
@@ -123,27 +136,45 @@ export class CryptoManager extends EventTarget {
     );
   }
 
-  async decryptData(encryptedData) {
+  async decrypt(ciphertext) {
     if (!this.privateKey) {
       throw new Error('Private key not available');
     }
+
+    const dataBuffer = this.base64ToArrayBuffer(ciphertext);
 
     const decrypted = await window.crypto.subtle.decrypt(
       {
         name: 'RSA-OAEP',
       },
       this.privateKey,
-      encryptedData
+      dataBuffer
     );
 
     return new TextDecoder().decode(decrypted);
+  }
+
+  async autoload() {
+    if (this.autoloading) return;
+
+    this.autoloading = true;
+
+    const passphrase = CryptoManager.getPassphraseFromLocalStorage();
+
+    if (!passphrase) {
+      return;
+    }
+
+    await this.loadFromServer(passphrase);
+
+    this.autoloading = false;
   }
 
   isInitialized() {
     return this.publicKey !== null && this.encryptedPrivateKey !== null;
   }
 
-  async loadFromServer(maybePassphrase) {
+  async loadFromServer(passphrase) {
     try {
       const response = await fetch('/account', {
         method: 'GET',
@@ -170,8 +201,8 @@ export class CryptoManager extends EventTarget {
 
         this.salt = this.base64ToArrayBuffer(data.salt);
 
-        if (maybePassphrase) {
-          await this.decryptPrivateKey(maybePassphrase);
+        if (passphrase) {
+          await this.decryptPrivateKey(passphrase);
         }
       }
 
