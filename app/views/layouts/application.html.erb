@@ -55,7 +55,7 @@
       <% if current_user %>
         <%= link_to 'Chat', :chat %>
         <%= link_to 'Buttons', :buttons %>
-        <div><%= current_user.email_obscured %></div>
+        <%= link_to current_user.email_obscured, :user %>
         <a href="<%= logout_path %>" id="logout-button">Log out</a>
       <% end %>
     </header>

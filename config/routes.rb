@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     post :unarchive, on: :member
   end
 
+  resource :user, path: "account", only: [:show, :update]
+
   mount GoodJob::Engine => "good_job"
 
   # Root route

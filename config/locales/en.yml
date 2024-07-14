@@ -38,4 +38,8 @@ en:
     archive:
       success: 'Button archived'
     unarchived:
-      succes: 'Button restored'
+      success: 'Button restored'
+
+  users:
+    update:
+      success: 'User updated'
