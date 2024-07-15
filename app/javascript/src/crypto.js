@@ -4,6 +4,7 @@ export class CryptoManager extends EventTarget {
   static getInstance() {
     if (!CryptoManager.instance) {
       CryptoManager.instance = new CryptoManager();
+      window.cryptoManager = CryptoManager.instance;
     }
 
     return CryptoManager.instance;
@@ -24,6 +25,7 @@ export class CryptoManager extends EventTarget {
     this.privateKey = null;
     this.encryptedPrivateKey = null;
     this.salt = null;
+    this.encryptready = false;
     this.decryptready = false;
     this.autoloading = false;
   }
@@ -47,6 +49,12 @@ export class CryptoManager extends EventTarget {
 
     this.publicKey = keyPair.publicKey;
     this.privateKey = keyPair.privateKey;
+
+    this.encryptready = true;
+    this.emitEvent('encryptready');
+
+    this.decryptready = true;
+    this.emitEvent('decryptready');
   }
 
   async encryptPrivateKey(passphrase) {
@@ -94,6 +102,9 @@ export class CryptoManager extends EventTarget {
 
     this.decryptready = true;
     this.emitEvent('decryptready');
+
+    this.encryptready = true;
+    this.emitEvent('encryptready');
   }
 
   async getKeyMaterial(passphrase) {
@@ -127,13 +138,15 @@ export class CryptoManager extends EventTarget {
   }
 
   async encrypt(data) {
-    return window.crypto.subtle.encrypt(
+    const dataBuffer = await window.crypto.subtle.encrypt(
       {
         name: 'RSA-OAEP',
       },
       this.publicKey,
       new TextEncoder().encode(data)
     );
+
+    return this.arrayBufferToBase64(dataBuffer);
   }
 
   async decrypt(ciphertext) {
@@ -193,7 +206,7 @@ export class CryptoManager extends EventTarget {
 
       // Convert base64 strings to ArrayBuffer
       if (data.public_key && data.encrypted_private_key && data.salt) {
-        this.publicKey = await this.importPublicKey(data.public_key);
+        await this.importPublicKey(data.public_key);
 
         this.encryptedPrivateKey = this.base64ToArrayBuffer(
           data.encrypted_private_key
@@ -254,7 +267,7 @@ export class CryptoManager extends EventTarget {
 
   async importPublicKey(publicKeyString) {
     const publicKeyBuffer = this.base64ToArrayBuffer(publicKeyString);
-    return await window.crypto.subtle.importKey(
+    const publicKey = await window.crypto.subtle.importKey(
       'spki',
       publicKeyBuffer,
       {
@@ -264,6 +277,10 @@ export class CryptoManager extends EventTarget {
       true,
       ['encrypt']
     );
+
+    this.publicKey = publicKey;
+    this.emitEvent('encryptready');
+    this.encryptready = true;
   }
 
   async exportPublicKey() {

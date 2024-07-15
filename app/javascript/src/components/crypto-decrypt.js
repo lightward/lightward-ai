@@ -30,16 +30,9 @@ class CryptoDecrypt extends HTMLElement {
   }
 
   async attemptDecryption() {
-    console.log({
-      decryptready: this.cryptoManager.decryptready,
-      ciphertext: this.ciphertext,
-    });
     if (this.cryptoManager.decryptready && this.ciphertext) {
       try {
-        const decodedCiphertext = this.cryptoManager.base64ToArrayBuffer(
-          this.ciphertext
-        );
-        const plaintext = await this.cryptoManager.decrypt(decodedCiphertext);
+        const plaintext = await this.cryptoManager.decrypt(this.ciphertext);
         this.contentSpan.textContent = plaintext;
       } catch (error) {
         debugger;

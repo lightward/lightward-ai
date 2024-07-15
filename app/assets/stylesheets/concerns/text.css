@@ -1,0 +1,8 @@
+body,
+textarea,
+input {
+  font-size: 100%;
+  font-family: 'Lightward Favorit';
+  font-weight: 200;
+  color: var(--body-text-color);
+}
