@@ -45,7 +45,7 @@ class CryptoManagerComponent extends HTMLElement {
       );
       this.promptForPassphrase();
     } else {
-      this.updateStatus('Private key decrypted successfully.');
+      this.updateStatus('Your account is unlocked.');
       this.showChangePassphraseForm();
     }
   }

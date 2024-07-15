@@ -1,14 +1,17 @@
 <crypto-manager>
   <template shadowrootmode="open">
     <%= stylesheet_link_tag 'components/crypto_manager' %>
+    <%= stylesheet_link_tag 'tags/form' %>
+    <%= stylesheet_link_tag 'tags/input' %>
+    <%= stylesheet_link_tag 'tags/button' %>
 
     <div>
-      <h2>Crypto Manager</h2>
+      <h2>Security</h2>
       <p id="statusMessage"></p>
 
       <form id="passphraseForm" class="hidden">
         <input type="password" id="passphrase" placeholder="Enter Passphrase" required>
-        <button type="submit">Decrypt Private Key</button>
+        <button type="submit">Unlock</button>
       </form>
 
       <form id="changePassphraseForm" class="hidden">
