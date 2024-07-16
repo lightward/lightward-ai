@@ -1,6 +1,6 @@
 // crypto-decrypt.js
 
-import { CryptoManager } from 'src/crypto';
+import { CryptoManager } from 'src/concerns/crypto';
 
 class CryptoDecrypt extends HTMLElement {
   constructor() {
@@ -34,6 +34,12 @@ class CryptoDecrypt extends HTMLElement {
       try {
         const plaintext = await this.cryptoManager.decrypt(this.ciphertext);
         this.contentSpan.textContent = plaintext;
+
+        // update parent element with decrypted content
+        const parent = this.parentNode;
+        if (parent) {
+          parent.innerHTML = plaintext;
+        }
       } catch (error) {
         debugger;
         console.error('Decryption failed:', error);

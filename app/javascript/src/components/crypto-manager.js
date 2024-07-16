@@ -1,4 +1,4 @@
-import { CryptoManager } from 'src/crypto';
+import { CryptoManager } from 'src/concerns/crypto';
 
 class CryptoManagerComponent extends HTMLElement {
   constructor() {

@@ -1,4 +1,4 @@
-import { CryptoManager } from 'src/crypto';
+import { CryptoManager } from 'src/concerns/crypto';
 
 class CryptoField extends HTMLElement {
   constructor() {
@@ -48,10 +48,6 @@ class CryptoField extends HTMLElement {
     this.shadowElement.addEventListener(
       'input',
       this.handlePlaintextInput.bind(this)
-    );
-    this.shadowElement.addEventListener(
-      'blur',
-      this.handleShadowElementBlur.bind(this)
     );
   }
 

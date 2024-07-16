@@ -1,4 +1,5 @@
 import { createConsumer } from '@rails/actioncable';
+import { CSRF } from 'src/concerns/csrf';
 
 const consumer = createConsumer();
 
@@ -208,7 +209,10 @@ export const initChat = () => {
 
     fetch('/chats/message', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRF.getToken(),
+      },
       body: JSON.stringify(conversationData),
     })
       .then((response) => response.json())
