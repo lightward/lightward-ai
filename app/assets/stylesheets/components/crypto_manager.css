@@ -3,25 +3,23 @@
   margin-top: 1rem;
 }
 
-.hidden {
-  display: none;
-}
-
-#lockButton,
-#unlockButton,
-#changePassphraseButton,
-#unlockForm,
+#uninitializedView,
+#lockedView,
+#unlockedView,
 #changePassphraseForm {
   display: none;
 }
 
-#wrapper[data-data-init='true'] #lockButton,
-#wrapper[data-data-init='true'] #unlockButton,
-#wrapper[data-data-init='true'] #changePassphraseButton {
-  display: auto;
+#wrapper[data-state='uninitialized'] #uninitializedView,
+#wrapper[data-state='locked'] #lockedView,
+#wrapper[data-state='unlocked'] #unlockedView {
+  display: block;
 }
 
-#wrapper[data-data-init='true'] #unlockForm,
-#wrapper[data-data-init='true'] #changePassphraseForm {
-  display: block;
+#wrapper[data-state='changing-passphrase'] #changePassphraseForm {
+  display: flex;
+}
+
+#wrapper[data-state='changing-passphrase'] #unlockedView {
+  display: none;
 }

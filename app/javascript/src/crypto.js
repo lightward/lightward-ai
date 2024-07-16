@@ -103,8 +103,7 @@ export class CryptoManager extends EventTarget {
         this.encryptedPrivateKey
       );
     } catch (error) {
-      this.emitEvent('decrypterror', { error });
-      return;
+      throw new Error('Incorrect passphrase');
     }
 
     this.privateKey = await window.crypto.subtle.importKey(
