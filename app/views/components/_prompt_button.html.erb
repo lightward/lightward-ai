@@ -4,7 +4,7 @@
       <% if defined? summary %>
         <%= summary %>
       <% elsif defined? summary_ciphertext %>
-        <%= render 'components/crypto_decrypt', placeholder: 'Loading...', ciphertext: summary_ciphertext %>
+        <%= render 'components/crypto_decrypt', placeholder: '[ ENCRYPTED ]', ciphertext: summary_ciphertext %>
       <% else %>
         <%= prompt %>
       <% end %>
@@ -12,7 +12,7 @@
   </template>
 
   <% if defined? prompt_ciphertext %>
-    <%= render 'components/crypto_decrypt', placeholder: 'Loading...', ciphertext: prompt_ciphertext %>
+    <%= render 'components/crypto_decrypt', placeholder: '[ ENCRYPTED ]', ciphertext: prompt_ciphertext %>
   <% else %>
     <%= prompt %>
   <% end %>

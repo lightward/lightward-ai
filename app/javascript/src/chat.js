@@ -218,7 +218,7 @@ export const initChat = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
-        addMessage('error', `[Lightward AI system error]\n\n${error.message}`);
+        currentAssistantMessageElement.innerText += ` [Lightward AI system error]\n\n${error.message}`;
         enableUserInput();
         showResponseSuggestions();
       });

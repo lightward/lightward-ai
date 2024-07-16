@@ -11,7 +11,9 @@ export class CryptoManager extends EventTarget {
   }
 
   static getPassphraseFromLocalStorage() {
-    return atob(localStorage.getItem('encryptedPassphrase'));
+    const encryptedPassphrase = localStorage.getItem('encryptedPassphrase');
+
+    return encryptedPassphrase ? atob(encryptedPassphrase) : undefined;
   }
 
   static savePassphraseToLocalStorage(passphrase) {

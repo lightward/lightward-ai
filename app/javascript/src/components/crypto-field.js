@@ -37,13 +37,11 @@ class CryptoField extends HTMLElement {
   }
 
   setupElements() {
-    // Make light element invisible but focusable
-    this.lightElement.style.opacity = '0';
-    this.lightElement.style.position = 'absolute';
-    this.lightElement.style.pointerEvents = 'none';
-
     // Ensure shadow element doesn't interfere with form submission
     this.shadowElement.removeAttribute('name');
+
+    // Disable shadow element until decryption is ready
+    this.shadowElement.disabled = true;
   }
 
   setupEventListeners() {
@@ -51,24 +49,10 @@ class CryptoField extends HTMLElement {
       'input',
       this.handlePlaintextInput.bind(this)
     );
-    this.lightElement.addEventListener(
-      'focus',
-      this.handleLightElementFocus.bind(this)
-    );
     this.shadowElement.addEventListener(
       'blur',
       this.handleShadowElementBlur.bind(this)
     );
-  }
-
-  handleLightElementFocus() {
-    // Transfer focus to shadow element
-    this.shadowElement.focus();
-  }
-
-  handleShadowElementBlur() {
-    // Validate light element on blur
-    this.lightElement.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   async handlePlaintextInput() {
@@ -79,8 +63,6 @@ class CryptoField extends HTMLElement {
       } else {
         this.lightElement.value = '';
       }
-      // Trigger validation on light element
-      this.lightElement.dispatchEvent(new Event('input', { bubbles: true }));
     }
   }
 
@@ -91,9 +73,9 @@ class CryptoField extends HTMLElement {
           this.lightElement.value
         );
         this.shadowElement.value = plaintext;
+        this.shadowElement.disabled = false;
       } catch (error) {
         console.error('Decryption failed:', error);
-        this.shadowElement.value = '';
       }
     }
   }
