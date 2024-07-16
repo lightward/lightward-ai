@@ -1,7 +1,27 @@
 :host {
   display: block;
+  margin-top: 1rem;
 }
 
 .hidden {
   display: none;
+}
+
+#lockButton,
+#unlockButton,
+#changePassphraseButton,
+#unlockForm,
+#changePassphraseForm {
+  display: none;
+}
+
+#wrapper[data-data-init='true'] #lockButton,
+#wrapper[data-data-init='true'] #unlockButton,
+#wrapper[data-data-init='true'] #changePassphraseButton {
+  display: auto;
+}
+
+#wrapper[data-data-init='true'] #unlockForm,
+#wrapper[data-data-init='true'] #changePassphraseForm {
+  display: block;
 }

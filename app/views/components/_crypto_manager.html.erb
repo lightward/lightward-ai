@@ -4,20 +4,53 @@
     <%= stylesheet_link_tag 'tags/form' %>
     <%= stylesheet_link_tag 'tags/input' %>
     <%= stylesheet_link_tag 'tags/button' %>
+    <%= stylesheet_link_tag 'concerns/text-button' %>
+    <%= stylesheet_link_tag 'concerns/stacks' %>
+    <%= stylesheet_link_tag 'concerns/text' %>
 
-    <div>
+    <div class="stack-vertical" id="wrapper" data-view="init" data-init="<% if current_user.public_key %>true<% else %>false<% end %>" data-locked="true">
       <h2>Security</h2>
-      <p id="statusMessage"></p>
+      <p id="statusMessage">Your account is locked</p>
 
-      <form id="passphraseForm" class="hidden">
-        <input type="password" id="passphrase" placeholder="Enter Passphrase" required>
-        <button type="submit">Unlock</button>
+      <div class="stack-horizontal">
+        <button class="text-button" id="lockButton">Lock</button>
+        <button class="text-button" id="unlockButton">Unlock</button>
+        <button class="text-button" id="changePassphraseButton">Change passphrase</button>
+      </div>
+
+      <form id="initForm">
+        <input type="text" id="initPassphrase" placeholder="Enter Passphrase" required>
+        <div class="stack-horizontal">
+          <button type="submit">Create</button>
+        </div>
       </form>
 
-      <form id="changePassphraseForm" class="hidden">
-        <input type="password" id="oldPassphrase" placeholder="Old Passphrase" required>
-        <input type="password" id="newPassphrase" placeholder="New Passphrase" required>
-        <button type="submit">Change Passphrase</button>
+      <form id="unlockForm">
+        <input type="text" id="unlockPassphrase" placeholder="Enter Passphrase" required>
+        <div class="stack-horizontal">
+          <button type="submit">Unlock</button>
+          <button type="button" id="cancelUnlockButton" class="text-button">Cancel</button>
+        </div>
+      </form>
+
+      <form id="changePassphraseForm">
+        <h3>Change passphrase</h3>
+        <div class="form-field">
+          <label for="oldPassphrase">Current passphrase</label>
+          <input type="text" id="oldPassphrase" required>
+        </div>
+        <div class="form-field">
+          <label for="newPassphrase">New passphrase</label>
+          <input type="text" id="newPassphrase" required>
+        </div>
+        <div class="form-field">
+          <label for="confirmPassphrase">Confirm new passphrase</label>
+          <input type="text" id="confirmPassphrase" required>
+        </div>
+        <div class="stack-horizontal">
+          <button type="submit">Change passphrase</button>
+          <button type="button" id="cancelChangePassphraseButton" class="text-button">Cancel</button>
+        </div>
       </form>
     </div>
   </template>

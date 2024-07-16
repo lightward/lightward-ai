@@ -73,12 +73,20 @@ export class CryptoManager extends EventTarget {
     );
   }
 
-  async decryptPrivateKey(passphrase) {
+  lock() {
+    this.privateKey = null;
+    localStorage.removeItem('encryptedPassphrase');
+    this.decryptready = false;
+    this.emitEvent('decryptnotready');
+  }
+
+  async unlock(passphrase) {
     if (!this.encryptedPrivateKey) {
       throw new Error('Encrypted private key not available');
     }
 
     this.decryptready = false;
+    this.encryptready = false;
 
     // start from scratch pls
     this.privateKey = null;
@@ -86,11 +94,18 @@ export class CryptoManager extends EventTarget {
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
 
-    const privateKeyData = await window.crypto.subtle.decrypt(
-      { name: 'AES-GCM', iv: this.salt },
-      key,
-      this.encryptedPrivateKey
-    );
+    let privateKeyData;
+
+    try {
+      privateKeyData = await window.crypto.subtle.decrypt(
+        { name: 'AES-GCM', iv: this.salt },
+        key,
+        this.encryptedPrivateKey
+      );
+    } catch (error) {
+      this.emitEvent('decrypterror', { error });
+      return;
+    }
 
     this.privateKey = await window.crypto.subtle.importKey(
       'pkcs8',
@@ -133,7 +148,7 @@ export class CryptoManager extends EventTarget {
   }
 
   async changePassphrase(oldPassphrase, newPassphrase) {
-    await this.decryptPrivateKey(oldPassphrase);
+    await this.unlock(oldPassphrase);
     await this.encryptPrivateKey(newPassphrase);
   }
 
@@ -172,13 +187,16 @@ export class CryptoManager extends EventTarget {
 
     this.autoloading = true;
 
-    const passphrase = CryptoManager.getPassphraseFromLocalStorage();
+    try {
+      await this.load();
 
-    if (!passphrase) {
-      return;
+      const passphrase = CryptoManager.getPassphraseFromLocalStorage();
+      if (passphrase && this.encryptedPrivateKey) {
+        await this.unlock(passphrase);
+      }
+    } catch (error) {
+      console.error('Error autoloading CryptoManager:', error);
     }
-
-    await this.loadFromServer(passphrase);
 
     this.autoloading = false;
   }
@@ -187,7 +205,27 @@ export class CryptoManager extends EventTarget {
     return this.publicKey !== null && this.encryptedPrivateKey !== null;
   }
 
-  async loadFromServer(passphrase) {
+  async load(passphrase) {
+    if (this.isInitialized()) {
+      return;
+    }
+
+    const currentUserDataElement = document.getElementById('current-user-data');
+    if (currentUserDataElement) {
+      const data = JSON.parse(currentUserDataElement.textContent);
+      await this.importPublicKey(data.public_key);
+      await this.importEncryptedPrivateKey(data.encrypted_private_key);
+      await this.importSalt(data.salt);
+    } else {
+      await this.loadFromServer();
+    }
+
+    if (passphrase && this.encryptedPrivateKey) {
+      await this.unlock(passphrase);
+    }
+  }
+
+  async loadFromServer() {
     try {
       const response = await fetch('/account', {
         method: 'GET',
@@ -204,19 +242,10 @@ export class CryptoManager extends EventTarget {
 
       const data = await response.json();
 
-      // Convert base64 strings to ArrayBuffer
       if (data.public_key && data.encrypted_private_key && data.salt) {
         await this.importPublicKey(data.public_key);
-
-        this.encryptedPrivateKey = this.base64ToArrayBuffer(
-          data.encrypted_private_key
-        );
-
-        this.salt = this.base64ToArrayBuffer(data.salt);
-
-        if (passphrase) {
-          await this.decryptPrivateKey(passphrase);
-        }
+        await this.importEncryptedPrivateKey(data.encrypted_private_key);
+        await this.importSalt(data.salt);
       }
 
       return true;
@@ -224,6 +253,16 @@ export class CryptoManager extends EventTarget {
       console.error('Error loading crypto data from server:', error);
       return false;
     }
+  }
+
+  async importEncryptedPrivateKey(encryptedPrivateKeyString) {
+    this.encryptedPrivateKey = this.base64ToArrayBuffer(
+      encryptedPrivateKeyString
+    );
+  }
+
+  async importSalt(saltString) {
+    this.salt = this.base64ToArrayBuffer(saltString);
   }
 
   async saveToServer() {

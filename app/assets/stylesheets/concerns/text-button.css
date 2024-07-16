@@ -1,0 +1,17 @@
+a,
+button.text-button {
+  color: var(--body-text-color);
+  text-decoration: underline;
+  cursor: pointer;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+}
+
+a:hover,
+button.text-button:hover {
+  color: var(--button-border-color);
+  background-color: transparent;
+  box-shadow: none;
+}
