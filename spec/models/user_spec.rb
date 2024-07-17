@@ -47,7 +47,7 @@ RSpec.describe(User) do
       let(:invalid_rsa_key) { "invalid_rsa_key" }
 
       it "is valid with a valid public_key" do
-        user.public_key = Base64.strict_encode64(valid_rsa_key)
+        user.public_key = valid_rsa_key
         expect(user).to(be_valid)
       end
 
@@ -58,36 +58,36 @@ RSpec.describe(User) do
       end
 
       it "is valid with a nil public_key" do
-        user.public_key = nil
+        user.public_key = user.private_key_encrypted = user.salt = nil
         expect(user).to(be_valid)
+      end
+
+      it "is not valid if only the public_key is missing" do
+        user.public_key = nil
+        expect(user).not_to(be_valid)
       end
     end
 
-    describe "encrypted_private_key validations" do
-      let(:valid_encrypted_string) { Base64.strict_encode64("valid_encrypted_string") }
-      let(:invalid_encrypted_string) { "invalid_base64_string" }
-
-      it "is valid with a valid encrypted_private_key" do
-        user.encrypted_private_key = valid_encrypted_string
+    describe "private_key_encrypted validations" do
+      it "is valid with a valid private_key_encrypted" do
+        user.private_key_encrypted = "opaque value"
         expect(user).to(be_valid)
       end
 
-      it "is not valid with an invalid encrypted_private_key", :aggregate_failures do
-        user.encrypted_private_key = invalid_encrypted_string
+      it "is valid with a nil private_key_encrypted" do
+        user.public_key = user.private_key_encrypted = user.salt = nil
+        expect(user).to(be_valid)
+      end
+
+      it "is not valid if only the private_key_encrypted is missing" do
+        user.private_key_encrypted = nil
         expect(user).not_to(be_valid)
-        expect(user.errors[:encrypted_private_key]).to(include("must be a valid base64 encoded string"))
-      end
-
-      it "is valid with a nil encrypted_private_key" do
-        user.encrypted_private_key = nil
-        expect(user).to(be_valid)
       end
     end
 
     describe "salt validations" do
-      let(:valid_salt) { Base64.strict_encode64(SecureRandom.random_bytes(16)) }
-      let(:invalid_salt) { Base64.strict_encode64(SecureRandom.random_bytes(8)) }
-      let(:non_base64_salt) { "non_base64_salt" }
+      let(:valid_salt) { SecureRandom.random_bytes(16) }
+      let(:invalid_salt) { SecureRandom.random_bytes(8) }
 
       it "is valid with a valid salt" do
         user.salt = valid_salt
@@ -97,24 +97,23 @@ RSpec.describe(User) do
       it "is not valid with a salt of incorrect size", :aggregate_failures do
         user.salt = invalid_salt
         expect(user).not_to(be_valid)
-        expect(user.errors[:salt]).to(include("must be a base64 encoded string of size 16"))
-      end
-
-      it "is not valid with a non-base64 salt", :aggregate_failures do
-        user.salt = non_base64_salt
-        expect(user).not_to(be_valid)
-        expect(user.errors[:salt]).to(include("must be a valid base64 encoded string"))
+        expect(user.errors[:salt]).to(include("is the wrong length (should be 16 characters)"))
       end
 
       it "is valid with a nil salt" do
-        user.salt = nil
+        user.salt = user.public_key = user.private_key_encrypted = nil
         expect(user).to(be_valid)
+      end
+
+      it "is not valid if only the salt is missing" do
+        user.salt = nil
+        expect(user).not_to(be_valid)
       end
     end
   end
 
   describe "#encrypt" do
-    let(:user) { create(:user, public_key: Base64.strict_encode64(OpenSSL::PKey::RSA.new(2048).public_key.to_pem)) }
+    let(:user) { create(:user, public_key: OpenSSL::PKey::RSA.new(2048).public_key.to_pem) }
     let(:plaintext) { "some sensitive data" }
 
     it "raises an error if the plaintext is not a string" do
@@ -122,7 +121,7 @@ RSpec.describe(User) do
     end
 
     it "raises an error if the public_key is missing" do
-      user.update!(public_key: nil)
+      user.update!(public_key: nil, private_key_encrypted: nil, salt: nil)
       expect { user.encrypt(plaintext) }.to(raise_error(ArgumentError, "Public key is missing"))
     end
 

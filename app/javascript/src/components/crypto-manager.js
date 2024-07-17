@@ -67,7 +67,7 @@ class CryptoManagerComponent extends HTMLElement {
 
     await this.cryptoManager.autoload();
 
-    if (!this.cryptoManager.encryptedPrivateKey) {
+    if (!this.cryptoManager.isInitialized()) {
       this.setState('uninitialized');
       this.updateStatus(
         'No private key present yet; choose a passphrase to generate one.'
@@ -111,7 +111,7 @@ class CryptoManagerComponent extends HTMLElement {
 
     await this.cryptoManager.generateKeyPair();
     await this.cryptoManager.encryptPrivateKey(passphrase);
-    await this.cryptoManager.saveToServer();
+    await this.cryptoManager.save();
     CryptoManager.savePassphraseToLocalStorage(passphrase);
     this.updateStatus('Private key generated and encrypted successfully.');
     this.setState('unlocked');
@@ -119,13 +119,16 @@ class CryptoManagerComponent extends HTMLElement {
 
   async handleUnlockFormSubmit(event) {
     event.preventDefault();
-    const passphrase = this.shadowRoot.getElementById('unlockPassphrase').value;
+    const passphraseElement =
+      this.shadowRoot.getElementById('unlockPassphrase');
+    const passphrase = passphraseElement.value;
 
     try {
       await this.cryptoManager.unlock(passphrase);
       CryptoManager.savePassphraseToLocalStorage(passphrase);
       this.updateStatus('Private key decrypted successfully.');
       this.setState('unlocked');
+      passphraseElement.value = '';
     } catch (error) {
       this.updateStatus('Invalid passphrase. Please try again.');
     }
@@ -146,7 +149,7 @@ class CryptoManagerComponent extends HTMLElement {
 
     try {
       await this.cryptoManager.changePassphrase(oldPassphrase, newPassphrase);
-      await this.cryptoManager.saveToServer();
+      await this.cryptoManager.save();
       CryptoManager.savePassphraseToLocalStorage(newPassphrase);
       this.updateStatus('Passphrase changed successfully.');
       this.hideChangePassphraseForm();

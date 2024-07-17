@@ -9,10 +9,10 @@ RSpec.describe(PublicKeyValidator, type: :validator) do
   let(:valid_rsa_key) { OpenSSL::PKey::RSA.new(2048).public_key.to_pem }
   let(:invalid_rsa_key) { "invalid_rsa_key" }
 
-  let(:user) { User.new(google_id: "12345", public_key: public_key) }
+  let(:user) { build(:user, public_key: public_key) }
 
   context "when the public key is valid" do
-    let(:public_key) { Base64.strict_encode64(valid_rsa_key) }
+    let(:public_key) { valid_rsa_key }
 
     it "is valid" do
       expect(user).to(be_valid)
@@ -31,8 +31,8 @@ RSpec.describe(PublicKeyValidator, type: :validator) do
   context "when the public key is nil" do
     let(:public_key) { nil }
 
-    it "is valid" do
-      expect(user).to(be_valid)
+    it "has no public_key errors" do
+      expect(user.errors[:public_key]).to(be_empty)
     end
   end
 end

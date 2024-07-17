@@ -25,7 +25,7 @@ export class CryptoManager extends EventTarget {
 
     this.publicKey = null;
     this.privateKey = null;
-    this.encryptedPrivateKey = null;
+    this.privateKeyEncrypted = null;
     this.salt = null;
     this.encryptready = false;
     this.decryptready = false;
@@ -68,7 +68,7 @@ export class CryptoManager extends EventTarget {
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
 
-    this.encryptedPrivateKey = await window.crypto.subtle.encrypt(
+    this.privateKeyEncrypted = await window.crypto.subtle.encrypt(
       { name: 'AES-GCM', iv: this.salt },
       key,
       await window.crypto.subtle.exportKey('pkcs8', this.privateKey)
@@ -83,7 +83,7 @@ export class CryptoManager extends EventTarget {
   }
 
   async unlock(passphrase) {
-    if (!this.encryptedPrivateKey) {
+    if (!this.privateKeyEncrypted) {
       throw new Error('Encrypted private key not available');
     }
 
@@ -102,7 +102,7 @@ export class CryptoManager extends EventTarget {
       privateKeyData = await window.crypto.subtle.decrypt(
         { name: 'AES-GCM', iv: this.salt },
         key,
-        this.encryptedPrivateKey
+        this.privateKeyEncrypted
       );
     } catch (error) {
       throw new Error('Incorrect passphrase');
@@ -191,7 +191,7 @@ export class CryptoManager extends EventTarget {
     await this.load();
 
     const passphrase = CryptoManager.getPassphraseFromLocalStorage();
-    if (passphrase && this.encryptedPrivateKey) {
+    if (passphrase && this.privateKeyEncrypted) {
       try {
         await this.unlock(passphrase);
       } catch (error) {
@@ -206,7 +206,11 @@ export class CryptoManager extends EventTarget {
   }
 
   isInitialized() {
-    return this.publicKey !== null && this.encryptedPrivateKey !== null;
+    return (
+      this.publicKey !== null &&
+      this.privateKeyEncrypted !== null &&
+      this.salt !== null
+    );
   }
 
   async load() {
@@ -215,47 +219,13 @@ export class CryptoManager extends EventTarget {
     }
 
     const currentUserDataElement = document.getElementById('current-user-data');
-    if (currentUserDataElement) {
-      const data = JSON.parse(currentUserDataElement.textContent);
-      await this.importPublicKey(data.public_key);
-      await this.importEncryptedPrivateKey(data.encrypted_private_key);
-      await this.importSalt(data.salt);
-    } else {
-      await this.loadFromServer();
-    }
+    const data = JSON.parse(currentUserDataElement.textContent);
+    await this.importPublicKey(data.public_key_base64);
+    this.importPrivateKeyEncrypted(data.private_key_ciphertext);
+    this.importSalt(data.salt_base64);
   }
 
-  async loadFromServer() {
-    try {
-      const response = await fetch('/account', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        credentials: 'same-origin', // This is important for including cookies
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-
-      if (data.public_key && data.encrypted_private_key && data.salt) {
-        await this.importPublicKey(data.public_key);
-        await this.importEncryptedPrivateKey(data.encrypted_private_key);
-        await this.importSalt(data.salt);
-      }
-
-      return true;
-    } catch (error) {
-      console.error('Error loading crypto data from server:', error);
-      return false;
-    }
-  }
-
-  async saveToServer() {
+  async save() {
     if (!this.isInitialized()) {
       throw new Error('CryptoManager not initialized');
     }
@@ -271,11 +241,9 @@ export class CryptoManager extends EventTarget {
         credentials: 'same-origin',
         body: JSON.stringify({
           user: {
-            public_key: await this.exportPublicKey(),
-            encrypted_private_key: this.arrayBufferToBase64(
-              this.encryptedPrivateKey
-            ),
-            salt: this.arrayBufferToBase64(this.salt),
+            public_key_base64: await this.exportPublicKey(),
+            private_key_ciphertext: this.exportPrivateKeyEncrypted(),
+            salt_base64: this.exportSalt(),
           },
         }),
       });
@@ -323,13 +291,13 @@ export class CryptoManager extends EventTarget {
     }
   }
 
-  async importEncryptedPrivateKey(encryptedPrivateKeyString) {
-    this.encryptedPrivateKey = encryptedPrivateKeyString
-      ? this.base64ToArrayBuffer(encryptedPrivateKeyString)
+  importPrivateKeyEncrypted(privateKeyEncryptedString) {
+    this.privateKeyEncrypted = privateKeyEncryptedString
+      ? this.base64ToArrayBuffer(privateKeyEncryptedString)
       : undefined;
   }
 
-  async importSalt(saltString) {
+  importSalt(saltString) {
     this.salt = saltString ? this.base64ToArrayBuffer(saltString) : undefined;
   }
 
@@ -339,6 +307,16 @@ export class CryptoManager extends EventTarget {
       this.publicKey
     );
     return this.arrayBufferToBase64(exported);
+  }
+
+  exportPrivateKeyEncrypted() {
+    return this.privateKeyEncrypted
+      ? this.arrayBufferToBase64(this.privateKeyEncrypted)
+      : undefined;
+  }
+
+  exportSalt() {
+    return this.salt ? this.arrayBufferToBase64(this.salt) : undefined;
   }
 
   arrayBufferToBase64(buffer) {

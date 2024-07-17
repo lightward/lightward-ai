@@ -6,7 +6,7 @@ class PublicKeyValidator < ActiveModel::EachValidator
     return if value.nil?
 
     begin
-      OpenSSL::PKey::RSA.new(Base64.decode64(value))
+      OpenSSL::PKey::RSA.new(value)
     rescue OpenSSL::PKey::RSAError
       record.errors.add(attribute, "must be a valid RSA public key")
     end
