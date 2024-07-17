@@ -15,8 +15,8 @@
       <div id="uninitializedView">
         <p>No key data present. Please set up a passphrase to secure your account.</p>
         <form id="initForm">
-          <input type="password" id="initPassphrase" placeholder="Enter Passphrase" required>
-          <input type="password" id="confirmPassphrase" placeholder="Confirm Passphrase" required>
+          <input type="text" id="initPassphrase" placeholder="Enter passphrase" required>
+          <input type="text" id="confirmPassphrase" placeholder="Confirm passphrase" required>
           <div class="stack-horizontal">
             <button type="submit">Create</button>
           </div>
@@ -25,7 +25,7 @@
 
       <div id="lockedView">
         <form id="unlockForm">
-          <input type="password" id="unlockPassphrase" placeholder="Enter Passphrase" required>
+          <input type="text" id="unlockPassphrase" placeholder="Enter Passphrase" required>
           <div class="stack-horizontal">
             <button type="submit">Unlock</button>
           </div>
@@ -43,15 +43,15 @@
         <h3>Change passphrase</h3>
         <div class="form-field">
           <label for="oldPassphrase">Current passphrase</label>
-          <input type="password" id="oldPassphrase" required>
+          <input type="text" id="oldPassphrase" required>
         </div>
         <div class="form-field">
           <label for="newPassphrase">New passphrase</label>
-          <input type="password" id="newPassphrase" required>
+          <input type="text" id="newPassphrase" required>
         </div>
         <div class="form-field">
           <label for="confirmNewPassphrase">Confirm new passphrase</label>
-          <input type="password" id="confirmNewPassphrase" required>
+          <input type="text" id="confirmNewPassphrase" required>
         </div>
         <div class="stack-horizontal">
           <button type="submit">Change passphrase</button>

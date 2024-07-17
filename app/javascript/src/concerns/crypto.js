@@ -188,15 +188,18 @@ export class CryptoManager extends EventTarget {
 
     this.autoloading = true;
 
-    try {
-      await this.load();
+    await this.load();
 
-      const passphrase = CryptoManager.getPassphraseFromLocalStorage();
-      if (passphrase && this.encryptedPrivateKey) {
+    const passphrase = CryptoManager.getPassphraseFromLocalStorage();
+    if (passphrase && this.encryptedPrivateKey) {
+      try {
         await this.unlock(passphrase);
+      } catch (error) {
+        console.error(
+          'Failed to unlock using passphrase from localstorage',
+          error
+        );
       }
-    } catch (error) {
-      console.error('Error autoloading CryptoManager:', error);
     }
 
     this.autoloading = false;
@@ -206,7 +209,7 @@ export class CryptoManager extends EventTarget {
     return this.publicKey !== null && this.encryptedPrivateKey !== null;
   }
 
-  async load(passphrase) {
+  async load() {
     if (this.isInitialized()) {
       return;
     }
@@ -219,10 +222,6 @@ export class CryptoManager extends EventTarget {
       await this.importSalt(data.salt);
     } else {
       await this.loadFromServer();
-    }
-
-    if (passphrase && this.encryptedPrivateKey) {
-      await this.unlock(passphrase);
     }
   }
 
@@ -254,16 +253,6 @@ export class CryptoManager extends EventTarget {
       console.error('Error loading crypto data from server:', error);
       return false;
     }
-  }
-
-  async importEncryptedPrivateKey(encryptedPrivateKeyString) {
-    this.encryptedPrivateKey = this.base64ToArrayBuffer(
-      encryptedPrivateKeyString
-    );
-  }
-
-  async importSalt(saltString) {
-    this.salt = this.base64ToArrayBuffer(saltString);
   }
 
   async saveToServer() {
@@ -306,21 +295,42 @@ export class CryptoManager extends EventTarget {
   // Helper methods for key import/export and data conversion
 
   async importPublicKey(publicKeyString) {
-    const publicKeyBuffer = this.base64ToArrayBuffer(publicKeyString);
-    const publicKey = await window.crypto.subtle.importKey(
-      'spki',
-      publicKeyBuffer,
-      {
-        name: 'RSA-OAEP',
-        hash: 'SHA-256',
-      },
-      true,
-      ['encrypt']
-    );
+    if (!publicKeyString) {
+      this.publicKey = undefined;
+      this.emitEvent('encryptnotready');
+      this.encryptready = false;
+      return;
+    }
 
-    this.publicKey = publicKey;
-    this.emitEvent('encryptready');
-    this.encryptready = true;
+    try {
+      const publicKeyBuffer = this.base64ToArrayBuffer(publicKeyString);
+      const publicKey = await window.crypto.subtle.importKey(
+        'spki',
+        publicKeyBuffer,
+        {
+          name: 'RSA-OAEP',
+          hash: 'SHA-256',
+        },
+        true,
+        ['encrypt']
+      );
+
+      this.publicKey = publicKey;
+      this.emitEvent('encryptready');
+      this.encryptready = true;
+    } catch (error) {
+      console.error('Error importing public key:', error);
+    }
+  }
+
+  async importEncryptedPrivateKey(encryptedPrivateKeyString) {
+    this.encryptedPrivateKey = encryptedPrivateKeyString
+      ? this.base64ToArrayBuffer(encryptedPrivateKeyString)
+      : undefined;
+  }
+
+  async importSalt(saltString) {
+    this.salt = saltString ? this.base64ToArrayBuffer(saltString) : undefined;
   }
 
   async exportPublicKey() {
