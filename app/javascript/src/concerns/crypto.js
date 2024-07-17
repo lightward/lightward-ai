@@ -27,8 +27,7 @@ export class CryptoManager extends EventTarget {
     this.privateKey = null;
     this.privateKeyEncrypted = null;
     this.salt = null;
-    this.encryptready = false;
-    this.decryptready = false;
+    this.locked = null;
     this.autoloading = false;
   }
 
@@ -37,7 +36,7 @@ export class CryptoManager extends EventTarget {
     this.dispatchEvent(event);
   }
 
-  async generateKeyPair() {
+  async generateKeys(passphrase) {
     const keyPair = await window.crypto.subtle.generateKey(
       {
         name: 'RSA-OAEP',
@@ -51,20 +50,8 @@ export class CryptoManager extends EventTarget {
 
     this.publicKey = keyPair.publicKey;
     this.privateKey = keyPair.privateKey;
-
-    this.encryptready = true;
-    this.emitEvent('encryptready');
-
-    this.decryptready = true;
-    this.emitEvent('decryptready');
-  }
-
-  async encryptPrivateKey(passphrase) {
-    if (!this.privateKey) {
-      throw new Error('Private key not available');
-    }
-
     this.salt = window.crypto.getRandomValues(new Uint8Array(16));
+
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
 
@@ -78,8 +65,8 @@ export class CryptoManager extends EventTarget {
   lock() {
     this.privateKey = null;
     localStorage.removeItem('encryptedPassphrase');
-    this.decryptready = false;
-    this.emitEvent('decryptnotready');
+    this.locked = true;
+    this.emitEvent('locked');
   }
 
   async unlock(passphrase) {
@@ -87,10 +74,8 @@ export class CryptoManager extends EventTarget {
       throw new Error('Encrypted private key not available');
     }
 
-    this.decryptready = false;
-    this.encryptready = false;
-
     // start from scratch pls
+    this.locked = true;
     this.privateKey = null;
 
     const keyMaterial = await this.getKeyMaterial(passphrase);
@@ -116,11 +101,8 @@ export class CryptoManager extends EventTarget {
       ['decrypt']
     );
 
-    this.decryptready = true;
-    this.emitEvent('decryptready');
-
-    this.encryptready = true;
-    this.emitEvent('encryptready');
+    this.locked = false;
+    this.emitEvent('unlocked');
   }
 
   async getKeyMaterial(passphrase) {
@@ -206,11 +188,7 @@ export class CryptoManager extends EventTarget {
   }
 
   isInitialized() {
-    return (
-      this.publicKey !== null &&
-      this.privateKeyEncrypted !== null &&
-      this.salt !== null
-    );
+    return this.publicKey && this.privateKeyEncrypted && this.salt;
   }
 
   async load() {
@@ -220,9 +198,9 @@ export class CryptoManager extends EventTarget {
 
     const currentUserDataElement = document.getElementById('current-user-data');
     const data = JSON.parse(currentUserDataElement.textContent);
-    await this.importPublicKey(data.public_key_base64);
-    this.importPrivateKeyEncrypted(data.private_key_ciphertext);
-    this.importSalt(data.salt_base64);
+    await this.importPublicKeyBase64(data.public_key_base64);
+    this.importPrivateKeyCiphertext(data.private_key_ciphertext);
+    this.importSaltBase64(data.salt_base64);
   }
 
   async save() {
@@ -241,9 +219,9 @@ export class CryptoManager extends EventTarget {
         credentials: 'same-origin',
         body: JSON.stringify({
           user: {
-            public_key_base64: await this.exportPublicKey(),
-            private_key_ciphertext: this.exportPrivateKeyEncrypted(),
-            salt_base64: this.exportSalt(),
+            public_key_base64: await this.exportPublicKeyBase64(),
+            private_key_ciphertext: this.exportPrivateKeyCiphertext(),
+            salt_base64: this.exportSaltBase64(),
           },
         }),
       });
@@ -262,11 +240,9 @@ export class CryptoManager extends EventTarget {
 
   // Helper methods for key import/export and data conversion
 
-  async importPublicKey(publicKeyString) {
+  async importPublicKeyBase64(publicKeyString) {
     if (!publicKeyString) {
       this.publicKey = undefined;
-      this.emitEvent('encryptnotready');
-      this.encryptready = false;
       return;
     }
 
@@ -284,24 +260,22 @@ export class CryptoManager extends EventTarget {
       );
 
       this.publicKey = publicKey;
-      this.emitEvent('encryptready');
-      this.encryptready = true;
     } catch (error) {
       console.error('Error importing public key:', error);
     }
   }
 
-  importPrivateKeyEncrypted(privateKeyEncryptedString) {
+  importPrivateKeyCiphertext(privateKeyEncryptedString) {
     this.privateKeyEncrypted = privateKeyEncryptedString
       ? this.base64ToArrayBuffer(privateKeyEncryptedString)
       : undefined;
   }
 
-  importSalt(saltString) {
+  importSaltBase64(saltString) {
     this.salt = saltString ? this.base64ToArrayBuffer(saltString) : undefined;
   }
 
-  async exportPublicKey() {
+  async exportPublicKeyBase64() {
     const exported = await window.crypto.subtle.exportKey(
       'spki',
       this.publicKey
@@ -309,13 +283,13 @@ export class CryptoManager extends EventTarget {
     return this.arrayBufferToBase64(exported);
   }
 
-  exportPrivateKeyEncrypted() {
+  exportPrivateKeyCiphertext() {
     return this.privateKeyEncrypted
       ? this.arrayBufferToBase64(this.privateKeyEncrypted)
       : undefined;
   }
 
-  exportSalt() {
+  exportSaltBase64() {
     return this.salt ? this.arrayBufferToBase64(this.salt) : undefined;
   }
 

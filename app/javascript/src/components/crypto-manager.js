@@ -58,10 +58,10 @@ class CryptoManagerComponent extends HTMLElement {
   }
 
   async initialize() {
-    this.cryptoManager.addEventListener('decryptready', () =>
+    this.cryptoManager.addEventListener('unlocked', () =>
       this.setState('unlocked')
     );
-    this.cryptoManager.addEventListener('decryptnotready', () =>
+    this.cryptoManager.addEventListener('locked', () =>
       this.setState('locked')
     );
 
@@ -69,10 +69,8 @@ class CryptoManagerComponent extends HTMLElement {
 
     if (!this.cryptoManager.isInitialized()) {
       this.setState('uninitialized');
-      this.updateStatus(
-        'No private key present yet; choose a passphrase to generate one.'
-      );
-    } else if (this.cryptoManager.decryptready) {
+      this.updateStatus('Choose a passphrase to get started.');
+    } else if (this.cryptoManager.locked === false) {
       this.setState('unlocked');
     } else {
       this.setState('locked');
@@ -109,8 +107,7 @@ class CryptoManagerComponent extends HTMLElement {
       return;
     }
 
-    await this.cryptoManager.generateKeyPair();
-    await this.cryptoManager.encryptPrivateKey(passphrase);
+    await this.cryptoManager.generateKeys(passphrase);
     await this.cryptoManager.save();
     CryptoManager.savePassphraseToLocalStorage(passphrase);
     this.updateStatus('Private key generated and encrypted successfully.');

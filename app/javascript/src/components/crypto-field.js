@@ -27,10 +27,10 @@ class CryptoField extends HTMLElement {
 
     await this.cryptoManager.autoload();
 
-    if (this.cryptoManager.decryptready) {
+    if (this.cryptoManager.locked === false) {
       this.decryptField();
     } else {
-      this.cryptoManager.addEventListener('decryptready', () =>
+      this.cryptoManager.addEventListener('unlocked', () =>
         this.decryptField()
       );
     }
@@ -63,16 +63,19 @@ class CryptoField extends HTMLElement {
   }
 
   async decryptField() {
-    if (this.cryptoManager.decryptready && this.lightElement.value) {
-      try {
-        const plaintext = await this.cryptoManager.decrypt(
-          this.lightElement.value
-        );
-        this.shadowElement.value = plaintext;
-        this.shadowElement.disabled = false;
-      } catch (error) {
-        console.error('Decryption failed:', error);
+    if (this.cryptoManager.locked === false) {
+      if (this.lightElement.value) {
+        try {
+          const plaintext = await this.cryptoManager.decrypt(
+            this.lightElement.value
+          );
+          this.shadowElement.value = plaintext;
+        } catch (error) {
+          console.error('Decryption failed:', error);
+        }
       }
+
+      this.shadowElement.disabled = false;
     }
   }
 }

@@ -20,17 +20,17 @@ class CryptoDecrypt extends HTMLElement {
 
     await this.cryptoManager.autoload();
 
-    if (this.cryptoManager.decryptready) {
+    if (this.cryptoManager.locked === false) {
       this.attemptDecryption();
     } else {
-      this.cryptoManager.addEventListener('decryptready', () =>
+      this.cryptoManager.addEventListener('unlocked', () =>
         this.attemptDecryption()
       );
     }
   }
 
   async attemptDecryption() {
-    if (this.cryptoManager.decryptready && this.ciphertext) {
+    if (this.cryptoManager.locked === false && this.ciphertext) {
       try {
         const plaintext = await this.cryptoManager.decrypt(this.ciphertext);
         this.contentSpan.textContent = plaintext;
@@ -41,7 +41,6 @@ class CryptoDecrypt extends HTMLElement {
           parent.innerHTML = plaintext;
         }
       } catch (error) {
-        debugger;
         console.error('Decryption failed:', error);
         this.contentSpan.textContent = 'Decryption failed';
       }
