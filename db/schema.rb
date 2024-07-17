@@ -16,8 +16,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_235407) do
 
   create_table "buttons", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.text "summary", null: false
-    t.text "prompt", null: false
+    t.binary "summary_encrypted", null: false
+    t.binary "prompt_encrypted", null: false
     t.datetime "archived_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -127,9 +127,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_235407) do
     t.text "email_obscured", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "public_key"
-    t.text "encrypted_private_key"
-    t.text "salt"
+    t.binary "public_key"
+    t.binary "private_key_encrypted"
+    t.binary "salt"
     t.index ["google_id"], name: "index_users_on_google_id", unique: true
   end
 

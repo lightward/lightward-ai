@@ -4,9 +4,20 @@ export class CryptoManager extends EventTarget {
   static getInstance() {
     if (!CryptoManager.instance) {
       CryptoManager.instance = new CryptoManager();
+      window.cryptoManager = CryptoManager.instance;
     }
 
     return CryptoManager.instance;
+  }
+
+  static getPassphraseFromLocalStorage() {
+    const encryptedPassphrase = localStorage.getItem('encryptedPassphrase');
+
+    return encryptedPassphrase ? atob(encryptedPassphrase) : undefined;
+  }
+
+  static savePassphraseToLocalStorage(passphrase) {
+    localStorage.setItem('encryptedPassphrase', btoa(passphrase));
   }
 
   constructor() {
@@ -14,8 +25,10 @@ export class CryptoManager extends EventTarget {
 
     this.publicKey = null;
     this.privateKey = null;
-    this.encryptedPrivateKey = null;
+    this.privateKeyEncrypted = null;
     this.salt = null;
+    this.locked = null;
+    this.autoloading = false;
   }
 
   emitEvent(eventName, detail = {}) {
@@ -23,7 +36,7 @@ export class CryptoManager extends EventTarget {
     this.dispatchEvent(event);
   }
 
-  async generateKeyPair() {
+  async generateKeys(passphrase) {
     const keyPair = await window.crypto.subtle.generateKey(
       {
         name: 'RSA-OAEP',
@@ -37,40 +50,48 @@ export class CryptoManager extends EventTarget {
 
     this.publicKey = keyPair.publicKey;
     this.privateKey = keyPair.privateKey;
-  }
-
-  async encryptPrivateKey(passphrase) {
-    if (!this.privateKey) {
-      throw new Error('Private key not available');
-    }
-
     this.salt = window.crypto.getRandomValues(new Uint8Array(16));
+
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
 
-    this.encryptedPrivateKey = await window.crypto.subtle.encrypt(
+    this.privateKeyEncrypted = await window.crypto.subtle.encrypt(
       { name: 'AES-GCM', iv: this.salt },
       key,
       await window.crypto.subtle.exportKey('pkcs8', this.privateKey)
     );
   }
 
-  async decryptPrivateKey(passphrase) {
-    if (!this.encryptedPrivateKey) {
+  lock() {
+    this.privateKey = null;
+    localStorage.removeItem('encryptedPassphrase');
+    this.locked = true;
+    this.emitEvent('locked');
+  }
+
+  async unlock(passphrase) {
+    if (!this.privateKeyEncrypted) {
       throw new Error('Encrypted private key not available');
     }
 
     // start from scratch pls
+    this.locked = true;
     this.privateKey = null;
 
     const keyMaterial = await this.getKeyMaterial(passphrase);
     const key = await this.deriveKey(keyMaterial, this.salt);
 
-    const privateKeyData = await window.crypto.subtle.decrypt(
-      { name: 'AES-GCM', iv: this.salt },
-      key,
-      this.encryptedPrivateKey
-    );
+    let privateKeyData;
+
+    try {
+      privateKeyData = await window.crypto.subtle.decrypt(
+        { name: 'AES-GCM', iv: this.salt },
+        key,
+        this.privateKeyEncrypted
+      );
+    } catch (error) {
+      throw new Error('Incorrect passphrase');
+    }
 
     this.privateKey = await window.crypto.subtle.importKey(
       'pkcs8',
@@ -80,7 +101,8 @@ export class CryptoManager extends EventTarget {
       ['decrypt']
     );
 
-    this.emitEvent('decryptready');
+    this.locked = false;
+    this.emitEvent('unlocked');
   }
 
   async getKeyMaterial(passphrase) {
@@ -109,80 +131,79 @@ export class CryptoManager extends EventTarget {
   }
 
   async changePassphrase(oldPassphrase, newPassphrase) {
-    await this.decryptPrivateKey(oldPassphrase);
+    await this.unlock(oldPassphrase);
     await this.encryptPrivateKey(newPassphrase);
   }
 
-  async encryptData(data) {
-    return window.crypto.subtle.encrypt(
+  async encrypt(data) {
+    const dataBuffer = await window.crypto.subtle.encrypt(
       {
         name: 'RSA-OAEP',
       },
       this.publicKey,
       new TextEncoder().encode(data)
     );
+
+    return this.arrayBufferToBase64(dataBuffer);
   }
 
-  async decryptData(encryptedData) {
+  async decrypt(ciphertext) {
     if (!this.privateKey) {
       throw new Error('Private key not available');
     }
+
+    const dataBuffer = this.base64ToArrayBuffer(ciphertext);
 
     const decrypted = await window.crypto.subtle.decrypt(
       {
         name: 'RSA-OAEP',
       },
       this.privateKey,
-      encryptedData
+      dataBuffer
     );
 
     return new TextDecoder().decode(decrypted);
   }
 
-  isInitialized() {
-    return this.publicKey !== null && this.encryptedPrivateKey !== null;
-  }
+  async autoload() {
+    if (this.autoloading) return;
 
-  async loadFromServer(maybePassphrase) {
-    try {
-      const response = await fetch('/account', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        credentials: 'same-origin', // This is important for including cookies
-      });
+    this.autoloading = true;
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+    await this.load();
 
-      const data = await response.json();
-
-      // Convert base64 strings to ArrayBuffer
-      if (data.public_key && data.encrypted_private_key && data.salt) {
-        this.publicKey = await this.importPublicKey(data.public_key);
-
-        this.encryptedPrivateKey = this.base64ToArrayBuffer(
-          data.encrypted_private_key
+    const passphrase = CryptoManager.getPassphraseFromLocalStorage();
+    if (passphrase && this.privateKeyEncrypted) {
+      try {
+        await this.unlock(passphrase);
+      } catch (error) {
+        console.error(
+          'Failed to unlock using passphrase from localstorage',
+          error
         );
-
-        this.salt = this.base64ToArrayBuffer(data.salt);
-
-        if (maybePassphrase) {
-          await this.decryptPrivateKey(maybePassphrase);
-        }
       }
-
-      return true;
-    } catch (error) {
-      console.error('Error loading crypto data from server:', error);
-      return false;
     }
+
+    this.autoloading = false;
   }
 
-  async saveToServer() {
+  isInitialized() {
+    return this.publicKey && this.privateKeyEncrypted && this.salt;
+  }
+
+  async load() {
+    if (this.isInitialized()) {
+      return;
+    }
+
+    const currentUserDataElement = document.getElementById('current-user-data');
+    const data = JSON.parse(currentUserDataElement.textContent);
+    await this.importPublicKeyBase64(data.public_key_base64);
+    this.importPrivateKeyCiphertext(data.private_key_ciphertext);
+    this.importSaltBase64(data.salt_base64);
+  }
+
+  async save() {
     if (!this.isInitialized()) {
       throw new Error('CryptoManager not initialized');
     }
@@ -198,11 +219,9 @@ export class CryptoManager extends EventTarget {
         credentials: 'same-origin',
         body: JSON.stringify({
           user: {
-            public_key: await this.exportPublicKey(),
-            encrypted_private_key: this.arrayBufferToBase64(
-              this.encryptedPrivateKey
-            ),
-            salt: this.arrayBufferToBase64(this.salt),
+            public_key_base64: await this.exportPublicKeyBase64(),
+            private_key_ciphertext: this.exportPrivateKeyCiphertext(),
+            salt_base64: this.exportSaltBase64(),
           },
         }),
       });
@@ -221,26 +240,57 @@ export class CryptoManager extends EventTarget {
 
   // Helper methods for key import/export and data conversion
 
-  async importPublicKey(publicKeyString) {
-    const publicKeyBuffer = this.base64ToArrayBuffer(publicKeyString);
-    return await window.crypto.subtle.importKey(
-      'spki',
-      publicKeyBuffer,
-      {
-        name: 'RSA-OAEP',
-        hash: 'SHA-256',
-      },
-      true,
-      ['encrypt']
-    );
+  async importPublicKeyBase64(publicKeyString) {
+    if (!publicKeyString) {
+      this.publicKey = undefined;
+      return;
+    }
+
+    try {
+      const publicKeyBuffer = this.base64ToArrayBuffer(publicKeyString);
+      const publicKey = await window.crypto.subtle.importKey(
+        'spki',
+        publicKeyBuffer,
+        {
+          name: 'RSA-OAEP',
+          hash: 'SHA-256',
+        },
+        true,
+        ['encrypt']
+      );
+
+      this.publicKey = publicKey;
+    } catch (error) {
+      console.error('Error importing public key:', error);
+    }
   }
 
-  async exportPublicKey() {
+  importPrivateKeyCiphertext(privateKeyEncryptedString) {
+    this.privateKeyEncrypted = privateKeyEncryptedString
+      ? this.base64ToArrayBuffer(privateKeyEncryptedString)
+      : undefined;
+  }
+
+  importSaltBase64(saltString) {
+    this.salt = saltString ? this.base64ToArrayBuffer(saltString) : undefined;
+  }
+
+  async exportPublicKeyBase64() {
     const exported = await window.crypto.subtle.exportKey(
       'spki',
       this.publicKey
     );
     return this.arrayBufferToBase64(exported);
+  }
+
+  exportPrivateKeyCiphertext() {
+    return this.privateKeyEncrypted
+      ? this.arrayBufferToBase64(this.privateKeyEncrypted)
+      : undefined;
+  }
+
+  exportSaltBase64() {
+    return this.salt ? this.arrayBufferToBase64(this.salt) : undefined;
   }
 
   arrayBufferToBase64(buffer) {

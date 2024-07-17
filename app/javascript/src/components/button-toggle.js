@@ -1,3 +1,9 @@
+function getCSRFToken() {
+  return document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute('content');
+}
+
 export class ButtonToggle extends HTMLElement {
   constructor() {
     super();
@@ -12,6 +18,9 @@ export class ButtonToggle extends HTMLElement {
           `/buttons/${id}/${isArchived ? 'unarchive' : 'archive'}`,
           {
             method: 'POST',
+            headers: {
+              'X-CSRF-Token': getCSRFToken(),
+            },
           }
         );
 

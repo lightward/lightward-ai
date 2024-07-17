@@ -1,0 +1,29 @@
+body,
+textarea,
+input {
+  font-size: 100%;
+  font-family: 'Lightward Favorit';
+  font-weight: 200;
+  color: var(--body-text-color);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+h2 {
+  font-size: 1.65rem;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 200;
+}

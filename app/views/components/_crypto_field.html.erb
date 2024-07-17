@@ -1,0 +1,11 @@
+<crypto-field field-id="<%= id %>">
+  <template shadowrootmode="open">
+    <%= stylesheet_link_tag 'concerns/text' %>
+    <%= stylesheet_link_tag 'tags/form' %>
+    <%= stylesheet_link_tag 'tags/input' %>
+
+    <%= yield %>
+  </template>
+
+  <%= yield %>
+</crypto-field>

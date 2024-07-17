@@ -64,6 +64,6 @@ class ButtonsController < ApplicationController
   end
 
   def button_params
-    params.require(:button).permit(:summary, :prompt, :archived, :user_id)
+    params.require(:button).permit(:summary_ciphertext, :prompt_ciphertext, :archived, :user_id)
   end
 end

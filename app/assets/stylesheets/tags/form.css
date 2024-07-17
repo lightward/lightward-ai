@@ -4,12 +4,8 @@ form {
   gap: 1rem;
 }
 
-form .field {
+.form-field {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-form .field.checkbox {
-  flex-direction: row;
 }

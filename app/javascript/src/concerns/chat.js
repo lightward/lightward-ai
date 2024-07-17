@@ -1,5 +1,11 @@
 import { createConsumer } from '@rails/actioncable';
 
+function getCSRFToken() {
+  return document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute('content');
+}
+
 const consumer = createConsumer();
 
 export const initChat = () => {
@@ -208,7 +214,10 @@ export const initChat = () => {
 
     fetch('/chats/message', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCSRFToken(),
+      },
       body: JSON.stringify(conversationData),
     })
       .then((response) => response.json())
@@ -218,7 +227,7 @@ export const initChat = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
-        addMessage('error', `[Lightward AI system error]\n\n${error.message}`);
+        currentAssistantMessageElement.innerText += ` [Lightward AI system error]\n\n${error.message}`;
         enableUserInput();
         showResponseSuggestions();
       });

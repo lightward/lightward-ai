@@ -1,0 +1,18 @@
+textarea,
+input[type='password'],
+input[type='text'] {
+  position: relative;
+  flex-grow: 1;
+
+  color: var(--body-text-color);
+  border: 1px solid var(--text-input-active-border-color);
+  background-color: var(--text-input-active-bg-color);
+
+  box-sizing: border-box; /* Ensures padding is included dimensions */
+  resize: none; /* Disable manual resizing */
+  overflow: hidden; /* Disable scrollbars; going for autoscrolling */
+
+  padding: 0.7rem 1rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.375rem;
+}

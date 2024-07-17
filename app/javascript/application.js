@@ -1,7 +1,9 @@
-import { initChat } from 'src/chat';
-import { initTextarea } from 'src/textarea';
+import { initChat } from 'src/concerns/chat';
+import { initTextarea } from 'src/concerns/textarea';
 import 'src/components/button-toggle';
 import 'src/components/crypto-manager';
+import 'src/components/crypto-decrypt';
+import 'src/components/crypto-field';
 import 'src/components/prompt-button';
 
 const initOnReady = () => {

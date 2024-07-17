@@ -6,7 +6,12 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render(json: current_user.slice(:public_key, :encrypted_private_key, :salt)) }
+      format.json {
+        render(json: current_user.as_json(
+          only: [],
+          methods: [:public_key_base64, :private_key_ciphertext, :salt_base64],
+        ))
+      }
     end
   end
 
@@ -27,6 +32,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:public_key, :encrypted_private_key, :salt)
+    params.require(:user).permit(
+      :public_key_base64,
+      :private_key_ciphertext,
+      :salt_base64,
+    )
   end
 end

@@ -33,23 +33,6 @@ footer {
   gap: 1rem;
 }
 
-body,
-textarea,
-input {
-  font-size: 100%;
-  font-family: 'Lightward Favorit';
-  font-weight: 200;
-  color: var(--body-text-color);
-}
-
-button.text-button {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--body-text-color);
-}
-
 header {
   display: flex;
   flex-direction: row;
@@ -58,12 +41,6 @@ header {
   gap: 1rem;
   flex-wrap: wrap;
   line-height: 2.4rem;
-}
-
-h1 {
-  font-weight: 200;
-  font-size: 1.4rem;
-  margin: 0;
 }
 
 header h1 {
@@ -82,14 +59,6 @@ dd {
 
 dt {
   font-weight: 400;
-}
-
-textarea,
-input[type='text'],
-.element {
-  padding: 0.7rem 1rem;
-  box-shadow: var(--box-shadow);
-  border-radius: 0.375rem;
 }
 
 .chat-container {
@@ -130,20 +99,6 @@ input[type='text'],
   flex-direction: row;
   flex-wrap: norap;
   gap: 0.5rem;
-}
-
-textarea,
-input[type='text'] {
-  position: relative;
-  flex-grow: 1;
-
-  color: var(--body-text-color);
-  border: 1px solid var(--text-input-active-border-color);
-  background-color: var(--text-input-active-bg-color);
-
-  box-sizing: border-box; /* Ensures padding is included dimensions */
-  resize: none; /* Disable manual resizing */
-  overflow: hidden; /* Disable scrollbars; going for autoscrolling */
 }
 
 /* if we're on a device with a physical keyboard... */
@@ -190,35 +145,6 @@ input[type='text'] {
 footer {
   margin-top: 1rem;
   gap: 2rem;
-}
-
-a,
-button.text-button {
-  color: var(--body-text-color);
-  text-decoration: underline;
-  cursor: pointer;
-  background-color: transparent;
-  box-shadow: none;
-}
-
-a:hover,
-button.text-button:hover {
-  color: var(--button-border-color);
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.stack-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.stack-horizontal {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
 }
 
 #video-intro {

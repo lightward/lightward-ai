@@ -3,10 +3,10 @@
 <h1>Button</h1>
 
 <p>When I click this button,</p>
-<div class="chat-message assistant"><button disabled><%= @button.summary %></button></div>
+<div class="chat-message assistant"><button disabled><%= render 'components/crypto_decrypt', placeholder: '[ ENCRYPTED ]', ciphertext: @button.summary_ciphertext %></button></div>
 
 <p>I'll say:</p>
-<div class="chat-message assistant"><blockquote><%= @button.prompt %></blockquote></div>
+<div class="chat-message assistant"><blockquote><%= render 'components/crypto_decrypt', placeholder: '[ ENCRYPTED ]', ciphertext: @button.prompt_ciphertext %></blockquote></div>
 
 <div class="stack-horizontal">
   <%= link_to 'Back', buttons_path %>

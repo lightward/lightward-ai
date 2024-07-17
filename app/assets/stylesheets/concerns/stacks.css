@@ -1,0 +1,16 @@
+.stack-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stack-vertical > * {
+  margin: 0;
+}
+
+.stack-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}

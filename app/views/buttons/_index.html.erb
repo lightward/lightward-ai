@@ -3,7 +3,7 @@
     <% if buttons.any? %>
       <% buttons.each do |button| %>
         <tr>
-          <td><%= link_to button.summary, button %></td>
+          <td><%= link_to button do %><%= render 'components/crypto_decrypt', placeholder: 'ENCRYPTED', ciphertext: button.summary_ciphertext %><% end %></td>
           <td style="width: 30%; text-align: right;"><%= render 'components/button_toggle', button: button %></td>
         </tr>
       <% end %>
