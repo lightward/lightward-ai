@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  after_create :create_default_buttons
   validates :google_id, presence: true
+  validates :public_key, public_key: true, allow_nil: true
+  validates :encrypted_private_key, encrypted_string: true, allow_nil: true
+  validates :salt, base64_salt: true, allow_nil: true
 
   has_many :buttons, dependent: :destroy
 
@@ -32,19 +34,5 @@ class User < ApplicationRecord
 
     # Return the encrypted data as a Base64 encoded string
     Base64.strict_encode64(encrypted)
-  end
-
-  private
-
-  def create_default_buttons
-    buttons.create!(
-      summary: "I'm a slow reader",
-      prompt: "I'm a slow reader",
-    )
-
-    buttons.create!(
-      summary: "I'm a fast reader",
-      prompt: "I'm a fast reader",
-    )
   end
 end

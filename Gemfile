@@ -40,6 +40,8 @@ group :development, :test do
   gem "debug", platforms: [:mri, :windows]
   gem "byebug"
 
+  gem "factory_bot_rails"
+
   gem "guard", require: false
   gem "guard-rspec", require: false
   gem "guard-rubocop", require: false
