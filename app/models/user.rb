@@ -12,6 +12,7 @@ class User < ApplicationRecord
   }
 
   has_many :buttons, dependent: :destroy
+  has_many :chats, dependent: :delete_all
 
   class << self
     def for_google_identity(google_identity)

@@ -49,9 +49,9 @@ RSpec.describe(ChatsController, :aggregate_failures) do
       end
     end
 
-    describe "permitted_chat_log_params" do
+    describe "permitted_chat_message_params" do
       before do
-        allow(controller).to(receive(:permitted_chat_log_params).and_call_original)
+        allow(controller).to(receive(:permitted_chat_message_params).and_call_original)
       end
 
       it "permits valid parameters" do # rubocop:disable RSpec/ExampleLength
@@ -64,7 +64,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
         post :message, params: valid_params
         valid_params[:chat_log].map(&:with_indifferent_access)
-        expect(controller).to(have_received(:permitted_chat_log_params))
+        expect(controller).to(have_received(:permitted_chat_message_params))
       end
 
       it "raises an error for invalid parameters" do
@@ -74,15 +74,6 @@ RSpec.describe(ChatsController, :aggregate_failures) do
           post(:message, params: invalid_params)
         }.to(raise_error(ActionController::ParameterMissing))
       end
-    end
-  end
-
-  describe "chat_context helper method" do
-    it "returns a hash with the correct default keys and values" do
-      get :index
-
-      expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
-      expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData"))
     end
   end
 end

@@ -1,3 +1,5 @@
+// app/javascript/src/components/prompt-button.js
+
 export class PromptButtonComponent extends HTMLElement {
   constructor() {
     super();

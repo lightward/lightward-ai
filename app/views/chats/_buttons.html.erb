@@ -1,0 +1,12 @@
+<div class="stack-horizontal" id="start-suggestions">
+  <% if current_user && current_user.buttons.active.any? %>
+    <% current_user.buttons.active.each do |button| %>
+      <%= render 'components/prompt_button', prompt_ciphertext: button.prompt_ciphertext, summary_ciphertext: button.summary_ciphertext %>
+    <% end %>
+  <% else %>
+    <%= render 'components/prompt_button', prompt: "I'm a slow reader" %>
+    <%= render 'components/prompt_button', prompt: "I'm a fast reader" %>
+  <% end %>
+
+  <span id="instructions">← tap one</span>
+</div>

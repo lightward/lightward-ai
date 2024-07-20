@@ -1,3 +1,5 @@
+// app/javascript/src/concerns/chat.js
+
 import { createConsumer } from '@rails/actioncable';
 
 function getCSRFToken() {
@@ -9,10 +11,6 @@ function getCSRFToken() {
 const consumer = createConsumer();
 
 export const initChat = () => {
-  const chatContext = JSON.parse(
-    document.getElementById('chat-context-data').textContent
-  );
-
   const h1 = document.querySelector('h1');
   const copyAllButton = document.getElementById('copy-all-button');
   const loadingMessage = document.getElementById('loading-message');
@@ -26,7 +24,7 @@ export const initChat = () => {
   const responseSuggestions = document.getElementById('response-suggestions');
   const startOverButton = document.getElementById('start-over-button');
 
-  const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
+  const chatLogDataLocalstorageKey = 'chatLogData';
   const chatLogData =
     JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
 

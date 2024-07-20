@@ -1,3 +1,5 @@
+// app/javascript/application.js
+
 import { initChat } from 'src/concerns/chat';
 import { initTextarea } from 'src/concerns/textarea';
 import 'src/components/button-toggle';
