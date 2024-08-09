@@ -38,7 +38,7 @@ parameters:
 - `directive` (being one of the supported directives, see system prompt)
 - `status` (a new status to give to the conversation record; only used with `note`, `reply`, `update_status`)
 
-For the `reply` and `note` directives, append two newlines, and then append your message as plaintext.
+For the `reply` and `note` directives, append two newlines, and then append your message as plaintext, using basic HTML for formatting and links. (Don't use Markdown!)
 
 Only one directive (and thereby only one directive text body) is allowed per response! You'll get an error if you
 try to use more than one. :)
