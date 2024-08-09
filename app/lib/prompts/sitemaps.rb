@@ -33,7 +33,8 @@ module Prompts
             next
           end
 
-          domains = File.readlines(domains_file).map(&:strip).reject { |line| line.empty? || line.start_with?("#") }
+          # Read domains and exclusions
+          domains, exclusions = parse_domains_and_exclusions(domains_file)
 
           if domains.empty?
             logger.warn("No domains found in file: #{domains_file}")
@@ -60,6 +61,7 @@ module Prompts
 
             urls.each do |url|
               next unless url.start_with?("https://#{domain}/#{path_prefix}")
+              next if should_exclude?(url, exclusions[domain])
 
               process_url(url, domain, sitemaps_dir, logger)
             end
@@ -69,12 +71,33 @@ module Prompts
         logger.info("Update process completed.")
       end
 
+      def parse_domains_and_exclusions(domains_file)
+        domains = []
+        exclusions = {}
+
+        File.readlines(domains_file).map(&:strip).reject { |line| line.empty? || line.start_with?("#") }.each do |line|
+          if line.start_with?("-")
+            domain, exclusion = parse_domain_entry(line[1..])
+            exclusions[domain] ||= []
+            exclusions[domain] << exclusion
+          else
+            domains << line
+          end
+        end
+
+        [domains, exclusions]
+      end
+
       def parse_domain_entry(domain_entry)
         if domain_entry.include?("/")
           domain_entry.split("/", 2)
         else
           [domain_entry, ""]
         end
+      end
+
+      def should_exclude?(url, exclusion_paths)
+        exclusion_paths&.any? { |path| url.include?(path) }
       end
 
       def process_url(url, domain, sitemaps_dir, logger)

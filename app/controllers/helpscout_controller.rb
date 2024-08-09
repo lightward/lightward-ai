@@ -6,11 +6,11 @@ class HelpscoutController < ApplicationController
   def receive
     request_body = request.raw_post
     signature = request.headers["X-HelpScout-Signature"]
-    event_type = request.headers["X-HelpScout-Event"]
 
     if valid_signature?(request_body, signature)
       event_data = JSON.parse(request_body)
-      HelpscoutJob.perform_later(event_type, event_data)
+      convo_id = event_data["id"]
+      HelpscoutJob.perform_later(convo_id)
 
       head(:accepted)
     else

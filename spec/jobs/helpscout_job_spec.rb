@@ -4,7 +4,6 @@
 require "rails_helper"
 
 RSpec.describe(HelpscoutJob) do
-  let(:event_type) { "test_event_type" }
   let(:event_data) { { "id" => "test_conversation_id" } }
   let(:helpscout_conversation) {
     full_convo = JSON.parse(Rails.root.join("spec/fixtures/helpscout_full_convo.json").read)
@@ -30,7 +29,7 @@ RSpec.describe(HelpscoutJob) do
       end
 
       it "does not send a response", :aggregate_failures do
-        job.perform(event_type, event_data)
+        job.perform(event_data["id"])
         expect(Helpscout).not_to(have_received(:create_note))
         expect(Helpscout).not_to(have_received(:create_draft_reply))
       end
@@ -43,7 +42,7 @@ RSpec.describe(HelpscoutJob) do
       end
 
       it "does not send a response", :aggregate_failures do
-        job.perform(event_type, event_data)
+        job.perform(event_data["id"])
         expect(Helpscout).not_to(have_received(:create_note))
         expect(Helpscout).not_to(have_received(:create_draft_reply))
       end
@@ -55,7 +54,7 @@ RSpec.describe(HelpscoutJob) do
       end
 
       it "creates a note in Help Scout" do
-        job.perform(event_type, event_data)
+        job.perform(event_data["id"])
         expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "This is a note.", status: "closed"))
       end
     end
@@ -66,19 +65,19 @@ RSpec.describe(HelpscoutJob) do
       end
 
       it "creates a draft reply in Help Scout" do
-        job.perform(event_type, event_data)
+        job.perform(event_data["id"])
         expect(Helpscout).to(have_received(:create_draft_reply).with("test_conversation_id", "This is a reply.", status: "open", customer_id: helpscout_conversation["primaryCustomer"]["id"]))
       end
     end
 
     it "requires a directive" do
       allow(job).to(receive(:get_anthropic_response_text).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return("asdf\n\n"))
-      expect { job.perform(event_type, event_data) }.to(raise_error("No directive found in response: asdf"))
+      expect { job.perform(event_data["id"]) }.to(raise_error("No directive found in response: asdf"))
     end
 
     it "requires a valid directive" do
       allow(job).to(receive(:get_anthropic_response_text).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return("directive=asdf\n\n"))
-      expect { job.perform(event_type, event_data) }.to(raise_error("Unrecognized directive: asdf"))
+      expect { job.perform(event_data["id"]) }.to(raise_error("Unrecognized directive: asdf"))
     end
   end
 

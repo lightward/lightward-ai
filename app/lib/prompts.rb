@@ -31,7 +31,7 @@ module Prompts
 
     def generate_system_xml(prompt_type, directories)
       files = directories.map { |directory|
-        directory_files = Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html}")).reject { |file|
+        directory_files = Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html,csv}")).reject { |file|
           file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
         }
 

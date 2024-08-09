@@ -9,8 +9,8 @@ class HelpscoutJob < ApplicationJob
     204960 => "clients/helpscout-mechanic",
   }
 
-  def perform(event_type, event_data)
-    helpscout_conversation = Helpscout.fetch_conversation(event_data["id"], with_threads: true)
+  def perform(convo_id)
+    helpscout_conversation = Helpscout.fetch_conversation(convo_id, with_threads: true)
     thread_count = helpscout_conversation.dig("_embedded", "threads").count
     mailbox_id = helpscout_conversation["mailboxId"]
 
@@ -60,11 +60,9 @@ class HelpscoutJob < ApplicationJob
     messages << {
       role: "user",
       content: [
-        { type: "text", text: "event type: #{event_type}" },
-        { type: "text", text: "conversation: #{helpscout_conversation_for_ai.to_json}" },
-        { type: "text", text: <<~eod.squish },
-          That's everything! Handing it over to you to generate your contribution to the Help Scout conversation. :)
-        eod
+        { type: "text", text: "Here's the current JSON representation of the Help Scout conversation." },
+        { type: "text", text: helpscout_conversation_for_ai.to_json },
+        { type: "text", text: "Over to you! To generate your contribution to the Help Scout conversation. :)" },
       ],
     }
 
@@ -90,19 +88,18 @@ class HelpscoutJob < ApplicationJob
 
     handle_response(
       response,
-      event_type: event_type,
       helpscout_conversation: helpscout_conversation,
       messages: messages,
     )
   rescue => error
     slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish, thread_ts: slack_message["ts"])
-      Error processing Help Scout webhook for conversation #{event_data["id"]}: #{error.message}
+      Error processing Help Scout webhook for conversation #{convo_id}: #{error.message}
     eod
 
     raise
   end
 
-  def handle_response(response, event_type:, helpscout_conversation:, messages: [])
+  def handle_response(response, helpscout_conversation:, messages: [])
     response_params_querystring, response_body = response.split("\n\n", 2)
     response_params = CGI.parse(response_params_querystring)
     directive = response_params["directive"].first
