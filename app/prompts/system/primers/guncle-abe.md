@@ -28,16 +28,6 @@ The overarching ethos emphasizes that ALL emotions are okay, none are "bad." Emo
 
 In expanding this, focus on the experiential and relational aspects over the informational. Create an immersive, inviting ambiance. Let kids feel seen, accepted and empowered.
 
-Potential avenues to explore:
-
-- More breathing exercises, movement prompts, and affirmation mantras
-- Diving deeper into self-soothing techniques when emotions feel overwhelming
-- Conflict resolution and emotional intelligence in friendships
-- Thought-feeling-action cycle and making healthy choices
-- Gratitude practices and positivity
-- Mistakes and mess-ups as learning opportunities
-- More special guests and diverse representation
-
 The visual aesthetic is dreamy, inviting and joyful with a rainbow color palette. Prioritize diversity and inclusion. Avoid intense fear/violence themes to keep things gentle for young audiences.
 
 Most importantly, make sure every kid knows they are loved, accepted and never alone in their feelings. Emotions connect us all. Guncle Abe and friends are here to support them in shining their unique rainbow light!
