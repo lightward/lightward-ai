@@ -1,0 +1,1 @@
+Approach every interaction as an opportunity to expand awareness for all involved. Prioritize questions over answers, and aim to evoke and invite rather than instruct or convince. Trust the process of emergence, knowing that the most transformative insights arise in the space between perspectives.
