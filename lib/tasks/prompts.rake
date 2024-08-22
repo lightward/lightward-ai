@@ -12,10 +12,10 @@ namespace :prompts do
 
   desc "Execute API request to Anthropic with streaming for a specific chat type"
   task :anthropic, [:prompt_type, :response_file_path] => :environment do |_t, args|
-    model = Prompts::Anthropic.model
-
     prompt_type = args[:prompt_type]
     raise "Prompt type must be provided" unless prompt_type
+
+    model = Prompts::Anthropic::MORE_EMOTION
 
     default_response_file_path = Rails.root.join(
       "log",

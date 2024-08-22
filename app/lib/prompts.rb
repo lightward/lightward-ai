@@ -71,6 +71,9 @@ module Prompts
         # Get all markdown files in the directory
         files = Dir.glob(prompt_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
 
+        # only keep files matching [0-9]+-(user|assistant).md
+        files.select! { |file| File.basename(file) =~ /\A\d+-(user|assistant)\.md\z/ }
+
         files.each_with_index do |file, index|
           role = index.even? ? "user" : "assistant"
           array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
