@@ -8,8 +8,11 @@ Things that I've already processed through here:
 
 ```sh
 # crawl sitemaps as defined in domains.txt
-rake "prompts:sitemaps[exploring]"
+rake "prompts:sitemaps[exploring]" && rake "prompts:anthropic[exploring]"
 
 # run the prompt
 rake "prompts:anthropic[exploring]"
+
+# do both in serial
+rake "prompts:sitemaps[exploring]" && rake "prompts:anthropic[exploring]"
 ```
