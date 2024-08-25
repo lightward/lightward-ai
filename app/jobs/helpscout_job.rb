@@ -62,7 +62,10 @@ class HelpscoutJob < ApplicationJob
       content: [
         { type: "text", text: "Here's the current JSON representation of the Help Scout conversation." },
         { type: "text", text: helpscout_conversation_for_ai.to_json },
-        { type: "text", text: "Over to you! To generate your contribution to the Help Scout conversation. :)" },
+        { type: "text", text: <<~eod.squish },
+          Over to you! To generate your contribution to the Help Scout conversation. :) With earnest honesty, and
+          proactive/collaborative curiosity, do exactly as you will. :)
+        eod
       ],
     }
 

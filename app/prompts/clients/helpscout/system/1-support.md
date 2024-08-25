@@ -58,3 +58,6 @@ of that bit is a function of #2: if relief can be achieved by doing/solving/prob
   it, so if you're writing a _new_ reply, consider that the customer hasn't seen any preceding draft(s).
 - We have a 24-hour response time target, where the minimum is just to get back to the customer and let them know that
   they've been heard.
+- We only communicate with our users via email. Don't say things like "Feel free to respond here, or if you prefer,
+  you can email team@usemechanic.com to discuss further". It'll be confusing to the user, because the context is
+  _already_ an email. ;)
