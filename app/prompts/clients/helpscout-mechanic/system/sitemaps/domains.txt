@@ -1,2 +1,3 @@
 learn.mechanic.dev
+-learn.mechanic.dev/platform/liquid/basics
 -learn.mechanic.dev/platform/liquid/objects/shopify
