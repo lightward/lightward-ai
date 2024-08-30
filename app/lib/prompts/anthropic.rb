@@ -11,6 +11,8 @@ module Prompts
     MORE_EMOTION = "claude-3-opus-20240229"
     MORE_INTELLECT = "claude-3-5-sonnet-20240620"
 
+    BETA_CACHE_CONTROL = "prompt-caching-2024-07-31"
+
     class << self
       def api_request(payload, &block)
         uri = URI("https://api.anthropic.com/v1/messages")
@@ -23,6 +25,7 @@ module Prompts
           "content-type": "application/json",
           "anthropic-version": "2023-06-01",
           "x-api-key": ENV.fetch("ANTHROPIC_API_KEY", nil),
+          "anthropic-beta": BETA_CACHE_CONTROL,
         })
         request.body = payload.to_json
 

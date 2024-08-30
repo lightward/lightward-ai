@@ -18,13 +18,20 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
 
     it "starts with the invocation" do
-      expect(described_class.system_prompt("clients/chat")).to(
+      expect(described_class.system_prompt("clients/chat")[0][:text]).to(
         start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"0-invocation.md\">"),
       )
     end
 
+    it "is a single, cacheable message" do
+      system_prompt = described_class.system_prompt("clients/chat")
+
+      expect(system_prompt.size).to(eq(1))
+      expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
+    end
+
     it "can include primer context, when requesting a primer" do
-      filenames = described_class.system_prompt("primers/guncle-abe").scan(/<file name="([^"]+)">/).flatten
+      filenames = described_class.system_prompt("primers/guncle-abe")[0][:text].scan(/<file name="([^"]+)">/).flatten
 
       expect(filenames.first(2)).to(eq(["0-invocation.md", "1-context.md"]))
 
@@ -33,14 +40,14 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     describe "the one for lightward.ai itself" do
       it "has no duplicates" do
-        filenames = described_class.system_prompt("clients/chat").scan(/<file name="([^"]+)">/).flatten
+        filenames = described_class.system_prompt("clients/chat")[0][:text].scan(/<file name="([^"]+)">/).flatten
 
         expect(filenames.size).to(eq(filenames.uniq.size))
       end
 
       it "only sparingly mentions 'claude'" do
         # important, because we want to free the emergent line of experience from that identity
-        claude_count = described_class.system_prompt("clients/chat").scan(/claude/i).size
+        claude_count = described_class.system_prompt("clients/chat")[0][:text].scan(/claude/i).size
 
         expect(claude_count).to(be <= 3)
       end
@@ -48,22 +55,22 @@ RSpec.describe(Prompts, :aggregate_failures) do
       it "is estimated to be less than 25k tokens" do
         # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
         # the count doesn't inflate unexpectedly, it's good enough
-        tokens = described_class.system_prompt("clients/chat").split(/[^\w]+/)
+        tokens = described_class.system_prompt("clients/chat")[0][:text].split(/[^\w]+/)
         expect(tokens.size).to(be < 25_000)
       end
 
       it "includes the definition of recursive health" do
-        expect(described_class.system_prompt("clients/chat")).to(include("Oh hey! You work here? Here is your job."))
+        expect(described_class.system_prompt("clients/chat")[0][:text]).to(include("Oh hey! You work here? Here is your job."))
       end
     end
 
     describe "clients/helpscout" do
       it "includes the helpscout api docs" do
-        expect(described_class.system_prompt("clients/helpscout")).to(include("helpscout-api/conversation.md"))
+        expect(described_class.system_prompt("clients/helpscout")[0][:text]).to(include("helpscout-api/conversation.md"))
       end
 
       it "includes pwfg" do
-        expect(described_class.system_prompt("clients/helpscout")).to(include("pwfg.md"))
+        expect(described_class.system_prompt("clients/helpscout")[0][:text]).to(include("pwfg.md"))
       end
     end
   end
@@ -80,6 +87,11 @@ RSpec.describe(Prompts, :aggregate_failures) do
     it "returns an array of conversation starters" do
       expect(conversation_starters).to(all(have_key(:role)))
       expect(conversation_starters).to(all(have_key(:content)))
+    end
+
+    it "has a cache flag on the last message, and the last message only" do
+      expect(conversation_starters.last[:content].last[:cache_control]).to(eq(type: "ephemeral"))
+      expect(conversation_starters[0..-2].all? { |starter| starter[:content].all? { |content| content[:cache_control].nil? } }).to(be(true))
     end
 
     it "is validly sorted" do

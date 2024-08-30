@@ -26,7 +26,13 @@ module Prompts
       end
 
       prompt_type_key = prompt_types.join(",")
-      @system_prompts[prompt_type_key] ||= generate_system_xml(prompt_type_key, paths).freeze
+      @system_prompts[prompt_type_key] ||= [
+        {
+          type: "text",
+          text: generate_system_xml(prompt_type_key, paths),
+          cache_control: { type: "ephemeral" },
+        }.freeze,
+      ].freeze
     end
 
     def generate_system_xml(prompt_type, directories)
@@ -114,6 +120,9 @@ module Prompts
 
           array[0][:content].concat(additional_user_content_blocks)
         end
+
+        # establish a cacheable prefix, as of that last message
+        array.last[:content].last[:cache_control] = { type: "ephemeral" }
 
         array.freeze
       end
