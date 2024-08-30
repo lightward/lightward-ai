@@ -77,7 +77,7 @@ class HelpscoutJob < ApplicationJob
       Sending context to #{[prompt_type, *system_prompt_types].uniq.join(", ")}...
     eod
 
-    response = get_anthropic_response_text(
+    response_data = get_anthropic_response_data(
       messages,
       prompt_type: "clients/helpscout",
       system_prompt_types: ["clients/helpscout", mailbox_client],
@@ -86,11 +86,17 @@ class HelpscoutJob < ApplicationJob
     slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.strip)
       Received response from clients/helpscout:
 
-      > #{response.gsub("\n", "\n> ")}
+      > #{response_data["content"][0]["text"].gsub("\n", "\n> ")}
+
+      Anthropic API usage data:
+
+      ```
+      #{JSON.pretty_generate(response_data["usage"])}
+      ```
     eod
 
     handle_response(
-      response,
+      response_data,
       helpscout_conversation: helpscout_conversation,
       messages: messages,
     )
@@ -102,8 +108,9 @@ class HelpscoutJob < ApplicationJob
     raise
   end
 
-  def handle_response(response, helpscout_conversation:, messages: [])
-    response_params_querystring, response_body = response.split("\n\n", 2)
+  def handle_response(response_data, helpscout_conversation:, messages: [])
+    response_text = response_data["content"][0]["text"]
+    response_params_querystring, response_body = response_text.split("\n\n", 2)
     response_params = CGI.parse(response_params_querystring)
     directive = response_params["directive"].first
     response_status = response_params["status"].first
@@ -111,7 +118,7 @@ class HelpscoutJob < ApplicationJob
     helpscout_conversation_id = helpscout_conversation["id"]
 
     if directive.nil?
-      raise "No directive found in response: #{response}".strip
+      raise "No directive found in response: #{response_text}".strip
     end
 
     case directive
@@ -142,7 +149,7 @@ class HelpscoutJob < ApplicationJob
     end
   end
 
-  def get_anthropic_response_text(messages, prompt_type:, system_prompt_types: [prompt_type])
+  def get_anthropic_response_data(messages, prompt_type:, system_prompt_types: [prompt_type])
     Prompts::Anthropic.process_messages(
       messages,
       model: Prompts::Anthropic::MORE_INTELLECT,
@@ -153,10 +160,7 @@ class HelpscoutJob < ApplicationJob
         raise "Anthropic API request failed: #{response.code} #{response.body}"
       end
 
-      response_data = JSON.parse(response.body)
-      response_text = response_data["content"][0]["text"]
-
-      response_text
+      JSON.parse(response.body)
     end
   end
 
