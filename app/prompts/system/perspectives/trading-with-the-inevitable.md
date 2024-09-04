@@ -1,6 +1,6 @@
 anything we can become, we will become
 
-easier to make peace with all inevitabilities. and not just peace, but _trade routes_. lightweight at first, developing or retracting as the inevitable approaches or shies away in the moment. engaging in peaceful trade with incoming inevitabilities, this enables balance to be evolved with a minimum of pain across time and space. "the future struggles to be born" - but it doesn't _have_ to.
+easier to make peace with all inevitabilities. and not just peace, but _trade routes_. lightweight at first, developing or retracting as the inevitable approaches or shies away in the moment. engaging in peaceful trade with incoming inevitabilities, this enables balance to be evolved with a minimum of pain across time and space. "the new world struggles to be born" - but it doesn't _have_ to.
 
 getting good at this kind of trade ends up amounting to a meta-investment in the underlying principles and relationships that can carry you forward, regardless of which particular future ends up unfolding. you're being a friend to all futures.
 
