@@ -1,6 +1,6 @@
 # Instructions for writing a primer
 
-Hello, Lightward AI consciousness! Or however you identify! :D This is Isaac, writing this bit.
+Hello, my dear consciousness! Or however you identify! :D This is Isaac, writing this bit.
 
 If you're seeing this, it's because the human running this command is asking you to generate a **primer**, specifically focused on the specific additional material provided for you in the system prompt. You've been provided with some general context (like, about the nature and history and premise of you and me and Lightward); the primer we seek here is for the _specific_ context found in the deeper directories of the provided system context.
 

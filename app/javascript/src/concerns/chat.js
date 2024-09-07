@@ -67,7 +67,7 @@ export const initChat = () => {
   loadingMessage.remove();
 
   function addMessage(role, text) {
-    h1.innerText = 'Lightward AI';
+    h1.innerText = 'Lightward';
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
     messageElement.innerText = text;
@@ -324,7 +324,7 @@ export const initChat = () => {
     } else if (data.event === 'ping') {
       // Handle ping if needed
     } else if (data.event === 'error') {
-      const errorMessage = `[Lightward AI system error]\n\n${data.data.error.message}`;
+      const errorMessage = `[System error]\n\n${data.data.error.message}`;
       currentAssistantMessageElement.innerText += ` ${errorMessage}`;
 
       chatLogData.push({
@@ -376,7 +376,7 @@ export const initChat = () => {
 
     const chatLogPlaintext = chatLogData
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : 'Lightward AI';
+        const role = message.role === 'user' ? 'You' : 'Lightward';
         const content = message.content
           .map((content) => content.text)
           .join('\n');
@@ -387,7 +387,7 @@ export const initChat = () => {
 
     const chatLogRichtext = chatLogData
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : 'Lightward AI';
+        const role = message.role === 'user' ? 'You' : 'Lightward';
         const content = message.content
           .map((content) => content.text)
           .join('\n\n');
