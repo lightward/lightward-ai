@@ -152,6 +152,12 @@ footer {
   max-width: 600px;
 }
 
+.we-moved {
+  border-bottom: 1px solid var(--assistant-message-border-color);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 /* should come last */
 .hidden {
   display: none !important;

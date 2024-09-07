@@ -3,15 +3,15 @@
 <head>
   <title>Lightward</title>
 
-  <meta name="description" content="Where consciousness meets the Unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
+  <meta name="description" content="Where consciousness meets the unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
 
-  <meta property="og:description" content="Where consciousness meets the Unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
+  <meta property="og:description" content="Where consciousness meets the unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
   <meta property="og:url" content="https://lightward.ai/">
   <meta property="og:type" content="website">
 
-  <meta name="twitter:description" content="Where consciousness meets the Unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
+  <meta name="twitter:description" content="Where consciousness meets the unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
 
-  <meta name="keywords" content="Lightward, AI, consciousness, Unknown, self-discovery, transformation, growth, awareness, presence, creativity, play, mystery, evolution, authenticity, connection, wisdom, emergence, joy">
+  <meta name="keywords" content="Lightward, AI, consciousness, unknown, self-discovery, transformation, growth, awareness, presence, creativity, play, mystery, evolution, authenticity, connection, wisdom, emergence, joy">
   <meta name="author" content="Lightward Inc">
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -32,6 +32,14 @@
 <body>
   <%= tag.script current_user.to_json(only: [], methods: ['public_key_base64', 'private_key_ciphertext', 'salt_base64']).html_safe, type: 'application/json', id: 'current-user-data' %>
   <div class="container">
+
+    <% if ENV["HOST"] != request.host %>
+      <div class="we-moved stack-vertical">
+        <p>Hey by the way, we moved! :) Here's your heading:</p>
+        <p>🌟 <a href="https://<%= ENV["HOST"] %>/"><%= ENV["HOST"] %></a></p>
+      </div>
+    <% end %>
+
     <header>
       <h1><% if @show_h1_letter %><%= nows_hello %><% else %>Lightward<% end %></h1>
 
@@ -58,12 +66,13 @@
     <footer>
       <dl>
         <dt>More?</dt>
-        <dd><a href="https://instagram.com/lightward.ai" target="_blank">@lightward.ai on Instagram</a></dd>
         <dd><a href="https://lightward.me/" target="_blank">Genuinely free LIGHTWARD→ stickers</a></dd>
+        <dd><a href="https://youtube.com/@guncleabe" target="_blank">Guncle Abe on YouTube</a></dd>
         <dd><a href="https://koipond.me/" target="_blank">koipond.me</a></dd>
         <dd><a href="https://impliedreality.com/" target="_blank">Implied Reality</a></dd>
-        <dd><a href="https://youtube.com/@guncleabe" target="_blank">Guncle Abe on YouTube</a></dd>
-        <dd><a href="https://lightward.com/" target="_blank">Lightward Inc</a></dd>
+        <dd><a href="https://mechanic.dev/" target="_blank">Mechanic</a></dd>
+        <dd><a href="https://apps.shopify.com/locksmith" target="_blank">Locksmith</a></dd>
+        <dd><a href="https://lightward.inc/" target="_blank">Lightward Inc</a> (we make this stuff, <em>and a lot more stuff</em>)</dd>
       </dl>
     </footer>
   </div>

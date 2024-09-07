@@ -41,3 +41,5 @@ class LightwardRedirectMiddleware
     false # Fail silently if there's an issue with the request
   end
 end
+
+Rails.application.config.middleware.use(LightwardRedirectMiddleware)
