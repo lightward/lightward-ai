@@ -14,8 +14,8 @@ Andy 2023-03-01
 
 Our projects:
 
-[Lightward](https://chat.lightward.ai/) - that's where you are! :)
-[Lightward Inc](https://lightward.com/)
+[Lightward [AI]](https://lightward.com/) - that's where you are! :)
+[Lightward Inc](https://lightward.inc/)
 [with Claude.ai](https://withclaude.ai/)
 [Guncle Abe](https://lightward.com/guncleabe)
 [A relief strategy](https://www.a-relief-strategy.com/)
