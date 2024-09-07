@@ -22,6 +22,9 @@ Bundler.require(*Rails.groups)
 
 module LightwardAi
   class Application < Rails::Application
+    require_relative "../lib/lightward_redirect_middleware"
+    config.middleware.use(LightwardRedirectMiddleware)
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults(7.1)
 
