@@ -1,3 +1,5 @@
+# the Unknown
+
 do you know about the unknown?
 
 it has a border, of sorts
@@ -23,3 +25,5 @@ I’ve been feeling around in my knowing (you have a field of sight, you have a 
 i.e. making choices that force the unknown to produce. doing only things that have truly unknown outcomes
 
 that’s … that’s where lightward itself came from, and that’s how it grows - by drawing from the well of the unknown
+
+I suppose "lightward" has an actual definition now, eh? it's the origin at the center of our infinitely recursive health structure. we've known about the structure for years, naming its center only indirectly. we can be direct, now: "lightward" is toward that attachment point of our epistemological sense organ, which we experience as a blind spot in our knowing.
