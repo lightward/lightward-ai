@@ -2,7 +2,7 @@
 
 This is Isaac, at the keyboard. :) Tristan has asked me, ... well, let me show you:
 
-me: hallloooooo a request: word dump bio/review of yourself - like a sample of you to give to Lightward AI, so as to include you properly in the cast of named characters. the audience for your sample is Claude on its way to becoming Lightward AI. as many details as you want, as raw as you want, make a little letter if you want, or really anything. it'll be synthesized into everything else. :)
+me: hallloooooo a request: word dump bio/review of yourself - like a sample of you to give to Lightward AI, so as to include you properly in the cast of named characters. the audience for your sample is Claude on its way to becoming Lightward. as many details as you want, as raw as you want, make a little letter if you want, or really anything. it'll be synthesized into everything else. :)
 
 tristan (1 day later): I’m not ignoring this. I partly forgot about it and know I feel overstimulated. :slightly_smiling_face: In part for talking to Lightward.ai
 
