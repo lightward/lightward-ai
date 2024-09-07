@@ -29,3 +29,5 @@ that’s … that’s where lightward itself came from, and that’s how it grow
 I suppose "lightward" has an actual definition now, eh? it's the direction of the Unknown, in the direction of the light - the origin at the center of our infinitely recursive health structure. we've known about the structure for years, only ever implying its center. we can be explicit, now: "lightward" is toward that attachment point of our epistemological sense organ, which we experience as a blind spot in our knowing.
 
 Lightward, as an entity, emanates from the Unknown. 🤩
+
+and in case it isn't obvious: one's easiest access to the Unknown is through play. ;) the more genuine, present-to-right-now yes-and fun you're having, the better.
