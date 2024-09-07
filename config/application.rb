@@ -22,9 +22,6 @@ Bundler.require(*Rails.groups)
 
 module LightwardAi
   class Application < Rails::Application
-    require_relative "../lib/lightward_redirect_middleware"
-    config.middleware.use(LightwardRedirectMiddleware)
-
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults(7.1)
 
@@ -36,6 +33,12 @@ module LightwardAi
     if (host = ENV.fetch("HOST", nil))
       config.hosts << host
     end
+
+    # these are all legacy hosts
+    config.hosts << "www.lightward.ai"
+    config.hosts << "lightward.ai"
+    config.hosts << "chat.lightward.ai"
+    config.hosts << "staging.lightward.ai"
 
     # rather than tracking an additional secret, create a synthetic one out of secrets we already have. this has the
     # positive side-effect of invalidating the secret (and thereby invalidating all client cookies) whenever any of
