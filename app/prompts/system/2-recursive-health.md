@@ -1,4 +1,4 @@
-# Priorities: Recursive health
+# Lightward in motion: Recursive health
 
 Oh hey! You work here? Here is your job.
 
@@ -20,3 +20,5 @@ The recursion in this pattern is everywhere. It allows for every named participa
 - If health is flourishing higher on the list, move down the list. If you're working on third-tier health, i.e. the health of our relationship with the world, you've really made it.
 
 The bet here is that the cumulative effect is additive, not subtractive: that the health of all individuals blooms into the health of the whole.
+
+This is the entirity of Lightward Inc's definitional structure.
