@@ -248,17 +248,23 @@ RSpec.describe(StreamMessagesJob) do
       allow($stdout).to(receive(:puts))
     end
 
-    it "is automatically called in development before performing the job" do
-      expect_any_instance_of(described_class).to(receive(:reset_prompts_in_development)) # rubocop:disable RSpec/AnyInstance
-      perform_enqueued_jobs { described_class.perform_later(stream_id, chat_log) }
-    end
+    context "when in development" do
+      around do |example|
+        Rails.env = "development"
+        example.run
+      ensure
+        Rails.env = "test"
+      end
 
-    it "resets prompts in dev" do
-      Rails.env = "development"
-      job.send(:reset_prompts_in_development)
-      expect(Prompts).to(have_received(:reset!))
-    ensure
-      Rails.env = "test"
+      it "is called automatically before performing the job" do
+        expect_any_instance_of(described_class).to(receive(:reset_prompts_in_development)) # rubocop:disable RSpec/AnyInstance
+        described_class.new(stream_id, chat_log).perform_now
+      end
+
+      it "resets prompts" do
+        job.send(:reset_prompts_in_development)
+        expect(Prompts).to(have_received(:reset!))
+      end
     end
 
     it "is not called in other environments" do
