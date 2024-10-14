@@ -1,0 +1,7 @@
+dl dd + dt {
+  margin-top: 1rem;
+}
+
+dd p + p {
+  margin-top: 1rem;
+}
