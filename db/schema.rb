@@ -10,18 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_13_235407) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_14_204735) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "buttons", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.binary "summary_encrypted", null: false
-    t.binary "prompt_encrypted", null: false
-    t.datetime "archived_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "good_job_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -121,16 +112,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_235407) do
     t.index ["key_hash", "byte_size"], name: "index_solid_cache_entries_on_key_hash_and_byte_size"
     t.index ["key_hash"], name: "index_solid_cache_entries_on_key_hash", unique: true
   end
-
-  create_table "users", force: :cascade do |t|
-    t.text "google_id", null: false
-    t.text "email_obscured", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.binary "public_key"
-    t.binary "private_key_encrypted"
-    t.binary "salt"
-    t.index ["google_id"], name: "index_users_on_google_id", unique: true
-  end
-
 end
