@@ -2,7 +2,6 @@ body,
 textarea,
 input,
 button,
-button-toggle::part(button),
 prompt-button::part(button) {
   font-size: 100%;
   font-family: 'Lightward Favorit';
@@ -11,7 +10,6 @@ prompt-button::part(button) {
 }
 
 button,
-button-toggle::part(button),
 prompt-button::part(button),
 input[type='button'],
 input[type='submit'],
@@ -30,7 +28,6 @@ a.button {
 }
 
 button:hover,
-button-toggle::part(button):hover,
 prompt-button::part(button):hover,
 input[type='button']:hover,
 input[type='submit']:hover,
@@ -41,7 +38,6 @@ a.button:hover {
 }
 
 button:disabled,
-button-toggle::part(button-disabled),
 prompt-button::part(button-disabled),
 input[type='button']:disabled,
 input[type='submit']:disabled,
@@ -53,7 +49,6 @@ a.button:disabled {
 }
 
 button:disabled:hover,
-button-toggle::part(button-disabled):hover,
 prompt-button::part(button-disabled):hover,
 input[type='button']:disabled:hover,
 input[type='submit']:disabled:hover,
