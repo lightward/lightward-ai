@@ -28,18 +28,3 @@
 #       enabled: "ON"
 
 en:
-  login_failed: 'Login failed'
-
-  buttons:
-    create:
-      success: 'Button created'
-    update:
-      success: 'Button updated'
-    archive:
-      success: 'Button archived'
-    unarchived:
-      success: 'Button restored'
-
-  users:
-    update:
-      success: 'User updated'

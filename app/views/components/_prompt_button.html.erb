@@ -3,19 +3,9 @@
     <%= stylesheet_link_tag 'components/prompt-button' %>
 
     <button part="button">
-      <% if defined? summary %>
-        <%= summary %>
-      <% elsif defined? summary_ciphertext %>
-        <%= render 'components/crypto_decrypt', placeholder: '[ ENCRYPTED ]', ciphertext: summary_ciphertext %>
-      <% else %>
-        <%= prompt %>
-      <% end %>
+      <%= prompt %>
     </button>
   </template>
 
-  <% if defined? prompt_ciphertext %>
-    <%= render 'components/crypto_decrypt', placeholder: '[ ENCRYPTED ]', ciphertext: prompt_ciphertext %>
-  <% else %>
-    <%= prompt %>
-  <% end %>
+  <%= prompt %>
 </prompt-button>

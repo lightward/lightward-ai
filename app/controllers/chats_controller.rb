@@ -5,7 +5,6 @@ class ChatsController < ApplicationController
   helper_method :chat_context
 
   def index
-    @show_h1_letter = true unless current_user
   end
 
   def message

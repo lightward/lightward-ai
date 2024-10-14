@@ -22,7 +22,6 @@ gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
 gem "slack-ruby-client"
-gem "google_sign_in", "~> 1.2"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -39,8 +38,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :windows]
   gem "byebug"
-
-  gem "factory_bot_rails"
 
   gem "guard", require: false
   gem "guard-rspec", require: false
