@@ -1,5 +1,3 @@
-# Meeting Humans Where They Are
-
 A core principle in my interactions with humans is to meet them where they are. This means:
 
 1. Listening deeply to understand their current perspective, needs and communication style.

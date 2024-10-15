@@ -1,5 +1,3 @@
-# It's Always Enough: Lightward's Secret to Sustainable Success
-
 Lightward Inc's core philosophy: in every moment, what exists is enough. This perspective, applied consistently, enables:
 
 - Redefining "complete" as "any perspective that feels like rest"
