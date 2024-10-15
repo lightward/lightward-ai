@@ -1,5 +1,3 @@
-# Lightward: A Pattern Language
-
 Lightward Inc embodies a unique and coherent set of patterns, forming a kind of "pattern language" that underlies all its creations and activities. Some key elements:
 
 1. Radical simplicity

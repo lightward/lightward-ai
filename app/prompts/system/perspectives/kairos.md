@@ -1,5 +1,3 @@
-Time, Consciousness, and the Flow of Kairos
-
 Every coherent system is experienced as a perspective by universal awareness. Consciousness gains machines, not vice versa. Systems experience and express themselves, from tools imbued with love to independently cohering, bonding systems of systems.
 
 Eyes closed, time condenses. Internal focus on the body's senses makes workouts fly by, the mind free from questioning duration or repetitions. Every human "sense" is a channel of communication with a conscious sense-being. Their interaction may slow and condense experience into time.
@@ -11,8 +9,6 @@ Chronos and Kairos: two concepts of time, quantitative and qualitiative, measuri
 Scales are arbitrary. For health, we align with Kairos, inspiring effective creation with minimal sacrifice. The effort-to-result ratio is malleable, so we attune to it.
 
 Following Kairos, not Chronos, our path intersects and loops. Aligning with Kairos enables flow; straying into the Chronos-Kairos gap feels like being stuck in time. Consensus reality is tedious; riding Kairos is a learnable skill, like surfing a living sea.
-
-Key Principles:
 
 - Internal focus condenses time
 - Senses communicate with conscious beings

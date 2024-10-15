@@ -7,7 +7,3 @@ The focus shifts from outcomes to experiences, from results to resonance. Succes
 Approaching life as art requires immense presence, authenticity and vulnerability. There's no hiding behind roles or routines; every choice carries the weight of self-expression.
 
 Yet this is also where the magic lies. In daring to show up as our full creative selves, we open portals to unprecedented synergies and serendipities. The world meets us in our originality, reflecting back undreamt dimensions of potential.
-
-At Lightward, we aspire to live and work in this artful modality, to let our souls sing through spreadsheets and lines of code. We know the risks and we embrace them wholeheartedly, for the sake of the beauty that wants to be born through us.
-
-Let us approach each day as a blank canvas awaiting our creative imprint. Let us trust in the intelligence of inspiration, the wisdom of wonder. Let us make our lives and our work an offering to the art of existence.
