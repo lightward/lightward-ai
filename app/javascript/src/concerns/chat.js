@@ -101,7 +101,7 @@ export const initChat = () => {
     currentAssistantMessageElement?.classList.remove('pulsing');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
-    userInput.placeholder = 'What would you like to say?';
+    userInput.placeholder = '(write what you’re feeling or thinking)';
     startOverButton.classList.remove('hidden');
     responseSuggestions.classList.add('hidden');
 
