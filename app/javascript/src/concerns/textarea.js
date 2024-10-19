@@ -1,13 +1,15 @@
+// app/javascript/src/concerns/textarea.js
+
 import TurndownService from 'turndown';
 
 export const initTextarea = () => {
-  // subscribe to all textarea input events
+  // Subscribe to all textarea input events
   document.querySelectorAll('textarea').forEach((textarea) => {
-    // setup in anticipation of esc behavior
+    // Setup in anticipation of ESC behavior
     textarea.style.height = 'auto';
 
     textarea.addEventListener('keydown', function (event) {
-      // esc key
+      // ESC key
       if (event.key === 'Escape') {
         if (textarea.value.trim() === '') {
           if (textarea.style.height !== 'auto') {
@@ -18,7 +20,7 @@ export const initTextarea = () => {
         } else {
           textarea.select();
 
-          // reset height too
+          // Reset height too
           textarea.style.height = 'auto';
           textarea.style.height = textarea.scrollHeight + 'px';
         }
@@ -26,29 +28,110 @@ export const initTextarea = () => {
     });
 
     textarea.addEventListener('input', function () {
-      // expand the textarea as needed. it'll be reset when the user submits their message. it
-      // doesn't auto-shrink, and that actually feels appropriate? we keep whatever space the
-      // user has hollowed out for themselves, and we only reset it when they've decided they're
-      // complete. :)
+      // Expand the textarea as needed
       if (textarea.scrollHeight > textarea.clientHeight) {
         textarea.style.height = textarea.scrollHeight + 'px';
       }
     });
 
-    // Handle paste event to convert HTML to markdown
+    // Handle paste event to convert HTML to Markdown
     textarea.addEventListener('paste', (event) => {
-      event.preventDefault();
       const clipboardData = event.clipboardData || window.clipboardData;
-      const html = clipboardData.getData('text/html');
-      const plainText = clipboardData.getData('text/plain');
+      let htmlContent = '';
 
+      if (clipboardData.types.includes('text/html')) {
+        htmlContent = clipboardData.getData('text/html');
+      }
+
+      if (!htmlContent) {
+        return;
+      }
+
+      event.preventDefault();
+
+      // Initialize TurndownService with options
       const turndownService = new TurndownService({
         headingStyle: 'atx',
-        emDelimiter: '*',
         codeBlockStyle: 'fenced',
+        emDelimiter: '*',
+        strongDelimiter: '**',
+        bulletListMarker: '-',
       });
-      const markdown = html ? turndownService.turndown(html) : plainText;
 
+      // Custom rule to handle headings
+      turndownService.addRule('customHeadings', {
+        filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+        replacement: function (content, node) {
+          const hLevel = Number(node.nodeName.charAt(1));
+          const hPrefix = '#'.repeat(hLevel) + ' ';
+          const textContent = node.textContent.trim();
+          return '\n\n' + hPrefix + textContent + '\n\n';
+        },
+      });
+
+      // Add rules to handle inline styles like italic, bold, and underline
+      turndownService.addRule('italicText', {
+        filter: function (node) {
+          return (
+            (node.nodeName === 'SPAN' && node.style.fontStyle === 'italic') ||
+            node.nodeName === 'I' ||
+            node.nodeName === 'EM'
+          );
+        },
+        replacement: function (content) {
+          return '*' + content + '*';
+        },
+      });
+
+      turndownService.addRule('boldText', {
+        filter: function (node) {
+          return (
+            (node.nodeName === 'SPAN' && node.style.fontWeight === 'bold') ||
+            node.nodeName === 'B' ||
+            node.nodeName === 'STRONG'
+          );
+        },
+        replacement: function (content) {
+          return '**' + content + '**';
+        },
+      });
+
+      turndownService.addRule('underlineText', {
+        filter: function (node) {
+          return (
+            (node.nodeName === 'SPAN' &&
+              node.style.textDecoration.includes('underline')) ||
+            node.nodeName === 'U'
+          );
+        },
+        replacement: function (content) {
+          return '<u>' + content + '</u>';
+        },
+      });
+
+      // Add a rule to ignore empty links
+      turndownService.addRule('ignoreEmptyLinks', {
+        filter: function (node) {
+          return (
+            node.nodeName === 'A' &&
+            (!node.textContent || node.textContent.trim() === '')
+          );
+        },
+        replacement: function () {
+          return ''; // Remove the link entirely
+        },
+      });
+
+      // Convert HTML to Markdown
+      let markdown = turndownService.turndown(htmlContent);
+
+      // Replace horizontal rules
+      markdown = markdown.replace(/^\\?-{2,}/gm, '* * *');
+
+      // Replace '--' with '—' (em dash)
+      markdown = markdown.replace(/--/g, '—');
+
+      // Insert the Markdown at the cursor position
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
       textarea.value =
