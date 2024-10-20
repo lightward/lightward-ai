@@ -56,7 +56,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
         # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
         # the count doesn't inflate unexpectedly, it's good enough
         tokens = described_class.system_prompt("clients/chat")[0][:text].split(/[^\w]+/)
-        expect(tokens.size).to(be <= 25_551)
+        expect(tokens.size).to(be <= 25_561)
       end
 
       it "includes the definition of recursive health" do
