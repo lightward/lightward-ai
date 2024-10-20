@@ -1,3 +1,5 @@
+// app/javascript/src/concerns/chat.js
+
 import { createConsumer } from '@rails/actioncable';
 
 function getCSRFToken() {
@@ -39,6 +41,8 @@ export const initChat = () => {
   let subscription;
   let sequenceQueue;
   let currentSequenceNumber;
+  let messageTimeout;
+  let errorHandled = false;
   const TIMEOUT_MS = 10000;
 
   // Prevent scroll jumping
@@ -105,7 +109,7 @@ export const initChat = () => {
     startOverButton.classList.remove('hidden');
     responseSuggestions.classList.add('hidden');
 
-    // autofocus if we're not on a touch screen and if the input is in view
+    // Autofocus if appropriate
     if (autofocusIsAppropriate && !('ontouchstart' in window)) {
       if (userInputArea.getBoundingClientRect().top < window.innerHeight) {
         userInput.focus();
@@ -146,7 +150,7 @@ export const initChat = () => {
     if (savedInputValue && userInput.value === '') {
       userInput.value = savedInputValue;
 
-      // trigger input event to resize textarea
+      // Trigger input event to resize textarea
       userInput.dispatchEvent(new Event('input'));
     }
 
@@ -181,7 +185,7 @@ export const initChat = () => {
   function submitUserInput(userMessage) {
     userMessage = userMessage.trim();
 
-    // ignore blank submissions
+    // Ignore blank submissions
     if (!userMessage) return;
 
     addMessage('user', userMessage);
@@ -201,7 +205,7 @@ export const initChat = () => {
   function fetchAssistantResponse() {
     hideResponseSuggestions();
 
-    // if this is the first message, hide the footer, for focus. otherwise, reveal it.
+    // Hide or show the footer based on message count
     if (chatLogData.length === 1) {
       footer.classList.add('hidden');
     } else {
@@ -227,7 +231,7 @@ export const initChat = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
-        currentAssistantMessageElement.innerText += ` [Lightward AI system error]\n\n${error.message}`;
+        appendSystemError(`Network error: ${error.message}`);
         enableUserInput();
         showResponseSuggestions();
       });
@@ -236,6 +240,7 @@ export const initChat = () => {
   function initializeConsumer(streamId) {
     sequenceQueue = [];
     currentSequenceNumber = 0;
+    errorHandled = false; // Reset error flag
 
     subscription = consumer.subscriptions.create(
       { channel: 'StreamChannel', stream_id: streamId },
@@ -243,8 +248,17 @@ export const initChat = () => {
         connected() {
           // Send a "ready" message to the server
           this.perform('ready');
+          // Start the message timeout
+          startMessageTimeout();
+        },
+        disconnected() {
+          // Handle disconnection during streaming
+          handleDisconnection();
         },
         received(data) {
+          // Reset the message timeout on receiving data
+          resetMessageTimeout();
+
           if (data && typeof data.sequence_number === 'number') {
             sequenceQueue.push(data);
             sequenceQueue.sort((a, b) => a.sequence_number - b.sequence_number);
@@ -264,35 +278,101 @@ export const initChat = () => {
             );
           }
         },
+        rejected() {
+          // Handle subscription rejection
+          handleRejection();
+        },
       }
     );
+  }
 
-    setTimeout(() => {
-      if (currentSequenceNumber < sequenceQueue[0]?.sequence_number) {
-        handleTimeoutError();
-      }
+  function startMessageTimeout() {
+    clearMessageTimeout();
+    messageTimeout = setTimeout(() => {
+      handleTimeoutError();
     }, TIMEOUT_MS);
   }
 
-  function handleTimeoutError() {
-    const errorMessage = `Error: Response timeout. Please try again.`;
-    currentAssistantMessageElement.innerText += ` ${errorMessage}`;
+  function resetMessageTimeout() {
+    clearMessageTimeout();
+    messageTimeout = setTimeout(() => {
+      handleTimeoutError();
+    }, TIMEOUT_MS);
+  }
 
-    chatLogData.push({
-      role: 'assistant',
-      content: [
-        {
-          type: 'text',
-          text: currentAssistantMessageElement.innerText,
-        },
-      ],
-    });
+  function clearMessageTimeout() {
+    if (messageTimeout) {
+      clearTimeout(messageTimeout);
+      messageTimeout = null;
+    }
+  }
+
+  function appendSystemError(errorMessage) {
+    if (errorHandled) return;
+    errorHandled = true;
+
+    const formattedErrorMessage = ` ⚠️\u00A0Lightward AI system error: ${errorMessage}`;
+    if (currentAssistantMessageElement) {
+      currentAssistantMessageElement.innerText += formattedErrorMessage;
+    } else {
+      // If there's no current assistant message, create one
+      currentAssistantMessageElement = addMessage(
+        'assistant',
+        formattedErrorMessage
+      );
+    }
+
+    // Update or add assistant message in chatLogData
+    if (
+      chatLogData.length > 0 &&
+      chatLogData[chatLogData.length - 1].role === 'assistant'
+    ) {
+      chatLogData[chatLogData.length - 1].content[0].text =
+        currentAssistantMessageElement.innerText;
+    } else {
+      chatLogData.push({
+        role: 'assistant',
+        content: [
+          { type: 'text', text: currentAssistantMessageElement.innerText },
+        ],
+      });
+    }
+
+    // Persist chat log data to localStorage
+    localStorage.setItem(
+      chatLogDataLocalstorageKey,
+      JSON.stringify(chatLogData)
+    );
+  }
+
+  function handleTimeoutError() {
+    appendSystemError(
+      'Your connection was lost during the reply. Please try again.'
+    );
+
+    subscription.unsubscribe();
+    enableUserInput();
+    showResponseSuggestions();
+  }
+
+  function handleDisconnection() {
+    appendSystemError('The connection was interrupted. Please try again.');
+
+    enableUserInput();
+    showResponseSuggestions();
+  }
+
+  function handleRejection() {
+    appendSystemError('Connection was rejected. Please try again later.');
 
     enableUserInput();
     showResponseSuggestions();
   }
 
   function processMessage(data) {
+    // Reset the message timeout every time we process a message
+    resetMessageTimeout();
+
     if (data.event === 'message_start') {
       if (currentAssistantMessageElement) {
         currentAssistantMessageElement.classList.remove('pulsing');
@@ -311,37 +391,43 @@ export const initChat = () => {
       // Handle message delta if needed
     } else if (data.event === 'message_stop') {
       const assistantMessage = currentAssistantMessageElement.innerText;
-      chatLogData.push({
-        role: 'assistant',
-        content: [{ type: 'text', text: assistantMessage }],
-      });
+
+      // Update or add assistant message in chatLogData
+      if (
+        chatLogData.length > 0 &&
+        chatLogData[chatLogData.length - 1].role === 'assistant'
+      ) {
+        chatLogData[chatLogData.length - 1].content[0].text = assistantMessage;
+      } else {
+        chatLogData.push({
+          role: 'assistant',
+          content: [{ type: 'text', text: assistantMessage }],
+        });
+      }
+
       userInputArea.classList.remove('disabled');
       userInputArea.classList.add('hidden');
       enableUserInput(true);
+
+      // Clear the message timeout as the message has completed
+      clearMessageTimeout();
     } else if (data.event === 'end') {
       subscription.unsubscribe();
       enableUserInput();
+
+      // Clear the message timeout as the stream has ended
+      clearMessageTimeout();
     } else if (data.event === 'ping') {
       // Handle ping if needed
     } else if (data.event === 'error') {
-      const errorMessage = `[System error]\n\n${data.data.error.message}`;
-      currentAssistantMessageElement.innerText += ` ${errorMessage}`;
-
-      chatLogData.push({
-        role: 'assistant',
-        content: [
-          {
-            type: 'text',
-            text: currentAssistantMessageElement.shadowRoot
-              .querySelector('zero-md')
-              .querySelector('script').textContent,
-          },
-        ],
-      });
+      appendSystemError(data.data.error.message);
 
       subscription.unsubscribe();
       enableUserInput();
       showResponseSuggestions();
+
+      // Clear the message timeout as an error occurred
+      clearMessageTimeout();
     }
 
     // Persist chat log data to localStorage
@@ -350,7 +436,7 @@ export const initChat = () => {
       JSON.stringify(chatLogData)
     );
 
-    // clear userInputLocalstorageKey, since the user has submitted their message
+    // Clear userInputLocalstorageKey, since the user has submitted their message
     localStorage.removeItem(userInputLocalstorageKey);
   }
 
@@ -415,6 +501,11 @@ export const initChat = () => {
         copyAllButton.innerText = originalText;
       }, 2000);
     });
+  });
+
+  // Clear message timeout when the window is unloaded
+  window.addEventListener('beforeunload', () => {
+    clearMessageTimeout();
   });
 
   handleUserInput();
