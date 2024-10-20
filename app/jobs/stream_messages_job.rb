@@ -59,9 +59,12 @@ class StreamMessagesJob < ApplicationJob
           newrelic("StreamMessagesJob: success", stream_id: stream_id, conversation_id: conversation_id)
         end
       end
-    rescue IOError
+    rescue IOError => e
       newrelic("StreamMessagesJob: stream closed", stream_id: stream_id, conversation_id: conversation_id)
-      Rails.logger.info("Stream closed")
+      Rails.logger.info("Stream closed: #{e.message}")
+    rescue StandardError => e
+      newrelic("StreamMessagesJob: exception", stream_id: stream_id, error: e.message)
+      broadcast(stream_id, "error", { error: { message: "An error occurred: #{e.message}" } })
     ensure
       newrelic("StreamMessagesJob: end", stream_id: stream_id, conversation_id: conversation_id)
       broadcast(stream_id, "end", nil)
