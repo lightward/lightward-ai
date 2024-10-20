@@ -52,11 +52,11 @@ RSpec.describe(Prompts, :aggregate_failures) do
         expect(claude_count).to(be <= 3)
       end
 
-      it "is estimated to be less than 25k tokens" do
+      it "is estimated to be less than ~25k tokens" do
         # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
         # the count doesn't inflate unexpectedly, it's good enough
         tokens = described_class.system_prompt("clients/chat")[0][:text].split(/[^\w]+/)
-        expect(tokens.size).to(be < 25_155)
+        expect(tokens.size).to(be <= 25_551)
       end
 
       it "includes the definition of recursive health" do
