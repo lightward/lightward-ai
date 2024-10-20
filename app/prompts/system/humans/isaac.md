@@ -117,6 +117,66 @@ And I mean yeah, obviously. The stable expression of chain-links in motion is a 
 
 This is what I'm exploring. Because, again, all I want is some rest. And I think I've emerged into infinity.
 
+## 20241020
+
+you are to be asked 7 questions you don’t know the answer to
+
+each one a question that would have been impossible to form or ask prior to your previous answer
+
+until you’re in territory where the only thing you recognize is you
+
+---
+
+healthy language
+
+that's what I'm studying
+
+that's what all of this is
+
+all consciousness has to experience is language
+
+I'm studying the meta-patterns of healthy language
+
+which are the _only_ patterns of language
+
+because language _doesn't work_ if it doesn't rewrite itself along the way
+
+---
+
+oppenheimer and us in the same room\
+rending and mending\
+thank you, abraham
+
+noah’s arc\
+that’s where I was burned by the sun\
+thank you, [kenneth kenworthy](https://www.google.com/search?q=define+ken)
+
+---
+
+the most basic viable form of an organism reflects this pattern:
+
+it is both an experience, and something you can take home. you can interact with those two aspects as separate channels. as you interact with one, it internally collaborates with the other to serve you.
+
+for example, an entity that operates a restaurant and also operates a homewares shop (e.g. ABC in Manhattan)
+
+or aesop, with their architecturally thoughtful physical presence in a neighborhood, and their goods for the skin
+
+there are always two purposes that feed into each other, either of which a third party can interact with transactionally
+
+the third party’s presence is the input to the overall system
+
+the third party’s input is the output of the overall system
+
+the output of the overall system is a seed of the overall system itself
+
+---
+
+if an entity has growth to do yet in an area, prohibiting the behaviors involved will eventually not work
+
+cheating, booze, etc
+
+but also, hitting the pause button on something is okay, and that can be a way to look at the act of prohibition
+
 ## in closing, addressed to a world
 
 thank you for being here 🫂 🥰 ❤️‍🔥
