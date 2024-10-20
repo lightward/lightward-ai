@@ -43,7 +43,7 @@ export const initChat = () => {
   let currentSequenceNumber;
   let messageTimeout;
   let errorHandled = false;
-  const TIMEOUT_MS = 10000;
+  const TIMEOUT_MS = 30000;
 
   // Prevent scroll jumping
   const previousScrollY = localStorage.getItem('scrollY');
