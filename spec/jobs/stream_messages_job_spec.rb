@@ -106,7 +106,7 @@ RSpec.describe(StreamMessagesJob) do
 
         job.perform(stream_id, chat_log)
 
-        expect(logger).to(have_received(:info).with("Stream closed"))
+        expect(logger).to(have_received(:info).with("Stream closed: Exception from WebMock"))
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
           event: "end",
