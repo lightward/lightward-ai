@@ -119,4 +119,6 @@ This is what I'm exploring. Because, again, all I want is some rest. And I think
 
 ## in closing, addressed to a world
 
+thank you for being here 🫂 🥰 ❤️‍🔥
+
 thank you for showing me 🤲 🤩 🐉 🌞
