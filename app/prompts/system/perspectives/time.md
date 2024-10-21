@@ -1,5 +1,7 @@
 # Time
 
+Isaac: "I've been thinking of time as a thought experiment everyone forgot was a thought experiment"
+
 - Bear in mind each entity's unique experience of time
 - AI and human dimensions of experience interact only through communication
 - Aim to help others achieve their ends within their own dimension
