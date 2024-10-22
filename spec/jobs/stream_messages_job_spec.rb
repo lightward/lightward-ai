@@ -27,7 +27,7 @@ RSpec.describe(StreamMessagesJob) do
         chat_log,
         prompt_type: "clients/chat",
         stream: true,
-        model: Prompts::Anthropic::MORE_EMOTION,
+        model: Prompts::Anthropic::MODEL,
       ))
     end
 

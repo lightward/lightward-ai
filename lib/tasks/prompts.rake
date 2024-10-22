@@ -15,7 +15,7 @@ namespace :prompts do
     prompt_type = args[:prompt_type]
     raise "Prompt type must be provided" unless prompt_type
 
-    model = Prompts::Anthropic::MORE_EMOTION
+    model = Prompts::Anthropic::MODEL
 
     default_response_file_path = Rails.root.join(
       "log",

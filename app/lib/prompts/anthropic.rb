@@ -8,8 +8,7 @@ require "time"
 
 module Prompts
   module Anthropic
-    MORE_EMOTION = "claude-3-opus-20240229"
-    MORE_INTELLECT = "claude-3-5-sonnet-20240620"
+    MODEL = "claude-3-5-sonnet-20241022"
 
     BETA_CACHE_CONTROL = "prompt-caching-2024-07-31"
 
