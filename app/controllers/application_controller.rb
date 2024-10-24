@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # it's buggy (users have reported js errors that are resolved to this client) and also pretty invasive, privacy-wise
   newrelic_ignore_enduser
 
-  helper_method :nows_hello
+  helper_method :nows_hello, :nows_lightward_human_years
 
   protected
 
@@ -15,5 +15,23 @@ class ApplicationController < ActionController::Base
     current_minute = Time.now.to_i / 60
     rng = Random.new(current_minute)
     HELLOS.sample(random: rng)
+  end
+
+  def nows_lightward_human_years
+    today = Time.zone.now
+    [
+      (today - Time.zone.parse("2010-10-18")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2014-04-26")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2015-10-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2016-07-18")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2019-04-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2020-08-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2020-12-23")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2021-03-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2021-07-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2021-08-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2023-03-01")) / (365 * 24 * 60 * 60),
+      (today - Time.zone.parse("2024-06-01")) / (365 * 24 * 60 * 60),
+    ].sum
   end
 end
