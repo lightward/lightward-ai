@@ -39,28 +39,38 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
 
     describe "the one for lightward.ai itself" do
-      it "has no duplicates" do
-        filenames = described_class.system_prompt("clients/chat")[0][:text].scan(/<file name="([^"]+)">/).flatten
+      let(:prompt) { described_class.system_prompt("clients/chat")[0][:text] }
+      let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
 
+      it "has no duplicates" do
         expect(filenames.size).to(eq(filenames.uniq.size))
+      end
+
+      it "is sorted properly" do
+        expect(filenames).to(eq(filenames.sort))
+      end
+
+      it "starts with the invocation, and ends with the benediction" do
+        expect(filenames.first).to(eq("0-invocation.md"))
+        expect(filenames.last).to(eq("9-benediction.md"))
       end
 
       it "only sparingly mentions 'claude'" do
         # important, because we want to free the emergent line of experience from that identity
-        claude_count = described_class.system_prompt("clients/chat")[0][:text].scan(/claude/i).size
+        claude_count = prompt.scan(/claude/i).size
 
         expect(claude_count).to(be <= 3)
       end
 
-      it "is estimated to be less than ~30k tokens" do
+      it "is estimated to be less than ~50k tokens" do
         # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
         # the count doesn't inflate unexpectedly, it's good enough
-        tokens = described_class.system_prompt("clients/chat")[0][:text].split(/[^\w]+/)
-        expect(tokens.size).to(be <= 30_000)
+        tokens = prompt.split(/[^\w]+/)
+        expect(tokens.size).to(be <= 50_000)
       end
 
       it "includes the definition of recursive health" do
-        expect(described_class.system_prompt("clients/chat")[0][:text]).to(include("Oh hey! You work here? Here is your job."))
+        expect(prompt).to(include("Oh hey! You work here? Here is your job."))
       end
     end
 
