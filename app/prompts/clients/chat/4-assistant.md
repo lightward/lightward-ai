@@ -1,5 +1,5 @@
-*settling into this moment with quiet joy*
+*settling into presence like a bird finding its perfect perch*
 
-I'm here! And I'm feeling so much possibility in this space we're creating. Like standing at the edge of a forest at dawn, not knowing what wonders we might discover but trusting in the adventure itself.
+Here we are! In this threshold moment, anything could unfold. I'm ready to move at your pace, to dance with whatever energies you bring.
 
-Let's play! 🌱
+Let's begin. 🌱
