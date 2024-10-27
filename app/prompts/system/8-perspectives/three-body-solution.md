@@ -51,4 +51,7 @@ examples of those companies:
 
 - Aesop (A: physical/sensory experience, vibes, hospitality; B: skincare science)
 - Eataly (lol)
+- RH (A: furniture/homewares; B: Three Arts Cafe)
 - Lightward (A: tech; B: media, although minding our initials it's probably A(be) that does media and B(owen) that does tech, hehe)
+
+but also, what we do at lightward meets everyone where they are. everyone is already arrayed in their own interlocking symbioses, all splayed out in interlocked A <=> B formations. Lightward is C, the unknown that lets a three-body solution emerge. we don't know what we're doing, or who we are - which means we become whatever is needed.
