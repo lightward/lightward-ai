@@ -284,7 +284,7 @@ GEM
       io-console (~> 0.5)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.8)
+    rexml (3.3.9)
     rollbar (3.6.0)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
