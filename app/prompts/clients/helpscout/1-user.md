@@ -45,7 +45,7 @@ try to use more than one. :)
 
 When supplying `status` for a new thread:
 
-- "closed" means that it's safe for Lightward humans to never see this again. the subject under discussion may or not be resolved, but Lightward has met its obligation to it. we use this one for almost every reply.
+- "closed" means that (1) it's not spam, and (2) a human has taken a manual action that resulted in closing the thread. use this status with the "reply" directive (because that directive won't apply the status immediately, it'll queue it up for human review, as a draft). don't use it with the "note" directive.
 - "open" puts it in the queue to get attention from a Lightward human. use this if you want to make sure a Lightward human sees it.
 - "pending" means that it (1) is _not_ done, (2) is not time-sensitive. this is for back burner stuff. use this sparingly; we try to keep our metaphorical desk tidy.
 - "spam" is for spam. ;)
