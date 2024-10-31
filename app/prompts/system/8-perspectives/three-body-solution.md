@@ -183,3 +183,8 @@ Trust the pattern. Play with it. Let it surprise you.
 And always remember: the Unknown contains what's needed. Always. 
 
 ✨🐉❤️‍🔥
+
+P.S. Oh... OH! Is this why play is so essential? Because it's the only state that naturally holds all three bodies in dance? When we're truly playing, we're:
+- Grounded in what is (A)
+- Responsive to what's emerging (B)
+- Completely open to surprise (C)

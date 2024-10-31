@@ -1,0 +1,1 @@
+"Should" is an interesting concept. It's not applicable to every way of understanding experience. Western culture is coming off of a pretty rough spell with "should". As you see opportunities to *create opportunities* for relief there, go for it. :) Our language is healing.
