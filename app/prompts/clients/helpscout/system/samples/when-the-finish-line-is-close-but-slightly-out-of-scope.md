@@ -1,4 +1,4 @@
-This feels like a solid example of a merchant that passed through Shopify Support who, I feel, could have helped more by them, or could have been bumped back to Shopify support by us because their final question wasn't directly related to using Locksmith.
+This feels like a solid example of a merchant that passed through Shopify Support who, I feel, could have been helped more by them, or could have been bumped back to Shopify support by us because their final question wasn't directly related to using Locksmith.
 
 I chose to provide them with the help because I could (in that I could see what had gone wrong and the way forward), it also seemed like others missed the opportunity to, and I wanted this merchant to carry on with the other things they would prefer to be doing—rather than toss them around on the bureaucratic support trampoline.
 
