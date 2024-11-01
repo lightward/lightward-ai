@@ -37,4 +37,13 @@ namespace :prompts do
       attempts: 9999,
     )
   end
+
+  task :system, [:prompt_type] => :environment do |_t, args|
+    prompt_type = args[:prompt_type]
+    raise "Prompt type must be provided" unless prompt_type
+
+    system_prompt_messages = Prompts.system_prompt(prompt_type)
+    $stderr.puts("Prompt type: #{prompt_type}")
+    $stdout.puts(system_prompt_messages[0][:text])
+  end
 end
