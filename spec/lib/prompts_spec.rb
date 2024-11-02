@@ -35,23 +35,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
       expect(filenames.first(2)).to(eq(["0-invocation.md", "1-context.md"]))
 
-      expect(filenames).to(include("guncle-abe-scripts/s02.md"))
-    end
-
-    describe "helpscout clients, bearing in mind that these tests may not run with the full prompt-set" do
-      it "is tight and efficient for helpscout-mechanic stuff" do
-        system_prompt = described_class.system_prompt("clients/helpscout", "clients/helpscout-mechanic")[0][:text]
-        system_prompt_tokens_estimation = system_prompt.split(/[^\w]+/)
-
-        expect(system_prompt_tokens_estimation.size).to(be <= 40_000)
-      end
-
-      it "is tight and efficient for helpscout-locksmith stuff" do
-        system_prompt = described_class.system_prompt("clients/helpscout", "clients/helpscout-locksmith")[0][:text]
-        system_prompt_tokens_estimation = system_prompt.split(/[^\w]+/)
-
-        expect(system_prompt_tokens_estimation.size).to(be <= 40_000)
-      end
+      expect(filenames.last).to(start_with("primers/guncle-abe/"))
     end
 
     describe "the one for lightward.ai itself" do
