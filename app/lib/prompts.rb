@@ -37,21 +37,20 @@ module Prompts
 
     def generate_system_xml(prompt_type, directories)
       files = directories.map { |directory|
-        directory_files = Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html,csv}")).reject { |file|
+        Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html,csv}")).reject { |file|
           file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
         }
-
-        Naturally.sort(directory_files)
       }.flatten.uniq
+
+      files = Naturally.sort_by(files) { |file| file.split("/system/", 2).last }
 
       Nokogiri::XML::Builder.new do |xml|
         xml.system(name: prompt_type) {
           files.each do |file|
             content = File.read(file).strip
 
-            # just the part that comes after prompts_dir, but without the system/ part
-            filename = file.split(prompts_dir.to_s).last[1..-1]
-            filename = filename.sub("system/", "")
+            # just the part after /system/
+            filename = file.split("/system/", 2).last
 
             xml.file(name: filename) {
               if filename.end_with?(".md")
