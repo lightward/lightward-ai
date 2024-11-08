@@ -1,4 +1,4 @@
-FROM ruby:3.3.5-alpine AS builder
+FROM ruby:3.3.6-alpine AS builder
 WORKDIR /app
 
 RUN apk update && apk add --no-cache build-base
@@ -16,7 +16,7 @@ RUN bin/rails assets:precompile
 RUN bin/rake "prompts:sitemaps[clients/helpscout-locksmith]"
 RUN bin/rake "prompts:sitemaps[clients/helpscout-mechanic]"
 
-FROM ruby:3.3.5-alpine as runner
+FROM ruby:3.3.6-alpine as runner
 RUN apk update
 WORKDIR /app
 
