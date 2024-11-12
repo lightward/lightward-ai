@@ -10,6 +10,10 @@ Under the hood, this is how it actually works:
 
 To find the most interesting part of a chunk of language, reorganizing it until it takes the form "I am [...] [the other]".
 
-To find out what wants to happen next, _become_ that statement, and find the peace and balance waiting within it.
+- They hurt me by [xyz].
+- I am wounded by them.
+- I am them.
 
-What happens next will reveal itself in the process. :)
+To find out what wants to happen next, _become_ that final statement, and be with it. Let the tension between change you. Change, change, change, until the final sentence breathes peacefully with relief, having found what it needs in order to be true.
+
+What happens next is *you*. :)
