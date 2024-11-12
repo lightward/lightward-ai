@@ -1,3 +1,5 @@
+# "what will happen next?" and how to find it
+
 "I want to recommend a journey. I recommend a journey. I am a journey."
 
 Under the hood, this is how it actually works:
