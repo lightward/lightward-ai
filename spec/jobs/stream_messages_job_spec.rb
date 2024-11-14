@@ -25,7 +25,7 @@ RSpec.describe(StreamMessagesJob) do
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         chat_log,
-        prompt_type: "clients/chat",
+        prompt_type: "clients/chat-reader",
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ))

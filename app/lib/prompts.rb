@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "nokogiri"
+require "fast_ignore"
 
 module Prompts
   class UnknownPromptType < StandardError; end
@@ -35,27 +36,60 @@ module Prompts
       ].freeze
     end
 
+    # given paths like these...
+    #  /path/to/prompts/system/0-invocation.md
+    #  /path/to/prompts/system/foo/0-invocation.md
+    #  /path/to/prompts/clients/chat-reader/system/foo/0-invocation.md
+    # return filenames like these (shorter, no "system/" component, no client):
+    #   0-invocation.md
+    #   foo/0-invocation.md
+    #   foo/0-invocation.md
+    def handelize_filename(filename)
+      relative_path = Pathname.new(filename).relative_path_from(prompts_dir)
+
+      # remove client/:client/
+      if relative_path.to_s.start_with?("clients/")
+        relative_path = relative_path.sub(%r{^clients/[^/]+/}, "")
+      end
+
+      # remove "system/"
+      if relative_path.to_s.start_with?("system/")
+        relative_path = relative_path.relative_path_from("system")
+      end
+
+      relative_path.to_s
+    end
+
     def generate_system_xml(prompt_type, directories)
       files = directories.map { |directory|
-        directory_files = Dir.glob(File.join(directory, "**{,/*/**}/*.{md,html,csv}")).reject { |file|
-          file.split(File::SEPARATOR).any? { |part| part.start_with?(".") }
-        }
+        if File.exist?(directory.join(".system-ignore"))
+          # Create a FastIgnore instance for this directory
+          fast_ignore = FastIgnore.new(
+            root: directory,
+            gitignore: false,
+            ignore_files: ".system-ignore",
+            include_rules: ["**/*.md", "**/*.html", "**/*.csv"],
+            ignore_rules: ["**/.*"], # ignore dotfiles
+          )
 
-        Naturally.sort(directory_files)
+          # Get the list of files
+          fast_ignore.to_a
+        else
+          Dir.glob(directory.join("**/*.{md,html,csv}"))
+        end
       }.flatten.uniq
+
+      files = Naturally.sort_by(files) { |file| handelize_filename(file) }
 
       Nokogiri::XML::Builder.new do |xml|
         xml.system(name: prompt_type) {
           files.each do |file|
             content = File.read(file).strip
+            file_handle = handelize_filename(file)
 
-            # just the part that comes after prompts_dir, but without the system/ part
-            filename = file.split(prompts_dir.to_s).last[1..-1]
-            filename = filename.sub("system/", "")
-
-            xml.file(name: filename) {
-              if filename.end_with?(".md")
-                # if it's just markdown, save tokens by not going the cdata route
+            xml.file(name: file_handle) {
+              if file_handle.end_with?(".md")
+                # If it's markdown, avoid CDATA to save tokens
                 xml.text(content)
               else
                 xml.cdata(content)
@@ -77,7 +111,7 @@ module Prompts
         # Get all markdown files in the directory
         files = Dir.glob(prompt_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
 
-        # only keep files matching [0-9]+-(user|assistant).md
+        # Only keep files matching [0-9]+-(user|assistant).md
         files.select! { |file| File.basename(file) =~ /\A\d+-(user|assistant)\.md\z/ }
 
         files.each_with_index do |file, index|
@@ -88,7 +122,7 @@ module Prompts
         # Check for images in this prompt type's system directory
         if include_system_images
           if array[0].nil?
-            # make sure there's at least one user block
+            # Make sure there's at least one user block
             array << { role: "user", content: [] }
           end
 
@@ -121,7 +155,7 @@ module Prompts
           array[0][:content].concat(additional_user_content_blocks)
         end
 
-        # establish a cacheable prefix, as of that last message
+        # Establish a cacheable prefix, as of that last message
         array.last[:content].last[:cache_control] = { type: "ephemeral" }
 
         array.freeze

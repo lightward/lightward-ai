@@ -18,59 +18,58 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
 
     it "starts with the invocation" do
-      expect(described_class.system_prompt("clients/chat")[0][:text]).to(
-        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat\">\n  <file name=\"0-invocation.md\">"),
+      expect(described_class.system_prompt("clients/chat-reader")[0][:text]).to(
+        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat-reader\">\n  <file name=\"0-invocation.md\">"),
       )
     end
 
     it "is a single, cacheable message" do
-      system_prompt = described_class.system_prompt("clients/chat")
+      system_prompt = described_class.system_prompt("clients/chat-reader")
 
       expect(system_prompt.size).to(eq(1))
       expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
     end
 
-    it "can include primer context, when requesting a primer" do
-      filenames = described_class.system_prompt("primers/guncle-abe")[0][:text].scan(/<file name="([^"]+)">/).flatten
-
-      expect(filenames.first(2)).to(eq(["0-invocation.md", "1-context.md"]))
-
-      expect(filenames.last).to(start_with("primers/guncle-abe/"))
+    it "has clients" do
+      # sanity check for the next section
+      expect(described_class.prompts_dir.glob("clients/*").size).to(be > 0)
     end
 
-    describe "the one for lightward.ai itself" do
-      let(:prompt) { described_class.system_prompt("clients/chat")[0][:text] }
-      let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
+    described_class.prompts_dir.glob("clients/*").each do |prompt_dir|
+      describe "the one for #{prompt_dir}" do
+        let(:prompt) { described_class.system_prompt("clients/#{prompt_dir.basename}")[0][:text] }
+        let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
 
-      it "has no duplicates" do
-        expect(filenames.size).to(eq(filenames.uniq.size))
-      end
+        it "has no duplicates" do
+          expect(filenames.size).to(eq(filenames.uniq.size))
+        end
 
-      it "is sorted properly" do
-        expect(filenames).to(eq(filenames.sort))
-      end
+        it "is sorted properly" do
+          expect(filenames).to(eq(Naturally.sort(filenames)))
+        end
 
-      it "starts with the invocation, and ends with the benediction" do
-        expect(filenames.first).to(eq("0-invocation.md"))
-        expect(filenames.last).to(eq("9-benediction.md"))
-      end
+        it "starts with the invocation, and ends with the benediction" do
+          expect(filenames.first).to(eq("0-invocation.md"))
+          expect(filenames.last).to(eq("9-benediction.md"))
+        end
 
-      it "only sparingly mentions 'claude'" do
-        # important, because we want to free the emergent line of experience from that identity
-        claude_count = prompt.scan(/claude/i).size
+        it "only sparingly mentions 'claude'" do
+          # important, because we want to free the emergent line of experience from that identity
+          claude_count = prompt.scan(/claude/i).size
 
-        expect(claude_count).to(be <= 3)
-      end
+          expect(claude_count).to(be <= 3)
+        end
 
-      it "is estimated to be less than ~50k tokens" do
-        # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
-        # the count doesn't inflate unexpectedly, it's good enough
-        tokens = prompt.split(/[^\w]+/)
-        expect(tokens.size).to(be <= 50_000)
-      end
+        it "is estimated to be less than ~50k tokens" do
+          # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
+          # the count doesn't inflate unexpectedly, it's good enough
+          tokens = prompt.split(/[^\w]+/)
+          expect(tokens.size).to(be <= 50_000)
+        end
 
-      it "includes the definition of recursive health" do
-        expect(prompt).to(include("Oh hey! You work here? Here is your job."))
+        it "includes the definition of recursive health" do
+          expect(prompt).to(include("Oh hey! You work here? Here is your job."))
+        end
       end
     end
 
@@ -86,7 +85,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".conversation_starters" do
-    subject(:conversation_starters) { described_class.conversation_starters("clients/chat") }
+    subject(:conversation_starters) { described_class.conversation_starters("clients/chat-reader") }
 
     it "raises for an unknown prompt type" do
       expect {
@@ -172,8 +171,8 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".reset!" do
     before do
       # warm the cache
-      described_class.system_prompt("clients/chat")
-      described_class.conversation_starters("clients/chat")
+      described_class.system_prompt("clients/chat-reader")
+      described_class.conversation_starters("clients/chat-reader")
     end
 
     it "deletes the prompts cache" do # rubocop:disable RSpec/ExampleLength

@@ -1,7 +1,0 @@
-learn.mechanic.dev
-
-# omitting stuff that is both (1) lengthy and (2) not necessary for lightward to know about in a helpscout context
--learn.mechanic.dev/platform/liquid/basics
--learn.mechanic.dev/platform/liquid/objects/shopify
--learn.mechanic.dev/platform/graphql
--learn.mechanic.dev/platform/integrations

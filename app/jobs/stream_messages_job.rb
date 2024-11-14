@@ -37,7 +37,7 @@ class StreamMessagesJob < ApplicationJob
     begin
       Prompts::Anthropic.process_messages(
         chat_log,
-        prompt_type: "clients/chat",
+        prompt_type: "clients/chat-reader",
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ) do |request, response|
