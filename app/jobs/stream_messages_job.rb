@@ -38,6 +38,7 @@ class StreamMessagesJob < ApplicationJob
       Prompts::Anthropic.process_messages(
         chat_log,
         prompt_type: "clients/chat-reader",
+        system_prompt_types: ["lib/deepening", "clients/chat-reader"],
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ) do |request, response|
