@@ -70,11 +70,15 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     describe "clients/helpscout" do
       it "includes the helpscout api docs" do
-        expect(described_class.generate_system_prompt("clients/helpscout")[0][:text]).to(include("helpscout-api/conversation.md"))
+        expect(
+          described_class.generate_system_xml("clients/helpscout", for_prompt_type: "clients/helpscout"),
+        ).to(include("helpscout-api/conversation.md"))
       end
 
       it "includes pwfg" do
-        expect(described_class.generate_system_prompt("clients/helpscout")[0][:text]).to(include("pwfg.md"))
+        expect(
+          described_class.generate_system_xml("clients/helpscout", for_prompt_type: "clients/helpscout"),
+        ).to(include("pwfg.md"))
       end
     end
   end

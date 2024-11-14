@@ -77,7 +77,7 @@ module Prompts
     end
 
     def generate_system_xml(directories, for_prompt_type:)
-      files = directories.map { |directory|
+      files = [prompts_dir] + directories.map { |directory|
         directory_pathname = Pathname.new(directory)
 
         if directory_pathname.join(".system-ignore").exist?
@@ -86,7 +86,7 @@ module Prompts
             root: directory,
             gitignore: false,
             ignore_files: ".system-ignore",
-            include_rules: ["**/*.md", "**/*.html", "**/*.csv"],
+            include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv"],
             ignore_rules: ["**/.*"], # ignore dotfiles
           )
 
