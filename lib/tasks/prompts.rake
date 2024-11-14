@@ -31,6 +31,9 @@ namespace :prompts do
   end
 
   task :system, [] => :environment do
+    # ensure log/prompts exists
+    FileUtils.mkdir_p(Rails.root.join("log/prompts"))
+
     xml = Prompts.generate_system_xml(["clients/chat-ooo"], for_prompt_type: "clients/chat-ooo")
     Rails.root.join("log/prompts/clients-chat-ooo.xml").write(xml)
 
