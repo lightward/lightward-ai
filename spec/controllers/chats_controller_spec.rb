@@ -14,39 +14,55 @@ RSpec.describe(ChatsController, :aggregate_failures) do
   describe "POST #message" do
     let(:valid_chat_log) do
       [
-        { role: "user", content: { type: "text", text: "Hello" } },
-        { role: "assistant", content: { type: "text", text: "Hi there!" } },
+        { role: "user", content: [{ type: "text", text: "Hello" }] },
+        { role: "assistant", content: [{ type: "text", text: "Hi there!" }] },
       ]
     end
 
     let(:invalid_chat_log) { [{}] }
+
+    let(:permitted_params) {
+      valid_chat_log.map { |entry|
+        ActionController::Parameters.new(entry).permit(:role, content: [:type, :text]).to_h.with_indifferent_access
+      }
+    }
 
     before do
       allow(SecureRandom).to(receive(:uuid).and_return("test-uuid"))
       allow(StreamMessagesJob).to(receive(:perform_later))
     end
 
-    context "with valid chat_log params" do
-      it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+    it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do
+      post :message, params: { chat_log: valid_chat_log }
+
+      expect(response).to(have_http_status(:ok))
+      expect(JSON.parse(response.body)).to(eq("stream_id" => "test-uuid"))
+
+      expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "reader", array_including(permitted_params[0], permitted_params[1])))
+    end
+
+    context "when the first message is 'ooo, fun' and the user is a writer" do
+      let(:valid_chat_log) do
+        [
+          { role: "user", content: [{ type: "text", text: "ooo, fun" }] },
+        ]
+      end
+
+      before do
+        allow(controller).to(receive(:current_user).and_return(instance_double(User, writer?: true)))
+      end
+
+      it "uses the writer client if the user is a writer and the first message is 'ooo, fun'" do
         post :message, params: { chat_log: valid_chat_log }
 
-        expect(response).to(have_http_status(:ok))
-        expect(JSON.parse(response.body)).to(eq("stream_id" => "test-uuid"))
-
-        permitted_params = valid_chat_log.map { |entry|
-          ActionController::Parameters.new(entry).permit(:role, content: [:type, :text]).to_h.with_indifferent_access
-        }
-
-        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", array_including(permitted_params[0], permitted_params[1])))
+        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "writer", [permitted_params[0]]))
       end
     end
 
-    context "with invalid chat_log params" do
-      it "raises a ParameterMissing error" do
-        expect {
-          post(:message, params: { chat_log: invalid_chat_log })
-        }.to(raise_error(ActionController::ParameterMissing))
-      end
+    it "raises a ParameterMissing error if chat_log is invalid" do
+      expect {
+        post(:message, params: { chat_log: invalid_chat_log })
+      }.to(raise_error(ActionController::ParameterMissing))
     end
 
     describe "permitted_chat_log_params" do

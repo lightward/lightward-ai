@@ -7,6 +7,7 @@ RSpec.describe(StreamMessagesJob) do
   include ActiveSupport::Testing::TimeHelpers
 
   let(:chat_log) { [{ role: "user", content: [{ type: "text", text: "Hello" }] }] }
+  let(:chat_client) { "reader" }
   let(:stream_id) { "test_stream_id" }
   let(:stream_ready_key) { "stream_ready_#{stream_id}" }
   let(:job) { described_class.new }
@@ -18,10 +19,10 @@ RSpec.describe(StreamMessagesJob) do
   end
 
   describe "#perform" do
-    it "uses the correct model and prompt type" do # rubocop:disable RSpec/ExampleLength
+    it "does the normal thing, normally" do # rubocop:disable RSpec/ExampleLength
       allow(Prompts::Anthropic).to(receive(:process_messages))
 
-      job.perform(stream_id, chat_log)
+      job.perform(stream_id, chat_client, chat_log)
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         chat_log,
@@ -41,7 +42,7 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "broadcasts an error and raises an exception", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        expect { job.perform(stream_id, chat_log) }.to(raise_error("Stream not ready in time"))
+        expect { job.perform(stream_id, chat_client, chat_log) }.to(raise_error("Stream not ready in time"))
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
           event: "error",
@@ -72,7 +73,7 @@ RSpec.describe(StreamMessagesJob) do
 
       it "handles the rate limit error" do # rubocop:disable RSpec/ExampleLength
         freeze_time do
-          job.perform(stream_id, chat_log)
+          job.perform(stream_id, chat_client, chat_log)
           expect(ActionCable.server).to(have_received(:broadcast).with(
             "stream_channel_#{stream_id}",
             event: "error",
@@ -83,7 +84,7 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "reports it to newrelic" do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "StreamMessagesJob: rate limit exceeded",
@@ -105,7 +106,7 @@ RSpec.describe(StreamMessagesJob) do
         logger = instance_spy(Logger)
         allow(Rails).to(receive(:logger).and_return(logger))
 
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(logger).to(have_received(:info).with("Stream closed: Exception from WebMock"))
         expect(ActionCable.server).to(have_received(:broadcast).with(
@@ -127,7 +128,7 @@ RSpec.describe(StreamMessagesJob) do
         logger = instance_spy(Logger)
         allow(Rails).to(receive(:logger).and_return(logger))
 
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(logger).to(have_received(:warn).with("Unknown line format: unknown: message"))
       end
@@ -140,7 +141,7 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "processes the response and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
@@ -159,7 +160,7 @@ RSpec.describe(StreamMessagesJob) do
       it "reports it to newrelic" do # rubocop:disable RSpec/ExampleLength
         allow(NewRelic::Agent).to(receive(:record_custom_event))
 
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "Anthropic API call",
@@ -181,7 +182,7 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "processes each line and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
@@ -211,7 +212,7 @@ RSpec.describe(StreamMessagesJob) do
       end
 
       it "processes the data event and broadcasts it", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
-        job.perform(stream_id, chat_log)
+        job.perform(stream_id, chat_client, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
@@ -259,7 +260,7 @@ RSpec.describe(StreamMessagesJob) do
 
       it "is called automatically before performing the job" do
         expect_any_instance_of(described_class).to(receive(:reset_prompts_in_development)) # rubocop:disable RSpec/AnyInstance
-        described_class.new(stream_id, chat_log).perform_now
+        described_class.new(stream_id, chat_client, chat_log).perform_now
       end
 
       it "resets prompts" do

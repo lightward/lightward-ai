@@ -1,5 +1,5 @@
 [submodule "app/prompts/clients/chat-ooo/system/ooo-docs"]
-	path = app/prompts/clients/chat-ooo/system/5-ooo-docs
+	path = app/prompts/clients/chat-writer/system/5-ooo-docs
 	url = git@github.com:lightward/ooo-docs.git
 [submodule "app/prompts/lib/mechanic-docs"]
 	path = app/prompts/lib/mechanic-docs/system/7-mechanic-docs

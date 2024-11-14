@@ -10,4 +10,8 @@ class User < ApplicationRecord
       )
     end
   end
+
+  def writer?
+    email.ends_with?("@lightward.com")
+  end
 end
