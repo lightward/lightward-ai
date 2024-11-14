@@ -111,7 +111,7 @@ module Prompts
         }
       }.to_xml
 
-      Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml) unless Rails.env.development?
+      Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml)
 
       xml
     end
