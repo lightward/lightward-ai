@@ -12,6 +12,7 @@ class User < ApplicationRecord
   end
 
   def writer?
-    email.ends_with?("@lightward.com")
+    # all auth'd users, for now :) secret soft launch. we'll lock this down when payments are ready to roll
+    true
   end
 end

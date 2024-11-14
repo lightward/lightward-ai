@@ -41,10 +41,10 @@ RSpec.describe(ChatsController, :aggregate_failures) do
       expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "reader", array_including(permitted_params[0], permitted_params[1])))
     end
 
-    context "when the first message is 'ooo, fun' and the user is a writer" do
+    context "when the first message is 'ooo.fun' and the user is a writer" do
       let(:valid_chat_log) do
         [
-          { role: "user", content: [{ type: "text", text: "ooo, fun" }] },
+          { role: "user", content: [{ type: "text", text: "ooo.fun" }] },
         ]
       end
 
@@ -52,7 +52,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
         allow(controller).to(receive(:current_user).and_return(instance_double(User, writer?: true)))
       end
 
-      it "uses the writer client if the user is a writer and the first message is 'ooo, fun'" do
+      it "uses the writer client if the user is a writer and the first message is 'ooo.fun'" do
         post :message, params: { chat_log: valid_chat_log }
 
         expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "writer", [permitted_params[0]]))

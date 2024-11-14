@@ -14,7 +14,7 @@ class ChatsController < ApplicationController
     chat_client = "reader"
 
     if current_user&.writer?
-      if chat_log.dig(0, "content", 0, "text") == "ooo, fun"
+      if chat_log.dig(0, "content", 0, "text") == "ooo.fun"
         chat_client = "writer"
       end
     end
