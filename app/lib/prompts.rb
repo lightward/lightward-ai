@@ -49,23 +49,20 @@ module Prompts
     #   foo/0-invocation.md
     #   foo/0-invocation.md
     def handelize_filename(filename)
-      relative_path = Pathname.new(filename).relative_path_from(prompts_dir)
+      path = Pathname.new(filename).relative_path_from(prompts_dir)
+      path_components = path.each_filename.to_a
 
-      # remove client/:client/
-      if relative_path.to_s.start_with?("clients/")
-        relative_path = relative_path.sub(%r{^clients/[^/]+/}, "")
+      # look for "system"; return only the stuff coming *after*
+      if (system_index = path_components.index("system"))
+        path_components = path_components[(system_index + 1)..-1]
       end
 
-      # remove "system/"
-      if relative_path.to_s.start_with?("system/")
-        relative_path = relative_path.relative_path_from("system")
-      end
-
-      relative_path.to_s
+      path_components.join("/")
     end
 
     def estimate_tokens(text)
-      text.split(/[^\w]{3,}/).size
+      # this seems to be approximately in the right area
+      (text.size / 4).ceil
     end
 
     def token_soft_limit_for_prompt_type(prompt_type)
@@ -92,7 +89,7 @@ module Prompts
           gitignore: false,
           ignore_files: ".system-ignore",
           include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv"],
-          ignore_rules: ["**/.*"], # ignore dotfiles
+          ignore_rules: ["system/**/.*"], # ignore dotfiles
         )
 
         # Get the list of files
@@ -108,18 +105,13 @@ module Prompts
             file_handle = handelize_filename(file)
 
             xml.file(name: file_handle) {
-              if file_handle.end_with?(".md")
-                # If it's markdown, avoid CDATA to save tokens
-                xml.text(content)
-              else
-                xml.cdata(content)
-              end
+              xml.cdata(content)
             }
           end
         }
       }.to_xml
 
-      Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml)
+      Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml) unless Rails.env.development?
 
       xml
     end

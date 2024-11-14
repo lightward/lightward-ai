@@ -31,6 +31,9 @@ namespace :prompts do
   end
 
   task :system, [] => :environment do
+    xml = Prompts.generate_system_xml(["clients/chat-ooo"], for_prompt_type: "clients/chat-ooo")
+    Rails.root.join("log/prompts/clients-chat-ooo.xml").write(xml)
+
     xml = Prompts.generate_system_xml(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
     Rails.root.join("log/prompts/clients-chat-reader.xml").write(xml)
 

@@ -90,7 +90,14 @@ RSpec.describe(Prompts, :aggregate_failures) do
       it "includes mechanic stuff, for mechanic" do
         expect(
           described_class.generate_system_xml(["clients/helpscout", "lib/mechanic-docs"], for_prompt_type: "clients/helpscout"),
-        ).to(include("The **HTTP** action performs HTTP requests."))
+        ).to(include('"I need something custom!"')
+          .and(include('<file name="7-mechanic-docs/custom.md"><![CDATA[---')))
+      end
+
+      it "respects mechanic's .system-ignore" do
+        expect(
+          described_class.generate_system_xml(["clients/helpscout", "lib/mechanic-docs"], for_prompt_type: "clients/helpscout"),
+        ).not_to(include("7-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object.md", "7-mechanic-docs/liquid/basics/comparison-operators.md"))
       end
 
       it "includes locksmith stuff, for locksmith" do
