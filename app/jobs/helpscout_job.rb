@@ -5,8 +5,8 @@ class HelpscoutJob < ApplicationJob
   queue_with_priority PRIORITY_HELPSCOUT
 
   MAILBOX_LIBS = {
-    201764 => "lib/locksmith",
-    204960 => "lib/mechanic",
+    201764 => "lib/locksmith-docs",
+    204960 => "lib/mechanic-docs",
   }
 
   def perform(convo_id)
