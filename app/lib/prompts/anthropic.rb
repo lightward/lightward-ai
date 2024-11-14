@@ -44,16 +44,12 @@ module Prompts
         messages,
         prompt_type:,
         model:,
-        system_prompt_types: prompt_type,
+        system_prompt_types: [prompt_type],
         stream: false,
         &block
       )
-        system_prompt_types ||= [prompt_type]
-        system = Prompts.system_prompt(*system_prompt_types)
-
-        messages = Prompts.clean_chat_log(
-          Prompts.conversation_starters(prompt_type) + messages,
-        )
+        system = Prompts.generate_system_xml(system_prompt_types, for_prompt_type: prompt_type)
+        messages = Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages)
 
         payload = {
           model: model,

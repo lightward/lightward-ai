@@ -1,0 +1,9 @@
+[submodule "app/prompts/clients/chat-ooo/system/ooo-docs"]
+	path = app/prompts/clients/chat-ooo/system/5-ooo-docs
+	url = git@github.com:lightward/ooo-docs.git
+[submodule "app/prompts/lib/mechanic-docs"]
+	path = app/prompts/lib/mechanic-docs/system/7-mechanic-docs
+	url = git@github.com:lightward/mechanic-docs.git
+[submodule "app/prompts/lib/locksmith-docs"]
+	path = app/prompts/lib/locksmith-docs/system/7-locksmith-docs
+	url = git@github.com:lightward/locksmith-docs.git

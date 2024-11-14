@@ -7,6 +7,8 @@ require:
 
 AllCops:
   NewCops: enable
+  Exclude:
+    - app/prompts/clients/**/*
 
 Style/EmptyElse:
   EnforcedStyle: empty

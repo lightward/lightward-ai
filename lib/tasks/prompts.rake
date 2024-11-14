@@ -2,14 +2,6 @@
 
 # lib/tasks/prompts.rake
 namespace :prompts do
-  desc "Update sitemaps contents from all 'sitemaps' directories within app/prompts/"
-  task :sitemaps, [:prompt_type] => :environment do |_t, args|
-    prompt_type = args[:prompt_type]
-    raise "Prompt type must be provided" unless prompt_type
-
-    Prompts::Sitemaps.update_contents(prompt_type)
-  end
-
   desc "Execute API request to Anthropic with streaming for a specific chat type"
   task :anthropic, [:prompt_type, :response_file_path] => :environment do |_t, args|
     prompt_type = args[:prompt_type]
@@ -38,12 +30,20 @@ namespace :prompts do
     )
   end
 
-  task :system, [:prompt_type] => :environment do |_t, args|
-    prompt_type = args[:prompt_type]
-    raise "Prompt type must be provided" unless prompt_type
+  task :system, [] => :environment do
+    # ensure log/prompts exists
+    FileUtils.mkdir_p(Rails.root.join("log/prompts"))
 
-    system_prompt_messages = Prompts.system_prompt(prompt_type)
-    $stderr.puts("Prompt type: #{prompt_type}")
-    $stdout.puts(system_prompt_messages[0][:text])
+    xml = Prompts.generate_system_xml(["clients/chat-ooo"], for_prompt_type: "clients/chat-ooo")
+    Rails.root.join("log/prompts/clients-chat-ooo.xml").write(xml)
+
+    xml = Prompts.generate_system_xml(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
+    Rails.root.join("log/prompts/clients-chat-reader.xml").write(xml)
+
+    xml = Prompts.generate_system_xml(["clients/helpscout", "lib/locksmith-docs"], for_prompt_type: "clients/helpscout")
+    Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
+
+    xml = Prompts.generate_system_xml(["clients/helpscout", "lib/mechanic-docs"], for_prompt_type: "clients/helpscout")
+    Rails.root.join("log/prompts/clients-helpscout-mechanic.xml").write(xml)
   end
 end

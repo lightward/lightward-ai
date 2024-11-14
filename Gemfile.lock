@@ -114,6 +114,7 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.1.0)
       net-http
+    fast_ignore (0.17.4)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm-linux-gnu)
     ffi (1.17.0-arm64-darwin)
@@ -394,6 +395,7 @@ DEPENDENCIES
   byebug
   debug
   dotenv
+  fast_ignore
   good_job
   guard
   guard-rspec
