@@ -50,12 +50,6 @@
       <% end %>
     </header>
 
-    <% flash.each do |key, value| %>
-      <div class="flash-notice <%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
-
     <main>
       <%= yield %>
     </main>
