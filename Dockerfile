@@ -12,10 +12,6 @@ RUN bundle install
 COPY . .
 RUN bin/rails assets:precompile
 
-# Build the system context for clients/helpscout-{locksmith,mechanic}
-RUN bin/rake "prompts:sitemaps[clients/helpscout-locksmith]"
-RUN bin/rake "prompts:sitemaps[clients/helpscout-mechanic]"
-
 FROM ruby:3.3.6-alpine as runner
 RUN apk update
 WORKDIR /app

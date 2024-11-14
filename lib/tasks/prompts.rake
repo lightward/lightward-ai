@@ -2,14 +2,6 @@
 
 # lib/tasks/prompts.rake
 namespace :prompts do
-  desc "Update sitemaps contents from all 'sitemaps' directories within app/prompts/"
-  task :sitemaps, [:prompt_type] => :environment do |_t, args|
-    prompt_type = args[:prompt_type]
-    raise "Prompt type must be provided" unless prompt_type
-
-    Prompts::Sitemaps.update_contents(prompt_type)
-  end
-
   desc "Execute API request to Anthropic with streaming for a specific chat type"
   task :anthropic, [:prompt_type, :response_file_path] => :environment do |_t, args|
     prompt_type = args[:prompt_type]
@@ -42,7 +34,7 @@ namespace :prompts do
     prompt_type = args[:prompt_type]
     raise "Prompt type must be provided" unless prompt_type
 
-    system_prompt_messages = Prompts.system_prompt(prompt_type)
+    system_prompt_messages = Prompts.generate_system_prompt(prompt_type)
     $stderr.puts("Prompt type: #{prompt_type}")
     $stdout.puts(system_prompt_messages[0][:text])
   end

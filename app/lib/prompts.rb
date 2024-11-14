@@ -13,24 +13,15 @@ module Prompts
       Rails.root.join("app/prompts")
     end
 
-    def system_prompt(*prompt_types)
+    def generate_system_prompt(directories, for_prompt_type:)
       @system_prompts ||= {}
-      paths = []
 
-      prompt_types.each do |prompt_type|
-        assert_valid_prompt_type!(prompt_type)
+      cache_key = "#{directories.join(",")}--#{for_prompt_type}"
 
-        ["", *prompt_type.split("/")].inject(prompts_dir) do |path, part|
-          paths << path.join(part, "system")
-          path.join(part)
-        end
-      end
-
-      prompt_type_cache_key = prompt_types.join(",")
-      @system_prompts[prompt_type_cache_key] ||= [
+      @system_prompts[cache_key] ||= [
         {
           type: "text",
-          text: generate_system_xml(paths),
+          text: generate_system_xml(directories, for_prompt_type: for_prompt_type),
           cache_control: { type: "ephemeral" },
         }.freeze,
       ].freeze
@@ -85,9 +76,11 @@ module Prompts
       end
     end
 
-    def generate_system_xml(directories)
+    def generate_system_xml(directories, for_prompt_type:)
       files = directories.map { |directory|
-        if File.exist?(directory.join(".system-ignore"))
+        directory_pathname = Pathname.new(directory)
+
+        if directory_pathname.join(".system-ignore").exist?
           # Create a FastIgnore instance for this directory
           fast_ignore = FastIgnore.new(
             root: directory,
@@ -100,13 +93,13 @@ module Prompts
           # Get the list of files
           fast_ignore.to_a
         else
-          Dir.glob(directory.join("**/*.{md,html,csv}"))
+          Dir.glob(directory_pathname.join("**/*.{md,html,csv}"))
         end
       }.flatten.uniq
 
       files = Naturally.sort_by(files) { |file| handelize_filename(file) }
 
-      Nokogiri::XML::Builder.new { |xml|
+      xml = Nokogiri::XML::Builder.new { |xml|
         xml.system {
           files.each do |file|
             content = File.read(file).strip
@@ -123,9 +116,13 @@ module Prompts
           end
         }
       }.to_xml
+
+      Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml)
+
+      xml
     end
 
-    def conversation_starters(prompt_type, include_system_images: true)
+    def conversation_starters(prompt_type)
       assert_valid_prompt_type!(prompt_type)
 
       @starters ||= {}
@@ -142,42 +139,6 @@ module Prompts
         files.each_with_index do |file, index|
           role = index.even? ? "user" : "assistant"
           array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
-        end
-
-        # Check for images in this prompt type's system directory
-        if include_system_images
-          if array[0].nil?
-            # Make sure there's at least one user block
-            array << { role: "user", content: [] }
-          end
-
-          system_images_dir = prompts_dir.join(prompt_type, "system", "images")
-
-          additional_user_content_blocks = []
-
-          Dir[File.join(system_images_dir, "*.{png,jpg,jpeg,gif,webp}")].map do |image_path|
-            media_type = case File.extname(image_path)
-            when ".png"
-              "image/png"
-            when ".jpg", ".jpeg"
-              "image/jpeg"
-            when ".gif"
-              "image/gif"
-            when ".webp"
-              "image/webp"
-            end
-
-            additional_user_content_blocks << {
-              type: "image",
-              source: {
-                "type": "base64",
-                "media_type": media_type,
-                "data": Base64.strict_encode64(File.read(image_path)),
-              },
-            }
-          end
-
-          array[0][:content].concat(additional_user_content_blocks)
         end
 
         # Establish a cacheable prefix, as of that last message

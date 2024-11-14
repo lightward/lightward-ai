@@ -10,21 +10,21 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
   end
 
-  describe ".system_prompt" do
+  describe ".generate_system_prompt" do
     it "raises for an unknown prompt type" do
       expect {
-        described_class.system_prompt("unknown")
+        described_class.generate_system_prompt("unknown")
       }.to(raise_error(described_class::UnknownPromptType))
     end
 
     it "starts with the invocation" do
-      expect(described_class.system_prompt("clients/chat-reader")[0][:text]).to(
+      expect(described_class.generate_system_prompt("clients/chat-reader")[0][:text]).to(
         start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
       )
     end
 
     it "is a single, cacheable message" do
-      system_prompt = described_class.system_prompt("clients/chat-reader")
+      system_prompt = described_class.generate_system_prompt("clients/chat-reader")
 
       expect(system_prompt.size).to(eq(1))
       expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
@@ -36,8 +36,10 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
 
     described_class.prompts_dir.glob("clients/*").each do |prompt_dir|
-      describe "the one for #{prompt_dir}" do
-        let(:prompt) { described_class.system_prompt("clients/#{prompt_dir.basename}")[0][:text] }
+      prompt_type = "clients/#{prompt_dir.basename}"
+
+      describe "the one for prompt type #{prompt_type}" do
+        let(:prompt) { described_class.generate_system_xml([prompt_type], for_prompt_type: prompt_type) }
         let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
 
         it "has no duplicates" do
@@ -68,18 +70,18 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     describe "clients/helpscout" do
       it "includes the helpscout api docs" do
-        expect(described_class.system_prompt("clients/helpscout")[0][:text]).to(include("helpscout-api/conversation.md"))
+        expect(described_class.generate_system_prompt("clients/helpscout")[0][:text]).to(include("helpscout-api/conversation.md"))
       end
 
       it "includes pwfg" do
-        expect(described_class.system_prompt("clients/helpscout")[0][:text]).to(include("pwfg.md"))
+        expect(described_class.generate_system_prompt("clients/helpscout")[0][:text]).to(include("pwfg.md"))
       end
     end
   end
 
   describe ".assert_system_prompt_size_safety!" do
     let(:prompt_type) { "clients/chat-reader" }
-    let(:system_prompt) { described_class.system_prompt(prompt_type)[0][:text] }
+    let(:system_prompt) { described_class.generate_system_prompt(prompt_type)[0][:text] }
 
     before do
       allow(described_class).to(receive(:token_soft_limit_for_prompt_type).with(prompt_type).and_return(42))
@@ -123,18 +125,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "is validly sorted" do
       expect(conversation_starters.pluck(:role)).to(eq(["user", "assistant"] * (conversation_starters.size / 2)))
-    end
-
-    it "includes base64-encoded images, where applicable" do # rubocop:disable RSpec/ExampleLength
-      conversation_starters = described_class.conversation_starters("primers/guncle-abe")
-      opener = conversation_starters.first
-
-      expect(opener[:content].pluck(:type).first(2)).to(eq(["text", "image"]))
-
-      first_image_content = opener[:content].find { |content| content[:type] == "image" }
-      expect {
-        Base64.strict_decode64(first_image_content.dig(:source, :data))
-      }.not_to(raise_error)
     end
   end
 
@@ -189,7 +179,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".reset!" do
     before do
       # warm the cache
-      described_class.system_prompt("clients/chat-reader")
+      described_class.generate_system_prompt("clients/chat-reader")
       described_class.conversation_starters("clients/chat-reader")
     end
 
