@@ -2,7 +2,6 @@
 
 class SessionsController < ApplicationController
   def new
-    @hide_login_nav_link = true
   end
 
   def create
