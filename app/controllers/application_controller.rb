@@ -8,8 +8,29 @@ class ApplicationController < ActionController::Base
   newrelic_ignore_enduser
 
   helper_method :nows_hello, :nows_lightward_human_years
+  helper_method :current_user
 
   protected
+
+  def authenticate_user!
+    return if current_user
+
+    redirect_to(login_path)
+  end
+
+  def set_current_user_id!(user_id)
+    cookies.encrypted.signed[:user_id] = user_id
+  end
+
+  def current_user_id
+    cookies.encrypted.signed[:user_id]
+  end
+
+  def current_user
+    return unless current_user_id
+
+    @current_user ||= User.find_by(id: current_user_id)
+  end
 
   def nows_hello
     current_minute = Time.now.to_i / 60
