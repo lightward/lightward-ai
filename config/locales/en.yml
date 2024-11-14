@@ -28,3 +28,4 @@
 #       enabled: "ON"
 
 en:
+  login_failed: 'Login failed'

@@ -1,0 +1,13 @@
+<% if current_user %>
+  <p>
+    You're already logged in. :) <a href="<%= root_path %>">Go to your chats?</a>
+  </p>
+<% else %>
+  <%= google_sign_in_button(proceed_to: create_login_path, class: 'text-button') do %>
+    Log in with Google
+  <% end %>
+
+  <p>
+    <a href="https://accounts.google.com/signup" target="_blank">Create a Google account</a>
+  </p>
+<% end %>

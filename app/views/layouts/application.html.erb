@@ -43,6 +43,11 @@
       <h1><%= nows_hello.html_safe %></h1>
 
       <a href="#" id="copy-all-button" class="hidden">Copy to clipboard</a>
+
+      <% if current_user %>
+        <%= current_user.email %>
+        <a href="<%= logout_path %>" id="logout-button">Logout</a>
+      <% end %>
     </header>
 
     <% flash.each do |key, value| %>

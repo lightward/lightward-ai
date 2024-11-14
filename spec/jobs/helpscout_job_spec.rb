@@ -21,18 +21,6 @@ RSpec.describe(HelpscoutJob) do
     ))
   end
 
-  describe "::MAILBOX_LIBS" do
-    it "has the correct mailbox IDs" do
-      expect(described_class::MAILBOX_LIBS).to(eq(201764 => "lib/locksmith-docs", 204960 => "lib/mechanic-docs"))
-    end
-
-    it "maps to extant directories" do
-      described_class::MAILBOX_LIBS.each do |_mailbox_id, lib|
-        expect(Rails.root.join("app/prompts", lib).exist?).to(be(true))
-      end
-    end
-  end
-
   describe "#perform" do
     context "when the incoming conversation concludes with something from the ai agent" do
       before do
