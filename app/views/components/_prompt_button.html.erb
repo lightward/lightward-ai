@@ -1,10 +1,8 @@
 <prompt-button>
   <template shadowrootmode="open">
     <%= stylesheet_link_tag 'components/prompt-button' %>
-
-    <button part="button">
-      <%= prompt %>
-    </button>
+    <%= pro = false unless defined? pro %>
+    <%= content_tag(:button, prompt, part: "button #{'pro' if pro}".strip, class: ("pro" if pro)) %>
   </template>
 
   <%= prompt %>

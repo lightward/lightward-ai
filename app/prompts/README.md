@@ -13,4 +13,4 @@ Here's where the prompts go. :)
 6. background context (free-for-all)
 7. foreground context (free-for-all)
 8. foreground-foreground context (free-for-all)
-9. benediction
+9. benediction (reserved for chat-reader)

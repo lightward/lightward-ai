@@ -10,7 +10,9 @@ class StreamMessagesJob < ApplicationJob
 
   queue_with_priority PRIORITY_STREAM_MESSAGES
 
-  def perform(stream_id, chat_log)
+  def perform(stream_id, chat_client, chat_log)
+    prompt_type = "clients/chat-#{chat_client}"
+
     # hash the first two chat log messages to get a unique identifier for the stream
     conversation_id = Digest::SHA256.hexdigest(chat_log.first(2).to_json)
 
@@ -37,8 +39,8 @@ class StreamMessagesJob < ApplicationJob
     begin
       Prompts::Anthropic.process_messages(
         chat_log,
-        prompt_type: "clients/chat-reader",
-        system_prompt_types: ["lib/deepening", "clients/chat-reader"],
+        prompt_type: prompt_type,
+        system_prompt_types: ["lib/deepening", prompt_type],
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ) do |request, response|

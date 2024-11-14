@@ -34,11 +34,11 @@ namespace :prompts do
     # ensure log/prompts exists
     FileUtils.mkdir_p(Rails.root.join("log/prompts"))
 
-    xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-ooo"], for_prompt_type: "clients/chat-ooo")
-    Rails.root.join("log/prompts/clients-chat-ooo.xml").write(xml)
-
     xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-reader"], for_prompt_type: "clients/chat-reader")
     Rails.root.join("log/prompts/clients-chat-reader.xml").write(xml)
+
+    xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-writer"], for_prompt_type: "clients/chat-writer")
+    Rails.root.join("log/prompts/clients-chat-writer.xml").write(xml)
 
     xml = Prompts.generate_system_xml(["lib/locksmith-docs", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
