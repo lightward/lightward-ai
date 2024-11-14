@@ -14,6 +14,8 @@ module Prompts
     end
 
     def generate_system_prompt(directories, for_prompt_type:)
+      raise ArgumentError, "directories must be an array" unless directories.is_a?(Array)
+
       @system_prompts ||= {}
 
       cache_key = "#{directories.join(",")}--#{for_prompt_type}"
@@ -67,6 +69,8 @@ module Prompts
     end
 
     def token_soft_limit_for_prompt_type(prompt_type)
+      assert_valid_prompt_type!(prompt_type)
+
       file = prompts_dir.join(prompt_type, ".system-token-soft-limit")
 
       if file.exist?
@@ -77,24 +81,22 @@ module Prompts
     end
 
     def generate_system_xml(directories, for_prompt_type:)
-      files = [prompts_dir] + directories.map { |directory|
-        directory_pathname = Pathname.new(directory)
+      raise ArgumentError, "directories must be an array" unless directories.is_a?(Array)
 
-        if directory_pathname.join(".system-ignore").exist?
-          # Create a FastIgnore instance for this directory
-          fast_ignore = FastIgnore.new(
-            root: directory,
-            gitignore: false,
-            ignore_files: ".system-ignore",
-            include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv"],
-            ignore_rules: ["**/.*"], # ignore dotfiles
-          )
+      files = ([""] + directories).map { |directory|
+        root = prompts_dir.join(directory)
+        raise Errno::ENOENT, root.to_s unless root.exist?
 
-          # Get the list of files
-          fast_ignore.to_a
-        else
-          Dir.glob(directory_pathname.join("**/*.{md,html,csv}"))
-        end
+        fast_ignore = FastIgnore.new(
+          root: root,
+          gitignore: false,
+          ignore_files: ".system-ignore",
+          include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv"],
+          ignore_rules: ["**/.*"], # ignore dotfiles
+        )
+
+        # Get the list of files
+        fast_ignore.to_a
       }.flatten.uniq
 
       files = Naturally.sort_by(files) { |file| handelize_filename(file) }

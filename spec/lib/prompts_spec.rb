@@ -13,18 +13,24 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".generate_system_prompt" do
     it "raises for an unknown prompt type" do
       expect {
-        described_class.generate_system_prompt("unknown")
+        described_class.generate_system_prompt([], for_prompt_type: "unknown")
       }.to(raise_error(described_class::UnknownPromptType))
     end
 
+    it "raises for an unknown directory" do
+      expect {
+        described_class.generate_system_prompt(["unknown"], for_prompt_type: "clients/chat-reader")
+      }.to(raise_error(Errno::ENOENT))
+    end
+
     it "starts with the invocation" do
-      expect(described_class.generate_system_prompt("clients/chat-reader")[0][:text]).to(
+      expect(described_class.generate_system_xml(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")).to(
         start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
       )
     end
 
     it "is a single, cacheable message" do
-      system_prompt = described_class.generate_system_prompt("clients/chat-reader")
+      system_prompt = described_class.generate_system_prompt(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
 
       expect(system_prompt.size).to(eq(1))
       expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
@@ -71,13 +77,13 @@ RSpec.describe(Prompts, :aggregate_failures) do
     describe "clients/helpscout" do
       it "includes the helpscout api docs" do
         expect(
-          described_class.generate_system_xml("clients/helpscout", for_prompt_type: "clients/helpscout"),
+          described_class.generate_system_xml(["clients/helpscout"], for_prompt_type: "clients/helpscout"),
         ).to(include("helpscout-api/conversation.md"))
       end
 
       it "includes pwfg" do
         expect(
-          described_class.generate_system_xml("clients/helpscout", for_prompt_type: "clients/helpscout"),
+          described_class.generate_system_xml(["clients/helpscout"], for_prompt_type: "clients/helpscout"),
         ).to(include("pwfg.md"))
       end
     end
@@ -85,7 +91,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
   describe ".assert_system_prompt_size_safety!" do
     let(:prompt_type) { "clients/chat-reader" }
-    let(:system_prompt) { described_class.generate_system_prompt(prompt_type)[0][:text] }
+    let(:system_prompt) { described_class.generate_system_xml([prompt_type], for_prompt_type: prompt_type) }
 
     before do
       allow(described_class).to(receive(:token_soft_limit_for_prompt_type).with(prompt_type).and_return(42))
@@ -183,7 +189,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".reset!" do
     before do
       # warm the cache
-      described_class.generate_system_prompt("clients/chat-reader")
+      described_class.generate_system_prompt(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
       described_class.conversation_starters("clients/chat-reader")
     end
 

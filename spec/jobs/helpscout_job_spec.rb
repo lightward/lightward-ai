@@ -111,14 +111,14 @@ RSpec.describe(HelpscoutJob) do
       job.get_anthropic_response_data(
         [],
         prompt_type: "clients/helpscout",
-        system_prompt_types: ["clients/helpscout", "lib/locksmith"],
+        system_prompt_types: ["clients/helpscout", "lib/locksmith-docs"],
       )
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         [],
         model: Prompts::Anthropic::MODEL,
         prompt_type: "clients/helpscout",
-        system_prompt_types: ["clients/helpscout", "lib/locksmith"],
+        system_prompt_types: ["clients/helpscout", "lib/locksmith-docs"],
       ))
     end
 
