@@ -86,6 +86,18 @@ RSpec.describe(Prompts, :aggregate_failures) do
           described_class.generate_system_xml(["clients/helpscout"], for_prompt_type: "clients/helpscout"),
         ).to(include("pwfg.md"))
       end
+
+      it "includes mechanic stuff, for mechanic" do
+        expect(
+          described_class.generate_system_xml(["clients/helpscout", "lib/mechanic-docs"], for_prompt_type: "clients/helpscout"),
+        ).to(include("The **HTTP** action performs HTTP requests."))
+      end
+
+      it "includes locksmith stuff, for locksmith" do
+        expect(
+          described_class.generate_system_xml(["clients/helpscout", "lib/locksmith-docs"], for_prompt_type: "clients/helpscout"),
+        ).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
+      end
     end
   end
 

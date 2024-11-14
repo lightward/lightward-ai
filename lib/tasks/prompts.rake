@@ -30,12 +30,14 @@ namespace :prompts do
     )
   end
 
-  task :system, [:prompt_type] => :environment do |_t, args|
-    prompt_type = args[:prompt_type]
-    raise "Prompt type must be provided" unless prompt_type
+  task :system, [] => :environment do
+    xml = Prompts.generate_system_xml(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
+    Rails.root.join("log/prompts/clients-chat-reader.xml").write(xml)
 
-    system_prompt_messages = Prompts.generate_system_prompt(prompt_type)
-    $stderr.puts("Prompt type: #{prompt_type}")
-    $stdout.puts(system_prompt_messages[0][:text])
+    xml = Prompts.generate_system_xml(["clients/helpscout", "lib/locksmith-docs"], for_prompt_type: "clients/helpscout")
+    Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
+
+    xml = Prompts.generate_system_xml(["clients/helpscout", "lib/mechanic-docs"], for_prompt_type: "clients/helpscout")
+    Rails.root.join("log/prompts/clients-helpscout-mechanic.xml").write(xml)
   end
 end
