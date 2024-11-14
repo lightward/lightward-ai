@@ -4,9 +4,9 @@
 class HelpscoutJob < ApplicationJob
   queue_with_priority PRIORITY_HELPSCOUT
 
-  MAILBOX_CLIENTS = {
-    201764 => "clients/helpscout-locksmith",
-    204960 => "clients/helpscout-mechanic",
+  MAILBOX_LIBS = {
+    201764 => "lib/locksmith",
+    204960 => "lib/mechanic",
   }
 
   def perform(convo_id)
@@ -69,9 +69,9 @@ class HelpscoutJob < ApplicationJob
       ],
     }
 
-    mailbox_client = MAILBOX_CLIENTS[mailbox_id]
+    mailbox_lib = MAILBOX_LIBS[mailbox_id]
     prompt_type = "clients/helpscout"
-    system_prompt_types = ["clients/helpscout", mailbox_client]
+    system_prompt_types = ["clients/helpscout", mailbox_lib]
 
     slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.squish)
       Sending context to #{[prompt_type, *system_prompt_types].uniq.join(", ")}...
@@ -79,8 +79,8 @@ class HelpscoutJob < ApplicationJob
 
     response_data = get_anthropic_response_data(
       messages,
-      prompt_type: "clients/helpscout",
-      system_prompt_types: ["clients/helpscout", mailbox_client],
+      prompt_type: prompt_type,
+      system_prompt_types: system_prompt_types,
     )
 
     slack_client.chat_postMessage(channel: "#ai-logs", thread_ts: slack_message["ts"], text: <<~eod.strip)

@@ -51,6 +51,8 @@ module Prompts
         system_prompt_types ||= [prompt_type]
         system = Prompts.system_prompt(*system_prompt_types)
 
+        Prompts.assert_system_prompt_size_safety!(prompt_type, system)
+
         messages = Prompts.clean_chat_log(
           Prompts.conversation_starters(prompt_type) + messages,
         )

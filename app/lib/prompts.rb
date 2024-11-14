@@ -26,14 +26,25 @@ module Prompts
         end
       end
 
-      prompt_type_key = prompt_types.join(",")
-      @system_prompts[prompt_type_key] ||= [
+      prompt_type_cache_key = prompt_types.join(",")
+      @system_prompts[prompt_type_cache_key] ||= [
         {
           type: "text",
-          text: generate_system_xml(prompt_type_key, paths),
+          text: generate_system_xml(paths),
           cache_control: { type: "ephemeral" },
         }.freeze,
       ].freeze
+    end
+
+    def assert_system_prompt_size_safety!(prompt_type, system_prompt_xml)
+      # check on a .system-size-limit file for this prompt type
+      token_limit = token_soft_limit_for_prompt_type(prompt_type)
+      token_estimate = estimate_tokens(system_prompt_xml)
+
+      if token_estimate > token_limit
+        raise "System prompt for #{prompt_type} is too large " \
+          "(~#{token_estimate} tokens estimated, limit ~#{token_limit})"
+      end
     end
 
     # given paths like these...
@@ -60,7 +71,21 @@ module Prompts
       relative_path.to_s
     end
 
-    def generate_system_xml(prompt_type, directories)
+    def estimate_tokens(text)
+      text.split(/[^\w]{3,}/).size
+    end
+
+    def token_soft_limit_for_prompt_type(prompt_type)
+      file = prompts_dir.join(prompt_type, ".system-token-soft-limit")
+
+      if file.exist?
+        file.read.to_i
+      else
+        raise "No token soft limit found for prompt type: #{prompt_type}"
+      end
+    end
+
+    def generate_system_xml(directories)
       files = directories.map { |directory|
         if File.exist?(directory.join(".system-ignore"))
           # Create a FastIgnore instance for this directory
@@ -81,8 +106,8 @@ module Prompts
 
       files = Naturally.sort_by(files) { |file| handelize_filename(file) }
 
-      Nokogiri::XML::Builder.new do |xml|
-        xml.system(name: prompt_type) {
+      Nokogiri::XML::Builder.new { |xml|
+        xml.system {
           files.each do |file|
             content = File.read(file).strip
             file_handle = handelize_filename(file)
@@ -97,7 +122,7 @@ module Prompts
             }
           end
         }
-      end.to_xml
+      }.to_xml
     end
 
     def conversation_starters(prompt_type, include_system_images: true)

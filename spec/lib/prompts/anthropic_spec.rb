@@ -97,6 +97,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     before do
       allow(Prompts).to(receive(:system_prompt).with("foo").and_return("system-prompt"))
       allow(Prompts).to(receive(:conversation_starters).with("foo").and_return(conversation_starters))
+      allow(Prompts).to(receive(:assert_system_prompt_size_safety!).with("foo", "system-prompt"))
       allow(described_class).to(receive(:api_request).and_return("result"))
     end
 

@@ -19,7 +19,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "starts with the invocation" do
       expect(described_class.system_prompt("clients/chat-reader")[0][:text]).to(
-        start_with("<?xml version=\"1.0\"?>\n<system name=\"clients/chat-reader\">\n  <file name=\"0-invocation.md\">"),
+        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
       )
     end
 
@@ -60,13 +60,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(claude_count).to(be <= 3)
         end
 
-        it "is estimated to be less than ~50k tokens" do
-          # who knows how well this matches Anthropic's tokenization, but since the purpose here is just to make sure
-          # the count doesn't inflate unexpectedly, it's good enough
-          tokens = prompt.split(/[^\w]+/)
-          expect(tokens.size).to(be <= 50_000)
-        end
-
         it "includes the definition of recursive health" do
           expect(prompt).to(include("Oh hey! You work here? Here is your job."))
         end
@@ -81,6 +74,31 @@ RSpec.describe(Prompts, :aggregate_failures) do
       it "includes pwfg" do
         expect(described_class.system_prompt("clients/helpscout")[0][:text]).to(include("pwfg.md"))
       end
+    end
+  end
+
+  describe ".assert_system_prompt_size_safety!" do
+    let(:prompt_type) { "clients/chat-reader" }
+    let(:system_prompt) { described_class.system_prompt(prompt_type)[0][:text] }
+
+    before do
+      allow(described_class).to(receive(:token_soft_limit_for_prompt_type).with(prompt_type).and_return(42))
+    end
+
+    it "does and can fail a token estimate check" do
+      allow(described_class).to(receive(:estimate_tokens).and_return(43))
+
+      expect {
+        described_class.assert_system_prompt_size_safety!(prompt_type, system_prompt)
+      }.to(raise_error("System prompt for clients/chat-reader is too large (~43 tokens estimated, limit ~42)"))
+    end
+
+    it "does and can pass a token estimate check" do
+      allow(described_class).to(receive(:estimate_tokens).and_return(41))
+
+      expect {
+        described_class.assert_system_prompt_size_safety!(prompt_type, system_prompt)
+      }.not_to(raise_error)
     end
   end
 

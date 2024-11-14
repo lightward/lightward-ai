@@ -50,7 +50,7 @@ RSpec.describe(HelpscoutJob) do
 
     context "when response type is 'note'" do
       before do
-        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=note&status=closed\n\nThis is a note." }] }))
+        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=note&status=closed\n\nThis is a note." }] }))
       end
 
       it "creates a note in Help Scout" do
@@ -61,7 +61,7 @@ RSpec.describe(HelpscoutJob) do
 
     context "when response type is 'reply'" do
       before do
-        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=reply&status=open\n\nThis is a reply." }] }))
+        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=reply&status=open\n\nThis is a reply." }] }))
       end
 
       it "creates a draft reply in Help Scout" do
@@ -71,12 +71,12 @@ RSpec.describe(HelpscoutJob) do
     end
 
     it "requires a directive" do
-      allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "asdf\n\n" }] }))
+      allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "asdf\n\n" }] }))
       expect { job.perform(event_data["id"]) }.to(raise_error("No directive found in response: asdf"))
     end
 
     it "requires a valid directive" do
-      allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "clients/helpscout-locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=asdf\n\n" }] }))
+      allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=asdf\n\n" }] }))
       expect { job.perform(event_data["id"]) }.to(raise_error("Unrecognized directive: asdf"))
     end
   end
@@ -104,6 +104,21 @@ RSpec.describe(HelpscoutJob) do
         model: Prompts::Anthropic::MODEL,
         prompt_type: "clients/helpscout",
         system_prompt_types: ["clients/helpscout"],
+      ))
+    end
+
+    it "can request additional system prompt dirs" do # rubocop:disable RSpec/ExampleLength
+      job.get_anthropic_response_data(
+        [],
+        prompt_type: "clients/helpscout",
+        system_prompt_types: ["clients/helpscout", "lib/locksmith"],
+      )
+
+      expect(Prompts::Anthropic).to(have_received(:process_messages).with(
+        [],
+        model: Prompts::Anthropic::MODEL,
+        prompt_type: "clients/helpscout",
+        system_prompt_types: ["clients/helpscout", "lib/locksmith"],
       ))
     end
 
