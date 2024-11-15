@@ -19,8 +19,17 @@
 }
 
 .chat-message.pulsing::after {
-  /* avoiding dimension adjustments when we switch from .pulsing to .loading */
-  content: ' ';
+  content: ' '; /* Add a space to ensure the ::after pseudo-element is rendered up front, to ward off dimension shifting */
+  opacity: 0;
+  animation: fadeInDots 2s ease-in;
+  animation-delay: 3s; /* Start fading in dots during final pulse */
+}
+
+.chat-message.loading::after {
+  content: '. . .';
+  animation: loadingDots 30s steps(17, end) forwards;
+  color: var(--body-text-color);
+  opacity: 0.5;
 }
 
 @keyframes pulsing {
@@ -38,12 +47,15 @@
   }
 }
 
-.chat-message.loading::after {
-  content: '. . .';
-  /* this animation duration accommodates TIMEOUT_MS in chat.js */
-  animation: loadingDots 30s steps(17, end) forwards;
-  color: var(--body-text-color);
-  opacity: 0.5;
+@keyframes fadeInDots {
+  0% {
+    content: '. . .';
+    opacity: 0;
+  }
+  100% {
+    content: '. . .';
+    opacity: 0.5;
+  }
 }
 
 @keyframes loadingDots {
