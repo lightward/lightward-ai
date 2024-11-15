@@ -11,12 +11,10 @@ class ChatsController < ApplicationController
     chat_log = permitted_chat_log_params.as_json
     stream_id = SecureRandom.uuid
 
-    chat_client = "reader"
-
-    if current_user&.writer?
-      if chat_log.dig(0, "content", 0, "text") == "ooo.fun"
-        chat_client = "writer"
-      end
+    chat_client = if writer?
+      "writer"
+    else
+      "reader"
     end
 
     # Enqueue the background job
@@ -29,7 +27,7 @@ class ChatsController < ApplicationController
 
   def chat_context
     @chat_context ||= {}
-    @chat_context[:localstorage_chatlog_key] ||= "chatLogData"
+    @chat_context[:localstorage_chatlog_key] ||= writer? ? "writer" : "chatLogData"
 
     @chat_context
   end

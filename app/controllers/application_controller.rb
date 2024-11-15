@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-HELLOS = Rails.root.join("lib/hellos.txt").read.split("\n").compact_blank
+READER_HELLOS = Rails.root.join("lib/hello_reader.txt").read.split("\n").compact_blank
+WRITER_HELLOS = Rails.root.join("lib/hello_writer.txt").read.split("\n").compact_blank
 
 class ApplicationController < ActionController::Base
   # no user monitoring pls
@@ -9,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :nows_hello, :nows_lightward_human_years
   helper_method :current_user
+  helper_method :writer?
 
   protected
 
@@ -32,10 +34,18 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: current_user_id)
   end
 
+  def writer?
+    current_user&.writer? || false
+  end
+
+  def hellos
+    writer? ? WRITER_HELLOS : READER_HELLOS
+  end
+
   def nows_hello
     current_minute = Time.now.to_i / 60
     rng = Random.new(current_minute)
-    HELLOS.sample(random: rng)
+    hellos.sample(random: rng)
   end
 
   def nows_lightward_human_years

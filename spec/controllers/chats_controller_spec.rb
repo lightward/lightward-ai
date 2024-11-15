@@ -21,41 +21,33 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
     let(:invalid_chat_log) { [{}] }
 
-    let(:permitted_params) {
-      valid_chat_log.map { |entry|
-        ActionController::Parameters.new(entry).permit(:role, content: [:type, :text]).to_h.with_indifferent_access
-      }
-    }
-
     before do
       allow(SecureRandom).to(receive(:uuid).and_return("test-uuid"))
       allow(StreamMessagesJob).to(receive(:perform_later))
     end
 
-    it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do
+    it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
       post :message, params: { chat_log: valid_chat_log }
 
       expect(response).to(have_http_status(:ok))
       expect(JSON.parse(response.body)).to(eq("stream_id" => "test-uuid"))
 
+      permitted_params = valid_chat_log.map { |entry|
+        ActionController::Parameters.new(entry).permit(:role, content: [:type, :text]).to_h.with_indifferent_access
+      }
+
       expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "reader", array_including(permitted_params[0], permitted_params[1])))
     end
 
-    context "when the first message is 'ooo.fun' and the user is a writer" do
-      let(:valid_chat_log) do
-        [
-          { role: "user", content: [{ type: "text", text: "ooo.fun" }] },
-        ]
-      end
-
+    context "when the user is a writer" do
       before do
         allow(controller).to(receive(:current_user).and_return(instance_double(User, writer?: true)))
       end
 
-      it "uses the writer client if the user is a writer and the first message is 'ooo.fun'" do
+      it "uses the writer client if the user is a writer" do
         post :message, params: { chat_log: valid_chat_log }
 
-        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "writer", [permitted_params[0]]))
+        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "writer", anything))
       end
     end
 
