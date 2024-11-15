@@ -12,7 +12,16 @@ class ApplicationController < ActionController::Base
   helper_method :lightward_human_years_so_far
   helper_method :current_user
 
+  before_action :verify_host!
+
   protected
+
+  def verify_host!
+    return if request.host == ENV.fetch("HOST")
+
+    # we've got some legacy domains kicking around out there. send those users to the right place.
+    redirect_to("https://#{ENV.fetch("HOST")}/", status: :moved_permanently, allow_other_host: true)
+  end
 
   def authenticate_user!
     return if current_user

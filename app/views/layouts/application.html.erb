@@ -31,14 +31,6 @@
 
 <body>
   <div class="container">
-
-    <% if ENV["HOST"] != request.host %>
-      <div class="we-moved stack-vertical">
-        <p>Hey by the way, we moved! :) Here's your heading:</p>
-        <p>🌟 <a href="https://<%= ENV["HOST"] %>/"><%= ENV["HOST"] %></a></p>
-      </div>
-    <% end %>
-
     <header>
       <%= content_tag(:h1, (yield(:h1).presence || "Lightward"), { title: yield(:title) }) %>
 
