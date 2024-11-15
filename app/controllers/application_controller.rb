@@ -8,9 +8,10 @@ class ApplicationController < ActionController::Base
   # it's buggy (users have reported js errors that are resolved to this client) and also pretty invasive, privacy-wise
   newrelic_ignore_enduser
 
-  helper_method :nows_hello, :nows_lightward_human_years
+  helper_method :h1, :h1_default
+  helper_method :lightward_human_years_so_far
   helper_method :current_user
-  helper_method :writer?
+  helper_method :writer?, :login?
 
   protected
 
@@ -38,17 +39,28 @@ class ApplicationController < ActionController::Base
     current_user&.writer? || false
   end
 
+  def login?
+    @login
+  end
+
   def hellos
     writer? ? WRITER_HELLOS : READER_HELLOS
   end
 
-  def nows_hello
+  def h1_default
+    writer? ? "Lightward Pro" : "Lightward"
+  end
+
+  def h1
+    return @h1 if @h1
+    return @h1_default if @h1_default
+
     current_minute = Time.now.to_i / 60
     rng = Random.new(current_minute)
     hellos.sample(random: rng)
   end
 
-  def nows_lightward_human_years
+  def lightward_human_years_so_far
     today = Time.zone.now
     [
       (today - Time.zone.parse("2010-10-18")) / (365 * 24 * 60 * 60),
