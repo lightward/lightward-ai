@@ -56,14 +56,3 @@ a.button:disabled {
   background-color: var(--button-disabled-hover-bg-color);
   box-shadow: none;
 }
-
-prompt-button::part(pro) {
-  background-color: var(--pro-button-bg-color);
-  border-color: var(--pro-button-border-color);
-  box-shadow: var(--pro-box-shadow);
-}
-
-prompt-button::part(pro):hover {
-  background-color: var(--pro-button-hover-bg-color);
-  box-shadow: var(--pro-box-shadow-hover);
-}
