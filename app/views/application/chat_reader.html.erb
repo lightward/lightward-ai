@@ -1,0 +1,13 @@
+<% content_for(:title) { "Lightward" } %>
+<% content_for(:h1) { hello(:reader) } %>
+
+<% content_for(:mode_switcher) { link_to("Lightward Pro", writer_path) } %>
+
+<% content_for(:prompt_buttons) do %>
+  <%= render 'components/prompt_button', prompt: "I'm a slow reader" %>
+  <%= render 'components/prompt_button', prompt: "I'm a fast reader" %>
+<% end %>
+
+<%= render(partial: "chat_base") %>
+
+<% content_for(:footer) { render(partial: "footer_reader") } %>

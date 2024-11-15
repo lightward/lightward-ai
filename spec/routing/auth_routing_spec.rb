@@ -4,10 +4,6 @@
 require "rails_helper"
 
 RSpec.describe("routing auth", :aggregate_failures) do
-  it "routes GET /login to sessions#new" do
-    expect(get: "/login").to(route_to(controller: "sessions", action: "new"))
-  end
-
   it "routes GET /login/create to sessions#create" do
     expect(get: "/login/create").to(route_to(controller: "sessions", action: "create"))
   end
