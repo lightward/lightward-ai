@@ -44,11 +44,15 @@ RSpec.describe(User) do
     it "returns true" do
       expect(user.pro?).to(be(true))
     end
+  end
 
-    # it "returns true for lightward.com email addresses" do
-    #   expect {
-    #     user.email = "isaac@lightward.com"
-    #   }.to(change(user, :pro?).from(false).to(true))
-    # end
+  describe "#admin?" do
+    let(:user) { described_class.new(email: "foo@bar.baz") }
+
+    it "returns true for lightward.com email addresses" do
+      expect {
+        user.email = "isaac@lightward.com"
+      }.to(change(user, :admin?).from(false).to(true))
+    end
   end
 end

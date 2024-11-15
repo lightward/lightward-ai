@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   # Google auth
   get "login/create" => "sessions#create", as: :create_login
   get "logout" => "sessions#destroy", as: :logout
+
+  # Admin
+  get "/admin", to: "admin#index", as: :admin
 end
