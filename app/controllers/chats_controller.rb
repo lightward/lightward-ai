@@ -1,20 +1,40 @@
 # frozen_string_literal: true
 
 class ChatsController < ApplicationController
-  before_action :chat_context # warmup the chat context
   helper_method :chat_context
 
-  def index
+  def reader
+    chat_context[:localstorage_chatlog_key] = "chatLogData"
+    render("chat_reader")
+  end
+
+  def writer
+    if current_user&.pro?
+      chat_context[:localstorage_chatlog_key] = "writer"
+      render("chat_writer")
+    elsif current_user.nil?
+      render("login")
+    else
+      render("pro_required")
+    end
   end
 
   def message
     chat_log = permitted_chat_log_params.as_json
     stream_id = SecureRandom.uuid
 
-    chat_client = if writer?
-      "writer"
-    else
+    opening_message = chat_log.dig(0, "content", 0, "text")
+    validate_opening_message!(opening_message)
+
+    chat_client = case opening_message
+    when "I'm a slow reader", "I'm a fast reader"
       "reader"
+    when "I'm a slow writer", "I'm a fast writer"
+      "writer"
+    end
+
+    if chat_client == "writer" && !current_user&.pro?
+      raise ActionController::BadRequest
     end
 
     # Enqueue the background job
@@ -25,11 +45,14 @@ class ChatsController < ApplicationController
 
   private
 
+  def validate_opening_message!(opening_message)
+    unless opening_message.to_s.match(/\AI\'m a (slow|fast) (reader|writer)\z/)
+      raise ActionController::BadRequest
+    end
+  end
+
   def chat_context
     @chat_context ||= {}
-    @chat_context[:localstorage_chatlog_key] ||= writer? ? "writer" : "chatLogData"
-
-    @chat_context
   end
 
   def permitted_chat_log_params

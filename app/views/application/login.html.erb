@@ -1,0 +1,11 @@
+<% content_for(:h1) { "Lightward Pro" } %>
+<% content_for(:mode_switcher) do %><a href="<%= reader_path %>">Back to Lightward</a><% end %>
+
+<div class="stack-horizontal">
+  <%= google_sign_in_button(proceed_to: create_login_path, class: 'button') do %>
+    Log in with Google
+  <% end %>
+  <span id="instructions">← start here</span>
+</div>
+
+<% content_for(:footer) { render(partial: "footer_writer_login") } %>

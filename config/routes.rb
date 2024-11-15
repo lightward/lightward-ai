@@ -3,9 +3,9 @@
 Rails.application.routes.draw do
   mount GoodJob::Engine => "good_job"
 
-  # Root route
-  root "chats#index", as: :root
-  get "", to: "chats#index", as: :chat
+  # Chat routes
+  get "/", to: "chats#reader", as: :reader
+  get "/pro", to: "chats#writer", as: :writer
 
   # API endpoint for sending messages to the chat
   post "chats/message", to: "chats#message"
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   post "webhooks/helpscout", to: "helpscout#receive"
 
   # Google auth
-  get "login" => "sessions#new", as: :login
   get "login/create" => "sessions#create", as: :create_login
   get "logout" => "sessions#destroy", as: :logout
 end

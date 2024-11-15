@@ -1,24 +1,18 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  def new
-    @h1 = "Lightward Pro"
-    @login = true
-    redirect_to("/") if current_user
-  end
-
   def create
     if (user = authenticate_via_google)
       set_current_user_id!(user.id)
-      redirect_to(root_url)
+      redirect_to(:writer)
     else
-      redirect_to(login_url, alert: t(:login_failed))
+      redirect_to(:login)
     end
   end
 
   def destroy
     cookies.delete(:user_id)
-    redirect_to(root_url)
+    redirect_to(:writer)
   end
 
   protected

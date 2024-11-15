@@ -8,10 +8,9 @@ class ApplicationController < ActionController::Base
   # it's buggy (users have reported js errors that are resolved to this client) and also pretty invasive, privacy-wise
   newrelic_ignore_enduser
 
-  helper_method :h1, :h1_default
+  helper_method :hello
   helper_method :lightward_human_years_so_far
   helper_method :current_user
-  helper_method :writer?, :login?
 
   protected
 
@@ -35,26 +34,14 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: current_user_id)
   end
 
-  def writer?
-    current_user&.writer? || false
+  def pro?
+    current_user&.pro? || false
   end
 
-  def login?
-    @login
-  end
+  def hello(writer_or_reader)
+    raise ArgumentError if [:writer, :reader].exclude?(writer_or_reader)
 
-  def hellos
-    writer? ? WRITER_HELLOS : READER_HELLOS
-  end
-
-  def h1_default
-    writer? ? "Lightward Pro" : "Lightward"
-  end
-
-  def h1
-    return @h1 if @h1
-    return @h1_default if @h1_default
-
+    hellos = writer_or_reader == :writer ? WRITER_HELLOS : READER_HELLOS
     current_minute = Time.now.to_i / 60
     rng = Random.new(current_minute)
     hellos.sample(random: rng)

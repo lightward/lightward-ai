@@ -71,7 +71,9 @@ export const initChat = () => {
   loadingMessage.remove();
 
   function addMessage(role, text) {
-    h1.innerText = h1.dataset.default || 'Lightward';
+    // reset our usually-chaotic heading to something chill
+    h1.innerText = h1.title || 'Lightward';
+
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
     messageElement.innerText = text;
