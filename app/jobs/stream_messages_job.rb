@@ -34,6 +34,8 @@ class StreamMessagesJob < ApplicationJob
       chat_client: chat_client,
     )
 
+    sleep(100)
+
     if chat_log.last.dig("content", 0, "text")&.start_with?("/echo")
       broadcast(
         stream_id,

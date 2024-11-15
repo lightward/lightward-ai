@@ -70,25 +70,6 @@ dt {
   background-color: var(--body-bg-color);
 }
 
-.pulsing {
-  animation: pulsing 1.5s infinite;
-}
-
-@keyframes pulsing {
-  0% {
-    opacity: 0.5;
-    filter: blur(1px);
-  }
-  50% {
-    opacity: 1;
-    filter: blur(0);
-  }
-  100% {
-    opacity: 0.5;
-    filter: blur(1px);
-  }
-}
-
 #text-input {
   position: relative;
   display: flex;

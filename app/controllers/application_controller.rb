@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     hellos = writer_or_reader == :writer ? WRITER_HELLOS : READER_HELLOS
     current_minute = Time.now.to_i / 60
     rng = Random.new(current_minute)
-    hellos.sample(random: rng)
+    hellos.sample(random: rng).html_safe # rubocop:disable Rails/OutputSafety -- because I mean it
   end
 
   def lightward_human_years_so_far
