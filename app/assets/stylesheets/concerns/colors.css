@@ -19,11 +19,6 @@
   --assistant-message-border-color: #d4c59a;
   --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   --box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --pro-button-bg-color: #ffc876;
-  --pro-button-border-color: #ffb852;
-  --pro-button-hover-bg-color: #ffb852;
-  --pro-box-shadow: 0 2px 4px rgba(242, 162, 73, 0.2);
-  --pro-box-shadow-hover: 0 4px 8px rgba(242, 162, 73, 0.3);
 
   /* Dark Mode Variables */
   --dark-body-bg-color: #1e1e1e;
@@ -45,11 +40,6 @@
   --dark-assistant-message-border-color: #6a5c4d;
   --dark-box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
   --dark-box-shadow-hover: 0 4px 6px rgba(255, 255, 255, 0.1);
-  --dark-pro-button-bg-color: #6b4220;
-  --dark-pro-button-border-color: #8b572a;
-  --dark-pro-button-hover-bg-color: #8b572a;
-  --dark-pro-box-shadow: 0 2px 4px rgba(139, 87, 42, 0.4);
-  --dark-pro-box-shadow-hover: 0 4px 8px rgba(139, 87, 42, 0.5);
 }
 
 /* Dark mode styles */
@@ -82,10 +72,5 @@
     );
     --box-shadow: var(--dark-box-shadow);
     --box-shadow-hover: var(--dark-box-shadow-hover);
-    --pro-button-bg-color: var(--dark-pro-button-bg-color);
-    --pro-button-border-color: var(--dark-pro-button-border-color);
-    --pro-button-hover-bg-color: var(--dark-pro-button-hover-bg-color);
-    --pro-box-shadow: var(--dark-pro-box-shadow);
-    --pro-box-shadow-hover: var(--dark-pro-box-shadow-hover);
   }
 }

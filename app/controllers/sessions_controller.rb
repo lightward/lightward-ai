@@ -2,6 +2,8 @@
 
 class SessionsController < ApplicationController
   def new
+    @h1 = "Lightward Pro"
+    @login = true
     redirect_to("/") if current_user
   end
 

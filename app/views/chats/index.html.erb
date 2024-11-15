@@ -7,10 +7,12 @@
 <div id="chat-container" class="chat-container hidden">
   <div id="chat-log" class="chat-log">
     <div class="stack-horizontal" id="start-suggestions">
-      <%= render 'components/prompt_button', prompt: "I'm a slow reader" %>
-      <%= render 'components/prompt_button', prompt: "I'm a fast reader" %>
-      <% if current_user&.writer? %>
-        <%= render 'components/prompt_button', prompt: "ooo.fun", pro: true %>
+      <% if writer? %>
+        <%= render 'components/prompt_button', prompt: "I'm a slow writer" %>
+        <%= render 'components/prompt_button', prompt: "I'm a fast writer" %>
+      <% else %>
+        <%= render 'components/prompt_button', prompt: "I'm a slow reader" %>
+        <%= render 'components/prompt_button', prompt: "I'm a fast reader" %>
       <% end %>
 
       <span id="instructions">← pick one</span>
