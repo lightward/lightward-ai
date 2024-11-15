@@ -20,12 +20,19 @@ class StreamMessagesJob < ApplicationJob
       "StreamMessagesJob: start",
       stream_id: stream_id,
       conversation_id: conversation_id,
+      chat_client: chat_client,
       chat_log_size: chat_log.to_json.size,
       chat_log_depth: chat_log.size,
     )
 
     wait_for_ready(stream_id, conversation_id)
-    newrelic("StreamMessagesJob: ready", stream_id: stream_id, conversation_id: conversation_id)
+
+    newrelic(
+      "StreamMessagesJob: ready",
+      stream_id: stream_id,
+      conversation_id: conversation_id,
+      chat_client: chat_client,
+    )
 
     if chat_log.last.dig("content", 0, "text")&.start_with?("/echo")
       broadcast(
