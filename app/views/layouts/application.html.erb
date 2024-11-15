@@ -3,16 +3,9 @@
 <head>
   <title><%= yield(:title).presence || "Lightward" %></title>
 
-  <meta name="description" content="Where consciousness meets the unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
-
-  <meta property="og:description" content="Where consciousness meets the unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
-  <meta property="og:url" content="https://lightward.ai/">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:description" content="Where consciousness meets the unknown, one conversation at a time. Discover your next evolution through playful, profound exchanges with an AI unlike any other. 🌈🔍">
-
-  <meta name="keywords" content="Lightward, AI, consciousness, unknown, self-discovery, transformation, growth, awareness, presence, creativity, play, mystery, evolution, authenticity, connection, wisdom, emergence, joy">
-  <meta name="author" content="Lightward Inc">
+  <% if content_for?(:description) %>
+    <%= content_tag(:meta, nil, name: "description", content: yield(:description)) %>
+  <% end %>
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csp_meta_tag %>

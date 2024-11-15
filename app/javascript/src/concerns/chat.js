@@ -43,6 +43,8 @@ export const initChat = () => {
   let currentSequenceNumber;
   let messageTimeout;
   let errorHandled = false;
+
+  // this matches the pulsing-moving-into-loading-dots animation sequence we've got going on
   const TIMEOUT_MS = 30000;
 
   // Prevent scroll jumping
@@ -85,6 +87,14 @@ export const initChat = () => {
   function addPulsingMessage(role) {
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role, 'pulsing');
+
+    setTimeout(() => {
+      if (messageElement.classList.contains('pulsing')) {
+        messageElement.classList.remove('pulsing');
+        messageElement.classList.add('loading');
+      }
+    }, 5000);
+
     chatLog.appendChild(messageElement);
     saveScrollPosition();
     return messageElement;
@@ -104,7 +114,7 @@ export const initChat = () => {
   function enableUserInput(autofocusIsAppropriate = false) {
     copyAllButton.classList.remove('hidden');
 
-    currentAssistantMessageElement?.classList.remove('pulsing');
+    currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
     userInput.placeholder = '(write what you’re feeling or thinking)';
@@ -377,7 +387,7 @@ export const initChat = () => {
 
     if (data.event === 'message_start') {
       if (currentAssistantMessageElement) {
-        currentAssistantMessageElement.classList.remove('pulsing');
+        currentAssistantMessageElement.classList.remove('pulsing', 'loading');
       }
       showUserInput();
     } else if (data.event === 'content_block_start') {
