@@ -22,7 +22,7 @@
   <script src="https://cdn.usefathom.com/script.js" data-site="DVUBQTUD" defer></script>
 </head>
 
-<body>
+<%= content_tag(:body, class: yield(:body_class)) do %>
   <div class="container">
     <header>
       <%= content_tag(:h1, (yield(:h1).presence || "Lightward"), { title: yield(:title) }) %>
@@ -43,5 +43,5 @@
       <%= yield(:footer).presence %>
     </footer>
   </div>
-</body>
+<% end %>
 </html>
