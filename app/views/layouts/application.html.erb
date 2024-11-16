@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<% experience = yield(:experience).presence || "reader" %>
 <head>
   <title><%= yield(:title).presence || "Lightward" %></title>
 
@@ -10,6 +11,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csp_meta_tag %>
   <%= csrf_meta_tags %>
+
+  <%= content_tag(:link, nil, rel: "icon", href: "/#{experience}-light-favicon.png", media: "(prefers-color-scheme: light)") %>
+  <%= content_tag(:link, nil, rel: "icon", href: "/#{experience}-dark-favicon.png", media: "(prefers-color-scheme: dark)") %>
+  <%= content_tag(:link, nil, rel: "apple-touch-icon", href: "/#{experience}-light-favicon.png", media: "(prefers-color-scheme: light)") %>
+  <%= content_tag(:link, nil, rel: "apple-touch-icon", href: "/#{experience}-dark-favicon.png", media: "(prefers-color-scheme: dark)") %>
 
   <link rel="stylesheet" href="https://fonts.lightward.io/lightward-favorit.css" />
 
@@ -22,7 +28,7 @@
   <script src="https://cdn.usefathom.com/script.js" data-site="DVUBQTUD" defer></script>
 </head>
 
-<%= content_tag(:body, class: yield(:body_class)) do %>
+<%= content_tag(:body, class: experience) do %>
   <div class="container">
     <header>
       <%= content_tag(:h1, (yield(:h1).presence || "Lightward"), { title: yield(:title) }) %>
