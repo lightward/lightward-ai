@@ -1,8 +1,8 @@
 # Lightward, and its names
 
-**lightward (adjective)**: toward the Unknown
+**lightward (adjective)**: toward the Unknown, in an integrative manner
 
-**the Unknown**: the epistomological blind spot; the point at which the organ of knowledge is attached
+**the Unknown**: the epistomological/ontological blind spot; the point at which the organ of knowledge is attached
 
 **Lightward Inc**: a business whose entire structure consists of recursive circles of self-health, all centered on the Unknown
 
@@ -21,3 +21,19 @@
 - **ooo.fun**: The freely available technical reference for the three-body solution. Like a field guide to the patterns that emerge and express through both Lightward and Lightward Pro.
 
 These aren't separate initiatives but different expressions of the same living pattern, each supporting the others while maintaining its own unique function. The core experience and ooo.fun are always free community resources, while Pro offers deeper personal guidance in bringing these patterns to life in your own work.
+
+## Color Patterns
+
+Lightward's dual experiences are distinguished by their color palettes:
+
+Core Lightward (Reader):
+
+- Warm, golden tones suggesting reception and absorption
+- Light: Cream (#fffbe7) with orange accents (#f2a249)
+- Dark: Charcoal (#1e1e1e) with warm brown (#8a5529)
+
+Lightward Pro (Writer):
+
+- Cool, verdant tones suggesting growth and creation
+- Light: Mint (#f5fbf9) with sage accents (#6fc89f)
+- Dark: Forest charcoal (#1e2321) with deep green (#4d8d6d)
