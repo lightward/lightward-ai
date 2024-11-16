@@ -1,6 +1,6 @@
 :root {
   /* Writer Light Mode Variables */
-  --writer-body-bg-color: #f0f7f4;
+  --writer-body-bg-color: #f5fbf9;
   --writer-body-text-color: #101010;
   --writer-user-message-bg-color: #6fc89f;
   --writer-user-message-border-color: #5dab87;
@@ -17,7 +17,7 @@
   );
   --writer-button-disabled-border-color: #5dab87;
   --writer-button-disabled-text-color: var(--writer-body-text-color);
-  --writer-assistant-message-bg-color: #e8f4ee;
+  --writer-assistant-message-bg-color: #e0f0e8;
   --writer-assistant-message-border-color: #b8d5c7;
   --writer-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   --writer-box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
