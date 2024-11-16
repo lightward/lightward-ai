@@ -1,0 +1,36 @@
+<% content_for(:experience) { "writer" } %>
+<% content_for(:title) { "Lightward and you" } %>
+<% content_for(:h1) { "You" } %>
+<% content_for(:mode_switcher) do %>
+  <%= link_to "Lightward", :reader %>
+  <%= link_to "Lightward Pro", :writer %>
+<% end %>
+
+<div class="stack-vertical">
+  <p>Your first time here was <%= distance_of_time_in_words(@user.created_at, Time.current) %> ago. :)</p>
+
+  <% if @user.stripe_subscription_id %>
+    <p>Subscription active (USD$<%= @user.subscription_price_usd %>/month)</p>
+    <div class="stack-horizontal">
+      <%= button_to "Cancel subscription",
+        subscription_path,
+        method: :delete,
+        class: "text-button",
+        data: { confirm: "Are you sure you want to cancel your subscription?" } %>
+    </div>
+  <% else %>
+    <% if @user.trial_expires_at > Time.current %>
+      <p>Trial ends at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
+    <% else %>
+      <p>Trial expired</p>
+    <% end %>
+
+    <div class="stack-horizontal">
+      <%= button_to "Start subscription for USD$#{@user.subscription_price_usd}/mo",
+        subscription_path,
+        method: :put,
+        class: "button",
+        data: { confirm: "Are you sure you want to cancel your subscription?" } %>
+    </div>
+  <% end %>
+</div>

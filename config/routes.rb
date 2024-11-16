@@ -7,15 +7,25 @@ Rails.application.routes.draw do
   get "/", to: "chats#reader", as: :reader
   get "/pro", to: "chats#writer", as: :writer
 
+  # Subscription routes
+  put "/pro/subscription", to: "subscriptions#start", as: :subscription
+  get "/pro/subscription/confirm", to: "subscriptions#confirm", as: :confirm_subscription
+  delete "/pro/subscription", to: "subscriptions#cancel"
+
   # API endpoint for sending messages to the chat
-  post "chats/message", to: "chats#message"
+  post "/chats/message", to: "chats#message"
 
   # Webhook endpoints
-  post "webhooks/helpscout", to: "helpscout#receive"
+  post "/webhooks/helpscout", to: "webhooks/helpscout#receive"
+  post "/webhooks/stripe", to: "webhooks/stripe#receive"
 
   # Google auth
-  get "login/create" => "sessions#create", as: :create_login
-  get "logout" => "sessions#destroy", as: :logout
+  get "/login" => redirect("/pro")
+  get "/login/create" => "sessions#create", as: :create_login
+  get "/logout" => "sessions#destroy", as: :logout
+
+  # User account
+  get "/you", to: "user#show", as: :user
 
   # Admin
   get "/admin", to: "admin#index", as: :admin

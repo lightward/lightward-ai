@@ -17,6 +17,8 @@ Rails/SaveBang:
   Enabled: true
   AllowedReceivers:
     - ActionDispatch::TestRequest
+    - Stripe::Customer
+    - Stripe::Checkout::Session
 
 Style/FetchEnvVar:
   Enabled: true

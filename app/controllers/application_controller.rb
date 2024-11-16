@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   before_action :verify_host!
 
+  def default_url_options
+    { host: ENV.fetch("HOST") }
+  end
+
   protected
 
   def verify_host!

@@ -36,8 +36,11 @@
       <%= yield(:mode_switcher) %>
 
       <% if current_user %>
-        <%= current_user.email %>
-        <a href="<%= logout_path %>">Logout</a>
+        <% if current_user.admin? %>
+          <%= link_to("Admin", :admin) %>
+        <% end %>
+        <%= link_to current_user.email, :user %>
+        <%= link_to "Logout", :logout %>
       <% end %>
     </header>
 
