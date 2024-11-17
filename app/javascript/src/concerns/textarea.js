@@ -110,10 +110,23 @@ export const initTextarea = () => {
           plainText.includes('=>') ||
           plainText.includes('class ') ||
           plainText.includes('import ') ||
+          plainText.includes('_') || // Consider underscores a sign of code
+          /^\s*[A-Z_]+$/.test(plainText.trim()) || // ALL_CAPS_WITH_UNDERSCORES
           /^\s*[a-z]+\s+[a-z]+\s*\([^)]*\)/i.test(plainText)); // matches function/method declarations
 
       if (looksLikeCode) {
-        // For code, just let the default paste behavior work
+        event.preventDefault();
+        const start = textarea.selectionStart;
+
+        // Insert the plainText
+        document.execCommand('insertText', false, plainText);
+
+        // Move cursor to end of inserted text
+        const newPosition = start + plainText.length;
+        textarea.setSelectionRange(newPosition, newPosition);
+
+        // Trigger input event to resize textarea
+        textarea.dispatchEvent(new Event('input'));
         return;
       }
 
@@ -133,9 +146,14 @@ export const initTextarea = () => {
       markdown = markdown.replace(/--/g, '—');
 
       event.preventDefault();
+      const start = textarea.selectionStart;
 
-      // Simple undoable insert using execCommand
+      // Insert the markdown
       document.execCommand('insertText', false, markdown);
+
+      // Move cursor to end of inserted text
+      const newPosition = start + markdown.length;
+      textarea.setSelectionRange(newPosition, newPosition);
 
       // Trigger input event to resize textarea
       textarea.dispatchEvent(new Event('input'));

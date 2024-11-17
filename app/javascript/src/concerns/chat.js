@@ -42,7 +42,6 @@ export const initChat = () => {
   let sequenceQueue;
   let currentSequenceNumber;
   let messageTimeout;
-  let errorHandled = false;
 
   // this matches the pulsing-moving-into-loading-dots animation sequence we've got going on
   const TIMEOUT_MS = 30000;
@@ -236,14 +235,23 @@ export const initChat = () => {
       },
       body: JSON.stringify(conversationData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return response.text().then((text) => {
+            console.error(response.status, text);
+            throw new Error(text);
+          });
+        }
+      })
       .then((data) => {
         const streamId = data.stream_id;
         initializeConsumer(streamId);
       })
       .catch((error) => {
         console.error('Error:', error);
-        appendSystemError(`Network error: ${error.message}`);
+        appendSystemError(error.message);
         enableUserInput();
         showResponseSuggestions();
       });
@@ -252,7 +260,6 @@ export const initChat = () => {
   function initializeConsumer(streamId) {
     sequenceQueue = [];
     currentSequenceNumber = 0;
-    errorHandled = false; // Reset error flag
 
     subscription = consumer.subscriptions.create(
       { channel: 'StreamChannel', stream_id: streamId },
@@ -320,9 +327,6 @@ export const initChat = () => {
   }
 
   function appendSystemError(errorMessage) {
-    if (errorHandled) return;
-    errorHandled = true;
-
     const formattedErrorMessage = ` ⚠️\u00A0Lightward AI system error: ${errorMessage}`;
     if (currentAssistantMessageElement) {
       currentAssistantMessageElement.innerText += formattedErrorMessage;
@@ -395,7 +399,9 @@ export const initChat = () => {
     } else if (data.event === 'content_block_delta') {
       const delta = data.data.delta;
       if (delta.type === 'text_delta' && currentAssistantMessageElement) {
-        currentAssistantMessageElement.innerText += delta.text;
+        // Create a new text node for the delta
+        const textNode = document.createTextNode(delta.text);
+        currentAssistantMessageElement.appendChild(textNode);
       }
     } else if (data.event === 'content_block_stop') {
       // Content block is complete

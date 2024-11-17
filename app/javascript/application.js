@@ -1,3 +1,6 @@
+import Rails from '@rails/ujs';
+Rails.start();
+
 import { initChat } from 'src/concerns/chat';
 import { initTextarea } from 'src/concerns/textarea';
 import 'src/components/prompt-button';

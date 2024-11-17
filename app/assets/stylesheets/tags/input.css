@@ -16,3 +16,8 @@ input[type='text'] {
   box-shadow: var(--box-shadow);
   border-radius: 0.375rem;
 }
+
+textarea::placeholder {
+  color: var(--body-text-color);
+  opacity: 0.5;
+}
