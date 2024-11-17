@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
-# spec/routing/chats_routing_spec.rb
 require "rails_helper"
 
-RSpec.describe("routing helpscout", :aggregate_failures) do
-  it "routes POST /webhooks/helpscout to helpscout#receive" do
+RSpec.describe("routing webhooks", :aggregate_failures) do
+  it "routes POST /webhooks/helpscout to webhooks/helpscout#receive" do
     expect(post: "/webhooks/helpscout").to(route_to(
-      controller: "helpscout", action: "receive",
+      controller: "webhooks/helpscout", action: "receive",
+    ))
+  end
+
+  it "routes POST /webhooks/stripe to stripe#receive" do
+    expect(post: "/webhooks/stripe").to(route_to(
+      controller: "webhooks/stripe", action: "receive",
     ))
   end
 end
