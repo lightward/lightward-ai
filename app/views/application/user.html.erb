@@ -1,4 +1,4 @@
-<% content_for(:experience) { "writer" } %>
+<% content_for(:experience) { current_user.active? ? "writer" : "reader" } %>
 <% content_for(:title) { "Lightward and you" } %>
 <% content_for(:h1) { "You" } %>
 <% content_for(:mode_switcher) do %>
@@ -26,7 +26,7 @@
       <p>Lightward Pro trial expired at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
     <% end %>
 
-    <div class="stack-horizontal">
+    <div class="stack-horizontal writer">
       <%= button_to "Start subscription for USD$#{@user.subscription_price_usd}/mo",
         subscription_path,
         method: :put,

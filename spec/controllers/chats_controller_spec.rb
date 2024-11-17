@@ -62,7 +62,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
     context "when in writer mode" do
       let(:first_message) { "I'm a slow writer" }
 
-      context "when the user is pro" do # rubocop:disable RSpec/NestedGroups
+      context "when the user is active" do # rubocop:disable RSpec/NestedGroups
         before do
           allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: true)))
         end
@@ -74,15 +74,29 @@ RSpec.describe(ChatsController, :aggregate_failures) do
         end
       end
 
+      context "when the user is not active" do # rubocop:disable RSpec/NestedGroups
+        before do
+          allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: false)))
+        end
+
+        it "returns an error" do
+          post(:message, params: { chat_log: valid_chat_log })
+
+          expect(response).to(have_http_status(:payment_required))
+          expect(response.body).to(eq("This area requires a Lightward Pro subscription! Scroll up, and click on your email address to continue. :)"))
+        end
+      end
+
       context "when the user is not logged in" do # rubocop:disable RSpec/NestedGroups
         before do
           allow(controller).to(receive(:current_user).and_return(nil))
         end
 
-        it "raises an error" do
-          expect {
-            post(:message, params: { chat_log: valid_chat_log })
-          }.to(raise_error(ActionController::BadRequest))
+        it "returns an error" do
+          post(:message, params: { chat_log: valid_chat_log })
+
+          expect(response).to(have_http_status(:unauthorized))
+          expect(response.body).to(eq("You must be logged in to use Lightward Pro. :)"))
         end
       end
     end

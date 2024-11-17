@@ -9,13 +9,11 @@ class ChatsController < ApplicationController
   end
 
   def writer
-    if current_user&.active?
+    if current_user
       chat_context[:localstorage_chatlog_key] = "writer"
       render("chat_writer")
-    elsif current_user.nil?
-      render("login")
     else
-      redirect_to(:user)
+      render("login")
     end
   end
 
@@ -33,8 +31,19 @@ class ChatsController < ApplicationController
       "writer"
     end
 
-    if chat_client == "writer" && !current_user&.active?
-      raise ActionController::BadRequest
+    if chat_client == "writer"
+      if !current_user
+        return render(
+          plain: "You must be logged in to use Lightward Pro. :)",
+          status: :unauthorized,
+        )
+      elsif !current_user.active?
+        return render(
+          plain: "This area requires a Lightward Pro subscription! " \
+            "Scroll up, and click on your email address to continue. :)",
+          status: :payment_required,
+        )
+      end
     end
 
     # Enqueue the background job
