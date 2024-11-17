@@ -3,6 +3,7 @@
 module Webhooks
   class StripeController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :assert_stripe_ready!
 
     def receive
       payload = request.body.read

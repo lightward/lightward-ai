@@ -2,6 +2,7 @@
 
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :assert_stripe_ready!
 
   def start
     unless current_user.stripe_customer_id

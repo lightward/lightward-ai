@@ -77,4 +77,8 @@ class ApplicationController < ActionController::Base
       (today - Time.zone.parse("2024-06-01")) / (365 * 24 * 60 * 60),
     ].sum
   end
+
+  def assert_stripe_ready!
+    head(:unprocessable_entity) unless ENV.fetch("STRIPE_SECRET_KEY", nil)
+  end
 end
