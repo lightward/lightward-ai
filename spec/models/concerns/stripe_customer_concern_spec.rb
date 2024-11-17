@@ -63,5 +63,36 @@ RSpec.describe(StripeCustomerConcern, :aggregate_failures) do
         expect(user.reload.stripe_customer_id).to(eq("cus_existing"))
       end
     end
+
+    context "when stripe_customer_id points to a deleted customer" do
+      before { user.update!(stripe_customer_id: "cus_deleted") }
+
+      it "creates new customer" do
+        stub_stripe_customer_get(
+          customer_id: "cus_deleted",
+          response_body: { id: "cus_deleted", deleted: true }.to_json,
+        )
+        stub_stripe_customer_lookup(email: user.email)
+        stub_stripe_customer_create(email: user.email, customer_id: "cus_new")
+
+        customer = user.ensure_stripe_customer!
+        expect(customer.id).to(eq("cus_new"))
+        expect(user.reload.stripe_customer_id).to(eq("cus_new"))
+      end
+    end
+
+    context "when email lookup finds a deleted customer" do
+      it "creates new customer instead of using deleted one" do
+        stub_stripe_customer_lookup(
+          email: user.email,
+          results: [{ id: "cus_deleted", deleted: true }],
+        )
+        stub_stripe_customer_create(email: user.email, customer_id: "cus_new")
+
+        customer = user.ensure_stripe_customer!
+        expect(customer.id).to(eq("cus_new"))
+        expect(user.reload.stripe_customer_id).to(eq("cus_new"))
+      end
+    end
   end
 end

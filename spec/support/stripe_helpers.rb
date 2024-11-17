@@ -13,21 +13,22 @@ module StripeHelpers
       .to_return(body: { id: customer_id }.to_json)
   end
 
-  def stub_stripe_customer_get(customer_id:, status: 200)
+  def stub_stripe_customer_get(customer_id:, status: 200, response_body: nil)
     stub_request(:get, "https://api.stripe.com/v1/customers/#{customer_id}")
       .to_return(
         status: status,
-        body: if status == 200
-                { id: customer_id }.to_json
-              else
-                {
-                  error: {
-                    type: "invalid_request_error",
-                    message: "No such customer: #{customer_id}",
-                    param: "id",
-                  },
-                }.to_json
-              end,
+        body: response_body || (if status == 200
+                                  { id: customer_id }.to_json
+                                else
+                                  {
+                                    error: {
+                                      type: "invalid_request_error",
+                                      message: "No such customer: #{customer_id}",
+                                      param: "id",
+                                    },
+                                  }.to_json
+                                end
+                               ),
       )
   end
 

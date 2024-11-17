@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# app/models/concerns/stripe_customer_concern.rb
 module StripeCustomerConcern
   extend ActiveSupport::Concern
 
@@ -25,7 +24,9 @@ module StripeCustomerConcern
   def valid_stripe_customer?
     return false unless stripe_customer_id
 
-    stripe_customer
+    customer = stripe_customer
+    return false if customer.deleted?
+
     true
   rescue Stripe::InvalidRequestError
     false
@@ -33,6 +34,8 @@ module StripeCustomerConcern
 
   def find_or_create_stripe_customer
     existing = Stripe::Customer.list(email: email, limit: 1).data.first
-    existing || Stripe::Customer.create(email: email)
+    return Stripe::Customer.create(email: email) if existing.nil? || existing.deleted?
+
+    existing
   end
 end
