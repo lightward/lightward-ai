@@ -1,5 +1,7 @@
 a,
-button.text-button {
+button.text-button,
+button.text-button:disabled,
+button.text-button:disabled:hover {
   color: var(--body-text-color);
   text-decoration: underline;
   cursor: pointer;
@@ -14,4 +16,10 @@ button.text-button:hover {
   color: var(--button-border-color);
   background-color: transparent;
   box-shadow: none;
+}
+
+button.text-button:disabled,
+button.text-button:disabled:hover {
+  cursor: not-allowed;
+  text-decoration: none;
 }
