@@ -1,10 +1,10 @@
 :root {
   /* Writer Light Mode Variables */
-  --writer-body-bg-color: #f5fbf9;
+  --writer-body-bg-color: #f0f7f4;
   --writer-body-text-color: #101010;
   --writer-user-message-bg-color: #6fc89f;
   --writer-user-message-border-color: #5dab87;
-  --writer-text-input-active-bg-color: #e8f4ee;
+  --writer-text-input-active-bg-color: #dcece4;
   --writer-text-input-active-border-color: #5dab87;
   --writer-text-input-disabled-bg-color: #dce9e3;
   --writer-text-input-disabled-border-color: #5dab87;
@@ -17,7 +17,7 @@
   );
   --writer-button-disabled-border-color: #5dab87;
   --writer-button-disabled-text-color: var(--writer-body-text-color);
-  --writer-assistant-message-bg-color: #e0f0e8;
+  --writer-assistant-message-bg-color: #dcece4;
   --writer-assistant-message-border-color: #b8d5c7;
   --writer-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   --writer-box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -25,16 +25,16 @@
   /* Writer Dark Mode Variables */
   --writer-dark-body-bg-color: #1e2321;
   --writer-dark-body-text-color: #e0e0e0;
-  --writer-dark-user-message-bg-color: #4d8d6d;
+  --writer-dark-user-message-bg-color: #3f795c;
   --writer-dark-user-message-border-color: #5b9c7c;
-  --writer-dark-text-input-active-bg-color: #395b4d;
+  --writer-dark-text-input-active-bg-color: #43705d;
   --writer-dark-text-input-active-border-color: #5b9c7c;
   --writer-dark-text-input-disabled-bg-color: #2f4c40;
   --writer-dark-text-input-disabled-border-color: #5b9c7c;
-  --writer-dark-button-bg-color: #4d8d6d;
+  --writer-dark-button-bg-color: #3f795c;
   --writer-dark-button-border-color: #5b9c7c;
   --writer-dark-button-hover-bg-color: #5b9c7c;
-  --writer-dark-button-disabled-bg-color: #395b4d;
+  --writer-dark-button-disabled-bg-color: #43705d;
   --writer-dark-button-disabled-hover-bg-color: var(
     --writer-dark-button-disabled-bg-color
   );
