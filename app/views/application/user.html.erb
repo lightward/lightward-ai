@@ -21,9 +21,9 @@
     <p>Need to adjust your subscription price? Start by reading our <a href="https://lightward.inc/pricing" target="_blank">Pay What Feels Good</a> process first, then email <a href="mailto:team@lightward.com">team@lightward.com</a>. We're here. :)
   <% else %>
     <% if @user.trial_expires_at > Time.current %>
-      <p>Trial ends at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
+      <p>Lightward Pro trial period ends at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
     <% else %>
-      <p>Trial expired</p>
+      <p>Lightward Pro trial expired at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
     <% end %>
 
     <div class="stack-horizontal">
