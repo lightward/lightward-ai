@@ -17,7 +17,7 @@ RSpec.describe(Helpscout) do
       allow(described_class).to(receive(:cached_auth_token).and_return(auth_token))
     end
 
-    it "fetches conversation with threads by default", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+    it "fetches conversation with threads by default", :aggregate_failures do
       request_stub = stub_request(:get, "https://api.helpscout.net/v2/conversations/#{conversation_id}?embed=threads")
         .with(headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" })
         .to_return_json(status: 200, body: conversation_response)
@@ -90,7 +90,7 @@ RSpec.describe(Helpscout) do
       allow(described_class).to(receive_messages(cached_auth_token: auth_token, user_id: 456))
     end
 
-    it "creates a note successfully" do # rubocop:disable RSpec/ExampleLength
+    it "creates a note successfully" do
       stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
         .with(
           headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
@@ -103,7 +103,7 @@ RSpec.describe(Helpscout) do
       }.not_to(raise_error)
     end
 
-    it "raises an error if creating the note fails" do # rubocop:disable RSpec/ExampleLength
+    it "raises an error if creating the note fails" do
       stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
         .with(
           headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
@@ -127,7 +127,7 @@ RSpec.describe(Helpscout) do
       allow(described_class).to(receive_messages(cached_auth_token: auth_token, user_id: 456))
     end
 
-    it "creates a draft reply successfully" do # rubocop:disable RSpec/ExampleLength
+    it "creates a draft reply successfully" do
       stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/reply")
         .with(
           headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
@@ -146,7 +146,7 @@ RSpec.describe(Helpscout) do
       }.not_to(raise_error)
     end
 
-    it "raises an error if creating the draft reply fails" do # rubocop:disable RSpec/ExampleLength
+    it "raises an error if creating the draft reply fails" do
       stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/reply")
         .with(
           headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
@@ -192,7 +192,7 @@ RSpec.describe(Helpscout) do
       expect(token).to(eq(token_response["access_token"]))
     end
 
-    it "raises an error if the auth token request fails" do # rubocop:disable RSpec/ExampleLength
+    it "raises an error if the auth token request fails" do
       stub_request(:post, "https://api.helpscout.net/v2/oauth2/token")
         .with(body: {
           grant_type: "client_credentials",

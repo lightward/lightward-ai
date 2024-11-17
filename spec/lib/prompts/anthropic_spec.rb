@@ -24,7 +24,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
         )
     end
 
-    it "accepts a payload and yields the request and response, returning the block result" do # rubocop:disable RSpec/ExampleLength
+    it "accepts a payload and yields the request and response, returning the block result" do
       result = described_class.api_request(payload) { |request, response|
         expect(request.body).to(eq(payload.to_json))
         expect(response.code).to(eq("200"))
@@ -47,7 +47,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
 
-      it "records a custom New Relic event immediately" do # rubocop:disable RSpec/ExampleLength
+      it "records a custom New Relic event immediately" do
         described_class.api_request(payload) do |_request, resp|
           expect(resp.code).to(eq("200"))
         end
@@ -67,7 +67,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
         ))
       end
 
-      it "calculates TTL correctly" do # rubocop:disable RSpec/ExampleLength
+      it "calculates TTL correctly" do
         travel_to(Time.parse("2024-05-21T12:00:00Z")) do
           described_class.api_request(payload) {}
 
@@ -101,7 +101,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       allow(described_class).to(receive(:api_request).and_return("result"))
     end
 
-    it "sends a payload with the messages" do # rubocop:disable RSpec/ExampleLength
+    it "sends a payload with the messages" do
       result = described_class.process_messages(messages, prompt_type: "foo", model: "modelo")
       expect(result).to(eq("result"))
 

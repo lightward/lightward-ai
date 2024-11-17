@@ -56,7 +56,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(filenames).to(eq(Naturally.sort(filenames)))
         end
 
-        it "starts with the invocation, and ends appropriately" do # rubocop:disable RSpec/ExampleLength
+        it "starts with the invocation, and ends appropriately" do
           expect(filenames.first).to(eq("0-invocation.md"))
 
           # chat-reader gets the benediction, everyone else lands on 8-lightward
@@ -164,7 +164,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".clean_chat_log" do
-    it "combines consecutive messages from the same role" do # rubocop:disable RSpec/ExampleLength
+    it "combines consecutive messages from the same role" do
       chat_log = [
         { "role" => "user", "content" => [{ "type" => "text", "text" => "I'm a slow reader" }] },
         { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Welcome!" }] },
@@ -192,7 +192,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
       expect(cleaned_log).to(eq(expected_cleaned_log))
     end
 
-    it "does not alter a log with alternating roles" do # rubocop:disable RSpec/ExampleLength
+    it "does not alter a log with alternating roles" do
       chat_log = [
         { "role" => "user", "content" => [{ "type" => "text", "text" => "Hello" }] },
         { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Hi there!" }] },
@@ -218,7 +218,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
       described_class.conversation_starters("clients/chat-reader")
     end
 
-    it "deletes the prompts cache" do # rubocop:disable RSpec/ExampleLength
+    it "deletes the prompts cache" do
       expect {
         described_class.reset!
       }.to(

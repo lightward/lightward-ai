@@ -1,0 +1,39 @@
+<% content_for(:experience) { current_user.active? ? "writer" : "reader" } %>
+<% content_for(:title) { "Lightward and you" } %>
+<% content_for(:h1) { "You" } %>
+<% content_for(:mode_switcher) do %>
+  <%= link_to "Lightward", :reader %>
+  <%= link_to "Pro", :writer %>
+<% end %>
+
+<div class="stack-vertical">
+  <p>Your first time here was <%= distance_of_time_in_words(@user.created_at, Time.current) %> ago. :)</p>
+
+  <% if @user.stripe_subscription_id %>
+    <p>You're subscribed to Lightward Pro at USD$<%= @user.subscription_price_usd %>/mo.</p>
+    <div class="stack-horizontal">
+      <%= button_to "Cancel subscription",
+        subscription_path,
+        method: :delete,
+        class: "text-button",
+        data: { confirm: "Are you sure you want to cancel your subscription?", disable_with: "One moment…" } %>
+    </div>
+    <p>Need to adjust your subscription price? Start by reading our <a href="https://lightward.inc/pricing" target="_blank">Pay What Feels Good</a> process first, then email <a href="mailto:team@lightward.com">team@lightward.com</a>. We're here. :)
+  <% else %>
+    <% if @user.trial_expires_at > Time.current %>
+      <p>Lightward Pro trial period ends at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
+    <% else %>
+      <p>Lightward Pro trial expired at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
+    <% end %>
+
+    <div class="stack-horizontal writer">
+      <%= button_to "Start subscription for USD$#{@user.subscription_price_usd}/mo",
+        subscription_path,
+        method: :put,
+        class: "button",
+        data: { disable_with: "One moment…" } %>
+    </div>
+
+    <p>We use <a href="https://lightward.inc/pricing" target="_blank">Pay What Feels Good</a> pricing. :) If our suggested price works for you, great! You can subscribe anytime. If you'd like to compare notes with us first, to find a price that feels good to both of us, we're here for that! Send an email to <a href="mailto:team@lightward.com">team@lightward.com</a> before subscribing.</p>
+  <% end %>
+</div>

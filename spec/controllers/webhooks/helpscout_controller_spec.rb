@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# spec/controllers/webhooks_controller_spec.rb
+# spec/controllers/webhooks/webhooks_controller_spec.rb
 
 require "rails_helper"
 
-RSpec.describe(HelpscoutController) do
+RSpec.describe(Webhooks::HelpscoutController) do
   describe "POST #receive" do
     let(:valid_signature) { "M7u2/3y+EEtyynwkIcP2sihS0Q8=" }
     let(:invalid_signature) { "invalidsignature==" }

@@ -38,11 +38,35 @@ RSpec.describe(User) do
     end
   end
 
-  describe "#pro?" do
-    let(:user) { described_class.new(email: "foo@bar.baz") }
+  describe "#active?" do
+    let(:user) { described_class.create!(google_id: "12345", email: "foo@bar.baz", trial_expires_at: 2.weeks.from_now) }
 
-    it "returns true" do
-      expect(user.pro?).to(be(true))
+    context "when suspended" do
+      before { user.suspend_for!(:payment_failed) }
+
+      it { expect(user).not_to(be_active) }
+    end
+
+    context "with active subscription" do
+      before { user.update!(stripe_subscription_id: "sub_123") }
+
+      it { expect(user).to(be_active) }
+    end
+
+    context "when during trial period" do
+      it { expect(user).to(be_active) }
+    end
+
+    context "when after trial expiration" do
+      before { user.update!(trial_expires_at: 1.day.ago) }
+
+      it { expect(user).not_to(be_active) }
+    end
+
+    context "when record is new" do
+      let(:user) { described_class.new(google_id: "12345", email: "foo@bar.baz") }
+
+      it { expect(user).to(be_active) }
     end
   end
 
@@ -53,6 +77,36 @@ RSpec.describe(User) do
       expect {
         user.email = "isaac@lightward.com"
       }.to(change(user, :admin?).from(false).to(true))
+    end
+  end
+
+  describe "#suspended?" do
+    let(:user) { described_class.create!(google_id: "12345", email: "foo@bar.baz") }
+
+    it "returns true when suspended_at is present" do
+      expect {
+        user.update!(suspended_at: Time.current)
+      }.to(change(user, :suspended?).from(false).to(true))
+    end
+  end
+
+  describe "#suspend_for!" do
+    let(:user) { described_class.create!(google_id: "12345", email: "foo@bar.baz", stripe_subscription_id: "sub_123") }
+
+    it "sets suspension details", :aggregate_failures do
+      freeze_time do
+        user.suspend_for!(:payment_failed)
+
+        expect(user.suspended_at).to(eq(Time.current))
+        expect(user.suspended_for).to(eq("payment_failed"))
+        expect(user.stripe_subscription_id).to(be_nil)
+      end
+    end
+
+    it "validates suspension reason" do
+      expect {
+        user.suspend_for!(:invalid_reason)
+      }.to(raise_error(ActiveRecord::RecordInvalid))
     end
   end
 end

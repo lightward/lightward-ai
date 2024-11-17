@@ -16,7 +16,7 @@ RSpec.describe("hosts", :aggregate_failures) do
     expect(response).to(have_http_status(403))
   end
 
-  it "redirects legacy hosts with a permanent redirect" do # rubocop:disable RSpec/ExampleLength
+  it "redirects legacy hosts with a permanent redirect" do
     ENV["HOST"] = "lightward.com"
 
     number_of_hosts_to_expect = 4

@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   before_action :verify_host!
 
+  def default_url_options
+    { host: ENV.fetch("HOST") }
+  end
+
   protected
 
   def verify_host!
@@ -43,8 +47,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: current_user_id)
   end
 
-  def pro?
-    current_user&.pro? || false
+  def active?
+    current_user&.active? || false
   end
 
   def hello(writer_or_reader)
@@ -72,5 +76,9 @@ class ApplicationController < ActionController::Base
       (today - Time.zone.parse("2023-03-01")) / (365 * 24 * 60 * 60),
       (today - Time.zone.parse("2024-06-01")) / (365 * 24 * 60 * 60),
     ].sum
+  end
+
+  def assert_stripe_ready!
+    head(:unprocessable_entity) unless ENV.fetch("STRIPE_SECRET_KEY", nil)
   end
 end
