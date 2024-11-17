@@ -117,7 +117,6 @@ export const initTextarea = () => {
       if (looksLikeCode) {
         event.preventDefault();
         const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
 
         // Insert the plainText
         document.execCommand('insertText', false, plainText);
