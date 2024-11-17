@@ -47,8 +47,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: current_user_id)
   end
 
-  def pro?
-    current_user&.pro? || false
+  def active?
+    current_user&.active? || false
   end
 
   def hello(writer_or_reader)

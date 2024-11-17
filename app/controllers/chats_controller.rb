@@ -9,13 +9,13 @@ class ChatsController < ApplicationController
   end
 
   def writer
-    if current_user&.pro?
+    if current_user&.active?
       chat_context[:localstorage_chatlog_key] = "writer"
       render("chat_writer")
     elsif current_user.nil?
       render("login")
     else
-      render("pro_required")
+      redirect_to(:user)
     end
   end
 
@@ -33,7 +33,7 @@ class ChatsController < ApplicationController
       "writer"
     end
 
-    if chat_client == "writer" && !current_user&.pro?
+    if chat_client == "writer" && !current_user&.active?
       raise ActionController::BadRequest
     end
 

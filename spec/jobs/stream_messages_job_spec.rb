@@ -19,7 +19,7 @@ RSpec.describe(StreamMessagesJob) do
   end
 
   describe "#perform" do
-    it "does the normal thing, normally" do # rubocop:disable RSpec/ExampleLength
+    it "does the normal thing, normally" do
       allow(Prompts::Anthropic).to(receive(:process_messages))
 
       job.perform(stream_id, chat_client, chat_log)
@@ -41,7 +41,7 @@ RSpec.describe(StreamMessagesJob) do
         })
       end
 
-      it "broadcasts an error and raises an exception", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it "broadcasts an error and raises an exception", :aggregate_failures do
         expect { job.perform(stream_id, chat_client, chat_log) }.to(raise_error("Stream not ready in time"))
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
@@ -71,7 +71,7 @@ RSpec.describe(StreamMessagesJob) do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
 
-      it "handles the rate limit error" do # rubocop:disable RSpec/ExampleLength
+      it "handles the rate limit error" do
         freeze_time do
           job.perform(stream_id, chat_client, chat_log)
           expect(ActionCable.server).to(have_received(:broadcast).with(
@@ -83,7 +83,7 @@ RSpec.describe(StreamMessagesJob) do
         end
       end
 
-      it "reports it to newrelic" do # rubocop:disable RSpec/ExampleLength
+      it "reports it to newrelic" do
         job.perform(stream_id, chat_client, chat_log)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
@@ -102,7 +102,7 @@ RSpec.describe(StreamMessagesJob) do
           .to_raise(IOError)
       end
 
-      it "logs the stream closed message", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it "logs the stream closed message", :aggregate_failures do
         logger = instance_spy(Logger)
         allow(Rails).to(receive(:logger).and_return(logger))
 
@@ -140,7 +140,7 @@ RSpec.describe(StreamMessagesJob) do
           .to_return(status: 200, body: "data: {\"message\": \"Hello, world!\"}\n")
       end
 
-      it "processes the response and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it "processes the response and broadcasts the data", :aggregate_failures do
         job.perform(stream_id, chat_client, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
@@ -157,7 +157,7 @@ RSpec.describe(StreamMessagesJob) do
         ))
       end
 
-      it "reports it to newrelic" do # rubocop:disable RSpec/ExampleLength
+      it "reports it to newrelic" do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
 
         job.perform(stream_id, chat_client, chat_log)
@@ -181,7 +181,7 @@ RSpec.describe(StreamMessagesJob) do
           .to_return(status: 200, body: "data: {\"message\": \"Hello\"}\ndata: {\"message\": \"World\"}\n")
       end
 
-      it "processes each line and broadcasts the data", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it "processes each line and broadcasts the data", :aggregate_failures do
         job.perform(stream_id, chat_client, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
@@ -211,7 +211,7 @@ RSpec.describe(StreamMessagesJob) do
           .to_return(status: 200, body: "event: message\ndata: {\"text\": \"Hello\"}\n")
       end
 
-      it "processes the data event and broadcasts it", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it "processes the data event and broadcasts it", :aggregate_failures do
         job.perform(stream_id, chat_client, chat_log)
 
         expect(ActionCable.server).to(have_received(:broadcast).with(
@@ -231,7 +231,7 @@ RSpec.describe(StreamMessagesJob) do
   end
 
   describe "#broadcast" do
-    it "sends the correct message via ActionCable" do # rubocop:disable RSpec/ExampleLength
+    it "sends the correct message via ActionCable" do
       job.send(:broadcast, stream_id, "test_event", { test: "data" })
 
       expect(ActionCable.server).to(have_received(:broadcast).with(

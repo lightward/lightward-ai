@@ -120,10 +120,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_215631) do
     t.datetime "updated_at", null: false
     t.datetime "trial_expires_at", default: -> { "(CURRENT_TIMESTAMP + 'P15D'::interval)" }, null: false
     t.datetime "suspended_at"
+    t.text "suspended_for"
     t.integer "subscription_price_usd", default: 100, null: false
     t.datetime "subscription_started_at"
     t.text "stripe_customer_id"
     t.text "stripe_subscription_id"
-    t.index ["stripe_subscription_id"], name: "index_users_on_stripe_subscription_id"
+    t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id", unique: true
+    t.index ["stripe_subscription_id"], name: "index_users_on_stripe_subscription_id", unique: true
   end
 end

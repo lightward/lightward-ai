@@ -36,7 +36,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
       allow(StreamMessagesJob).to(receive(:perform_later))
     end
 
-    it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+    it "enqueues the StreamMessagesJob and returns a stream_id", :aggregate_failures do
       post :message, params: { chat_log: valid_chat_log }
 
       expect(response).to(have_http_status(:ok))
@@ -64,7 +64,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
       context "when the user is pro" do # rubocop:disable RSpec/NestedGroups
         before do
-          allow(controller).to(receive(:current_user).and_return(instance_double(User, pro?: true)))
+          allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: true)))
         end
 
         it "uses the writer client" do
@@ -108,7 +108,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
         allow(controller).to(receive(:permitted_chat_log_params).and_call_original)
       end
 
-      it "permits valid parameters" do # rubocop:disable RSpec/ExampleLength
+      it "permits valid parameters" do
         valid_params = {
           chat_log: [
             { role: "user", content: [{ type: "text", text: "I'm a slow reader" }] },
@@ -143,7 +143,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
     context "when using writer mode" do
       it "returns a hash with the correct default keys and values" do
-        allow(controller).to(receive(:current_user).and_return(instance_double(User, pro?: true)))
+        allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: true)))
 
         get :writer
 

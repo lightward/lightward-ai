@@ -395,7 +395,9 @@ export const initChat = () => {
     } else if (data.event === 'content_block_delta') {
       const delta = data.data.delta;
       if (delta.type === 'text_delta' && currentAssistantMessageElement) {
-        currentAssistantMessageElement.innerText += delta.text;
+        // Create a new text node for the delta
+        const textNode = document.createTextNode(delta.text);
+        currentAssistantMessageElement.appendChild(textNode);
       }
     } else if (data.event === 'content_block_stop') {
       // Content block is complete

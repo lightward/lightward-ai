@@ -3,6 +3,7 @@
 class ApplicationJob < ActiveJob::Base
   PRIORITY_STREAM_MESSAGES = 0
   PRIORITY_HELPSCOUT = 1
+  PRIORITY_SCAN_USERS = 2
 
   before_perform :reset_prompts_in_development
 

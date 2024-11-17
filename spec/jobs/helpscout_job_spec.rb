@@ -96,7 +96,7 @@ RSpec.describe(HelpscoutJob) do
       expect(response_data).to(eq(JSON.parse(response_body)))
     end
 
-    it "uses the correct model and prompt type" do # rubocop:disable RSpec/ExampleLength
+    it "uses the correct model and prompt type" do
       job.get_anthropic_response_data([], prompt_type: "clients/helpscout")
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
@@ -107,7 +107,7 @@ RSpec.describe(HelpscoutJob) do
       ))
     end
 
-    it "can request additional system prompt dirs" do # rubocop:disable RSpec/ExampleLength
+    it "can request additional system prompt dirs" do
       job.get_anthropic_response_data(
         [],
         prompt_type: "clients/helpscout",

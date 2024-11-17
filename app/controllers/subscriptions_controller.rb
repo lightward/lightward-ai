@@ -5,13 +5,10 @@ class SubscriptionsController < ApplicationController
   before_action :assert_stripe_ready!
 
   def start
-    unless current_user.stripe_customer_id
-      customer = Stripe::Customer.create(email: current_user.email)
-      current_user.update!(stripe_customer_id: customer.id)
-    end
+    customer = current_user.ensure_stripe_customer!
 
     trial_days = [
-      ((current_user.trial_expires_at - Time.current) / 86400).ceil,
+      (current_user.trial_expires_at.to_i - Time.current.to_i) / 86400,
       0,
     ].max
 
@@ -19,7 +16,7 @@ class SubscriptionsController < ApplicationController
       mode: "subscription",
       success_url: confirm_subscription_url + "?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: user_url,
-      customer: current_user.stripe_customer_id,
+      customer: customer.id,
       line_items: [{
         price: ENV.fetch("STRIPE_PRICE_ID"),
         quantity: 1,
