@@ -8,11 +8,6 @@ RSpec.describe(SubscriptionsController, :aggregate_failures) do
 
   before do
     allow(controller).to(receive(:current_user).and_return(user))
-
-    # Set Stripe test values
-    ENV["STRIPE_PRICE_ID"] = "price_test123"
-    ENV["STRIPE_SECRET_KEY"] = "sk_test_123"
-    Stripe.api_key = ENV.fetch("STRIPE_SECRET_KEY")
   end
 
   describe "#start" do
