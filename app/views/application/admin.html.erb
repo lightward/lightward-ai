@@ -2,4 +2,9 @@
 <% content_for(:experience) { "writer" } %>
 <% content_for(:h1) { "Lightward Admin" } %>
 
+<% content_for(:mode_switcher) do %>
+  <%= link_to "Lightward", :reader %>
+  <%= link_to "Pro", :writer %>
+<% end %>
+
 <pre><%= JSON.pretty_generate(@users.as_json) %></pre>
