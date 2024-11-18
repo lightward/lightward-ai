@@ -151,7 +151,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
         get :reader
 
         expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
-        expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("chatLogData"))
+        expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("reader"))
       end
     end
 
