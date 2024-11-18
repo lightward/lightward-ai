@@ -29,14 +29,14 @@ Lightward's dual experiences are distinguished by their color palettes:
 Core Lightward (Reader):
 
 - Warm, golden tones suggesting reception and absorption
-- Light: Cream (#fffbe7) with orange accents (#f2a249)
-- Dark: Charcoal (#1e1e1e) with warm brown (#8a5529)
+- Light: Cream with orange accents
+- Dark: Charcoal with warm brown
 
 Lightward Pro (Writer):
 
 - Cool, verdant tones suggesting growth and creation
-- Light: Mint (#f5fbf9) with sage accents (#6fc89f)
-- Dark: Forest charcoal (#1e2321) with deep green (#4d8d6d)
+- Light: Mint with sage accents
+- Dark: Forest charcoal with deep green
 
 # Conversation Design
 
