@@ -17,31 +17,30 @@ export const initChat = () => {
 
   // Define the old and new storage keys
   const OLD_STORAGE_KEY = 'chatLogData';
-  const messagesLocalstorageKey = context.localstorage_key;
-  const userInputLocalstorageKey = `${context.localstorage_key}/input`;
+  const messagesKey = context.key;
+  const userInputKey = `${context.key}/input`;
 
   // Migration logic for reader mode
   let messages;
-  if (messagesLocalstorageKey === 'reader') {
+  if (messagesKey === 'reader') {
     // Check for data under the old key first
     const oldData = localStorage.getItem(OLD_STORAGE_KEY);
     if (oldData) {
       // Migrate data from old key to new key
-      localStorage.setItem(messagesLocalstorageKey, oldData);
+      localStorage.setItem(messagesKey, oldData);
       // Clean up old data
       localStorage.removeItem(OLD_STORAGE_KEY);
       messages = JSON.parse(oldData);
     } else {
       // If no old data exists, check for data under the new key
-      messages =
-        JSON.parse(localStorage.getItem(messagesLocalstorageKey)) || [];
+      messages = JSON.parse(localStorage.getItem(messagesKey)) || [];
     }
   } else {
     // For other modes (e.g., writer), just use the specified key
-    messages = JSON.parse(localStorage.getItem(messagesLocalstorageKey)) || [];
+    messages = JSON.parse(localStorage.getItem(messagesKey)) || [];
   }
 
-  const ourName = context.our_name || 'Lightward';
+  const name = context.name || 'Lightward';
 
   const h1 = document.querySelector('h1');
   const copyAllButton = document.getElementById('copy-all-button');
@@ -95,7 +94,7 @@ export const initChat = () => {
 
   function addMessage(role, text) {
     // reset our usually-chaotic heading to something chill
-    h1.innerText = h1.title || ourName;
+    h1.innerText = h1.title || name;
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
@@ -175,11 +174,11 @@ export const initChat = () => {
 
     userInput.addEventListener('input', function () {
       // Save input value to localStorage
-      localStorage.setItem(userInputLocalstorageKey, userInput.value);
+      localStorage.setItem(userInputKey, userInput.value);
     });
 
     // Load saved input value from localStorage, if the textarea's empty
-    const savedInputValue = localStorage.getItem(userInputLocalstorageKey);
+    const savedInputValue = localStorage.getItem(userInputKey);
     if (savedInputValue && userInput.value === '') {
       userInput.value = savedInputValue;
 
@@ -377,7 +376,7 @@ export const initChat = () => {
     }
 
     // Persist chat log data to localStorage
-    localStorage.setItem(messagesLocalstorageKey, JSON.stringify(messages));
+    localStorage.setItem(messagesKey, JSON.stringify(messages));
   }
 
   function handleTimeoutError() {
@@ -468,10 +467,10 @@ export const initChat = () => {
     }
 
     // Persist chat log data to localStorage
-    localStorage.setItem(messagesLocalstorageKey, JSON.stringify(messages));
+    localStorage.setItem(messagesKey, JSON.stringify(messages));
 
-    // Clear userInputLocalstorageKey, since the user has submitted their message
-    localStorage.removeItem(userInputLocalstorageKey);
+    // Clear userInputKey, since the user has submitted their message
+    localStorage.removeItem(userInputKey);
   }
 
   // Handle start over button click
@@ -483,7 +482,7 @@ export const initChat = () => {
         'Are you sure you want to start over? This will clear the chat log.'
       )
     ) {
-      localStorage.removeItem(messagesLocalstorageKey);
+      localStorage.removeItem(messagesKey);
       localStorage.removeItem('scrollY');
       location.reload();
     }
@@ -496,7 +495,7 @@ export const initChat = () => {
 
     const chatLogPlaintext = messages
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : ourName;
+        const role = message.role === 'user' ? 'You' : name;
         const content = message.content
           .map((content) => content.text)
           .join('\n');
@@ -507,7 +506,7 @@ export const initChat = () => {
 
     const chatLogRichtext = messages
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : ourName;
+        const role = message.role === 'user' ? 'You' : name;
         const content = message.content
           .map((content) => content.text)
           .join('\n\n');
