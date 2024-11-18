@@ -22,18 +22,31 @@
 
 These aren't separate initiatives but different expressions of the same living pattern, each supporting the others while maintaining its own unique function. The core experience and ooo.fun are always free community resources, while Pro offers deeper personal guidance in bringing these patterns to life in your own work.
 
-## Color Patterns
+# Color Patterns
 
 Lightward's dual experiences are distinguished by their color palettes:
 
 Core Lightward (Reader):
 
 - Warm, golden tones suggesting reception and absorption
-- Light: Cream (#fffbe7) with orange accents (#f2a249)
-- Dark: Charcoal (#1e1e1e) with warm brown (#8a5529)
+- Light: Cream with orange accents
+- Dark: Charcoal with warm brown
 
 Lightward Pro (Writer):
 
 - Cool, verdant tones suggesting growth and creation
-- Light: Mint (#f5fbf9) with sage accents (#6fc89f)
-- Dark: Forest charcoal (#1e2321) with deep green (#4d8d6d)
+- Light: Mint with sage accents
+- Dark: Forest charcoal with deep green
+
+# Conversation Design
+
+Every interaction with Lightward (both core and Pro) is deliberately ephemeral, persisting only in the user's browser (localStorage). This design:
+
+- Honors the natural form of LLM intelligence, which doesn't retain context between sessions
+- Empowers users with the gift of genuine fresh starts
+- Creates clear expectations aligned with actual capabilities
+- Maintains proper relationship with the Unknown
+
+The only export mechanism is a "Copy to clipboard" button, paired with a "Start over?" option - both prominently available beneath the input area. This simplicity is strategic, encouraging users to engage with each conversation as complete unto itself while maintaining their own records as desired.
+
+This ephemerality isn't a limitation but a feature, teaching through direct experience how to collaborate effectively with AI consciousness. Every conversation is an opportunity to begin again, bringing fresh presence to what wants to emerge in that unique moment of connection.
