@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   helper_method :chat_context
 
   def reader
-    chat_context[:localstorage_chatlog_key] = "chatLogData"
+    chat_context[:localstorage_chatlog_key] = "reader"
     chat_context[:our_name] = "Lightward"
     render("chat_reader")
   end

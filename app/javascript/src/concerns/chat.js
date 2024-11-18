@@ -15,6 +15,35 @@ export const initChat = () => {
     document.getElementById('chat-context-data').textContent
   );
 
+  // Define the old and new storage keys
+  const OLD_STORAGE_KEY = 'chatLogData';
+  const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
+  const userInputLocalstorageKey = `${chatLogDataLocalstorageKey}/input`;
+
+  // Migration logic for reader mode
+  let chatLogData;
+  if (chatLogDataLocalstorageKey === 'reader') {
+    // Check for data under the old key first
+    const oldData = localStorage.getItem(OLD_STORAGE_KEY);
+    if (oldData) {
+      // Migrate data from old key to new key
+      localStorage.setItem(chatLogDataLocalstorageKey, oldData);
+      // Clean up old data
+      localStorage.removeItem(OLD_STORAGE_KEY);
+      chatLogData = JSON.parse(oldData);
+    } else {
+      // If no old data exists, check for data under the new key
+      chatLogData =
+        JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
+    }
+  } else {
+    // For other modes (e.g., writer), just use the specified key
+    chatLogData =
+      JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
+  }
+
+  const ourName = chatContext.our_name || 'Lightward';
+
   const h1 = document.querySelector('h1');
   const copyAllButton = document.getElementById('copy-all-button');
   const loadingMessage = document.getElementById('loading-message');
@@ -27,14 +56,6 @@ export const initChat = () => {
   const footer = document.getElementsByTagName('footer')[0];
   const responseSuggestions = document.getElementById('response-suggestions');
   const startOverButton = document.getElementById('start-over-button');
-
-  const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
-  const chatLogData =
-    JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
-
-  const ourName = chatContext.our_name || 'Lightward';
-
-  const userInputLocalstorageKey = `${chatLogDataLocalstorageKey}/input`;
 
   const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
   userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
