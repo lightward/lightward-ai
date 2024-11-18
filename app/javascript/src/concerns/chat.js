@@ -94,7 +94,7 @@ export const initChat = () => {
 
   function addMessage(role, text) {
     // reset our usually-chaotic heading to something chill
-    h1.innerText = h1.title || name;
+    h1.innerText = name;
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
