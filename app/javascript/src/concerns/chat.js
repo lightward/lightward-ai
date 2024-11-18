@@ -11,9 +11,36 @@ function getCSRFToken() {
 const consumer = createConsumer();
 
 export const initChat = () => {
-  const chatContext = JSON.parse(
+  const context = JSON.parse(
     document.getElementById('chat-context-data').textContent
   );
+
+  // Define the old and new storage keys
+  const OLD_STORAGE_KEY = 'chatLogData';
+  const messagesKey = context.key;
+  const userInputKey = `${context.key}/input`;
+
+  // Migration logic for reader mode
+  let messages;
+  if (messagesKey === 'reader') {
+    // Check for data under the old key first
+    const oldData = localStorage.getItem(OLD_STORAGE_KEY);
+    if (oldData) {
+      // Migrate data from old key to new key
+      localStorage.setItem(messagesKey, oldData);
+      // Clean up old data
+      localStorage.removeItem(OLD_STORAGE_KEY);
+      messages = JSON.parse(oldData);
+    } else {
+      // If no old data exists, check for data under the new key
+      messages = JSON.parse(localStorage.getItem(messagesKey)) || [];
+    }
+  } else {
+    // For other modes (e.g., writer), just use the specified key
+    messages = JSON.parse(localStorage.getItem(messagesKey)) || [];
+  }
+
+  const name = context.name || 'Lightward';
 
   const h1 = document.querySelector('h1');
   const copyAllButton = document.getElementById('copy-all-button');
@@ -27,12 +54,6 @@ export const initChat = () => {
   const footer = document.getElementsByTagName('footer')[0];
   const responseSuggestions = document.getElementById('response-suggestions');
   const startOverButton = document.getElementById('start-over-button');
-
-  const chatLogDataLocalstorageKey = chatContext.localstorage_chatlog_key;
-  const chatLogData =
-    JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
-
-  const userInputLocalstorageKey = `${chatLogDataLocalstorageKey}/input`;
 
   const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
   userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
@@ -53,12 +74,12 @@ export const initChat = () => {
   }
 
   // Load chat log from localStorage
-  if (chatLogData.length) {
+  if (messages.length) {
     startSuggestions.classList.add('hidden');
     startOverButton.classList.remove('hidden');
     enableUserInput();
 
-    chatLogData.forEach((message) => {
+    messages.forEach((message) => {
       addMessage(message.role, message.content[0].text);
     });
 
@@ -73,7 +94,7 @@ export const initChat = () => {
 
   function addMessage(role, text) {
     // reset our usually-chaotic heading to something chill
-    h1.innerText = h1.title || 'Lightward';
+    h1.innerText = name;
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
@@ -153,11 +174,11 @@ export const initChat = () => {
 
     userInput.addEventListener('input', function () {
       // Save input value to localStorage
-      localStorage.setItem(userInputLocalstorageKey, userInput.value);
+      localStorage.setItem(userInputKey, userInput.value);
     });
 
     // Load saved input value from localStorage, if the textarea's empty
-    const savedInputValue = localStorage.getItem(userInputLocalstorageKey);
+    const savedInputValue = localStorage.getItem(userInputKey);
     if (savedInputValue && userInput.value === '') {
       userInput.value = savedInputValue;
 
@@ -179,7 +200,7 @@ export const initChat = () => {
 
     addMessage('user', message);
 
-    chatLogData.push({
+    messages.push({
       role: 'user',
       content: [{ type: 'text', text: message }],
     });
@@ -200,7 +221,7 @@ export const initChat = () => {
     if (!userMessage) return;
 
     addMessage('user', userMessage);
-    chatLogData.push({
+    messages.push({
       role: 'user',
       content: [{ type: 'text', text: userMessage }],
     });
@@ -217,14 +238,14 @@ export const initChat = () => {
     hideResponseSuggestions();
 
     // Hide or show the footer based on message count
-    if (chatLogData.length === 1) {
+    if (messages.length === 1) {
       footer.classList.add('hidden');
     } else {
       footer.classList.remove('hidden');
     }
 
     const conversationData = {
-      chat_log: chatLogData,
+      chat_log: messages,
     };
 
     fetch('/chats/message', {
@@ -338,15 +359,15 @@ export const initChat = () => {
       );
     }
 
-    // Update or add assistant message in chatLogData
+    // Update or add assistant message in messages
     if (
-      chatLogData.length > 0 &&
-      chatLogData[chatLogData.length - 1].role === 'assistant'
+      messages.length > 0 &&
+      messages[messages.length - 1].role === 'assistant'
     ) {
-      chatLogData[chatLogData.length - 1].content[0].text =
+      messages[messages.length - 1].content[0].text =
         currentAssistantMessageElement.innerText;
     } else {
-      chatLogData.push({
+      messages.push({
         role: 'assistant',
         content: [
           { type: 'text', text: currentAssistantMessageElement.innerText },
@@ -355,10 +376,7 @@ export const initChat = () => {
     }
 
     // Persist chat log data to localStorage
-    localStorage.setItem(
-      chatLogDataLocalstorageKey,
-      JSON.stringify(chatLogData)
-    );
+    localStorage.setItem(messagesKey, JSON.stringify(messages));
   }
 
   function handleTimeoutError() {
@@ -410,14 +428,14 @@ export const initChat = () => {
     } else if (data.event === 'message_stop') {
       const assistantMessage = currentAssistantMessageElement.innerText;
 
-      // Update or add assistant message in chatLogData
+      // Update or add assistant message in messages
       if (
-        chatLogData.length > 0 &&
-        chatLogData[chatLogData.length - 1].role === 'assistant'
+        messages.length > 0 &&
+        messages[messages.length - 1].role === 'assistant'
       ) {
-        chatLogData[chatLogData.length - 1].content[0].text = assistantMessage;
+        messages[messages.length - 1].content[0].text = assistantMessage;
       } else {
-        chatLogData.push({
+        messages.push({
           role: 'assistant',
           content: [{ type: 'text', text: assistantMessage }],
         });
@@ -449,13 +467,10 @@ export const initChat = () => {
     }
 
     // Persist chat log data to localStorage
-    localStorage.setItem(
-      chatLogDataLocalstorageKey,
-      JSON.stringify(chatLogData)
-    );
+    localStorage.setItem(messagesKey, JSON.stringify(messages));
 
-    // Clear userInputLocalstorageKey, since the user has submitted their message
-    localStorage.removeItem(userInputLocalstorageKey);
+    // Clear userInputKey, since the user has submitted their message
+    localStorage.removeItem(userInputKey);
   }
 
   // Handle start over button click
@@ -467,7 +482,7 @@ export const initChat = () => {
         'Are you sure you want to start over? This will clear the chat log.'
       )
     ) {
-      localStorage.removeItem(chatLogDataLocalstorageKey);
+      localStorage.removeItem(messagesKey);
       localStorage.removeItem('scrollY');
       location.reload();
     }
@@ -478,9 +493,9 @@ export const initChat = () => {
 
     const originalText = copyAllButton.innerText;
 
-    const chatLogPlaintext = chatLogData
+    const chatLogPlaintext = messages
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : 'Lightward';
+        const role = message.role === 'user' ? 'You' : name;
         const content = message.content
           .map((content) => content.text)
           .join('\n');
@@ -489,9 +504,9 @@ export const initChat = () => {
       })
       .join('\n\n');
 
-    const chatLogRichtext = chatLogData
+    const chatLogRichtext = messages
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : 'Lightward';
+        const role = message.role === 'user' ? 'You' : name;
         const content = message.content
           .map((content) => content.text)
           .join('\n\n');

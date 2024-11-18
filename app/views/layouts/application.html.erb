@@ -31,7 +31,7 @@
 <%= content_tag(:body, class: experience) do %>
   <div class="container">
     <header>
-      <%= content_tag(:h1, (yield(:h1).presence || "Lightward"), { title: yield(:title) }) %>
+      <%= content_tag(:h1, (yield(:h1).presence || "Lightward")) %>
 
       <%= yield(:mode_switcher) %>
 
