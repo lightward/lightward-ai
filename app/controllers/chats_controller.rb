@@ -4,14 +4,14 @@ class ChatsController < ApplicationController
   helper_method :chat_context
 
   def reader
-    chat_context[:localstorage_chatlog_key] = "reader"
+    chat_context[:localstorage_key] = "reader"
     chat_context[:our_name] = "Lightward"
     render("chat_reader")
   end
 
   def writer
     if current_user
-      chat_context[:localstorage_chatlog_key] = "writer"
+      chat_context[:localstorage_key] = "writer"
       chat_context[:our_name] = "Lightward Pro"
       render("chat_writer")
     else

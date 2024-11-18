@@ -150,8 +150,8 @@ RSpec.describe(ChatsController, :aggregate_failures) do
       it "returns a hash with the correct default keys and values" do
         get :reader
 
-        expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
-        expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("reader"))
+        expect(assigns(:chat_context)).to(include(:localstorage_key))
+        expect(assigns(:chat_context)[:localstorage_key]).to(eq("reader"))
       end
     end
 
@@ -161,8 +161,8 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
         get :writer
 
-        expect(assigns(:chat_context)).to(include(:localstorage_chatlog_key))
-        expect(assigns(:chat_context)[:localstorage_chatlog_key]).to(eq("writer"))
+        expect(assigns(:chat_context)).to(include(:localstorage_key))
+        expect(assigns(:chat_context)[:localstorage_key]).to(eq("writer"))
       end
     end
   end
