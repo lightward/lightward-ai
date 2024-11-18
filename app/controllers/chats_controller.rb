@@ -5,12 +5,14 @@ class ChatsController < ApplicationController
 
   def reader
     chat_context[:localstorage_chatlog_key] = "chatLogData"
+    chat_context[:our_name] = "Lightward"
     render("chat_reader")
   end
 
   def writer
     if current_user
       chat_context[:localstorage_chatlog_key] = "writer"
+      chat_context[:our_name] = "Lightward Pro"
       render("chat_writer")
     else
       render("login")

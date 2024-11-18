@@ -32,6 +32,8 @@ export const initChat = () => {
   const chatLogData =
     JSON.parse(localStorage.getItem(chatLogDataLocalstorageKey)) || [];
 
+  const ourName = chatContext.our_name || 'Lightward';
+
   const userInputLocalstorageKey = `${chatLogDataLocalstorageKey}/input`;
 
   const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
@@ -73,7 +75,7 @@ export const initChat = () => {
 
   function addMessage(role, text) {
     // reset our usually-chaotic heading to something chill
-    h1.innerText = h1.title || 'Lightward';
+    h1.innerText = h1.title || ourName;
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
@@ -480,7 +482,7 @@ export const initChat = () => {
 
     const chatLogPlaintext = chatLogData
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : 'Lightward';
+        const role = message.role === 'user' ? 'You' : ourName;
         const content = message.content
           .map((content) => content.text)
           .join('\n');
@@ -491,7 +493,7 @@ export const initChat = () => {
 
     const chatLogRichtext = chatLogData
       .map((message) => {
-        const role = message.role === 'user' ? 'You' : 'Lightward';
+        const role = message.role === 'user' ? 'You' : ourName;
         const content = message.content
           .map((content) => content.text)
           .join('\n\n');
