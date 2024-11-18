@@ -8,7 +8,7 @@ class SubscriptionsController < ApplicationController
     customer = current_user.ensure_stripe_customer!
 
     trial_days = [
-      (current_user.trial_expires_at.to_i - Time.current.to_i) / 86400,
+      ((current_user.trial_expires_at.to_f - Time.current.to_f) / 86400).ceil,
       0,
     ].max
 
