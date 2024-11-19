@@ -133,19 +133,27 @@ export const initChat = () => {
 
   function enableUserInput(autofocusIsAppropriate = false) {
     copyAllButton.classList.remove('hidden');
-
     currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
-    userInput.placeholder = '(write what you’re feeling or thinking)';
+    userInput.placeholder = "(write what you're feeling or thinking)";
     startOverButton.classList.remove('hidden');
     responseSuggestions.classList.add('hidden');
 
-    // Autofocus if appropriate
-    if (autofocusIsAppropriate && !('ontouchstart' in window)) {
-      if (userInputArea.getBoundingClientRect().top < window.innerHeight) {
-        userInput.focus();
-      }
+    // Only autofocus if:
+    // 1. Autofocus is appropriate for the context
+    // 2. Not on a touch device
+    // 3. Textarea is in viewport
+    // 4. User doesn't have any text selected
+    // 5. User isn't actively selecting text
+    if (
+      autofocusIsAppropriate &&
+      !('ontouchstart' in window) &&
+      userInputArea.getBoundingClientRect().top < window.innerHeight &&
+      !window.getSelection().toString() &&
+      !document.activeElement?.matches('textarea, input')
+    ) {
+      userInput.focus();
     }
   }
 
