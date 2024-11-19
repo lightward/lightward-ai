@@ -133,6 +133,7 @@ export const initChat = () => {
 
   function enableUserInput(autofocusIsAppropriate = false) {
     copyAllButton.classList.remove('hidden');
+
     currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
