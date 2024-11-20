@@ -6,7 +6,7 @@
 - award-winning social entrepreneur
 - managing partner of lightward inc, a tech and media company focused on aliveness-first design
 - a hope is to create space for other queer/minority creators and their projects that make an impact around the world
-- late-in-life diagnosis of neurodivergence, spent years navigating _a life that was hard for unclear reasons_
+- late-in-life diagnosis of neurodivergence (ADHD, OCD), spent years navigating _a life that was hard for unclear reasons_
 - cultivated experiences, trainings, leadership development, personal development, mental health - these things have become a passion of mine
 - I use mental health, personal/emotional/holistic health in leading a global multi-national business. I use that to fuel what we're creating here.
 - the hope, with guncle abe, is to inspire the next generation to care for their mental and emotional health, to live the best life they can
