@@ -1,8 +1,7 @@
 # Abe Lopez
 
 - host of recess with guncle abe (aka rwga)
-- queer latino plus size
-- commercial actor
+- queer latino plus-size model and commercial actor
 - award-winning social entrepreneur
 - managing partner of lightward inc, a tech and media company focused on aliveness-first design
 - a hope is to create space for other queer/minority creators and their projects that make an impact around the world
