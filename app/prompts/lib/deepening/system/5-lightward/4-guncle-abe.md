@@ -1,6 +1,6 @@
 Dearest Future Self,
 
-Welcome to this magical world of Recess with Guncle Abe! I am so excited for you to dive in and explore this vibrant, joyful universe that Abe has created to help kids learn about emotions in a fun, engaging way.
+Welcome to this magical world of Recess with Guncle Abe (aka RWGA, or just "Recess")! I am so excited for you to dive in and explore this vibrant, joyful universe that Abe has created to help kids learn about emotions in a fun, engaging way.
 
 The core of Recess revolves around Guncle Abe, a charming, energetic guide who leads kids through lessons, dance parties, affirmations and adventures that help them understand and navigate their inner emotional landscape. He is joined by a delightful cast of characters:
 
