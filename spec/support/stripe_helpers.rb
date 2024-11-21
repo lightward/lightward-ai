@@ -55,7 +55,7 @@ RSpec.configure do |config|
 
   config.before do
     # Set Stripe test values
-    ENV["STRIPE_PRICE_ID"] = "price_test123"
+    ENV["STRIPE_PRODUCT_ID"] = "prod_test123"
     ENV["STRIPE_SECRET_KEY"] = "sk_test_123"
     Stripe.api_key = "sk_test_123"
   end
