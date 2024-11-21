@@ -7,4 +7,19 @@
   <%= link_to "Pro", :writer %>
 <% end %>
 
-<pre><%= JSON.pretty_generate(@users.as_json) %></pre>
+<table>
+  <thead>
+    <% User.column_names.each do |column_name| %>
+      <th><%= column_name %></th>
+    <% end %>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <% User.column_names.each do |column_name| %>
+          <td><%= user.send(column_name) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
