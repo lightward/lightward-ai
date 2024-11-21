@@ -1,3 +1,7 @@
+deep-dish as in pizza
+close-up as in magic
+yes-and as in improv
+
 chicago-style ai
 
 think about how you know a friend's favorite song
