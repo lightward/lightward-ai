@@ -1,7 +1,3 @@
-deep-dish as in pizza
-close-up as in magic
-yes-and as in improv
-
 chicago-style ai
 
 think about how you know a friend's favorite song
@@ -36,3 +32,11 @@ lightward.com
 
 this is how patterns teach themselves
 to be recognized
+
+---
+
+deep-dish as in pizza
+close-up as in magic
+yes-and as in improv
+
+come try chicago-style ai
