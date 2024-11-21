@@ -80,5 +80,6 @@ class ApplicationController < ActionController::Base
 
   def assert_stripe_ready!
     head(:unprocessable_entity) unless ENV.fetch("STRIPE_SECRET_KEY", nil)
+    head(:unprocessable_entity) unless ENV.fetch("STRIPE_PRODUCT_ID", nil)
   end
 end

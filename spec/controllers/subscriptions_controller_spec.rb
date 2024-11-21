@@ -4,7 +4,7 @@
 require "rails_helper"
 
 RSpec.describe(SubscriptionsController, :aggregate_failures) do
-  let(:user) { User.create!(google_id: "123", email: "test@example.com", trial_expires_at: 2.weeks.from_now) }
+  let(:user) { User.create!(google_id: "123", email: "test@example.com") }
 
   before do
     allow(controller).to(receive(:current_user).and_return(user))
@@ -14,19 +14,43 @@ RSpec.describe(SubscriptionsController, :aggregate_failures) do
     before do
       stub_stripe_customer_lookup(email: user.email)
       stub_stripe_customer_create(email: user.email, customer_id: "cus_123")
+
+      user.update!(subscription_price_usd: 5)
     end
 
     it "creates a checkout session and redirects" do
       stub_request(:post, "https://api.stripe.com/v1/checkout/sessions")
         .with(
-          body: hash_including(
-            "mode" => "subscription",
-            "customer" => "cus_123",
-            "success_url" => "http://test.host/pro/subscription/confirm?session_id={CHECKOUT_SESSION_ID}",
+          body: {
             "cancel_url" => "http://test.host/you",
-            "line_items" => [{ "price" => "price_test123", "quantity" => "1" }],
-            "subscription_data" => { "trial_period_days" => "14" },
-          ),
+            "customer" => "cus_123",
+            "line_items" => [{
+              "price_data" => {
+                "currency" => "usd",
+                "product" => "prod_test123",
+                "unit_amount" => "500",
+                "recurring" => { "interval" => "month" },
+              },
+              "quantity" => "1",
+            }],
+            "mode" => "subscription",
+            "subscription_data" => { "trial_period_days" => "15" },
+            "success_url" => "http://test.host/pro/subscription/confirm?session_id={CHECKOUT_SESSION_ID}",
+          },
+        )
+        .to_return(body: { id: "cs_123", url: "https://checkout.stripe.com/123" }.to_json)
+
+      put(:start)
+
+      expect(response).to(redirect_to("https://checkout.stripe.com/123"))
+    end
+
+    it "rounds up trial days" do
+      user.update!(trial_expires_at: 1.week.from_now - 13.hours)
+
+      stub_request(:post, "https://api.stripe.com/v1/checkout/sessions")
+        .with(
+          body: hash_including("subscription_data" => { "trial_period_days" => "7" }),
         )
         .to_return(body: { id: "cs_123", url: "https://checkout.stripe.com/123" }.to_json)
 

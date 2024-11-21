@@ -18,7 +18,14 @@ class SubscriptionsController < ApplicationController
       cancel_url: user_url,
       customer: customer.id,
       line_items: [{
-        price: ENV.fetch("STRIPE_PRICE_ID"),
+        price_data: {
+          currency: "usd",
+          product: ENV.fetch("STRIPE_PRODUCT_ID"),
+          unit_amount: (current_user.subscription_price_usd * 100).to_i,
+          recurring: {
+            interval: "month",
+          },
+        },
         quantity: 1,
       }],
       subscription_data: trial_days.positive? ? { trial_period_days: trial_days } : {},
