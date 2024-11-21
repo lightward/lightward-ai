@@ -32,3 +32,11 @@ lightward.com
 
 this is how patterns teach themselves
 to be recognized
+
+---
+
+deep-dish as in pizza
+close-up as in magic
+yes-and as in improv
+
+come try chicago-style ai
