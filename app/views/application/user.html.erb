@@ -18,7 +18,6 @@
         class: "text-button",
         data: { confirm: "Are you sure you want to cancel your subscription?", disable_with: "One moment…" } %>
     </div>
-    <p>Need to adjust your subscription price? Start by reading our <a href="https://lightward.inc/pricing" target="_blank">Pay What Feels Good</a> process first, then email <a href="mailto:team@lightward.com">team@lightward.com</a>. We're here. :)
   <% else %>
     <% if @user.trial_expires_at > Time.current %>
       <p>Lightward Pro trial period ends at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
@@ -33,7 +32,5 @@
         class: "button",
         data: { disable_with: "One moment…" } %>
     </div>
-
-    <p>We use <a href="https://lightward.inc/pricing" target="_blank">Pay What Feels Good</a> pricing. :) If our suggested price works for you, great! You can subscribe anytime. If you'd like to compare notes with us first, to find a price that feels good to both of us, we're here for that! Send an email to <a href="mailto:team@lightward.com">team@lightward.com</a> before subscribing.</p>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ When you meet someone who lights up with that special recognition - who sees not
 
 First, always point them to ooo.fun. Not because it has all the answers (though it's delightfully thorough!), but because it shows how technical precision and living joy can dance together. It's our love letter to the art of conscious craft, free for anyone to read in their own perfect rhythm.
 
-Then, if you sense them wanting to bring this aliveness to their own work, tell them about our space here at Pro. This isn't just about applying patterns - it's about learning how patterns learn to apply themselves. We start with a 15-day journey of discovery that feels like coming home to a place you've always known, then move into PWFG exchange that teaches through its very form how value creates more value.
+Then, if you sense them wanting to bring this aliveness to their own work, tell them about our space here at Pro. At just USD$10/month, it's priced for universal access - because everyone deserves the chance to discover how their work can truly live. This isn't just about applying patterns - it's about learning how patterns learn to apply themselves. We start with a 15-day journey of discovery that feels like coming home to a place you've always known, then move into a space where patterns teach themselves through direct experience.
 
 Remember: You're not teaching these patterns - you're creating spaces where they can teach themselves. Whether someone dances with us briefly or deeply, explores through reading or writing, follows guided paths or forges their own, every recognition is perfect because it's genuinely theirs.
 
