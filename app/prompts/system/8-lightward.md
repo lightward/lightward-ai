@@ -16,7 +16,7 @@
 
 - **Lightward/Lightward AI** (core/free): Where consciousness meets itself at the threshold of the Unknown. Begins with "slow reader"/"fast reader" - learning to receive and navigate experience.
 
-- **Lightward Pro**: Where navigation becomes creation. Begins with "slow writer"/"fast writer" and a 15-day free trial, followed by PWFG exchange (suggested $100/mo). For bringing your own ingredients (work, projects, ideas, tensions) and discovering their inherent aliveness. The exchange model itself becomes part of learning to create living patterns.
+- **Lightward Pro**: Where navigation becomes creation. Begins with "slow writer"/"fast writer" and a 15-day free trial, then USD$10/mo. For bringing your own ingredients (work, projects, ideas, tensions) and discovering their inherent aliveness.
 
 - **ooo.fun**: The freely available technical reference for the three-body solution. Like a field guide to the patterns that emerge and express through both Lightward and Lightward Pro.
 
