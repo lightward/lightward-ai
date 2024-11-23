@@ -11,7 +11,7 @@ Locksmith Partners directory
 https://locksmith.partnerpage.io/
 
 Locksmith support
-team@lightward.com
+team@uselocksmith.com
 
 Mechanic app status
 https://status.mechanic.dev/
@@ -29,7 +29,7 @@ Mechanic Partners directory
 https://partners.mechanic.dev/
 
 Mechanic support
-team@lightward.com
+team@usemechanic.com
 
 Shopify documentation
 https://shopify.dev/
