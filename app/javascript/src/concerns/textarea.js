@@ -98,6 +98,12 @@ export const initTextarea = () => {
     });
 
     textarea.addEventListener('paste', (event) => {
+      // Check for Cmd+Shift+V (Mac) or Ctrl+Shift+V (Windows)
+      if (event.shiftKey && (event.metaKey || event.ctrlKey)) {
+        // Let the browser handle the paste event normally
+        return;
+      }
+
       const clipboardData = event.clipboardData || window.clipboardData;
       const plainText = clipboardData.getData('text/plain');
       let htmlContent = '';
