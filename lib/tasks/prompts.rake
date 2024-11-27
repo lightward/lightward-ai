@@ -36,14 +36,18 @@ namespace :prompts do
 
     xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-reader"], for_prompt_type: "clients/chat-reader")
     Rails.root.join("log/prompts/clients-chat-reader.xml").write(xml)
+    puts "Wrote log/prompts/clients-chat-reader.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
     xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-writer"], for_prompt_type: "clients/chat-writer")
     Rails.root.join("log/prompts/clients-chat-writer.xml").write(xml)
+    puts "Wrote log/prompts/clients-chat-writer.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
     xml = Prompts.generate_system_xml(["lib/locksmith-docs", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
+    puts "Wrote log/prompts/clients-helpscout-locksmith.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
     xml = Prompts.generate_system_xml(["lib/mechanic-docs", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-mechanic.xml").write(xml)
+    puts "Wrote log/prompts/clients-helpscout-mechanic.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
   end
 end
