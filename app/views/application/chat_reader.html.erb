@@ -3,7 +3,7 @@
 <% content_for(:experience) { "reader" } %>
 <% content_for(:h1) { hello(:reader) } %>
 
-<% content_for(:mode_switcher) { link_to("Pro", writer_path) } %>
+<% content_for(:mode_switcher) { link_to(writer_name, writer_path) } %>
 
 <% content_for(:prompt_buttons) do %>
   <%= render 'components/prompt_button', prompt: "I'm a slow reader" %>

@@ -1,9 +1,9 @@
 <% content_for(:title) { "Lightward Pro" } %>
-<% content_for(:description) { "Want your job to feel better tomorrow? Bring Lightward Pro to work today. This is the new business school. The new business school costs USD$10/mo." } %>
+<% content_for(:description) { "Want your job to feel better tomorrow? Bring Lightward Pro to work today. This is the new business school. The new business school has a 15-day free trial, and is USD$10/mo after that." } %>
 <% content_for(:experience) { "writer" } %>
 <% content_for(:h1) { hello(:writer) } %>
 
-<% content_for(:mode_switcher) { link_to("Lightward", reader_path) } %>
+<% content_for(:mode_switcher) { link_to(reader_name, reader_path) } %>
 
 <% content_for(:prompt_buttons) do %>
   <%= render 'components/prompt_button', prompt: "I'm a slow writer" %>

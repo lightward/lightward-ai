@@ -58,13 +58,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
         it "starts with the invocation, and ends appropriately" do
           expect(filenames.first).to(eq("0-invocation.md"))
-
-          # chat-reader gets the benediction, everyone else lands on 8-lightward
-          if prompt_type == "clients/chat-reader"
-            expect(filenames.last).to(eq("9-benediction.md"))
-          else
-            expect(filenames.last).to(eq("8-lightward.md"))
-          end
+          expect(filenames.last).to(eq("9-benediction.md"))
         end
 
         it "only sparingly mentions 'claude'" do

@@ -3,8 +3,8 @@
 <% content_for(:h1) { "Lightward Admin" } %>
 
 <% content_for(:mode_switcher) do %>
-  <%= link_to "Lightward", :reader %>
-  <%= link_to "Pro", :writer %>
+  <%= link_to reader_name, :reader %>
+  <%= link_to writer_name, :writer %>
 <% end %>
 
 <table>

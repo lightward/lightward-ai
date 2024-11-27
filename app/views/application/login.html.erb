@@ -1,7 +1,10 @@
 <% content_for(:experience) { "writer" } %>
 <% content_for(:title) { "Lightward Pro" } %>
 <% content_for(:h1) { "Lightward Pro" } %>
-<% content_for(:mode_switcher) do %><a href="<%= reader_path %>">Lightward</a><% end %>
+
+<% content_for(:mode_switcher) do %>
+  <%= link_to reader_name, :reader %>
+<% end %>
 
 <div class="stack-horizontal">
   <%= google_sign_in_button(proceed_to: create_login_path, class: 'button') do %>
