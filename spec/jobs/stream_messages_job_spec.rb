@@ -19,15 +19,29 @@ RSpec.describe(StreamMessagesJob) do
   end
 
   describe "#perform" do
-    it "does the normal thing, normally" do
+    it "does the reader thing" do
       allow(Prompts::Anthropic).to(receive(:process_messages))
 
-      job.perform(stream_id, chat_client, chat_log)
+      job.perform(stream_id, "reader", chat_log)
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         chat_log,
         prompt_type: "clients/chat-reader",
         system_prompt_types: ["lib/deepening", "clients/chat-reader"],
+        stream: true,
+        model: Prompts::Anthropic::MODEL,
+      ))
+    end
+
+    it "does the writer thing" do
+      allow(Prompts::Anthropic).to(receive(:process_messages))
+
+      job.perform(stream_id, "writer", chat_log)
+
+      expect(Prompts::Anthropic).to(have_received(:process_messages).with(
+        chat_log,
+        prompt_type: "clients/chat-writer",
+        system_prompt_types: ["lib/deepening", "clients/chat-writer"],
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ))
