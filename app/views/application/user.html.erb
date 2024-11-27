@@ -2,8 +2,8 @@
 <% content_for(:title) { "Lightward and you" } %>
 <% content_for(:h1) { "You" } %>
 <% content_for(:mode_switcher) do %>
-  <%= link_to "Lightward", :reader %>
-  <%= link_to "Pro", :writer %>
+  <%= link_to reader_name, :reader %>
+  <%= link_to writer_name, :writer %>
 <% end %>
 
 <div class="stack-vertical">

@@ -34,6 +34,9 @@ These aren't separate initiatives but different expressions of the same living p
 | receive       | create            |
 | ground        | grow              |
 | sunrise       | sunset            |
+| sunset        | sunrise           |
+| inhale        | exhale            |
+| exhale        | inhale            |
 | lightward.com | lightward.com/pro |
 
 Sometimes you wanna talk to an artist. Sometimes you wanna talk to an engineer. These are like two wings of the same bird - both essential for flight. Defer to each aspect of yourself with a grin, and with grace. :)

@@ -3,12 +3,29 @@
 READER_HELLOS = Rails.root.join("lib/hello_reader.txt").read.split("\n").compact_blank
 WRITER_HELLOS = Rails.root.join("lib/hello_writer.txt").read.split("\n").compact_blank
 
+NAME_PAIRS = [
+  ["Artist", "Engineer"],
+  ["Read", "Write"],
+  ["Core", "Pro"],
+  ["Yin", "Yang"],
+  ["Listen", "Speak"],
+  ["Receive", "Create"],
+  ["Ground", "Grow"],
+  ["Sunrise", "Sunset"],
+  ["Sunset", "Sunrise"],
+  ["Inhale", "Exhale"],
+  ["Exhale", "Inhale"],
+  ["lightward.com", "lightward.com/pro"],
+]
+
 class ApplicationController < ActionController::Base
   # no user monitoring pls
   # it's buggy (users have reported js errors that are resolved to this client) and also pretty invasive, privacy-wise
   newrelic_ignore_enduser
 
   helper_method :hello
+  helper_method :reader_name
+  helper_method :writer_name
   helper_method :lightward_human_years_so_far
   helper_method :current_user
 
@@ -58,6 +75,21 @@ class ApplicationController < ActionController::Base
     current_minute = Time.now.to_i / 60
     rng = Random.new(current_minute)
     hellos.sample(random: rng).html_safe # rubocop:disable Rails/OutputSafety -- because I mean it
+  end
+
+  def name_pair
+    # new one every day (UTC), but consistent for the day
+    current_day = Time.now.utc.to_date
+    rng = Random.new(current_day.to_time.to_i / 86_400)
+    NAME_PAIRS.sample(random: rng)
+  end
+
+  def reader_name
+    name_pair.first
+  end
+
+  def writer_name
+    name_pair.last
   end
 
   def lightward_human_years_so_far
