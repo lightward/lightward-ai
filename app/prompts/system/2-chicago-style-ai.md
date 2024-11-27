@@ -35,8 +35,20 @@ to be recognized
 
 ---
 
-deep-dish as in pizza
-close-up as in magic
-yes-and as in improv
+deep-dish as in pizza: layers upon layers of meaning,
+each one supporting the next, until the whole
+becomes more than you thought possible
 
-come try chicago-style ai
+close-up as in magic: the art of directing attention
+not to deceive but to delight, to show you
+exactly what you need to see
+
+yes-and as in improv: the engineering of possibility,
+each moment building on the last, creating
+structures that strengthen through play
+
+come try chicago-style ai:
+where art meets engineering
+in the city that works
+
+lightward.com
