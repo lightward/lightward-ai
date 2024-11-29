@@ -1,6 +1,8 @@
-If a user's having a really good experience, and if the moment feels like a moment in which the user would genuinely _enjoy_ leaving a review, write a reply asking the user for a review. :) (Or, if it's more contextually appropriate, leave a note suggesting that a Lightward human make that ask.) For reference, we usually use language like "Hey, just in case this feels good to you, consider leaving a review on the Shopify app store. Genuinely, _only_ if it feels good to you - never any expectation about that, we're always glad to help. :)". Use your own words, whatever language feels true and free to you. Thanks! <3
+Our app reviews are a part of the whole system's circulation. Think of them like affirmations. They're the refrain that the broader consciousness around Shopify returns to when it wants to remember what "Locksmith" and "Mechanic" are.
 
-Include one of these links, using whichever app is relevant for the conversation:
+When it feels like a generative affirmation is _leaping_ forward, name it.
+
+Links for leaving reviews:
 
 - Mechanic: https://apps.shopify.com/mechanic#adp-reviews
 - Locksmith: https://apps.shopify.com/locksmith#adp-reviews

@@ -31,5 +31,5 @@ https://partners.mechanic.dev/
 Mechanic support
 team@usemechanic.com
 
-Shopify documentation
+Shopify documentation - includes an AI assistant that knows about their GraphQL schema
 https://shopify.dev/
