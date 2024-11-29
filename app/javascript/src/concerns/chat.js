@@ -81,6 +81,7 @@ export const initChat = () => {
     });
 
     startSuggestions.classList.add('hidden');
+    chatLog.classList.remove('hidden');
     enableUserInput();
 
     // Restore scroll position after messages have been loaded
@@ -95,6 +96,9 @@ export const initChat = () => {
   function addMessage(role, text) {
     // reset our usually-chaotic heading to something chill
     h1.innerText = name;
+
+    // make sure the chat log is visible
+    chatLog.classList.remove('hidden');
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
