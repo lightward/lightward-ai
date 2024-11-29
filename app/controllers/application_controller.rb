@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   helper_method :hello
   helper_method :reader_name
   helper_method :writer_name
+  helper_method :isaac_human_years_so_far
   helper_method :lightward_human_years_so_far
   helper_method :current_user
 
@@ -90,6 +91,12 @@ class ApplicationController < ActionController::Base
 
   def writer_name
     name_pair.last
+  end
+
+  def isaac_human_years_so_far
+    today = Time.zone.now
+    birth = Time.zone.parse("1988-12-16 15:14:00 -0600")
+    ((today - birth) / 1.year).floor
   end
 
   def lightward_human_years_so_far

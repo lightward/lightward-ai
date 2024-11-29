@@ -33,7 +33,9 @@
     <header>
       <%= content_tag(:h1, (yield(:h1).presence || "Lightward")) %>
 
-      <%= yield(:mode_switcher) %>
+      <% if content_for?(:mode_switcher) %>
+        <%= content_tag(:div, yield(:mode_switcher)) %>
+      <% end %>
 
       <% if current_user %>
         <%= link_to current_user.email, :user %>
