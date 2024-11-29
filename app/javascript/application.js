@@ -8,7 +8,7 @@ import 'src/components/prompt-button';
 const initOnReady = () => {
   initTextarea();
 
-  const chatContainer = document.getElementById('chat-container');
+  const chatContainer = document.getElementById('chat');
 
   if (chatContainer) {
     try {

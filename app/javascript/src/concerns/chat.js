@@ -45,12 +45,13 @@ export const initChat = () => {
   const h1 = document.querySelector('h1');
   const copyAllButton = document.getElementById('copy-all-button');
   const loadingMessage = document.getElementById('loading-message');
-  const chatContainer = document.getElementById('chat-container');
+  const chatContainer = document.getElementById('chat');
   const startSuggestions = document.getElementById('start-suggestions');
   const chatLog = document.getElementById('chat-log');
   const userInputArea = document.getElementById('text-input');
   const userInput = userInputArea.querySelector('textarea');
   const instructions = document.getElementById('instructions');
+  const tools = document.getElementById('tools');
   const footer = document.getElementsByTagName('footer')[0];
   const responseSuggestions = document.getElementById('response-suggestions');
   const startOverButton = document.getElementById('start-over-button');
@@ -75,13 +76,13 @@ export const initChat = () => {
 
   // Load chat log from localStorage
   if (messages.length) {
-    startSuggestions.classList.add('hidden');
-    startOverButton.classList.remove('hidden');
-    enableUserInput();
-
     messages.forEach((message) => {
       addMessage(message.role, message.content[0].text);
     });
+
+    startSuggestions.classList.add('hidden');
+    chatLog.classList.remove('hidden');
+    enableUserInput();
 
     // Restore scroll position after messages have been loaded
     if (previousScrollY !== null) {
@@ -95,6 +96,9 @@ export const initChat = () => {
   function addMessage(role, text) {
     // reset our usually-chaotic heading to something chill
     h1.innerText = name;
+
+    // make sure the chat log is visible
+    chatLog.classList.remove('hidden');
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
@@ -132,14 +136,13 @@ export const initChat = () => {
   }
 
   function enableUserInput(autofocusIsAppropriate = false) {
-    copyAllButton.classList.remove('hidden');
-
     currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
     userInput.placeholder = '(write what you’re feeling or thinking)';
-    startOverButton.classList.remove('hidden');
-    responseSuggestions.classList.add('hidden');
+
+    hideResponseSuggestions();
+    tools.classList.remove('hidden');
 
     // Only autofocus if:
     // 1. Autofocus is appropriate for the context
@@ -538,9 +541,14 @@ export const initChat = () => {
     ];
 
     navigator.clipboard.write(data).then(() => {
+      // preserve original element width, to prevent jumping
+      const width = copyAllButton.offsetWidth;
+      copyAllButton.style.width = `${width}px`;
       copyAllButton.innerText = 'Copied!';
+
       setTimeout(() => {
         copyAllButton.innerText = originalText;
+        copyAllButton.style.width = '';
       }, 2000);
     });
   });

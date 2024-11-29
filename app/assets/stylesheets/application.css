@@ -19,8 +19,6 @@ a {
 
 .container,
 main,
-.chat-container,
-.chat-log,
 .tools,
 dl,
 footer {
@@ -58,82 +56,9 @@ dt {
   font-weight: 400;
 }
 
-.chat-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.chat-log {
-  flex: 1;
-  background-color: var(--body-bg-color);
-}
-
-#text-input {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: norap;
-  gap: 0.5rem;
-}
-
-/* if we're on a device with a physical keyboard... */
-@media (hover: hover) {
-  #text-input:after {
-    content: attr(data-submit-tip);
-    position: absolute;
-    right: 0;
-    bottom: -1.7rem;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  #text-input.multiline:after {
-    opacity: 0.5;
-  }
-}
-
-#text-input.disabled {
-  opacity: 0.5;
-  filter: blur(1px);
-  pointer-events: none;
-}
-
-#text-input.disabled textarea {
-  border: 1px solid var(--text-input-disabled-border-color);
-  background-color: var(--text-input-disabled-bg-color);
-}
-
-#text-input.disabled button {
-  display: none;
-}
-
-#instructions {
-  white-space: nowrap;
-  padding-right: 1rem;
-}
-
-.tools {
-  margin-top: 0.5rem;
-}
-
 footer {
   margin-top: 1rem;
   gap: 2rem;
-}
-
-#video-intro {
-  width: 100%;
-  max-width: 600px;
-}
-
-.we-moved {
-  border-bottom: 1px solid var(--assistant-message-border-color);
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 /* should come last */

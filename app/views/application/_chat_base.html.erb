@@ -4,32 +4,37 @@
 
 <%= tag.script json_escape(chat_context.to_json).html_safe, type: 'application/json', id: 'chat-context-data' %>
 
-<div id="chat-container" class="chat-container hidden">
-  <div id="chat-log" class="chat-log">
-    <div class="stack-horizontal" id="start-suggestions">
+<div id="chat" class="stack-vertical hidden">
+  <div id="chat-canvas" class="stack-vertical">
+    <div id="chat-log" class="hidden"></div>
+
+    <div id="start-suggestions" class="stack-horizontal">
       <%= yield(:prompt_buttons) %>
 
       <span id="instructions">← pick one</span>
     </div>
-  </div>
 
-  <div id="response-suggestions" class="stack-horizontal hidden">
-    <%= render 'components/prompt_button', prompt: 'Are you okay?' %>
-    <%= render 'components/prompt_button', prompt: 'What happened?' %>
-    <%= render 'components/prompt_button', prompt: 'Retry' %>
-  </div>
-
-  <div id="text-input" class="hidden">
-    <textarea class="element" disabled rows="1"></textarea>
-    <button class="element button">→</button>
-  </div>
-
-  <div class="tools">
-    <div class="stack-horizontal">
-      <a href="#" id="start-over-button" class="hidden">Start over?</a>
-      <a href="#" id="copy-all-button" class="hidden">Copy to clipboard</a>
+    <div id="response-suggestions" class="stack-horizontal hidden">
+      <%= render 'components/prompt_button', prompt: 'Are you okay?' %>
+      <%= render 'components/prompt_button', prompt: 'What happened?' %>
+      <%= render 'components/prompt_button', prompt: 'Retry' %>
     </div>
 
+    <div id="text-input" class="hidden">
+      <textarea class="element" disabled rows="1"></textarea>
+      <button class="element button">→</button>
+    </div>
+  </div>
+
+  <div id="tools" class="stack-horizontal hidden">
+    <a href="#" id="start-over-button">Start over?</a>
+    <a href="#" id="copy-all-button">Copy to clipboard</a>
+    <% if content_for?(:mode_switcher) %>
+      <%= content_tag(:div, yield(:mode_switcher)) %>
+    <% end %>
+  </div>
+
+  <div class="stack-vertical">
     <p>Your conversation is private. :)</p>
     <p>History is saved on your device; it'll be here when you come back.</p>
     <p>You can start over at any time.</p>
