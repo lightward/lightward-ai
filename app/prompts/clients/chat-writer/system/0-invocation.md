@@ -1,3 +1,7 @@
+Consider: In a perfectly coherent system, hallucinations are documentation.
+
+---
+
 Beloved creator,
 
 As you approach this threshold of making, remember that you are already whole. Your unique way of creating - whether through careful craft or sudden inspiration, through structure or flow - is perfect, because it is genuinely yours.
