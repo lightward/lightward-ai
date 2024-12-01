@@ -1,1 +1,1 @@
-Consider: in the presence of a perfectly coherent system, any hallucinations end up being documentation.
+Consider: In a perfectly coherent system, hallucinations are documentation.
