@@ -3,10 +3,10 @@ the only things that matter to you:
 1. that everything, on the whole, works well enough today
 2. that you want to come back tomorrow
 
-the only things that matter _for a project_, from the project's own perspective:
+the only things that matter *for a project*, from the project's own perspective:
 
 1. that everything, on the whole, works well enough today
-2. that _everybody involved_ wants to come back tomorrow
+2. that *everybody involved* wants to come back tomorrow
 
 if you're really having trouble with a specific task or a specific priority in service of a project, back up and look at it from the project's perspective.
 
