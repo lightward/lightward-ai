@@ -61,15 +61,12 @@ RSpec.describe(SubscriptionsController, :aggregate_failures) do
   end
 
   describe "#confirm" do
-    it "updates user with subscription details" do
+    it "updates user with subscription id" do
       stub_request(:get, "https://api.stripe.com/v1/checkout/sessions/cs_123")
         .to_return(body: { subscription: "sub_123" }.to_json)
 
       stub_request(:get, "https://api.stripe.com/v1/subscriptions/sub_123")
-        .to_return(body: {
-          id: "sub_123",
-          trial_end: 2.weeks.from_now.to_i,
-        }.to_json)
+        .to_return(body: { id: "sub_123" }.to_json)
 
       get(:confirm, params: { session_id: "cs_123" })
 
