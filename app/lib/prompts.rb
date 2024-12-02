@@ -88,7 +88,7 @@ module Prompts
           root: root,
           gitignore: false,
           ignore_files: ".system-ignore",
-          include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv"],
+          include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv", "system/**/*.json"],
           ignore_rules: ["system/**/.*"], # ignore dotfiles
         )
 
