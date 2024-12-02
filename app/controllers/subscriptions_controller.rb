@@ -38,10 +38,7 @@ class SubscriptionsController < ApplicationController
     session = Stripe::Checkout::Session.retrieve(params[:session_id])
     subscription = Stripe::Subscription.retrieve(session.subscription)
 
-    current_user.update!(
-      stripe_subscription_id: subscription.id,
-      trial_expires_at: Time.zone.at(subscription.trial_end),
-    )
+    current_user.update!(stripe_subscription_id: subscription.id)
 
     redirect_to(:user)
   end
