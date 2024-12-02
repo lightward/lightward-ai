@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+cd "$(dirname "$0")"
+
+TASK_PATTERN="mechanic-tasks/tasks/demonstration-*.json"
+TARGET_DIR="./system/7-selected-mechanic-tasks"
+
+mkdir -p "$TARGET_DIR"
+find "$TARGET_DIR" -type l -delete
+
+for file in $TASK_PATTERN; do
+    if [ -f "$file" ]; then
+        ln -sf "../../$file" "$TARGET_DIR/" || echo "Failed to link $file" >&2
+    fi
+done
+
+echo "Linked files:"
+ls -l "$TARGET_DIR"
