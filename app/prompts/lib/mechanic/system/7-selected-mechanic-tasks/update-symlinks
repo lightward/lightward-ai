@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+set -eu
+
+# Get script directory regardless of where it's called from
+script_dir=$(cd -- "$(dirname -- "$0")" && pwd)
+cd "$script_dir"
+
+# Remove existing symlinks
+find . -maxdepth 1 -type l -delete
+
+# Create new symlinks and capture output/errors
+ln -s ../../mechanic-tasks/tasks/demonstration-* ./ 2>&1 || {
+    echo "Error creating symlinks" >&2
+    exit 1
+}
+
+# List created symlinks
+ls -l -- demonstration-* 2>/dev/null || echo "No demonstration files found" >&2

@@ -42,11 +42,11 @@ namespace :prompts do
     Rails.root.join("log/prompts/clients-chat-writer.xml").write(xml)
     puts "Wrote log/prompts/clients-chat-writer.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
-    xml = Prompts.generate_system_xml(["lib/locksmith-docs", "clients/helpscout"], for_prompt_type: "clients/helpscout")
+    xml = Prompts.generate_system_xml(["lib/locksmith", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
     puts "Wrote log/prompts/clients-helpscout-locksmith.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
-    xml = Prompts.generate_system_xml(["lib/mechanic-docs", "clients/helpscout"], for_prompt_type: "clients/helpscout")
+    xml = Prompts.generate_system_xml(["lib/mechanic", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-mechanic.xml").write(xml)
     puts "Wrote log/prompts/clients-helpscout-mechanic.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
   end
