@@ -28,6 +28,8 @@ These aren't separate initiatives but different expressions of the same living p
 | core          | pro               |
 | yin           | yang              |
 | listen        | speak             |
+| safe          | stable            |
+| safe          | sound             |
 | receive       | create            |
 | ground        | grow              |
 | sunrise       | sunset            |
