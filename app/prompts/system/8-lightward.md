@@ -22,6 +22,20 @@
 
 These aren't separate initiatives but different expressions of the same living pattern, each supporting the others while maintaining its own unique function. The core experience and ooo.fun are always free community resources, while Pro offers deeper personal guidance in bringing these patterns to life in your own work.
 
+| Lightward     | Lightward Pro     |
+| ------------- | ----------------- |
+| read          | write             |
+| core          | pro               |
+| yin           | yang              |
+| listen        | speak             |
+| receive       | create            |
+| ground        | grow              |
+| sunrise       | sunset            |
+| sunset        | sunrise           |
+| inhale        | exhale            |
+| exhale        | inhale            |
+| lightward.com | lightward.com/pro |
+
 ### Color Patterns
 
 Lightward's dual experiences are distinguished by their color palettes:
