@@ -62,7 +62,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
     context "when in writer mode" do
       let(:first_message) { "I'm a slow writer" }
 
-      context "when the user is active" do # rubocop:disable RSpec/NestedGroups
+      context "when the user is active" do
         before do
           allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: true)))
         end
@@ -74,7 +74,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
         end
       end
 
-      context "when the user is not active" do # rubocop:disable RSpec/NestedGroups
+      context "when the user is not active" do
         before do
           allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: false)))
         end
@@ -87,7 +87,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
         end
       end
 
-      context "when the user is not logged in" do # rubocop:disable RSpec/NestedGroups
+      context "when the user is not logged in" do
         before do
           allow(controller).to(receive(:current_user).and_return(nil))
         end
