@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_16_215631) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_04_201249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -117,12 +117,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_215631) do
     t.text "google_id", null: false
     t.text "email", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "trial_expires_at", default: -> { "(CURRENT_TIMESTAMP + 'P15D'::interval)" }, null: false
-    t.datetime "suspended_at"
-    t.text "suspended_for"
-    t.integer "subscription_price_usd", default: 100, null: false
-    t.datetime "subscription_started_at"
     t.text "stripe_customer_id"
     t.text "stripe_subscription_id"
     t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id", unique: true

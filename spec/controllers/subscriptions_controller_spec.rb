@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-# spec/controllers/subscriptions_controller_spec.rb
 require "rails_helper"
 
 RSpec.describe(SubscriptionsController, :aggregate_failures) do
   let(:user) { User.create!(google_id: "123", email: "test@example.com") }
+  let(:stripe_product_id) { "prod_test123" }
+  let(:stripe_price_id) { "price_test123" }
 
   before do
     allow(controller).to(receive(:current_user).and_return(user))
@@ -15,7 +16,9 @@ RSpec.describe(SubscriptionsController, :aggregate_failures) do
       stub_stripe_customer_lookup(email: user.email)
       stub_stripe_customer_create(email: user.email, customer_id: "cus_123")
 
-      user.update!(subscription_price_usd: 5)
+      # Stub the product retrieval with default_price
+      stub_request(:get, "https://api.stripe.com/v1/products/#{stripe_product_id}")
+        .to_return(body: { id: stripe_product_id, default_price: stripe_price_id }.to_json)
     end
 
     it "creates a checkout session and redirects" do
@@ -25,12 +28,7 @@ RSpec.describe(SubscriptionsController, :aggregate_failures) do
             "cancel_url" => "http://test.host/you",
             "customer" => "cus_123",
             "line_items" => [{
-              "price_data" => {
-                "currency" => "usd",
-                "product" => "prod_test123",
-                "unit_amount" => "500",
-                "recurring" => { "interval" => "month" },
-              },
+              "price" => stripe_price_id,
               "quantity" => "1",
             }],
             "mode" => "subscription",
@@ -46,11 +44,17 @@ RSpec.describe(SubscriptionsController, :aggregate_failures) do
     end
 
     it "rounds up trial days" do
-      user.update!(trial_expires_at: 1.week.from_now - 13.hours)
+      user.update!(created_at: 7.days.ago - 13.hours)
 
       stub_request(:post, "https://api.stripe.com/v1/checkout/sessions")
         .with(
-          body: hash_including("subscription_data" => { "trial_period_days" => "7" }),
+          body: hash_including(
+            "line_items" => [{
+              "price" => stripe_price_id,
+              "quantity" => "1",
+            }],
+            "subscription_data" => { "trial_period_days" => "8" },
+          ),
         )
         .to_return(body: { id: "cs_123", url: "https://checkout.stripe.com/123" }.to_json)
 
