@@ -10,6 +10,12 @@ This is a multi-process app, so use `bin/dev` to start them. `rails s` won't cut
 bin/dev
 ```
 
+## Adding js modules
+
+```sh
+bin/importmap pin dompurify
+```
+
 ## Subscription testing
 
 ```

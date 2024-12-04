@@ -1,5 +1,6 @@
 // app/javascript/src/concerns/textarea.js
 import TurndownService from 'turndown';
+import DOMPurify from 'dompurify';
 
 export const initTextarea = () => {
   // Helper function to check for pre-wrap styles
@@ -20,8 +21,42 @@ export const initTextarea = () => {
 
   // Function to preprocess HTML content
   function preprocessHTML(htmlContent) {
+    const sanitizedHtml = DOMPurify.sanitize(htmlContent, {
+      ALLOWED_TAGS: [
+        'p',
+        'span',
+        'i',
+        'em',
+        'strong',
+        'b',
+        'br',
+        'a',
+        'u',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+      ],
+      ALLOWED_ATTR: ['style', 'class', 'href'],
+      ALLOW_DATA_ATTR: false,
+      ADD_TAGS: ['wbr'],
+      FORBID_TAGS: ['script', 'style', 'iframe', 'form', 'input', 'textarea'],
+      FORBID_ATTR: [
+        'onload',
+        'onclick',
+        'onmouseover',
+        'onmouseout',
+        'onmousedown',
+        'onmouseup',
+      ],
+      USE_PROFILES: { html: true }, // This preserves HTML styles
+      ALLOW_ARIA_ATTR: true, // Sometimes needed for style preservation
+    });
+
     const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlContent, 'text/html');
+    const doc = parser.parseFromString(sanitizedHtml, 'text/html');
 
     const allParagraphs = doc.querySelectorAll('p');
     const preWrapParagraphs = Array.from(allParagraphs).filter((p) =>
