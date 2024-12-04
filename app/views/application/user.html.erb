@@ -12,7 +12,7 @@
   <p>Your first time here was <%= distance_of_time_in_words(@user.created_at, Time.current) %> ago. :)</p>
 
   <% if @user.stripe_subscription_id %>
-    <p>You're subscribed to Lightward Pro at USD$<%= @user.subscription_price_usd %>/mo.</p>
+    <p>You're subscribed to Lightward Pro at USD$10/mo.</p>
     <div class="stack-horizontal">
       <%= button_to "Cancel subscription",
         subscription_path,
@@ -21,14 +21,14 @@
         data: { confirm: "Are you sure you want to cancel your subscription?", disable_with: "One moment…" } %>
     </div>
   <% else %>
-    <% if @user.trial_expires_at > Time.current %>
-      <p>Lightward Pro trial period ends at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
+    <% if @user.trial_ends_at > Time.current %>
+      <p>Lightward Pro trial period ends at <%= @user.trial_ends_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
     <% else %>
-      <p>Lightward Pro trial expired at <%= @user.trial_expires_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
+      <p>Lightward Pro trial expired at <%= @user.trial_ends_at.strftime("%Y-%m-%d %H:%M:%S %Z") %></p>
     <% end %>
 
     <div class="stack-horizontal writer">
-      <%= button_to "Start subscription for USD$#{@user.subscription_price_usd}/mo",
+      <%= button_to "Start subscription for USD$10/mo",
         subscription_path,
         method: :put,
         class: "button",

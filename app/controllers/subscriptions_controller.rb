@@ -7,8 +7,11 @@ class SubscriptionsController < ApplicationController
   def start
     customer = current_user.ensure_stripe_customer!
 
+    stripe_product_id = ENV.fetch("STRIPE_PRODUCT_ID")
+    stripe_product = Stripe::Product.retrieve(stripe_product_id)
+
     trial_days = [
-      ((current_user.trial_expires_at.to_f - Time.current.to_f) / 86400).ceil,
+      ((current_user.trial_ends_at.to_f - Time.current.to_f) / 86400).ceil,
       0,
     ].max
 
@@ -18,14 +21,7 @@ class SubscriptionsController < ApplicationController
       cancel_url: user_url,
       customer: customer.id,
       line_items: [{
-        price_data: {
-          currency: "usd",
-          product: ENV.fetch("STRIPE_PRODUCT_ID"),
-          unit_amount: (current_user.subscription_price_usd * 100).to_i,
-          recurring: {
-            interval: "month",
-          },
-        },
+        price: stripe_product.default_price,
         quantity: 1,
       }],
       subscription_data: trial_days.positive? ? { trial_period_days: trial_days } : {},
