@@ -1,6 +1,68 @@
+// app/javascript/src/concerns/textarea.js
 import TurndownService from 'turndown';
 
 export const initTextarea = () => {
+  // Helper function to check for pre-wrap styles
+  function hasPreWrapAncestor(node) {
+    while (node && node !== node.ownerDocument.documentElement) {
+      if (node.style && node.style.whiteSpace === 'pre-wrap') {
+        return true;
+      }
+      node = node.parentElement;
+    }
+    return false;
+  }
+
+  // Function to preserve exact number of spaces
+  function preserveSpaces(text) {
+    return text.replace(/ /g, '&nbsp;');
+  }
+
+  // Function to preprocess HTML content
+  function preprocessHTML(htmlContent) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, 'text/html');
+
+    const allParagraphs = doc.querySelectorAll('p');
+    const preWrapParagraphs = Array.from(allParagraphs).filter((p) =>
+      hasPreWrapAncestor(p)
+    );
+
+    preWrapParagraphs.forEach((p) => {
+      const childNodes = Array.from(p.childNodes);
+      childNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const lines = node.textContent.split(/\r\n|\n|\r/);
+          const fragment = doc.createDocumentFragment();
+
+          lines.forEach((line, index) => {
+            const leadingSpaces = line.match(/^[ ]*/)[0];
+            const content = line.slice(leadingSpaces.length);
+
+            if (leadingSpaces) {
+              const spaceSpan = doc.createElement('span');
+              spaceSpan.style.whiteSpace = 'pre';
+              spaceSpan.innerHTML = preserveSpaces(leadingSpaces);
+              fragment.appendChild(spaceSpan);
+            }
+
+            if (content) {
+              fragment.appendChild(doc.createTextNode(content));
+            }
+
+            if (index < lines.length - 1) {
+              fragment.appendChild(doc.createElement('br'));
+            }
+          });
+
+          p.replaceChild(fragment, node);
+        }
+      });
+    });
+
+    return doc.body.innerHTML;
+  }
+
   // Setup turndownService once, outside event handler
   const turndownService = new TurndownService({
     headingStyle: 'atx',
@@ -8,6 +70,25 @@ export const initTextarea = () => {
     emDelimiter: '*',
     strongDelimiter: '**',
     bulletListMarker: '-',
+    br: '\\\n',
+  });
+
+  // Add rule to preserve spaces
+  turndownService.addRule('preserveSpaces', {
+    filter: function (node) {
+      return node.nodeName === 'SPAN' && node.style.whiteSpace === 'pre';
+    },
+    replacement: function (content) {
+      return content;
+    },
+  });
+
+  // Add custom line break handling
+  turndownService.addRule('lineBreak', {
+    filter: 'br',
+    replacement: function (content, node, options) {
+      return '\\\n';
+    },
   });
 
   // Add all the custom rules
@@ -37,7 +118,9 @@ export const initTextarea = () => {
   turndownService.addRule('boldText', {
     filter: function (node) {
       return (
-        (node.nodeName === 'SPAN' && node.style.fontWeight === 'bold') ||
+        (node.nodeName === 'SPAN' &&
+          (node.style.fontWeight === 'bold' ||
+            parseInt(node.style.fontWeight) >= 700)) ||
         node.nodeName === 'B' ||
         node.nodeName === 'STRONG'
       );
@@ -105,47 +188,18 @@ export const initTextarea = () => {
       }
 
       const clipboardData = event.clipboardData || window.clipboardData;
-      const plainText = clipboardData.getData('text/plain');
-      let htmlContent = '';
+      const htmlContent = clipboardData.getData('text/html');
 
-      // Quick check - if it looks like code, just use plainText
-      const looksLikeCode =
-        plainText &&
-        (plainText.includes('{') ||
-          plainText.includes('function') ||
-          plainText.includes('=>') ||
-          plainText.includes('class ') ||
-          plainText.includes('import ') ||
-          plainText.includes('_') || // Consider underscores a sign of code
-          /^\s*[A-Z_]+$/.test(plainText.trim()) || // ALL_CAPS_WITH_UNDERSCORES
-          /^\s*[a-z]+\s+[a-z]+\s*\([^)]*\)/i.test(plainText)); // matches function/method declarations
-
-      if (looksLikeCode) {
-        event.preventDefault();
-        const start = textarea.selectionStart;
-
-        // Insert the plainText
-        document.execCommand('insertText', false, plainText);
-
-        // Move cursor to end of inserted text
-        const newPosition = start + plainText.length;
-        textarea.setSelectionRange(newPosition, newPosition);
-
-        // Trigger input event to resize textarea
-        textarea.dispatchEvent(new Event('input'));
+      // reasons to let default behavior handle the paste event
+      if (!htmlContent) return;
+      if (clipboardData.types.includes('application/vnd.code.copymetadata'))
         return;
-      }
 
-      if (clipboardData.types.includes('text/html')) {
-        htmlContent = clipboardData.getData('text/html');
-      }
-
-      if (!htmlContent) {
-        return;
-      }
+      // Preprocess HTML for proper linebreak handling
+      const processedHTML = preprocessHTML(htmlContent);
 
       // Convert HTML to Markdown
-      let markdown = turndownService.turndown(htmlContent);
+      let markdown = turndownService.turndown(processedHTML);
 
       // Apply post-processing
       markdown = markdown.replace(/^\\?-{2,}/gm, '* * *');
