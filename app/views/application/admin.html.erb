@@ -9,18 +9,22 @@
   </div>
 <% end %>
 
+<p>
+  <a href="https://dashboard.stripe.com/subscriptions" target="_blank">Stripe / Subscriptions</a>
+</p>
+
 <table>
   <thead>
-    <% User.column_names.each do |column_name| %>
-      <th><%= column_name %></th>
-    <% end %>
+    <th>Email</th>
+    <th>Created at</th>
+    <th>Subscriber?</th>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <% User.column_names.each do |column_name| %>
-          <td><%= user.send(column_name) %></td>
-        <% end %>
+        <td><%= user.email %></td>
+        <td><%= user.created_at %></td>
+        <td><%= 'Yup' if user.subscriber? %></td>
       </tr>
     <% end %>
   </tbody>
