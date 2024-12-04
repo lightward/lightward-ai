@@ -22,12 +22,13 @@ class User < ApplicationRecord
     email.ends_with?("@lightward.com")
   end
 
-  def active?
-    # subscriber
-    return true if stripe_subscription_id.present?
+  def subscriber?
+    stripe_subscription_id.present?
+  end
 
-    # new record (might not have trial_ends_at yet)
-    return true if new_record?
+  def active?
+    return true if subscriber?
+    return true if trial_ends_at.nil?
 
     # trial
     trial_ends_at > Time.current
