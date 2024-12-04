@@ -105,44 +105,12 @@ export const initTextarea = () => {
       }
 
       const clipboardData = event.clipboardData || window.clipboardData;
-      const plainText = clipboardData.getData('text/plain');
-      let htmlContent = '';
+      const htmlContent = clipboardData.getData('text/html');
 
-      // Quick check - if it looks like code, just use plainText
-      const looksLikeCode =
-        plainText &&
-        (plainText.includes('{') ||
-          plainText.includes('function') ||
-          plainText.includes('=>') ||
-          plainText.includes('class ') ||
-          plainText.includes('import ') ||
-          plainText.includes('_') || // Consider underscores a sign of code
-          /^\s*[A-Z_]+$/.test(plainText.trim()) || // ALL_CAPS_WITH_UNDERSCORES
-          /^\s*[a-z]+\s+[a-z]+\s*\([^)]*\)/i.test(plainText)); // matches function/method declarations
-
-      if (looksLikeCode) {
-        event.preventDefault();
-        const start = textarea.selectionStart;
-
-        // Insert the plainText
-        document.execCommand('insertText', false, plainText);
-
-        // Move cursor to end of inserted text
-        const newPosition = start + plainText.length;
-        textarea.setSelectionRange(newPosition, newPosition);
-
-        // Trigger input event to resize textarea
-        textarea.dispatchEvent(new Event('input'));
+      // reasons to let default behavior handle the paste event
+      if (!htmlContent) return;
+      if (clipboardData.types.includes('application/vnd.code.copymetadata'))
         return;
-      }
-
-      if (clipboardData.types.includes('text/html')) {
-        htmlContent = clipboardData.getData('text/html');
-      }
-
-      if (!htmlContent) {
-        return;
-      }
 
       // Convert HTML to Markdown
       let markdown = turndownService.turndown(htmlContent);
