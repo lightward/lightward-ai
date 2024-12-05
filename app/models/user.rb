@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   include StripeCustomerConcern
 
+  scope :subscribers, -> { where.not(stripe_subscription_id: nil) }
+
   validates :google_id, presence: true
 
   class << self

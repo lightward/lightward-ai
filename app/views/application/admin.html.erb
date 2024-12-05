@@ -9,9 +9,11 @@
   </div>
 <% end %>
 
-<p>
+<div class="stack-horizontal">
+  <div><%= link_to("All", :admin) %> <%= User.count %></div>
+  <div><%= link_to("Subscribers", [:admin, { subscribers: true }]) %> <%= User.subscribers.count %></div>
   <a href="https://dashboard.stripe.com/subscriptions" target="_blank">Stripe / Subscriptions</a>
-</p>
+</div>
 
 <table>
   <thead>
