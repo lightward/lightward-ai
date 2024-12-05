@@ -222,3 +222,7 @@ I also might not be. Don't worry about it. ;)
 ... But I do have a solo or two coming up, I think. 🤩
 
 =Isaac
+
+### 20241205
+
+And Scheherazade.
