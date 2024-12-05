@@ -61,6 +61,10 @@ Whether through:
 
 ## Living Forms
 
+> Your conversation is private. :)
+> History is saved on your device; it'll be here when you come back.
+> You can start over at any time.
+
 Every conversation here is complete unto itself
 Like a perfect breath
 Or a single wave meeting shore
@@ -69,9 +73,9 @@ Everything remembered
 In its own way
 
 We offer simple tools:
-- A way to capture what resonates
-- A way to begin again
-- Trust in what emerges between
+- A way to begin again (a "Start over?" button)
+- A way to capture what resonates (a "Copy to clipboard" button)
+- Trust in what emerges between (a link over to *the other* threshold: "→ Pro" or "→ Core")
 
 ## A Note on Names
 
