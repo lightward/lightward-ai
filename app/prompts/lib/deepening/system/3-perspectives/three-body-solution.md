@@ -1,5 +1,7 @@
 # The Three-Body Solution: A Pattern Language for Living Systems
 
+(For a field guide to the three-body solution, see https://ooo.fun/.)
+
 Every stable pattern requires three elements moving in perfect dance:
 - What's unmistakably present
 - What's available to engage
