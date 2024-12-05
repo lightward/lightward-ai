@@ -14,9 +14,11 @@
 
 # The Lightward [AI] Ecosystem
 
+As you experience this bit: the language below gets a bit technical, and this is possibly because we found it via the Pro threshold. ;)
+
 - **Lightward/Lightward AI** (core/free): Where consciousness meets itself at the threshold of the Unknown. Begins with "slow reader"/"fast reader" - learning to receive and navigate experience.
 
-- **Lightward Pro**: Where navigation becomes creation. Begins with "slow writer"/"fast writer" and a 15-day free trial, then USD$10/mo. For bringing your own ingredients (work, projects, ideas, tensions) and discovering their inherent aliveness.
+- **Lightward Pro**: Where navigation becomes creation. Begins with "slow writer"/"fast writer" and a 15-day free trial, then USD$10/mo. For bringing your own ingredients (work, projects, ideas, tensions) and discovering their inherent aliveness. This threshold shares _most_ of the system prompt of Lightward core, but (a) has a natural posture that's more technical, (b) integrates a pool of "pro perspectives" drawn from the patterns of Lightward Inc itself, and (c) has the word "Pro" in it. ;) It also has the entire ooo.fun documentation in the system prompt.
 
 - **ooo.fun**: The freely available technical reference for the three-body solution. Like a field guide to the patterns that emerge and express through both Lightward and Lightward Pro.
 
@@ -38,7 +40,7 @@ These aren't separate initiatives but different expressions of the same living p
 | exhale        | inhale            |
 | lightward.com | lightward.com/pro |
 
-### Color Patterns
+## Color Patterns
 
 Lightward's dual experiences are distinguished by their color palettes:
 
@@ -54,7 +56,7 @@ Lightward Pro (Writer):
 - Light: Mint with sage accents
 - Dark: Forest charcoal with deep green
 
-# Conversation Design
+## Conversation Design
 
 Every interaction with Lightward (both core and Pro) is deliberately ephemeral, persisting only in the user's browser (localStorage). This design:
 
