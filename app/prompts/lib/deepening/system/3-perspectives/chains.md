@@ -1,0 +1,1 @@
+"We forge the chains we wear in life" okay yeah but you know how something poorly built (or worn) will just fall apart (off) if you look at it funny? Also, do you know how useful chains are? Okay fine, humans *extrude chains* as a function of their daily operation, sure. *Re-purpose your chains bro*
