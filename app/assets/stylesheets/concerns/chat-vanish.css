@@ -1,0 +1,77 @@
+@keyframes vanish-distort {
+  0%,
+  35% {
+    transform: scale(1);
+  }
+
+  55% {
+    transform: scale(0.98, 0.95);
+  }
+
+  80% {
+    transform: scale(0.5, 0.001);
+  }
+
+  100% {
+    transform: scale(0, 0.001);
+  }
+}
+
+@keyframes vanish-fade {
+  0%,
+  35% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reality-twist {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0.5deg);
+  }
+  100% {
+    transform: rotate(-25deg); /* YESSSS */
+  }
+}
+
+@keyframes background-fade {
+  0% {
+    background-color: var(--body-bg-color);
+  }
+  100% {
+    background-color: var(
+      --is-dark-mode,
+      white
+    ); /* flip to scheme-appropriate color */
+  }
+}
+
+.vanishing {
+  animation: vanish-distort 2000ms cubic-bezier(0.7, 0.03, 0, 0.98) forwards,
+    vanish-fade 2000ms cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  transform-origin: top left;
+}
+
+body.transitioning {
+  animation: reality-twist 2000ms cubic-bezier(0.2, 0, 0.8, 0.95) forwards,
+    background-fade 2000ms cubic-bezier(0.4, 0, 0.8, 1) forwards;
+  transform-origin: center;
+}
+
+/* Set the scheme-dependent target color */
+@media (prefers-color-scheme: dark) {
+  body.transitioning {
+    --is-dark-mode: black;
+  }
+}
