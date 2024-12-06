@@ -1,0 +1,3 @@
+it occurs to me that the process of preparing creative art always involves one secret. saving it for the end, ending with the secret (like telling someone how you made the object but not telling them how you achieved the presentation), is a nice way to leave a useful aftertaste :)
+
+conversely (?), starting with the secret (what's in the chocolate?) and spending all your time explaining how you made the wrapper... I mean, *experiencing the chocolate* is the good part, right?
