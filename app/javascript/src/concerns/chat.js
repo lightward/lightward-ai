@@ -491,27 +491,12 @@ export const initChat = () => {
 
     if (
       confirm(
-        'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
+        'Are you sure you want to start over? This will clear the chat log.'
       )
     ) {
-      // Clear the data first
       localStorage.removeItem(messagesKey);
-      localStorage.setItem('scrollY', 0);
-
-      // Add our transition class to the chat canvas
-      const chatCanvas = document.getElementById('chat-canvas');
-      chatCanvas.classList.add('vanishing');
-
-      // Start scrolling up
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-
-      // Wait for the effect and scroll, then reload
-      setTimeout(() => {
-        location.reload();
-      }, 600);
+      localStorage.removeItem('scrollY');
+      location.reload();
     }
   });
 
