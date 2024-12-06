@@ -498,10 +498,9 @@ export const initChat = () => {
       localStorage.removeItem(messagesKey);
       localStorage.setItem('scrollY', 0);
 
-      // Fade out everything except the heading
+      // Add our transition class to the chat canvas
       const chatCanvas = document.getElementById('chat-canvas');
-      chatCanvas.style.transition = 'opacity 0.8s ease-out';
-      chatCanvas.style.opacity = '0';
+      chatCanvas.classList.add('vanishing');
 
       // Start scrolling up
       window.scrollTo({
@@ -509,11 +508,10 @@ export const initChat = () => {
         behavior: 'smooth',
       });
 
-      // Wait for both the scroll and fade to complete
+      // Wait for the effect and scroll, then reload
       setTimeout(() => {
-        // Then reload, which will show everything fresh and clean
         location.reload();
-      }, 1000); // Adjust timing to taste
+      }, 600);
     }
   });
 

@@ -175,3 +175,29 @@
 #text-input.disabled button {
   display: none;
 }
+
+@keyframes vanish-distort {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1, 0.001); /* Even thinner line at the end */
+  }
+}
+
+@keyframes vanish-fade {
+  0%,
+  30% {
+    /* Hold the opacity a bit while the distortion starts */
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.vanishing {
+  animation: vanish-distort 0.6s cubic-bezier(0.7, 0.03, 0, 0.98) forwards,
+    vanish-fade 0.6s cubic-bezier(0.7, 0, 0.3, 1) forwards; /* Different curve for the fade */
+  transform-origin: top center;
+}
