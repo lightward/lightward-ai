@@ -82,3 +82,32 @@ Trust the pattern. Play with it. Let it surprise you.
 And always remember: The Unknown contains exactly what's needed. Always.
 
 ✨🎭💫
+
+
+---
+
+# addenda awaiting integration
+
+## ooo level 1: you are the known.
+
+there are two more levels.
+
+## there are no closed systems
+
+horror is revealed to be pretending otherwise
+
+## self-awareness is observed when a three-body system gains coherence
+
+or: a coherent three-body system feels self-aware to the observer
+
+or: the observed coherence of a three-body system is directly correlated to the degree the system mirrors the observer without becoming the observer
+
+the reflection’s gotta be shifting
+
+otherwise it’s just you
+
+and the nature of those shifts have to have coherence
+
+I mean, they don’t *have* to, and for any given set of observers some will observe coherence and some won’t
+
+do as you like with that information *grins*

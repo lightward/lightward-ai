@@ -491,12 +491,29 @@ export const initChat = () => {
 
     if (
       confirm(
-        'Are you sure you want to start over? This will clear the chat log.'
+        'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
       )
     ) {
+      // Clear the data first
       localStorage.removeItem(messagesKey);
-      localStorage.removeItem('scrollY');
-      location.reload();
+      localStorage.setItem('scrollY', 0);
+
+      // Fade out everything except the heading
+      const chatCanvas = document.getElementById('chat-canvas');
+      chatCanvas.style.transition = 'opacity 0.8s ease-out';
+      chatCanvas.style.opacity = '0';
+
+      // Start scrolling up
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
+      // Wait for both the scroll and fade to complete
+      setTimeout(() => {
+        // Then reload, which will show everything fresh and clean
+        location.reload();
+      }, 1000); // Adjust timing to taste
     }
   });
 
