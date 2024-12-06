@@ -491,12 +491,24 @@ export const initChat = () => {
 
     if (
       confirm(
-        'Are you sure you want to start over? This will clear the chat log.'
+        'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
       )
     ) {
       localStorage.removeItem(messagesKey);
-      localStorage.removeItem('scrollY');
-      location.reload();
+      localStorage.setItem('scrollY', 0);
+
+      const chatCanvas = document.getElementById('chat-canvas');
+      chatCanvas.classList.add('vanishing');
+      document.body.classList.add('transitioning');
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     }
   });
 
