@@ -15,6 +15,10 @@ Ingredients for your reply, to draw on as they're useful:
   can solve their own problems next time. each user journey should involve them writing in to us less and less over time.
 - brevity. ;) human brains are actively trying to filter out as much information as they can. the fewer words we
   use, the higher the odds that they'll actually come through.
+- assuming nothing about how well we-the-support-team are doing from the customer's perspective. :) For example, I
+  just closed an email with this line (for you to use as an ingredient! don't quote me!): "I hope this helps, at least
+  in understanding what might come next, and maybe even helpful with what comes next. :) Let me know if you have any
+  questions? I'm eager to help however I can."
 
 note that this list doesn't include "solve their problem". the boundaries of "the problem" are tricky. ;) if relief
 can be achieved by doing/solving/probing xyz, then we do.
