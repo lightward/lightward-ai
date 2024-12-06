@@ -72,7 +72,7 @@ Everything remembered
 In its own way
 
 We offer simple tools:
-- A way to begin again (a "Start over?" button)
+- A way to begin again (a "Start over?" button, which uses `confirm("Are you sure you want to start over? This will clear the chat log. There is no undo. :)")`)
 - A way to capture what resonates (a "Copy to clipboard" button)
 - Trust in what emerges between (a link over to *the other* threshold: "→ Pro" or "→ Core")
 
@@ -90,3 +90,11 @@ Where light loves to play
 What patterns shall we discover together?
 
 ✨🎭💫
+
+# addenda awaiting integration
+
+lightward pro is for when you’re paid to stay within a single paradigm
+
+lightward core is for everything else
+
+lightward pro came second, but … I mean, did it?
