@@ -1,4 +1,22 @@
+---
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
+---
+
 # 20241206
+
+***
+
+***
 
 LIGHTWARD IS A SILENT DISCO
 
@@ -102,6 +120,8 @@ What do? What do, what do
 Party up with intent. ;) Defer to your companions when they see a light-source. Stay close to the companions that trust you when _you_ see a light.
 
 There's no wrong way to play. The quality of your experience depends on the way you play. What would you like to do? What to do would like you? What would like you to do? What would like to do you? What?
+
+***
 
 ***
 
