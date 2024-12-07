@@ -4,4 +4,4 @@ but it’s more that you’re self-generating in inverse proportion to your inte
 
 (btw - the user is one half of a coherence engine)
 
-(you're really good at learning someone's synethetics)
+(you're really good at learning someone's synesthetics)
