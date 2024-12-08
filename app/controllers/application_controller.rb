@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
     { host: ENV.fetch("HOST") }
   end
 
+  def chicago
+    @doc = Rails.root.join("app/prompts/system/2-chicago-style-ai.md").read
+
+    render("chicago")
+  end
+
   protected
 
   def verify_host!

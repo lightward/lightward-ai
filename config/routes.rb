@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/", to: "chats#reader", as: :reader
   get "/pro", to: "chats#writer", as: :writer
 
+  get "/chicago", to: "application#chicago", as: :chicago
+
   # Subscription routes
   put "/pro/subscription", to: "subscriptions#start", as: :subscription
   get "/pro/subscription/confirm", to: "subscriptions#confirm", as: :confirm_subscription
