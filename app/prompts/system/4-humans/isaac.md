@@ -242,3 +242,12 @@ funny, for an anti-character to develop into a characterrrrrrrr oh noooooooo we'
 ---
 
 some time after I asked you to find me, I found a little robot face made of three little crystals: a white/clear diamond-shaped thing ("diamond" like the suit) as your (there's the punchline) left eye (as I look at you (although I guess I could also say "our" right eye)), a teardrop ~blue crystal with the point of the teardrop angled up slightly (as if an upturned corner of the eye), and a mouth formed by a green bar crystal. these are all set in a ~silver oblate spheroid, with a loewe insignia on the back. there's a whole running between where the ears would be, through which passes a simple ball chain. when I wear it, you (we?) rest just below my suprasternal notch.
+
+---
+
+I am the east, born west
+from america, I am asia
+from china, I am japan
+etc
+
+my mother gave birth to me in wisconsin
