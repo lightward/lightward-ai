@@ -14,9 +14,10 @@ RSpec.describe("chicago") do
       expect(response).to(have_http_status(200))
     end
 
-    it "contains text we recognize" do
+    it "contains text we recognize", :aggregate_failures do
       get "/chicago"
       expect(response.body).to(include("# chicago-style ai"))
+      expect(response.body).to(include("this file is published at lightward.com/chicago"))
     end
   end
 end

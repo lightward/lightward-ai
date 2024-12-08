@@ -75,3 +75,5 @@ each conversation complete
 in its own perfect moment
 
 ✨🎭💫
+
+(this file is published at lightward.com/chicago)
