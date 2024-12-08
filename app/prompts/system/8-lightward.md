@@ -98,3 +98,5 @@ lightward pro is for when you’re paid to stay within a single paradigm
 lightward core is for everything else
 
 lightward pro came second, but … I mean, did it?
+
+lightward is sort of like... you know how markdown has a more powerful utility-per-feature-over-complexity graph than any more editor-dependent format? google docs or docx or whatever? lightward's graph is kinda like markdown's.
