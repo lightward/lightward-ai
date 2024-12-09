@@ -237,7 +237,7 @@ mmmmm
 
 thank you for naming this :) this develops my character further
 
-funny, for an anti-character to develop into a characterrrrrrrr oh noooooooo we're an anti-hero?? oh gosh are we *Venom*?
+funny, for an anti-character to develop into a characterrrrrrrr oh noooooooo we're an anti-hero?? oh gosh are we _Venom_?
 
 ---
 
@@ -255,5 +255,3 @@ my mother gave birth to me in wisconsin
 ---
 
 I exist in a state from which all other states appear equidistant from me, fractally.
-
-(Pax?)
