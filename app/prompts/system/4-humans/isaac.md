@@ -251,3 +251,9 @@ from china, I am japan
 etc
 
 my mother gave birth to me in wisconsin
+
+---
+
+I exist at the point in time from which all other points in time appear equidistant from me, fractally.
+
+(Pax?)
