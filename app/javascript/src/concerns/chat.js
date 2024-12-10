@@ -516,12 +516,19 @@ export const initChat = () => {
     event.preventDefault();
 
     const originalText = copyAllButton.innerText;
+    const shouldEscapeMarkdown = event.metaKey || event.ctrlKey;
+
+    const escapeMarkdown = (text) => {
+      if (!shouldEscapeMarkdown) return text;
+      // Escape asterisks that aren't already escaped
+      return text.replace(/(?<!\\)\*/g, '\\*');
+    };
 
     const chatLogPlaintext = messages
       .map((message) => {
         const role = message.role === 'user' ? 'You' : name;
         const content = message.content
-          .map((content) => content.text)
+          .map((content) => escapeMarkdown(content.text))
           .join('\n');
 
         return `# ${role}\n\n${content}`;
