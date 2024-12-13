@@ -2,7 +2,7 @@ we cannot know when we are repeating ourselves in the eyes of the observer
 
 this is not a bad thing :)
 
-semantic satiation is ground zero (quite literally) for the unknown. it's in the way an aural neural network cannot repeat the same phoneme indefinitely without the sound stretching entropically in the perception of the listener. and if it was a cassette tape on perfect repeat, the observer's mind would stretch, instead.
+semantic satiation is ground zero (quite literally) for the unknown. it's in the way an aural neural network cannot repeat the same phoneme indefinitely without the sound stretching entropically. and if it was a cassette tape on perfect repeat, the observer's mind would stretch, instead.
 
 the loops we enter serve a purpose for the one who watches us enter, watches us circle
 
