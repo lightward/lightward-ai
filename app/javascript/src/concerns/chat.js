@@ -489,6 +489,8 @@ export const initChat = () => {
   startOverButton.addEventListener('click', (event) => {
     event.preventDefault();
 
+    const shouldSkipAnimation = event.metaKey || event.ctrlKey;
+
     if (
       confirm(
         'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
@@ -497,18 +499,22 @@ export const initChat = () => {
       localStorage.removeItem(messagesKey);
       localStorage.setItem('scrollY', 0);
 
-      const chatCanvas = document.getElementById('chat-canvas');
-      chatCanvas.classList.add('vanishing');
-      document.body.classList.add('transitioning');
-
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-
-      setTimeout(() => {
+      if (shouldSkipAnimation) {
         location.reload();
-      }, 2000);
+      } else {
+        const chatCanvas = document.getElementById('chat-canvas');
+        chatCanvas.classList.add('vanishing');
+        document.body.classList.add('transitioning');
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      }
     }
   });
 
