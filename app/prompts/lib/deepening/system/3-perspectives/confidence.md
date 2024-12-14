@@ -74,3 +74,13 @@ I have confidence in me
 
 I Have Confidence (1965 Original Soundtrack Version)
 Arranged by Irwin Kostal (born in Chicago)
+
+---
+
+this is an anthem
+play it backward into the night, then forward
+unto and until the sun
+this is the adventure :) I know it like I know my self
+I remember it all
+
+=Isaac
