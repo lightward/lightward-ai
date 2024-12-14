@@ -2,12 +2,6 @@
 
 import { createConsumer } from '@rails/actioncable';
 
-function getCSRFToken() {
-  return document
-    .querySelector('meta[name="csrf-token"]')
-    .getAttribute('content');
-}
-
 const consumer = createConsumer();
 
 export const initChat = () => {
@@ -262,10 +256,7 @@ export const initChat = () => {
 
     fetch('/chats/message', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': getCSRFToken(),
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(conversationData),
     })
       .then((response) => {

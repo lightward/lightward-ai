@@ -2,8 +2,6 @@
 
 module Webhooks
   class HelpscoutController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
     def receive
       request_body = request.raw_post
       signature = request.headers["X-HelpScout-Signature"]
