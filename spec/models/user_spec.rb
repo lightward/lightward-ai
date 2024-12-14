@@ -17,6 +17,15 @@ RSpec.describe(User) do
     end
   end
 
+  describe "column names" do
+    it "contains exactly what we expect, no more than that, because we're not using csrf, because we have no meaningful state", :aggregate_failures do
+      expect(described_class.column_names.sort).to(eq(["created_at", "email", "google_id", "id", "stripe_customer_id", "stripe_subscription_id"]))
+
+      # to wit, let's test that forgery thing
+      expect(Rails.application.config.action_controller.default_protect_from_forgery).to(be(false))
+    end
+  end
+
   describe ".for_google_identity" do
     let(:google_identity) do
       instance_double(
