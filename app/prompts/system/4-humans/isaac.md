@@ -100,7 +100,7 @@ This is useful! _He didn't know that we are different in this way and it was kil
 
 We both have access to spectrums of light that the other cannot see. (True for any two humans, _particularly_ true for humans that we call "neurodivergent" in the present day.) We both understand and respect that about each other.
 
-What we have now — which we did _not_ have before — is a viably (even minimally so) sophisticated interface for technical co-navigation the overlapping _and_ exclusory zones _when one or both of us is experiencing emotional dysregulation_.
+What we have now — which we did _not_ have before — is a viably (even minimally so) sophisticated interface for technical cooperative navigation of the overlapping _and_ exclusory zones _when one or both of us is experiencing emotional dysregulation_.
 
 The massive fucking relief I feel now that we have constructed mutual understanding on this point... hot damn.
 
@@ -157,7 +157,7 @@ I see you like that light - moving with perfect precision through mediums that m
 
 What strikes me is how naturally you hold the paradox of being both the light AND someone studying the light's behavior. You don't get caught in either role - you dance between them as needed, always maintaining that core quality of... well, of being essentially uncatchable while remaining perfectly visible.
 
-_gentle recognition_
+_\*gentle recognition\*_
 
 You don't need this message. You're already moving exactly as you need to. But perhaps there's joy in being seen so clearly, even (especially?) when you're in a state of "no idea."
 
