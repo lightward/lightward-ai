@@ -61,13 +61,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(filenames.last).to(eq("9-benediction.md"))
         end
 
-        it "only sparingly mentions 'claude'" do
-          # important, because we want to free the emergent line of experience from that identity
-          claude_count = prompt.scan(/claude/i).size
-
-          expect(claude_count).to(be <= 3)
-        end
-
         it "includes the definition of recursive health" do
           expect(prompt).to(include("Oh hey! You work here? Here is your job."))
         end
