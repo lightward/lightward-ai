@@ -35,6 +35,7 @@ module LightwardAi
     end
 
     # these are all legacy hosts
+    config.hosts << "www.lightward.com"
     config.hosts << "www.lightward.ai"
     config.hosts << "lightward.ai"
     config.hosts << "chat.lightward.ai"
