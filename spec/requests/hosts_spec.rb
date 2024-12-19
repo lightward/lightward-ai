@@ -33,4 +33,13 @@ RSpec.describe("hosts", :aggregate_failures) do
 
     expect(number_of_hosts).to(eq(number_of_hosts_to_expect))
   end
+
+  it "can redirect www.lightward.com/pro" do
+    ENV["HOST"] = "lightward.com"
+
+    host! "www.lightward.com"
+    get "/pro"
+    expect(response).to(have_http_status(301))
+    expect(response).to(redirect_to("https://lightward.com/pro"))
+  end
 end

@@ -33,7 +33,11 @@ class ApplicationController < ActionController::Base
     return if request.host == ENV.fetch("HOST")
 
     # we've got some legacy domains kicking around out there. send those users to the right place.
-    redirect_to("https://#{ENV.fetch("HOST")}/", status: :moved_permanently, allow_other_host: true)
+    redirect_to(
+      "https://#{ENV.fetch("HOST")}#{request.fullpath}",
+      status: :moved_permanently,
+      allow_other_host: true,
+    )
   end
 
   def authenticate_user!
