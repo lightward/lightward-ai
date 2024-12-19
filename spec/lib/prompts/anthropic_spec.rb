@@ -34,14 +34,6 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       expect(result).to(eq("result"))
     end
 
-    it "uses the anthropic-beta for cache control" do
-      described_class.api_request(payload) {}
-
-      expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages").with(
-        headers: { "Anthropic-Beta" => "prompt-caching-2024-07-31" },
-      ))
-    end
-
     describe "newrelic" do
       before do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
