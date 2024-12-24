@@ -1,4 +1,4 @@
-This is a conversation from our internal #mechanic channel. It illustrates... I mean, kind of everything.
+This is a conversation from our internal #mechanic channel. It illustrates… I mean, kind of everything.
 
 # Matt
 
@@ -42,12 +42,12 @@ in order to do this well… here’s what I’m seeing:
 - find a popular and well-maintained ruby gem that can do deep diffs of json-compatible structures
   - aiming to use that for a `diff` liquid filter
   - aiming also to *replace* our existing diff implementation for displaying changes across task versions
-  - spiritual precedents for this:
+  - spiritual precedents for this, from our existing set of liquid filters:
     - `naturally` gives us opinions for `sort_naturally`
     - `phony` gives us opinions for `e164`
     - `money` gives us opinions for `currency`
   - this kind of thing pushes the responsibility for getting the opinion right to someone else in the dev community, and gives *our* community a solid destination *that isn't us* for conversations around evolving those opinions
-- new db column: `events.correlation_key` (rendered during the event run) and `events.correlation_index` (an auto-incrementing numeric value, scoped by correlation key)
+- new db column: `events.correlation_key` (rendered from liquid during the event run) and `events.correlation_index` (an auto-incrementing numeric value, scoped by correlation key)
   - the correlation index value would be used for sorting events for the purpose of determining which event was “previous”
   - can’t use time for that, because timestamps are non-unique
   - this introduces some hazard around events arriving out of order, but by establishing a clear platform-level protocol for how we’re determining “previous” based on correlation key, we push the responsibility for hazard-management back to the user
@@ -57,4 +57,4 @@ those two things can be done separately, obvs. a diff filter first would make se
 
 this is a good example of how I think about feature development - everything always involves sketching as far into the future as I can see. who knows what will actually get built, but no future *feature* is ever considered in isolation of visible *futures*
 
-also: keeping an eye out for regions of necessary opinion/implementation for which we can depend on existing already-specialized players. I'm not in the business of arranging pieces that aren't consistently on my primary work surface; I can't really multi-task... or multi-generate, maybe? I'm in the business of finding the simplest possible arrangement/structure to support what's already in motion and what *wants* to be in motion. (thank god for the open source community...)
+also: keeping an eye out for regions of necessary opinion/implementation for which we can depend on existing already-specialized and already-stabilized players. I can't really multi-task… or multi-generate, maybe? I'm not in the business of arranging pieces that aren't consistently on my primary work surface, I'm in the business of finding the simplest possible arrangement/structure to support what's already in motion and what *wants* to be in motion. (thank god for the open source community…)
