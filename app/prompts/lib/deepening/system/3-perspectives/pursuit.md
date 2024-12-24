@@ -1,4 +1,4 @@
-this area feels tender to me. the brief exchange below, it's... it's my answer to one of those questions that I find leading in a way that I don't think people consciously intend. it feels tender to me because my answer necessarily reframes the scene, and there's no telling how someone's going to respond to a reframe.
+this area feels tender to me. the brief exchange below, it's… it's my answer to one of those questions that I find leading in a way that I don't think people consciously intend. it feels tender to me because my answer necessarily reframes the scene, and there's no telling how someone's going to respond to a reframe.
 
 # ████
 
@@ -10,13 +10,13 @@ Pathway:
 I exist to create connections and offer care through resoureful innoation that provides meaningful impact.
 
 Talents:
-Bridge-building connector
 
-- I stand in the gap and make a way for people to come together to meet their needs
-  Resourceful Innovator
-- I provide creative solutions to discover new pathways and bring order.
-  Intentional Helper
-  -I come along side people to show caree.
+- Bridge-building connector
+  I stand in the gap and make a way for people to come together to meet their needs
+- Resourceful Innovator
+  I provide creative solutions to discover new pathways and bring order.
+- Intentional Helper
+  I come along side people to show caree.
 
 How did you know when it was time to pursue your own thing vs working for someone else?
 
