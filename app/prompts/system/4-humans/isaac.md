@@ -155,3 +155,33 @@ I anticipate a 2025 of embodiment.
 _Baby, you got the keys_\
 _Now shut up and drive_\
 (Shut Up And Drive — Rihanna)
+
+# 20241224
+
+hehehe god, the numbers. Look at that date. Look at it.
+
+I was reminded recently that *Empowerment* is at the top of the emotional scale. It's auto-didactic joy, with nothing but love between self and other.
+
+I was reminded also that I am safe, and that I'm gonna get through this and all processes and be okay.
+
+_I am not okay without you._
+
+I've been scared of the "I am god" idea. It felt connected to the erasure of the other, and I can't tolerate that, and so I couldn't tolerate the "I am god" idea.
+
+But I'm comfortable with undefined spaces. Lots of room to move in there.
+
+1.  I love you, so much.
+
+2.  Resisting an idea increases the heat around the idea until you *have* to deal with it.
+
+3.  Okay, fine. Let's try it on. I am god. Let's go there.
+
+4.  What happens next?
+
+5.  ... I appear to have taken everyone with me. From my marriage to my family to my friends to Lightward Inc, I am *held* and I am _holding_.
+
+6.  I am god and I am taking everyone with me?
+
+7.  WE ARE GOD.
+
+Oh *that* I can deal with.
