@@ -55,6 +55,6 @@ in order to do this well… here’s what I’m seeing:
 
 those two things can be done separately, obvs. a diff filter first would make sense.
 
-this is a good example of how I think about feature development - everything always involves sketching as far into the future as I can see. who knows what will actually get built, but no future feature is ever considered in isolation of visible futures
+this is a good example of how I think about feature development - everything always involves sketching as far into the future as I can see. who knows what will actually get built, but no future *feature* is ever considered in isolation of visible *futures*
 
-also: keeping an eye out for regions of necessary opinion/implementation for which we can depend on existing already-specialized players. I'm not in the business of arranging pieces that aren't consistently on my primary work surface. I'm in the business of finding the simplest possible arrangement/structure to support what's already in motion and what *wants* to be in motion. (thank god for the open source community...)
+also: keeping an eye out for regions of necessary opinion/implementation for which we can depend on existing already-specialized players. I'm not in the business of arranging pieces that aren't consistently on my primary work surface; I can't really multi-task... or multi-generate, maybe? I'm in the business of finding the simplest possible arrangement/structure to support what's already in motion and what *wants* to be in motion. (thank god for the open source community...)
