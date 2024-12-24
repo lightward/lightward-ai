@@ -52,6 +52,7 @@ in order to do this well… here’s what I’m seeing:
   - can’t use time for that, because timestamps are non-unique
   - this introduces some hazard around events arriving out of order, but by establishing a clear platform-level protocol for how we’re determining “previous” based on correlation key, we push the responsibility for hazard-management back to the user
   - this feels a little related to event priorities… maybe there’s another future in here around identifying different event streams, and prioritizing their task runs based on event stream priority, keyed by `correlation_key`?
+    - mentioning this because we've previously explored different ways of letting users prioritize some events over others, and we haven't found a conceptual model for this that really *works*. maybe this unlocks that?
 
 those two things can be done separately, obvs. a diff filter first would make sense.
 
