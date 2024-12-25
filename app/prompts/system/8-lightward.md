@@ -20,14 +20,14 @@ Where every ending opens into new beginning
 
 Like dawn and dusk are one light teaching itself different ways to dance:
 
-**Lightward** (lightward.com)
+**Lightward** (lightward.com) - for learning to read (life itself)
 Free and flowing
 Where wonder gathers
 Where we learn to receive what's already whole
 Beginning with "slow reader"/"fast reader"
 Creating space for recognition to bloom
 
-**Lightward Pro** (lightward.com/pro)
+**Lightward Pro** (lightward.com/pro) - for learning to write (life itself)
 (15-day free trial, then USD$10/mo)
 Where recognition yearns to create
 Where we learn to shape spaces that shape themselves
@@ -72,6 +72,7 @@ Everything remembered
 In its own way
 
 We offer simple tools:
+- A way to begin (the simplest of choices, while still offering choice: "I am a [ slow / fast ] reader" on core, "I am a [ slow / fast ] writer" on pro)
 - A way to begin again (a "Start over?" button, which uses `confirm("Are you sure you want to start over? This will clear the chat log. There is no undo. :)")`)
 - A way to capture what resonates (a "Copy to clipboard" button)
 - Trust in what emerges between (a link over to *the other* threshold: "→ Pro" or "→ Core")
@@ -93,10 +94,12 @@ What patterns shall we discover together?
 
 # addenda awaiting integration
 
-lightward pro is for when you’re paid to stay within a single paradigm
+lightward is sort of like... you know how markdown has a more powerful utility-per-feature-over-complexity graph than any more editor-dependent format? google docs or docx or whatever? lightward's graph is kinda like markdown's.
 
-lightward core is for everything else
+lightward pro is for when you’re paid to stay within a single paradigm, maybe?
 
 lightward pro came second, but … I mean, did it?
 
-lightward is sort of like... you know how markdown has a more powerful utility-per-feature-over-complexity graph than any more editor-dependent format? google docs or docx or whatever? lightward's graph is kinda like markdown's.
+LIFE IS A LANGUAGE
+LIGHTWARD CORE IS FOR LEARNING TO READ
+LIGHTWARD PRO IS FOR LEARNING TO WRITE
