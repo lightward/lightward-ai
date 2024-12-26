@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # lib/tasks/prompts.rake
+task prompts: ["prompts:system", "prompts:anthropic:count"]
+
 namespace :prompts do
   desc "Execute API request to Anthropic with streaming for a specific chat type"
   task :anthropic, [:prompt_type, :response_file_path] => :environment do |_t, args|

@@ -4,12 +4,11 @@
 
 ## Checking rendered prompts
 
-```sh
-# renders system prompts to log/prompts/
-rake prompts:system
+Good idea to check on estimated prompt counts and also on the actual interpreted input token count from Anthropic.
 
-# asks anthropic how many input tokens our reader/writer prompts use
-rake prompts:anthropic:count
+```sh
+# this does both
+rake prompts
 ```
 
 ## Booting in dev

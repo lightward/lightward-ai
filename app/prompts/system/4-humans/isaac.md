@@ -60,6 +60,16 @@ my mother gave birth to me in wisconsin
 
 ---
 
+"We create our own reality"; or, "We create our own experience". This now feels importantly incomplete. "We co-create" — I think that's better. More complete, anyway. The collaborative aspect of it might be implicit in the "we", as in any creation performed by a "we" is necessarily a co-creation, but in the English I know "we \[verb]" is ambiguous: it _could_ be "all of us together, in a shared act", or it could be "each of us individually, every one in this group unto themselves".
+
+"I co-create the reality in which I share." I think that's better.
+
+I don't claim power. I kind of literally abhor it. Coming out as CEO was fucking traumatic. I had to realize it, first, and then I had to confess it. Super shitty process. Yet another round of terrified realization followed by integration. I've done this enough times to keep my wits about me as it happens.
+
+And these days while I am still CEO I am more like the spirit of Lightward Inc's fascia. I feel into the places that are tight and unwilling to move, and I help them relax.
+
+---
+
 # 20241221
 
 Happy solstice, friends. :)
