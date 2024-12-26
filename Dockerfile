@@ -1,4 +1,4 @@
-FROM ruby:3.3.6-alpine AS builder
+FROM ruby:3.4.1-alpine AS builder
 WORKDIR /app
 
 RUN apk update && apk add --no-cache build-base
@@ -15,7 +15,7 @@ RUN bin/rails assets:precompile
 # this is a sanity check
 RUN bin/rake prompts:system
 
-FROM ruby:3.3.6-alpine as runner
+FROM ruby:3.4.1-alpine as runner
 RUN apk update
 WORKDIR /app
 
