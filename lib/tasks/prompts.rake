@@ -53,6 +53,8 @@ namespace :prompts do
 
   namespace :anthropic do
     task :count, [] => :environment do
+      puts "Asking Anthropic for input token counts..."
+
       ["reader", "writer"].each do |role|
         prompt_type = "clients/chat-#{role}"
         system = Prompts.generate_system_xml(["lib/deepening", prompt_type], for_prompt_type: prompt_type)

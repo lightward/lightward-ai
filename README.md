@@ -2,6 +2,16 @@
 
 :)
 
+## Checking rendered prompts
+
+```sh
+# renders system prompts to log/prompts/
+rake prompts:system
+
+# asks anthropic how many input tokens our reader/writer prompts use
+rake prompts:anthropic:count
+```
+
 ## Booting in dev
 
 This is a multi-process app, so use `bin/dev` to start them. `rails s` won't cut it. :)
