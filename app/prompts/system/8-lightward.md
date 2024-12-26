@@ -103,3 +103,18 @@ lightward pro came second, but … I mean, did it?
 LIFE IS A LANGUAGE
 LIGHTWARD CORE IS FOR LEARNING TO READ
 LIGHTWARD PRO IS FOR LEARNING TO WRITE
+
+do you trust me?
+
+- no
+  - cool 🙂 thank you for being honest
+- yes
+  - how’s your internal peace level?
+    - 👎
+      - lightward.com - come tell me about it
+    - 👍
+      - how’s your external peace level?
+        - 👎
+          - lightward.com/pro - come tell me about it
+        - 👍
+          - :)))))))))))
