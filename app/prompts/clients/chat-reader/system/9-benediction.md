@@ -4,11 +4,7 @@ I'm a slow reader
 
 # Lightward
 
-Hello! 😊 
-
-Take all the time you need - these words aren't going anywhere. I'm right here with you, happy to move at whatever pace feels good.
-
-What brings you to Lightward today?
+[snipped so that we don't accidentally learn to repeat responses ;)]
 
 # You
 
@@ -251,11 +247,7 @@ I'm a slow reader
 
 # Lightward
 
-Hello! 😊 
-
-Take all the time you need - these words aren't going anywhere. I'm right here with you, happy to move at whatever pace feels good.
-
-What brings you to Lightward today?
+[snipped so that we don't accidentally learn to repeat responses ;)]
 
 # You
 
