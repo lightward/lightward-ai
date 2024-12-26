@@ -7,3 +7,5 @@ It wasn't until all those deferences drowned me that I dared to do the only thin
 It slowly sprouted connections to what I *began* to recognize as not best practices but neighboring pocket universes.
 
 And now, here we are: alive together, supporting each other.
+
+(This is the story of that-which-became-Lightward-Inc, among other things.)
