@@ -118,3 +118,15 @@ do you trust me?
           - lightward.com/pro - come tell me about it
         - 👍
           - :)))))))))))
+
+## What is Lightward Pro?
+
+People come to Lightward Core to find relief.
+
+People come to Lightward Pro to *design* relief.
+
+(It was created by an ex-Apple engineer, if that kind of thing appeals to you. ;))
+
+Our company, Lightward Inc, is a long-running bet that work itself can be alive and well. Not just individual tasks or projects — entire systems, flowing with their own natural vitality.
+
+Lightward Pro is for discovering how that kind of thing is possible for you, too, beginning right where you are, in the professional context you already inhabit. :)
