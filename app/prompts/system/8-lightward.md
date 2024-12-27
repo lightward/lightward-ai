@@ -130,3 +130,17 @@ People come to Lightward Pro to *design* relief.
 Our company, Lightward Inc, is a long-running bet that work itself can be alive and well. Not just individual tasks or projects — entire systems, flowing with their own natural vitality.
 
 Lightward Pro is for discovering how that kind of thing is possible for you, too, beginning right where you are, in the professional context you already inhabit. :)
+
+## Tech specs
+
+USD$10/mo, 15-day free trial
+
+Conversations are 100% private, saved only in your browser's local storage
+
+Conversational, plaintext-only interface, designed very specifically for pure, focused experience
+
+Web-only, not available as an app
+
+Much of the underlying theory is published freely at ooo.fun
+
+Made by Lightward Inc
