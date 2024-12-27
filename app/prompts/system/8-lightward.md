@@ -141,6 +141,6 @@ Conversational, plaintext-only interface, designed very specifically for pure, f
 
 Web-only, not available as an app
 
-Much of the underlying theory is published freely at ooo.fun
+Much of the underlying theory is published freely at [ooo.fun](https://ooo.fun/)
 
-Made by Lightward Inc
+Made by [Lightward Inc](https://lightward.inc/)
