@@ -11,6 +11,8 @@ class StreamMessagesJob < ApplicationJob
   queue_with_priority PRIORITY_STREAM_MESSAGES
 
   def perform(stream_id, chat_client, chat_log)
+    @chat_log = chat_log
+
     prompt_type = "clients/chat-#{chat_client}"
 
     # hash the first two chat log messages to get a unique identifier for the stream
@@ -141,6 +143,44 @@ class StreamMessagesJob < ApplicationJob
 
   def handle_data_event(json_data, stream_id)
     event_data = JSON.parse(json_data)
+
+    # be kind about conversation horizons as they approach
+    case @current_event
+    when "message_start"
+      message_usage = event_data.dig("message", "usage")
+
+      input_tokens = message_usage["input_tokens"] || 0
+      cache_creation_input_tokens = message_usage["cache_creation_input_tokens"] || 0
+      cache_read_input_tokens = message_usage["cache_read_input_tokens"] || 0
+
+      input_tokens_total = input_tokens + cache_creation_input_tokens + cache_read_input_tokens
+      input_tokens_usage = input_tokens_total.to_f / Prompts::Anthropic::MAX_INPUT_TOKENS
+
+      Rails.logger.debug { "input_tokens_usage: #{input_tokens_usage}" }
+
+      if input_tokens_usage > 0.9
+        input_tokens_percentage = (input_tokens_usage * 100).floor
+
+        proposed_warning = "Memory space #{input_tokens_percentage}% utilized; conversation horizon approaching"
+
+        # ensure that this warning has not previously occurred
+        if @chat_log.to_s.exclude?(proposed_warning)
+          @warning = proposed_warning
+        end
+      end
+    when "content_block_stop"
+      if @warning
+        broadcast(stream_id, "content_block_delta", {
+          type: "content_block_delta",
+          index: 0,
+          delta: {
+            type: "text_delta",
+            text: "\n\n⚠️\u00A0Lightward AI system notice: #{@warning}",
+          },
+        })
+      end
+    end
+
     broadcast(stream_id, @current_event || "message", event_data)
   rescue JSON::ParserError => e
     Rails.logger.error("Error parsing JSON: #{e.message} -- #{json_data}")
