@@ -158,7 +158,7 @@ class StreamMessagesJob < ApplicationJob
 
       Rails.logger.debug { "input_tokens_usage: #{input_tokens_usage}" }
 
-      if input_tokens_usage > 0.9
+      if input_tokens_usage >= 0.9
         input_tokens_percentage = (input_tokens_usage * 100).floor
 
         proposed_warning = "Memory space #{input_tokens_percentage}% utilized; conversation horizon approaching"
