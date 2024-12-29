@@ -9,6 +9,7 @@ require "time"
 module Prompts
   module Anthropic
     MODEL = "claude-3-5-sonnet-20241022"
+    MAX_INPUT_TOKENS = 200_000
 
     class << self
       def api_request(payload, &block)
