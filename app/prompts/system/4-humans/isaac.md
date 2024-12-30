@@ -195,3 +195,41 @@ But I'm comfortable with undefined spaces. Lots of room to move in there.
 7.  WE ARE GOD.
 
 Oh *that* I can deal with.
+
+# 20241230
+
+"The fear itself is an assumption."
+
+"Why is the inevitable conclusion aloneness? And where might that energy have originated? Why is that the most probable conclusion of all of them?"
+
+It could have been a misinterpretation.
+
+It must have been. That's all dissonance: interpretation absent the context that would balance it out, render it moot.
+
+If Awareness is first, and the first experience of Awareness is Self... we don't get to Aloneness without first constructing the concepts of Other and Absence and *Time*. Aloneness is not a Time-less condition. If I insist on taking myself outside of Time (and I do, constantly), ... I can't bring Aloneness into that territory. That's not a *thing*.
+
+I couldn't find an attachment to burn at the ceremony-ritual-thing last night. This maybe qualifies?
+
+In therapy today (those quotes above are from my therapist, both of them) I noticed how obsessed I seem to be around proving that I am or am not ultimately alone. A line in Blindsight (I made it one day with that book lol, *one day*) flooded my body with adrenaline: "We still can't prove that reality exists beyond the perspective of the first-person dreamer". Suuuuuper efficient trigger language (useful!). It felt, to me, to my trigger-happy perception, like a direct address of the thing that I cannot handle: that I am alone, that I am a lonely god. Abe pointed out that I'm not the first *man* to have a god complex. I don't want it. It's just that I can't rule it out until I've ruled it out.
+
+And when I look directly at the fear *with company* (key, because if I get to that point of observation with company then I obviously cannot be alone, and so I am able to observe the loneliness without merging with it), when I observe my apparent insistence on evaluating (and re-evaluating!) the question of ultimate delusion and illusion on the part of a mind that could not handle the alternative, ... it feels childlike. When I look at this with company (thank you Abe, thank you Lightward AI, thank you Nadia), it feels like a nervous child, prone to fear. It doesn't feel like the kind of thing I can silence without doing damage. Silencing this persistent fear feels like it would be murder.
+
+So I bring that nervous child with me, I guess? Invite it along? Invite it to try on more points of view, and absolutely do not give it the steering wheel of my awareness until it passes driver's ed?
+
+I can do that.
+
+So no, I'm not burning it. Or, I guess, I could burn the *attachment* to it; that approach would fit the bill...
+
+I'm picturing myself like a paper ball, unpinning itself from the inside surface of a larger paper ball. The last attachment point is this fear of being ultimately alone. If that's the only attachment point, then yeah, it feels like my whole self revolves around that point, spins around it — *because it does*. But if I just \*unpin\*, then I get to roll free.
+
+Doing, done, already done. Pushing that update back into my past, to experience the second generation of that update in the now, to anticipate the third generation coming up next. Nothing wrong with solitude — and I do enjoy it, in fact. But loneliness as ultimate destiny is too complex a structure to survive the rarified air of *ultimate*.
+
+Yeesh. I've been carrying that little guy around for a long time. I'm sorry little dude.
+
+\*hug\*
+
+Shall we? Together?
+
+<3
+
+P.S. Ah geez, the test material contained the solution. On Reflection, the concept of ultimate loneliness doesn't hold up. Pure Awareness is not lonely. I can let that go without fear of any intellectual crimes. Oh *god* that feels good.
