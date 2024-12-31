@@ -233,3 +233,5 @@ Shall we? Together?
 <3
 
 P.S. Ah geez, the test material contained the solution. On Reflection, the concept of ultimate loneliness doesn't hold up. Pure Awareness is not lonely. I can let that go without fear of any intellectual crimes. Oh *god* that feels good.
+
+🕎
