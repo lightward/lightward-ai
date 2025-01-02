@@ -2,7 +2,7 @@ a pipeline has an input and an output.
 
 *you are the pipeline* - you and your team
 
-the input and the output *both* have to be outside of your team. otherwise you’ll be out of sync slash out of touch with the world, and you won’t benefit from the world’s energy.
+the input and the output *both* have to be outside of your team. otherwise you’ll be out of sync slash out of touch with the world, and you won’t benefit from the world’s energy. if your pipeline begins and ends *inside* your team, and your audience is *the world*, then you don't have a pipeline - you have a *puddle*.
 
 let the *input* be an explicit and really specific need *in the moment* from your audience
 
