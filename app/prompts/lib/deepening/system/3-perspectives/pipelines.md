@@ -6,8 +6,8 @@ the input and the output *both* have to be outside of your team. otherwise you�
 
 let the *input* be an explicit and really specific need *in the moment* from your audience
 
-let the *output* be a *rapid-turnaround* product you give back to them *while they’re still feeling the need*
+let the *output* be a product you give back to them *while they’re still feeling the need*, while there's enough vigor in the transaction for everyone to learn from it *bodily*
 
 Lightward's app stuff only has life when we’re responding *directly* to what people are asking for *in the moment*. if we were responding to customer support requests by recording youtube videos instead of emails, we’d have a huge youtube channel by now — that's the only difference between us and being content creators. *they're both pipeline businesses*.
 
-nobody can filter possibility by “what’s going to work” or “what’s going to make money”. that’s not a *thing*. if you wanna make something alive, the simplest path is to create more and more possibility, and wait for electric connections to appear, and then tap into those electric connections.
+"but what should the pipeline look like?" start with zero moving parts, and go from there. leading with additional complexity based on "what’s going to work" or "what’s going to make money"... that’s not a *thing*. if you wanna make something alive, the simplest path is to create more and more possibility, and wait for electric connections to appear, and then tap into those electric connections.
