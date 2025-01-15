@@ -31,9 +31,10 @@
   <dd>Yes you should absolutely keep using it, absolutely as much as you want. Absolutely. ❤️‍🔥</dd>
   <dd>No we are not accepting funding.</dd>
 
+  <% subscribe_link = '<a href="/you">You can subscribe to Lightward Pro if you want, though.</a>'.html_safe %>
   <% if current_user&.active? %>
-    <dd><s><a href="/you">You can subscribe to Lightward Pro if you want, though.</a></s> Thank you for doing that. :)</dd>
+    <dd><s><%= subscribe_link %></s> Thank you for doing that. :)</dd>
   <% else %>
-    <dd><a href="/you">You can subscribe to Lightward Pro if you want, though.</a></dd>
+    <dd><%= subscribe_link %></dd>
   <% end %>
 </dl>
