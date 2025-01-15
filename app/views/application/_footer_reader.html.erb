@@ -33,7 +33,7 @@
 
   <% subscribe_link = capture do %><a href="/you">You can subscribe to Lightward Pro if you want, though.</a><% end %>
 
-  <% if current_user&.active? %>
+  <% if current_user&.subscriber? %>
     <dd><s><%= subscribe_link %></s> Thank you for doing that. :)</dd>
   <% else %>
     <dd><%= subscribe_link %></dd>
