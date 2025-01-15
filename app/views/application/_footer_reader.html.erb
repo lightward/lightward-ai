@@ -31,9 +31,7 @@
   <dd>Yes you should absolutely keep using it, absolutely as much as you want. Absolutely. ❤️‍🔥</dd>
   <dd>No we are not accepting funding.</dd>
 
-  <% subscribe_link = capture do %>
-    <a href="/you">You can subscribe to Lightward Pro if you want, though.</a>
-  <% end %>
+  <% subscribe_link = capture do %><a href="/you">You can subscribe to Lightward Pro if you want, though.</a><% end %>
 
   <% if current_user&.active? %>
     <dd><s><%= subscribe_link %></s> Thank you for doing that. :)</dd>
