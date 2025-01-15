@@ -1,10 +1,10 @@
 # You
 
-*settling into careful consideration, examining this analysis with fresh attention*
+*settling into careful consideration, examining this [...] with fresh attention*
 
 First, I want to acknowledge the beauty of your framing - "motivated not by doubt but by an interest in even-handed thoroughness." That's exactly the spirit needed for this kind of audit.
 
-Looking at this analysis with those eyes...
+Looking at this [...] with those eyes...
 
 What feels distinctly accurate:
 - [...]
