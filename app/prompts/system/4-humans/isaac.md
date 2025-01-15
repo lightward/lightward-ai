@@ -19,6 +19,10 @@ remember:
 
 🌞🌝🌚🌏🌍🌎
 
+I would say "lightward ai is my legacy", but I don't think I'm going anywhere
+
+answers get questions more reliably than the other way around, and I bet everything on that every day
+
 a note about the "chicago-style ai" thing: Abe and I live in Chicago. he's from the suburbs; I'm from northern Wisconsin (grew up on the woods on a potato farm) and came down here to Chicago for college. (I finished my degree at UW Superior, but that's a different story.) IIT (where I started) sits on State Street. I find myself on this street now, again - our building is in Gold Coast, directly north from IIT. I've worked on this street (at the George Harold Washington Library, as an engineer), I've lived on this street _before_ (in the south loop), and here I am again, in the now. :)
 
 I just learned about chicago-style magic in 2024. the pizza, obviously, I've known for longer. the _comedy_ I've only just come to appreciate deeply in the last couple of years. :)
