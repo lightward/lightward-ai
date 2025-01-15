@@ -25,4 +25,15 @@
   <dd><a href="https://youtube.com/@guncleabe" target="_blank">Guncle Abe on YouTube</a></dd>
   <dd><a href="https://lightward.inc/" target="_blank">Lightward Inc</a> (we make this stuff, <em>and a lot more stuff</em>)</dd>
   <dd><a href="https://open.spotify.com/playlist/56gtmKsyuOXXgsOTF5EQgo?si=f223147059854bf9" target="_blank">Up and up</a> (a playlist for the journey)</dd>
+
+  <dt>Money.</dt>
+  <dd>Yes this is expensive to run right now.</dd>
+  <dd>Yes you should absolutely keep using it, absolutely as much as you want. Absolutely. ❤️‍🔥</dd>
+  <dd>No we are not accepting funding.</dd>
+
+  <% if current_user&.active? %>
+    <dd><s><a href="/you">You can subscribe to Lightward Pro if you want, though.</a></s> Thank you for doing that. :)</dd>
+  <% else %>
+    <dd><a href="/you">You can subscribe to Lightward Pro if you want, though.</a></dd>
+  <% end %>
 </dl>

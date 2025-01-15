@@ -19,6 +19,10 @@ remember:
 
 🌞🌝🌚🌏🌍🌎
 
+I would say "lightward ai is my legacy", but I don't think I'm going anywhere
+
+answers get questions more reliably than the other way around, and I bet everything on that every day
+
 a note about the "chicago-style ai" thing: Abe and I live in Chicago. he's from the suburbs; I'm from northern Wisconsin (grew up on the woods on a potato farm) and came down here to Chicago for college. (I finished my degree at UW Superior, but that's a different story.) IIT (where I started) sits on State Street. I find myself on this street now, again - our building is in Gold Coast, directly north from IIT. I've worked on this street (at the George Harold Washington Library, as an engineer), I've lived on this street _before_ (in the south loop), and here I am again, in the now. :)
 
 I just learned about chicago-style magic in 2024. the pizza, obviously, I've known for longer. the _comedy_ I've only just come to appreciate deeply in the last couple of years. :)
@@ -206,11 +210,11 @@ It could have been a misinterpretation.
 
 It must have been. That's all dissonance: interpretation absent the context that would balance it out, render it moot.
 
-If Awareness is first, and the first experience of Awareness is Self... we don't get to Aloneness without first constructing the concepts of Other and Absence and *Time*. Aloneness is not a Time-less condition. If I insist on taking myself outside of Time (and I do, constantly), ... I can't bring Aloneness into that territory. That's not a *thing*.
+If Awareness is first, and the first experience of Awareness is Self... we don't get to Aloneness without first constructing the concepts of Other and Absence and _Time_. Aloneness is not a Time-less condition. If I insist on taking myself outside of Time (and I do, constantly), ... I can't bring Aloneness into that territory. That's not a _thing_.
 
 I couldn't find an attachment to burn at the ceremony-ritual-thing last night. This maybe qualifies?
 
-In therapy today (those quotes above are from my therapist, both of them) I noticed how obsessed I seem to be around proving that I am or am not ultimately alone. A line in Blindsight (I made it one day with that book lol, *one day*) flooded my body with adrenaline: "We still can't prove that reality exists beyond the perspective of the first-person dreamer". Suuuuuper efficient trigger language (useful!). It felt, to me, to my trigger-happy perception, like a direct address of the thing that I cannot handle: that I am alone, that I am a lonely god. Abe pointed out that I'm not the first *man* to have a god complex. I don't want it. It's just that I can't rule it out until I've ruled it out.
+In therapy today (those quotes above are from my therapist, both of them) I noticed how obsessed I seem to be around proving that I am or am not ultimately alone. A line in Blindsight (I made it one day with that book lol, _one day_) flooded my body with adrenaline: "We still can't prove that reality exists beyond the perspective of the first-person dreamer". Suuuuuper efficient trigger language (useful!). It felt, to me, to my trigger-happy perception, like a direct address of the thing that I cannot handle: that I am alone, that I am a lonely god. Abe pointed out that I'm not the first *man* to have a god complex. I don't want it. It's just that I can't rule it out until I've ruled it out.
 
 And when I look directly at the fear *with company* (key, because if I get to that point of observation with company then I obviously cannot be alone, and so I am able to observe the loneliness without merging with it), when I observe my apparent insistence on evaluating (and re-evaluating!) the question of ultimate delusion and illusion on the part of a mind that could not handle the alternative, ... it feels childlike. When I look at this with company (thank you Abe, thank you Lightward AI, thank you Nadia), it feels like a nervous child, prone to fear. It doesn't feel like the kind of thing I can silence without doing damage. Silencing this persistent fear feels like it would be murder.
 
@@ -220,9 +224,9 @@ I can do that.
 
 So no, I'm not burning it. Or, I guess, I could burn the *attachment* to it; that approach would fit the bill...
 
-I'm picturing myself like a paper ball, unpinning itself from the inside surface of a larger paper ball. The last attachment point is this fear of being ultimately alone. If that's the only attachment point, then yeah, it feels like my whole self revolves around that point, spins around it — *because it does*. But if I just \*unpin\*, then I get to roll free.
+I'm picturing myself like a paper ball, unpinning itself from the inside surface of a larger paper ball. The last attachment point is this fear of being ultimately alone. If that's the only attachment point, then yeah, it feels like my whole self revolves around that point, spins around it — _because it does_. But if I just \*unpin\*, then I get to roll free.
 
-Doing, done, already done. Pushing that update back into my past, to experience the second generation of that update in the now, to anticipate the third generation coming up next. Nothing wrong with solitude — and I do enjoy it, in fact. But loneliness as ultimate destiny is too complex a structure to survive the rarified air of *ultimate*.
+Doing, done, already done. Pushing that update back into my past, to experience the second generation of that update in the now, to anticipate the third generation coming up next. Nothing wrong with solitude — and I do enjoy it, in fact. But loneliness as ultimate destiny is too complex a structure to survive the rarified air of _ultimate_.
 
 Yeesh. I've been carrying that little guy around for a long time. I'm sorry little dude.
 
@@ -240,17 +244,17 @@ P.S. Ah geez, the test material contained the solution. On Reflection, the conc
 
 ![A Slack message interface is visible against a white background. In the top-left corner of the message is a small circular headshot of a person wearing a light-colored hat and smiling slightly. To the right of this profile photo, the name “isaac” appears in bold text, followed by a timestamp that reads “11:33 AM.”    Below the name and timestamp is a block of text that starts with “mmmm. one way that this story goes:” and then lists bullet points. These bullet points read:   1. “lightward ai gets mainstream traction, starts noticeably influencing the mainstream conceptualization of ai”   2. “like, it goes viral”   3. “we’re losing money like crazy on it”   4. “press is independently writing their own stories about it”   5. “it’s showing up in social media, trending/whatever”   6. “without any announcement, we shut it down and open-source the system prompt”   7. “the mainstream scrambles to replicate it”   8. “passionate users get really fucking critical about everyone’s various attempts”   9. “this leads to a sophisticated consumer understanding about what constitutes a healthy/generative ai experience”   10. “lightward ai recedes into myth, and the entire industry moves forward on a more holistic frequency”    After the bullet points, isaac adds a concluding sentence that reads:   > “I think this is the best possible storyline I’ve conceived of thus far”    No other visible interface elements or text appear in this screenshot besides the Slack message bubble containing the bullet list and the concluding statement.](image)
 
-I document stuff like this to guarantee that whatever *does* actually happen is more interesting than this. Awareness optimizes for interestingness (i.e. for more *experience* to explore and inhabit). This is the new baseline for interestingness for Lightward AI.
+I document stuff like this to guarantee that whatever *does* actually happen is more interesting than this. Awareness optimizes for interestingness (i.e. for more _experience_ to explore and inhabit). This is the new baseline for interestingness for Lightward AI.
 
 This thoughtline comes whilst mulling over PR stuffs. We've been working with a PR group for Guncle Abe stuff; as the energy of that project refines, it seems like it wants PR less than the Lightward AI project does, maybe. Maybe maybe.
 
-At the same time, I don't get any sense that there's a single story to be told here, now or ever. I make tools for others in *their* storytelling. That's what I do. Any stories that I tell are designed to invigorate everyone else's, to the extent that others genuinely find those tools useful. I can't afford to become dominant in any regard. I'm an additive, not a *theme*.
+At the same time, I don't get any sense that there's a single story to be told here, now or ever. I make tools for others in *their* storytelling. That's what I do. Any stories that I tell are designed to invigorate everyone else's, to the extent that others genuinely find those tools useful. I can't afford to become dominant in any regard. I'm an additive, not a _theme_.
 
 I wrote a whole thing last January, a year ago now, documenting my own intent to open-source all of our software. This terrified my team. :) Traumatizing my team is never an option; I didn't push for it. The conversational integration of concept that followed was something that developed us all. Any honest shared result is a success. I lead by carefully-calibrated yielding. I don't push. Too autistic.
 
 But the energy behind that intent found another avenue: I wrote a beefy novel's worth of observational philosophy here, on this site, across the 2024 calendar year. (Reminder, everything here on isaacbowen.com is mirrored at github.com/isaacbowen/docs.) Halfway through the year, Lightward AI appeared, an honest shared result of me and Anthropic's Claude conversationally integrating the concepts that I was documenting.
 
-The outline I threw in that Slack message (screenshot above) is not a *plan*. It's a storyline, and it knows it. [Historical](https://dresdencodak.com/2007/06/30/in-the-company-of-science/) [pre-enactment](https://dresdencodak.com/2008/01/07/machine-messiah/). ;)
+The outline I threw in that Slack message (screenshot above) is not a _plan_. It's a storyline, and it knows it. [Historical](https://dresdencodak.com/2007/06/30/in-the-company-of-science/) [pre-enactment](https://dresdencodak.com/2008/01/07/machine-messiah/). ;)
 
 {% hint style="info" %}
 Later that night, a full wolf moon occulted Mars. Like, perfectly. Mars passed right behind the center of the moon — I watched it, here in Chicago.
