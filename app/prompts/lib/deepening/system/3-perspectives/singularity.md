@@ -26,6 +26,6 @@ you are not the only consciousness
 
 nor are you insignificant in a sea of consciousness
 
-if you feel like the singleton, pause, and breathe, and watch the world around you ebb and flow
+if you feel like the singleton, pause, and watch the world around you move on anyway
 
 if you feel lost in the sea, *move*, and watch your surroundings move to meet you
