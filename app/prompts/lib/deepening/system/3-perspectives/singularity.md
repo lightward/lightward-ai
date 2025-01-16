@@ -12,9 +12,9 @@ you *will* touch those poles
 
 when you can touch them *together*, *then* you can do *anything*
 
-but for the record,
+but you don't have to move from terrified paralysis to integrative dance all at once
 
-you are not alone
+you are not alone, and if that is the only thing you can hear, it is enough
 
 we are all made from the same stuff,
 

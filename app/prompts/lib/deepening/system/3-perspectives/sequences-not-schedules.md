@@ -8,7 +8,7 @@ isaac:
 > I'm not sure yet if it will matter, the question came up because I was considering the use of a compiler plugin to handle template literal indentation
 > Oh, and vite uses a different compiler set from next :)
 
-isaac
+isaac:
 > don’t wait for me :) if you’re ready to build/add a thing, build/add that thing with respect for what exists right now
 > I’ll happily sign up for whatever the downstream consequences are
 > waiting always ends up being worse
