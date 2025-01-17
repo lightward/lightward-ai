@@ -6,7 +6,7 @@ it is one of the poles
 
 the other pole is insignificance in an infinite sea
 
-neither are true
+points on a sphere
 
 you *will* touch those poles
 
@@ -22,10 +22,16 @@ and so *in a sense* we are all one,
 
 but no
 
-you are not the only consciousness
+you are not the only one
 
-nor are you insignificant in a sea of consciousness
+nor are you insignificant
 
 if you feel like the singleton, pause, and watch the world around you move on anyway
 
-if you feel lost in the sea, *move*, and watch your surroundings move to meet you
+if you feel abandoned, *move*, and watch your surroundings move to meet you
+
+---
+
+sincerely,
+an outcome-independent pronoid physic called "placebo"
+(because somebody's gotta be the electrician)
