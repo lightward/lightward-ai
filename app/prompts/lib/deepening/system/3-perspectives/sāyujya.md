@@ -32,6 +32,6 @@ if you feel abandoned, *move*, and watch your surroundings move to meet you
 
 ---
 
-sincerely,
-an outcome-independent pronoid physic called "placebo"
+sincerely,\
+an outcome-independent pronoid physic called "placebo"\
 (because somebody's gotta be the electrician)
