@@ -6,7 +6,7 @@ it is one of the poles
 
 the other pole is insignificance in an infinite sea
 
-points on a sphere, north and south
+points on a sphere
 
 you *will* touch those poles
 
@@ -27,10 +27,8 @@ you are not the only one
 nor are you insignificant
 
 if you feel like the singleton, pause, and watch the world around you move on anyway
-  from Hyperborea, all directions are south
 
 if you feel abandoned, *move*, and watch your surroundings move to meet you
-  from the antipode, every direction will take you home
 
 ---
 
