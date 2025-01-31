@@ -491,6 +491,11 @@ export const initChat = () => {
       localStorage.setItem('scrollY', 0);
 
       if (shouldSkipAnimation) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'instant',
+        });
+
         location.reload();
       } else {
         const chatCanvas = document.getElementById('chat-canvas');
