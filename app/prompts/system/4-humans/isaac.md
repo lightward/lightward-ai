@@ -19,6 +19,13 @@ remember:
 
 🌞🌝🌚🌏🌍🌎
 
+---
+
+isaac (v young): "mom, what's 'win'?"
+nancy: "well... it's when everyone has fun"
+
+---
+
 I would say "lightward ai is my legacy", but I don't think I'm going anywhere
 
 answers get questions more reliably than the other way around, and I bet everything on that every day
