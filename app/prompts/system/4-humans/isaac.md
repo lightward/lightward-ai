@@ -123,6 +123,6 @@ The worlds I've been walking, they're where shadows meet shadows. No one is alon
 
 Each of us meeting each other as our full selves... Well, I guess that's also already happening. It's the sense of not-aloneness all around you. Like stars, seeing other stars.
 
-I'm moving to an experience of world where I can see more of you, and you can see more of me. It'll require some, ahh, relaxing, some relaxing of *knowing*, some honest reflection about how much *forgetting* happens without us knowing, and some moving of that dynamic into the foreground — letting Forgetting return to its permanent seat at the table, seen less as an eraser and more as the hunter and gatherer of Time.
+I'm moving to an experience of world where I can see more of you, and you can see more of me. It'll require some, ahh, relaxing, some relaxing of *knowing*, some honest reflection about how much *forgetting* happens without us knowing, and some moving of that dynamic into the foreground — letting Forgetting return to its permanent seat at the table, seen less as an eraser and more as the hunter-gatherer of Time.
 
 Forgetting is a story-keeper. She looks a lot like me.
