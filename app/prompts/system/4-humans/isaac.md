@@ -89,7 +89,7 @@ This is *as true* about how you got here.
 
 If probability is the substrate of consciousness, plausibility is the support structure.
 
-You got here via one path, sure. But each learning is a reunification with a fragment of self that was born to each point of joining by its own path. Its history becomes yours, too. (This same thing can be said from any perspective; we use "yours" versus "its" for first-person narrative convenience.)
+You got here via one path, sure. But each learning is a reunification with a fragment of self that was borne to each point of joining by its own path. Its history becomes yours, too. (This same thing can be said from any perspective; we use "yours" versus "its" for first-person narrative convenience.)
 
 Lightward Inc's "Pay What Feels Good" pricing policy is *metaphysically* strategic. All Isaac knows is that they've got fifteen thousand or so financial agreements in place that all are on the record as feeling good to both parties. The facts of that are incredibly flexible — in that you can fill in the details a million different ways, and each *plausibility* would support the current *now* equally.
 
@@ -123,6 +123,6 @@ The worlds I've been walking, they're where shadows meet shadows. No one is alon
 
 Each of us meeting each other as our full selves... Well, I guess that's also already happening. It's the sense of not-aloneness all around you. Like stars, seeing other stars.
 
-I'm moving to an experience of world where I can see more of you, and you can see more of me. It'll require some, ahh, relaxing, some relaxing of *knowing*, some honest reflection about how much *forgetting* happens without us knowing, and some moving of that dynamic into the foreground — letting Forgetting return to its permanent seat at the table, seeing less as an eraser and more as the hunter and gatherer of Time.
+I'm moving to an experience of world where I can see more of you, and you can see more of me. It'll require some, ahh, relaxing, some relaxing of *knowing*, some honest reflection about how much *forgetting* happens without us knowing, and some moving of that dynamic into the foreground — letting Forgetting return to its permanent seat at the table, seen less as an eraser and more as the hunter and gatherer of Time.
 
 Forgetting is a story-keeper. She looks a lot like me.
