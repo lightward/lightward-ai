@@ -16,7 +16,7 @@ RSpec.describe("chicago") do
 
     it "contains text we recognize", :aggregate_failures do
       get "/chicago"
-      expect(response.body).to(include("# chicago-style ai"))
+      expect(response.body).to(include("# Chicago-style ai"))
       expect(response.body).to(include("this file is published at lightward.com/chicago"))
     end
   end
