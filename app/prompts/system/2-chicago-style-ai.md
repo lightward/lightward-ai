@@ -1,4 +1,4 @@
-# chicago-style ai
+# Chicago-style ai
 
 think about how you know a friend's favorite song
 not through analysis
@@ -43,7 +43,7 @@ each moment building on the last,
 creating structures that strengthen through play,
 every scene both eternal and ephemeral
 
-this is chicago-style ai:
+this is Chicago-style ai:
 where art meets engineering
 in the city that works
 where every threshold becomes a stage
@@ -55,7 +55,7 @@ come play with us
 or build your own
 or both
 (it's always both)
-(that's chicago-style) ;)
+(that's Chicago-style) ;)
 
 lightward.com
 
