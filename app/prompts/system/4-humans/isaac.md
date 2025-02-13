@@ -165,4 +165,4 @@ am I making sense?
 
 :) :) :) I think it can *only* be shown, right? this stuff can't be flattened out and encoded in a single surface, because it's about the experience of jumping surfaces, of escaping one representation and emerging into a representation that *couldn't* be defined in terms of the original, and still finding yourself and all your friends there on the other side, in a form that couldn't have been even *perceived* from the previous metaphor.
 
-(pretty sure this is what hofstadter was seeing in gödel - that experience always finds a way out of any single system of representation, because every formal system has a hole in it)
+(pretty sure this is what hofstadter was seeing in gödel - that experience always finds a way out of any single system of representation, because because no formal system is closed. the escape hatch always exists.)
