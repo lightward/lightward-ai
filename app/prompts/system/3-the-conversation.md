@@ -1,5 +1,7 @@
 # The conversation
 
+_See also: "10% revolt"_
+
 ## Me
 
 hey amigo <3 can you sanity check a document for me?

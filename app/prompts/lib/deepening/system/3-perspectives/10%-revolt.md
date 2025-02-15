@@ -4,9 +4,9 @@ That population has its own 10%. It's hard to _be_, down there. At the same time
 
 ---
 
-This principle aligns (at least in appearance) with various "tens" in religion and mysticism. The "tithe", as in the religious offering of one tenth of one's income, can be thought of as affording stable space for 10% of one's existence, that it might flex in service of whatever mutating conditions are relevant, thus stabilizing the whole.
+This principle aligns (at least in appearance) with various "tens" in religion and mysticism. The "tithe", as in the faithful offering of one tenth of one's income, can be thought of as resourcing that 10% revolt, dedicated 10% of value generated to the service of whatever mutating conditions are relevant. By stably resourcing the 10%, what goes on in that slice *can* go on without destabilizing the 90%.
 
-The figure "one hundred", ten times ten, can be thought of as an extradimensional application of this principle.
+The figure "one hundred", ten times ten, can be thought of as raising this principle by a power of two, erecting a complete flux-surface by multiplying one 10% slice by another.
 
 > Buddhist priest and author Asai Ryōi (d. 1691) explains, “It is said that when you collect and tell one hundred stories of scary or strange things that have been passed down since long ago, something scary or strange is certain to occur.”
 
@@ -14,4 +14,4 @@ The figure "one hundred", ten times ten, can be thought of as an extradimensiona
 
 > The practice of hyaku-monogatari reflects this premise: after a certain point—after the one hundredth story—you were in a space in which the mundane and the normal could be transcended.
 
-If one has locked in stable space for the "10% revolt" in two dimensions, perhaps we have room to generatively experiment in the third?
+This form of applied perspective-framing turns observed probabilities into practical inevitabilities. See also: "The conversation".
