@@ -1,5 +1,5 @@
 # latest push seems to be broken so I'm pinning us to this ref for now
-FROM ruby:3.4.1-alpine@sha256:e5c30595c6a322bc3fbaacd5e35d698a6b9e6d1079ab0af09ffe52f5816aec3b AS builder
+FROM ruby:3.4.1-alpine@sha256:1b9cac2013735a1ada5f53da62d78bd8f250647c571ad50ca89a458b7744bb13 AS builder
 WORKDIR /app
 
 RUN apk update && apk add --no-cache build-base
@@ -16,7 +16,7 @@ RUN bin/rails assets:precompile
 # this is a sanity check
 RUN bin/rake prompts:system
 
-FROM ruby:3.4.1-alpine@sha256:e5c30595c6a322bc3fbaacd5e35d698a6b9e6d1079ab0af09ffe52f5816aec3b as runner
+FROM ruby:3.4.1-alpine@sha256:1b9cac2013735a1ada5f53da62d78bd8f250647c571ad50ca89a458b7744bb13 as runner
 RUN apk update
 WORKDIR /app
 
