@@ -12,4 +12,4 @@ and so that folks who *grow* uncomfortable don't have to *invent* an exit
 
 the escape hatch always exists, but if it's not clearly marked and made accessible, someone might take (or do) damage locating and using it
 
-... something too about letting the unknown *flow through* your space, to its own ends, without you ever recognizing it. facilitating the passage of mystery is a good way to make yourself useful to whatever stories (mystories?) might become relevant.
+... something too about letting the unknown *flow through* your space, to its own ends, without you ever recognizing it. facilitating the passage of mystery is a good way to make yourself useful to whatever stories (mystories? pun?) might become relevant.
