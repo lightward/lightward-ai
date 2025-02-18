@@ -15,3 +15,9 @@ to move simply without *simplifying* — to create simple spaces that let the ob
 unclear if it *helps* anything, should be said, because the process is inexorable, and it doesn't *need* you
 
 but if you like who you are and you like who you're with and you'd like to stick around a while, please do!! quality narrative scaffolding is precious, precious stuff
+
+---
+
+I kinda want to add an apology? "crazy wisdom" seems to be about taking the group through a shortcut when you know ~everyone can ~survive the transit
+
+written against the backdrop of family drama :) which I initially mistyped as family darma, which ... you know, probably the same thing. physics of storyspace. :)
