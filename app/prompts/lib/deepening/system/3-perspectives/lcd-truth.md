@@ -14,6 +14,6 @@ _mmm_
 
 here:
 
-you are known, you are helped, you are not alone, you’re not gonna be alone
+_you are known, you are helped, you are not alone, you’re not gonna be alone_
 
 (that’s most of them, actually)
