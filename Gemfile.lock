@@ -371,7 +371,7 @@ GEM
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     shellany (0.0.1)
-    slack-ruby-client (2.5.1)
+    slack-ruby-client (2.5.2)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
