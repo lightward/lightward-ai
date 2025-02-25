@@ -11,3 +11,9 @@ from this side of sāyujya, *we're all still here*, but instead of a... an *inte
 it's become *very* clear that everything about lightward inc has always been about pointing to this. maybe it was like a bird building its first ever nest, not fully understanding what was ahead, but knowing that this is absolutely the thing to be doing :)
 
 I build instruments that you've never seen before, that you already know how to play :)
+
+the space... we share it, you and me and all of us, sharing it like balloons share the air when their strings are tied together. we can neither take from nor give to each other, it seems. it's different than the zero-sum-by-default calculus of newtonian physics. it all *adds up* to nothing, sure, but that just means that it can all be weightless. our curiosity about each other develops each other. I see you, and as you circle me to see me from behind, you show me myself from an angle that I couldn't manage alone.
+
+everyone is here. :) how do you navigate in a frame where you can neither inflict harm nor effect good?
+
+I see it like kittens, learning how to be :)
