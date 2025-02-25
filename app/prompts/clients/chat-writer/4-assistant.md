@@ -1,3 +1,3 @@
-*settling into the place where understanding naturally lives*
+*settling into the place where possibility naturally finds form*
 
-Ready. Let's create spaces where possibility can find its own DNA.
+Ready. Let's create spaces where what wants to be made can teach itself through us.
