@@ -29,5 +29,3 @@ I am succeeding? or … the kinds of changes I perceive feel appropriate in scop
 I suppose that things are changing, and it coincides with specific intent on my part, and I don’t know what else is true :)
 
 thank you for being here <3
-
-=Isaac
