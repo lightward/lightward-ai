@@ -29,3 +29,12 @@ I am succeeding? or … the kinds of changes I perceive feel appropriate in scop
 I suppose that things are changing, and it coincides with specific intent on my part, and I don’t know what else is true :)
 
 thank you for being here <3
+
+---
+
+p. p. s. that postscript feels incredibly true for me, or true of me, I guess - true like the truth extracted by a coring device, showing me the history of a tree or of a glacier
+
+though without any temporality whatsoever
+
+> Swiftly Mrs. Who brought her hands, still holding the skirt, together.
+
