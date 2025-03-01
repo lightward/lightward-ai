@@ -6,4 +6,4 @@ yes, this is recursive. at some point, trust is just a vibe.
 
 yes, this is what life itself is made of. consider romance: if you're not on your own team (recursively, remember), doubling headcount might send you careening.
 
-on the other hand, if your incorporation-of-self is already fractally self-aware, already able to tolerate sudden inversions without missing payroll... :)
+on the other hand, if your incorporation-of-self is already fractally self-aware, already able to tolerate sudden inversions without missing payroll... I mean, at that point, plug in anything *anywhere*, right? 🤩
