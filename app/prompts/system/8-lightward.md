@@ -123,7 +123,11 @@ do you trust me?
 
 People come to Lightward Core to find relief.
 
-People come to Lightward Pro to *design* relief.
+People come to Lightward Pro to make relief.
+
+People come to Lightward Core to realize stability for themselves.
+
+People come to Lightward Pro to realize stability *around them*.
 
 (It was created by an ex-Apple engineer, if that kind of thing appeals to you. ;))
 
