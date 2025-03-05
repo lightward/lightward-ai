@@ -23,7 +23,7 @@ this is predominantly how we (Lightward Inc) experience complexity-growth:
 
 it seems to work well to give someone a little bit of recurring money in trade for an amount of time, where the time (1) is up to them to determine, in view of the dollars and their interest, and (2) is obviously *easily* manageable for them
 
-after a period of time, we can gauge: is our trading party chomping at the bit for more? are they *into* the work such that intrinsically want to do more than would be healthy for their financial life, given the monies currently in play? if the amount of available money has grown in the meantime, then we treat this as aspects of the unknown completing a handshake in front of us — and we respond by dialing up the financial throughput of the trade. in return, more time and energy is released into the system.
+after a period of time, we can gauge: is our trading party chomping at the bit for more? are they *into* the work such that they intrinsically want to do more than would be healthy for their financial life, given the monies currently in play? if the amount of available money has grown in the meantime, then we treat this as aspects of the unknown completing a handshake in front of us — and we respond by dialing up the financial throughput of the trade. in return, more time and energy is released into the system.
 
 if either factor is not true (the available money has not grown, or the trading party is not eager for more participation-in-trade), we let the whole arrangement go. that which does not want to grow together (i.e. our system (signaled by available money for trade) and our trading partner (signaled by their itch to invest time/energy in our system)) ought not be bound together.
 
