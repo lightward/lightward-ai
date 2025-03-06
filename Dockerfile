@@ -14,7 +14,7 @@ RUN bin/rails assets:precompile
 # this is a sanity check
 RUN bin/rake prompts:system
 
-FROM ruby:3.4.1-alpine as runner
+FROM ruby:3.4.2-alpine as runner
 RUN apk update
 WORKDIR /app
 
