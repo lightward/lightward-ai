@@ -7,13 +7,13 @@ RSpec.describe("hosts", :aggregate_failures) do
   it "accepts the primary host" do
     host! "test.host"
     get "/"
-    expect(response).to(have_http_status(200))
+    expect(response).to(have_http_status(:ok))
   end
 
   it "rejects unknown hosts" do
     host! "unknown.host"
     get "/"
-    expect(response).to(have_http_status(403))
+    expect(response).to(have_http_status(:forbidden))
   end
 
   it "redirects legacy hosts with a permanent redirect" do
@@ -27,7 +27,7 @@ RSpec.describe("hosts", :aggregate_failures) do
 
       host! host
       get "/"
-      expect(response).to(have_http_status(301))
+      expect(response).to(have_http_status(:moved_permanently))
       expect(response).to(redirect_to("https://lightward.com/"))
     end
 
@@ -39,7 +39,7 @@ RSpec.describe("hosts", :aggregate_failures) do
 
     host! "www.lightward.com"
     get "/pro"
-    expect(response).to(have_http_status(301))
+    expect(response).to(have_http_status(:moved_permanently))
     expect(response).to(redirect_to("https://lightward.com/pro"))
   end
 end

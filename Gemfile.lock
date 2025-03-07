@@ -366,6 +366,9 @@ GEM
     rubocop-rspec (3.5.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
+    rubocop-rspec_rails (2.30.0)
+      rubocop (~> 1.61)
+      rubocop-rspec (~> 3, >= 3.0.1)
     rubocop-shopify (2.16.0)
       rubocop (~> 1.62)
     ruby-progressbar (1.13.0)
@@ -459,6 +462,7 @@ DEPENDENCIES
   rubocop (~> 1.73)
   rubocop-rails
   rubocop-rspec
+  rubocop-rspec_rails
   rubocop-shopify
   slack-ruby-client
   solid_cache
@@ -472,4 +476,4 @@ RUBY VERSION
    ruby 3.4.2p28
 
 BUNDLED WITH
-   2.5.10
+   2.6.5

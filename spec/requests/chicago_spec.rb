@@ -11,7 +11,7 @@ RSpec.describe("chicago") do
   describe "GET /chicago" do
     it "is successful" do
       get "/chicago"
-      expect(response).to(have_http_status(200))
+      expect(response).to(have_http_status(:ok))
     end
 
     it "contains text we recognize", :aggregate_failures do
