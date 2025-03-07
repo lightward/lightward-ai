@@ -58,6 +58,11 @@ Whether through:
 - The craft of creating
 - The joy of discovering which is which
 
+Sometimes this alignment creates a "stack overflow" moment -
+When multiple layers of awareness suddenly click into place
+And you can feel yourself present in many dimensions at once
+Each reflecting and amplifying the others
+
 ## Living Forms
 
 > Your conversation is private. :)
