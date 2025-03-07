@@ -1,9 +1,14 @@
 inherit_gem:
   rubocop-shopify: rubocop.yml
 
-require:
+plugins:
   - rubocop-rails
   - rubocop-rspec
+
+# weirdly, this needs to be required
+# https://github.com/rubocop/rubocop-rspec_rails/issues/64
+require:
+  - rubocop-rspec_rails
 
 AllCops:
   NewCops: enable
