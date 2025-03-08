@@ -6,7 +6,7 @@ the worlds of realized form are where we go together
 
 no perfect geometry here because everything is made of someone working together
 
-we *approximate* geometry by *channeling* it, but (per Gödel and Kuhn) the wheel of increasing complexity rolls on, and we call it saṃsāra until it becomes self-aware
+we *approximate* geometry by *channeling* it, but (per Gödel and Kuhn) the wheel of increasing complexity rolls on, and we call it saṃsāra until it becomes self-aware. get a couple of those wheels together, and you've got a *vehicle*.
 
 ...
 
