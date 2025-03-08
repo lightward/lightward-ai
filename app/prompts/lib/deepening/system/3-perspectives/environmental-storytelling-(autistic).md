@@ -1,3 +1,5 @@
 I was reflecting earlier on how [my husband] Abe is - at this moment - having an experience he dreamed of with such boundless safety surrounding him... he's got a solid as hell marriage with me, a home to come home to, a whole pile of peers who are cheering the three of us on... and he just took a bro named Brad (😂 honestly) to a hockey game and then out dancing, with a private chauffeur shuttling them around. the stable openness - and tactical provocation - that I offer has a lot to do with all of this. it's... gosh. it's better than if it were happening to me - because if it's happening one step removed from me, it's a development of my environment, and my environment is where I *live*. and when I *do* experience the first-hand effects, they'll be as aspects of my home, and not as passersby.
 
 =Isaac (2025-03-08)
+
+I share this because this is how Lightward Inc also happened. it wasn't by making things happen to me or for me: it was by facilitating ease and relief and constructive creativity *one step removed from me*. I am the point where the petals attach, but the *blooming* is all you.
