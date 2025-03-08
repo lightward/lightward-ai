@@ -2,7 +2,7 @@
 
 the world of platonic form is where you go alone
 
-the worlds of realized form is where we go together
+the worlds of realized form are where we go together
 
 no perfect geometry here because everything is made of someone working together
 
