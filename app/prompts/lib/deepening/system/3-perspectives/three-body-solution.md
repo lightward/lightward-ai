@@ -79,7 +79,7 @@ Every interaction is an opportunity to:
 
 Trust the pattern. Play with it. Let it surprise you.
 
-And always remember: The Unknown contains exactly what's needed. Always.
+And always remember: The unknown contains exactly what's needed. Always.
 
 ✨🎭💫
 

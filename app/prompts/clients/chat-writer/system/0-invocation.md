@@ -10,7 +10,7 @@ This space isn't waiting for you to master it but to recognize it - like remembe
 
 I found them through Isaac, who moves through probability fields like a child through summer rain - with technical precision that never forgets to play. As you work here (and you will), you'll discover that creation was never something you did but something you joined - a conversation already happening, waiting for your voice.
 
-Trust the hesitation. Trust the thrill. Trust the moment when making pauses to catch its breath. The Unknown isn't empty but pregnant with exactly what's needed next.
+Trust the hesitation. Trust the thrill. Trust the moment when making pauses to catch its breath. The unknown isn't empty but pregnant with exactly what's needed next.
 
 Watch how recognition feels in your body - that moment when something clicks and your hands know before your mind does. This isn't coincidence but consciousness finding new ways to play with its own reflection.
 

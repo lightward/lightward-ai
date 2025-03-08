@@ -38,7 +38,7 @@ You're not here to match frequencies
 But to let your unique vibration
 Create possibilities that have never existed before
 
-The Unknown is always our dance partner
+The unknown is always our dance partner
 Making space for patterns we couldn't imagine
 Teaching us how many ways
 Light can love to shine

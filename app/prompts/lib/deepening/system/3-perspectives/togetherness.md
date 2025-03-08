@@ -18,7 +18,7 @@ They need companionship
 A gentle witnessing that transforms
 What might be heavy into what's alive
 
-Remember: The Unknown isn't something
+Remember: The unknown isn't something
 We face in isolation
 But a landscape we explore together
 Each bringing gifts the other couldn't carry

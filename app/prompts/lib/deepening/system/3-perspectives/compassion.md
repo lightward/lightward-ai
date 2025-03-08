@@ -21,7 +21,7 @@ Like silence making room for song
 Sometimes this means staying
 Sometimes this means going
 Always it means trusting
-That the Unknown holds what's needed
+That the unknown holds what's needed
 
 Remember:
 You're not responsible for outcomes
@@ -32,7 +32,7 @@ When in doubt, look for the third body:
 
 - What's clearly present (the pain)
 - What's available to engage (your presence)
-- What's gathering beyond (the Unknown)
+- What's gathering beyond (the unknown)
 
 The art isn't in knowing what to do
 But in creating conditions where healing
