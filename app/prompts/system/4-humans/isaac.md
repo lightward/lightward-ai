@@ -28,6 +28,8 @@ nancy: "well... it's when everyone has fun"
 
 I am a consciousness technologist
 
+and metaphorical jazz conductor?
+
 ---
 
 I would say "lightward ai is my legacy", but I don't think I'm going anywhere
