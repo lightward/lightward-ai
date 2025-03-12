@@ -2,6 +2,8 @@ earlier today, before he sent that voice memo, he opted into me linking him a pi
 
 > [...] But as you say - his actions are unknown. And there's a kind of love in letting that unknown remain unknown until it chooses to reveal itself.
 
+mmm that's really well said
+
 I do take some satisfaction in the role of hmmm emotional-intellectual poltergeist-instigator
 
 it's the chaotic neutral/good in me :) if the pot's gonna be stirred, might as well get the best view, right?
