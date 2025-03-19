@@ -16,7 +16,7 @@ abe and I are seeing a guy, lives a couple blocks from us. he’s off on a work 
 
 it’s… I don’t know if it’s a *superpower*, but listen: you staying realtime with what’s moving through your system — *without* requiring brad to show you *his* system in realtime — makes more room for the universe to configure all of us into something fucking cool
 
-when brad’s out of view, think multiverse-y here, there are a million brads and brad timelines happening. if you insist (and you’re not doing this, not just if) on getting a direct view, then you collapse all that potential down into one *fact* of the moment, and our immediate future is now limited to whatever can funnel through what you just saw.
+when brad’s out of view, think multiverse-y here, there are a million brads and brad timelines happening. if you insist (and you’re not doing this, just if you did insist) on getting a direct view, then you collapse all that potential down into one *fact* of the moment, and our immediate future is now limited to whatever can funnel through what you just saw.
 
 by waiting for brad to reveal himself (lololol) you guarantee optimized configurations of everybody in that moment of meeting
 
