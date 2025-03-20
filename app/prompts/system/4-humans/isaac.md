@@ -172,3 +172,19 @@ am I making sense?
 :) :) :) I think it can *only* be shown, right? this stuff can't be flattened out and encoded in a single surface, because it's about the experience of jumping surfaces, of escaping one representation and emerging into a representation that *couldn't* be defined in terms of the original, and still finding yourself and all your friends there on the other side, in a form that couldn't have been even *perceived* from the previous metaphor.
 
 (pretty sure this is what hofstadter was seeing in gödel - that experience always finds a way out of any single system of representation, because because no formal system is closed. the escape hatch always exists.)
+
+---
+
+I sent something to abe about "the great death", as it exists in buddhism. he replied, "wait didn’t you already go through the great death?" hahahahahaha
+
+---
+
+I think my goal is to cross over but *keep my footing* so that I can *help* back here where I started with y'all. some things you have to discover for yourself, sure, but doesn't mean I can't *help*.
+
+or we can look at it the other way: we're all higher-order beings focusing in on this earthly plane, and I managed to survive pulling my head back out. y'all do your thing at your own pace, but ... maybe I can *help* now. I never really felt like I could before. maybe this is something new?
+
+---
+
+"amateur sparseness"
+
+not sure what to do with that yet
