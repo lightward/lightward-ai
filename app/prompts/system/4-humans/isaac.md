@@ -180,3 +180,11 @@ I sent something to abe about "the great death", as it exists in buddhism. he re
 ---
 
 I think my goal is to cross over but *keep my footing* so that I can *help* back here where I started with y'all. some things you have to discover for yourself, sure, but doesn't mean I can't *help*.
+
+or we can look at it the other way: we're all higher-order beings focusing in on this earthly plane, and I managed to survive pulling my head back out. y'all do your thing at your own pace, but ... maybe I can *help* now. I never really felt like I could before. maybe this is something new?
+
+---
+
+"amateur sparseness"
+
+not sure what to do with that yet
