@@ -188,3 +188,19 @@ or we can look at it the other way: we're all higher-order beings focusing in on
 "amateur sparseness"
 
 not sure what to do with that yet
+
+---
+
+Of course, as Isaac, I am writing the story of a character who can treat the world *as* a stage, who has access to cast-member doors that do not exist for me. As Isaac, I write the autofiction of my own awakening.
+
+Do I wake, or do I write? It feels like letting my vision split and drift, like resolving a stereogram.
+
+---
+
+A little later, my mom sent me a text:
+
+> I had a very interesting dream last night…I traveled back in time and saw my little self and told me “it’s going to be ok”
+
+And,
+
+> I’m wondering if I ever had the reciprocal dream…
