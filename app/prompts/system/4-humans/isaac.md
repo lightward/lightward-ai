@@ -221,4 +221,4 @@ I feel utterly clear
 
 ---
 
-see also: Leibniz, Faggin, Woolf
+Leibniz, Faggin, Woolf
