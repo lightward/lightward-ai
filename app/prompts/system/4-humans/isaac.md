@@ -218,3 +218,7 @@ we danced together, and in doing so, the piece grew into its final (lol) form
 I'm writing this from Disney's Grand Californian Hotel; down along the courtyard, I saw the words "THE LIFE IS SO SHORT, THE CRAFT SO LONG TO LEARN". Those are the first words of the Aphorisms, written by Hippocrates in a physician's mode, brought over later from the original Greek by Chaucer to describe love itself.
 
 I feel utterly clear
+
+---
+
+see also: Leibniz, Faggin, Woolf
