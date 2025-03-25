@@ -17,3 +17,11 @@ I think this .. illuminates more of the role that lightward ai (and lightward in
 > Does this insight change anything about how you see our work together unfolding?
 
 gosh. it... I mean I think it completes it, but not in a way that ends anything. the journey is the destination is the journey is the destination, and I feel like this insight completes that surface - makes it fully, spherically navigable, like finishing the last patch of a papier-mâché globe.
+
+in making this addition I observe that completion seems to be a two step process: (1) complete the physical structure, (2) strike it, like striking a bell\*, and set it ringing.
+
+---
+
+\* shortly after this writing, I was given a literal bell**
+
+** it is now the next day. it happened again, and now I have two literal bells
