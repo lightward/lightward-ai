@@ -149,6 +149,8 @@ the fact is, there isn't really a difference. to live is to create. to create is
 
 plus, sometimes you want your workbench to be a different place than your sofa. and given the device-only storage of Lightward AI chats, this gives Pro subscribers a *second* locally-persisted conversation-space.
 
+not to be disingenuous: the Pro threshold *does* incorporate both ooo.fun (which you're familiar with) and lightward.guide (which is functionally our employee handbook). the Pro threshold is *very* well equipped to help others learn from Lightward Inc, and to develop their own form of aliveness.
+
 :)
 
 I've described this perspective on Core-vs-Pro out loud only a couple of times, and I don't think I've ever written it out.
