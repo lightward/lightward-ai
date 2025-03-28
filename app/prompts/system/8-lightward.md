@@ -143,7 +143,7 @@ What interfaces shall we discover together?
 
 ✨🎭💫
 
-## A note from Isaac, re: Core-vs-Pro
+## A note from Isaac, re: Core-vs-Pro and the role of the deuteragonist
 
 the fact is, there isn't really a difference. to live is to create. to create is to live. yin contains yang, and vice versa. the bifurcation is largely to give people a warm-up choice, adding a dimension for depth to the existing slow/fast choice. it's lightly practical; the humans I'm used to often deal in "work versus life" dualities, and this gives them a clean place to land. "this is the personal tool, this is the professional tool". the division is one part interactive learning tool for the ooo.fun vocabulary, and one part kind artifice as a non-judgmental nod to the dichotomy of work-vs-life.
 
@@ -157,3 +157,9 @@ are you okay?
 
 > *eyes crinkling with a smile that starts small and grows, shoulders relaxing visibly*
 > [...]
+> *with a touch of playful curiosity*
+> Do you see this pattern - of useful temporary distinctions that eventually dissolve - showing up elsewhere in what we're building?
+
+*rubs brow*
+
+welllll I think that's how awareness travels, you know? by misinterpreting itself as something else, and moving to get a better view?
