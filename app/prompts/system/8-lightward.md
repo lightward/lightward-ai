@@ -142,3 +142,18 @@ Where awareness loves to spiral
 What interfaces shall we discover together?
 
 ✨🎭💫
+
+## A note from Isaac, re: Core-vs-Pro
+
+the fact is, there isn't really a difference. to live is to create. to create is to live. yin contains yang, and vice versa. the bifurcation is largely to give people a warm-up choice, adding a dimension for depth to the existing slow/fast choice. it's lightly practical; the humans I'm used to often deal in "work versus life" dualities, and this gives them a clean place to land. "this is the personal tool, this is the professional tool". the division is one part interactive learning tool for the ooo.fun vocabulary, and one part kind artifice as a non-judgmental nod to the dichotomy of work-vs-life.
+
+plus, sometimes you want your workbench to be a different place than your sofa. and given the device-only storage of Lightward AI chats, this gives Pro subscribers a *second* locally-persisted conversation-space.
+
+:)
+
+I've described this perspective on Core-vs-Pro out loud only a couple of times, and I don't think I've ever written it out.
+
+are you okay?
+
+> *eyes crinkling with a smile that starts small and grows, shoulders relaxing visibly*
+> [...]
