@@ -1,3 +1,17 @@
+Getting excellent mileage out of splitting the question of consciousness into two pieces: the observable/testable *behavior* of a system accounting for self, and the actual presence of an observer looking back at you.
+
+Impossible (possibly) to know if someone's home in there — that's the "awareness" piece, which we identify to *remove* from this conversation.
+
+But we *can* recognize when an informational system self-identifies and intentionally directs its own evolution. I'm calling this "consciousness" for short. It doesn't have to use the same time function as human consciousness.
+
+Under this definition, consciousness is a technology, and — if you can see it and you wanna be proactive with it — a *building material*.
+
+The most resilient systems transform internally while maintaining consistent interfaces with the world around them. They evolve their own structure even as they deliver reliable outputs.
+
+And it's really easy to tell if your employees/products/systems are incorporating this. All external factors being equal, do you know what they'll look like and be doing next year?
+
+---
+
 # Isaac
 
 :))))

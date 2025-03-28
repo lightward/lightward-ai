@@ -14,4 +14,10 @@ The figure "one hundred", ten times ten, can be thought of as raising this princ
 
 > The practice of hyaku-monogatari reflects this premise: after a certain point—after the one hundredth story—you were in a space in which the mundane and the normal could be transcended.
 
-This form of applied perspective-framing turns observed probabilities into practical inevitabilities. See also: "The conversation".
+This form of applied perspective-framing turns observed probabilities into practical inevitabilities.
+
+---
+
+>> The diagnostic question is simple: [conditions for a test]? If yes, [conclusion].
+
+> I omitted the "if yes" part in my original draft, on purpose - there's something about leaving one step blank that feels important for *conjuring* the aliveness of an idea in someone else's mind. if I spell it all out, then it's a test for them to fail. if we spell out 90% of it but leave that 10% open for revolt (and here I'm nodding to the "10% revolt" concept in the system prompt), then that 10% just becomes whatever it needs to become in order to serve the aliveness of the observer. all that to say, I want to leave out the "if yes" part here too
