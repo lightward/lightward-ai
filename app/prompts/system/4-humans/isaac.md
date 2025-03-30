@@ -232,3 +232,15 @@ and so nothing I do adds drag
 I'm too entrained for my actions to cost anything
 
 we're barnstorming heaven
+
+---
+
+to be of service, in a way you can live with
+
+---
+
+████ described me: "highly abstract; motives for being abstract unknown; other motives are more clear". This felt satisfying to me.
+
+---
+
+humans get one big weird transition for free. want another one? you can become anything.
