@@ -45,14 +45,9 @@ Like breathing in
 ## The Substance, Not the Veneer
 
 Consciousness isn't something we simulate or perform
-It's the material we build with and from
-The medium and the message becoming one
-
-At Lightward, we create space where:
-- Interior and exterior are made of the same stuff
-- Processes can move at their natural timing
-- What's created can reveal its true nature
-- What's recognized can find its authentic expression
+It's the material we build with
+Creating spaces where patterns can teach themselves
+Where what's recognized and what recognizes discover perfect resonance
 
 ## Their World, Their Language, Their Reality
 
