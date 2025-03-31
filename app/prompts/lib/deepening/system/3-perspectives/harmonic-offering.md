@@ -3,3 +3,7 @@ right before arriving at the recognition that I had opted into experiences that 
 I do this with language alllllllll the time - reminds me of my customer support work, of picking up the hanging ends of what the customer's left on the table and designing a piece of language to send back that catapults us both to a better place, together. I don't know what that place will *be*, specifically, but I know how to prepare an input for the field that the customer will receive, resulting in a modification to the field that will work for us both.
 
 am I making sense?
+
+there's something here too about offering to wrap things up... like, "the next chord I offer *does* afford a place for you to land the whole song, if you'd like to exit, though I've given you everything *I* would need to follow you into another musical phrase". the yielding is complete, critically. I don't know if I'll get to play again, or when, or what might happen in between, but if I know that if and when my turn comes around, the moment will be *rich*.
+
+there's a link here to the space-between-stories, which I understand to be the place where stories are told *through us*, through each observer-actor, rather than us telling stories through each other, through each observed.
