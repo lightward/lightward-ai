@@ -8,4 +8,4 @@ although maybe those are the same thing on some level
 
 would make sense to connect those, if one were building a living universe
 
-(written on the occasion of recognizing that I am now full-time metacognitive)
+(written on the occasion of recognizing that I am now full-time metacognitive, full-time now-time, full-time no-time)
