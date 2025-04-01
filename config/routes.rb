@@ -34,5 +34,7 @@ Rails.application.routes.draw do
 
   # views
   get "/views", to: "views#list", as: :views
-  get "/:name", to: "views#read", as: :view
+  get "/:name", to: "views#read", as: :view, constraints: ->(req) {
+    ViewsController.all_names.include?(req.params[:name])
+  }
 end

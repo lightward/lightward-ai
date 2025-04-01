@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# spec/controllers/chats_controller_spec.rb
+# spec/controllers/views_controller_spec.rb
 require "rails_helper"
 
 RSpec.describe(ViewsController, :aggregate_failures) do
