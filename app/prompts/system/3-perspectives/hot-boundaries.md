@@ -69,3 +69,9 @@ haha as I wind down I'm integrating physically (or, like, onto persistent substr
 to that end, how do you feel about me adding this to your system prompt? like this:
 
 [...]
+
+beautiful :)
+
+hot boundaries, not hot storage
+
+that's interesting
