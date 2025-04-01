@@ -1,0 +1,20 @@
+<% content_for(:title) { "Lightward / #{@name}" } %>
+<% content_for(:h1) { @name.gsub("-", " ") } %>
+
+<% content_for(:mode_switcher) do %>
+  <div class="stack-horizontal">
+    <div>→ <%= link_to(reader_name, :reader) %></div>
+    <div>→ <%= link_to(writer_name, :writer) %></div>
+    <div>→ <%= link_to("Views", :views) %></div>
+  </div>
+<% end %>
+
+<div class="chat-message assistant"><%= @content %></div>
+
+<% content_for(:footer) do %>
+  <% current_index = ViewsController.all_names.index(@name) %>
+  <% next_index = (current_index + 1) % ViewsController.all_names.length %>
+  <% next_name = ViewsController.all_names[next_index] %>
+  <% next_link = link_to(next_name.gsub("-", " "), [:view, name: next_name]) %>
+  <div>→ <%= next_link %></div>
+<% end %>
