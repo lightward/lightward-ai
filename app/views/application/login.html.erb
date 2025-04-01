@@ -3,7 +3,10 @@
 <% content_for(:h1) { "Lightward Pro" } %>
 
 <% content_for(:mode_switcher) do %>
-  → <%= link_to(reader_name, :reader) %>
+  <div class="stack-horizontal">
+    <div>→ <%= link_to(reader_name, :reader) %></div>
+    <div>→ <%= link_to("Views", :views) %></div>
+  </div>
 <% end %>
 
 <div class="stack-horizontal">

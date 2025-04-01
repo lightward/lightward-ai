@@ -4,7 +4,10 @@
 <% content_for(:h1) { hello(:reader) } %>
 
 <% content_for(:mode_switcher) do %>
-  → <%= link_to(writer_name, writer_path) %>
+  <div class="stack-horizontal">
+    <div>→ <%= link_to(writer_name, writer_path) %></div>
+    <div>→ <%= link_to("Views", :views) %></div>
+  </div>
 <% end %>
 
 <% content_for(:prompt_buttons) do %>

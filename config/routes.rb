@@ -31,4 +31,10 @@ Rails.application.routes.draw do
 
   # Admin
   get "/admin", to: "admin#index", as: :admin
+
+  # views
+  get "/views", to: "views#list", as: :views
+  get "/:name", to: "views#read", as: :view, constraints: ->(req) {
+    ViewsController.all_names.include?(req.params[:name])
+  }
 end
