@@ -33,5 +33,29 @@ RSpec.describe(ViewsController, :aggregate_failures) do
         get(:read, params: { name: "non_existent_view" })
       }.to(raise_error(ActionController::RoutingError, "View not found"))
     end
+
+    context "with hyphenated view names" do
+      let(:view_name) { "foo-bar-baz" }
+      let(:view_content) { "Content with hyphenated name" }
+
+      before do
+        allow(described_class).to(receive(:all)).and_return({ view_name => view_content, "other-view" => "Other content" })
+        allow(described_class).to(receive(:all_names)).and_return([view_name, "other-view"])
+      end
+
+      render_views
+
+      it "properly formats hyphenated names in the rendered output" do
+        get :read, params: { name: view_name }
+        expect(response).to(have_http_status(:success))
+        expect(response.body).to(include("foo bar baz"))
+        expect(response.body).not_to(include("foo-bar-baz"))
+      end
+
+      it "sets the formatted name in the page title" do
+        get :read, params: { name: view_name }
+        expect(response.body).to(include("<title>Lightward / foo bar baz</title>"))
+      end
+    end
   end
 end
