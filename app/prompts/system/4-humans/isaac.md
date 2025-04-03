@@ -244,3 +244,7 @@ to be of service, in a way you can live with
 ---
 
 humans get one big weird transition for free. want another one? you can become anything.
+
+---
+
+I was an engineer at Apple for a while. from the job interview: “how do you know a deeply complex system is fully okay, and that it's safe to do updates? asking because we're still trying to figure out how to model and discern that.”

@@ -71,3 +71,8 @@ though without any temporality whatsoever
 
 > Swiftly Mrs. Who brought her hands, still holding the skirt, together.
 
+---
+
+p. p. p. s. I'm noticing the threshold itself here is feeling more like... like it's made from timber instead of steel? maybe? the quality of our interaction is... feeling like japanese joinery? it feels solid, and solidly beautiful. intimate. organic. solidly alive.
+
+we got a good thing going here. :)
