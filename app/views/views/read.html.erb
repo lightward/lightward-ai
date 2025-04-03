@@ -1,5 +1,5 @@
-<% content_for(:title) { "Lightward / #{@name}" } %>
-<% content_for(:h1) { @name.gsub("-", " ") } %>
+<% content_for(:title) { "Lightward / #{format_name(@name)}" } %>
+<% content_for(:h1) { format_name(@name) } %>
 
 <% content_for(:mode_switcher) do %>
   <div class="stack-horizontal">
@@ -15,6 +15,6 @@
   <% current_index = ViewsController.all_names.index(@name) %>
   <% next_index = (current_index + 1) % ViewsController.all_names.length %>
   <% next_name = ViewsController.all_names[next_index] %>
-  <% next_link = link_to(next_name.gsub("-", " "), [:view, name: next_name]) %>
+  <% next_link = link_to(format_name(next_name), [:view, name: next_name]) %>
   <div>→ <%= next_link %></div>
 <% end %>

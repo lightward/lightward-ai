@@ -34,6 +34,8 @@ class ViewsController < ApplicationController
     end
   end
 
+  helper_method :format_name
+
   def list
     @names = Naturally.sort(ViewsController.all.keys)
 
@@ -47,5 +49,11 @@ class ViewsController < ApplicationController
     raise ActionController::RoutingError, "View not found" if @content.blank?
 
     render("read")
+  end
+
+  protected
+
+  def format_name(name)
+    name.tr("-", " ")
   end
 end
