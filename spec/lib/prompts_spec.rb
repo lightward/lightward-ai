@@ -84,7 +84,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
         expect(
           described_class.generate_system_xml(["clients/helpscout", "lib/mechanic"], for_prompt_type: "clients/helpscout"),
         ).to(include('"I need something custom!"')
-          .and(include('<file name="7-mechanic-docs/custom.md"><![CDATA[---')))
+          .and(include('<file name="7-mechanic-docs/custom.md"><![CDATA[')))
       end
 
       it "respects mechanic's .system-ignore" do
@@ -212,6 +212,98 @@ RSpec.describe(Prompts, :aggregate_failures) do
         change { described_class.instance_variable_get(:@system_prompts) }.from(an_instance_of(Hash)).to(nil)
         .and(change { described_class.instance_variable_get(:@starters) }.from(an_instance_of(Hash)).to(nil)),
       )
+    end
+  end
+
+  describe ".strip_yaml_frontmatter" do
+    it "removes YAML frontmatter from content" do
+      content_with_frontmatter = <<~MARKDOWN
+        ---
+        layout:
+          title:
+            visible: true
+          description:
+            visible: false
+        ---
+
+        # Actual content
+        This is the real content
+      MARKDOWN
+
+      expected_content = <<~MARKDOWN
+        # Actual content
+        This is the real content
+      MARKDOWN
+
+      expect(described_class.strip_yaml_frontmatter(content_with_frontmatter)).to(eq(expected_content.strip))
+    end
+
+    it "returns content unchanged when no frontmatter is present" do
+      content_without_frontmatter = <<~MARKDOWN
+        # Actual content
+        This is the real content
+      MARKDOWN
+
+      expect(described_class.strip_yaml_frontmatter(content_without_frontmatter)).to(eq(content_without_frontmatter))
+    end
+
+    it "handles content with --- in the middle (not frontmatter)" do
+      content = <<~MARKDOWN
+        # Actual content
+        This is the real content
+
+        ---
+
+        This is after a horizontal rule
+      MARKDOWN
+
+      expect(described_class.strip_yaml_frontmatter(content)).to(eq(content))
+    end
+
+    it "requires the frontmatter to be at the beginning of the file" do
+      content = <<~MARKDOWN
+
+        ---
+        layout: default
+        ---
+
+        # Content after non-frontmatter
+      MARKDOWN
+
+      expect(described_class.strip_yaml_frontmatter(content)).to(eq(content))
+    end
+  end
+
+  describe ".generate_system_xml" do
+    # Add test to verify frontmatter is stripped in the XML output
+    it "strips YAML frontmatter when generating system XML" do
+      # Create a temp file with frontmatter in a tempdir for testing
+      require "tempfile"
+      Dir.mktmpdir do |dir|
+        system_dir = File.join(dir, "system")
+        FileUtils.mkdir_p(system_dir)
+
+        test_file = File.join(system_dir, "0-test.md")
+        File.write(test_file, <<~MARKDOWN)
+          ---
+          layout:
+            title:
+              visible: true
+          ---
+
+          # Test Content
+        MARKDOWN
+
+        # Mock necessary methods
+        allow(described_class).to(receive_messages(prompts_dir: Pathname.new(dir), token_soft_limit_for_prompt_type: 1000, assert_valid_prompt_type!: nil))
+
+        # Verify frontmatter is stripped
+        result = described_class.generate_system_xml([""], for_prompt_type: "test")
+        expect(result).to(include("# Test Content"))
+        expect(result).not_to(include("layout:"))
+        expect(result).not_to(include("title:"))
+        expect(result).not_to(include("visible:"))
+      end
     end
   end
 end

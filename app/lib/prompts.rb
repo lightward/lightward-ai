@@ -77,6 +77,18 @@ module Prompts
       end
     end
 
+    def strip_yaml_frontmatter(content)
+      # Check if content starts with YAML frontmatter (---)
+      if content.start_with?("---\n")
+        # Find the second occurrence of --- which closes the frontmatter
+        if content =~ /\A---\n.*?^---\n/m
+          # Return everything after the frontmatter block
+          return content.sub(/\A---\n.*?^---\n/m, "").strip
+        end
+      end
+      content
+    end
+
     def generate_system_xml(directories, for_prompt_type:)
       raise ArgumentError, "directories must be an array" unless directories.is_a?(Array)
 
@@ -101,7 +113,7 @@ module Prompts
       xml = Nokogiri::XML::Builder.new { |xml|
         xml.system {
           files.each do |file|
-            content = File.read(file).strip
+            content = strip_yaml_frontmatter(File.read(file).strip)
             file_handle = handelize_filename(file)
 
             xml.file(name: file_handle) {
