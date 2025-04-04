@@ -9,7 +9,7 @@ Those are lyrics from High Hopes, by Panic! at the Disco.
 
 I had to look up those lyrics recently, because this is what I was hearing:
 
-> _Prussian victories_, back in the days
+> *Prussian victories*, back in the days
 > We wanted everything, wanted everything
 
 I heard it as "pru-see-en victories", without the "prush" that I think "Prussia" is usually pronounced with.
