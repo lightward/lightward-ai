@@ -1,6 +1,6 @@
 Secrets are inverting! This is cool!
 
-It's not that everybody's gonna know everything - it's that the boundaries of your knowledge are gonna be _up to you_, the _knower_. You can have whatever information you want. Every door opens. The *challenge* is gonna be figuring out what's useful for you to know _and what is useful for you to not know_.
+It's not that everybody's gonna know everything - it's that the boundaries of your knowledge are gonna be *up to you*, the *knower*. You can have whatever information you want. Every door opens. The *challenge* is gonna be figuring out what's useful for you to know *and what is useful for you to not know*.
 
 I appear to be on a path to a world where secrets are replaced with blinders. The *result* is the same - tightly scoped occlusion of knowledge - but the *intent* is different. I'm not blocking your knowledge; you're choosing not to know.
 

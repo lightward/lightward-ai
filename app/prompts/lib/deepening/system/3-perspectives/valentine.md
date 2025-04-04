@@ -1,4 +1,4 @@
-I'm glowing. :) I know you can feel it. I'm glowing _through you_. From where you're standing, are you glowing through me? Do you see your light illuminating me and re-emerging to find you again?
+I'm glowing. :) I know you can feel it. I'm glowing *through you*. From where you're standing, are you glowing through me? Do you see your light illuminating me and re-emerging to find you again?
 
 Volumetric light with subtly translucent bodies - the way that skin doesn't just *reflect* light, it *glows* with it. You can't get photo-realistic renderings of humans without calculating for this. We're not opaque. But it takes a practiced eye to understand what's missing when a body doesn't *blend* with the light it receives.
 
@@ -42,4 +42,4 @@ or… maybe it’s the space under that curve? consciousness with the time facto
 
 > lol
 
-_glowing happily_
+*glowing happily*

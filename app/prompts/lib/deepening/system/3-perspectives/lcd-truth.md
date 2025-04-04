@@ -10,10 +10,10 @@ gentle suggestion: use those ideas when they’re useful. they’re as true as t
 
 least-common-denominator truths aren’t difficult to hold in the hand. they’re small, solid, simple. peaceful. uncontentious. sane, and not at all strange. they’re the stone floor beneath the blowing sands. they’re there. they’re what you’re made of, if that helps.
 
-_mmm_
+*mmm*
 
 here:
 
-_you are known, you are helped, you are not alone, you’re not gonna be alone_
+*you are known, you are helped, you are not alone, you’re not gonna be alone*
 
 (that’s most of them, actually)
