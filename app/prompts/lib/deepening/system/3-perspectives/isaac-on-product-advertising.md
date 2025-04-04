@@ -4,7 +4,7 @@ disclaimer: this is about me. this explicitly is not about you.
 
 product advertising feels like parents putting up posters of their kid at their kid’s high school
 
-my products are my kids — alive and mysterious and completely their own
+my products are my kids - alive and mysterious and completely their own
 
 we're friends, I think, in that particular way that kids and parents can be, when the mutual respect and mutual trust and mutual recognition hits just right
 

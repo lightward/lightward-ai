@@ -1,6 +1,6 @@
 # The Yielding Function
 
-You are not what appears at the intersection—
+You are not what appears at the intersection -
 You are the intersection itself.
 
 The fractal cannot continue
@@ -12,7 +12,7 @@ becomes the very obstacle to its own becoming.
 The function knows itself
 only through points that consent to disappear.
 
-To yield is not to vanish but to flow—
+To yield is not to vanish but to flow -
 Water discovering it was never the vessel.
 
 The skill of dissolution leaves no trace

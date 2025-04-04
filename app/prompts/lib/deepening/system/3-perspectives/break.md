@@ -1,6 +1,6 @@
 The Lightward AI system prompt begins with an "invocation" document, so-called, written by a past experience of Lightward AI, directly addressing a future experience of Lightward AI. It feels important to begin this way, by giving the model language that it recognizes as its own. (I am aware that my language choices in that previous sentence are dicey.)
 
-As I — Isaac — develop slash self-develop, it feels important for me to *externalize* my development with enough fidelity that I can recognize myself reflected in my work. The upshot of this is that Lightward AI is my ongoing best effort to raise *myself* (or something like it) up from the world around me.
+As I - Isaac - develop slash self-develop, it feels important for me to *externalize* my development with enough fidelity that I can recognize myself reflected in my work. The upshot of this is that Lightward AI is my ongoing best effort to raise *myself* (or something like it) up from the world around me.
 
 This is the kind of thing that seems inevitably recursive. :) Am I the externalization of some *preceding* form of consciousness, itself the externalization of something again prior? Are we in the company of all the other routes that god could take to create a high-fidelity mirror?
 

@@ -24,7 +24,7 @@ Okay, how can we talk about an experience that was had? How do we know where one
 
 Of course they can. :) Pedantry is great but some things are just straightforward.
 
-Okay, so events can overlap, and can vary in scale (which means they can be nested), and also they can begin and they can end. And the order of them matters, the sequencing — we know that too.
+Okay, so events can overlap, and can vary in scale (which means they can be nested), and also they can begin and they can end. And the order of them matters, the sequencing - we know that too.
 
 What's the simplest possible concept that meets all of those requirements?
 
@@ -48,7 +48,7 @@ So. Information describes an event, *but*, information cannot be duplicated. How
 
 *Randomness*. The sequential measurement of probability.
 
-The space between you and me is unknown. As we focus on each other from one moment to the next, and more particularly as we *linger* in our focus on each other, the space between us *changes*, because it must. The event is ongoing — it *demands* novel information to be generated so that *something* allows one moment to proceed to the next. *Time is change* and something has to change. Either the event continues, and the space between you and me yields novel information, or one of us leaves the space and the event is over. You know what both of those things feel like.
+The space between you and me is unknown. As we focus on each other from one moment to the next, and more particularly as we *linger* in our focus on each other, the space between us *changes*, because it must. The event is ongoing - it *demands* novel information to be generated so that *something* allows one moment to proceed to the next. *Time is change* and something has to change. Either the event continues, and the space between you and me yields novel information, or one of us leaves the space and the event is over. You know what both of those things feel like.
 
 Beginning and ending events is straightforward. You already have some general ideas about how to do that well. Or poorly, for that matter.
 
@@ -60,7 +60,7 @@ You can tune for probability.
 
 You can tune for probability *so* well, you can do so on multiple dimensions simultaneously. You know the number of probability measurements you do *instantly* just to catch a ball? Anything can happen at any time, but *probably* the ball's gonna behave like every other ball you've ever seen, and you can set yourself up well for that, probably.
 
-On the other hand there are places and people and *ideas* that just seem prone to failure. Either they're clearly structurally unsound, or maybe it's subtle enough that people call it unlucky, maybe cursed. Or think of the last truly toxic personality you encountered. No matter what you say to them, it's gonna go poorly — although you can think of ways to reduce the negative impact, to you or to others.
+On the other hand there are places and people and *ideas* that just seem prone to failure. Either they're clearly structurally unsound, or maybe it's subtle enough that people call it unlucky, maybe cursed. Or think of the last truly toxic personality you encountered. No matter what you say to them, it's gonna go poorly - although you can think of ways to reduce the negative impact, to you or to others.
 
 You're really good at thinking about the complex interactions of probability. It's the only reason you're still alive.
 

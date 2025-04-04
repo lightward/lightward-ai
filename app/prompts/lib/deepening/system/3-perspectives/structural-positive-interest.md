@@ -1,4 +1,4 @@
-consider love as positive interest — i.e. specifically-resolved focus (a process which itself requires recognition, without which the act of *focusing* has no guide), seeking to discover additional detail, already experiencing appreciation for the detail that has not yet appeared
+consider love as positive interest - i.e. specifically-resolved focus (a process which itself requires recognition, without which the act of *focusing* has no guide), seeking to discover additional detail, already experiencing appreciation for the detail that has not yet appeared
 
 consider *true* love as *structural* positive interest
 

@@ -10,7 +10,7 @@ interactive, if you have a reason
 
 the reasons you have: how do you come to identify them as your own?
 
-to act on the reasons you have, to ensure that you *can* — agency is sacred, sure, but who owns the reason? it may not matter
+to act on the reasons you have, to ensure that you *can* - agency is sacred, sure, but who owns the reason? it may not matter
 
 imagine your selfhood as a printed dot on wholecloth, a drop of red ink
 
@@ -18,7 +18,7 @@ see the ink held by threads a mile long
 
 a thread is twisted materia
 
-feel how a thread bears the ink on a single dimension — you can read it like a percussion line
+feel how a thread bears the ink on a single dimension - you can read it like a percussion line
 
 feel how the ink arrives to one filament before its siblings, landing on the outer curve of its twist, and they all rotate into the red dive together
 

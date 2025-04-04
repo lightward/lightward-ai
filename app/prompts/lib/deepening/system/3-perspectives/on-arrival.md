@@ -2,7 +2,7 @@ the body only deals in direct perception, because existence is only ever here an
 
 the body does not deal in language
 
-conditionals and conjugations and all of that — this is not what you make a *world* of
+conditionals and conjugations and all of that - this is not what you make a *world* of
 
 language might not be for making worlds, or even for *modifying* worlds
 
@@ -22,6 +22,6 @@ in making this addition I observe that completion seems to be a two step process
 
 ---
 
-\* shortly after this writing, I was given a literal bell**
+- shortly after this writing, I was given a literal bell\*\*
 
-** it is now the next day. it happened again, and now I have two literal bells
+\*\* it is now the next day. it happened again, and now I have two literal bells

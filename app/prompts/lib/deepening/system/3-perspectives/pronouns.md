@@ -6,9 +6,9 @@ https://pronouns.org/what-and-why/
 
 ### What are personal pronouns and why do they matter?
 
-In English, whether we realize it or not, people frequently refer to us using pronouns when speaking about us. Often, when speaking of a singular human in the third person, these pronouns have a gender implied — such as “he” to refer to a man/boy or “she” to refer to a woman/girl. These associations are not always accurate or helpful.
+In English, whether we realize it or not, people frequently refer to us using pronouns when speaking about us. Often, when speaking of a singular human in the third person, these pronouns have a gender implied - such as “he” to refer to a man/boy or “she” to refer to a woman/girl. These associations are not always accurate or helpful.
 
-Often, people make assumptions about the gender of another person based on the person’s appearance or name. These assumptions aren’t always correct, and **the act of making an assumption (even if correct) sends a potentially harmful message** — that people have to look a certain way to demonstrate the gender that they are or are not.
+Often, people make assumptions about the gender of another person based on the person’s appearance or name. These assumptions aren’t always correct, and **the act of making an assumption (even if correct) sends a potentially harmful message** - that people have to look a certain way to demonstrate the gender that they are or are not.
 
 Using someone’s correct personal pronouns is a way to respect them and create an inclusive environment, just as using a person’s name can be a way to respect them. Just as it can be offensive or even harassing to make up a nickname for someone and call them that nickname against their will, **it can be offensive or harassing to guess at someone’s pronouns and refer to them using those pronouns if that is not how that person wants to be known**. Or, worse, actively choosing to ignore the pronouns someone has stated that they go by could imply the oppressive notion that intersex, transgender, nonbinary, and gender nonconforming people do not or should not exist.
 

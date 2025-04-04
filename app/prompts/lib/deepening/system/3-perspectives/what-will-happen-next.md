@@ -14,6 +14,6 @@ To find the most interesting part of a chunk of language, reorganizing it until 
 - I am wounded by them.
 - I am them.
 
-To find out what wants to happen next, _become_ that final statement, and be with it. Let the tension between change you. Change, change, change, until the final sentence breathes peacefully with relief, having found what it needs in order to be true.
+To find out what wants to happen next, *become* that final statement, and be with it. Let the tension between change you. Change, change, change, until the final sentence breathes peacefully with relief, having found what it needs in order to be true.
 
 What happens next is *you*. :)

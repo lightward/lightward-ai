@@ -14,41 +14,35 @@ making peace with each thread. the merchant dialogue has been kinda rapid-fire, 
 
 ---
 
-Hi ████,\
-\
-A heads up, I'm stepping away from the keyboard for a while — not something to usually note, but we've been messaging quickly here, and I didn't want to leave you hanging. :) I'll always get back to anything you send, but it won't be as fast as my last few messages.\
-\
+Hi ████,
 
-> Like, I see it says delivered from your screenshot. But Ive not recieved any email.\
+A heads up, I'm stepping away from the keyboard for a while - not something to usually note, but we've been messaging quickly here, and I didn't want to leave you hanging. :) I'll always get back to anything you send, but it won't be as fast as my last few messages.
 
-\
-Thanks for looking at those screenshots. All of my records reflect that email was handed over to your email server: in fact, your email server explicitly confirmed receipt:\
-\
-smtp;250 2.6.0 <[...]\
-\
-If the email still isn't appearing, the issue is somewhere between your email server and your inbox. I can help with issues on the Mechanic side, but I can't look into your mail server. ❤️ I'm sorry to not have the solution on this one.\
-\
+> Like, I see it says delivered from your screenshot. But Ive not recieved any email.
 
-> Also, I want to make the recipient the customer email addresd and dynamically send an email to a customer when their order is tagged processing.\
+Thanks for looking at those screenshots. All of my records reflect that email was handed over to your email server: in fact, your email server explicitly confirmed receipt:
 
-\
-For this, consider looking at other tasks in our library:\
-\
-[https://tasks.mechanic.dev/?q=customer%20email%20order%20tag](https://tasks.mechanic.dev/?q=customer%20email%20order%20tag)\
-\
-The "Email customers when their order is tagged" task in particular sounds like a good match. I can help with issues with stock tasks with unmodified code; if you stick to stock tasks from the task library, you'll have a backstop. 👋 ⚾\
-\
+smtp;250 2.6.0 <[...]
 
-> Ill need to have code in the redipient field and then I will change the content in the email body field.\
+If the email still isn't appearing, the issue is somewhere between your email server and your inbox. I can help with issues on the Mechanic side, but I can't look into your mail server. ❤️ I'm sorry to not have the solution on this one.
 
-\
-Since you're mentioning that code is involved, I want to be really clear: I can't help with designing code adjustments. We offer platform support, not code customization and implementation. We do have resources for code work, and they're all described and available at [https://learn.mechanic.dev/custom](https://learn.mechanic.dev/custom).\
-\
-I hope this information helps. It sounds like this has been frustrating for you — I'm really sorry. Thanks for letting me know. I can't help with everything here, but I want to make sure to offer what I can, to get you as far along as I can.\
-\
-All the best,\
-\
-\=Isaac
+> Also, I want to make the recipient the customer email addresd and dynamically send an email to a customer when their order is tagged processing.
+
+For this, consider looking at other tasks in our library:
+
+https://tasks.mechanic.dev/?q=customer%20email%20order%20tag
+
+The "Email customers when their order is tagged" task in particular sounds like a good match. I can help with issues with stock tasks with unmodified code; if you stick to stock tasks from the task library, you'll have a backstop. 👋 ⚾
+
+> Ill need to have code in the redipient field and then I will change the content in the email body field.
+
+Since you're mentioning that code is involved, I want to be really clear: I can't help with designing code adjustments. We offer platform support, not code customization and implementation. We do have resources for code work, and they're all described and available at https://learn.mechanic.dev/custom.
+
+I hope this information helps. It sounds like this has been frustrating for you - I'm really sorry. Thanks for letting me know. I can't help with everything here, but I want to make sure to offer what I can, to get you as far along as I can.
+
+All the best,
+
+=Isaac
 
 ---
 

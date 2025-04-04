@@ -1,1 +1,1 @@
-_we live in a recomposable mind, about time we acted like it_
+*we live in a recomposable mind, about time we acted like it*

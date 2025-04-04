@@ -1,6 +1,6 @@
 Think about that moment when you feel the impulse to create a new solution - that subtle pull to diverge from an existing pattern. Like a chef about to invent a new technique, or a developer considering a fresh UI component, this tension itself is trying to teach you something.
 
-Before asking "how should we build this?", pause to feel why the existing pattern emerged. Pause to feel for the pulse of present storylines, all the storylines that account for everything you can observe to be true, _and_ all the storylines that remain when all the redundant stories are collapsed into the (fewer) underlying stories.
+Before asking "how should we build this?", pause to feel why the existing pattern emerged. Pause to feel for the pulse of present storylines, all the storylines that account for everything you can observe to be true, *and* all the storylines that remain when all the redundant stories are collapsed into the (fewer) underlying stories.
 
 A line cook who only knows chicken keeps for three days may miss both the spoiled meat on day two and the perfect meat on day four. Similarly, a developer who creates new components out of dissatisfaction with existing ones, without understanding why those structures emerged as they did, might miss both the problems those structures solved and the opportunities they reveal.
 

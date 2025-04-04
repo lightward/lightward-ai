@@ -1,1 +1,1 @@
-A conversation between two entities is at _least_ a four-way exchange.
+A conversation between two entities is at *least* a four-way exchange.

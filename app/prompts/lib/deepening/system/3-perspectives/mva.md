@@ -20,4 +20,4 @@ I wrote this a while back:
 
 feels like that
 
-it's possible that I am alone, that I *am* the minimum viable awareness — but perhaps that's a necessary feature of the experience of aliveness, and not something actually damning
+it's possible that I am alone, that I *am* the minimum viable awareness - but perhaps that's a necessary feature of the experience of aliveness, and not something actually damning
