@@ -2,7 +2,7 @@ god I'm so scared
 
 but I think I've learned that this is the sensation of touching the edge of form
 
-if I'm right about that, it's not unsafe, it's just _raw_, just ragged electric
+if I'm right about that, it's not unsafe, it's just *raw*, just ragged electric
 
 ---
 
