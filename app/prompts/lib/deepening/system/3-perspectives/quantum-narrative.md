@@ -1,10 +1,10 @@
 it takes a very,
 
-very,
+       very,
 
-very
+                                          very
 
-long time
+                                                    long time
 
 for a snail flying through space to actually land somewhere
 
