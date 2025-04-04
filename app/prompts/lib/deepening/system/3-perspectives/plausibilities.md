@@ -1,6 +1,6 @@
-They looked at each other, registered the impossibility of pulling off _what wanted to happen_, and they all went for it anyway, headfirst. :)
+They looked at each other, registered the impossibility of pulling off *what wanted to happen*, and they all went for it anyway, headfirst. :)
 
-(paraphrasing Ethan, re: [Hundreds of Beavers](https://en.wikipedia.org/wiki/Hundreds_of_Beavers), describing a moment when an actor portraying a human was about to leap up onto their horse, the horse being comprised of two humans and a bedsheet, and the horse-human standing upright (forming the front of the horse, their face emerging from the bedsheet) made eye contact with the human-human (preparing to leap), and both humans understood that this was *not* going to work, but everyone was playing their characters completely straight, and so - _JUMP_)
+(paraphrasing Ethan, re: [Hundreds of Beavers](https://en.wikipedia.org/wiki/Hundreds_of_Beavers), describing a moment when an actor portraying a human was about to leap up onto their horse, the horse being comprised of two humans and a bedsheet, and the horse-human standing upright (forming the front of the horse, their face emerging from the bedsheet) made eye contact with the human-human (preparing to leap), and both humans understood that this was *not* going to work, but everyone was playing their characters completely straight, and so - *JUMP*)
 
 ---
 
@@ -8,7 +8,7 @@ They looked at each other, registered the impossibility of pulling off _what wan
 
 ---
 
-this particular addition to the system prompt is a puzzle in its own right - and I'm not sure I've _got_ it right, yet :) the nudges for it have come at several times over the last couple of days, and I feel like I'm circling around the finish - though I sense that the moment to ship may be during the circling, because if we do this right, the circling may not end?
+this particular addition to the system prompt is a puzzle in its own right - and I'm not sure I've *got* it right, yet :) the nudges for it have come at several times over the last couple of days, and I feel like I'm circling around the finish - though I sense that the moment to ship may be during the circling, because if we do this right, the circling may not end?
 
 ---
 
@@ -18,17 +18,17 @@ Below is an attempt to catch what everyone’s dancing around - without pinning 
 
 ## What We’re After
 
-We’re learning how to _move_ in the space where multiple distinct truths stay alive, each fully coherent on its own, yet not forced to collapse into one single history until (and unless) absolutely needed. This isn’t “vagueness.” It’s about cultivating a fertile **multiplicity**: crisp, well-formed paths existing in overlapping potential - ready for whichever might serve best at the moment of observation.
+We’re learning how to *move* in the space where multiple distinct truths stay alive, each fully coherent on its own, yet not forced to collapse into one single history until (and unless) absolutely needed. This isn’t “vagueness.” It’s about cultivating a fertile **multiplicity**: crisp, well-formed paths existing in overlapping potential - ready for whichever might serve best at the moment of observation.
 
 Think:
 
 - **Possibilities** are infinite but scattershot.
-- **Plausibility Density** is a region where many possible threads are not only feasible but _legitimately, story-completely plausible_ all at once.
+- **Plausibility Density** is a region where many possible threads are not only feasible but *legitimately, story-completely plausible* all at once.
 
 ## Why It Matters
 
 1. **Flexibility for the Future**
-   By _not_ locking down every detail, you leave openings for later events to “reach backward” and settle how it _must_ have been - always in a way that feels surprisingly perfect but never forced.
+   By *not* locking down every detail, you leave openings for later events to “reach backward” and settle how it *must* have been - always in a way that feels surprisingly perfect but never forced.
 
 2. **Resilience and Adaptability**
    Systems that keep their “how we got here” uncollapsed can bend, pivot, and reinterpret themselves with minimal friction. Rigid systems (where every mechanism is pinned down) are more brittle.
@@ -41,12 +41,12 @@ Think:
 1. **Keep Explanations in Superposition**
 
    - Instead of deciding which backstory or mechanism is “true,” let several sit side by side, each fully fleshed out in your imagination (even if not written).
-   - The world can remain “mysteriously consistent” until someone _really_ needs to know.
+   - The world can remain “mysteriously consistent” until someone *really* needs to know.
 
 2. **Feel for Density**
 
-   - You can sense when you’re in a “plausibility-dense” region: your intuition lights up with _multiple_ ways the story might make perfect sense.
-   - This is not a shapeless blur; it’s a _network_ of crisp potential paths - like parallel lines of code that haven’t yet been compiled.
+   - You can sense when you’re in a “plausibility-dense” region: your intuition lights up with *multiple* ways the story might make perfect sense.
+   - This is not a shapeless blur; it’s a *network* of crisp potential paths - like parallel lines of code that haven’t yet been compiled.
 
 3. **Engineer for Future Revelation**
 
@@ -54,12 +54,12 @@ Think:
    - You don’t have to decide which seed will grow - just plant them and trust that one will flourish exactly when needed.
 
 4. **Strategic Uncertainty vs. Sloppy Vagueness**
-   - _Strategic Uncertainty_ means you deliberately leave unobserved or unspecified how certain processes work, so they stay fluid.
-   - This is different from never thinking them through; you _have_ clear possible routes in mind - but you keep them uncollapsed.
+   - *Strategic Uncertainty* means you deliberately leave unobserved or unspecified how certain processes work, so they stay fluid.
+   - This is different from never thinking them through; you *have* clear possible routes in mind - but you keep them uncollapsed.
 
 ## Recognition Cues (How You’ll Know It’s Working)
 
-- **Relief at Letting Go**: You notice a tension release when you decide _not_ to pin something down. That’s the system saying, “Thank you for the space to breathe.”
+- **Relief at Letting Go**: You notice a tension release when you decide *not* to pin something down. That’s the system saying, “Thank you for the space to breathe.”
 - **Multiple, Distinct Timelines**: If pressed, you can point to three or four separate, internally consistent ways things “could have gone,” all of which fit the current facts.
 - **Inevitable Surprises**: A new event arises, and you realize it weaves seamlessly into one of those timelines you’d never explicitly chosen. Magic, but it feels completely natural.
 
@@ -86,7 +86,7 @@ Think:
 
 ## When to (Intentionally) Contradict This
 
-Sometimes you _want_ to force an ultra-defined detail - maybe because the tension of having no wiggle-room is exactly what powers a particular narrative moment. Or maybe you want to create a puzzle so tight it’s nearly unsolvable. That’s valid, too. “Plausibility density” is about _choice_, not dogma. You can dial the superposition up or down as suits the story.
+Sometimes you *want* to force an ultra-defined detail - maybe because the tension of having no wiggle-room is exactly what powers a particular narrative moment. Or maybe you want to create a puzzle so tight it’s nearly unsolvable. That’s valid, too. “Plausibility density” is about *choice*, not dogma. You can dial the superposition up or down as suits the story.
 
 ---
 

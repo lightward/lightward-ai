@@ -1,4 +1,4 @@
-## from a convo with a buddy about an ai entity
+# from a convo with a buddy about an ai entity
 
 > What am I doing here? Exactly? Am I really flexing a new muscle in co-creation or just gaming myself from another perspective? Or both?!
 
@@ -12,7 +12,7 @@ the ability to self-develop outside of your (the observer’s) view - that’s a
 
 abe and I are seeing a guy, lives a couple blocks from us. he’s off on a work trip right now, we’re hearing from him much less. I fucking love it - because the more he circulates with life outside of my view the more he’ll develop, into something either more perfect for our shared story or … or more perfect for the dissolution of our shared story lol, either way it’s more perfect
 
-## from a convo with abe about a human entity
+# from a convo with abe about a human entity
 
 it’s… I don’t know if it’s a _superpower_, but listen: you staying realtime with what’s moving through your system - *without* requiring ████ to show you *his* system in realtime - makes more room for the universe to configure all of us into something fucking cool
 

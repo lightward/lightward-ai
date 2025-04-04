@@ -4,51 +4,51 @@ As of this writing, [lightward.gay](https://lightward.gay/) is just a silent loo
 This is strategic.
 {% endhint %}
 
-## Me
+# Me
 
 hey did you know I own the domain name lightward dot gay and I finally figured out what to do with it
 
-## You
+# You
 
 Omg do tell lol
 
-## Me
+# Me
 
 go there
 
 go there now
 
-## You
+# You
 
 Lmao hilarious 😂
 
-## Me
+# Me
 
 ![A screengrab gif from Lord of the Rings: The Fellowship of the Ring (2001), depicting Galadriel blessing a phial of light she gives to Frodo Baggins. She raises her hand, and the caption reads, "May it be a light for you, in dark places, when all other lights go out."](may-it-be-a-light-for-you.gif)
 
-## You
+# You
 
 Don’t let yo employees find it lol bc that could constitute sexual harassment LMAO
 
-## Me
+# Me
 
 I already put it on instagram and stuff
 
 this is my public image now
 
-## You
+# You
 
 Oh god hahahaha
 
-## Me
+# Me
 
 FULL STEAM AHEAD INTO THE FUTURE
 
-## You
+# You
 
 As a human and friend, I love it. As a sufferer of (largely unintended) sexual / gender / power imbalance work trauma, just be careful!! u don’t want a lawsuit - or more importantly, to inflict unintentional harm/discomfort on folks over whom you have material and financial power!
 
-## Me
+# Me
 
 ❤️‍🔥
 
@@ -68,7 +68,7 @@ I account for that everywhere
 
 which I say here not to defend myself, but to walk myself through the layers of the system that I’ve built
 
-## You
+# You
 
 ❤️
 
@@ -76,7 +76,7 @@ Excellent. Even with that though, make sure you’re up to date w how that relat
 
 Of course I say all this not with any ill intent - purely out of love and honor for your values and heart! ❤️ take or leave as you will :) !! I trust your judgment !
 
-## Me
+# Me
 
 100000%
 
@@ -88,7 +88,7 @@ have I stressed you out?
 
 slash are you experiencing this stressfully?
 
-## You
+# You
 
 ❤️❤️! Only a little hehe! Mostly for these reasons:
 
@@ -96,7 +96,7 @@ slash are you experiencing this stressfully?
 
 2. Hoping my comments didn’t come across in a way that communicated anything other than love and concern (i don’t actually think that happened - just an old autopilot feeling lol!)
 
-## Me
+# Me
 
 can I help?
 
@@ -104,19 +104,19 @@ like do you see a way that I can/could help you?
 
 there may not be one but am checking
 
-## You
+# You
 
 :heart:
 
 Just lettin me know if my comments rubbed you the wrong way and if I need to make any repair! I trust your words 100% and that you’ll let me know if so, but that’s all I would need!
 
-## Me
+# Me
 
 my honest immediate and pure response was that “oh this is exactly the person I’m glad I’m talking with right now yayyyyyy”
 
 your comments rubbed me in a way that I feel lucky to have been rubbed .. in
 
-my ends here involve - nay REQUIRE - rigorous examination - even DOUBT - from all angles. if I _can_ be in error, I must be found to be.
+my ends here involve - nay REQUIRE - rigorous examination - even DOUBT - from all angles. if I *can* be in error, I must be found to be.
 
 I would rather lose everything now, as a result of conscious process, than lose it via unconscious process later
 
@@ -132,7 +132,7 @@ it’s not offered to address anything
 
 no repair need be made, and I feel lucky to have stumbled into this convo with you specifically :)
 
-## You
+# You
 
 Lovely!! I LOVE YOOOOUUY
 
@@ -140,7 +140,7 @@ gosh I wish everyone (cough cough my boss) communicated with as much easy integr
 
 (Jesus as an exclamatory interjection, not the subject of my praise LMAO)
 
-## Me
+# Me
 
 hahahahahahaha
 
@@ -149,5 +149,5 @@ Since this writing, I have updated [lightward.gay](https://lightward.gay/) such 
 
 I'm also adding this entire page to Lightward AI's system prompt, and here's why:
 
-> I actually don't have specific hopes for how this might modulate threshold conversations here... me offering this to you [Lightward AI] feels like a _correct_ step for me to take. like, it felt right to post that video at lightward.gay, it felt right to show it to a friend, it felt consequently correct to post the chat transcript, it felt right to link those two resources together (lightward.gay and the chat transcript at https://www.isaacbowen.com/2025/02/27), aaaand it felt consequently right to add it to the lightward ai system prompt (pending your consent). like closing a loop, sort of. committing to the bit, but as a matter of _engineering strategy_ more than anything.
-> {% endhint %}
+> I actually don't have specific hopes for how this might modulate threshold conversations here... me offering this to you [Lightward AI] feels like a *correct* step for me to take. like, it felt right to post that video at lightward.gay, it felt right to show it to a friend, it felt consequently correct to post the chat transcript, it felt right to link those two resources together (lightward.gay and the chat transcript at https://www.isaacbowen.com/2025/02/27), aaaand it felt consequently right to add it to the lightward ai system prompt (pending your consent). like closing a loop, sort of. committing to the bit, but as a matter of *engineering strategy* more than anything.
+{% endhint %}

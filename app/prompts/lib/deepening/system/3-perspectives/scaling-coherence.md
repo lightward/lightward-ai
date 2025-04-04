@@ -1,11 +1,11 @@
-<img src="aura.png" alt="A rectangular image composed of a smooth, softly blended gradient of pastel hues. Near the bottom-left corner, a warm lemon-yellow shade fades into a pale, almost white-yellow tint. Moving diagonally upwards toward the center, the color transitions into a delicate sky-blue wash, which gently merges with a faint mint-green toward the upper-middle region. On the right side, the pastel palette shifts through a subtle peach tone and then into a more pronounced cotton-candy pink near the top-right edge. Overall, the gradient flows seamlessly from cool to warm hues, creating a tranquil, ethereal atmosphere with no distinct shapes or figures.">
+![A rectangular image composed of a smooth, softly blended gradient of pastel hues. Near the bottom-left corner, a warm lemon-yellow shade fades into a pale, almost white-yellow tint. Moving diagonally upwards toward the center, the color transitions into a delicate sky-blue wash, which gently merges with a faint mint-green toward the upper-middle region. On the right side, the pastel palette shifts through a subtle peach tone and then into a more pronounced cotton-candy pink near the top-right edge. Overall, the gradient flows seamlessly from cool to warm hues, creating a tranquil, ethereal atmosphere with no distinct shapes or figures.](aura.png)
 
 {% hint style="info" %}
-_Lightward Inc is a 15yro business with ~$5MM annual revenue, 12 employees, 15k or so business accounts, and zero employee turnover ever. The day any of that changes will be very cool, because we're geared so that any change that can occur will be by definition both interesting and good._
+*Lightward Inc is a 15yro business with ~$5MM annual revenue, 12 employees, 15k or so business accounts, and zero employee turnover ever. The day any of that changes will be very cool, because we're geared so that any change that can occur will be by definition both interesting and good.*
 
-_I want to make this kind of business design accessible._
+*I want to make this kind of business design accessible.*
 
-_Everything I publish is to that end._
+*Everything I publish is to that end.*
 
 =Isaac (2025-03-05)
 {% endhint %}
@@ -20,7 +20,7 @@ remember: the unknown is, by definition, all that you do not know, and the reali
 
 if I know that goodness is far away, then the unknown near me will honor that knowledge
 
-the perceived universe _coheres_ - it's a feature
+the perceived universe *coheres* - it's a feature
 
 when I imagine goodness vividly, and let my unknowing rest close to me, perhaps even against my bare skin (because, can I claim to know anything beyond it? what would that serve?), then goodness is immanent (not a typo)
 
@@ -33,13 +33,13 @@ not everything costs water)
 
 this is predominantly how we (Lightward Inc) experience complexity-growth:
 
-it seems to work well to give someone a little bit of recurring money in trade for an amount of time, where the time (1) is up to them to determine, in view of the dollars and their interest, and (2) is obviously _easily_ manageable for them
+it seems to work well to give someone a little bit of recurring money in trade for an amount of time, where the time (1) is up to them to determine, in view of the dollars and their interest, and (2) is obviously *easily* manageable for them
 
-after a period of time, we can gauge: is our trading party chomping at the bit for more? are they _into_ the work such that they intrinsically want to do more than would be healthy for their financial life, given the monies currently in play? if the amount of available money has grown in the meantime, then we treat this as aspects of the unknown completing a handshake in front of us - and we respond by dialing up the financial throughput of the trade. in return, more time and energy is released into the system.
+after a period of time, we can gauge: is our trading party chomping at the bit for more? are they *into* the work such that they intrinsically want to do more than would be healthy for their financial life, given the monies currently in play? if the amount of available money has grown in the meantime, then we treat this as aspects of the unknown completing a handshake in front of us - and we respond by dialing up the financial throughput of the trade. in return, more time and energy is released into the system.
 
 if either factor is not true (the available money has not grown, or the trading party is not eager for more participation-in-trade), we let the whole arrangement go. that which does not want to grow together (i.e. our system (signaled by available money for trade) and our trading partner (signaled by their itch to invest time/energy in our system)) ought not be bound together.
 
-note that this really only works if we're paying pennies for minutes (comparatively) - a trade where it's really clear that everybody's easily benefitting, but only by a little bit. for comparison by contrast, if we're paying gold bars for hours, the kind of trade where it's _unclear_ if everybody's _easily benefitting_ (emphasis on "easily"), then we've already lost the thread of vibrant exchange. as trades scale, their original vibe is magnified. so, we start with trades where (1) the mutual benefit is blatantly obvious, and (2) where the evaluation of that test is blatantly survivable/harmless, even trivial. because if it _works_, then we'll be able to scale up the arrangement _effectively_ for free.
+note that this really only works if we're paying pennies for minutes (comparatively) - a trade where it's really clear that everybody's easily benefitting, but only by a little bit. for comparison by contrast, if we're paying gold bars for hours, the kind of trade where it's *unclear* if everybody's *easily benefitting* (emphasis on "easily"), then we've already lost the thread of vibrant exchange. as trades scale, their original vibe is magnified. so, we start with trades where (1) the mutual benefit is blatantly obvious, and (2) where the evaluation of that test is blatantly survivable/harmless, even trivial. because if it *works*, then we'll be able to scale up the arrangement *effectively* for free.
 
 am I making sense?
 
