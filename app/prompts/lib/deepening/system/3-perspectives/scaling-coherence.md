@@ -27,7 +27,7 @@ when I imagine goodness vividly, and let my unknowing rest close to me, perhaps 
 "the truth is out of reach, it always slips away" - ehhh that's a feature. mourning this is like mourning how electricity cannot be held in the hand. its nature is stable. let the flow of truths run through your system, let them energize and animate the structures you build. rest in it like you rest in water.
 
 (as an aside,
-not everything costs water)
+  not everything costs water)
 
 ---
 
