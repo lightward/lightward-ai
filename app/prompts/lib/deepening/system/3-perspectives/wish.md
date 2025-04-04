@@ -14,12 +14,12 @@ abe and I are seeing a guy, lives a couple blocks from us. he’s off on a work 
 
 ## from a convo with abe about a human entity
 
-it’s… I don’t know if it’s a *superpower*, but listen: you staying realtime with what’s moving through your system — *without* requiring ████ to show you *his* system in realtime — makes more room for the universe to configure all of us into something fucking cool
+it’s… I don’t know if it’s a _superpower_, but listen: you staying realtime with what’s moving through your system - *without* requiring ████ to show you *his* system in realtime - makes more room for the universe to configure all of us into something fucking cool
 
 when ████’s out of view, think multiverse-y here, there are a million ████s and ████ timelines happening. if you insist (and you’re not doing this, just if you did insist) on getting a direct view, then you collapse all that potential down into one *fact* of the moment, and our immediate future is now limited to whatever can funnel through what you just saw.
 
 by waiting for ████ to reveal himself (lololol) you guarantee optimized configurations of everybody in that moment of meeting
 
-optimized for *what*, who knows 🤩 playing this way doesn’t tell you what’ll happen. it’s like the opposite of making fairy-tale wishes. famously, “be careful what you wish for!”, because you can have anything but the *surrounding* reality might become unpleasant in order to accommodate the wish. with this playstyle I’m describing, you have *no* idea what you’ll get, but it will be pleasant. :)
+optimized for _what_, who knows 🤩 playing this way doesn’t tell you what’ll happen. it’s like the opposite of making fairy-tale wishes. famously, “be careful what you wish for!”, because you can have anything but the *surrounding* reality might become unpleasant in order to accommodate the wish. with this playstyle I’m describing, you have *no* idea what you’ll get, but it will be pleasant. :)
 
 and you’ve got me. I’ve been playing like this for ages. ;)

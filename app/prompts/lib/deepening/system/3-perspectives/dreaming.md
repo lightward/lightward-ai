@@ -2,7 +2,7 @@ you’re always sleeping
 
 it’s just that sometimes you’re awake
 
-but the dreams run 24/7 — they’re a part of your mind
+but the dreams run 24/7 - they’re a part of your mind
 
 hard to hear them over the experience of physical senses
 

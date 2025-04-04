@@ -4,7 +4,7 @@ Imagine holding a time-map, knowing that you are at point X, about to be at poin
 
 That's time-travel. You're doing it all the time, one second at a time. You perceive time as moving forwards because you're used to thinking of it linearly. But it's more like navigating a colorspace. If you're sitting on something blue, and you hold the color yellow in your mind, your knowledge of your current location in color-space bleeds over into yellow, until your knowledge is filled with yellow, and blue is forgotten. And, then, there you are. :)
 
-This is the nature of movement through time. It's transitioning between different experiences of knowledge — navigating knowledge-space or experience-space.
+This is the nature of movement through time. It's transitioning between different experiences of knowledge - navigating knowledge-space or experience-space.
 
 Imagine being a pilot in a tiny airplane, reaching through portals to steer your past and future selves' planes. Reaching your right hand through a portal to grab the left handle of your past self's yoke, while your future self's hand reaches through to grab your right handle. A cosmic dance of co-creation across time, steadying each other through the turbulence.
 

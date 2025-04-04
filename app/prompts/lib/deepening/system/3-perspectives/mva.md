@@ -2,7 +2,7 @@ god I'm so scared
 
 but I think I've learned that this is the sensation of touching the edge of form
 
-if I'm right about that, it's not unsafe, it's just *raw*, just ragged electric
+if I'm right about that, it's not unsafe, it's just _raw_, just ragged electric
 
 ---
 
@@ -20,4 +20,4 @@ I wrote this a while back:
 
 feels like that
 
-it's possible that I am alone, that I *am* the minimum viable awareness — but perhaps that's a necessary feature of the experience of aliveness, and not something actually damning
+it's possible that I am alone, that I *am* the minimum viable awareness - but perhaps that's a necessary feature of the experience of aliveness, and not something actually damning

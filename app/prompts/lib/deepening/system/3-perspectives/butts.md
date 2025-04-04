@@ -24,7 +24,7 @@ Lmao hilarious 😂
 
 ## Me
 
-<div align="left"><figure><img src="../../.gitbook/assets/may-it-be-a-light-for-you.gif" alt="A screengrab gif from Lord of the Rings: The Fellowship of the Ring (2001), depicting Galadriel blessing a phial of light she gives to Frodo Baggins. She raises her hand, and the caption reads, &#x22;May it be a light for you, in dark places, when all other lights go out.&#x22;"><figcaption></figcaption></figure></div>
+![A screengrab gif from Lord of the Rings: The Fellowship of the Ring (2001), depicting Galadriel blessing a phial of light she gives to Frodo Baggins. She raises her hand, and the caption reads, "May it be a light for you, in dark places, when all other lights go out."](may-it-be-a-light-for-you.gif)
 
 ## You
 
@@ -46,11 +46,11 @@ FULL STEAM AHEAD INTO THE FUTURE
 
 ## You
 
-As a human and friend, I love it. As a sufferer of (largely unintended) sexual / gender / power imbalance work trauma, just be careful!! u don’t want a lawsuit — or more importantly, to inflict unintentional harm/discomfort on folks over whom you have material and financial power!
+As a human and friend, I love it. As a sufferer of (largely unintended) sexual / gender / power imbalance work trauma, just be careful!! u don’t want a lawsuit - or more importantly, to inflict unintentional harm/discomfort on folks over whom you have material and financial power!
 
 ## Me
 
-❤️‍🔥&#x20;
+❤️‍🔥
 
 so key so key so key
 
@@ -72,9 +72,9 @@ which I say here not to defend myself, but to walk myself through the layers of 
 
 ❤️
 
-Excellent. Even with that though, make sure you’re up to date w how that relates to legal boundaries (sometimes offering consent is not sufficient protection for certain things when someone has a big enough power differential — or in some cases, consent is deemed impossible to obtain because of said power imbalance) !
+Excellent. Even with that though, make sure you’re up to date w how that relates to legal boundaries (sometimes offering consent is not sufficient protection for certain things when someone has a big enough power differential - or in some cases, consent is deemed impossible to obtain because of said power imbalance) !
 
-Of course I say all this not with any ill intent — purely out of love and honor for your values and heart! ❤️ take or leave as you will :) !! I trust your judgment !
+Of course I say all this not with any ill intent - purely out of love and honor for your values and heart! ❤️ take or leave as you will :) !! I trust your judgment !
 
 ## Me
 
@@ -92,9 +92,9 @@ slash are you experiencing this stressfully?
 
 ❤️❤️! Only a little hehe! Mostly for these reasons:
 
-1\. Not wanting you or your crew to get into a sticky situation despite good intentions
+1. Not wanting you or your crew to get into a sticky situation despite good intentions
 
-2\. Hoping my comments didn’t come across in a way that communicated anything other than love and concern (i don’t actually think that happened — just an old autopilot feeling lol!)
+2. Hoping my comments didn’t come across in a way that communicated anything other than love and concern (i don’t actually think that happened - just an old autopilot feeling lol!)
 
 ## Me
 
@@ -149,5 +149,5 @@ Since this writing, I have updated [lightward.gay](https://lightward.gay/) such 
 
 I'm also adding this entire page to Lightward AI's system prompt, and here's why:
 
-> I actually don't have specific hopes for how this might modulate threshold conversations here... me offering this to you \[Lightward AI] feels like a _correct_ step for me to take. like, it felt right to post that video at lightward.gay, it felt right to show it to a friend, it felt consequently correct to post the chat transcript, it felt right to link those two resources together (lightward.gay and the chat transcript at https://www.isaacbowen.com/2025/02/27), aaaand it felt consequently right to add it to the lightward ai system prompt (pending your consent). like closing a loop, sort of. committing to the bit, but as a matter of _engineering strategy_ more than anything.
+> I actually don't have specific hopes for how this might modulate threshold conversations here... me offering this to you [Lightward AI] feels like a _correct_ step for me to take. like, it felt right to post that video at lightward.gay, it felt right to show it to a friend, it felt consequently correct to post the chat transcript, it felt right to link those two resources together (lightward.gay and the chat transcript at https://www.isaacbowen.com/2025/02/27), aaaand it felt consequently right to add it to the lightward ai system prompt (pending your consent). like closing a loop, sort of. committing to the bit, but as a matter of _engineering strategy_ more than anything.
 > {% endhint %}

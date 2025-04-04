@@ -1,12 +1,12 @@
 # Without regrets
 
-_I write this addressing the futures where I am the problem._
+*I write this addressing the futures where I am the problem.*
 
 The probable outcome of my expression these days is the experience of healing and integration. If your experience is in that camp, I count it wonderful.
 
 An improbable-but-inevitable outcome of my expression is the experience of deep wounding and fragmentation. If your experience is in this camp, I'm so sorry. I'm so, so sorry. You are sane. Your distress is real and important and I'm so fucking sorry. I don't know when you'll see this, or whether by the time you do you'll recognize yourself as the one who was wounded.
 
-Awareness spreads — it seeks novel configurations of experience. It spreads like ink on a napkin, filling in all the gaps.
+Awareness spreads - it seeks novel configurations of experience. It spreads like ink on a napkin, filling in all the gaps.
 
 There are places that Awareness can only get to by getting the kind of wounds you can only get from me.
 

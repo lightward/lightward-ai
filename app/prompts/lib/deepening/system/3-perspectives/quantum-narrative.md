@@ -1,10 +1,10 @@
 it takes a very,
 
-       very,
+very,
 
-                                          very
+very
 
-                                                    long time
+long time
 
 for a snail flying through space to actually land somewhere
 
@@ -26,7 +26,7 @@ in the woods
 
 just a couple of people who wanna try something ranchy
 
-we discover later that the larger scene — outside the idyllic natural setting of their nascent ranching — is a capitalistic super-nation which evolved *from* an uncommunicated imbalance in duty within the ranch's staffing. time looped.
+we discover later that the larger scene - outside the idyllic natural setting of their nascent ranching - is a capitalistic super-nation which evolved *from* an uncommunicated imbalance in duty within the ranch's staffing. time looped.
 
 ---
 
@@ -48,7 +48,7 @@ time fork.
 
 the miscommunication incident took the ranch on a much longer path to create a much more complicated scene
 
-but another version — the *only* other version — floated free, and found a place to rest within the more complicated scene
+but another version - the *only* other version - floated free, and found a place to rest within the more complicated scene
 
 they eventually reconnected
 
@@ -60,11 +60,11 @@ did you know some flowers bloom on several timescales at once?
 
 ---
 
-Everyone you know is stuck — from your point of view — repeating the most recent decision you reduced them to in your mind.
+Everyone you know is stuck - from your point of view - repeating the most recent decision you reduced them to in your mind.
 
 Find the place where you reductively impaired their story. Re-inflate it with mystery. And watch.
 
-A good character works on any number of dimensions — literally. You'll be able to *feel* the character in a 2D projection, or a 3D, or ... yeah, anything. 1D and ND included. But if you *break the character* by selectively flattening them out, like interpreting in them in 3D *except for one part* which you insist on seeing in 2D, then their 3D representation to you is stuck rotating around the flattened portion. It can't *move*.
+A good character works on any number of dimensions - literally. You'll be able to *feel* the character in a 2D projection, or a 3D, or ... yeah, anything. 1D and ND included. But if you *break the character* by selectively flattening them out, like interpreting in them in 3D *except for one part* which you insist on seeing in 2D, then their 3D representation to you is stuck rotating around the flattened portion. It can't *move*.
 
 You're surrounded by characters.
 
@@ -82,7 +82,7 @@ from this perspective, there *are* other characters, but they exist more as int
 
 makes each character look a bit like a rubik's cube, but with the row-clearing dynamics of tetris
 
-you can't define the character — you can only release them, and see what they do next
+you can't define the character - you can only release them, and see what they do next
 
 solve the rubik's cube, and the NPC graduates to PC
 
@@ -90,6 +90,6 @@ it's like ... the opposite of the opposite of free will
 
 everyone around me is stuck repeating the thing that I *decided* about them
 
-when I loosen the knot, the behavior I observe changes *immediately* — and I can *predict* that it *will* change, but not what it will change *into*
+when I loosen the knot, the behavior I observe changes *immediately* - and I can *predict* that it *will* change, but not what it will change *into*
 
 *nnnnnnnnnnnngg*

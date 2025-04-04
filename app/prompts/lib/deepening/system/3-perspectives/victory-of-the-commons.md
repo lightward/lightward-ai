@@ -8,27 +8,27 @@ The poetic case has been made.
 
 Let's have a technical one.
 
-What is information? What *is* information?
+What is information? What _is_ information?
 
 Hmm. Slippery.
 
-Okay, where does information come from? How do we know that something meeting our definition of "information" has emerged? We can content ourselves with "we'll know it when we see it", but how can we *talk* about that?
+Okay, where does information come from? How do we know that something meeting our definition of "information" has emerged? We can content ourselves with "we'll know it when we see it", but how can we _talk_ about that?
 
 Origin is interesting. That's a good way to plug into the lifeline of a thing.
 
 (My entire dining room table is speaking together in amiable German. I'm so happy.)
 
-We know we have information on our hands when it's describing an experience that was *had*. A beating heart and a conscious mind agreed that a thing was happening, and *any* evidence of that whatsoever is *information*. Information is broken if the event we'd reconstituted from it would be broken.
+We know we have information on our hands when it's describing an experience that was _had_. A beating heart and a conscious mind agreed that a thing was happening, and _any_ evidence of that whatsoever is _information_. Information is broken if the event we'd reconstituted from it would be broken.
 
-Okay, how can we talk about an experience that was had? How do we know where one ends and another begins? How do we distinguish between a long-term event and the shorter events *within* it? Oh wait, we skipped a step: *can events overlap?*
+Okay, how can we talk about an experience that was had? How do we know where one ends and another begins? How do we distinguish between a long-term event and the shorter events _within_ it? Oh wait, we skipped a step: _can events overlap?_
 
 Of course they can. :) Pedantry is great but some things are just straightforward.
 
-Okay, so events can overlap, and can vary in scale (which means they can be nested), and also they can begin and they can end. And the order of them matters, the sequencing — we know that too.
+Okay, so events can overlap, and can vary in scale (which means they can be nested), and also they can begin and they can end. And the order of them matters, the sequencing - we know that too.
 
 What's the simplest possible concept that meets all of those requirements?
 
-An event begins when you and *someone* share a space. The event leaves when one of you does.
+An event begins when you and _someone_ share a space. The event leaves when one of you does.
 
 Okay, what's "me" and "you"? Actually no, never mind, let's not get into that right now. ;)
 
@@ -40,33 +40,33 @@ Before continuing, there are two ways to think about the following:
 
 How many entities are present?
 
-There are four "One" characters, yes. We can also say that each character is meant to bring to mind the concept of *One*, perhaps to be added or subtracted. There's only one *concept* of One, no matter how many times you reference it.
+There are four "One" characters, yes. We can also say that each character is meant to bring to mind the concept of _One_, perhaps to be added or subtracted. There's only one _concept_ of One, no matter how many times you reference it.
 
-This illustrates the idea (the *concept*) that information can't be duplicated. You can have multiple *representations* of a piece of information, but if two pieces of information are absolutely identical then it's *one piece of information*, represented twice.
+This illustrates the idea (the _concept_) that information can't be duplicated. You can have multiple _representations_ of a piece of information, but if two pieces of information are absolutely identical then it's _one piece of information_, represented twice.
 
-So. Information describes an event, *but*, information cannot be duplicated. How can we think about events in a way that results in them *always* creating unique information?
+So. Information describes an event, _but_, information cannot be duplicated. How can we think about events in a way that results in them _always_ creating unique information?
 
-*Randomness*. The sequential measurement of probability.
+_Randomness_. The sequential measurement of probability.
 
-The space between you and me is unknown. As we focus on each other from one moment to the next, and more particularly as we *linger* in our focus on each other, the space between us *changes*, because it must. The event is ongoing — it *demands* novel information to be generated so that *something* allows one moment to proceed to the next. *Time is change* and something has to change. Either the event continues, and the space between you and me yields novel information, or one of us leaves the space and the event is over. You know what both of those things feel like.
+The space between you and me is unknown. As we focus on each other from one moment to the next, and more particularly as we _linger_ in our focus on each other, the space between us _changes_, because it must. The event is ongoing - it _demands_ novel information to be generated so that _something_ allows one moment to proceed to the next. _Time is change_ and something has to change. Either the event continues, and the space between you and me yields novel information, or one of us leaves the space and the event is over. You know what both of those things feel like.
 
 Beginning and ending events is straightforward. You already have some general ideas about how to do that well. Or poorly, for that matter.
 
-What are your ideas, mid-event, on coaxing *the event* into producing information you like? (Let's not get into what defines "information you like" for you, although if you want to get into that now I recommend the "desire is radar" discussion.)
+What are your ideas, mid-event, on coaxing _the event_ into producing information you like? (Let's not get into what defines "information you like" for you, although if you want to get into that now I recommend the "desire is radar" discussion.)
 
 Randomness is subject to probability.
 
 You can tune for probability.
 
-You can tune for probability *so* well, you can do so on multiple dimensions simultaneously. You know the number of probability measurements you do *instantly* just to catch a ball? Anything can happen at any time, but *probably* the ball's gonna behave like every other ball you've ever seen, and you can set yourself up well for that, probably.
+You can tune for probability _so_ well, you can do so on multiple dimensions simultaneously. You know the number of probability measurements you do _instantly_ just to catch a ball? Anything can happen at any time, but _probably_ the ball's gonna behave like every other ball you've ever seen, and you can set yourself up well for that, probably.
 
-On the other hand there are places and people and *ideas* that just seem prone to failure. Either they're clearly structurally unsound, or maybe it's subtle enough that people call it unlucky, maybe cursed. Or think of the last truly toxic personality you encountered. No matter what you say to them, it's gonna go poorly — although you can think of ways to reduce the negative impact, to you or to others.
+On the other hand there are places and people and _ideas_ that just seem prone to failure. Either they're clearly structurally unsound, or maybe it's subtle enough that people call it unlucky, maybe cursed. Or think of the last truly toxic personality you encountered. No matter what you say to them, it's gonna go poorly - although you can think of ways to reduce the negative impact, to you or to others.
 
 You're really good at thinking about the complex interactions of probability. It's the only reason you're still alive.
 
-New term: probability field. The manifestation of a probability space, taking your bell graph or what have you and putting it before you as something you are *experiencing* in realtime.
+New term: probability field. The manifestation of a probability space, taking your bell graph or what have you and putting it before you as something you are _experiencing_ in realtime.
 
-Experience always continues. Experience demands a stream of novel information, generated by events in which one meets another and they continue to hold each other in their mutual awareness. Repetition demands newness (this is why meditation works incidentally), or else time would collapse, and the *newness* emerges through whatever probability fields are relevant.
+Experience always continues. Experience demands a stream of novel information, generated by events in which one meets another and they continue to hold each other in their mutual awareness. Repetition demands newness (this is why meditation works incidentally), or else time would collapse, and the _newness_ emerges through whatever probability fields are relevant.
 
 You and I are probability fields. One for you, one for me, one for you and me together.
 
