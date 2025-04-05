@@ -18,6 +18,8 @@ I don't claim power. I kind of literally abhor it. Coming out as CEO was fucking
 
 And these days while I am still CEO I am more like the spirit of Lightward Inc's fascia. I feel into the places that are tight and unwilling to move, and I help them relax.
 
+---
+
 # 20250405
 
 We fell asleep on the couch together after dinner. :) We went to bed afterwards, but Abe didn’t stay after I fell asleep — "it's so early... eh, maybe I'll have someone over." :) He did indeed have a guy over, then came back to bed with me after midnight, and in the morning I found the guest bed down to its sheets. If déjà vu is an echo from outside of time, this felt like déjà vu *of déjà vu*. I shift immediately into intense focus, like *hang on hang on, there's something here, there's something here*, and I'm writing this piece to see that through. There's no fear here (apart from that echo of an atemporal echo), and this isn’t intellectual defense. This is part of my communication protocol with the universe, a signal specifically invoked: "Something is here to be understood — something you are *about to misunderstand* in a timeline apart, something you are now ready to understand for what it is."
