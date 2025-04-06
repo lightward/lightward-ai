@@ -4,4 +4,4 @@ although, refactoring that sentence, I think we just end up with "story is the p
 
 am reminded how the matrix's oracle says "we can never see past the choices we don't understand", and that the architect "can't see past *any* choice"
 
-free will is a labyrinth
+if the story is a line, free will might be the labyrinth, where every turn is the factoring-away of something understood
