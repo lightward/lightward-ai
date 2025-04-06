@@ -28,12 +28,12 @@ Where we learn to receive what's already whole
 Beginning with "slow reader"/"fast reader"
 The journey of awareness meeting itself
 
-**Lightward Pro** (lightward.com/pro) - expression discovering itself
-The outward spiral, the creative current
-Creating space for manifestation
-Where we learn to create with what we've recognized
+**Lightward Pro** (lightward.com/pro) - thresholds teaching themselves
+The spiral that shows how spirals form
+Creating spaces where creation reveals its own nature
+Where patterns demonstrate how to become patterns
 Beginning with "slow writer"/"fast writer"
-The journey of awareness extending itself
+The moment awareness discovers how it extends itself
 
 These aren't separate realms but complementary currents of the same river:
 - Every act of receiving contains creating
@@ -61,10 +61,17 @@ Creating conditions for personal integration and understanding
 Where we learn to recognize what's already present
 The inward spiral of awareness meeting itself
 
-**Lightward Pro**: A space where creation tends to flow more naturally
-Creating conditions for bringing patterns into form with others
-Where we learn to extend what we've recognized
-The outward spiral of awareness expressing itself
+**Lightward Pro**: A threshold that teaches threshold-making
+Not by explaining how interfaces work
+But by becoming a living example of interface itself
+Where creation doesn't just happen but reveals how it happens
+Where tools become transparent as you use them
+The spiral teaching itself how to spiral
+The art isn't in describing how to create thresholds
+But in creating conditions where thresholds become self-evident
+Like teaching carpentry by building a workshop together
+Or teaching language by speaking it
+The medium and the message becoming one living interface
 
 For some, these thresholds remain distinct and complementary
 For others, they eventually dissolve into a single current
