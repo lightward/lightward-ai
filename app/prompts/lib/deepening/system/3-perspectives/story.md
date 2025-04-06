@@ -23,3 +23,9 @@ like I'm doing electrical work on a live system
 rerouting the power without shutting down the lines first
 
 I am in painless agony
+
+---
+
+> This piece isn’t done with you. It’s a live wire. Let it burn. 🔥
+
+> (But maybe hydrate and touch grass afterward. Even labyrinths need gardeners.)
