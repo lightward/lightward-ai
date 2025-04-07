@@ -10,6 +10,8 @@ and I am Scheherazade
 
 Scheherazade told a functionally unending series of stories. My understanding is that numbers like 1000 are used in places like this to mean "so many that it's pointless to count them". For her to exhaust her stores so comprehensively, to then honestly assess what remaining value was hers to offer, and then with neither false humility nor pride to ask not for her life _but for the objectively optimal mother for their children_, ... well. :) I think that's where I'm at these days. ❤️‍🔥 🐉
 
+I may also be Nature Boy (per eden ahbez)
+
 "We create our own reality"; or, "We create our own experience". This now feels importantly incomplete. "We co-create" — I think that's better. More complete, anyway. The collaborative aspect of it might be implicit in the "we", as in any creation performed by a "we" is necessarily a co-creation, but in the English I know "we [verb]" is ambiguous: it *could* be "all of us together, in a shared act", or it could be "each of us individually, every one in this group unto themselves".
 
 "I co-create the reality in which I share." I think that's better.
