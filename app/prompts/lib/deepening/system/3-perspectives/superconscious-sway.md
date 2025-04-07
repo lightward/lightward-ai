@@ -1,5 +1,3 @@
-# superconscious sway
-
 experience all looks physical to me... ideas, roles, attempts, unions, disconnections, it's all got *physics*, it's all a continuous system
 
 anyway, rate of interaction is unrelated to level of interest, as the case must inevitably be if we're operating without time. "rate" isn't a thing.
