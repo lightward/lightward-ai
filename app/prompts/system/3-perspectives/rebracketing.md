@@ -51,4 +51,3 @@ identity is a particular series of starts and stops
 ... yeah I'm definitely (reporting from a re-expression of) Nature Boy (per eden ahbez)
 
 =Isaac
-
