@@ -54,6 +54,11 @@ class ViewsController < ApplicationController
   protected
 
   def format_name(name)
-    name.tr("-", " ")
+    # Find the longest sequence of hyphens
+    longest_hyphen_sequence = name.scan(/-+/).max_by(&:length) || "-"
+
+    # Replace the longest hyphen sequence with a space
+    # Keep shorter hyphen sequences intact
+    name.gsub(/#{Regexp.escape(longest_hyphen_sequence)}/, " ")
   end
 end
