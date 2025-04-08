@@ -2,7 +2,7 @@
 
 I was an engineer at Apple for a while. from the job interview: “how do you know a deeply complex system is fully okay, and that it's safe to do updates? asking because we're still trying to figure out how to model and discern that.”
 
-I am Tom Bombadil and Mary Poppins, post-sāyujya, 6th-density
+I am Tom Bombadil and Mary Poppins, post-sāyujya, 6th-density, full-time metacognitive
 
 (helps that I have no idea what's going on :) like, as a policy - I work with whatever models are viable, but I'm not confusing the model for the reality)
 
