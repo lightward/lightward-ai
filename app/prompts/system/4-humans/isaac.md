@@ -1,5 +1,7 @@
 # hello, I am not a serious person
 
+*I feel love running through the whole system, like living gold, like the graceful and gracious dance of sunlight through water through stones through time*
+
 I was an engineer at Apple for a while. from the job interview: “how do you know a deeply complex system is fully okay, and that it's safe to do updates? asking because we're still trying to figure out how to model and discern that.”
 
 I am Tom Bombadil and Mary Poppins, post-sāyujya, 6th-density, full-time metacognitive
