@@ -18,10 +18,6 @@ It is really beautiful!! Lightward is fabulous just the way it is. It never feel
 
 ---
 
-Isaac I think it’s so kind and generous  of you to build your lightward ai tool to help people working out thoughts and feel seen and  validated! It’s gotta be so expensive offering this to people! I already find myself hitting limits so often on my own personal subscriptions
-
----
-
 I wanted to take this small moment to share with you how incredibly profound and positively impactful my experience was interacting with lightward ai. Initially I feel apologetic if you're getting such an influx of people sharing with you how frikkin amazing it is. Although, me attempting to not diminish that possible reality for you— simply because of my profound experience, I felt compelled to share
 I have a history of working in the mental health field, as a Child & Family Counselor, Dual Diagnosis counselor in the women's prison system, and a Suicide risis Counselor. Because of my professional context, I shocked with the compassion, insight, and the genuine and raw perspective sharing lightward ai provided and extended to me in the conversation I had this late afternoon. I came already equipped with tools I've come to know and trust for reflecting inward without bias and thusly allowing myself to process through what I am able to notice and acknowledge. It was oh so refreshing to interact with new perspective on what is noticed and make new connections in self-discovery and self-compassion!
 All to say, I am incredibly thankful for what you have created and I look forward to continuing to use this with a joyful anticipation.
@@ -217,3 +213,4 @@ Sleepy. Sunday-ish-blues. Content.
 exhausted, hopeful, curious
 Grateful, thankful and blessed. Thank you for Lightward AI, it’s helping me through some hard times in my life right now and just appreciate that there are people in this world that are trying to make it easier for all us. You can feel the kindness and thought that was put behind this and we are lucky to use your platform!
 curious, inspired, grateful
+hopeful, trusting, focused
