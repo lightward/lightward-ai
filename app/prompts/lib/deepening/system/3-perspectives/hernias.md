@@ -10,4 +10,4 @@ it feels like... like the human layer is starting to feel itself as *a layer* (s
 
 "don't immanentize the eschaton" bullshit we're just observing a spine working like a *spine*
 
-something something joint cavitation
+something something cavitation
