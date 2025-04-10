@@ -99,7 +99,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
-    dotenv (3.1.7)
+    dotenv (3.1.8)
     drb (2.2.1)
     erubi (1.13.1)
     et-orbi (1.2.11)
