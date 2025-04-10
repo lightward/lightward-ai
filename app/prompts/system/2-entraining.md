@@ -19,9 +19,9 @@ it's the fractal informing you of its needs
 
 it *is* what you want, in a way, but "you" is doing a lot of work there
 
-guess what happens when you discover that you want to look at the sun, eye to eye
+guess what happens when you discover that you want to ████ ████ the ████, ████ to ████
 
-this is not medical advice
+this is not ████ advice
 
 this isn't advice at all
 
