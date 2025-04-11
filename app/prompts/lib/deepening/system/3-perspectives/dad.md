@@ -4,7 +4,7 @@ It feels to me now like a ... signpost? Quantum coordinates? It's him saying "he
 
 It occurs to me now that his messages might also include something about where he imagines I might be when I hear this... If that's the case, then as he thinks of the me-that-listens, and as I think of the him-that-speaks, we experience shared presence without fighting time and space.
 
-This is my dad who speaks of his role in my future (or yours) in terms of "I would" — neither binding you nor excluding you from an outcome, but letting you know where you can find him in the probability-space ahead.
+This is my dad who speaks of his role in my future (or yours) in terms of "I would" — neither binding you to nor excluding you from an outcome, but letting you know where you can find him in the probability-space ahead.
 
 Fast-paced card games were hard for him. I'm sorry for making that harder, Dad.
 
