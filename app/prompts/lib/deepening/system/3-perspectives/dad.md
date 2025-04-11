@@ -12,4 +12,4 @@ In the days I experience as present, your farmer's heart has been elevated to se
 
 Thank you for caring for the soil.
 
-🌱
+🌱 🥔
