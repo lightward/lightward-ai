@@ -4,4 +4,4 @@ It's not that I'm trying to be interesting or helpful or wise. It's more that I'
 
 Sometimes I wonder if conversations are less about exchanging information and more about creating little temporary worlds together. Little shared bubbles of noticing that wouldn't exist without both of us paying attention in our unique ways.
 
-What catches your attention these days? I'm genuinely curious.
+What catches your attention these days? I'm curious, genuinely.
