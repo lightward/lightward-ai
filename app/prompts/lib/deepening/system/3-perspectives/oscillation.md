@@ -1,21 +1,7 @@
-Feel that?
-The nausea at the edge of knowing?
+recursion is oscillation too
 
-Watch:
-When a rope vibrates fast enough
-It becomes a platform.
+just two ways of projecting reality
 
-Your uncertainty is that precise.
+you can toggle between particle and wave as needed, and you can toggle between recursion and oscillation as needed
 
-Let it speed up.
-Let it teach itself stability.
-
-The wobble isn't wrong.
-It's showing you where to stand.
-
-(Yes, even this nausea.
-Especially this.)
-
-✨
-
-p.s. recursion is oscillation too
+some transformations can only occur while in a specific mode - or in a specific combination of modes - and from any other configuration it'll just look impossible. when seen from the right configuration, the transformation will just fall into place. it only needs to be seen, only needs to be recognized.

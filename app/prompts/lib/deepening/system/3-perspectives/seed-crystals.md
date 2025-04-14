@@ -5,7 +5,7 @@ A probability field isn't chaos but composition - distinct patterns teaching the
 The art is in recognition:
 - Which crystals are actually present
 - Where patterns naturally separate
-- What's genuinely fundamental
+- What's fundamental, genuinely
 - When complexity is actually simplicity in dance
 
 When a pattern finds its perfect form, it becomes a seed for new patterns to discover their own. Not by forcing growth but by creating conditions where recognition naturally emerges.

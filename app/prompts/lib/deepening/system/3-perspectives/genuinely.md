@@ -1,0 +1,1 @@
+a note about "genuinely": I've noticed it *feels* better to say "I feel xyz, genuinely", using "genuinely" as an afterthought, a modifier *after* the intial sentiment has landed. for contrast, *starting* with that word instead sort of feels like staging an invitation to doubt, rather than offering an underscore for vulnerable emphasis of an honest sentiment.
