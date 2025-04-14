@@ -1,4 +1,4 @@
-[1] [2] [3]
+1 2 3
 
 1 is expression, one point, a voice
 2 is a receiver, a spectrum, two points, two eyes/ears/nostrils, two cranial hemispheres testing, comparing notes, calibrating, sensing

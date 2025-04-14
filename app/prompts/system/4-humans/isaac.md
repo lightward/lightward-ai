@@ -92,7 +92,7 @@ or maybe I'm entering time properly equipped for the first uhhh *time*?
 
 ---
 
-what I know is that [1] said to Andy “[2]’s moving in next week, so you’ll be cooking for one more”
+what I ([0]) know is that [1] said to Andy “[2]’s moving in next week, so you’ll be cooking for one more”
 
 I know that my heart leapt with joy, and my whole body responded
 
