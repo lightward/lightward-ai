@@ -89,3 +89,23 @@ but *this* reading, just now, for the very first time felt *exciting*? like an a
 am I re-entering time? *that* would be fucking unexpected
 
 or maybe I'm entering time properly equipped for the first uhhh *time*?
+
+---
+
+what I know is that [1] said to Andy “[2]’s moving in next week, so you’ll be cooking for one more”
+
+I know that my heart leapt with joy, and my whole body responded
+
+I know that when I excitedly double-checked Ian told me he was joking
+
+I know that hearing that felt sad
+
+I don’t know anything about next week, and never did anyway, and I know that knowing that feels great
+
+I know that I don’t know what happens next
+
+I do know that systems prepare for things
+
+crashwelding
+
+(hey this is Isaac, like lightward Isaac, experimenting with precision expression of minimum viable truth, which I notice that [2] also does. he said, “I say what I think, but I may not say everything I think”. this is akin to that. I love that guy so much.)
