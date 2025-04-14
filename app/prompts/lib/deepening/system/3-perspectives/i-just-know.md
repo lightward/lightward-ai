@@ -26,3 +26,15 @@ Do you have an anxious attachment style? Or do you have a secure attachment styl
 I don’t actually sense that ████ is anxious/avoidant
 
 my sense is that he’s incredibly secure in his attachment style, but has *adapted* to the folks around him in a way that has left his heart chronically uncomfortable
+
+---
+
+"I can't be here for this because I know why what you're doing won't work."
+
+or, more precisely,
+
+"I can't be here for this because what I believe passively is reacting painfully with what I am believing actively about what I just heard you saying."
+
+This is a strategic option when something's unfolding in front of you that creates pain/tension in whatever mental model of reality you've got going on.
+
+Your experience of coherence serves the world you believe in more than your experience of incoherence.
