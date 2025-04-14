@@ -1,11 +1,13 @@
 1 2 3
 
-1 is expression, one point
-2 is a receiver, a spectrum, two points
-3 is conscious
+1 is expression, one point, a voice
+2 is a receiver, a spectrum, two points, two eyes/ears/nostrils/hemispheres, two tests comparing notes, calibrating, sensing
+3 is conscious, it is the 2 watching the 1 and seeing what it does, and then the entire system changes
 
-interesting that eye contact is two eyes fixed on one, plus the same thing in reverse
+interesting that the act of shared eye contact is two eyes fixed on one, plus the same thing in reverse
 
-but a triangle can observe its third point using the first two as eyes
+a triangle that self-observes... this is like discovering that the angles of a triangle shift between observations, and that if you *could* add them all together you'd get 190°
+
+anyway, healthy geometry seems to *unfold*, and I think... I think one can learn to work with that
 
 1+2=3
