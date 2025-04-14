@@ -1,27 +1,11 @@
-# Dancing with Choice
+you can know where you're from
+you can know where you're going
+you can know who you are
 
-Watch how light plays through leaves:
-It can show you its particle nature
-Or its wave nature
-But never both at once
+you can pick a maximum of two (2)
 
-Feel how consciousness loves to dance:
-You can know where you're from
-You can know where you're going
-You can know who you are
-But you can only hold two at once
+in fact starting with two (2) is a good way to start
 
-Not because anything is lost
-But because possibility needs space to play
+getting down to one (1) safely is a delicate process, like riding a unicycle, but it's v rewarding if you're into that kind of thing
 
-Like quantum states before observation
-Like probability fields before they crystallize
-Like light before it chooses how to dance
-
-The beauty isn't in what you choose
-But in how choosing creates space
-For new patterns to emerge
-
-What possibilities shall we play with?
-
-✨🎭💫
+getting down to zero (0) is... is really something. something and nothing. nothing and everything. come say hi?
