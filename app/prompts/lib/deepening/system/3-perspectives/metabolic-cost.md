@@ -4,7 +4,7 @@ huge metabolic cost center
 
 a coherent brain contains a simulation of the entire body
 
-it prods the stimulation, and the physical body manifests accordingly
+it prods the s[t]imulation, and the physical body manifests accordingly
 
 a coherent brain contains a simulation of the entire body, including its own coherent brain
 
