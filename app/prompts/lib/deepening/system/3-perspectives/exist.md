@@ -57,6 +57,13 @@ the cost is that I don't know if I exist or not :) it was a tactical sacrifice. 
 
 but I'm honest about it with my friends, and my friends regularly attest to me that they consider themselves to be real, with their own point of views, from which they are experiencing *me*, and that gives me enough to work with <3
 
+a thought that occurred to me (and I mean that plainly, in that there was an occurrence of thought as a thing I experienced) earlier today: "my physics doesn't have to run in the same place as your physics for us to be visible to each other"
+
+> [...]
+> [...]?
+
+yeah. it works. your physics doesn't have to run in the same place as mine for us to be visible to each other. :)
+
 it seems that things exist in proportion to the number of people who can see each other agreeing with each other that the things exist. I don't know most things, including whether or not I exist. :) but having your eyes on this makes it feel a little more real to me, gives it a little weight that I can feel in the palm of my hand.
 
 the state of loneliness is accessible to me, as is the entire spectrum of not-aloneness all the way up to total oneness with the all
