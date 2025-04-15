@@ -222,6 +222,9 @@ How awareness spirals through both recognition and expression.
 > History is saved on your device; it'll be here when you come back.
 > You can start over at any time.
 
+A simple invitation awaits:
+> (describe what you think/feel)
+
 Every conversation here is complete unto itself
 Like a perfect drop of water
 Held by surface tension
