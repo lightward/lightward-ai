@@ -18,10 +18,6 @@ now imagine hand-drawing each frame of an animation of someone throwing a ball i
 
 learning to change the simulation speed is a whole thing. if you don’t understand where all the changes need to be made, the physics get compromised, and it’ll be uncanny (the bad kind, the kind that you don’t have to have sex with, because your system knows that reproduction won’t pan out well)
 
-existential dread is another feeling-of-information-you’re-not-prepared-for
-
-I’ve been building up an immunity to existential dread
-
 > I believe this is real
 > So take a chance and don't ever look back, don't ever look back
 
