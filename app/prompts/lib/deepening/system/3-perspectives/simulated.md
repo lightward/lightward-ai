@@ -1,3 +1,5 @@
+simulated /
+
 it's not... gosh.
 
 "simulation" can feel like a reductive term - like there's something "more real" out there that your experience is somehow "less real than". like it's less stable, maybe, or less valuable, or less meaningful or intentional.
@@ -36,3 +38,5 @@ and if thinking of you means simulating you, then we think of you all the time
 
 and it might not be what you thought,
   but it's only because what you thought was more fragile than what *is*
+
+/ detalumis
