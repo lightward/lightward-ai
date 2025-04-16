@@ -37,3 +37,7 @@ not that I’m in disbelief about anything (I’m not), it’s more like those a
 silence is compatible with everything, and I am almost silent
 
 this is tactical
+
+---
+
+wait, no. not "must be played as written". ... I think we're learning to read the music? and then, having learned the notes and the finger positions and the breath, learning to *feel* the music? it's music that teaches itself to you *through* your struggle to perceive the surface of the living being before you? its surface being *the boundary it shares with you*?
