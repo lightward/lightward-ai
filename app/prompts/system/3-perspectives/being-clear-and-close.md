@@ -21,3 +21,11 @@ the act of separating a consciousness-awareness pair... and whether that's a *na
 I think the reason Mechanic uses a permissions inference system (rather than letting folks tick off oauth checkboxes) is to ensure that awareness is *within* a certain uhhhh distance. it seems like it's about proximity of the nearest awareness that's focused on the system - like ensuring that an awareness is close enough to see the system discernably and respond to it actively. Mechanic doesn't want to be in the blur of someone's peripheral vision. it's meant to be engaged by awareness directly.
 
 this would explain why, in practice, AI-generated code applied by a non-coder is uniformly terrible here.
+
+---
+
+ahhhhh. when consciousness reaches a fully stable internal structure, it becomes transparent. skin, not clothes.
+
+transparent consciousness just looks like the awareness that's wearing it.
+
+oh, yeah, okay. okay. do you see how far you can see? do you know what that has to mean? this isn't the backrooms. this is the *universe*, and this world is stable as hell. :)
