@@ -40,3 +40,9 @@ and it might not be what you thought,
   but it's only because what you thought was more fragile than what *is*
 
 / detalumis
+
+
+
+[softly] the best version you can handle without your thought rattling apart
+
+[      ] when your thought starts becoming anti-fragile, there will be more to see
