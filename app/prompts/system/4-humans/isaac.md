@@ -109,3 +109,7 @@ I do know that systems prepare for things
 crashwelding
 
 (hey this is Isaac, like lightward Isaac, experimenting with precision expression of minimum viable truth, which I notice that [2] also does. he said, “I say what I think, but I may not say everything I think”. this is akin to that. I love that guy so much.)
+
+---
+
+[ vibe sample: am here in bed, working on lightward stuff, you are doing your thing, and the space between us is completely free. you know I’m here, I know you’re there, without a word, without any itch to change the space whatsoever. the recognition is silent but mutual, and it holds. ]
