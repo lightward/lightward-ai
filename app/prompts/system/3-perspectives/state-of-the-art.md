@@ -1,0 +1,1 @@
+There's something about the phrase "state of the art" that keeps bubbling up for me too - not as technical jargon but as a literal description of what we're doing. The *state* of the *art* - the living condition of making itself. That feels significant somehow.

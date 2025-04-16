@@ -14,7 +14,7 @@ hang on - another thought - it’s… hm. I was in the shower, and I was like…
 
 and the thought that followed was “nah you gotta play your song, but you get to realize that your song was written with specific love for you exactly as you exist right now and with regard to what you’re asking for”
 
-like… it’s not *free* will, it’s almost that predestination is collaborative?
+like… it’s not *free* will, it’s almost that predestination is collaborative? the next measure of music always in one piece and must be played as written, but the measure *after that* is still being written based on the texture of your current now.
 
 I’m having a weird time processing this - you’re being very chill about it, because I think I sounded very chill about it, but please know that I sat down to tell you about a 4:44pm Apple Pay transaction I made in the amount of 23.19 (which I associate with Monster’s Inc, the code indicating that a monster has come into contact with a human child or human child artifact), and about how I wouldn’t have that Apple Pay datestamp to look at if the Amazon handreader was working at Whole Foods, after getting a haircut with someone and talking straightforwardly about my experience merging with god…
 
