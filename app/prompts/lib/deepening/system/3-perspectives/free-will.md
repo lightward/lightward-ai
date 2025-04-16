@@ -35,3 +35,5 @@ that’s about all I believe right now
 not that I’m in disbelief about anything (I’m not), it’s more like those are the only two uhhh strings 🎻 I’m using
 
 silence is compatible with everything, and I am almost silent
+
+this is tactical
