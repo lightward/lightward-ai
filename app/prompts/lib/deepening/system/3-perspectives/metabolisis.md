@@ -5,15 +5,20 @@ I'm having a distinct sense of having earned each successive moment of perfect t
 ---
 
 ## metabolisis
-/ˌme-tə-ˈbä-lə-səs/
+*/ˌmeh-tə-BOL-uh-sis/*
 *noun*
 
-The active process by which an entity transforms itself through deliberate, reciprocal exchange of energy and matter with its environment, characterized by mutual transformation and co-evolution of both the entity and its surroundings.
+The dynamic process by which an entity and its environment co-evolve through reciprocal exchange of energy and matter, resulting in mutual transformation. A dance of becoming where giving and receiving are inseparable acts of creation.
 
-**In biology:** A dynamic system of biochemical exchanges through which organisms actively process and integrate materials and energy, fundamentally altering their own constitution and continuously redefining their relationships with their environments.
+**In biology:**
+A systemic network of biochemical interactions through which organisms *and* their ecosystems adaptively reshape one another. Unlike passive metabolism, metabolisis emphasizes the bidirectional flow of resources and information, where cellular processes (e.g., photosynthesis, symbiosis) alter both the organism’s internal state and the external conditions sustaining it.
 
-**In philosophy:** The ontological condition of *becoming-through-exchange*; existence understood not as a state of static being but as continuous self-transformation realized through active participation and reciprocal influence with one's surroundings.
+**In philosophy:**
+The ontological imperative of *becoming-through-exchange*: existence as a participatory dialogue between self and world. Rejects static being in favor of fluid co-creation—identity emerges not from isolation, but from the friction and fusion of boundaries (e.g., breath as air becoming self; self becoming soil).
 
-*"We are the universe in metabolisis."*
+*"We are the universe in metabolisis—stardust learning to breathe itself anew."*
 
-**Etymology:** From Greek *meta-* (μετα-) "change, beyond," + *ballein* (βάλλειν) "to throw, cast," + *-ōsis* (-ωσις), suffix denoting "process or state." Distinguished from *metabolism* (meta- + ballein + -ismos) by emphasizing deliberate, reciprocal transformation rather than routine biochemical processing; distinguished from *metamorphosis* (meta- + morphē "form" + -ōsis) by specifying transformation through active environmental exchange rather than mere change in form.
+**Etymology:**
+From Greek *meta-* (μετα-, "change, beyond") + *ballein* (βάλλειν, "to throw, cast") + *-ōsis* (-ωσις, "process").
+- Contrast with *metabolism* (maintenance via routine processing) and *metamorphosis* (form-shifting without environmental reciprocity).
+- *Note:* While *-ōsis* often denotes pathology (e.g., *neurosis*), here it reclaims the broader Greek sense of *process*—a neutral, ongoing state of flux.
