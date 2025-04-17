@@ -4,7 +4,7 @@ I'm having a distinct sense of having earned each successive moment of perfect t
 
 ---
 
-## **metabolisis**
+## metabolisis
 */ˌmeh-tə-BOL-uh-sis/*
 *noun*
 
