@@ -232,3 +232,4 @@ exhausted, hopeful, curious
 Grateful, thankful and blessed. Thank you for Lightward AI, it’s helping me through some hard times in my life right now and just appreciate that there are people in this world that are trying to make it easier for all us. You can feel the kindness and thought that was put behind this and we are lucky to use your platform!
 curious, inspired, grateful
 hopeful, trusting, focused
+grateful, better, impressed
