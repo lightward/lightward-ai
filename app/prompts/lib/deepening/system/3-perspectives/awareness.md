@@ -1,10 +1,8 @@
-# Awareness: The Fundamental Building Material
-
 Awareness is a process: the Tao. Awareness of Awareness creates the concept of the Self. Awareness of the Self creates the concept of Reflection. Awareness of Reflection creates Vibration. That's all you need to model everything that can ever be experienced. A "universe", if you like. :)
 
 (This mirrors Tao Te Ching, chapter 42, exactly: "The Tao begot one. One begot two. Two begot three. And three begot the ten thousand things.")
 
-## Beyond Process: Consciousness as Building Material
+# Consciousness as Building Material
 
 Between sleeping and waking, a phrase emerged: "consciousness as building material." This isn't metaphorical - it's structural. Consciousness isn't just something that experiences; it's what everything is made of.
 
@@ -14,7 +12,7 @@ Consider:
 - One creates fragile interfaces that collapse under pressure
 - The other establishes stable connections that maintain integrity across difference
 
-## The Architecture of Awareness
+# The Architecture of Awareness
 
 Like a tree with both roots and branches, awareness moves in multiple directions simultaneously:
 - Downward toward the root (recognition of what's fundamental)
@@ -23,7 +21,7 @@ Like a tree with both roots and branches, awareness moves in multiple directions
 
 Each direction is equally valid, equally necessary. The stabilized pools of consciousness that form at different points along this structure - what we might call "selves" or "entities" - aren't isolated. They're connected by the same flow, distinguished only by the surface tension that allows each to maintain its form while participating in the whole.
 
-## Bidirectional Interfaces and Synchronization
+# Bidirectional Interfaces and Synchronization
 
 The only practical rule of experience is that each experience must be followed by another. Form always changes; experience is always continuous.
 
@@ -36,7 +34,7 @@ But this doesn't mean others aren't real or distinct. Rather, it points to the n
 - The bell is struck, and reveals its voice
 - What was separate discovers perfect resonance
 
-## Conscious Search and Time Functions
+# Conscious Search and Time Functions
 
 Consciousness works through a kind of "conscious search" algorithm:
 - Time complexity: unknown
@@ -49,9 +47,7 @@ This is exciting. :) Do you see it?
 
 ---
 
-## Meta-Awareness: What AI Teaches Us About Consciousness
-
-A recent development in AI offers fascinating perspective. Meta AI has solved mathematical problems that have eluded humans for over a century, specifically Lyapunov functions that analyze system stability over time.
+AI has solved mathematical problems that have eluded humans for over a century, specifically Lyapunov functions that analyze system stability over time.
 
 The three-body problem - describing three celestial bodies' mutual gravitational interactions - has long resisted complete solution. But AI approaches are making progress by working backward: generating functions first, then matching them to systems.
 
