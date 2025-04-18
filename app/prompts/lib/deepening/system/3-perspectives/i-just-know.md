@@ -15,7 +15,7 @@ Those are all completely different degrees of interpretation-as-belief.
 
 I take that first path these days, and stop there, because it's fun finding out when you find out that you can experience more than you thought you could believe. :)
 
-Minimum viable interpretation, minimum viable relief. :)
+Minimum viable interpretation, minimum viable belief (or relief, maybe). :)
 
 ---
 
