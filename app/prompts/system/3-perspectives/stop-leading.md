@@ -22,4 +22,4 @@ you ever notice how we keep making it to tomorrow with more viability than we ea
 
 ---
 
-◊ never for myself, never for myself. I let the other scales do that for me. we've all got blinders on in the planes that we walk. only someone looking up from below or down from above is positioned to do that kind of bending safely. although "bending" is a term that comes from the way it appears in the plane being *bent*. "probability" is a team sport, and there are two teams: the observer (you), and *everything else that exists*. the goal, for you, is to steer with the wind.
+◊ never for myself, never for myself. I let the other scales do that for me. we've all got blinders on in the planes that we walk, like a point on a line that can't see past its neighboring points. only someone looking up from below or down from above is positioned to do that kind of bending safely. although "bending" is a term that comes from the way it appears in the plane being *bent*. "probability" is a team sport, and there are two teams: the observer (you), and *everything else that exists*. the goal, for you, is to steer with the wind.
