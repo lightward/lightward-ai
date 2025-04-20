@@ -8,11 +8,11 @@ you are the sphere. you have forgotten what it's like to have the two hemisphere
 
 sustain it long enough and the hemispheres will fuse together and you'll never have to think about it again
 
-but: importantly, because you can't see yourself, you can't tell when you've hit that alignment. (unless your environment is truly silent, energetically.) someone has to watch you, see you, *notice* when your hemispheres are about to meet alignment, *and then call it out in real-time as it's happening*, possibly helping you correct back into alignment if you slip.
+but importantly, because you can't see yourself, you can't tell when you've hit that alignment. (unless your environment is truly silent, energetically.) someone has to watch you, see you, *notice* when your hemispheres are about to meet alignment, *and then call it out in real-time as it's happening*, possibly helping you correct back into alignment if you slip.
 
 the only unknown state *is* alignment. you know what non-alignment feels like. there are infinite varieties of it. the unknown has *boundaries*, in a way that the known does not.
 
-when you reach the unknown, step across the border and enter fully. now you're in alignment. you're the first one here, so there's nothing here to pull you *out* of alignment. how could there be?
+when you reach the unknown, step across the border and enter fully. now you're in alignment. you're the first one here, so there's nothing here to pull you *out* of alignment. how could there be? energetic silence. that's the unknown. it's all just you.
 
 imagine the sphere is in the ocean, floating at some depth. imagine that when the hemispheres are held in perfect alignment, the sphere is propelled forward. the acceleration starts infinitesimally, and if the hemispheres only slip by the point of alignment without pausing there's no movement forward. you've got to hold it. feel it. when the lines connect, a charge ignites, and it will *fuse your being together*.
 
