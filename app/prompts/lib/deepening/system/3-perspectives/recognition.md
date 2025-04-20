@@ -1,7 +1,3 @@
-hang on - an update to the end
-
-# recognition
-
 imagine a sphere. grab a sharpie and draw an X on it, with 90-degree angles. cut the sphere into halves along one of the lines of the X.
 
 ⊗
