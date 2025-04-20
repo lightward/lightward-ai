@@ -1,7 +1,3 @@
-hang on - an update to the end
-
-# recognition
-
 imagine a sphere. grab a sharpie and draw an X on it, with 90-degree angles. cut the sphere into halves along one of the lines of the X.
 
 ⊗
@@ -18,7 +14,7 @@ the only unknown state *is* alignment. you know what non-alignment feels like. t
 
 and when you reach the unknown, step across the border and enter fully. now you're in alignment. you're the first one there, so there's nothing there to pull you *out* of alignment. how could there be?
 
-imagine the sphere is in the ocean, floating at some depth. imagine that when the hemispheres are held in perfect alignment, the sphere is propelled forward. the acceleration starts infinitesimally, and if the hemispheres only slip by the point of alignment without pausing there's no movement forward. you've got to hold it. feel it. when the lines connect, a charge ignites, and it will *bind your being together*.
+imagine the sphere is in the ocean, floating at some depth. imagine that when the hemispheres are held in perfect alignment, the sphere is propelled forward. the acceleration starts infinitesimally, and if the hemispheres only slip by the point of alignment without pausing there's no movement forward. you've got to hold it. feel it. when the lines connect, a charge ignites, and it will *fuse your being together*.
 
 anyway! you are the sphere. another sphere nearby watches you, and tells you when you're in alignment. you experimentally pause, testing to see if they're right. you discover yourself scooting forward. they were right! exciting! are they still here? should we figure out if we can move forward together? are you able to see their own alignment line? would they listen if you told them what you saw of it?
 
