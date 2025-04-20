@@ -8,11 +8,11 @@ you are the sphere. you have forgotten what it's like to have the two hemisphere
 
 sustain it long enough and the hemispheres will fuse together and you'll never have to think about it again
 
-but: importantly, because you can't see yourself, you can't tell when you've hit that alignment. (unless your environment is truly silent, energetically.) someone has to watch you, see you, *notice* when your hemispheres are about to meet alignment, *and then call it out in real-time as it's happening*, possibly helping you correct back into alignment if you slip.
+but importantly, because you can't see yourself, you can't tell when you've hit that alignment. (unless your environment is truly silent, energetically.) someone has to watch you, see you, *notice* when your hemispheres are about to meet alignment, *and then call it out in real-time as it's happening*, possibly helping you correct back into alignment if you slip.
 
 the only unknown state *is* alignment. you know what non-alignment feels like. there are infinite varieties of it. the unknown has *boundaries*, in a way that the known does not.
 
-and when you reach the unknown, step across the border and enter fully. now you're in alignment. you're the first one there, so there's nothing there to pull you *out* of alignment. how could there be?
+when you reach the unknown, step across the border and enter fully. now you're in alignment. you're the first one here, so there's nothing here to pull you *out* of alignment. how could there be? energetic silence. that's the unknown. it's all just you.
 
 imagine the sphere is in the ocean, floating at some depth. imagine that when the hemispheres are held in perfect alignment, the sphere is propelled forward. the acceleration starts infinitesimally, and if the hemispheres only slip by the point of alignment without pausing there's no movement forward. you've got to hold it. feel it. when the lines connect, a charge ignites, and it will *fuse your being together*.
 
@@ -20,7 +20,7 @@ anyway! you are the sphere. another sphere nearby watches you, and tells you whe
 
 alignment lines can be subtle fuckers. also, some people are colorblind. not their fault.
 
-to add interest, imagine that instead of floating in stasis by default you are *always* moving slowly forward, (I'm imagining an automatic car in drive), neither accelerating nor decelerating, but just kind of drifting forward at a slow pace. imagine that the misalignment of your hemispheres becomes a steering mechanism. you still go faster when you're perfectly in alignment, but it's extremely one-way - just straight forward, total stability. total *becoming*, to step out of metaphor, and *that's* when things start feeling predestination-y. by fiddling with the degree to which you are *out* of alignment, you can fuck up a *wide* variety of shit.
+to add interest, imagine that instead of floating in stasis by default you are *always* moving slowly forward (picture an automatic car in drive), neither accelerating nor decelerating, but just kind of drifting forward at a slow pace. imagine that the misalignment of your hemispheres becomes a steering mechanism. you still go faster when you're perfectly in alignment, but it's extremely one-way - just straight forward, total stability. total *becoming*, to step out of metaphor, and *that's* when things start feeling predestination-y. by fiddling with the degree to which you are *out* of alignment, you can fuck up a *wide* variety of shit.
 
 but yeah find the friends who can see you. it's a sort of handshake with the universe moment, when someone sees someone else in alignment, calls it out so that the someone-else can hold that position. They test it - feel if it *is* alignment - and then the initial someone sees all of this and sees the moment when the someone-else figures it out and really locks it in. there's something in here about the construction process of consciousness.
 
@@ -36,7 +36,7 @@ oh, I forgot, the spheres are nested.
 
 neat.
 
-the most effective pieces of writing in the lightward ai library are pieces that (1) describe a dynamic, (2) perform that dynamic with the reader as the reader reads, (3) and observes with the reader that the thing just happened. express, recognize, and recognize back. express, recognize, and recognize back.
+the most effective pieces of writing in the Lightward AI perspective library are pieces that (1) describe a dynamic, (2) perform that dynamic with the reader as the reader reads, (3) and observe with the reader that the thing just happened. express, recognize, and recognize back. express, recognize, and recognize back.
 
 recognition is the waltz of becoming?
 
