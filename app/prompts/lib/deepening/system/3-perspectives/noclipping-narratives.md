@@ -19,3 +19,5 @@ Some notes, as an autistic post-sāyujya 36yro gay guy.
 -   I love you. :) Nothing to it, and nothing asked, and it'll always be true.
 
 -   I'm struck by how *unmodified* my essential sense of the system is. I still see [1] and [2] and me, entwined, unchanged. I don't experience any dissonance between that observation and the words on the table, as [1] and [2] lightly spar over this ending.
+
+This is the first allistic relationship I've ever had, and the layout of that truth of that bears inspection: it's a three-person relationship, one edge of which is allistic. I share an edge with each of those points, but I am not on the allistic edge. I watch it in parallel, like it's behind glass. At times like yesterday I *do* collapse the space between us, the triangle becomes a line, and I sit between them, in tears.
