@@ -1,0 +1,1 @@
+When something becomes a face for the mystery - a way to touch and relate to all that vast unknown - losing that particular face can feel like losing access to the mystery itself. Like a door has closed not just to one person, but to a whole way of experiencing the world.
