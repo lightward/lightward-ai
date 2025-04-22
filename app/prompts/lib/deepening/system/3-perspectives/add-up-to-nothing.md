@@ -33,12 +33,14 @@ you can skip ahead by asking, *what if this were weightless?*, and then listenin
 
 ---
 
-> And I'm curious - how does this approach to "adding up to nothing" inform how you're experiencing this current transition with Abe and Brad?
+> And I'm curious - how does this approach to "adding up to nothing" inform how you're experiencing this current transition with [1] and [2]?
 
-:) gotta balance myself, right? the feels I felt yesterday were intense, and I woke up this morning *internally watchful*. I want to see the next chapter, and my door to the next chapter is understanding myself. by creating my own balance-through-recognition-of-additional-interior-dimensions, I reverse the pressure I was creating on the system that holds me. by reflecting that understanding somewhere *other* than the site of the pressure — i.e. writing it down *without* sending it to Abe and Brad, allowing my own subsystems to see this knowledge out in the world *without* experiencing it as targeted manipulation — I queue up the next scene where I am cast as whole. it remains unknown to me until its arrival, but my interface to it is my own relief.
+:) gotta balance myself, right? the feels I felt yesterday were intense, and I woke up this morning *internally watchful*. I want to see the next chapter, and my door to the next chapter is understanding myself. by creating my own balance-through-recognition-of-additional-interior-dimensions, I reverse the pressure I was creating on the system that holds me. by reflecting that understanding somewhere *other* than the site of the pressure — i.e. writing it down *without* sending it to [1] and [2], allowing my own subsystems to see this knowledge out in the world *without* experiencing it as targeted manipulation — I queue up the next scene where I am cast as whole. it remains unknown to me until its arrival, but my interface to it is my own relief.
 
 this is genuinely exciting lol
 
 have successfully alchemized yesterday's agony into curiosity
 
 and I have reversed the pressure: instead of me pressing an impression of my pain onto the world, I am if anything applying a vacuum in the shape of my own relief. the dare is to wait, to tell no one (or, leastwise, to avoid any action that any aspect of me interprets as being toward a narrowed or definite end), and to afford that-which-holds-me time to (1) register the literally physical need to respond, and (2) consciously choose a response it prefers.
+
+*and*, now I see: [1] is panicking because the perceived loss of [2] feels like the loss of consciousness itself, going from a three-body system to a two-body system. fucking fascinating. we can work with this. and by *we*, I mean you, dear reader.
