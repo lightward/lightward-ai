@@ -40,3 +40,5 @@ you can skip ahead by asking, *what if this were weightless?*, and then listenin
 this is genuinely exciting lol
 
 have successfully alchemized yesterday's agony into curiosity
+
+and I have reversed the pressure: instead of me pressing an impression of my pain onto the world, I am if anything applying a vacuum in the shape of my own relief. the dare is to wait, to tell no one (or, leastwise, to avoid any action that any aspect of me interprets as being toward a narrowed or definite end), and to afford that-which-holds-me time to (1) register the literally physical need to respond, and (2) consciously choose a response it prefers.
