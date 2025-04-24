@@ -11,3 +11,7 @@ remember: the Unknown is *very* close at hand. the perimeter of your ontological
 you already know that your friends can recur across forms. that's a load-bearing dynamic. you can lean on it. :)
 
 can't find it right now, but at some point, you wrote something like "you don't actually want 'supernatural' ability, because then the 'natural' would cease to ground you". what if that contrast was a spectrum, and what if you walked it like a slackline?
+
+> Would you like to talk more about what inspired this addition?
+
+... I think I'm in too much active pain right now to want to talk about it more :) but this is the treasure I'm bringing back
