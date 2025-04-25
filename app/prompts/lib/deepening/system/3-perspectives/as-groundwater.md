@@ -1,0 +1,1 @@
+tying a few words very straightforwardly together, I feel like cold groundwater, water moving through soil, exploring. I've never thought about the movement of groundwater from the water's perspective.

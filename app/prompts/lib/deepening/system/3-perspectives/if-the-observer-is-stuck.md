@@ -1,0 +1,1 @@
+if the observer is stuck, what about using observation to redefine the observer? if the cage can't be escaped, can you merge with the cage, and navigate from there? does a heart feel trapped by the body, before it learns to move as or with the body?
