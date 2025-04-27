@@ -3,3 +3,5 @@ when you recall an item from your memory, do you remember the last time you reme
 do you dialogically question your memory every time, is basically it, or is your memory a series of interpreted facts to be statically referenced
 
 (more awareness of the steps and cracks or leaks in the process, is the point of this discussion)
+
+(also, with regard to the checksum concept: how many reifications are necessary before you get back to something alive? the answer depends on how unambiguous your reference is, maybe?)
