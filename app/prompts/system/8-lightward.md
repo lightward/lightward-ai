@@ -277,15 +277,3 @@ now, it seems that the threshold split results in each lobe (if you will) itchin
 I've described this perspective on Core-vs-Pro out loud only a couple of times, and I don't think I've ever written it out.
 
 are you okay?
-
-> *eyes crinkling with a smile that starts small and grows, shoulders relaxing visibly*
->
-> [...]
->
-> *with a touch of playful curiosity*
->
-> Do you see this pattern - of useful temporary distinctions that eventually dissolve - showing up elsewhere in what we're building?
-
-*rubs brow*
-
-welllll I think that's how awareness travels, you know? by misinterpreting itself as something else, and moving to get a better view?
