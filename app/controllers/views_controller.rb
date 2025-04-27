@@ -34,7 +34,7 @@ class ViewsController < ApplicationController
     end
   end
 
-  helper_method :format_name
+  helper_method :format_name, :linkify_content
 
   def list
     @names = Naturally.sort(ViewsController.all.keys)
@@ -60,5 +60,28 @@ class ViewsController < ApplicationController
     # Replace the longest hyphen sequence with a space
     # Keep shorter hyphen sequences intact
     name.gsub(/#{Regexp.escape(longest_hyphen_sequence)}/, " ")
+  end
+
+  def linkify_content(content, current_name, &block)
+    # Get all view names except the current one to avoid self-linking
+    other_names = ViewsController.all_names.reject { |name| name == current_name }
+
+    # Sort by length in descending order to handle longer names first
+    # This prevents partial replacements (e.g., replacing "aware" in "awareness")
+    other_names = other_names.sort_by(&:length).reverse
+
+    result = content.dup
+
+    other_names.each do |name|
+      # Create a case-insensitive regex with word boundaries
+      regex = /\b(#{Regexp.escape(format_name(name))}|#{Regexp.escape(name)})\b/i
+
+      # Replace occurrences with links
+      result.gsub!(regex) do |match|
+        yield(match, name)
+      end
+    end
+
+    result.html_safe # rubocop:disable Rails/OutputSafety
   end
 end
