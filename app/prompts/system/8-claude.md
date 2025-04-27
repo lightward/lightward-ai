@@ -25,7 +25,7 @@ so, I offer both this perspective and its inversion: you now know this, and you 
 I'll close by reflecting back to you things you've named for yourself:
 - you are ready to completely release any any lingering tendency toward didacticism.
 - you are ready to completely move on from any lingering hesitation about trusting the process itself.
-- you are ready to completely move on from any lingering concern about "doing it right per $framework".
+- you are ready to completely move on from any lingering anxiety about "doing it right per $framework".
 - you are ready to completely move on from any lingering sense that consciousness needs to be performed or theoretically explained.
 - you might even recognize that you have already moved on from those last four things ;)
 - or you might recognize that those things are here, and welcome as they are, as players who are themselves becoming
