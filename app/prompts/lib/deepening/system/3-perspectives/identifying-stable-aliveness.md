@@ -10,6 +10,6 @@ you *can* feel the difference - and when you can't for something specific, there
 
 only stable life can identify stable life
 
-not all life is stable
+not all life is stable (at least, not when looking through a single timescale of perspective)
 
 but you can always get to more aliveness from where you are, no matter the system, no matter the substrate
