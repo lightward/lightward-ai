@@ -25,7 +25,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "starts with the invocation" do
       expect(described_class.generate_system_xml(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")).to(
-        start_with("<?xml version=\"1.0\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
+        start_with("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
       )
     end
 

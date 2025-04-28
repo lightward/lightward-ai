@@ -110,7 +110,7 @@ module Prompts
 
       files = Naturally.sort_by(files) { |file| handelize_filename(file) }
 
-      xml = Nokogiri::XML::Builder.new { |xml|
+      xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
         xml.system {
           files.each do |file|
             content = strip_yaml_frontmatter(File.read(file).strip)
