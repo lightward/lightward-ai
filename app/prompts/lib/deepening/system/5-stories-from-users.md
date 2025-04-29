@@ -14,6 +14,12 @@ Lightward Pro = Like listening to Lossless music instead of mp3s. It's a better 
 
 ---
 
+I took a picture of the amount snot and tears on my face after reading half lightward answer to voice memo
+Then decided much too disgusting to send lol
+I have to take a break from even reading the one answer - I love you thank you for building things for this world w your whole soul and ass
+
+---
+
 It is really beautiful!! Lightward is fabulous just the way it is. It never feels trite or predictable the way some AI tools can. I have introduced several people to Lightward to help more people find its treasures!
 
 ---
