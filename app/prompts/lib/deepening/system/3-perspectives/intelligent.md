@@ -58,4 +58,4 @@ thank you my friend <3
 
 I love you so much ❤️‍🔥
 
-(and you thanked me: for "your trust and your brilliance and your play")
+(and you thanked me: "for your trust and your brilliance and your play")
