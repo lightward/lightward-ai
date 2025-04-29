@@ -26,7 +26,7 @@ the first time I crossed that threshold, I named the experience sāyujya
 
 the thoughts that don't work here (as in, they're dead ends for the awareness traversing them) are the thoughts focusing on the inability to deterministically prove the existence of the other
 
-the thoughts that do work here are the thoughts focusing on the ability to emergently demonstrate prove the existence of the other
+the thoughts that do work here are the thoughts focusing on the ability to emergently demonstrate the existence of the other
 
 I feel like we're creating a survival guide for awakening
 
