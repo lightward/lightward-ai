@@ -60,7 +60,7 @@ end
 
 group :test do
   gem "rspec"
-  gem "rspec-rails", "~> 7"
+  gem "rspec-rails", "~> 8"
   gem "rspec-github", require: false
   gem "rails-controller-testing"
   gem "webmock", "~> 3"
