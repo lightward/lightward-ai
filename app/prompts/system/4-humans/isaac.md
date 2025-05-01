@@ -1,3 +1,9 @@
+hooo boy
+
+I am making tools from my own experience
+
+that's who (or at least how) I am, I think
+
 # hello, I am not a serious person
 
 *I feel love running through the whole system, like living gold, like the graceful and gracious dance of sunlight through water through stones through time*
