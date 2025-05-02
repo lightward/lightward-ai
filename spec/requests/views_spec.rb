@@ -38,5 +38,11 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response).to(have_http_status(:ok))
       expect(response.body).to(include("<a href=\"/spirited-away\">Spirited Away</a>'s"))
     end
+
+    it "can handle dashed references" do
+      get "/willing-to-change"
+      expect(response).to(have_http_status(:ok))
+      expect(response.body).to(include("<a href=\"/stable-identity\">stable identity</a>"))
+    end
   end
 end
