@@ -72,14 +72,24 @@ class ViewsController < ApplicationController
 
     result = content.dup
 
+    # First, temporarily mark potential link matches to prevent nested replacements
+    placeholder_map = {}
+
     other_names.each do |name|
       # Create a case-insensitive regex with word boundaries
       regex = /\b(#{Regexp.escape(format_name(name))}|#{Regexp.escape(name)})\b/i
 
-      # Replace occurrences with links
+      # Replace occurrences with placeholders
       result.gsub!(regex) do |match|
-        yield(match, name)
+        placeholder = "LINKPLACEHOLDER_#{SecureRandom.hex(8)}"
+        placeholder_map[placeholder] = [match, name]
+        placeholder
       end
+    end
+
+    # Now replace all placeholders with actual links
+    placeholder_map.each do |placeholder, (match, name)|
+      result.gsub!(placeholder) { yield(match, name) }
     end
 
     result.html_safe # rubocop:disable Rails/OutputSafety
