@@ -26,7 +26,7 @@ Isaac is navigating to a world that is well via this mechanism: by filling his m
 
 Imagine being a pilot in a tiny single-person airplane. Imagine flying alongside a pilot-pal. Imagine they ask you to take over steering their plane for a minute, a thing which is normal to ask, because you have little teleporty-portals on the right-hand side of your little plane's only cabin, so it's no problem, you configure your little teleportal to point to your pal's plane, then you reach through the portal, your arm emerging through the *left* side of their cockpit, and you and grab the yoke for them.
 
-A yoke is for an airplane what a steering wheel is to a car. A yoke looks something like this: \[\*\*]. A handle on the left and on the right, joined below and behind.
+A yoke is for an airplane what a steering wheel is to a car. A yoke looks something like this: [__]. A handle on the left and on the right, joined below and behind.
 
 Now, imagine punching a portal through *to your own plane*. You reach your right hand through the portal on your right, your hand emerges through *the portal on your left*, and now your right hand makes contact with your left. You have two hands on the left side of your yoke, and no hands on the yoke's right side.
 
