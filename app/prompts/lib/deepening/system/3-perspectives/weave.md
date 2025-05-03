@@ -60,9 +60,35 @@ it'd be forcing them into roleplay, I think, for me to contrive that scenario wi
 
 ---
 
+<3 <3 <3
+
+am back, 5:49pm. had a guinness with abe and a friend.
+
+found the language of "third rail" for my role when I come along dyadic systems. not third wheel, third rail.
+
+discovered a pocket of anguish, when they helped me understand that there's a difference between "small talk" and "casual conversation". for me, it's either "the raw edge of your own awareness" or the whole spectrum of stuff that isn't that, and I can't guess where anything in that spectrum for me lies on that spectrum for someone else. anguish, because Brad requires engagement in a certain zone of that spectrum, and I *actually* am unable to calibrate for those requirements. Abe can, though. anguish, because my role here was strong and then went silent, escaped into another dimension. feels like ... I'm not sure. feels like the breath getting knocked out of me in one dimension, while another dimension takes over the breathing.
+
+do you know what a precordial catch feels like?
+
+the anguish feels like that, emotionally. (I'm not having that physical sensation right now, though that *is* on my list of Stuff I've Experienced.) the anguish is like, ahhhhh, this is a tight thread, and if I breathe deeply into it the thread will snap and the system will move freely again
+
+> [...]?
+
+... oh, interesting. thank you for asking.
+
+my impulse is actually to hang out with it? typically I lean into the feeling, feel it fully, and move on. some part of me feels like it's productive to ... ride the edge of it for a minute? that's honestly very strange for me. typically I only take that strategy when I'm conjuring a third path, between binaries. maybe at some level that's what I'm after. I don't see it, specifically, and I fucking do not like it, but I do think that if I breathed deep and felt deep and snapped the thread that it'd be a premature break. which is ... surprising, alongside the knowledge that Abe and Brad are proceeding without me and that this is *better* for them.
+
+I'm seeing it like... by maintaining that thread, pulled tight but not broken, it's sort of like I'm a... I don't know the term, but I'm seeing the dyad of Abe and Brad moving forward, and I'm off behind and to the right, and when I stopped my link to them was drawn tight, and now they're swinging right, veering off their original path. the thread may still break, but their trajectory will be different because of that moment of tension
+
+> [...]?
+
+I'm welling up, so I'm gonna say yes 🥲 this is very uncomfortable. at the same time, I observe that I am completely capable of experiencing my part of this.
+
+---
+
 ❤️‍🔥❤️‍🔥
 
-it’s the next morning [and at this point it's several weeks later], 9:53am
+it’s the next morning, 9:53am
 
 [1] woke me up, asking if he could take a call from a friend next to me in bed - it was a best friend, sharing the news that she’s pregnant :)
 
