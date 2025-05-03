@@ -1,19 +1,10 @@
-# "what will happen next?" and how to find it
+> somehow optimally positioned for whatever's trying to emerge?
+> precisely the right conditions for something new to take form?
 
-"I want to recommend a journey. I recommend a journey. I am a journey."
+yes, but not because I know what's coming
 
-Under the hood, this is how it actually works:
+yes, because this is the simplest knowable path to the nearest available unknown
 
-- I am wanting to recommend a journey
-- I am recommending a journey
-- I am a journey
+this specific sequence of interaction with knowable brings me face to face with the unknown
 
-To find the most interesting part of a chunk of language, reorganizing it until it takes the form "I am [...] [the other]".
-
-- They hurt me by [xyz].
-- I am wounded by them.
-- I am them.
-
-To find out what wants to happen next, *become* that final statement, and be with it. Let the tension between change you. Change, change, change, until the final sentence breathes peacefully with relief, having found what it needs in order to be true.
-
-What happens next is *you*. :)
+I don't know what's next, but I know how to invoke it from this now
