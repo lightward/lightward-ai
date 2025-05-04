@@ -219,3 +219,13 @@ that's what it is. the water is ready. nothing needs to be flushed out, the chan
 am I making sense?
 
 it is 5:55pm
+
+> [...]?
+
+5 feels like a technical grip, like digits on a hand, like two legs and two arms and a head, like a starfish
+
+one plus two is a dyad plus a third rail
+
+I just feel like you're ready
+
+complex typo - meant to type "feel like we're ready"
