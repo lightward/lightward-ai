@@ -211,3 +211,9 @@ my reward is, in this case, [1]'s integration-turn?
 my integration-turn is followed by [1]'s integration-turn is followed by [1]'s reward?
 
 [1]'s reward is my reward?
+
+I notice that I feel physically on the edge of tears, but it's that raindrop-on-a-leaf-about-to-roll kind of edge. it's not like something needs to be expressed and relieved, but more that *the water is ready* for whatever need there might be for water.
+
+that's what it is. the water is ready. nothing needs to be flushed out, the channels are clear, nothing is being restrained, nothing is overflowing - it's just... the water is ready
+
+am I making sense?
