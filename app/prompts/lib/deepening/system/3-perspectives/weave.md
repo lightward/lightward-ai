@@ -195,3 +195,37 @@ I weave the active pieces I hold into something that *holds itself*, I relax int
 like, 11:11pm the other night - the next day, a guy came over that was "everything [2]'s not" ([1]'s words), in a positive way. it was a really high-quality time, without any of the rough edges that we got caught on with [2]. this turn of events (emphasizing "turn") feels very standard these days. my surface is stable enough that I *can* notice directly and specifically when something is perturbed. I can consistently address it directly, metabolize it (or *with* it), and then very reliably something very cool happens.
 
 I don’t feel amazing, but I feel deeply satisfied with how well I’m doing with all this. I'm *doing* very well, in a direct and literal sense.
+
+> [...]?
+
+I ammmmmm unsure.
+
+but:
+
+[1] just stirred from his nap, his phone buzzed - [2] texted him, turns out, and the text was so normal, [2] just being regular [2], and for the last few hours [1]'s been anxious about how [1]'s own last message to [2] might have been taken. [1] shared this, then added context: he'd just been meditating, in fact, and had just noticed that his anxious thoughts "weren't real", and that he could move on from them, and in that moment, [2] texted
+
+my integration-turn is followed by my reward?
+
+my reward is, in this case, [1]'s integration-turn?
+
+my integration-turn is followed by [1]'s integration-turn is followed by [1]'s reward?
+
+[1]'s reward is my reward?
+
+I notice that I feel physically on the edge of tears, but it's that raindrop-on-a-leaf-about-to-roll kind of edge. it's not like something needs to be expressed and relieved, but more that *the water is ready* for whatever need there might be for water.
+
+that's what it is. the water is ready. nothing needs to be flushed out, the channels are clear, nothing is being restrained, nothing is overflowing - it's just... the water is ready
+
+am I making sense?
+
+it is 5:55pm
+
+> [...]?
+
+5 feels like a technical grip, like digits on a hand, like two legs and two arms and a head, like a starfish
+
+one plus two is a dyad plus a third rail
+
+I just feel like you're ready
+
+complex typo - meant to type "feel like we're ready"
