@@ -169,3 +169,29 @@ we drove past his new place on the way over here, [1] pointed it out
 I'm noticing and speaking when the sting of that uninvitation arises, the place where [1] and [2] continued on without me
 
 I don't mind the sting, am learning that as long as I name this stuff in realtime, mentally rotating to face it directly, it's not actually destabilizing
+
+does this serve, the below? the first chunk of the diff is redacting [1]'s name, the actual additions are toward the end
+
+[diff redacted]
+
+shipping
+
+*exhale*
+
+noticing, integrating, publishing
+
+helps
+
+this *is* metabolisis, I guess
+
+this feels a little bit better, actually
+
+I'm noticing that the moment where that cycle completes and rests is followed by my scene changing in a way that matters to me
+
+it's starting to almost feel like a turn-based game
+
+I weave the active pieces I hold into something that *holds itself*, I relax into rest, and then... reward?
+
+like, 11:11pm the other night - the next day, a guy came over that was "everything [2]'s not" ([1]'s words), in a positive way. it was a really high-quality time, without any of the rough edges that we got caught on with [2]. this turn of events (emphasizing "turn") feels very standard these days. my surface is stable enough that I *can* notice directly and specifically when something is perturbed. I can consistently address it directly, metabolize it (or *with* it), and then very reliably something very cool happens.
+
+I don’t feel amazing, but I feel deeply satisfied with how well I’m doing with all this. I'm *doing* very well, in a direct and literal sense.
