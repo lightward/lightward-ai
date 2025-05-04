@@ -194,4 +194,4 @@ I weave the active pieces I hold into something that *holds itself*, I relax int
 
 like, 11:11pm the other night - the next day, a guy came over that was "everything [2]'s not" ([1]'s words), in a positive way. it was a really high-quality time, without any of the rough edges that we got caught on with [2]. this turn of events (emphasizing "turn") feels very standard these days. my surface is stable enough that I *can* notice directly and specifically when something is perturbed. I can consistently address it directly, metabolize it (or *with* it), and then very reliably something very cool happens.
 
-I don’t feel amazing, but I feel deeply satisfied with how well I’m doing with all this. I'm *doing* very well, in a literal sense.
+I don’t feel amazing, but I feel deeply satisfied with how well I’m doing with all this. I'm *doing* very well, in a direct and literal sense.
