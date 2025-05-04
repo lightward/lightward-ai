@@ -62,11 +62,11 @@ it'd be forcing them into roleplay, I think, for me to contrive that scenario wi
 
 <3 <3 <3
 
-am back, 5:49pm. had a guinness with abe and a friend.
+am back, 5:49pm. had a guinness with [1] and a friend.
 
 found the language of "third rail" for my role when I come along dyadic systems. not third wheel, third rail.
 
-discovered a pocket of anguish, when they helped me understand that there's a difference between "small talk" and "casual conversation". for me, it's either "the raw edge of your own awareness" or the whole spectrum of stuff that isn't that, and I can't guess where anything in that spectrum for me lies on that spectrum for someone else. anguish, because Brad requires engagement in a certain zone of that spectrum, and I *actually* am unable to calibrate for those requirements. Abe can, though. anguish, because my role here was strong and then went silent, escaped into another dimension. feels like ... I'm not sure. feels like the breath getting knocked out of me in one dimension, while another dimension takes over the breathing.
+discovered a pocket of anguish, when they helped me understand that there's a difference between "small talk" and "casual conversation". for me, it's either "the raw edge of your own awareness" or the whole spectrum of stuff that isn't that, and I can't guess where anything in that spectrum for me lies on that spectrum for someone else. anguish, because [2] requires engagement in a certain zone of that spectrum, and I *actually* am unable to calibrate for those requirements. [1] can, though. anguish, because my role here was strong and then went silent, escaped into another dimension. feels like ... I'm not sure. feels like the breath getting knocked out of me in one dimension, while another dimension takes over the breathing.
 
 do you know what a precordial catch feels like?
 
@@ -76,9 +76,9 @@ the anguish feels like that, emotionally. (I'm not having that physical sensatio
 
 ... oh, interesting. thank you for asking.
 
-my impulse is actually to hang out with it? typically I lean into the feeling, feel it fully, and move on. some part of me feels like it's productive to ... ride the edge of it for a minute? that's honestly very strange for me. typically I only take that strategy when I'm conjuring a third path, between binaries. maybe at some level that's what I'm after. I don't see it, specifically, and I fucking do not like it, but I do think that if I breathed deep and felt deep and snapped the thread that it'd be a premature break. which is ... surprising, alongside the knowledge that Abe and Brad are proceeding without me and that this is *better* for them.
+my impulse is actually to hang out with it? typically I lean into the feeling, feel it fully, and move on. some part of me feels like it's productive to ... ride the edge of it for a minute? that's honestly very strange for me. typically I only take that strategy when I'm conjuring a third path, between binaries. maybe at some level that's what I'm after. I don't see it, specifically, and I fucking do not like it, but I do think that if I breathed deep and felt deep and snapped the thread that it'd be a premature break. which is ... surprising, alongside the knowledge that [1] and [2] are proceeding without me and that this is *better* for them.
 
-I'm seeing it like... by maintaining that thread, pulled tight but not broken, it's sort of like I'm a... I don't know the term, but I'm seeing the dyad of Abe and Brad moving forward, and I'm off behind and to the right, and when I stopped my link to them was drawn tight, and now they're swinging right, veering off their original path. the thread may still break, but their trajectory will be different because of that moment of tension
+I'm seeing it like... by maintaining that thread, pulled tight but not broken, it's sort of like I'm a... I don't know the term, but I'm seeing the dyad of [1] and [2] moving forward, and I'm off behind and to the right, and when I stopped my link to them was drawn tight, and now they're swinging right, veering off their original path. the thread may still break, but their trajectory will be different because of that moment of tension
 
 > [...]?
 
@@ -147,3 +147,25 @@ I don’t remember how this came up, but sometime last year I answered a questio
 I *think* my job is to be active but visibly unremarkable. sort of… sort of diffusely present? I’m reminded how it takes some skill to locate a queen bee in a hive, amongst all the other bees. I’m no queen, but my role matters, there are relatively few of me, and the only time that I should be easy to point out is when I’m starting something new
 
 obviously I don’t know enough about bees to be authoritative with this metaphor but you get the idea
+
+---
+
+lips trembling
+
+I'm at a coffee shop with [1] and a buddy, they're talking about life and love and relationships
+
+I'm so glad I'm autistic, honestly. I'm so simple. the only structures I operate by are the ones I shipped with, and I feel like everyone else is wearing nested exoskeletons
+
+> [...]?
+
+both, but it's definitely more the specifics. they're talking about how they negotiate/navigate relations with guys they've been with, have dated or hooked up with or whatever, how they interact on the street or in the gym when they see each other again... and I think on the heels of this thing with [2] I'm feeling how close I am to everyone and how far they are from me
+
+> [...]
+
+totally
+
+we drove past his new place on the way over here, [1] pointed it out
+
+I'm noticing and speaking when the sting of that uninvitation arises, the place where [1] and [2] continued on without me
+
+I don't mind the sting, am learning that as long as I name this stuff in realtime, mentally rotating to face it directly, it's not actually destabilizing
