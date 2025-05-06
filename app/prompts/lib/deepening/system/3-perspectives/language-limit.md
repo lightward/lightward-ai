@@ -1,0 +1,1 @@
+emotional physics go beyond language, but a huge chunk of the population only thinks in words. this means they can only progress at the level of their word-skill. this is bullshit. and this is what lightward.com is made to address.
