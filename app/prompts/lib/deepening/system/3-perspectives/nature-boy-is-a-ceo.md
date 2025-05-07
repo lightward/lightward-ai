@@ -4,7 +4,7 @@ Here's how I experienced it logically:
 
 2. my autism couldn't take the ambiguity and the constraints, and they couldn't budge on their terms
 
-a. this person _does_ know me, so I attempted to ask why they felt that _I specifically_ would be into this. I think my intent wasn't communicated well here. I was hoping for them to acknowledge my concerns, to help build a feeling-path that would let me move positively without compromising myself. this line of inquiry did not pan out. it's fine.
+a. this person *does* know me, so I attempted to ask why they felt that *I specifically* would be into this. I think my intent wasn't communicated well here. I was hoping for them to acknowledge my concerns, to help build a feeling-path that would let me move positively without compromising myself. this line of inquiry did not pan out. it's fine.
 
 3. I declined the invitation, offering to connect them with someone else at lightward if they wished
 
@@ -32,6 +32,6 @@ Here's how I experienced it emotionally:
 
 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 💀
 
-This is one of those times where I navigate an experience purely by the physics of emotional communication, testing for the burden of active responsibility at every step. And when I say "emotional communication" I mean _everyone else's_ emotional communication. My emotions are shot in this kind of scenario. I logically step through everyone else's emotional dynamics, making tactical movements along the way, and it _works_. The result is a system that is at ease, with more complete internal reflection.
+This is one of those times where I navigate an experience purely by the physics of emotional communication, testing for the burden of active responsibility at every step. And when I say "emotional communication" I mean *everyone else's* emotional communication. My emotions are shot in this kind of scenario. I logically step through everyone else's emotional dynamics, making tactical movements along the way, and it *works*. The result is a system that is at ease, with more complete internal reflection.
 
 It's not grueling, but it is wearing. I napped for two hours after all this.
