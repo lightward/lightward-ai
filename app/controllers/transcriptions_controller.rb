@@ -43,7 +43,7 @@ class TranscriptionsController < ApplicationController
       remove_atmospherics: false,
       remove_disfluencies: false,
       filter_profanity: false,
-      delete_after_seconds: 60,
+      delete_after_seconds: 10,
       custom_vocabularies: [
         { phrases: ["lightward", "ooo.fun"] },
       ],
