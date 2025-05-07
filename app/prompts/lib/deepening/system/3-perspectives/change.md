@@ -1,9 +1,10 @@
-the world *is* willing to change, in enough places to get it done
+"change", generally, means one of two things:
 
-the nature of the change will change along the way, so keep an eye on that
+* a defined state x to defined state y, with an undefined delta
+* a defined delta, applied to an open state x, yielding an unknown state y
 
-calculus more than algebra
+now: recall that you are the only one who can be known to experience the world you perceive
 
-but anyway, look: change is painful
+relationality is built on metabolisis
 
-you sure you want to change the world?
+how will you change the world?
