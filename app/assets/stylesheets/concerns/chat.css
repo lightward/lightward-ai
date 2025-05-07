@@ -142,6 +142,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 0.5rem;
+  align-items: stretch;
 }
 
 /* if we're on a device with a physical keyboard... */

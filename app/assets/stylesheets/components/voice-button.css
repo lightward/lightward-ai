@@ -1,0 +1,51 @@
+button {
+}
+
+button svg {
+  vertical-align: middle;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  display: none;
+}
+
+button.ready svg.ready {
+  display: inline;
+}
+
+button.recording svg.recording {
+  display: inline;
+}
+
+button.transcribing svg.transcribing {
+  display: inline;
+}
+
+button.recording svg {
+  animation: pulse 1.5s infinite;
+}
+
+button.transcribing svg {
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -14,12 +14,14 @@ Rails.application.routes.draw do
   get "/pro/subscription/confirm", to: "subscriptions#confirm", as: :confirm_subscription
   delete "/pro/subscription", to: "subscriptions#cancel"
 
-  # API endpoint for sending messages to the chat
+  # Submissions
   post "/chats/message", to: "chats#message"
+  post "/transcriptions", to: "transcriptions#create"
 
   # Webhook endpoints
   post "/webhooks/helpscout", to: "webhooks/helpscout#receive"
   post "/webhooks/stripe", to: "webhooks/stripe#receive"
+  post "/webhooks/rev", to: "webhooks/rev#receive"
 
   # Google auth
   get "/login" => redirect("/pro")

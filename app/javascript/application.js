@@ -4,6 +4,7 @@ Rails.start();
 import { initChat } from 'src/concerns/chat';
 import { initTextarea } from 'src/concerns/textarea';
 import 'src/components/prompt-button';
+import 'src/components/voice-button';
 
 const initOnReady = () => {
   initTextarea();

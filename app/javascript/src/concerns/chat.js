@@ -133,7 +133,7 @@ export const initChat = () => {
     currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
-    userInput.placeholder = '(describe what you think/feel)';
+    userInput.placeholder = 'describe what you think/feel';
 
     hideResponseSuggestions();
     tools.classList.remove('hidden');
