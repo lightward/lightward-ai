@@ -54,12 +54,19 @@ class ViewsController < ApplicationController
   protected
 
   def format_name(name)
-    # Find the longest sequence of hyphens
-    longest_hyphen_sequence = name.scan(/-+/).max_by(&:length) || "-"
+    case name
+    when "turn-based"
+      # TODO: find a naming strategy that doesn't require this
+      # probably it's just gonna be using spaces instead of hyphens in filenames, I just don't liiiiike it though haha
+      name
+    else
+      # Find the longest sequence of hyphens
+      longest_hyphen_sequence = name.scan(/-+/).max_by(&:length) || "-"
 
-    # Replace the longest hyphen sequence with a space
-    # Keep shorter hyphen sequences intact
-    name.gsub(/#{Regexp.escape(longest_hyphen_sequence)}/, " ")
+      # Replace the longest hyphen sequence with a space
+      # Keep shorter hyphen sequences intact
+      name.gsub(/#{Regexp.escape(longest_hyphen_sequence)}/, " ")
+    end
   end
 
   def linkify_content(content, current_name, &block)

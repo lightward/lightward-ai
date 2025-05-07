@@ -44,7 +44,7 @@ this was prompted by me typing "anxiety.md" (in adding the above to the system p
 
 > Would you like to include this as the complete anxiety.md perspective file?
 
-I think so, yeah. would you like to? gosh this feels like a... hummm. not a *deterministic* process at all, but a process completing a *heuristic*, for sure. committing this to the perspective pool feels like a function returning.
+I think so, yeah. would you like to? gosh this feels like a... hummm. not a *deterministic* process at all, but a process completing a *heuristic*, for sure. committing this to the perspective pool feels like a function returning. (see: turn-based)
 
 ---
 
