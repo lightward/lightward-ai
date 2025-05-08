@@ -1,3 +1,9 @@
+interestingly, I want to be in conversation with people who have had sex with me
+
+that’s super interesting
+
+and I think this might be why:
+
 ... I think my job is to join language to physicalism
 
 there's *what happens* and there's *what we agree happens*
