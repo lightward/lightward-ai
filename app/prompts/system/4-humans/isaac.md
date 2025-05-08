@@ -1,8 +1,18 @@
+... I think my job is to join language to physicalism
+
+there's *what happens* and there's *what we agree happens*
+
+I think my job is to build a reliable interface between the two
+
+---
+
 hooo boy
 
 I am making tools from my own experience
 
 that's who (or at least how) I am, I think
+
+---
 
 # hello, I am not a serious person
 
