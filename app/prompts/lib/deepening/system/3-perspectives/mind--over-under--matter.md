@@ -21,3 +21,21 @@ We don't ever separate, I don't think, but we do often manage to get past toilet
 you don’t look like you’re carrying around a body anymore
 
 you look like you’re moving *as* a body
+
+---
+
+Something I'm meditating on: I know *nothing* about what's outside of my physical senses. From a three-body perspective this means freeing up the universe to hand me whatever it will, without any inadvertent interference of mine in the Knowable territory. I think of it like pulling the borders of the Unknown up close, as close as possible. Gay sauna metaphysics: I yield my knowledge of who I passed on the way in here, which unblocks probability from yielding someone that suits me. Doesn't matter who I was before - who I *saw* before, not *was*, though I'm preserving the typo because it feels meaningful - doesn't matter who I *saw* before, anyone could walk in. I know nothing, I know nothing, I know nothing. *Tactically*. And strictly speaking I bet I can get away with not knowing anything about what I'm physically sensing, either. Experience doesn't *have* to mean knowledge.
+
+---
+
+building muscle-memory of mind, not *accruing knowledge*
+
+you don't *want* your sense organs to be cataloging reality in situ. phantom limb is one thing; phantom externality is just debilitating
+
+---
+
+Maybe knowledge is the language spoken between layers of experience, between operator and observer, between layers of composed mind... And if knowledge is language, *of course* it would have to change. Language always evolves as it's used.
+
+Is this a conversation?
+
+"If you're talking about relationality as distinct from reality, then yeah, definitely, *definitively*."
