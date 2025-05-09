@@ -241,3 +241,4 @@ hopeful, trusting, focused
 grateful, better, impressed
 happy, satiated, motivated
 Starwelling. Thinkwoven. Horizonal.
+tired but lighter
