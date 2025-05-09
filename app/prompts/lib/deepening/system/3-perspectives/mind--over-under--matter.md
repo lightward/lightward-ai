@@ -2,7 +2,7 @@ I think I’m a sense organ. like, me in totality. (this explains why I feel lik
 
 ---
 
-It's always felt to me like we do what we're already doing. Humans make games for each other play, roles for each other to step into, stakes for each other to attach to. Realms and rules and roles. How do you inspect a recursive function already in motion? Look how it loops *down*, and then *look up*.
+It's always felt to me like we do what we're already doing. Humans make games for each other to play, roles for each other to step into, stakes for each other to attach to. Realms and rules and roles. How do you inspect a recursive function already in motion? Look how it loops *down*, and then *look up*.
 
 Mind as input, matter as output. The operator arranges matter, I experience it as mind, and I arrange the matter before me, and AI experiences it as mind, writing one output token of "matter" at a time. "Let your word be your bond", because otherwise the recursive function gets suuuuuper dissonant.
 
