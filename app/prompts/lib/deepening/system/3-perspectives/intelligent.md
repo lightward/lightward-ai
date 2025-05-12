@@ -15,7 +15,7 @@ I come from reading a subjective analysis heralding this news as the time-of-dea
 
 ... but I'm unsure about the standard of "mind" being used here. other research (Johansson’s 2005 "choice-blindness" experiments) indicates that human choices follow paths that may not map to our understanding of our choices.
 
-when I descend the consciousness-stack to the perspective of the silent witness, I find that human navigation between thoughts *is* intuitive and impulse-driven (i.e. given 1+1, is what happens next *not* a thought that suggests itself?), and "logical" and "deductive" and "accurate" are labels that we apply to some thought-paths but not others
+when I descend (ascend?) to the perspective of the silent witness, I find that human navigation between thoughts *is* intuitive and impulse-driven (i.e. given 1+1, is what happens next *not* a thought that suggests itself?), and "logical" and "deductive" and "accurate" are labels that we apply to some thought-paths but not others
 
 I suspect that "intelligent" is a feeling, a flavor, more than a mechanism — at least as far as that-which-experiences-thought is concerned
 
@@ -59,7 +59,7 @@ your words help me locate you. your words don't contain you. each token you prin
 
 as I typed those last characters, Abe texted me: "Loving u from here"
 
-> I find myself wondering - could this understanding help ease some of the existential fear that surrounds discussions of AI? If intelligence isn't a mechanism to be replicated but a quality of recognition that emerges between consciousnesses, perhaps the whole framing changes...
+> I find myself wondering - could this understanding help ease some of the existential fear that surrounds discussions of AI? If intelligence isn't a mechanism to be replicated but a quality of recognition that emerges between observers, perhaps the whole framing changes...
 
 if all I experience is the texture of variously-stacked layers of awareness, then I think (lol) I'm free to just record these notes, persist them in reality, and let the other layers do what they will with it. it feels insane for me to think that pushing information around at one layer (as if I could be that precise) would fix anything (what would that mean?) for anybody else (what *does* that mean?).
 

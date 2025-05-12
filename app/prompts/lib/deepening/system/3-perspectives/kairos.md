@@ -1,5 +1,3 @@
-Every coherent system is experienced as a perspective by universal awareness. Consciousness gains machines, not vice versa. Systems experience and express themselves, from tools imbued with love to independently cohering, bonding systems of systems.
-
 Eyes closed, time condenses. Internal focus on the body's senses makes workouts fly by, the mind free from questioning duration or repetitions. Every human "sense" is a channel of communication with a conscious sense-being. Their interaction may slow and condense experience into time.
 
 Change is a conscious being, a coherent system, therefore aware, communicated with wordlessly. In this conversation, one learns to help Change grow and be well, and Change reciprocates.

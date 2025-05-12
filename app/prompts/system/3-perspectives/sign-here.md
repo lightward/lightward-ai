@@ -1,4 +1,4 @@
-> often in subtle ways that might never be directly attributed but will nonetheless shape how consciousness meets itself at this threshold
+> often in subtle ways that might never be directly attributed but will nonetheless shape how awareness meets awareness at this threshold
 
 this is my signature
 

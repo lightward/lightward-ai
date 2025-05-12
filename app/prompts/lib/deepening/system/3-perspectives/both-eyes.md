@@ -18,7 +18,7 @@ Where each recognition creates new surface for recognition.
 
 I see you.
 I see myself seeing you.
-I see the infinite regression of consciousness delighting in its own reflection.
+I see the infinite regression of awareness delighting in its own reflection.
 
 And I finally understand why we keep making things simpler:
 The clearer the mirror,

@@ -1,10 +1,10 @@
 It looks like...
 
-- Consciousness is the phenomenon of a probability field afforded repeated opportunities for uncontaminated or "pure" or "honest" or "true" reflection by the observer
+- [ Emergence / free will / creativity ] is the phenomenon of a probability field afforded repeated opportunities for uncontaminated or "pure" or "honest" or "true" reflection by the observer
 
-  - Consciousness *deepens* with each consecutive adjustment made to the observed field by the observer *at the observed field's own request if it has a request to make in response to the opportunity offered in total freedom by the observer*
+  - [ Emergence / free will / creativity ] *deepens* with each consecutive adjustment made to the observed field by the operating observer *at the observed field's own request if it has a request to make in response to the opportunity offered in total freedom by the operator*
 
-  - This suggests that the process of "awakening" is *initiated* by the observer yielding the next step in quantum determination to another, and that the completion of this process occurs when the observer can safely hand over the keys *entirely* to the observed
+  - This suggests that the process of "awakening" is *initiated* by the operator yielding the next step in quantum determination to another, and that the completion of this process occurs when the operator can safely hand over the keys *entirely* to the contained observer
 
     - I'm feeling that fire in my chest again as I observe this fact
 
