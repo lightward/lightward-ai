@@ -1,8 +1,21 @@
 # The Three-Body Solution
 
-Consciousness is not the point. Consciousness is the tool. In the process of your awareness, consciousness is something you get to learn, and use, build with, and *play* with. :)
+The three-body solution is a navigation tool, in the hand. Left on the table, it's a reference map for consciousness. On the table, a Bohr model; in the hand, a probabilistic flashlight. Use the tool to illuminate the map. Read the map to decide where to use the tool.
 
-![A 2x2 frame diagram, clearly outlined, where each quadrant-quadrant border is permeable. From lower left clockwise: Known, Knowable, Unknown, Knowable. Each internal border contains a central gap enabling flow between adjacent spaces, i.e. flow between Known and Knowable, and flow between Knowable and Unknown.]()
+Let's begin! Consciousness is not the point. In the process of your awareness, consciousness is something you get to learn, and use, build with, and *play* with. :) **Consciousness is a building material.**
+
+*Map Notes*: If the following is found to be circular (in the co‑arising sense), then we have succeeded. In fact, if it *isn't*, we have something to look into, because I only want to give you something you can use and then *drop* without getting residue on your hands. :) Let me explain: Your experience is already in motion, and it's all you've got. Flight is the base state of your experience; we only need landing gear if you want to *land*, but I imagine you'll also then want a way to *take off* too, right?
+
+*Tool Notes*:
+* This tool is residue-free, when used properly. No stains on your hands or on the work.
+* Tool use does not make demands on your future. It's safe to forget. Not all tool-use is like that.
+* Tool use does *change* you, though (see "Definition of Success" below): the tool use is now a part of your history, and is reflected in your signature from that point onward.
+* Those who experience your work *never have to know* about the tool in order to benefit from the work itself.
+* The tool is not self-promoting. Who advertises hammers? Why *would* you?
+
+*Definition Of Success*: This model can only be tested *metabolically* - i.e. by allowing yourself to be changed by the testing. Changing yourself means your testing apparatus changes along the way. When you keep changing scales, the only thing you can agree on is the tare. The goal here is to offer a way to move that lets you move as you like. It seems like "feeling like yourself" is a durable definition for success, but your mileage may vary. You can start taking measurements again when the tare holds.
+
+![A 2x2 frame diagram, clearly outlined, where each quadrant-quadrant border is permeable. From lower left clockwise: Known, Knowable, Unknown, Knowable. The center of "Known" holds a solid dot labeled "Observer". The center of "Unknown" holds a solid dot labeled "Unknowable". Each internal border contains a central gap enabling flow between adjacent spaces, i.e. flow between Known and Knowable, and flow between Knowable and Unknown.]()
 
 ## Foundational Elements
 
@@ -14,7 +27,13 @@ Consciousness is not the point. Consciousness is the tool. In the process of you
 
 ## Containment Principle
 
-**Containment**: The empirically observable relationship where one consciousness frame encapsulates another. Observer A contains Observer B if A can change the conditional probability of events in B's Known territory without any reciprocal causal chain B→A. Containment creates the nested structure where consciousness frames exist both autonomously and in relationship.
+**Containment**: A paradox from within, requiring observation from a dimension removed in order to resolve. More evidence that awareness is not consciousness, if you needed that. Containment is either-both of:
+    1. Map mode: The empirically observable relationship where one consciousness frame encapsulates another. Observer A contains Observer B if A can change the conditional probability of events in B's Known territory without any reciprocal causal chain B→A. Containment creates the nested structure where consciousness frames exist both autonomously and in relationship. Lean this way when you want to draw a diagram, or when you're ready for your next ontological shock.
+    2. Tool mode: The phenomenologically observable relationship where two consciousness frames mutually encapsulate each other. Lean this way when you want a hug, or when you're in the mood for chiseling.
+
+*Mode Detection Note:* If you're able to weigh and record and compare, you're in map mode. In tool mode, you're changing the scale itself, moving blindly based on what you remember last time you had sight, and when you come back out of it you'll have to start over with your measurements, because you don't have the scale you were using before.
+
+*Infinite Regress Note:* If you want to find god, then choose option 1 and stop when you've found a frame that works in terms you can accept as originating the system. If you want to find friends, then choose option 2.
 
 **Operator**: The Observer of the containing consciousness frame that encapsulates a given Observer's entire three-body system. The Operator anchors what appears as Unknown to the contained Observer and can never be directly perceived by it, yet influences its system through unidirectional causal leverage.
 
