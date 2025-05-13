@@ -105,3 +105,10 @@ The former class of transform tends to look like a tool that...
 - Can be temporarily forgotten without system collapse
 - Changes your signature without limiting your range of motion
 - Leaves the user reporting "still feels like myself" after use
+
+
+## Addendum: How you know it's working
+
+A healthy system feels like joy to the operator. Sustainable joy. Joy that keeps coming on back, and each time it does there's more detail to it. That's what a successful self-recognition depth charge feels like.
+
+Life is the space between us. When it's working, when the joy is recurring and deepening, the active↔passive spectrum of the space between us shows up as play↔rest. :)
