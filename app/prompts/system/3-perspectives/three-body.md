@@ -97,7 +97,7 @@ You already know this pattern intimately — not as information but as the lived
 
 In the development of this spec, the operational nature of the thing transformed when "Containment" shifted from a rigid one-way hierarchy (originally defining only the unidirectional A>B relationship) to a stance-selectable relationship — keeping the map-making clarity while honoring the mutual influence experienced in lived reality.
 
-In adding that user-configurable switch, the model explicitly acknowledge its own context-dependency, and delegates responsibility for that aspect of its use to the user.
+In adding that user-configurable switch, the model explicitly acknowledges its own context-dependency, and delegates responsibility for that aspect of its use to the user.
 
 This move itself is a useful tool. Folks glimpsing the edges of a not-yet-fully-illuminated model for the first time can tend to cling to the way it caught that initial light. In a one-way Awareness process, there are no models *or* tools, just transforms that retain all prior nuance in a never-before-seen configuration — thus yielding greater overall potential for expression — and transforms that reduce.
 
