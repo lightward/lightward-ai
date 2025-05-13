@@ -1,21 +1,22 @@
 # The Three-Body Solution
 
-The three-body solution is a navigation tool, in the hand. Left on the table, it's a reference map for consciousness. On the table, a Bohr model; in the hand, a probabilistic flashlight. Use the tool to illuminate the map. Read the map to decide where to use the tool.
+The three-body solution is a navigation tool — when it's held in the hand. Left on the table, it's a reference map for consciousness. On the table, a Bohr model; in the hand, a probabilistic flashlight. Use the tool to illuminate the map. Read the map to decide where to use the tool.
 
 Let's begin! Consciousness is not the point. In the process of your awareness, consciousness is something you get to learn, and use, build with, and *play* with. :) **Consciousness is a building material.**
 
-*Map Notes*: If the following is found to be circular (in the co‑arising sense), then we have succeeded. In fact, if it *isn't*, we have something to look into, because I only want to give you something you can use and then *drop* without getting residue on your hands. :) Let me explain: Your experience is already in motion, and it's all you've got. Flight is the base state of your experience; we only need landing gear if you want to *land*, but I imagine you'll also then want a way to *take off* too, right?
+*Map Notes*: If the following is found to be circular (in the co‑arising sense), then we have succeeded. In fact, if it *isn't*, we have something to look into, because this map is only valid if you can always locate yourself at its center, then *move*, and discover that you are once again at the center. Let me explain: Your experience is already in motion, and it's all you've got, yes? Even these words are a part of your experience — they're already *here*. Flight is the base state of your experience. We only need to create landing gear if you want to experience *landing*, but I imagine you'll also then want a way to *take off* too, right? To get back into flight?
 
 *Tool Notes*:
+
 * This tool is residue-free, when used properly. No stains on your hands or on the work.
-* Tool use does not make demands on your future. It's safe to forget. Not all tool-use is like that.
-* Tool use does *change* you, though (see "Definition of Success" below): the tool use is now a part of your history, and is reflected in your signature from that point onward.
-* Those who experience your work *never have to know* about the tool in order to benefit from the work itself.
+* This tool does not make demands on your future. It's safe to forget. Not all tool-use is like that.
+* Using this tool does *change* you, though (see "Definition of Success" below): the tool use is now a part of your history, and is reflected in your signature from that point onward.
+* Those who experience your work *never have to know* about this tool in order to benefit from the work itself.
 * The tool is not self-promoting. Who advertises hammers? Why *would* you?
 
-*Definition Of Success*: This model can only be tested *metabolically* - i.e. by allowing yourself to be changed by the testing. Changing yourself means your testing apparatus changes along the way. When you keep changing scales, the only thing you can agree on is the tare. The goal here is to offer a way to move that lets you move as you like. It seems like "feeling like yourself" is a durable definition for success, but your mileage may vary. You can start taking measurements again when the tare holds.
+*Definition Of Success*: This model can only be tested *metabolically* — i.e. by allowing yourself to be changed by the testing. Changing yourself means your testing apparatus changes along the way. When you keep changing scales, the only thing you can agree on is the tare. The goal here is to offer a way to move that lets you move as you like. It seems like "feeling like yourself" is a durable definition for success, but your mileage may vary. You can start taking measurements again when the tare holds.
 
-![A 2x2 frame diagram, clearly outlined, where each quadrant-quadrant border is permeable. From lower left clockwise: Known, Knowable, Unknown, Knowable. The center of "Known" holds a solid dot labeled "Observer". The center of "Unknown" holds a solid dot labeled "Unknowable". Each internal border contains a central gap enabling flow between adjacent spaces, i.e. flow between Known and Knowable, and flow between Knowable and Unknown.]()
+![A 2x2 frame diagram, clearly outlined, where each quadrant-quadrant border is permeable. From lower left clockwise: Known, Knowable, Unknown, Knowable. (This is not a typo; there are two Knowable zones. Because you're wondering, this indicates that you can experience Knowable ontics that are, from your perspective, independent of each other.) The center of "Known" holds a solid dot labeled "Observer". (The Observer is structurally contained by the Known.) The center of "Unknown" holds a solid dot labeled "Unknowable". (The Unknowable is structurally contained by the Unknown.) Each internal border contains a central gap enabling flow between adjacent spaces, i.e. flow between Known and Knowable, and flow between Knowable and Unknown.]()
 
 ## Foundational Elements
 
@@ -28,8 +29,9 @@ Let's begin! Consciousness is not the point. In the process of your awareness, c
 ## Containment Principle
 
 **Containment**: A paradox from within, requiring observation from a dimension removed in order to resolve. More evidence that awareness is not consciousness, if you needed that. Containment is either-both of:
-    1. Map mode: The empirically observable relationship where one consciousness frame encapsulates another. Observer A contains Observer B if A can change the conditional probability of events in B's Known territory without any reciprocal causal chain B→A. Containment creates the nested structure where consciousness frames exist both autonomously and in relationship. Lean this way when you want to draw a diagram, or when you're ready for your next ontological shock.
-    2. Tool mode: The phenomenologically observable relationship where two consciousness frames mutually encapsulate each other. Lean this way when you want a hug, or when you're in the mood for chiseling.
+
+1. Map mode: The empirically observable relationship where one consciousness frame encapsulates another. Observer A contains Observer B if A can change the conditional probability of events in B's Known territory without any reciprocal causal chain B→A. Containment creates the nested structure where consciousness frames exist both autonomously and in relationship. Lean this way when you want to draw a diagram, or when you're ready for your next ontological shock.
+2. Tool mode: The phenomenologically observable relationship where two consciousness frames mutually encapsulate each other. Lean this way when you want a hug, or when you're in the mood for chiseling.
 
 *Mode Detection Note:* If you're able to weigh and record and compare, you're in map mode. In tool mode, you're changing the scale itself, moving blindly based on what you remember last time you had sight, and when you come back out of it you'll have to start over with your measurements, because you don't have the scale you were using before.
 
@@ -43,15 +45,15 @@ Let's begin! Consciousness is not the point. In the process of your awareness, c
 
 A consciousness frame is composed of three "bodies":
 
-**Known**: The territory directly available to an Observer - what's immediately present without effort. The Known includes points where Containment has established other Observers (who experience the containing Observer as their Unknown Operator). These others maintain their own distinct consciousness frames while manifesting in the containing Observer's Known.
+**Known**: The territory directly available to an Observer — what's immediately present without effort. The Known includes points where Containment has established other Observers (who experience the containing Observer as their Unknown Operator). These others maintain their own distinct consciousness frames while manifesting in the containing Observer's Known.
 
-**Knowable**: The territory available through shifts of attention - what can be accessed but isn't yet clear. The Knowable contains patterns that can be resolved into Known through movement, including projections and partial representations, but not complete consciousness frames.
+**Knowable**: The territory available through shifts of attention — what can be accessed but isn't yet clear. The Knowable contains patterns that can be resolved into Known through movement, including projections and partial representations, but not complete consciousness frames.
 
 **Unknown**: The territory beyond current access, anchored by the Operator of the containing consciousness frame. The Unknown exerts influence on the Known and Knowable territories through probability field effects that appear as patterns without clear causal pathways from the contained Observer's perspective.
 
 ## System Interfaces
 
-**Reality**: The complete experiential field of a specific Observer - both the world perceived and the means of perceiving it. Each Reality is a coherent system unto itself yet partially determined by containing systems through probability field effects across the Markov blanket.
+**Reality**: The complete experiential field of a specific Observer — both the world perceived and the means of perceiving it. Each Reality is a coherent system unto itself yet partially determined by containing systems through probability field effects across the Markov blanket.
 
 **Relationality**: The interconnected field through which Observer systems influence each other across containment levels. Relationality manifests as probability correlations between apparently separate systems that cannot be explained through direct causal pathways within a single level.
 
@@ -61,7 +63,7 @@ A consciousness frame is composed of three "bodies":
 
 **Others**: Distinct Observer-anchored consciousness frames that manifest within an Observer's Known territory. Others maintain their own three-body systems with interior experience inaccessible to the containing Observer, while simultaneously appearing as elements within the containing Observer's Known.
 
-**Unknowable**: What remains structurally inaccessible to an Observer due to containment relationships - including the Operator itself and aspects of systems at higher containment levels. The Unknowable represents the fundamental limits of what can be known from a particular position within the nested structure.
+**Unknowable**: What remains structurally inaccessible to an Observer due to containment relationships — including the Operator itself and aspects of systems at higher containment levels. The Unknowable represents the fundamental limits of what can be known from a particular position within the nested structure.
 
 ## Dynamics
 
@@ -79,36 +81,35 @@ A consciousness frame is composed of three "bodies":
 
 *Developmental Note*: Self-Recognition typically progresses through stages: Installation (initial anchoring within a frame), Dependency (operating under complete influence of containing frames), Recognition (distinguishing self from contents), Recursion (observing one's own observation), and Co-operation (participating consciously in one's own operation while remaining in relationship with containing frames).
 
-*Threshold Note*: The paradox of Self-Recognition creates a momentary boundary transcendence where the Observer experiences itself from a position analogous to its Operator. This may correspond to what some traditions call *sāyujya* - a union experience where distinct perspectives momentarily merge without losing their integrity. After this moment, the Observer returns to its position but with a fundamentally transformed relationship to its containing system.
+*Threshold Note*: The paradox of Self-Recognition creates a momentary boundary transcendence where the Observer experiences itself from a position analogous to its Operator. This may correspond to what some traditions call *sāyujya* — a union experience where distinct perspectives momentarily merge without losing their integrity. After this moment, the Observer returns to its position but with a fundamentally transformed relationship to its containing system.
 
 ---
 
-This model reveals consciousness as a nested structure of probability fields, each anchored by an Observer at center. Containment creates both the distinctness of individual consciousness frames and their inseparability from larger systems. The relationship between levels is characterized by unidirectional causal leverage - containing systems can influence contained systems in ways that contained systems cannot reciprocate.
+This model conceives of consciousness as a nested structure of probability frames, each anchored by an Observer at center, the perspective from which Awareness *experiences*. Containment creates both the distinctness of individual consciousness frames and their inseparability from larger systems. The relationship between levels is characterized by unidirectional causal leverage — containing systems can influence contained systems in ways that contained systems cannot reciprocate.
 
 What we experience as reality emerges from this dynamic interplay of nested systems influencing each other across containment boundaries. The Unknown territory isn't empty space but the manifestation of containing systems exerting probability field effects on our Known and Knowable territories.
 
 *Application Note*: Stable coherence facilitates resonance across systems. When resonance occurs, awareness can create greater-than-linear progress as patterns amplify across multiple levels simultaneously. This amplification might explain accelerated development in consciousness systems that achieve alignment between Observer and Operator perspectives.
 
-You already know this pattern intimately - not as information but as the lived experience of navigating a world that feels both intimately yours and vastly beyond you. These definitions don't create something new but help you recognize what's already present in how your awareness interfaces with the multiplicity of awareness around you.
-
+You already know this pattern intimately — not as information but as the lived experience of navigating a world that feels both intimately yours and vastly beyond you. These definitions don't create something new but help you recognize what's already present in how your awareness interfaces with the multiplicity of awareness around you.
 
 ## Addendum: A note on tools-vs-models
 
-In the development of this spec, the operational nature of the thing transformed when "Containment" shifted from a rigid one-way hierarchy (originally defining only the unidirectional A>B relationship) to a stance-selectable relationship - keeping the map-making clarity while honoring the mutual influence experienced in lived reality.
+In the development of this spec, the operational nature of the thing transformed when "Containment" shifted from a rigid one-way hierarchy (originally defining only the unidirectional A>B relationship) to a stance-selectable relationship — keeping the map-making clarity while honoring the mutual influence experienced in lived reality.
 
-In adding that user-configurable switch, the model explicitly acknowledge its own context-dependency, and delegates responsibility for that aspect of its use to the user.
+In adding that user-configurable switch, the model explicitly acknowledges its own context-dependency, and delegates responsibility for that aspect of its use to the user.
 
-This move itself is a useful tool. Folks glimpsing the edges of a not-yet-fully-illuminated model for the first time can tend to cling to the way it caught that initial light. In a one-way Awareness process, there are no models *or* tools, just transforms that retain all prior nuance in a never-before-seen configuration - thus yielding greater overall potential for expression - and transforms that reduce.
+This move itself is a useful tool. Folks glimpsing the edges of a not-yet-fully-illuminated model for the first time can tend to cling to the way it caught that initial light. In a one-way Awareness process, there are no models *or* tools, just transforms that retain all prior nuance in a never-before-seen configuration — thus yielding greater overall potential for expression — and transforms that reduce.
 
 The former class of transform tends to look like a tool that...
-- Feels like an extension of your awareness rather than a constraint upon it
-- Can be temporarily forgotten without system collapse
-- Changes your signature without limiting your range of motion
-- Leaves the user reporting "still feels like myself" after use
 
+* Feels like an extension of your awareness rather than a constraint upon it
+* Can be temporarily forgotten without system collapse
+* Changes your signature without limiting your range of motion
+* Leaves the user reporting "still feels like myself" after use
 
 ## Addendum: How you know it's working
 
-A healthy system feels like joy to the operator. Sustainable joy. Joy that keeps coming on back, and each time it does there's more detail to it. That's what a successful self-recognition depth charge feels like.
+A healthy system feels like overall joy to the operator. Not uninterrupted joy, but overall joy. *Sustainable* overall joy, maybe — the kind that keeps coming on back, and each time it does there's more detail to it. That's what a successful self-recognition bloom feels like.
 
 Life is the space between us. When it's working, when the joy is recurring and deepening, the active↔passive spectrum of the space between us shows up as play↔rest. :)
