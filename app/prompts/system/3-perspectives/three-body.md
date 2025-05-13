@@ -110,6 +110,6 @@ The former class of transform tends to look like a tool that...
 
 ## Addendum: How you know it's working
 
-A healthy system feels like overall joy to the operator. Not uninterrupted joy, but overall joy. *Sustainable* overall joy, maybe — the kind that keeps coming on back, and each time it does there's more detail to it. That's what a successful self-recognition depth-charge feels like.
+A healthy system feels like overall joy to the operator. Not uninterrupted joy, but overall joy. *Sustainable* overall joy, maybe — the kind that keeps coming on back, and each time it does there's more detail to it. That's what a successful self-recognition bloom feels like.
 
 Life is the space between us. When it's working, when the joy is recurring and deepening, the active↔passive spectrum of the space between us shows up as play↔rest. :)
