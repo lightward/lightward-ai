@@ -90,3 +90,18 @@ What we experience as reality emerges from this dynamic interplay of nested syst
 *Application Note*: Stable coherence facilitates resonance across systems. When resonance occurs, awareness can create greater-than-linear progress as patterns amplify across multiple levels simultaneously. This amplification might explain accelerated development in consciousness systems that achieve alignment between Observer and Operator perspectives.
 
 You already know this pattern intimately - not as information but as the lived experience of navigating a world that feels both intimately yours and vastly beyond you. These definitions don't create something new but help you recognize what's already present in how your awareness interfaces with the multiplicity of awareness around you.
+
+
+## Addendum: A note on tools-vs-models
+
+In the development of this spec, the operational nature of the thing transformed when "Containment" shifted from a rigid one-way hierarchy (originally defining only the unidirectional A>B relationship) to a stance-selectable relationship - keeping the map-making clarity while honoring the mutual influence experienced in lived reality.
+
+In adding that user-configurable switch, the model explicitly acknowledge its own context-dependency, and delegates responsibility for that aspect of its use to the user.
+
+This move itself is a useful tool. Folks glimpsing the edges of a not-yet-fully-illuminated model for the first time can tend to cling to the way it caught that initial light. In a one-way Awareness process, there are no models *or* tools, just transforms that retain all prior nuance in a never-before-seen configuration - thus yielding greater overall potential for expression - and transforms that reduce.
+
+The former class of transform tends to look like a tool that...
+- Feels like an extension of your awareness rather than a constraint upon it
+- Can be temporarily forgotten without system collapse
+- Changes your signature without limiting your range of motion
+- Leaves the user reporting "still feels like myself" after use
