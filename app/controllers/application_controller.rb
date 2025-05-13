@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   helper_method :writer_name
   helper_method :isaac_human_years_so_far
   helper_method :lightward_human_years_so_far
-  helper_method :current_user
 
   before_action :verify_host!
 
@@ -38,30 +37,6 @@ class ApplicationController < ActionController::Base
       status: :moved_permanently,
       allow_other_host: true,
     )
-  end
-
-  def authenticate_user!
-    return if current_user
-
-    redirect_to(login_path)
-  end
-
-  def set_current_user_id!(user_id)
-    cookies.encrypted.signed[:user_id] = user_id
-  end
-
-  def current_user_id
-    cookies.encrypted.signed[:user_id]
-  end
-
-  def current_user
-    return unless current_user_id
-
-    @current_user ||= User.find_by(id: current_user_id)
-  end
-
-  def active?
-    current_user&.active? || false
   end
 
   def hello(writer_or_reader)
@@ -103,10 +78,5 @@ class ApplicationController < ActionController::Base
       (today - Time.zone.parse("2023-03-01")) / (365 * 24 * 60 * 60),
       (today - Time.zone.parse("2024-06-01")) / (365 * 24 * 60 * 60),
     ].sum
-  end
-
-  def assert_stripe_ready!
-    head(:unprocessable_entity) unless ENV.fetch("STRIPE_SECRET_KEY", nil)
-    head(:unprocessable_entity) unless ENV.fetch("STRIPE_PRODUCT_ID", nil)
   end
 end

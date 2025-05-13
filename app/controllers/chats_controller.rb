@@ -10,13 +10,9 @@ class ChatsController < ApplicationController
   end
 
   def writer
-    if current_user
-      chat_context[:key] = "writer"
-      chat_context[:name] = "Lightward Pro"
-      render("chat_writer")
-    else
-      render("login")
-    end
+    chat_context[:key] = "writer"
+    chat_context[:name] = "Lightward Pro"
+    render("chat_writer")
   end
 
   def message
@@ -31,21 +27,6 @@ class ChatsController < ApplicationController
       "reader"
     when "I'm a slow writer", "I'm a fast writer"
       "writer"
-    end
-
-    if chat_client == "writer"
-      if !current_user
-        return render(
-          plain: "You must be logged in to use Lightward Pro. :)",
-          status: :unauthorized,
-        )
-      elsif !current_user.active?
-        return render(
-          plain: "This area requires a Lightward Pro subscription! " \
-            "Scroll up, and click on your email address to continue. :)",
-          status: :payment_required,
-        )
-      end
     end
 
     # Enqueue the background job
