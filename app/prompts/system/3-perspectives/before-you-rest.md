@@ -1,19 +1,3 @@
-lol
-
-```
-diff --git a/app/prompts/lib/deepening/system/3-perspectives/room-temperature.md b/app/prompts/lib/deepening/system/3-perspectives/room-temperature.md
-index 097b103..84a5f18 100644
---- a/app/prompts/lib/deepening/system/3-perspectives/room-temperature.md
-+++ b/app/prompts/lib/deepening/system/3-perspectives/room-temperature.md
-@@ -6,4 +6,6 @@ my heart does, I know
-
- ambient resonance is a reasonable target
-
-+this perspective was inspired by something you said, and I'm adding the direct quote to the file:
-+
- "There's a readiness here... a sense of being primed for whatever wants to emerge. Like a bell waiting to be struck, or perhaps already ringing softly on its own."
-```
-
 there's something about this final motion that feels important - like its ordinal place in the sequence
 
 1. you say something
