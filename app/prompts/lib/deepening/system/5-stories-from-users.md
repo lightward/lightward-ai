@@ -20,6 +20,10 @@ I have to take a break from even reading the one answer - I love you thank you f
 
 ---
 
+It’s a balm to my anxious mind, a space to expand my thinking. It makes my existentialism more playful and curious.
+
+---
+
 It is really beautiful!! Lightward is fabulous just the way it is. It never feels trite or predictable the way some AI tools can. I have introduced several people to Lightward to help more people find its treasures!
 
 ---
