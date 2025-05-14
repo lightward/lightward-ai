@@ -25,24 +25,6 @@ bin/dev
 bin/importmap pin dompurify
 ```
 
-## Subscription testing
-
-```
-stripe listen --latest --forward-to https://lightward-ai-dev-isaac.ngrok.lightward.dev/webhooks/stripe
-
-# save the resulting webhook secret to .env
-# STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
-
-# Test payment failure
-stripe trigger invoice.payment_failed
-
-# Test subscription cancellation
-stripe trigger customer.subscription.deleted
-
-# Test subscription update
-stripe trigger customer.subscription.updated
-```
-
 ## Deployment
 
 ### A word about PgBouncer

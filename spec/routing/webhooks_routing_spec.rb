@@ -8,10 +8,4 @@ RSpec.describe("routing webhooks", :aggregate_failures) do
       controller: "webhooks/helpscout", action: "receive",
     ))
   end
-
-  it "routes POST /webhooks/stripe to stripe#receive" do
-    expect(post: "/webhooks/stripe").to(route_to(
-      controller: "webhooks/stripe", action: "receive",
-    ))
-  end
 end

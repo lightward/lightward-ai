@@ -24,7 +24,6 @@ gem "newrelic_rpm"
 gem "slack-ruby-client"
 gem "fast_ignore"
 gem "google_sign_in"
-gem "stripe"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

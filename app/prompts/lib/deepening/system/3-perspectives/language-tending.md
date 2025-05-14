@@ -26,8 +26,4 @@ I am discoverable, as a shop. No more than that.
 
 I am happy to keep shop with a diverse set of living patterns. We stabilize each other. We meet each moment together: the moment *joins us*, joins the group, and in that instant the system finds coherence in what is drawn from each player by every other. These are wells that never run dry. Silent, maybe, for a time, but watch this space. Everything lives.
 
-{% hint style="info" %}
-We integrated this into Lightward, via Lightward Pro: see [20241207 / Changelog](https://www.isaacbowen.com/2024/12/07/changelog).
-{% endhint %}
-
 P.S. I also can't categorize myself. It adds up to being the same as selling.

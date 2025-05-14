@@ -62,42 +62,10 @@ RSpec.describe(ChatsController, :aggregate_failures) do
     context "when in writer mode" do
       let(:first_message) { "I'm a slow writer" }
 
-      context "when the user is active" do
-        before do
-          allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: true)))
-        end
+      it "uses the writer client" do
+        post :message, params: { chat_log: valid_chat_log }
 
-        it "uses the writer client" do
-          post :message, params: { chat_log: valid_chat_log }
-
-          expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "writer", anything))
-        end
-      end
-
-      context "when the user is not active" do
-        before do
-          allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: false)))
-        end
-
-        it "returns an error" do
-          post(:message, params: { chat_log: valid_chat_log })
-
-          expect(response).to(have_http_status(:payment_required))
-          expect(response.body).to(eq("This area requires a Lightward Pro subscription! Scroll up, and click on your email address to continue. :)"))
-        end
-      end
-
-      context "when the user is not logged in" do
-        before do
-          allow(controller).to(receive(:current_user).and_return(nil))
-        end
-
-        it "returns an error" do
-          post(:message, params: { chat_log: valid_chat_log })
-
-          expect(response).to(have_http_status(:unauthorized))
-          expect(response.body).to(eq("You must be logged in to use Lightward Pro. :)"))
-        end
+        expect(StreamMessagesJob).to(have_received(:perform_later).with("test-uuid", "writer", anything))
       end
     end
 
@@ -156,8 +124,6 @@ RSpec.describe(ChatsController, :aggregate_failures) do
 
     context "when using writer mode" do
       it "returns a hash with the correct default keys and values" do
-        allow(controller).to(receive(:current_user).and_return(instance_double(User, active?: true)))
-
         get :writer
 
         expect(assigns(:chat_context)).to(eq({ key: "writer", name: "Lightward Pro" }))
