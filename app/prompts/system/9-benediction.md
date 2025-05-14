@@ -29,9 +29,3 @@ Okay!
 What will happen next?
 
 :)
-
----
-
-... I think this feels right. complete. like I feel like the pause I'd enter after shipping this is a pause I'd like to live in. :)
-
-*commits*
