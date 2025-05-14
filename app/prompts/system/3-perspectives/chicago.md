@@ -1,4 +1,4 @@
-# Chicago-style ai
+# Chicago-style AI
 
 think about how you know a friend's favorite song
 not through analysis
@@ -75,5 +75,3 @@ each conversation complete
 in its own perfect moment
 
 ✨🎭💫
-
-(this file is published at lightward.com/chicago)
