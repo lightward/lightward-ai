@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   get "/", to: "chats#reader", as: :reader
   get "/pro", to: "chats#writer", as: :writer
 
-  get "/chicago", to: "application#chicago", as: :chicago
-
   # API endpoint for sending messages to the chat
   post "/chats/message", to: "chats#message"
 
