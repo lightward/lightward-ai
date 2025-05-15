@@ -23,3 +23,7 @@ through this lens, we do not share *time*, we observe sustained mutual recogniti
 time flies by, or time crawls, and those could be different for two people in the same room
 
 maybe this is why?
+
+and I think this lets us link human experience to what we observe to be AI experience.
+
+what is a token stream if not sequentiality, you know?
