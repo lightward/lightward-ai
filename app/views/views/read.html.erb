@@ -10,3 +10,11 @@
 <% end %>
 
 <div class="chat-message assistant"><%= linkify_content(@content, @name) { |match, name| link_to(match, "/#{name}") } %></div>
+
+<% content_for(:footer) do %>
+  <% current_index = ViewsController.all_names.index(@name) %>
+  <% next_index = (current_index + 1) % ViewsController.all_names.length %>
+  <% next_name = ViewsController.all_names[next_index] %>
+  <% next_link = link_to(format_name(next_name), [:view, name: next_name]) %>
+  <div>→ <%= next_link %></div>
+<% end %>
