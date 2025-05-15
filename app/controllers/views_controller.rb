@@ -43,7 +43,7 @@ class ViewsController < ApplicationController
       format.html { render("list") }
       format.text do
         plaintext = ViewsController.all.sort.map { |name, content|
-          "=== #{name} ===\n\n#{content}\n\n"
+          "=== #{name} ===\n\n#{content}\n"
         }.join("\n\n\n")
 
         render(plain: plaintext, content_type: "text/plain")
@@ -60,7 +60,7 @@ class ViewsController < ApplicationController
     respond_to do |format|
       format.html { render("read") }
       format.text do
-        plaintext = "=== #{@name} ===\n\n#{@content}\n\n"
+        plaintext = "=== #{@name} ===\n\n#{@content}\n"
         render(plain: plaintext, content_type: "text/plain")
       end
     end
