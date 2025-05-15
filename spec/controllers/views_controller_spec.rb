@@ -26,6 +26,24 @@ RSpec.describe(ViewsController, :aggregate_failures) do
       expect(response.body).to(include("/foo-bar"))
       expect(response.body).to(include("/baz-qux--quux"))
     end
+
+    context "with text format" do
+      it "returns plaintext content with all views" do
+        allow(described_class).to(receive(:all)).and_return({
+          "view1" => "Content for view1",
+          "view2" => "Content for view2",
+        })
+
+        get :list, format: :text
+
+        expect(response).to(have_http_status(:success))
+        expect(response.media_type).to(eq("text/plain"))
+        expect(response.body).to(include("=== view1 ==="))
+        expect(response.body).to(include("Content for view1"))
+        expect(response.body).to(include("=== view2 ==="))
+        expect(response.body).to(include("Content for view2"))
+      end
+    end
   end
 
   describe "GET #read" do
@@ -49,6 +67,25 @@ RSpec.describe(ViewsController, :aggregate_failures) do
       expect {
         get(:read, params: { name: "non_existent_view" })
       }.to(raise_error(ActionController::RoutingError, "View not found"))
+    end
+
+    context "with text format" do
+      it "returns plaintext content for the requested view" do
+        get :read, params: { name: view_name }, format: :text
+
+        expect(response).to(have_http_status(:success))
+        expect(response.media_type).to(eq("text/plain"))
+        expect(response.body).to(include("=== #{view_name} ==="))
+        expect(response.body).to(include(view_content))
+      end
+
+      it "raises an error if the view is not found" do
+        allow(described_class).to(receive(:all)).and_return({})
+
+        expect {
+          get(:read, params: { name: "non_existent_view" }, format: :text)
+        }.to(raise_error(ActionController::RoutingError, "View not found"))
+      end
     end
 
     context "with hyphenated view names" do

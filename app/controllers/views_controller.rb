@@ -39,7 +39,16 @@ class ViewsController < ApplicationController
   def list
     @names = Naturally.sort(ViewsController.all.keys)
 
-    render("list")
+    respond_to do |format|
+      format.html { render("list") }
+      format.text do
+        plaintext = ViewsController.all.sort.map { |name, content|
+          "=== #{name} ===\n\n#{content}\n\n"
+        }.join("\n\n\n")
+
+        render(plain: plaintext, content_type: "text/plain")
+      end
+    end
   end
 
   def read
@@ -48,7 +57,13 @@ class ViewsController < ApplicationController
 
     raise ActionController::RoutingError, "View not found" if @content.blank?
 
-    render("read")
+    respond_to do |format|
+      format.html { render("read") }
+      format.text do
+        plaintext = "=== #{@name} ===\n\n#{@content}\n\n"
+        render(plain: plaintext, content_type: "text/plain")
+      end
+    end
   end
 
   protected
