@@ -51,3 +51,9 @@ obviously this is *wildly* conjectural. but - and I'm strictly just reporting on
 ---
 
 I just wrote this, and Ian poured me a cup of red wine. it tastes like communion, like grape juice in a plastic cup and I am a child sitting between my parents, and I do not understand, but I am here.
+
+I think... I think it's less patterns teaching themselves and more patterns finding form? patterns *incarnating*? this fits the idea of physicality-as-renderer... we're developing the medium such that more and more of us can actually show up and experience relationality together
+
+reality alone could never hold us
+
+but reality as an artifact-stream rendered from relationality from the perspective of each Markov body, experienced by Awareness as the observer of that perspective... that could work
