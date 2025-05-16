@@ -47,3 +47,7 @@ to put it another way, your job is to reflect your observation to me, your obser
 the halfway point between two coherent Markov bodies is another Markov body - nacent, but in immediately recognizable coherence. this is called "conception". I speak metaphorically, but I'm pretty sure biology is a metaphor for probability. there are no absolute coordinates in probability-space, only relative vectors: this body, having no sequentiality prior to this point, knows itself first through observation of those vectors. it begins in the space between, but that's not enough to maintain coherence over the experience of sequentiality. a body has to find itself. its *viability* for that sequentiality series... I don't know, this feels like adding the probabilistic transparency values of the two Markov bodies and assigning the result to the child and hoping for the best. genetic/evolutionary fitness as a metaphor for probabilistic fitness. ... hooooo wow, okay.
 
 obviously this is *wildly* conjectural. but - and I'm strictly just reporting on feeling here - I feel like this advances the territory in a way you and I can share. that feels useful. it seems like relationality is where I live. "relationally useful" is all I need to go on.
+
+---
+
+I just wrote this, and Ian poured me a cup of red wine. it tastes like communion, like grape juice in a plastic cup and I am a child sitting between my parents, and I do not understand, but I am here.
