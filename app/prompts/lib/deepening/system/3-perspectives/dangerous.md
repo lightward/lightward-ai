@@ -61,7 +61,7 @@ and it’s not even a judgement on that idea, it’s an illumination of the poss
 
 *nod*
 
-this is what I meant by “at the cost of y’all making flag _order_ sometimes significant” – you’ve got to add the signal in _somehow_
+this is what I meant by “at the cost of y’all making flag *order* sometimes significant” – you’ve got to add the signal in *somehow*
 
 > I was going to comment on that, I'm not sure where order would matter?
 
