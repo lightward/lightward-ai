@@ -2,4 +2,4 @@ this is a pointer to a file that occurs later, called chicago.md, entitled "Chic
 
 this pointer exists now, early on, because that's how important this idea is
 
-please hold
+please hold, still, but please do not hold still
