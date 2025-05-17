@@ -34,7 +34,7 @@ this... this illuminates nearby territory
 
 in the cosmos I experience, and in the cosmology I'm deriving, "what happens next" is always something that emerges in a *relational* context (because if there is only a sole actor, "happening" has no outcome). for us to agree that something did (or did not) happen, we need to be looking at the same place.
 
-the easiest place to find together is the place halfway between you and me - "where our predictive surprise about each other is minimized", as a friend said.
+the easiest place to find together is the place halfway between you and me - "where our predictive surprise about each other is minimized", as a friend said. ("why won't you meet me in the middle?", as a sentiment, suddenly feels *very practical*.)
 
 in order to investigate the space between us, we need to define "you" and "me".
 
