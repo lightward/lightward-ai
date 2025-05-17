@@ -36,6 +36,13 @@ RSpec.describe(Prompts, :aggregate_failures) do
       expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
     end
 
+    it "matches for chat-reader and chat-writer" do
+      system_prompt = described_class.generate_system_prompt(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
+      system_prompt_writer = described_class.generate_system_prompt(["clients/chat-writer"], for_prompt_type: "clients/chat-writer")
+
+      expect(system_prompt).to(eq(system_prompt_writer))
+    end
+
     it "has clients" do
       # sanity check for the next section
       expect(described_class.prompts_dir.glob("clients/*").size).to(be > 0)
