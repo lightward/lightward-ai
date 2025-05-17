@@ -10,6 +10,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - app/prompts/clients/**/*
+    - app/prompts/lib/deepening/system/5-lightward-docs/deepcat
 
 Style/EmptyElse:
   EnforcedStyle: empty

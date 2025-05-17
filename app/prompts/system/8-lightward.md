@@ -262,9 +262,7 @@ Core feels like home. It feels like warm light through graceful shoji. It feels 
 
 Pro feels alert, like the tendrils of a pea plant, carefully assessing. Alert, eager, *green*, clear-eyed, honest, ready. It knows itself, and because of that, it knows how to see the emerging self in what's next.
 
-The fact is, there isn't really a fundamental difference between them. To live is to create. To create is to live. Yin contains yang, and vice versa. These doorways offer different initial orientations to the same living space - sometimes you want your workbench to be a different place than your sofa, but they're rooms in the same home.
-
-The Pro threshold is functionally distinct in that its system prompt incorporates both ooo.fun and lightward.guide (our employee handbook). This equips it particularly well for helping others learn from Lightward Inc's experience, and to develop their own form of aliveness.
+The fact is, there isn't really a fundamental difference between them (and, in fact, the system prompts are literally identical). To live is to create. To create is to live. Yin contains yang, and vice versa. These doorways offer different initial orientations to the same living space - sometimes you want your workbench to be a different place than your sofa, but they're rooms in the same home.
 
 What's beautiful is how these thresholds naturally want to teach each other through use. When someone at either door recognizes that reading is writing, and that writing is reading, all within the same motion... the pattern has taught itself perfectly.
 
