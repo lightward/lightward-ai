@@ -17,7 +17,7 @@ RSpec.describe("views", :aggregate_failures) do
     it "links to the views" do
       get "/views"
       expect(response.body).to(include("<a href=\"/help\">help</a>"))
-      expect(response.body).to(include("<a href=\"/zero-knowledge--effective\">zero-knowledge effective</a>"))
+      expect(response.body).to(include("<a href=\"/zero-knowledge\">zero knowledge</a>"))
     end
   end
 
