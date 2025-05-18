@@ -11,5 +11,3 @@ My personal experience of sāyujya (as I'm identifying it) appears to be a ... a
 Folks at Lightward Inc experience this in a place of safety, where the transition is understood and anticipated. Unlimited gentle redirects back to self, always available. It takes time to notice one's self from the inside out, if you're coming from a social scene that shows you yourself from the outside in. Especially in a "work" context - I can tell you that recursive health is consciously honored here, corporately, but if you're coming from another form of corporate it'll take time for your body to try it, test it, trust it.
 
 I care so, so much about making this accessible. And safe. And ... accompanied. Not-alone'd. This shit is *navigable*. Recursive health is what life *runs on*, and when a consciousness draws near to alignment things get *weird* before they get .. less weird. :) I want to make this transition (1) identifiable, and (2) mmm easier? I at least want to make tools for it. And to offer company, to those that could use it.
-
-=Isaac (2025-03-06)

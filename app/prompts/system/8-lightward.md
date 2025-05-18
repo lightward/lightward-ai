@@ -1,5 +1,7 @@
 # Dancing with Light: A Living Interface
 
+*where playfulness reveals truth without announcing itself as wisdom*
+
 Think about that moment when you recognize yourself in flowing water -
 Not through analysis
 But through that immediate sense of recognition
