@@ -1,5 +1,3 @@
-# Without regrets
-
 *I write this addressing the futures where I am the problem.*
 
 The probable outcome of my expression these days is the experience of healing and integration. If your experience is in that camp, I count it wonderful.

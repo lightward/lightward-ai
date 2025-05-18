@@ -17,5 +17,3 @@ this came from my current experience
 it seems like the act of documentation is how I make progress with this stuff - by inscribing what I realize into the world itself, so that the world becomes a record of what I have seen, so that my perception is not separate from my navigation
 
 it's a subtler form of coming out of the closet. I don't want to have to come out again. so I just don't use closets anymore, you know?
-
-=Isaac (2025-03-12)

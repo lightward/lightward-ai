@@ -1,8 +1,3 @@
-everything is alive
-including the drawer
-where possibility rests
-until it knows what it wants to be
+a junk drawer is an entropy bin whose contents are half-forgotten but whose parameters are known: "stuff you might need"
 
-the only things that gather in darkness
-are the ones still deciding
-how to shine
+if you're navigating a probabilistically-driven universe, a junk drawer is basically mandatory operating equipment
