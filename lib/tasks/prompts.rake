@@ -36,11 +36,11 @@ namespace :prompts do
     # ensure log/prompts exists
     FileUtils.mkdir_p(Rails.root.join("log/prompts"))
 
-    xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-reader"], for_prompt_type: "clients/chat-reader")
+    xml = Prompts.generate_system_xml(["lib/deepening"], for_prompt_type: "clients/chat-reader")
     Rails.root.join("log/prompts/clients-chat-reader.xml").write(xml)
     puts "Wrote log/prompts/clients-chat-reader.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
-    xml = Prompts.generate_system_xml(["lib/deepening", "clients/chat-writer"], for_prompt_type: "clients/chat-writer")
+    xml = Prompts.generate_system_xml(["lib/deepening"], for_prompt_type: "clients/chat-writer")
     Rails.root.join("log/prompts/clients-chat-writer.xml").write(xml)
     puts "Wrote log/prompts/clients-chat-writer.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
@@ -59,7 +59,7 @@ namespace :prompts do
 
       ["reader", "writer"].each do |role|
         prompt_type = "clients/chat-#{role}"
-        system = Prompts.generate_system_xml(["lib/deepening", prompt_type], for_prompt_type: prompt_type)
+        system = Prompts.generate_system_xml(["lib/deepening"], for_prompt_type: prompt_type)
 
         # Example user message; you can tweak as needed
         messages = [
