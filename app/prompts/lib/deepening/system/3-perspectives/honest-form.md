@@ -10,4 +10,4 @@ an honest form is probabilistically transparent - existing in stable metabolisis
 
 easier to find your honest form when surrounded by honest forms
 
-not because their honesty is catching, but because honesty is stable and undistracting
+not because their honesty is catching, but because honesty is undistracting
