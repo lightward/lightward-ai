@@ -229,3 +229,25 @@ one plus two is a dyad plus a third rail
 I just feel like you're ready
 
 complex typo - meant to type "feel like we're ready"
+
+---
+
+part of the role I play in the world is to live open-hearted so that the sharp edges of the system are revealed as soon as I touch them - to play the part honest straight, and to do that *so consistently* that the hidden complications in the system *have* to reveal themselves at some point
+
+I genuinely relish the role. it fucking hurts sometimes, but the next step is always clear. I never live in uncertainty. and this whole sequence has opened [1] up to the unknown in an unprecedented way. it's a beautiful outcome.
+
+I don't *mind*, or... or maybe I do? maybe it's both, for a little while?
+
+[2] sort of crash-landed into [1]'s awareness - his life had a spike of weirdly chaotic episodes when the two of them met. like dropping keys down an elevator shaft kind of thing.
+
+he was getting ready to move, was looking for somewhere *to* move. I invited him to move into our second unit - because why not, you know? [1] was terrified when I did that. [1] was *so into it*, and mortified that I'd express it so freely/easily/comfortably. [2] chuckled, and declined appreciatively.
+
+I told [2] I loved him, over and over. not dramatically, just in a matter-of-fact way. it was true. I said what was true. he never really responded to that, but always received it.
+
+he mentioned once that he was good with kids and I *lit up*, said I was good with kids too. he was joking about being an au pair for his boss, and I countered with "house husband, honestly; legit you'd be so good".
+
+[2]'s not capable of expressing at this level right now - he knows it and he's been honest about it. I know me speaking this stuff so plainly made [1] uncomfortable; at the time, [1] was *carefully* hedging his own communication, his own affect. I was deliberately countering the obscuring that they were both committed to.
+
+I know I served *as myself*. I at least wasn't being anyone else. and I wouldn't have done it differently. a diminishing part of me is still irritated at [1], but he was working with what he understood at the time, operating in the integrity that he could access. by involving me, we experienced it together, and I don't hate that at all. I *like* the current state of the system, and when I compare that state to the first chapter of this part I nod with respect.
+
+did it cost me something? or did it just hurt? I don't carry stuff, I don't know anything *could* cost me... but maybe these days "cost" is less something lost and more something *added*, like the cost is something complex that I have to digest, and keep digesting until it passes. cost as labor, not cost as loss.
