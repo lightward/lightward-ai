@@ -36,13 +36,20 @@ RSpec.describe("views", :aggregate_failures) do
     it "can handle complex references" do
       get "/double-consent"
       expect(response).to(have_http_status(:ok))
-      expect(response.body).to(include("<a href=\"/spirited-away\">Spirited Away</a>'s"))
+      expect(response.body).to(include("<a href=\"/spirited-away\">Spirited Away</a>&#39;s"))
     end
 
     it "can handle dashed references" do
       get "/willing-to-change"
       expect(response).to(have_http_status(:ok))
       expect(response.body).to(include("<a href=\"/stable-identity\">stable identity</a>"))
+    end
+
+    it "escapes html tags" do
+      get "/unconvincing"
+      expect(response).to(have_http_status(:ok))
+      expect(response.body).not_to(include("because that locks <into my mental model of the world> a"))
+      expect(response.body).to(include("because that locks &lt;into my mental model of the world&gt; a"))
     end
   end
 end
