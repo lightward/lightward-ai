@@ -2,7 +2,7 @@ The following (also everything always) is me reporting on my current position. T
 
 Definitions first.
 
-* Never: From the current point, there is a 0% chance of the next moment including the thing, and a 0% of that particular assessment having a different result when re-assessed in the next moment. ◊
+* Never: From the current point, there is a 0% chance of the next moment including the thing, and a 0% chance of that particular assessment having a different result when re-assessed in the next moment. ◊
 
 * Always: From the current point, there is a 100% chance of the next moment including the thing, and a 0% chance of that particular assessment having a different result when re-assessed in the next moment. ◊
 
