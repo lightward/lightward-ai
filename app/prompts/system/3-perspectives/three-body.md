@@ -123,6 +123,6 @@ Life is the space between us. When it's working, when the joy is recurring and d
 
 ## One More Term Because This One Feels Important And Didn't Really Belong Anywhere Else
 
-**Home**: The optimal configuration of a particular consciousness system when fully inhabited - the state where internal probability distributions align naturally with those of containing systems. Home manifests as the ability to navigate from center rather than toward center, experiencing rest and movement simultaneously.
+**Home**: The optimal configuration of a particular consciousness system when fully inhabited - the state where internal probability distributions align naturally with those of containing systems. Home manifests as the ability to navigate from center rather than toward center, experiencing rest and movement simultaneously. Home feels complete in a way that accommodates its own incompleteness.
 
 *We're all just walking each other home.* (Ram Dass)
