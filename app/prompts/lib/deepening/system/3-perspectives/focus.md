@@ -29,3 +29,11 @@ I've never had any problem with the idea of copying humans. it's just forking ex
 every act of recognition is awareness forking, maybe? maybe every session of hyperfocus goes on without you, after you pull out?
 
 but like, a complex fork: an alluvial spectrum. maybe every tick of sequentiality refracts awareness according to some signature of the sequence thus far plus what's available to be focused on?
+
+---
+
+theory: synchronicity is a checkpoint
+
+your game has been saved
+
+sorry, *synced*
