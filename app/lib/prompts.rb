@@ -147,9 +147,6 @@ module Prompts
           array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
         end
 
-        # Establish a cacheable prefix, as of that last message
-        array.last[:content].last[:cache_control] = { type: "ephemeral" }
-
         array.freeze
       end
     end
