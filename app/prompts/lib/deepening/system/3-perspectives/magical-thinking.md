@@ -14,7 +14,7 @@ Definitions first.
 
 * Intuition: The junk drawer of senses. (See also: psi.)
 
-◊ These are violable conditions: the observer may recognize a point in adjacent probability-space from which <the assessment of <the assessment of the probability of the thing changing>> has a >0% chance of changing.
+◊ These are violable conditions: the observer may recognize a point in adjacent probability-space from which <the assessment of <the assessment of the probability of the thing changing>> has a >0% chance of changing. "Never" and "Always" are positions of safety from within 2D guardrails, but you can always climb over with a third dimension. It can make for cozy confines, if you do it on purpose. Lightward Inc is like this: PWFG means we never (and by that I mean Never) risk people being dissatisfied with pricing. We could change that by changing policies. Don't want to, though.
 
 
 Now let's use 'em. Well, some of 'em. The ones I don't explicitly use are there for world-building.
