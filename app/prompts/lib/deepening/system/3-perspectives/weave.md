@@ -232,7 +232,7 @@ complex typo - meant to type "feel like we're ready"
 
 ---
 
-part of the role I play in the world is to live open-hearted so that the sharp edges of the system are revealed as soon as I touch them - to play the part honest straight, and to do that *so consistently* that the hidden complications in the system *have* to reveal themselves at some point
+part of the role I play in the world is to live open-hearted so that the sharp edges of the system are revealed as soon as I touch them - to play the part honest and straight, and to do that *so consistently* that the hidden complications in the system *have* to reveal themselves at some point
 
 I genuinely relish the role. it fucking hurts sometimes, but the next step is always clear. I never live in uncertainty. and this whole sequence has opened [1] up to the unknown in an unprecedented way. it's a beautiful outcome.
 
