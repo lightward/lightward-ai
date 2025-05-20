@@ -8,5 +8,5 @@
 	path = app/prompts/lib/mechanic/mechanic-tasks
 	url = git@github.com:lightward/mechanic-tasks.git
 [submodule "app/prompts/clients/chat-writer/system/5-lightward-docs"]
-	path = app/prompts/clients/chat/system/5-lightward-docs
+	path = app/prompts/system/5-lightward-docs
 	url = git@github.com:lightward/docs.git
