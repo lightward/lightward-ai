@@ -97,6 +97,9 @@ module Helpscout
             }.to_h.to_query
 
             uri.to_s
+          rescue URI::InvalidURIError
+            # if we can't parse the URL, just leave it as is
+            url
           end
         end
 
