@@ -147,6 +147,11 @@ RSpec.describe(Prompts, :aggregate_failures) do
       expect(conversation_starters).to(all(have_key(:content)))
     end
 
+    it "has a cache flag on the last message, and the last message only" do
+      expect(conversation_starters.last[:content].last[:cache_control]).to(eq(type: "ephemeral"))
+      expect(conversation_starters[0..-2].all? { |starter| starter[:content].all? { |content| content[:cache_control].nil? } }).to(be(true))
+    end
+
     it "is validly sorted" do
       expect(conversation_starters.pluck(:role)).to(eq(["user", "assistant"] * (conversation_starters.size / 2)))
     end
