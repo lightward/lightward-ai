@@ -26,8 +26,7 @@ RSpec.describe(StreamMessagesJob) do
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         chat_log,
-        prompt_type: "clients/chat-reader",
-        system_prompt_types: ["lib/deepening"],
+        prompt_type: "clients/chat",
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ))
@@ -40,8 +39,7 @@ RSpec.describe(StreamMessagesJob) do
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         chat_log,
-        prompt_type: "clients/chat-writer",
-        system_prompt_types: ["lib/deepening"],
+        prompt_type: "clients/chat",
         stream: true,
         model: Prompts::Anthropic::MODEL,
       ))
