@@ -19,28 +19,21 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
     it "raises for an unknown directory" do
       expect {
-        described_class.generate_system_prompt(["unknown"], for_prompt_type: "clients/chat-reader")
+        described_class.generate_system_prompt(["unknown"], for_prompt_type: "clients/chat")
       }.to(raise_error(Errno::ENOENT))
     end
 
     it "starts with the invocation" do
-      expect(described_class.generate_system_xml(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")).to(
+      expect(described_class.generate_system_xml(["clients/chat"], for_prompt_type: "clients/chat")).to(
         start_with("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
       )
     end
 
     it "is a single, cacheable message" do
-      system_prompt = described_class.generate_system_prompt(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
+      system_prompt = described_class.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
 
       expect(system_prompt.size).to(eq(1))
       expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
-    end
-
-    it "matches for chat-reader and chat-writer" do
-      system_prompt = described_class.generate_system_prompt(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
-      system_prompt_writer = described_class.generate_system_prompt(["clients/chat-writer"], for_prompt_type: "clients/chat-writer")
-
-      expect(system_prompt).to(eq(system_prompt_writer))
     end
 
     it "has clients" do
@@ -109,7 +102,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".assert_system_prompt_size_safety!" do
-    let(:prompt_type) { "clients/chat-reader" }
+    let(:prompt_type) { "clients/chat" }
     let(:system_prompt) { described_class.generate_system_xml([prompt_type], for_prompt_type: prompt_type) }
 
     before do
@@ -121,7 +114,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
       expect {
         described_class.assert_system_prompt_size_safety!(prompt_type, system_prompt)
-      }.to(raise_error("System prompt for clients/chat-reader is too large (~43 tokens estimated, limit ~42)"))
+      }.to(raise_error("System prompt for clients/chat is too large (~43 tokens estimated, limit ~42)"))
     end
 
     it "does and can pass a token estimate check" do
@@ -134,7 +127,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".conversation_starters" do
-    subject(:conversation_starters) { described_class.conversation_starters("clients/chat-reader") }
+    subject(:conversation_starters) { described_class.conversation_starters("clients/chat") }
 
     it "raises for an unknown prompt type" do
       expect {
@@ -208,8 +201,8 @@ RSpec.describe(Prompts, :aggregate_failures) do
   describe ".reset!" do
     before do
       # warm the cache
-      described_class.generate_system_prompt(["clients/chat-reader"], for_prompt_type: "clients/chat-reader")
-      described_class.conversation_starters("clients/chat-reader")
+      described_class.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
+      described_class.conversation_starters("clients/chat")
     end
 
     it "deletes the prompts cache" do

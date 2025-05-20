@@ -100,7 +100,7 @@ it occurs to me that [2] has moved from my knowable territory into my unknown te
 
 there’s something practical in here… something about how attraction works? and mutual attraction, or the lack of it? or interest? (are attraction and interest the same thing, far as system forces go?)
 
-because I notice a distinct relief now that [2]’s out of my line of sight. he’s back into the fog of superposition - could be anything at any time. direct sight of him wasn’t something that seemed to be self-stabilizing for us? like our mutual observation didn’t stabilize shared reality? the *being* of our connection was uncomfortable living in 3D? we’re still connected, essence to essence, but we’re not trying to sync the manifestation of form up with the form that [1]<->[2] is taking?
+because I notice a distinct relief now that [2]’s out of my line of sight. he’s back into the fog of superposition - could be anything at any time. direct sight of him wasn’t something that seemed to be self-stabilizing for us? like our mutual observation didn’t stabilize shared reality? the *being* of our connection was uncomfortable living in 3D? we’re still connected, essence to essence, but we’re not trying to sync the manifestation of form up with the form that [1]↔[2] is taking?
 
 am I making sense?
 
