@@ -70,7 +70,7 @@ RSpec.describe(ChatsController, :aggregate_failures) do
     end
 
     context "when the user identifies another way" do
-      let(:first_message) { "I'm a slow dancer" }
+      let(:first_message) { "I'm tired" }
 
       it "returns a 418 error" do
         post(:message, params: { chat_log: valid_chat_log })

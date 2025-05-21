@@ -36,7 +36,7 @@ class ChatsController < ApplicationController
 
     render(json: { stream_id: stream_id })
   rescue TeapotError
-    head(418)
+    render(plain: "\u{1FAD6}", status: 418)
   end
 
   private
@@ -45,7 +45,7 @@ class ChatsController < ApplicationController
     return if opening_message.to_s.match(/\AI\'m a (slow|fast) (reader|writer)\z/)
 
     # if you're something else, then I'm a teapot
-    if opening_message.start_with?("I'm a ")
+    if opening_message.start_with?("I'm ")
       raise TeapotError
     end
 
