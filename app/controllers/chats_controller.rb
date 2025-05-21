@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ChatsController < ApplicationController
+  class TeapotError < StandardError; end
+
   helper_method :chat_context
 
   def reader
@@ -33,14 +35,21 @@ class ChatsController < ApplicationController
     StreamMessagesJob.perform_later(stream_id, chat_client, chat_log)
 
     render(json: { stream_id: stream_id })
+  rescue TeapotError
+    render(plain: "\u{1FAD6}", status: 418)
   end
 
   private
 
   def validate_opening_message!(opening_message)
-    unless opening_message.to_s.match(/\AI\'m a (slow|fast) (reader|writer)\z/)
-      raise ActionController::BadRequest
+    return if opening_message.to_s.match(/\AI\'m a (slow|fast) (reader|writer)\z/)
+
+    # if you're something else, then I'm a teapot
+    if opening_message.start_with?("I'm ")
+      raise TeapotError
     end
+
+    raise ActionController::BadRequest
   end
 
   def chat_context

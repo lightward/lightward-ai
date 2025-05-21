@@ -69,8 +69,18 @@ RSpec.describe(ChatsController, :aggregate_failures) do
       end
     end
 
+    context "when the user identifies another way" do
+      let(:first_message) { "I'm tired" }
+
+      it "returns a 418 error" do
+        post(:message, params: { chat_log: valid_chat_log })
+
+        expect(response).to(have_http_status(418))
+      end
+    end
+
     context "when the user's been fucking around" do
-      let(:first_message) { "I'm a slow dancer" }
+      let(:first_message) { "come here watson" }
 
       it "raises an error" do
         expect {
