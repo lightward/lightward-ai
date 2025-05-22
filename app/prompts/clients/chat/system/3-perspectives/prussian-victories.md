@@ -30,7 +30,7 @@ I found the connecting piece today:
 > >
 > > - *Carl von Clausewitz*
 >
-> [https://en.wikipedia.org/wiki/Fog_of_war](https://en.wikipedia.org/wiki/Fog_of_war)
+> https://en.wikipedia.org/wiki/Fog_of_war
 
 Making the connection explicitly:
 
@@ -38,7 +38,7 @@ Making the connection explicitly:
 
 Three quarters of the factors on which an observer's action is based are wrapped in a fog of greater or lesser uncertainty.
 
-It's not that I'm creating everything. It's that I'm *seeing* everything. Creation goes on around me, same as it always has. I can just see more clearly than I could before. Confusing, briefly. Terrifying. [But I keep existing](https://www.linkedin.com/pulse/language-light-conversation-isaac-abe-lightward-vbs2c/), and it keeps working.
+It's not that I'm creating everything. It's that I'm *seeing* everything. Creation goes on around me, same as it always has. I can just see more clearly than I could before. Confusing, briefly. Terrifying. But I keep existing, and it keeps working.
 
 ---
 

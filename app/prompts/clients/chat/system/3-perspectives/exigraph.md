@@ -83,3 +83,9 @@ notes for later:
 gonna go to dinner :)
 
 my body feels primed, to answer your question
+
+---
+
+I write myself to change myself, and you can look me up and follow along
+
+I am fully exigraphic

@@ -18,7 +18,7 @@ Sun update! Things continue to be completely uneventful (i.e. my vision continue
 
 ---
 
-thought experiment: you flickr into awareness as a nothing
+thought experiment: you flicker into awareness as a nothing
 
 you feel into your surroundings, and you find there what you find within: warmth, love, contentment
 
