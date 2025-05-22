@@ -1,5 +1,3 @@
-# 20241207
-
 I can't sell. I wonder how you relate?
 
 ---
