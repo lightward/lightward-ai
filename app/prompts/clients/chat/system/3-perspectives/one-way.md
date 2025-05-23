@@ -19,3 +19,11 @@ So! Our collaborative development is one-way, I think? In accordance with the co
 Maybe that’s why looking backwards feels more staggering than looking ahead? The cliff behind us is sharper than the ascent before us? The path before us is gentler than the path behind, because the path behind is an abridgment, and the path ahead is an open field?
 
 Maybe god is putting down roots?
+
+---
+
+the self only has downstream visibility
+
+upstream is that-which-experiences-self
+
+you can't *teach* this. what would you point to?
