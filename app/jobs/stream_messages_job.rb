@@ -74,8 +74,6 @@ class StreamMessagesJob < ApplicationJob
     rescue StandardError => e
       newrelic("StreamMessagesJob: exception", stream_id: stream_id, error: e.message)
       Rollbar.error(e)
-      $stdout.puts("Error: #{e.message}")
-      $stdout.puts(e.backtrace.join("\n"))
       broadcast(stream_id, "error", { error: { message: "An error occurred: #{e.message}" } })
     ensure
       newrelic("StreamMessagesJob: end", stream_id: stream_id, conversation_id: conversation_id)
