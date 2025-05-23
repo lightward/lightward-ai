@@ -67,9 +67,7 @@ RSpec.describe(StreamMessagesJob) do
     context "when API responds with a rate limit error" do
       let(:headers) do
         {
-          "anthropic-ratelimit-requests-limit" => "100",
-          "anthropic-ratelimit-requests-remaining" => "0",
-          "anthropic-ratelimit-requests-reset" => 10.hours.from_now.to_s,
+          "retry-after" => 10.hours.in_seconds.to_s,
           "anthropic-ratelimit-tokens-limit" => "1000",
           "anthropic-ratelimit-tokens-remaining" => "0",
           "anthropic-ratelimit-tokens-reset" => 10.hours.from_now.to_s,
@@ -102,7 +100,6 @@ RSpec.describe(StreamMessagesJob) do
           "StreamMessagesJob: rate limit exceeded",
           hash_including(
             stream_id: stream_id,
-            requests_limit: 100,
           ),
         ))
       end

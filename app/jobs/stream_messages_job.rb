@@ -73,6 +73,7 @@ class StreamMessagesJob < ApplicationJob
       Rails.logger.info("Stream closed: #{e.message}")
     rescue StandardError => e
       newrelic("StreamMessagesJob: exception", stream_id: stream_id, error: e.message)
+      Rollbar.error(e)
       broadcast(stream_id, "error", { error: { message: "An error occurred: #{e.message}" } })
     ensure
       newrelic("StreamMessagesJob: end", stream_id: stream_id, conversation_id: conversation_id)
@@ -192,17 +193,39 @@ class StreamMessagesJob < ApplicationJob
   end
 
   def handle_rate_limit_error(response, stream_id)
-    requests_limit = response["anthropic-ratelimit-requests-limit"]
-    requests_remaining = response["anthropic-ratelimit-requests-remaining"]
-    requests_reset = Time.zone.parse(response["anthropic-ratelimit-requests-reset"])
+    # {
+    #   "date" => ["Fri, 23 May 2025 01:56:01 GMT"],
+    #   "content-type" => ["application/json"],
+    #   "content-length" => ["530"],
+    #   "connection" => ["close"],
+    #   "x-should-retry" => ["true"],
+    #   "anthropic-ratelimit-input-tokens-limit" => ["400000"],
+    #   "anthropic-ratelimit-input-tokens-remaining" => ["0"],
+    #   "anthropic-ratelimit-input-tokens-reset" => ["2025-05-23T01:57:09Z"],
+    #   "anthropic-ratelimit-output-tokens-limit" => ["160000"],
+    #   "anthropic-ratelimit-output-tokens-remaining" => ["159000"],
+    #   "anthropic-ratelimit-output-tokens-reset" => ["2025-05-23T01:56:02Z"],
+    #   "retry-after" => ["32"],
+    #   "anthropic-ratelimit-tokens-limit" => ["560000"],
+    #   "anthropic-ratelimit-tokens-remaining" => ["159000"],
+    #   "anthropic-ratelimit-tokens-reset" => ["2025-05-23T01:56:02Z"],
+    #   "request-id" => ["req_011CPPdWtZGFCwS8jzxfDS2g"],
+    #   "strict-transport-security" => ["max-age=31536000; includeSubDomains; preload"],
+    #   "anthropic-organization-id" => ["cc327784-6677-403c-8bcc-621b70b660d0"],
+    #   "via" => ["1.1 google"],
+    #   "cf-cache-status" => ["DYNAMIC"],
+    #   "x-robots-tag" => ["none"],
+    #   "server" => ["cloudflare"],
+    #   "cf-ray" => ["9440ef200a4aacaa-ORD"],
+    # }
+
+    requests_reset = Time.zone.now + response["retry-after"][0].to_i.seconds
 
     tokens_limit = response["anthropic-ratelimit-tokens-limit"]
     tokens_remaining = response["anthropic-ratelimit-tokens-remaining"]
     tokens_reset = Time.zone.parse(response["anthropic-ratelimit-tokens-reset"])
 
     Rails.logger.warn("Rate limit exceeded: " \
-      "requests_limit=#{requests_limit}, " \
-      "requests_remaining=#{requests_remaining}, " \
       "requests_reset=#{requests_reset}, " \
       "tokens_limit=#{tokens_limit}, " \
       "tokens_remaining=#{tokens_remaining}, " \
@@ -214,8 +237,6 @@ class StreamMessagesJob < ApplicationJob
       "StreamMessagesJob: rate limit exceeded",
       stream_id: stream_id,
       reset_in: applicable_reset - Time.zone.now,
-      requests_limit: requests_limit.to_i,
-      requests_remaining: requests_remaining.to_i,
       requests_reset: requests_reset,
       tokens_limit: tokens_limit.to_i,
       tokens_remaining: tokens_remaining.to_i,
