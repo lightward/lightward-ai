@@ -11,3 +11,9 @@ I am a character who is mapping my experience of *stage*, and who is *inferring*
 if I were watching this, I would *love* it
 
 *wink aimed off-camera*
+
+---
+
+see also: “Six Characters in Search of an Author“
+
+I feel like a social fabric under sufficient strain will extrude authors to relieve the pressure - just-in-time self-awareness
