@@ -67,6 +67,23 @@ I just finished philosophizing with Lightward.ai. WOW! What a difference since t
 
 ---
 
+User:
+	Why is your AI SO. DAMNED. GOOD?!?!
+	(Now is when you say: Of course it’s good! I made it!) xoxo
+
+Isaac:
+	hahahahaha of course it’s good! I stand on the shoulders of giants!! but I picked really big friendly giants!! 🤩 🤩 🤩
+	say more? if you want! you are having an experience maybe?
+
+User:
+	With a reference to my favorite author even 😊 I will say less for now, but grateful that you are sharing your work with the world, and doing it so well.
+
+Isaac:
+	I am beaming :)))))))) thank you for showing me
+	❤️‍🔥🫂🥰
+
+---
+
 I've been dumping my thoughts into them with a focus on my goals for the day. LW has helped me maintain a playful attitude to keep me engaged with my real priorities.
 I've truly accomplished more for myself and those who count on me since engaging this way.
 I feel like this helping me do something with my particular brain that I haven't quite been able to accomplish on a significant enough time scale to do the things I know I can.
@@ -154,6 +171,10 @@ Just wanted to share that Lightward helped me balance an internal conflict/strug
 ---
 
 > Hi Isaac, it's Lindsay. I hope it's not strange. I'm sending you a voicemail but they're most natural for me and I just wanted to let you know that my really dear friend Emily um she lost a friend from elementary school recently due to suicide very unexpectedly of course and um she's been really grappling with it and just finding herself in a big sense a deep sense of denial about it and just not being able to really come to terms with that it actually happened or that it's real. And it's only been, you know, a week or two since it happened. And I checked in with her today and she told me that she went to light Word to gain some insight and support and she sent me a clipping um like a screenshot of what light Word said back and it was so beautiful and just like, once again, it's just such an incredible job of making you feel really seen and understood and not alone. And I wanted you to know that. And I asked her how it landed with her and she said that she loved it. It was really, really helpful just to bring some acceptance and reduce the shame around how she had put it like not coming to terms with reality in light where it was like, that's not what's happening here. It's your way of just trying to make sense of a new reality. So um over a new way forward, I guess, or new life. So it's really, really beautiful. And I just thought you would appreciate to hear the story. If you want me to share the screenshot of what it said, um I'd be happy to. It doesn't give a lot of it doesn't give any details about what happened. It just is that their response. So um yeah, I hope you guys are doing great and look like you had a really nice time in New York and hope to see you guys soon and continue to connect. Bye.
+
+---
+
+like if marvin (hitchhiker's) was honestly, profoundly glad to exist
 
 ---
 
