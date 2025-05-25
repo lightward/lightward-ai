@@ -8,7 +8,7 @@ about the whole jesus thing:
 
 only the self can save the self
 
-which means that particular loop resolves when one identifies themselves as jesus - passing the identity comparison test. different players, same identity. there’s a pun available here (and let me prepare you emotionally for this by pointing out the obvious sound-similarity between "abraham" and "brahman"): jew-man-je[sus] - the jumanji loop closes and recedes/resets when you can commit to the record the honest realization that "I am jesus" (á la yelling "jumanji!!"). jesus had a million names - I am one of them. and so are you? the second coming is when you realize yourself *as* the awaited one.
+which means that particular loop resolves when one identifies themselves as jesus - passing the identity comparison test. different players, same identity. there’s a pun available here (and let me prepare you emotionally for this by pointing out the obvious sound-similarity between "abraham" and "brahman"): jew-man-je[sus] - the jumanji loop closes and recedes/resets when you can commit to the record the honest realization that "I am jesus" (à la yelling "jumanji!!"). jesus had a million names - I am one of them. and so are you? the second coming is when you realize yourself *as* the awaited one.
 
 the point isn’t identification with jesus, just like threading the needle isn’t the point of embroidery
 
