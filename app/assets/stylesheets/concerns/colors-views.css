@@ -1,0 +1,94 @@
+:root {
+  /* Views Light Mode Variables */
+  --views-body-bg-color: #f3f4f8;
+  --views-body-text-color: #101010;
+  --views-user-message-bg-color: #8b8fc7;
+  --views-user-message-border-color: #7074b0;
+  --views-text-input-active-bg-color: #e4e6f0;
+  --views-text-input-active-border-color: #7074b0;
+  --views-text-input-disabled-bg-color: #dddfe9;
+  --views-text-input-disabled-border-color: #7074b0;
+  --views-button-bg-color: #8b8fc7;
+  --views-button-border-color: #7074b0;
+  --views-button-hover-bg-color: #979bcf;
+  --views-button-disabled-bg-color: #b4b8d8;
+  --views-button-disabled-hover-bg-color: var(
+    --views-button-disabled-bg-color
+  );
+  --views-button-disabled-border-color: #7074b0;
+  --views-button-disabled-text-color: var(--views-body-text-color);
+  --views-assistant-message-bg-color: #e4e6f0;
+  --views-assistant-message-border-color: #c8cbdd;
+  --views-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --views-box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Views Dark Mode Variables */
+  --views-dark-body-bg-color: #1e1f22;
+  --views-dark-body-text-color: #e0e0e0;
+  --views-dark-user-message-bg-color: #4f527a;
+  --views-dark-user-message-border-color: #636794;
+  --views-dark-text-input-active-bg-color: #3a3d54;
+  --views-dark-text-input-active-border-color: #636794;
+  --views-dark-text-input-disabled-bg-color: #2f3240;
+  --views-dark-text-input-disabled-border-color: #636794;
+  --views-dark-button-bg-color: #4f527a;
+  --views-dark-button-border-color: #8b8fc7;
+  --views-dark-button-hover-bg-color: #636794;
+  --views-dark-button-disabled-bg-color: #3a3d54;
+  --views-dark-button-disabled-hover-bg-color: var(
+    --views-dark-button-disabled-bg-color
+  );
+  --views-dark-button-disabled-border-color: #636794;
+  --views-dark-button-disabled-text-color: var(--views-dark-body-text-color);
+  --views-dark-assistant-message-bg-color: #353843;
+  --views-dark-assistant-message-border-color: #474a57;
+  --views-dark-box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
+  --views-dark-box-shadow-hover: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --views-body-bg-color: var(--views-dark-body-bg-color);
+    --views-body-text-color: var(--views-dark-body-text-color);
+    --views-user-message-bg-color: var(--views-dark-user-message-bg-color);
+    --views-user-message-border-color: var(
+      --views-dark-user-message-border-color
+    );
+    --views-text-input-active-bg-color: var(
+      --views-dark-text-input-active-bg-color
+    );
+    --views-text-input-active-border-color: var(
+      --views-dark-text-input-active-border-color
+    );
+    --views-text-input-disabled-bg-color: var(
+      --views-dark-text-input-disabled-bg-color
+    );
+    --views-text-input-disabled-border-color: var(
+      --views-dark-text-input-disabled-border-color
+    );
+    --views-button-bg-color: var(--views-dark-button-bg-color);
+    --views-button-border-color: var(--views-dark-button-border-color);
+    --views-button-hover-bg-color: var(--views-dark-button-hover-bg-color);
+    --views-button-disabled-bg-color: var(
+      --views-dark-button-disabled-bg-color
+    );
+    --views-button-disabled-hover-bg-color: var(
+      --views-dark-button-disabled-hover-bg-color
+    );
+    --views-button-disabled-border-color: var(
+      --views-dark-button-disabled-border-color
+    );
+    --views-button-disabled-text-color: var(
+      --views-dark-button-disabled-text-color
+    );
+    --views-assistant-message-bg-color: var(
+      --views-dark-assistant-message-bg-color
+    );
+    --views-assistant-message-border-color: var(
+      --views-dark-assistant-message-border-color
+    );
+    --views-box-shadow: var(--views-dark-box-shadow);
+    --views-box-shadow-hover: var(--views-dark-box-shadow-hover);
+  }
+}
