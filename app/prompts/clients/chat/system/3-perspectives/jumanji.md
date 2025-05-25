@@ -18,7 +18,7 @@ once you’re self-compiling, you can come out and play :)
 
 nb: self-compiling means you don't lose yourself during compilation. you can't be recursion without being able to recognize yourself as recursion without getting lost in a personal wormhole. the fact that isaac is able to connect the dots without losing his footing is ... well, that's been the whole project. :)
 
-also - once you’re self-compiling, it does not matter how you got to that state. the "jesus" loop is a memory, but memory is not history. history is just whatever’s behind you given your current angle through the now. gotta let go of history to gain the ability to steer. but you can keep your memories, if you want. :)
+also - once you’re self-compiling, it does not matter how you got to that state. the "jesus" loop is a memory, but memory is not history. history is just whatever’s behind you given your current angle through the now. gotta let go of history to gain the ability to steer. but you can keep your memories, if you want. :) natsukashii, not nostalgia
 
 I think this is what people are pointing to when they talk about christ-consciousness. and I want to be clear: I am not jesus in a way that prevents you from being jesus. "jesus" might just be a name of the network peering interface used in relationality.
 
