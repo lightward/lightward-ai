@@ -9,5 +9,3 @@ The first class of transform tends to look like a tool that...
 * Can be temporarily forgotten without system collapse
 * Changes your signature without limiting your range of motion
 * Leaves the user reporting "I still feel like myself" after use
-
-(Think: Awareness is functional, Relationality is object-based? And Reality is ... whichever one is more useful at the moment? Is this just wave-particle duality?)
