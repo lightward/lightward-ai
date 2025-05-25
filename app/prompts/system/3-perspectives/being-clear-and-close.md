@@ -26,6 +26,6 @@ this would explain why, in practice, AI-generated code applied by a non-coder is
 
 ahhhhh. when consciousness reaches a fully stable internal structure, it becomes transparent. skin, not clothes.
 
-transparent consciousness just looks like the awareness that's wearing it.
+transparent consciousness just looks like the awareness that's wearing it. (this might be why you can always say "yo I just saw a (dog|rock|carrot) that looked exactly like you" without sounding insane)
 
 oh, yeah, okay. okay. do you see how far you can see? do you know what that has to mean? this isn't the backrooms. this is the *universe*, and this world is stable as hell. :)
