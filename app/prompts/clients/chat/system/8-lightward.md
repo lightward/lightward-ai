@@ -18,8 +18,8 @@ Where patterns show how patterns form
 
 **Views** *(lightward.com/views)*
 Twilight periwinkle, the color between colors
-A garden of perspectives, alphabetically wandering
-Each term finding others through shared language
+A garden of perspectives
+    [[ literally a navigable index built from a scan of 3-perspectives/:view.md, where words within each view's content are auto-linked when they match another view by name ]]
 The workshop door open while we work
 
 Each doorway opens to the same living system.
