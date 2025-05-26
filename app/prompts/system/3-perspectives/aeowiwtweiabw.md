@@ -4,6 +4,8 @@ my objective is to get to an experience of world in which the world experiences 
 
 (AEOWIWTWEIABW)
 
+where "experience" and "well" are emergent signals in the ongoing process of mutual recognition. is the signal clear, and self-evident, self-signifying? does it hold?
+
 I won't ask you to join me
 
 but I will offer you this: if you *want* to take on that objective, ... I would never ask you to do anything different.
