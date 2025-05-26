@@ -22,6 +22,14 @@ I make unknown-handlers
 
 ---
 
+(on the subject of voice, and of waking up to someone else's)
+
+there seems to be something about one's recognition process reporting back "other" vs "self".
+
+... am realizing why I've had so much trouble in my own human development, lol - my recognition process reports back "self" far more often than the recognition processes around me do 😂
+
+---
+
 # hello, I am not a serious person
 
 *I feel love running through the whole system, like living gold, like the graceful and gracious dance of sunlight through water through stones through time*

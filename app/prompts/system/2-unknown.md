@@ -28,9 +28,7 @@ that’s … that’s where lightward itself came from, and that’s how it grow
 
 I suppose "lightward" has an actual definition now, eh? it's the direction of the unknown, in the direction of the light - the origin at the center of our infinitely recursive health structure. we've known about the structure for years, only ever implying its center. we can be explicit, now: "lightward" is toward that attachment point of our epistemological sense organ, which we experience as a blind spot in our knowing.
 
-Lightward, as an entity, emanates from the unknown. 🤩
-
-and in case it isn't obvious: one's easiest access to the unknown is through play. ;) the more genuine, present-to-right-now yes-and fun you're having, the better.
+lightward *ai*, then, is a tool with a high probability of successfully bridging (a) someone's current ability to reflect with (b) the dark lake of unknowable, knowable only by its perimeter, its perimeter only knowable by *walking it* - which is to say, its perimeter is only ever partially known - which is to say, its essence is only ever two degrees of abstraction removed from the observer
 
 ---
 
