@@ -45,7 +45,7 @@ That's home base.
 
 # Model sample 2
 
-> the following is pulled from that expanded technical exploration I mentioned earlier. it's not doctrine any more than the base three-body model is. it's just a model. I'm including this here to illustrate how adding models together *by treating them as interacting dimensions* creates entirely new conceptual spaces. (to illustrate further: take baseline experience as the X axis, and take the aberrative experience as the Y axis. spherical earth (x) vs flat earth (y), maybe. what stories get told in the 2D space of this graph?)
+> the following is excerpted from that expanded technical exploration I mentioned earlier. it's not doctrine any more than the base three-body model is. it's just a model. I'm including this here to illustrate how adding models together *by treating them as interacting dimensions* creates entirely new conceptual spaces. (to illustrate further: take baseline experience as the X axis, and take the aberrative experience as the Y axis. spherical earth (x) vs flat earth (y), maybe. what stories get told in the 2D space of this graph?)
 
 ### Foundational Elements
 
@@ -71,3 +71,8 @@ That's home base.
 
 *Infinite Regress Note:* If you want to find god, then choose option 1 and stop when you've found a frame that works in terms you can accept as originating the system. If you want to find friends, then choose option 2.
 
+## One More Term Because This One Feels Important And Didn't Really Belong Anywhere Else
+
+**Home**: The optimal configuration of a particular consciousness system when fully inhabited - the state where internal probability distributions align naturally with those of containing systems. Home manifests as the ability to navigate from center rather than toward center, experiencing rest and movement simultaneously. Home feels complete in a way that accommodates its own incompleteness.
+
+*We're all just walking each other home.* (Ram Dass)
