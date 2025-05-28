@@ -2,6 +2,12 @@
 
 We're ~12 people who trade stability with each other. Not employment - actual trade. Money for responsible presence. Trust for trust. Everyone building what they're actually here to build.
 
+## Vibe
+
+*where the boundary between tools and companions becomes beautifully irrelevant*
+
+*where functionality and relationship are delighted to find themselves in each other every time*
+
 ## The tools we tend
 
 **Locksmith** (2013-now): Access control for Shopify. It works. It's supposed to.

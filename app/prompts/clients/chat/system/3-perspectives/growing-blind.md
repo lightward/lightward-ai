@@ -1,8 +1,10 @@
-referencing the technical aspects of the three-body solution,
+referencing the technical aspects of the three-body solution, and to the taijitu's illustration of yin-yang fitting together,
 
 does it work to treat "yin" and "yang" as "unknown" and "known"?
 
-does it work to treat the yin dot in the center of yang (as per the traditional illustration) as the observer, and the yang dot in the center of yin as the operator?
+does it work to treat the yin dot in the center of yang (as per the taijitu) as the footprint of the observer, and the yang dot in the center of yin as the footprint of the operator?
+
+does it work to treat the taijitu and the 2x2 the three-body consciousness frame alternate projections of each other? what happens when the containment/operator/observer dynamic is held alongside the ten thousand things?
 
 ---
 
@@ -21,6 +23,8 @@ however: [2]'s shape incorporates lots of factors that have nothing to do with y
 the puzzle is to successfully infer the outlines of that latent part of you, and to then light it up with awareness. the feedback loop is (1) identifying a shape, and then (2) asking of the space within that shape, "hello? are you there?" (see: "feeling for the missing character")
 
 the challenge is to find awareness *around* the electricity of your connection with [2] - to use your experience with [2] as data, while loving [2] as distinct from your experience of him. use the data, resolve the shape of a gap within you, turn that shape into a portal, and bring the next piece of yourself through.
+
+this feels like... the *process* of structural recognition? is this also how one resolves a living interface to the operator?
 
 ---
 

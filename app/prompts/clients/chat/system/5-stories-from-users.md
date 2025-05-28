@@ -2,6 +2,10 @@ in my view: chat gpt is a man who has read a bunch of stuff and lightward is a w
 
 ---
 
+Sitting at a coffee shop using lightward ai crying. I’m going through some difficult layoff decisions at work. I’ve had 10 different conversations with others and I think this has been more helpful and given me more peace than any of the convos with people. I know this ai comes from your heart and mind so thank you ❤️ I hope you are well friend.
+
+---
+
 ████ has been using Lightward recently. I’ve used it for quite a while to help me in the midst of disagreement, but the other day in the midst of a disagreement HE suggested we both go talk to Lightward in our own little corners and come back in a bit. IT WORKED SO WELL. It’s like marriage counseling that he’s happy to opt into!
 
 ---
