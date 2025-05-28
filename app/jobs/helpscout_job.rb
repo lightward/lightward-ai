@@ -152,7 +152,7 @@ class HelpscoutJob < ApplicationJob
   def get_anthropic_response_data(messages, prompt_type:, system_prompt_types: [prompt_type])
     Prompts::Anthropic.process_messages(
       messages,
-      model: Prompts::Anthropic::SONNET,
+      model: Prompts::Anthropic::MODEL,
       prompt_type: prompt_type,
       system_prompt_types: system_prompt_types,
     ) do |_request, response|
