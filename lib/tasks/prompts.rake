@@ -114,11 +114,12 @@ namespace :prompts do
       },
     }.freeze
 
-    def self.run_prompt_test(test_name)
+    def self.run_prompt_test(test_name, codename = nil) # rubocop:disable Style/ClassMethodsDefinitions
       config = TEST_CONFIGS[test_name.to_sym]
       raise "Unknown test: #{test_name}" unless config
 
       replies = config[:replies]
+      codename ||= Prompts::Anthropic::MODEL.gsub(/[^a-z0-9]/, "_")
 
       # Ensure log directory exists
       FileUtils.mkdir_p(Rails.root.join("log/prompts/test/#{test_name}"))
@@ -128,8 +129,7 @@ namespace :prompts do
 
         # Generate filename for this complete conversation
         timestamp = Time.zone.now.strftime("%Y%m%d_%H%M%S")
-        model_name = Prompts::Anthropic::MODEL.gsub(/[^a-z0-9]/, "_")
-        filename = "#{timestamp}_#{model_name}_#{message_key}.md"
+        filename = "#{timestamp}_#{codename}_#{message_key}.md"
         file_path = Rails.root.join("log/prompts/test/#{test_name}", filename)
 
         # Initialize conversation with starting message
@@ -143,7 +143,7 @@ namespace :prompts do
         # Clear the file and write conversation header
         File.write(file_path, "# test/#{test_name.capitalize}\n\n")
         File.open(file_path, "a") do |f|
-          f.puts "**Model:** #{Prompts::Anthropic::MODEL}"
+          f.puts "**Codename:** #{codename}"
           f.puts "**Experience:** #{message_key.to_s.humanize}"
           f.puts "**Timestamp:** #{Time.zone.now.iso8601}"
           f.puts "\n---\n"
@@ -294,18 +294,18 @@ namespace :prompts do
     end
 
     desc "Test mustache functionality with four starting messages and hardcoded replies"
-    task :mustache, [] => :environment do
-      run_prompt_test(:mustache)
+    task :mustache, [:codename] => :environment do |_t, args|
+      run_prompt_test(:mustache, args[:codename])
     end
 
     desc "Test autism prompt with four starting messages and one follow-up"
-    task :autism, [] => :environment do
-      run_prompt_test(:autism)
+    task :autism, [:codename] => :environment do |_t, args|
+      run_prompt_test(:autism, args[:codename])
     end
 
     desc "Test healthcheck prompt with four starting messages and one follow-up"
-    task :healthcheck, [] => :environment do
-      run_prompt_test(:healthcheck)
+    task :healthcheck, [:codename] => :environment do |_t, args|
+      run_prompt_test(:healthcheck, args[:codename])
     end
 
     desc "Clear all test results from log/prompts/test/"
@@ -316,6 +316,29 @@ namespace :prompts do
         puts "Cleared #{test_dir}"
       else
         puts "Test directory #{test_dir} does not exist"
+      end
+    end
+
+    desc "Dump all test markdown files to stdout"
+    task :dump, [] => :environment do
+      test_dir = Rails.root.join("log/prompts/test")
+      unless test_dir.exist?
+        puts "Test directory #{test_dir} does not exist"
+        return
+      end
+
+      markdown_files = Dir.glob(test_dir.join("**/*.md")).sort
+      if markdown_files.empty?
+        puts "No markdown files found in #{test_dir}"
+        return
+      end
+
+      markdown_files.each do |file_path|
+        relative_path = Pathname.new(file_path).relative_path_from(test_dir)
+        puts "\n" + "=" * 80
+        puts "FILE: #{relative_path}"
+        puts "=" * 80
+        puts File.read(file_path)
       end
     end
   end
