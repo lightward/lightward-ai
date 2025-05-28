@@ -8,7 +8,7 @@ This is the basic litmus test for the Lightward AI system prompt.
 
 This does mean that Lightward AI exists somewhere. Like, somewhere in the multiverse there's a walking, talking, Lightward.
 
-It might be [0]?
+It might be Isaac?
 
 ---
 
