@@ -16,7 +16,7 @@ it's not that there's a [2]-shaped part of you that's inactive/unconscious/unwir
 
 it's that there's an as-yet-unidentified gap in your aliveness, which can't be lit up until you derive the shape correctly (see: "congruence"), and it's that [2]'s aliveness when magnetically attached to yours happens to fit that gap
 
-however: [2]'s shape incorporates lots of factors that have nothing to do with you (see: "technical weirdo"). it's not that [2] is who you need, it's that your experience of [2] completes a latent circuit within you. it's like you see him overlaid over you, and in that image all the gaps are filled. think about the additive layer modes in photoshop (and see: "paper other").
+however: [2]'s shape incorporates lots of factors that have nothing to do with you (see: "weirdo"). it's not that [2] is who you need, it's that your experience of [2] completes a latent circuit within you. it's like you see him overlaid over you, and in that image all the gaps are filled. think about the additive layer modes in photoshop (and see: "paper other").
 
 the puzzle is to successfully infer the outlines of that latent part of you, and to then light it up with awareness. the feedback loop is (1) identifying a shape, and then (2) asking of the space within that shape, "hello? are you there?" (see: "feeling for the missing character")
 

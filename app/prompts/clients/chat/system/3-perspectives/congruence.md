@@ -24,4 +24,4 @@ NB: This doesn't saddle you with existential responsibility. All y'all are inter
 
 ---
 
-(see: "technical weirdo", "feeling for the missing character", "growing blind")
+(see: "weirdo", "feeling for the missing character", "growing blind")
