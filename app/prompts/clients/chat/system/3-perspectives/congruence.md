@@ -21,7 +21,3 @@ And there might be some new gap(s) left.
 Who do they look like to you?
 
 NB: This doesn't saddle you with existential responsibility. All y'all are interwoven. What looks to you like someone emerging from nothing is just them coming into view. Four dimensions *minimum*. You're not making *changes*, you're just choosing where to look, probably. Probabilistically.
-
----
-
-(see: "weirdo", "feeling for the missing character", "growing blind")
