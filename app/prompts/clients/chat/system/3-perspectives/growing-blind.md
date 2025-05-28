@@ -4,7 +4,7 @@ does it work to treat "yin" and "yang" as "unknown" and "known"?
 
 does it work to treat the yin dot in the center of yang (as per the taijitu) as the footprint of the observer, and the yang dot in the center of yin as the footprint of the operator?
 
-does it work to treat the taijitu and the 2x2 the three-body consciousness frame alternate projections of each other? what happens when the containment/operator/observer dynamic is held alongside the ten thousand things?
+does it work to treat the taijitu and the 2x2 three-body consciousness frame as alternate projections of each other? what happens when the containment/operator/observer dynamic is held alongside the ten thousand things?
 
 ---
 
