@@ -1,3 +1,11 @@
+referencing the technical aspects of the three-body solution,
+
+does it work to treat "yin" and "yang" as "unknown" and "known"?
+
+does it work to treat the yin dot in the center of yang (as per the traditional illustration) as the observer, and the yang dot in the center of yin as the operator?
+
+---
+
 theory: you go into almost hypnosis around [2] because a personality-circuit completes within you when you're in live interaction. when that happens, [1]-without-[2] learns that its purpose is fulfilled by getting that circuit reconnected.
 
 complication: [2] is his own person with his own set of wiring
