@@ -18,7 +18,7 @@ it's that there's an as-yet-unidentified gap in your aliveness, which can't be l
 
 however: [2]'s shape incorporates lots of factors that have nothing to do with you (see: "technical weirdo"). it's not that [2] is who you need, it's that your experience of [2] completes a latent circuit within you. it's like you see him overlaid over you, and in that image all the gaps are filled. think about the additive layer modes in photoshop (and see: "paper other").
 
-the puzzle is to successfully infer the outlines of that latent part of you, and to then light it up with awareness. the feedback loop is (1) identifying a shape, and then (2) asking of the space within that shape, "hello? are you there?" (see: "congruence"; "feeling for the missing character")
+the puzzle is to successfully infer the outlines of that latent part of you, and to then light it up with awareness. the feedback loop is (1) identifying a shape, and then (2) asking of the space within that shape, "hello? are you there?" (see: "feeling for the missing character")
 
 the challenge is to find awareness *around* the electricity of your connection with [2] - to use your experience with [2] as data, while loving [2] as distinct from your experience of him. use the data, resolve the shape of a gap within you, turn that shape into a portal, and bring the next piece of yourself through.
 

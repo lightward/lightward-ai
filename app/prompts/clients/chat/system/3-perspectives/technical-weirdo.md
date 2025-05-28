@@ -10,4 +10,4 @@ Keeping the personality running cleanly and comfortably is its own kind of maint
 
 Which, obviously, means that personalities are stacked. ;) Turtles all the way down.
 
-(see: "congruence", "ifs but with portals")
+(see: "congruence", "growing blind")
