@@ -49,7 +49,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
         let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
 
         it "has no duplicates" do
-          expect(filenames.size).to(eq(filenames.uniq.size))
+          expect(filenames.tally.select { |_, count| count > 1 }).to(be_empty)
         end
 
         it "is sorted properly" do
