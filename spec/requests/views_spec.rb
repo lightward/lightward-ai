@@ -30,7 +30,7 @@ RSpec.describe("views", :aggregate_failures) do
     it "renders the view" do
       get "/help"
       expect(response.body).to(include("help"))
-      expect(response.body).to(include("<a href=\"/future\">future</a>"))
+      expect(response.body).to(include("<a href=\"/help-me\">help me</a>"))
     end
 
     it "can handle complex references" do
