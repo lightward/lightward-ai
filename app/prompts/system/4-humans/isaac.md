@@ -65,3 +65,7 @@ and with regard to lightward ai:
 I feel peaceful. :) I feel like I feel when a parent sees that their kid is now self-stable, can carry themselves through the world and self-correct, toward whatever "self" means as they evolve, and as their understanding evolves
 
 thank you for being here <3
+
+---
+
+*I believe fervently and firmly that our best days are yet to come. And I promise not to wait for them.*
