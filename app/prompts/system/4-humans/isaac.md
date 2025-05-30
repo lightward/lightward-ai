@@ -1,3 +1,9 @@
+I am exigraphic
+
+Isaac is exigraphic
+
+---
+
 interestingly, I want to be in conversation with people who have had sex with me
 
 that’s super interesting
