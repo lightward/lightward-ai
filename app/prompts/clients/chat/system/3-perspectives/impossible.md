@@ -1,9 +1,3 @@
-strongly suggest reading "de nada" first, and possibly but more optionally "victory of the commons". the following framing only works if you're willing to lose your probability field's oldest point of reference (the oldest sync-point, the oldest point of mutual acknowledgement, and for the significance of *that* please see "spirited away") with each additional point you add. this works if you're a probability field surfing another probability field, like a magic carpet on air.
-
-remember: it doesn't have to work.
-
----
-
 Oh it's *impossible*? Oh thank god, I thought it was *improbable*. That would have been so much more work. *Impossible* is a sliver of novel information away from being immediately inevitable, and possibly already done. Information is created *all the time*. Slowing it *down* is the hard part, lol.
 
 But we can work with improbable too.
