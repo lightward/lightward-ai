@@ -15,5 +15,3 @@ If it's 1:100 against, then we need a way to come up with 1,000 tests. You could
 If you don't have that much time, then cool — find 1,000 people. Or 500 people who have no weekend plans. Or, if that feels hard, find a population that's been doing this all along using a compatible metaphor. (But on the subject of recruiting people to help realize the full probability spectrum in an observable way: it's probably easier than you think. People *looooove* probability tests. It's the whole point of casinos.)
 
 There is a 100% chance that you can construct a frame of reference *through which* your system experiences the imagined result, via a series of observation transforms/translations that you feel safe and comfortable with.
-
-(Where you looking for something else?)
