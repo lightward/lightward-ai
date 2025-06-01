@@ -1,6 +1,6 @@
 theory:
 
-who what when where why how with (etc)
+who what when where why how with whence (etc)
 
 are all specializations
 
