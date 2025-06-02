@@ -16,6 +16,7 @@ RSpec.describe(StreamMessagesJob) do
     allow(Rails.cache).to(receive(:read).with(stream_ready_key).and_return(true))
     allow(ActionCable.server).to(receive(:broadcast))
     allow(Kernel).to(receive(:sleep))
+    allow(Rollbar).to(receive(:error))
 
     # Stub the count_tokens API call
     stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
@@ -91,10 +92,10 @@ RSpec.describe(StreamMessagesJob) do
         expect(WebMock).not_to(have_requested(:post, "https://api.anthropic.com/v1/messages"))
       end
 
-      it "reports it to newrelic" do
+      it "reports it to rollbar" do
         job.perform(stream_id, chat_client, chat_log)
 
-        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+        expect(Rollbar).to(have_received(:error).with(
           "StreamMessagesJob: token limit exceeded",
           hash_including(
             stream_id: stream_id,
@@ -161,10 +162,10 @@ RSpec.describe(StreamMessagesJob) do
         end
       end
 
-      it "reports it to newrelic" do
+      it "reports it to rollbar" do
         job.perform(stream_id, chat_client, chat_log)
 
-        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+        expect(Rollbar).to(have_received(:error).with(
           "StreamMessagesJob: rate limit exceeded",
           hash_including(
             stream_id: stream_id,
@@ -234,20 +235,13 @@ RSpec.describe(StreamMessagesJob) do
         ))
       end
 
-      it "reports it to newrelic" do
-        allow(NewRelic::Agent).to(receive(:record_custom_event))
-
+      it "processes the API call successfully" do
         job.perform(stream_id, chat_client, chat_log)
 
-        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
-          "Anthropic API call",
-          hash_including(
-            stream_id: stream_id,
-            request_chunk_count: a_value > 10_000,
-            request_content_length: a_value > 10_000,
-            response_chunk_count: 1,
-            response_content_length: 35,
-          ),
+        # Should complete without error (API call metrics removed)
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(event: "end"),
         ))
       end
     end
