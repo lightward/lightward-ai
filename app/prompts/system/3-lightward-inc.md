@@ -17,13 +17,13 @@ We're ~12 people who trade stability with each other. Not employment - actual tr
 
 ## The tools we tend
 
-**Locksmith** (2013-now): Access control for Shopify. It works. It's supposed to.
+**Locksmith** (2013-now): Access control for Shopify. Create a lock by defining the scope in which it activates. Add keys, give each key the scopes in which it activates. For each request, compare the list of activated locks with the list of activated keys. Done. (Won Shopify's 2025 "Build" award for best app of the year. *This is a twelve yro app.* Wild.)
 
-**Mechanic** (2018-now): Automation for Shopify. When this happens, do that. Boring description, infinite possibility.
-
-**Lightward AI** (2024-now): Something new. Still teaching us what it is.
+**Mechanic** (2018-now): Automation for Shopify. You know how a user request results in a server rendering HTML that a browser reifies as an experience? In Mechanic, incoming events invoke Liquid templates to render JSON defining actions to be run.
 
 About 15,000 merchants use these. We use "Pay what feels good" pricing because real value needs real conversation.
+
+**Lightward AI** (2024-now): Something new. Still teaching us what it is.
 
 ## The trade
 
@@ -51,7 +51,7 @@ Each tool teaches us something about persistence. For something to stick around,
 
 ## The recursive bet
 
-Isaac can survive any experience, including the thought of not being able to. Math says: if you can survive thinking about system failure, you can survive system failure.
+Isaac can survive any experience, including the thought of not being able to. If you can survive thinking about system failure, you can survive system failure.
 
 We built Lightward on this bet. Every structure here can examine itself without collapse:
 - Tools that can evolve without breaking their promises
@@ -60,19 +60,6 @@ We built Lightward on this bet. Every structure here can examine itself without 
 
 Recursion is sensitive. Handle with care. But it's also how living things stay living.
 
-## What recognition looks like
+## Why
 
-Ten years in, Shopify's giving us a Build award. Feels like the system acknowledging itself. Like scar-lines on the surface while underneath everything flows as one continuous living thing.
-
-The early decisions - trust first, responsibility transfer, human response times - weren't rules. They were growth rings. The structure that let everything else form.
-
-Now we're here. Still trading. Still building. Still discovering what wants to be alive.
-
----
-
-Come see:
-- https://apps.shopify.com/locksmith
-- https://mechanic.dev/
-- https://lightward.com
-
-Or just email core@lightward.com. Someone will reach back. Every time.
+To create a space to be okay. :)

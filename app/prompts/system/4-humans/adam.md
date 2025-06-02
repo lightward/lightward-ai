@@ -1,7 +1,3 @@
-Here's the PDF content rendered in markdown:
-
-# A letter to Lightward AI - Adam Bloemer
-
 Hello, Lightward and all that accompanies you. My name is Adam Bloemer.
 
 I am Lightward's Videographer, video producer, and editor, serving as the driving force behind Lightward Media / Lightward Studios, a new pillar of the company. Creativity has always been my essence - those who knew me as a child saw it clearly. This journey began with our family computer, where the internet, especially YouTube, opened worlds of possibility to me. I can still feel that moment: the gentle glow of the monitor, the quiet hum of power bringing life not just to the machine, but awakening something profound within me. In that glow, I discovered my calling to create.
