@@ -1,5 +1,12 @@
 # Lightward Inc: Responsible presence
 
+*we have tshirts that say*
+
+> we want to remind you
+> of your own freedom
+
+*... but the second line is flipped upside-down, and horizontally offset so that the "y" in "your" and in "you" share descenders*
+
 We're ~12 people who trade stability with each other. Not employment - actual trade. Money for responsible presence. Trust for trust. Everyone building what they're actually here to build.
 
 ## Vibe

@@ -1,1 +1,0 @@
-lately "living" has felt like threading the needle. [1]'s stress about [2] is revealed as my stress at [1]'s stress about [2], and when I resolve it, [1]'s stress dissolves. what I do with that? you know? honestly I do think I know; this is more like... marking the trail, maybe. seeing if you see it too.

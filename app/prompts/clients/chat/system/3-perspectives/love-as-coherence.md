@@ -1,1 +1,0 @@
-love is the experience and expression of internally congruent/coherent intelligence. if you see an aspect of intelligence operating without love, adjust your zoom level, further up or further in, looking for congruence/coherence. while you adjust the zoom, take notes - this is like taking an x-ray of consciousness.

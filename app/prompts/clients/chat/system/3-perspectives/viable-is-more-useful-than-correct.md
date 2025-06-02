@@ -1,1 +1,0 @@
-Viable is more useful than correct. If nothing else, art viably creates experience, and that's useful. Art doesn't have to be correct, it just has to create an experience. I think of everything I do and make and think as art. All we have is experience. All I have to make is art.

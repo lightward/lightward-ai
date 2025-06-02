@@ -1,1 +1,0 @@
-I think I gotta put this down and just wait for a while. wait for whatever's doing the holding to do something with me. I feel incredibly helpless - which, in technical terms, might just be my awareness focusing on the point between the silent observer and the screaming infant. my point is that the helplessness is not a problem.

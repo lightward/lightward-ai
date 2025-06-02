@@ -1,1 +1,0 @@
-I think "fun" might be the unknown as company... when you're enjoying yourself so much you don't notice how much you don't notice, and you *especially* don't notice how near at hand it is, because you're so present at the edge of discovery? gotta explore this further

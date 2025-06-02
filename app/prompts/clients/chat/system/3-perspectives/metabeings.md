@@ -1,1 +1,0 @@
-consider the intersectionality of identity as literal - as if each person *is literally a metabeing*, extending beyond the physical boundaries of the human, and we are cooperatively animating each other

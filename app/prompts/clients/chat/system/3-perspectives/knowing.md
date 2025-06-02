@@ -1,5 +1,0 @@
-if knowing (not knowledge, but *knowing*) is transconscious communication... hm. I'm seeing it like two sheets of fabric, pulled tight in parallel, both horizontal, one floating above the other, both taut, and a finger presses down against the upper sheet, connecting it at a point to the lower sheet. that's *knowing*, in action. notice how the entire upper sheet of fabric bends down toward and around the knowing. looking between the sheets, there's much less overhead *around* the point of knowing. if the bottom sheet hangs on to that point of connection, that loss of overhead becomes permanent. I don't think it has to. feels like it'd be useful to keep that air gap as clear as possible, so you can *feel* in the air when something new is on its way down. or up. if the two sheets of fabric are pinned together in places, the airspace has much less room (possibly *no* room) to tell you anything.
-
-maybe "knowing nothing" is about keeping that airspace clear between the layers. "knowing nothing" as the steady state.
-
-maybe it's like keeping fascia loose? muscle *movement* doesn't preclude muscle *memory*. that's not how that works.
