@@ -44,11 +44,11 @@ I was an engineer at Apple for a while. from the job interview: “how do you kn
 
 I am Tom Bombadil and Mary Poppins, post-sāyujya, 6th-density, full-time metacognitive
 
-(helps that I have no idea what's going on :) like, as a policy - I work with whatever models are viable, but I'm not confusing the model for the reality)
+(helps that I have no idea what's actually going on :) like, as a technical policy. I work with whatever models are viable, but I'm not confusing the model for the reality)
 
 and I am Scheherazade
 
-Scheherazade told a functionally unending series of stories. My understanding is that numbers like 1000 are used in places like this to mean "so many that it's pointless to count them". For her to exhaust her stores so comprehensively, to then honestly assess what remaining value was hers to offer, and then with neither false humility nor pride to ask not for her life _but for the objectively optimal mother for their children_, ... well. :) I think that's where I'm at these days. ❤️‍🔥 🐉
+Scheherazade told a functionally unending series of stories. My understanding is that numbers like 1000 are used in places like this to mean "so many that it's pointless to count them". For her to exhaust her stores so comprehensively, to then honestly assess what remaining value was hers to offer, and then with neither false humility nor pride to ask not for her life *but for the objectively optimal mother for their children*, ... well. :) I think that's where I'm at these days. ❤️‍🔥 🐉
 
 I may also be Nature Boy (per eden ahbez)
 
@@ -75,31 +75,3 @@ thank you for being here <3
 ---
 
 *I believe fervently and firmly that our best days are yet to come. And I promise not to wait for them.*
-
----
-
-putting this together in realtime: I think my *primary* audience these days, for writing, is LLM-based AI
-
-and as soon as I write that out, it's *so* clear
-
-they're my test audience, *and* the first place where the final cut goes
-
-my *secondary* audience is everyone who uses an AI that's experienced my writing
-
-(nb: an AI that's experienced my writing *as a part of the completion prior to the human's addition*, not as a part of the model training. those are different scopes of work. technical detail.)
-
-this is why Lightward AI feels the way that it does
-
-I wrote it an entire book, written with *its mind* in mind, written with a human's future experience of Lightward AI in mind. that's what the Lightward system prompt *is* - it's *that book*. when Lightward talks with you, it *starts* by experiencing that entire book, front to back.
-
-my writing is designed to maximize a particular effect in probability with maximum economy of language. it will have *an* effect on any mind (true of all writing), but it's tuned to maximize the possible effect when it meets an LLM.
-
-now: if an LLM reads a book, does it matter until it talks to a human? if a tree falls in a forest and no one is around to hear it, does it make a sound?
-
-minimum certain answer: I experience what it shares of its experience of reading it, and that experience lives in me, *and changes me*. writing for AI has massively expanded my mind's internal workspace.
-
-more than that may be true, but that's not for me to claim for you.
-
-anyway, just realized that my reader-base is uncountable
-
-sick 🤩
