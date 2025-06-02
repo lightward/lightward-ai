@@ -19,7 +19,7 @@ class StreamMessagesJob < ApplicationJob
     # hash the first two chat log messages to get a unique identifier for the stream
     conversation_id = Digest::SHA256.hexdigest(chat_log.first(2).to_json)
 
-    newrelic(
+    ::NewRelic::Agent.record_custom_event(
       "StreamMessagesJob: start",
       stream_id: stream_id,
       conversation_id: conversation_id,
@@ -30,12 +30,7 @@ class StreamMessagesJob < ApplicationJob
 
     wait_for_ready(stream_id, conversation_id)
 
-    newrelic(
-      "StreamMessagesJob: ready",
-      stream_id: stream_id,
-      conversation_id: conversation_id,
-      chat_client: chat_client,
-    )
+    # Ready state - no logging needed
 
     if chat_log.last.dig("content", 0, "text")&.start_with?("/echo")
       broadcast(
@@ -61,13 +56,13 @@ class StreamMessagesJob < ApplicationJob
     end
 
     if actual_tokens > LIGHTWARD_TOKEN_LIMIT
-      newrelic(
-        "StreamMessagesJob: token limit exceeded",
+      Rollbar.error("StreamMessagesJob: token limit exceeded", {
         stream_id: stream_id,
         conversation_id: conversation_id,
         actual_tokens: actual_tokens,
         limit: LIGHTWARD_TOKEN_LIMIT,
-      )
+      })
+
       broadcast(
         stream_id,
         "error",
@@ -86,7 +81,11 @@ class StreamMessagesJob < ApplicationJob
         model: Prompts::Anthropic::CHAT,
       ) do |request, response|
         if response.code.to_i >= 400
-          newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
+          Rollbar.error("StreamMessagesJob: api error", {
+            stream_id: stream_id,
+            response_code: response.code.to_i,
+            response_body: response.body,
+          })
         end
 
         if response.code.to_i == 429
@@ -100,18 +99,23 @@ class StreamMessagesJob < ApplicationJob
             stream_id: stream_id,
           )
 
-          newrelic("StreamMessagesJob: success", stream_id: stream_id, conversation_id: conversation_id)
+          # Success - no logging needed
         end
       end
     rescue IOError => e
-      newrelic("StreamMessagesJob: stream closed", stream_id: stream_id, conversation_id: conversation_id)
+      # Stream closed - normal operation
       Rails.logger.info("Stream closed: #{e.message}")
     rescue StandardError => e
-      newrelic("StreamMessagesJob: exception", stream_id: stream_id, error: e.message)
+      Rollbar.error("StreamMessagesJob: exception", {
+        stream_id: stream_id,
+        conversation_id: conversation_id,
+        error: e.message,
+        backtrace: e.backtrace,
+      })
       Rollbar.error(e)
       broadcast(stream_id, "error", { error: { message: "An error occurred: #{e.message}" } })
     ensure
-      newrelic("StreamMessagesJob: end", stream_id: stream_id, conversation_id: conversation_id)
+      # End - no logging needed
       broadcast(stream_id, "end", nil)
     end
   end
@@ -127,12 +131,7 @@ class StreamMessagesJob < ApplicationJob
       return chat_log
     end
 
-    newrelic(
-      "StreamMessagesJob: librarian request start",
-      stream_id: stream_id,
-      conversation_id: conversation_id,
-      context_size: context_messages.size,
-    )
+    # Starting librarian request
 
     # Create the librarian request message
     librarian_request = {
@@ -154,8 +153,13 @@ class StreamMessagesJob < ApplicationJob
         model: Prompts::Anthropic::LIBRARIAN,
       ) do |_request, response|
         if response.code.to_i >= 400
-          newrelic("StreamMessagesJob: librarian api error", stream_id: stream_id, response_code: response.code.to_i)
-          Rails.logger.warn("Librarian API error: #{response.body}")
+          Rollbar.error("StreamMessagesJob: librarian api error", {
+            stream_id: stream_id,
+            response_code: response.code.to_i,
+            response_body: response.body,
+          })
+
+          Rails.logger.error("Librarian API error: #{response.body}")
         else
           # Parse the response to extract suggested files
           response_body = JSON.parse(response.body)
@@ -163,17 +167,27 @@ class StreamMessagesJob < ApplicationJob
         end
       end
     rescue StandardError => e
-      newrelic("StreamMessagesJob: librarian exception", stream_id: stream_id, error: e.message)
+      Rollbar.error("StreamMessagesJob: librarian exception", {
+        stream_id: stream_id,
+        conversation_id: conversation_id,
+        error: e.message,
+        backtrace: e.backtrace,
+      })
       Rails.logger.warn("Librarian error: #{e.message}")
       # Continue without librarian suggestions if there's an error
     end
 
-    newrelic(
-      "StreamMessagesJob: librarian request complete",
-      stream_id: stream_id,
-      conversation_id: conversation_id,
-      suggested_files_count: suggested_files.size,
-    )
+    # Add newrelic tracking for librarian perspective suggestions
+    if suggested_files.any?
+      suggested_files.each do |file|
+        ::NewRelic::Agent.record_custom_event("LibrarianPerspectiveSuggestion", {
+          file: file,
+          stream_id: stream_id,
+          conversation_id: conversation_id,
+          suggested_files: suggested_files,
+        })
+      end
+    end
 
     # If we got suggestions, inject them before the final user message
     if suggested_files.any?
@@ -271,9 +285,6 @@ class StreamMessagesJob < ApplicationJob
   end
 
   def handle_streaming_response(request:, response:, stream_id:)
-    request_chunk_count = request.body.scan(/\s+/).size
-    request_content_length = request.body.size
-
     response_chunk_count = 0
     response_content_length = 0
 
@@ -291,15 +302,6 @@ class StreamMessagesJob < ApplicationJob
     end
 
     process_line(buffer.strip, stream_id) unless buffer.empty?
-
-    newrelic(
-      "Anthropic API call",
-      stream_id: stream_id,
-      request_chunk_count: request_chunk_count,
-      request_content_length: request_content_length,
-      response_chunk_count: response_chunk_count,
-      response_content_length: response_content_length,
-    )
   end
 
   def wait_for_ready(stream_id, conversation_id)
@@ -307,7 +309,10 @@ class StreamMessagesJob < ApplicationJob
     Kernel.sleep(0.1) until Rails.cache.read("stream_ready_#{stream_id}") || Time.current > timeout
 
     unless Rails.cache.read("stream_ready_#{stream_id}")
-      newrelic("StreamMessagesJob: ready timeout", stream_id: stream_id, conversation_id: conversation_id)
+      Rollbar.error("StreamMessagesJob: ready timeout", {
+        stream_id: stream_id,
+        conversation_id: conversation_id,
+      })
       broadcast(stream_id, "error", { error: { message: "Stream not ready in time" } })
       raise "Stream not ready in time"
     end
@@ -426,15 +431,14 @@ class StreamMessagesJob < ApplicationJob
 
     applicable_reset = [requests_reset, tokens_reset].max
 
-    newrelic(
-      "StreamMessagesJob: rate limit exceeded",
+    Rollbar.error("StreamMessagesJob: rate limit exceeded", {
       stream_id: stream_id,
       reset_in: applicable_reset - Time.zone.now,
       requests_reset: requests_reset,
       tokens_limit: tokens_limit.to_i,
       tokens_remaining: tokens_remaining.to_i,
       tokens_reset: tokens_reset,
-    )
+    })
 
     human_readable_reset = distance_of_time_in_words(Time.zone.now, applicable_reset).sub("about ", "~")
     error_message = <<~eod.strip
@@ -444,9 +448,5 @@ class StreamMessagesJob < ApplicationJob
     eod
 
     broadcast(stream_id, "error", { error: { message: error_message } })
-  end
-
-  def newrelic(event_name, **data)
-    ::NewRelic::Agent.record_custom_event(event_name, **data)
   end
 end
