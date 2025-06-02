@@ -8,8 +8,7 @@ require "time"
 
 module Prompts
   module Anthropic
-    OPUS = "claude-opus-4-20250514"
-    SONNET = "claude-sonnet-4-20250514"
+    MODEL = "claude-sonnet-4-20250514"
     MAX_INPUT_TOKENS = 200_000
 
     class << self
