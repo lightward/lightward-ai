@@ -128,7 +128,7 @@ RSpec.describe(StreamMessagesJob) do
         job.perform(stream_id, chat_client, chat_log)
 
         # Should still make the main API call since estimation is under limit
-        expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages"))
+        expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages").at_least_once)
       end
     end
 

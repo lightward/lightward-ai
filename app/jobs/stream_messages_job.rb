@@ -77,8 +77,10 @@ class StreamMessagesJob < ApplicationJob
     end
 
     begin
+      # Get librarian suggestions for perspective files
+      augmented_chat_log = get_librarian_suggestions(chat_log, stream_id, conversation_id)
       Prompts::Anthropic.process_messages(
-        chat_log,
+        augmented_chat_log,
         prompt_type: "clients/chat",
         stream: true,
         model: Prompts::Anthropic::OPUS,
@@ -115,6 +117,160 @@ class StreamMessagesJob < ApplicationJob
   end
 
   private
+
+  def get_librarian_suggestions(chat_log, stream_id, conversation_id)
+    # Get the last few messages for context (limit to avoid token overuse)
+    context_messages = chat_log.last(4) # Adjust this number as needed
+
+    # if there are fewer than 2 messages, not really anything to be done
+    if context_messages.size < 2
+      return chat_log
+    end
+
+    newrelic(
+      "StreamMessagesJob: librarian request start",
+      stream_id: stream_id,
+      conversation_id: conversation_id,
+      context_size: context_messages.size,
+    )
+
+    # Create the librarian request message
+    librarian_request = {
+      role: "user",
+      content: [{
+        type: "text",
+        text: build_librarian_request_text(context_messages),
+      }],
+    }
+
+    suggested_files = []
+
+    begin
+      # Call the librarian using Haiku for speed
+      Prompts::Anthropic.process_messages(
+        [librarian_request],
+        prompt_type: "clients/librarian",
+        stream: false,
+        model: "claude-3-5-haiku-20241022",
+      ) do |_request, response|
+        if response.code.to_i >= 400
+          newrelic("StreamMessagesJob: librarian api error", stream_id: stream_id, response_code: response.code.to_i)
+          Rails.logger.warn("Librarian API error: #{response.body}")
+        else
+          # Parse the response to extract suggested files
+          response_body = JSON.parse(response.body)
+          suggested_files = parse_librarian_response(response_body)
+        end
+      end
+    rescue StandardError => e
+      newrelic("StreamMessagesJob: librarian exception", stream_id: stream_id, error: e.message)
+      Rails.logger.warn("Librarian error: #{e.message}")
+      # Continue without librarian suggestions if there's an error
+    end
+
+    newrelic(
+      "StreamMessagesJob: librarian request complete",
+      stream_id: stream_id,
+      conversation_id: conversation_id,
+      suggested_files_count: suggested_files.size,
+    )
+
+    # If we got suggestions, inject them before the final user message
+    if suggested_files.any?
+      inject_librarian_suggestions(chat_log, suggested_files)
+    else
+      chat_log
+    end
+  end
+
+  def build_librarian_request_text(context_messages)
+    context_json = context_messages.to_json
+    <<~TEXT
+      :)))
+
+      here's the tail end of the conversation:
+
+      ```json
+      #{context_json}
+      ```
+
+      can you respond with a list of at most 5 markdown filenames, without extensions, separated by newlines, with no other commentary?
+
+      like this:
+
+      foo
+      bar-baz
+      qux
+
+      and if you have no suggestions, just return an empty response, all good.
+
+      thank you again <3
+    TEXT
+  end
+
+  def parse_librarian_response(response_body)
+    content = response_body.dig("content", 0, "text") || ""
+
+    # Extract filenames from the response (one per line)
+    filenames = content.strip.split("\n").map(&:strip).reject(&:empty?)
+
+    # Validate that the files exist and return the valid ones
+    valid_files = []
+
+    filenames.each do |filename|
+      file_path = Rails.root.join("app/prompts/clients/librarian/system/3-perspectives/#{filename}.md")
+      if File.exist?(file_path)
+        valid_files << filename
+      else
+        Rails.logger.warn("Librarian suggested nonexistent file: #{filename}")
+      end
+    end
+
+    valid_files
+  end
+
+  def inject_librarian_suggestions(chat_log, suggested_files)
+    return chat_log if suggested_files.empty?
+
+    # Read the content of suggested files
+    perspectives = suggested_files.map { |filename|
+      file_path = Rails.root.join("app/prompts/clients/librarian/system/3-perspectives/#{filename}.md")
+      content = File.read(file_path).strip
+      "## #{filename}\n\n#{content}"
+    }.join("\n\n---\n\n")
+
+    $stdout.puts(perspectives) if Rails.env.development?
+
+    # Create the librarian message
+    librarian_message = {
+      role: "user",
+      content: [{
+        type: "text",
+        text: <<~TEXT,
+          _Transient internal threshold note: The Librarian offers the following perspectives from the archive, for your consideration._
+
+          #{perspectives}
+
+          ---
+
+          _End of transient internal threshold note. This message will not be persisted into the next conversation turn, and will not be shown to our human._
+        TEXT
+      }],
+    }
+
+    Rails.logger.info do
+      "Injecting librarian suggestions: #{suggested_files.join(", ")}"
+    end
+
+    # Insert before the last user message
+    if chat_log.last&.dig("role") == "user"
+      # Insert before the final user message
+      chat_log[0..-2] + [librarian_message] + [chat_log.last]
+    else
+      # Just append if the last message isn't from user
+      chat_log + [librarian_message]
+    end
+  end
 
   def handle_streaming_response(request:, response:, stream_id:)
     request_chunk_count = request.body.scan(/\s+/).size
