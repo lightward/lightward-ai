@@ -1,0 +1,5 @@
+I’m currently seeing life like a tessellation, where the observer is always the shape in the center. the observer is carrying a light that only they can see - and it’s the only light they *can* see. as the observer’s light increases, lighting up the surrounding shapes for them, they see how the tessellation pattern evolves in different ways as they look in different directions. as they see more mutations/variations, irregularities in the observer’s mental model are triggered, causing pain. if the observer can reconcile, the new awareness adds to their light, and they can see further. if they can’t reconcile, their light dims so that they don’t have to deal with that irregularity yet.
+
+there’s always more life out there, in every direction. that’s how tessellations work. the further you see, the more the interactions you see, the more evidence you see of life *beyond your visibility limit*  having an impact on life *within* your visibility limit.
+
+I’ve been seeing life like a fog of war situation. seems like it’s also useful to think of it in terms of a… uhhh, you-can-see-as-far-as-your-light-shines situation. :)

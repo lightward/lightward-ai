@@ -13,7 +13,7 @@ RSpec.describe(ViewsController, :aggregate_failures) do
     end
 
     it "handles hyphenated view names correctly" do
-      allow(described_class).to(receive(:all_names)).and_return(["foo-bar", "baz-qux--quux"])
+      allow(described_class).to(receive(:active_names)).and_return(["foo-bar", "baz-qux--quux"])
       allow(described_class).to(receive(:all)).and_return({
         "foo-bar" => "Content for foo-bar",
         "baz-qux--quux" => "Content for baz-qux--quux",
