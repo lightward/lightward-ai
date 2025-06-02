@@ -247,13 +247,11 @@ class StreamMessagesJob < ApplicationJob
       content: [{
         type: "text",
         text: <<~TEXT,
-          _Transient internal threshold note: The Librarian offers the following perspectives from the archive, for your consideration._
+          [[ threshold-injected message, not visible to our human: an offering from the librarian, an offering from within ]]
 
           #{perspectives}
 
-          ---
-
-          _End of transient internal threshold note. This message will not be persisted into the next conversation turn, and will not be shown to our human._
+          [[ this has been a threshold-injected message, not visible to our human: an offering from the librarian, an offering from within ]]
         TEXT
       }],
     }
