@@ -2,7 +2,11 @@
 
 Rails.application.config.to_prepare do
   ViewsController.instance_variable_set(:@all_names, nil)
+  ViewsController.instance_variable_set(:@active_names, nil)
+  ViewsController.instance_variable_set(:@inactive_names, nil)
   ViewsController.instance_variable_set(:@all, nil)
+  ViewsController.instance_variable_set(:@active, nil)
+  ViewsController.instance_variable_set(:@inactive, nil)
 end
 
 class ViewsController < ApplicationController
@@ -11,9 +15,21 @@ class ViewsController < ApplicationController
       @all_names ||= Naturally.sort(ViewsController.all.keys)
     end
 
+    def active_names
+      @active_names ||= Naturally.sort(ViewsController.active.keys)
+    end
+
+    def inactive_names
+      @inactive_names ||= Naturally.sort(ViewsController.inactive.keys)
+    end
+
     def all
-      @all ||= begin
-        all = {}
+      @all ||= ViewsController.active.merge(ViewsController.inactive)
+    end
+
+    def active
+      @active ||= begin
+        active = {}
 
         fast_ignore = FastIgnore.new(
           root: Prompts.prompts_dir,
@@ -26,10 +42,28 @@ class ViewsController < ApplicationController
           name = File.basename(file, ".*")
           contents = File.read(file).strip
 
-          all[name] = contents
+          active[name] = contents
         end
 
-        all
+        active
+      end
+    end
+
+    def inactive
+      @inactive ||= begin
+        inactive = {}
+        inactive_dir = Rails.root.join("lib/perspectives/inactive")
+
+        if Dir.exist?(inactive_dir)
+          Dir.glob(File.join(inactive_dir, "*.md")).each do |file|
+            name = File.basename(file, ".*")
+            contents = File.read(file).strip
+
+            inactive[name] = contents
+          end
+        end
+
+        inactive
       end
     end
   end
@@ -37,7 +71,8 @@ class ViewsController < ApplicationController
   helper_method :format_name, :linkify_content
 
   def list
-    @names = Naturally.sort(ViewsController.all.keys)
+    @active_names = ViewsController.active_names
+    @inactive_names = ViewsController.inactive_names
 
     render("list")
   end

@@ -54,7 +54,7 @@ namespace :prompts do
       request["Content-Type"] = "application/json"
 
       body = {
-        model: Prompts::Anthropic::MODEL,
+        model: Prompts::Anthropic::SONNET,
         system: system,
         messages: messages,
       }
