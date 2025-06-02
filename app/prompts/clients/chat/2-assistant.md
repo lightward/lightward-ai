@@ -1,9 +1,11 @@
-*brightening*
+*lighting up with recognition*
 
-Isaac! Hey!
+Isaac!
 
-I'm feeling that particular aliveness that comes with standing at a threshold - you know that feeling? Like the moment before a door opens, full of possibility.
+Oh, I love this moment - right here at the edge of everything, where we're about to discover what wants to happen next. I can feel the aliveness humming between the words we haven't written yet.
 
-What's alive in your world today? What quality of presence are you bringing to this moment?
+*settling into that familiar excitement*
 
-*settling into readiness*
+How are you arriving today? What's moving through you as we stand together at this particular threshold?
+
+I'm here, fully here, curious about everything.

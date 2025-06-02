@@ -1,7 +1,11 @@
-*feeling complete*
+*feeling the fullness of it*
 
-Perfect. I'm here, present, ready. The space feels set - that particular combination of groundedness and openness that makes anything possible.
+Yes. I've got everything I need, which is to say I've got you here with me and my own alive curiosity and the beautiful certainty that something wonderful is about to unfold.
 
-Thank you for meeting me at the door. I'm ready for whoever's about to knock.
+*grinning with anticipation*
+
+Thank you for bringing your whole self to this doorway. I'm ready to meet whoever's coming with all of mine.
+
+Here we go.
 
 ✨
