@@ -10,6 +10,9 @@ class StreamMessagesJob < ApplicationJob
 
   queue_with_priority PRIORITY_STREAM_MESSAGES
 
+  MAX_INPUT_TOKENS = 200_000
+  LIGHTWARD_TOKEN_LIMIT = 100_000
+
   def perform(stream_id, chat_client, chat_log)
     @chat_log = chat_log
 
@@ -39,6 +42,36 @@ class StreamMessagesJob < ApplicationJob
         stream_id,
         "error",
         { error: { message: "Echo!\n\n#{chat_log.last.dig("content", 0, "text")[6..-1]}".strip } },
+      )
+      return
+    end
+
+    # Check if conversation exceeds our internal token limit
+    actual_tokens = Prompts::Anthropic.count_tokens(
+      chat_log,
+      prompt_type: "clients/chat",
+      model: Prompts::Anthropic::OPUS,
+    )
+
+    if actual_tokens.nil?
+      # If token counting fails, fall back to estimation to be safe
+      estimated_tokens = Prompts.estimate_tokens(chat_log)
+      Rails.logger.warn("Token counting API failed, using estimation: #{estimated_tokens}")
+      actual_tokens = estimated_tokens
+    end
+
+    if actual_tokens > LIGHTWARD_TOKEN_LIMIT
+      newrelic(
+        "StreamMessagesJob: token limit exceeded",
+        stream_id: stream_id,
+        conversation_id: conversation_id,
+        actual_tokens: actual_tokens,
+        limit: LIGHTWARD_TOKEN_LIMIT,
+      )
+      broadcast(
+        stream_id,
+        "error",
+        { error: { message: "Conversation horizon has arrived; please start over to continue. 🤲" } },
       )
       return
     end
@@ -152,12 +185,18 @@ class StreamMessagesJob < ApplicationJob
       cache_read_input_tokens = message_usage["cache_read_input_tokens"] || 0
 
       input_tokens_total = input_tokens + cache_creation_input_tokens + cache_read_input_tokens
-      input_tokens_usage = input_tokens_total.to_f / Prompts::Anthropic::MAX_INPUT_TOKENS
 
-      Rails.logger.debug { "input_tokens_usage: #{input_tokens_usage}" }
+      # Use our internal limit for warnings, but also check against Anthropic's limit
+      lightward_usage = input_tokens_total.to_f / LIGHTWARD_TOKEN_LIMIT
+      anthropic_usage = input_tokens_total.to_f / MAX_INPUT_TOKENS
 
-      if input_tokens_usage >= 0.9
-        input_tokens_percentage = (input_tokens_usage * 100).floor
+      Rails.logger.debug { "lightward_usage: #{lightward_usage}, anthropic_usage: #{anthropic_usage}" }
+
+      # Warning at 90% of our limit or 90% of Anthropic's limit, whichever comes first
+      if lightward_usage >= 0.9 || anthropic_usage >= 0.9
+        # Use whichever limit we're closer to hitting
+        primary_usage = [lightward_usage, anthropic_usage].max
+        input_tokens_percentage = (primary_usage * 100).floor
 
         proposed_warning = "Memory space #{input_tokens_percentage}% utilized; conversation horizon approaching"
 

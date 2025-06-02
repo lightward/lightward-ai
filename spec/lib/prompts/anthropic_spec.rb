@@ -117,4 +117,119 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       }))
     end
   end
+
+  describe ".count_tokens" do
+    let(:messages) { [{ "role" => "user", "content" => [{ "type" => "text", "text" => "Hello world" }] }] }
+    let(:conversation_starters) { [] }
+
+    before do
+      allow(Prompts).to(receive(:generate_system_xml).with(["clients/chat"], for_prompt_type: "clients/chat").and_return("system-prompt"))
+      allow(Prompts).to(receive(:conversation_starters).with("clients/chat").and_return(conversation_starters))
+      allow(Prompts).to(receive(:clean_chat_log).and_return(messages))
+    end
+
+    context "when API responds successfully" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(
+            status: 200,
+            body: '{"input_tokens": 1234}',
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "returns the token count from the API" do
+        result = described_class.count_tokens(
+          messages,
+          prompt_type: "clients/chat",
+          model: "claude-opus-4",
+        )
+
+        expect(result).to(eq(1234))
+      end
+
+      it "sends the correct request to the API" do
+        described_class.count_tokens(
+          messages,
+          prompt_type: "clients/chat",
+          model: "claude-opus-4",
+        )
+
+        expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .with(
+            body: {
+              model: "claude-opus-4",
+              system: "system-prompt",
+              messages: messages,
+            }.to_json,
+            headers: {
+              "Anthropic-Version" => "2023-06-01",
+              "Content-Type" => "application/json",
+            },
+          ))
+      end
+    end
+
+    context "when API responds with an error" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(status: 500, body: "Internal Server Error")
+
+        allow(Rails.logger).to(receive(:error))
+      end
+
+      it "returns nil and logs the error" do
+        result = described_class.count_tokens(
+          messages,
+          prompt_type: "clients/chat",
+          model: "claude-opus-4",
+        )
+
+        expect(result).to(be_nil)
+        expect(Rails.logger).to(have_received(:error).with("Failed to count tokens: HTTP 500 – "))
+        expect(Rails.logger).to(have_received(:error).with("Internal Server Error"))
+      end
+    end
+
+    context "when API request raises an exception" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_raise(StandardError.new("Network error"))
+
+        allow(Rails.logger).to(receive(:error))
+      end
+
+      it "returns nil and logs the exception" do
+        result = described_class.count_tokens(
+          messages,
+          prompt_type: "clients/chat",
+          model: "claude-opus-4",
+        )
+
+        expect(result).to(be_nil)
+        expect(Rails.logger).to(have_received(:error).with("Error counting tokens: Network error"))
+      end
+    end
+
+    context "with custom system prompt types" do
+      before do
+        allow(Prompts).to(receive(:generate_system_xml).with(["custom", "prompt"], for_prompt_type: "clients/chat").and_return("custom-system-prompt"))
+
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(status: 200, body: '{"input_tokens": 5678}')
+      end
+
+      it "uses the provided system prompt types" do
+        result = described_class.count_tokens(
+          messages,
+          prompt_type: "clients/chat",
+          model: "claude-opus-4",
+          system_prompt_types: ["custom", "prompt"],
+        )
+
+        expect(result).to(eq(5678))
+        expect(Prompts).to(have_received(:generate_system_xml).with(["custom", "prompt"], for_prompt_type: "clients/chat"))
+      end
+    end
+  end
 end

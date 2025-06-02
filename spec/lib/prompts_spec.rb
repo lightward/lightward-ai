@@ -306,4 +306,64 @@ RSpec.describe(Prompts, :aggregate_failures) do
       end
     end
   end
+
+  describe ".estimate_tokens" do
+    context "with a string input" do
+      it "estimates tokens using ~4 characters per token" do
+        text = "Hello world, this is a test string"
+        result = described_class.estimate_tokens(text)
+        expected = (text.size / 4.0).ceil
+        expect(result).to(eq(expected))
+      end
+    end
+
+    context "with a chat log array input" do
+      it "estimates tokens by extracting text from message content" do
+        chat_log = [
+          { "role" => "user", "content" => [{ "type" => "text", "text" => "Hello" }] },
+          { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Hi there!" }] },
+          { "role" => "user", "content" => [{ "type" => "text", "text" => "How are you?" }] },
+        ]
+
+        result = described_class.estimate_tokens(chat_log)
+        total_chars = "Hello".length + "Hi there!".length + "How are you?".length
+        expected = (total_chars / 4.0).ceil
+        expect(result).to(eq(expected))
+      end
+
+      it "handles content as a string (legacy format)" do
+        chat_log = [
+          { "role" => "user", "content" => "Hello" },
+          { "role" => "assistant", "content" => "Hi there!" },
+        ]
+
+        result = described_class.estimate_tokens(chat_log)
+        total_chars = "Hello".length + "Hi there!".length
+        expected = (total_chars / 4.0).ceil
+        expect(result).to(eq(expected))
+      end
+
+      it "handles missing or malformed content gracefully" do
+        chat_log = [
+          { "role" => "user", "content" => [{ "type" => "text", "text" => "Hello" }] },
+          { "role" => "assistant", "content" => nil },
+          { "role" => "user", "content" => [{ "type" => "image" }] }, # no text
+          { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Hi!" }] },
+        ]
+
+        result = described_class.estimate_tokens(chat_log)
+        total_chars = "Hello".length + "Hi!".length
+        expected = (total_chars / 4.0).ceil
+        expect(result).to(eq(expected))
+      end
+    end
+
+    context "with invalid input" do
+      it "raises an ArgumentError for unsupported input types" do
+        expect {
+          described_class.estimate_tokens(42)
+        }.to(raise_error(ArgumentError, "Input must be a String or Array (chat log)"))
+      end
+    end
+  end
 end

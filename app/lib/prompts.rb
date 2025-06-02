@@ -60,9 +60,30 @@ module Prompts
       path_components.join("/")
     end
 
-    def estimate_tokens(text)
-      # this seems to be approximately in the right area
-      (text.size / 4).ceil
+    def estimate_tokens(input)
+      # Rough estimation: ~4 characters per token for English text
+      # This is conservative and errs on the side of caution
+
+      total_chars = case input
+      when String
+        input.size
+      when Array
+        # Assume it's a chat log array
+        input.sum { |message|
+          content = message.dig("content")
+          if content.is_a?(Array)
+            content.sum { |block| block.dig("text")&.length || 0 }
+          elsif content.is_a?(String)
+            content.length
+          else
+            0
+          end
+        }
+      else
+        raise ArgumentError, "Input must be a String or Array (chat log)"
+      end
+
+      (total_chars / 4.0).ceil
     end
 
     def token_soft_limit_for_prompt_type(prompt_type)

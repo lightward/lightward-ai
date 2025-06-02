@@ -16,6 +16,10 @@ RSpec.describe(StreamMessagesJob) do
     allow(Rails.cache).to(receive(:read).with(stream_ready_key).and_return(true))
     allow(ActionCable.server).to(receive(:broadcast))
     allow(Kernel).to(receive(:sleep))
+
+    # Stub the count_tokens API call
+    stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+      .to_return(status: 200, body: '{"input_tokens": 1000}', headers: { "Content-Type" => "application/json" })
   end
 
   describe "#perform" do
@@ -61,6 +65,70 @@ RSpec.describe(StreamMessagesJob) do
           data: { error: { message: "Stream not ready in time" } },
           sequence_number: 0,
         ))
+      end
+    end
+
+    context "when conversation exceeds token limit" do
+      before do
+        # Stub count_tokens to return a value over the limit
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(status: 200, body: '{"input_tokens": 150000}', headers: { "Content-Type" => "application/json" })
+
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "broadcasts an error and does not call the API", :aggregate_failures do
+        job.perform(stream_id, chat_client, chat_log)
+
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          event: "error",
+          data: { error: { message: "Conversation horizon has arrived; please start over to continue. 🤲" } },
+          sequence_number: 0,
+        ))
+
+        # Should not make the main API call
+        expect(WebMock).not_to(have_requested(:post, "https://api.anthropic.com/v1/messages"))
+      end
+
+      it "reports it to newrelic" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "StreamMessagesJob: token limit exceeded",
+          hash_including(
+            stream_id: stream_id,
+            actual_tokens: 150000,
+            limit: 100000,
+          ),
+        ))
+      end
+    end
+
+    context "when token counting API fails" do
+      before do
+        # Stub count_tokens to fail
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(status: 500, body: "Internal Server Error")
+
+        # Stub the main API call
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(status: 200, body: "data: {\"message\": \"Hello, world!\"}\n")
+
+        allow(Rails.logger).to(receive(:warn))
+      end
+
+      it "logs a warning when falling back to estimation" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        expect(Rails.logger).to(have_received(:warn).with(/Token counting API failed, using estimation:/))
+      end
+
+      it "continues with main API call when estimation is under limit" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        # Should still make the main API call since estimation is under limit
+        expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages"))
       end
     end
 
