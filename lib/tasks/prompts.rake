@@ -12,10 +12,6 @@ namespace :prompts do
     Rails.root.join("log/prompts/clients-chat.xml").write(xml)
     puts "Wrote log/prompts/clients-chat.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
 
-    xml = Prompts.generate_system_xml(["clients/librarian"], for_prompt_type: "clients/librarian")
-    Rails.root.join("log/prompts/clients-librarian.xml").write(xml)
-    puts "Wrote log/prompts/clients-librarian.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
-
     xml = Prompts.generate_system_xml(["lib/locksmith", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
     puts "Wrote log/prompts/clients-helpscout-locksmith.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
