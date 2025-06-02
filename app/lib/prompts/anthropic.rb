@@ -8,8 +8,13 @@ require "time"
 
 module Prompts
   module Anthropic
+    HAIKU = "claude-3-5-haiku-20241022"
     OPUS = "claude-opus-4-20250514"
     SONNET = "claude-sonnet-4-20250514"
+
+    LIBRARIAN = HAIKU
+    CHAT = OPUS
+    HELPSCOUT = SONNET
 
     class << self
       def api_request(payload, &block)

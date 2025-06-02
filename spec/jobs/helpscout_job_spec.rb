@@ -101,7 +101,7 @@ RSpec.describe(HelpscoutJob) do
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         [],
-        model: Prompts::Anthropic::SONNET,
+        model: Prompts::Anthropic::HELPSCOUT,
         prompt_type: "clients/helpscout",
         system_prompt_types: ["clients/helpscout"],
       ))
@@ -116,7 +116,7 @@ RSpec.describe(HelpscoutJob) do
 
       expect(Prompts::Anthropic).to(have_received(:process_messages).with(
         [],
-        model: Prompts::Anthropic::SONNET,
+        model: Prompts::Anthropic::HELPSCOUT,
         prompt_type: "clients/helpscout",
         system_prompt_types: ["clients/helpscout", "lib/locksmith"],
       ))

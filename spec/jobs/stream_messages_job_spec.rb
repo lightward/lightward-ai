@@ -32,7 +32,7 @@ RSpec.describe(StreamMessagesJob) do
         chat_log,
         prompt_type: "clients/chat",
         stream: true,
-        model: Prompts::Anthropic::OPUS,
+        model: Prompts::Anthropic::CHAT,
       ))
     end
 
@@ -45,7 +45,7 @@ RSpec.describe(StreamMessagesJob) do
         chat_log,
         prompt_type: "clients/chat",
         stream: true,
-        model: Prompts::Anthropic::OPUS,
+        model: Prompts::Anthropic::CHAT,
       ))
     end
 

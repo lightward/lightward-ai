@@ -50,7 +50,7 @@ class StreamMessagesJob < ApplicationJob
     actual_tokens = Prompts::Anthropic.count_tokens(
       chat_log,
       prompt_type: "clients/chat",
-      model: Prompts::Anthropic::OPUS,
+      model: Prompts::Anthropic::CHAT,
     )
 
     if actual_tokens.nil?
@@ -83,7 +83,7 @@ class StreamMessagesJob < ApplicationJob
         augmented_chat_log,
         prompt_type: "clients/chat",
         stream: true,
-        model: Prompts::Anthropic::OPUS,
+        model: Prompts::Anthropic::CHAT,
       ) do |request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: api error", stream_id: stream_id, response_code: response.code.to_i)
@@ -151,7 +151,7 @@ class StreamMessagesJob < ApplicationJob
         [librarian_request],
         prompt_type: "clients/librarian",
         stream: false,
-        model: "claude-3-5-haiku-20241022",
+        model: Prompts::Anthropic::LIBRARIAN,
       ) do |_request, response|
         if response.code.to_i >= 400
           newrelic("StreamMessagesJob: librarian api error", stream_id: stream_id, response_code: response.code.to_i)

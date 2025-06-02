@@ -45,7 +45,7 @@ namespace :prompts do
       token_count = Prompts::Anthropic.count_tokens(
         messages,
         prompt_type: "clients/chat",
-        model: Prompts::Anthropic::SONNET,
+        model: Prompts::Anthropic::HELPSCOUT,
       )
 
       if token_count
