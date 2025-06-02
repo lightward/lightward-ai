@@ -25,8 +25,6 @@ namespace :prompts do
     task :count, [] => :environment do
       puts "Asking Anthropic for input token counts..."
 
-      system = Prompts.generate_system_xml(["clients/chat"], for_prompt_type: "clients/chat")
-
       # Example user message; you can tweak as needed
       messages = [
         {
@@ -40,36 +38,16 @@ namespace :prompts do
         },
       ]
 
-      # Prepend any conversation starters for your prompt type
-      messages = Prompts.clean_chat_log(Prompts.conversation_starters("clients/chat") + messages)
-
-      # Build request to POST /v1/messages/count_tokens
-      uri = URI("https://api.anthropic.com/v1/messages/count_tokens")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-
-      request = Net::HTTP::Post.new(uri)
-      request["x-api-key"] = ENV.fetch("ANTHROPIC_API_KEY")
-      request["anthropic-version"] = "2023-06-01" # or whichever version you need
-      request["Content-Type"] = "application/json"
-
-      body = {
+      token_count = Prompts::Anthropic.count_tokens(
+        messages,
+        prompt_type: "clients/chat",
         model: Prompts::Anthropic::SONNET,
-        system: system,
-        messages: messages,
-      }
+      )
 
-      request.body = body.to_json
-
-      response = http.request(request)
-
-      if response.is_a?(Net::HTTPSuccess)
-        parsed = JSON.parse(response.body)
-        puts "clients/chat: #{parsed["input_tokens"]} tokens"
+      if token_count
+        puts "clients/chat: #{token_count} tokens"
       else
-        puts "Failed"
-        puts "HTTP #{response.code} – #{response.message}"
-        puts response.body
+        puts "Failed to count tokens"
       end
     end
   end

@@ -10,7 +10,6 @@ module Prompts
   module Anthropic
     OPUS = "claude-opus-4-20250514"
     SONNET = "claude-sonnet-4-20250514"
-    MAX_INPUT_TOKENS = 200_000
 
     class << self
       def api_request(payload, &block)
@@ -60,6 +59,44 @@ module Prompts
         }
 
         api_request(payload, &block)
+      end
+
+      def count_tokens(messages, prompt_type:, model:, system_prompt_types: [prompt_type])
+        system = Prompts.generate_system_xml(system_prompt_types, for_prompt_type: prompt_type)
+        messages = Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages)
+
+        uri = URI("https://api.anthropic.com/v1/messages/count_tokens")
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.open_timeout = 10 # seconds
+        http.read_timeout = 30 # seconds
+
+        request = Net::HTTP::Post.new(uri)
+        request["x-api-key"] = ENV.fetch("ANTHROPIC_API_KEY", nil)
+        request["anthropic-version"] = "2023-06-01"
+        request["Content-Type"] = "application/json"
+
+        body = {
+          model: model,
+          system: system,
+          messages: messages,
+        }
+
+        request.body = body.to_json
+
+        response = http.request(request)
+
+        if response.is_a?(Net::HTTPSuccess)
+          parsed = JSON.parse(response.body)
+          parsed["input_tokens"]
+        else
+          Rails.logger.error("Failed to count tokens: HTTP #{response.code} – #{response.message}")
+          Rails.logger.error(response.body)
+          nil
+        end
+      rescue StandardError => e
+        Rails.logger.error("Error counting tokens: #{e.message}")
+        nil
       end
 
       def record_rate_limit_event(response)
