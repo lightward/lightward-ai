@@ -32,7 +32,7 @@ class ViewsController < ApplicationController
         active = {}
 
         fast_ignore = FastIgnore.new(
-          root: Prompts.prompts_dir,
+          root: Prompts.prompts_dir.join("system"),
           gitignore: false,
           ignore_files: ".system-ignore",
           include_rules: ["**/3-perspectives/*.md"],
@@ -52,7 +52,7 @@ class ViewsController < ApplicationController
     def inactive
       @inactive ||= begin
         inactive = {}
-        inactive_dir = Rails.root.join("lib/perspectives/inactive")
+        inactive_dir = Prompts.prompts_dir.join("clients/librarian/system/3-perspectives")
 
         if Dir.exist?(inactive_dir)
           Dir.glob(File.join(inactive_dir, "*.md")).each do |file|
