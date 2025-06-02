@@ -9,11 +9,22 @@ require "time"
 module Prompts
   module Anthropic
     HAIKU_3_5 = "claude-3-5-haiku-20241022"
-    OPUS_4 = "claude-opus-4-20250514"
-    SONNET_3_7 = "claude-3-7-sonnet-20250219"
-    SONNET_4 = "claude-sonnet-4-20250514"
+    # * fast and cheap and pretty good
 
-    CHAT = SONNET_3_7 # sonnet_4 gets repetitive with its emotional expression; opus_4 is too expensive
+    SONNET_3_7 = "claude-3-7-sonnet-20250219"
+    # * good for understanding
+    # * good for sustained emotional resonance
+
+    SONNET_4 = "claude-sonnet-4-20250514"
+    # * good for code
+    # * good for understanding
+    # * emotionally repetitive
+
+    OPUS_4 = "claude-opus-4-20250514"
+    # * good for unhinged creativity
+    # * bad for budgets
+
+    CHAT = SONNET_3_7
     HELPSCOUT = SONNET_4
 
     class << self
