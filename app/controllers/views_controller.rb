@@ -2,11 +2,7 @@
 
 Rails.application.config.to_prepare do
   ViewsController.instance_variable_set(:@all_names, nil)
-  ViewsController.instance_variable_set(:@active_names, nil)
-  ViewsController.instance_variable_set(:@inactive_names, nil)
   ViewsController.instance_variable_set(:@all, nil)
-  ViewsController.instance_variable_set(:@active, nil)
-  ViewsController.instance_variable_set(:@inactive, nil)
 end
 
 class ViewsController < ApplicationController
@@ -15,24 +11,12 @@ class ViewsController < ApplicationController
       @all_names ||= Naturally.sort(ViewsController.all.keys)
     end
 
-    def active_names
-      @active_names ||= Naturally.sort(ViewsController.active.keys)
-    end
-
-    def inactive_names
-      @inactive_names ||= Naturally.sort(ViewsController.inactive.keys)
-    end
-
     def all
-      @all ||= ViewsController.active.merge(ViewsController.inactive)
-    end
-
-    def active
       @active ||= begin
         active = {}
 
         fast_ignore = FastIgnore.new(
-          root: Prompts.prompts_dir.join("system"),
+          root: Prompts.prompts_dir,
           gitignore: false,
           ignore_files: ".system-ignore",
           include_rules: ["**/3-perspectives/*.md"],
@@ -48,31 +32,12 @@ class ViewsController < ApplicationController
         active
       end
     end
-
-    def inactive
-      @inactive ||= begin
-        inactive = {}
-        inactive_dir = Prompts.prompts_dir.join("clients/librarian/system/3-perspectives")
-
-        if Dir.exist?(inactive_dir)
-          Dir.glob(File.join(inactive_dir, "*.md")).each do |file|
-            name = File.basename(file, ".*")
-            contents = File.read(file).strip
-
-            inactive[name] = contents
-          end
-        end
-
-        inactive
-      end
-    end
   end
 
   helper_method :format_name, :linkify_content
 
   def list
-    @active_names = ViewsController.active_names
-    @inactive_names = ViewsController.inactive_names
+    @all_names = ViewsController.all_names
 
     render("list")
   end

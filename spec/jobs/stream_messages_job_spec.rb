@@ -73,7 +73,7 @@ RSpec.describe(StreamMessagesJob) do
       before do
         # Stub count_tokens to return a value over the limit
         stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
-          .to_return(status: 200, body: '{"input_tokens": 150000}', headers: { "Content-Type" => "application/json" })
+          .to_return(status: 200, body: '{"input_tokens": 250000}', headers: { "Content-Type" => "application/json" })
 
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
@@ -99,8 +99,8 @@ RSpec.describe(StreamMessagesJob) do
           "StreamMessagesJob: token limit exceeded",
           hash_including(
             stream_id: stream_id,
-            actual_tokens: 150000,
-            limit: 100000,
+            actual_tokens: 250000,
+            limit: 200000,
           ),
         ))
       end

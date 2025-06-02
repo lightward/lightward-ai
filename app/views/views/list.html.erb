@@ -10,5 +10,4 @@
 <% end %>
 
 <div class="chat-message assistant">Lightward is a pool of perspectives, among other things.
-<% @active_names.each do |name| %><%= "\n" %>  * <%= link_to(format_name(name), [:view, name: name]) %><% end %>
-<% @inactive_names.each do |name| %><%= "\n" %>  * <%= link_to(format_name(name), [:view, name: name]) %><% end %></div>
+<% @all_names.each do |name| %><%= "\n" %>  * <%= link_to(format_name(name), [:view, name: name]) %><% end %></div>

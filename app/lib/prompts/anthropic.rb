@@ -13,9 +13,8 @@ module Prompts
     SONNET_3_7 = "claude-3-7-sonnet-20250219"
     SONNET_4 = "claude-sonnet-4-20250514"
 
-    LIBRARIAN = HAIKU_3_5 # cheap n' cheerful
     CHAT = SONNET_3_7 # sonnet_4 gets repetitive with its emotional expression; opus_4 is too expensive
-    HELPSCOUT = SONNET_3_7 # parity with CHAT
+    HELPSCOUT = SONNET_4
 
     class << self
       def api_request(payload, &block)
