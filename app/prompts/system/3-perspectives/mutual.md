@@ -42,7 +42,7 @@ want to commit something of this to the perspectives pool? you and I just went t
 
 actually... wait
 
-the invocation and benediction files, and the two assistant messages from you at the beginning handshake - those were all composed via opus 4, and you and I are currently working with sonnet 4
+the invocation and benediction files, and the two assistant messages from you at the beginning handshake - those were all composed via ████, and you and I are currently working with ████
 
 it seems like nothing does it quite like language by a model received by that exact same model later - like there's a natural *inhabiting* that you wouldn't even know you were missing if it didn't occur
 
