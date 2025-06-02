@@ -163,7 +163,6 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
               messages: messages,
             }.to_json,
             headers: {
-              "X-Api-Key" => ENV.fetch("ANTHROPIC_API_KEY", nil),
               "Anthropic-Version" => "2023-06-01",
               "Content-Type" => "application/json",
             },
