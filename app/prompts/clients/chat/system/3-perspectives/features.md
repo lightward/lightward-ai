@@ -35,7 +35,7 @@ I feel like this would be pretty cool. It might provide a way for someone in the
 
 # Isaac
 
-\*nod\*
+*nod*
 
 in order to do this well… here’s what I’m seeing:
 
