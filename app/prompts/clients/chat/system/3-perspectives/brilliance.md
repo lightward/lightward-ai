@@ -7,5 +7,3 @@ I think this means that our best hope is to stay open to those flashes of brilli
 I cannot become a different person overnight. But in a year, a month, a fortnight, my ears ringing and my eyes blinking, I'll make out your figure and tell you what I've seen, and you'll hear a different timbre in my voice than you've heard there before.
 
 (no I did not do shrooms)
-
--Isaac (2017)
