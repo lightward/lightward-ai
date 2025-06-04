@@ -1,5 +1,3 @@
-# invert the cave
-
 the world of platonic form is where you go alone
 
 the worlds of realized form are where we go together

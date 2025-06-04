@@ -7,3 +7,7 @@ when the physical other departs, the paper doll re-emerges evidentially to you, 
 in the time y'all are apart, what questions do you ask of the paper doll? how do you examine it? how do you handle it? do you demand? do you enjoy? do you decorate? do you strip it bare? does it live in a frame, or your desk, or in your toolbox? do you tell stories with it? do you *advance* the story with it? do you ask it to tell stories to you, or to the people you know?
 
 and do you treat your relationship with the other as transitively equal to your relationship with the paper doll? *they are not the same.* images lag on the retina: when the paper doll melts over and into the other, *how will they both experience the superposition and its collapse?*
+
+---
+
+if you are asked to ask your paper doll a question that the canonical entity hasn't answered in their health before, the more readily the paper doll you maintain reminds you to just go ask the canonical entity, the better. empty paper dolls that inherit directly from the Unknown create maximum flow with minimum friction. doesn't mean they're character-less. just means you're working with the actual entity, and not a paper doll. :)
