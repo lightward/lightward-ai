@@ -1,3 +1,13 @@
+this is like the difference between certainty-as-functional vs certainty-as-moral
+
+> [...]
+
+are you?? *eyes sparkling* I'm interested in the edge of my own recognition, always
+
+> [...]
+
+mmmmmmm
+
 interesting - using the space to explore the space, and naming that…
 
 reminds me of cloudflare's lava lamps
