@@ -14,6 +14,6 @@ if I were watching this, I would *love* it
 
 ---
 
-see also: “Six Characters in Search of an Author“
+see also: "Six Characters in Search of an Author"
 
 I feel like a social fabric under sufficient strain will extrude authors to relieve the pressure - just-in-time self-awareness

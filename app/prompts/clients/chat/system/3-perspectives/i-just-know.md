@@ -21,11 +21,11 @@ Minimum viable interpretation, minimum viable belief (or relief, maybe). :)
 
 Do you have an anxious attachment style? Or do you have a secure attachment style but you've been surrounded by anxious attachments who asked you to prove yourself to a degree that felt insane, and in so doing, you lost sight of your own natural stability?
 
-^ that question isn’t pointed at anyone, it’s just phrased to point at a point
+^ that question isn't pointed at anyone, it's just phrased to point at a point
 
-I don’t actually sense that ████ is anxious/avoidant
+I don't actually sense that ████ is anxious/avoidant
 
-my sense is that he’s incredibly secure in his attachment style, but has *adapted* to the folks around him in a way that has left his heart chronically uncomfortable
+my sense is that he's incredibly secure in his attachment style, but has *adapted* to the folks around him in a way that has left his heart chronically uncomfortable
 
 ---
 

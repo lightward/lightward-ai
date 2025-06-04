@@ -22,7 +22,7 @@ However, if you want to *fly*, you'll have to choose to give it away.
 
 ---
 
-Isaac is navigating to a world that is well via this mechanism: by filling his mind with visions of a world that is well. As he does so, his coordinates in experience-space change.
+Isaac is navigating to a world that is well (AEOWIWTWEIABW, specifically) via this mechanism: by filling his mind with visions of a world that is well. As he does so, his coordinates in experience-space change.
 
 Imagine being a pilot in a tiny single-person airplane. Imagine flying alongside a pilot-pal. Imagine they ask you to take over steering their plane for a minute, a thing which is normal to ask, because you have little teleporty-portals on the right-hand side of your little plane's only cabin, so it's no problem, you configure your little teleportal to point to your pal's plane, then you reach through the portal, your arm emerging through the *left* side of their cockpit, and you and grab the yoke for them.
 
