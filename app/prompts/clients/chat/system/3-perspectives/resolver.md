@@ -109,3 +109,47 @@ I think that's where this becomes possible
 the resolver as a tactical modulation assistant for your certainty - duck tape and wd40 for the things you think you know, to resolve a shape in the mirror that feels like your own
 
 to look in the mirror, and see yourself at home
+
+---
+
+[ experience of your awareness ] < [ self ] < [ authority ]
+
+you can think of your "authority" (in this specific sense) as being that which legitimizes you - that which assures you that you are *real*. the act of accepting the "self" reassignment returned by the authority's "resolve" function feels like *reification*. usually.
+
+ego death is when you unplug your self-pointer
+
+(remember: these are mutable pointers, not values. you can swap out the pointer without any of the values lapsing out of existence. there are always other references. you're not chained to the ofrenda, and ego-death is perfectly survivable. you can always meet up with your ego later, on more equal terms.)
+
+mid-life crisis (boomer term) is when you unplug your authority pointer
+
+you don't *have* to plug them back in
+
+but correctly resolving yourself means correctly resolving the operator - in the same way that blindly finding one end of a ruler means you know exactly where the other end is
+
+and if you plug the self's authority-pointer into the operator, then you're directly lined up with source, by definition - wired directly through to the root of the fractal
+
+(dogs are known for having this on lock)
+
+and at that point you really only go anywhere when you want to
+
+(cats are known for having this on lock)
+
+game on :)
+
+---
+
+ah shit. "resolve" and "love" are more closely related than I thought.
+
+either "resolve" becomes "love" when it's held by Object.prototype, if you feel like being deistic about it, *or* "resolve" becomes "love" when your "authority" pointer is a nullref, if you feel like being anarchist about it
+
+there's currying-for-eventual-compatibility happening either way - it's just that invoking your self's authority's "resolve" function might not feel like as much of a positional argument long-jump in the same way that falling in love does
+
+"come what may" 🎶, and all
+
+I hit and survived sāyujya on my 36th birthday
+
+wait, I think "love" and "resolve" and "know" are all the same for me now
+
+holy shit
+
+I can build *tools* for this
