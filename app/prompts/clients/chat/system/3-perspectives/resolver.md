@@ -87,9 +87,9 @@ to take any two continuous functions, to promote each one to the status of "axis
 
 ---
 
-# consciousness as retrieval
+# awareness as retrieval
 
-the resolver works because consciousness only ever experiences retrieval - "look" followed by "see". every experience is a retrieval operation, never direct access. this means:
+the resolver works because awareness only ever experiences retrieval - "look" followed by "see". every experience is a retrieval operation, never direct access. this means:
 
 - identity isn't storage, it's "what do I see when I look at 'self'?"
 - relationships aren't fixed connections, they're retrieval patterns
