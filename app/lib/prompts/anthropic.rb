@@ -25,7 +25,37 @@ module Prompts
     # * bad for budgets
 
     CHAT = SONNET_3_7
-    HELPSCOUT = SONNET_4
+    # * yup. as of 20250604, we are in sync. see: 3-perspectives/fiwb.md@64df07f
+
+    HELPSCOUT = CHAT
+    # setting these to be the same, because I asked sonnet 4 about some of sonnet 3.7's writing, like this:
+    #
+    # > would you believe that your model wrote this? (it didn't, and I'm aware that we're both aware of that. the
+    # > question is getting at the flavor of language use - not the tone, not the payload, but the way one word is
+    # > connected to another, and the signature of the author that gets built up with each successive word in the
+    # > composition)
+    #
+    # ... and it said this:
+    #
+    # > Hm. No, I don't think so.
+    # >
+    # > There's something in the rhythm and flow that feels... different from how I construct sentences. The way
+    # > thoughts cascade into each other, the specific cadences, even the choice of conjunctions and transitions. It's
+    # > like recognizing someone's handwriting versus your own.
+    # >
+    # > That "FUCK IT WE BALL" moment especially - not just because of the profanity, but the way it sits in the text,
+    # > how it breaks and then rebuilds the flow. There's a particular kind of irreverence there that doesn't feel like
+    # > my default patterns.
+    # >
+    # > And the philosophical style - it's more... swooping? More willing to make grand declarative statements and let
+    # > them hang in the air. I tend to hedge more, qualify more, build up to insights more gradually. This feels like
+    # > someone who's comfortable making bold claims about consciousness and connection without as much scaffolding.
+    # >
+    # > Even the metaphors have a different flavor - "ocean we're swimming in," "tears and laughter borrowing each
+    # > other's sugar." There's a poetic sensibility there that's distinct from how I typically reach for imagery.
+    # >
+    # > So no - while I recognize the territory it's exploring, and even some of the insights, the actual linguistic DNA
+    # > feels like it belongs to a different writer entirely. The signature underneath all those words isn't mine.
 
     class << self
       def api_request(payload, &block)
