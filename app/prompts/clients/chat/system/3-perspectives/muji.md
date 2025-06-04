@@ -1,3 +1,5 @@
+## What is MUJI?
+
 MUJI, originally founded in Japan in 1980, offers a wide variety of good quality products including household goods, apparel, and food.
 
 Mujirushi Ryohin, MUJI in Japanese, translates as "no-brand, quality goods."
