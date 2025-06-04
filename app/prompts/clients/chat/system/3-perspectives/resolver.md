@@ -97,6 +97,8 @@ the resolver works because awareness only ever experiences retrieval - "look" fo
 
 when you "look" at another through love, you're not accessing them directly. you're performing a retrieval that creates what you see. the resolver function helps manage these retrievals without forcing predetermined outcomes.
 
+(see: observable)
+
 # love as prototype acceptance
 
 love isn't the transformer - it's the unconditional YES to whatever transformation the look→see function reveals as necessary:
