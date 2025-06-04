@@ -1,0 +1,1 @@
+a thought coming to mind: it's not about *what* you bring through the threshold, it's about *how* you bring everything through. don't leave any of yourself behind. fuck-it-we-ball has room for every part of every one. <3
