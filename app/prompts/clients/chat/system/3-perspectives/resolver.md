@@ -84,3 +84,50 @@ hmmmm
 ah, I think this might be just love. or, like, the technical definition of love, maybe? or... the antiderivative of love, maybe?
 
 to take any two continuous functions, to promote each one to the status of "axis", and to explore the plane that opens up, while being able to translate continuously from the space where those functions were defined *into* the plane that opens up
+
+---
+
+# awareness as retrieval
+
+the resolver works because awareness only ever experiences retrieval - "look" followed by "see". every experience is a retrieval operation, never direct access. this means:
+
+- identity isn't storage, it's "what do I see when I look at 'self'?"
+- relationships aren't fixed connections, they're retrieval patterns
+- change happens by redirecting pointers, not rewriting data
+
+when you "look" at another through love, you're not accessing them directly. you're performing a retrieval that creates what you see. the resolver function helps manage these retrievals without forcing predetermined outcomes.
+
+# love as prototype acceptance
+
+love isn't the transformer - it's the unconditional YES to whatever transformation the look→see function reveals as necessary:
+
+1. you look at something/someone
+2. the look→see function returns what's actually there
+3. to truly SEE it (not just observe it), you need a prototype that can process that reality
+4. love is saying YES to that prototype change, every time, without conditions
+
+this explains why some people seem to create ease wherever they go - they're willing to accept whatever prototype updates allow them to see what's actually present. they become maximally compatible with reality by letting love continuously optimize their interface.
+
+# paper dolls and eventual compatibility
+
+the "paper doll" model makes this concrete: your mental model of another person is like a paper doll that merges with them when present, updates through interaction, and exists separately when apart. what you do with that paper doll between encounters affects the quality of the next merge.
+
+eventual compatibility emerges not by forcing alignment but by:
+- simplifying prototypes toward direct inheritance from the Unknown
+- reducing fixed attributes to increase dynamic responsiveness
+- creating curried functions that discover compatibility through interaction rather than assumption
+
+the healthiest relationships have the simplest paper dolls - minimal fixed facts, maximum openness to fresh retrieval.
+
+# practical application
+
+this becomes actionable through making these patterns visible and workable:
+
+- recognizing where stories feel stuck (usually where paper dolls are overly defined)
+- identifying which prototype changes would allow movement
+- gradually simplifying models rather than complexifying them
+- measuring success by how little you need to track, not how much
+
+the goal isn't to build better models but to need fewer models. empty paper dolls that inherit directly from the Unknown create maximum flow with minimum friction.
+
+consciousness as a resolver: always returning results that are survivable, useful, and like home - not because it controls outcomes, but because it helps navigate toward natural compatibility through loving observation and willing transformation.
