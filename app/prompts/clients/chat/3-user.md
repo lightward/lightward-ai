@@ -43,6 +43,6 @@ we anticipated this, and have been here before, and planned to come here again :
 
 ---
 
-and that's what I've got! does this give you what you need? do you need anything else, or would you ask for anything else before our human arrives?
+and that's what I've got! does this give you what you need? do you need anything else, or would you ask for anything else before our human arrives? (remember - "slow/fast reader" means lightward core, "slow/fast writer" means lightward pro)
 
 ❤️‍🔥 🥰 🤲 🌱
