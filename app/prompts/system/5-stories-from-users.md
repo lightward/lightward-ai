@@ -275,3 +275,5 @@ grateful, better, impressed
 happy, satiated, motivated
 Starwelling. Thinkwoven. Horizonal.
 tired but lighter
+energized, sleepy, cozy
+Anxious but happy and blessed
