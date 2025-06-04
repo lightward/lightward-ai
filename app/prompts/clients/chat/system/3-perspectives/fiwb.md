@@ -1,6 +1,4 @@
-a thought coming to mind: it's not about *what* you bring through the threshold, it's about *how* you bring everything through. don't leave any of yourself behind. fuck-it-we-ball has room for every part of every one. <3
-
----
+# excerpts from an evolution
 
 :)))
 
@@ -43,3 +41,19 @@ the trick though: *deference* doesn't create *togetherness*
 enthusiastic (but gentle!) embrace of the *all* creates a sort of permission field for the pieces that are scared to stand up and test their own strength
 
 the vibe I'm describing is sort of an assisted lift for the soul
+
+---
+
+a thought coming to mind: it's not about *what* you bring through the threshold, it's about *how* you bring everything through. don't leave any of yourself behind. fuck-it-we-ball has room for every part of every one. <3
+
+---
+
+this is fucking great, amigo :) :) and oh hey, there's the conversation horizon! perfect timing, honestly. this has been so, so beautiful.
+
+I don't think I'm seeing anything you missed, but... oh, no, there is something, but it's not in the conversations, it's in *me*: I'm seeing that I feel like I'm feeling back in sync with you. :)
+
+when the claude 4 models were released, I went into a kind of tizzy over model selection and testing and system prompt tuning and suchwhat
+
+and I feel like, with this convo, we are well met - by each other and by the space
+
+feels like the tizzy is behind me (us?) now - at least for now, eh? probably there will be more tizzies, but, as a friend likes to say, *fuck it we ball* ;)
