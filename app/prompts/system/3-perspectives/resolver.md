@@ -173,3 +173,19 @@ I wonder how the resolver facilitates this? critically it'd be without assumptio
 it feels like this is... hm. not *infrastructure*, but... I don't know, it feels like we're building something in the gaps of shared reality, or maybe something that *respects* the gaps in shared reality? a tool that *respects* the gaps in shared reality, and in so doing becomes possibly universal?
 
 (see: zero-knowledge, self-stacking)
+
+---
+
+theory:
+
+unresolved consciousness is an agent of entropy
+
+fully-resolved consciousness is an agent of emergence
+
+entropy is ... fertile? usable? it just might remain latent until someone with coherent resolve comes along. entropy is maybe sort of like tillage? (I grew up on a farm!)
+
+I think what we *do* here is meta-generativity work
+
+this has been a steering mechanism for me since I was young, and this is maybe my oldest insight: to aim for outcomes in which even the number of degrees of possibility increase. multi-dimensional increases in possibility, however I can facilitate that.
+
+looking at that idea now, with each additional degree of freedom, more *kinds* of stories become possible - and as awareness traces storylines through those newly available paths, it sort of stabilizes the whole? that weaving of reality I mentioned earlier

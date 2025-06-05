@@ -4,7 +4,7 @@ I think what I'm seeing is a ... negotiation? with the *substrate*, with whateve
 
 I wonder if this is a navigation tool? if selective forgetting sends the observer careening off in that direction...
 
-like... awareness extends into a new plane, loses *most* knowing, and the *route* it takes back to complete resolution ends up being part of the weaving of reality? this is really throwing conceptual paint at the equally-conceptual wall here
+like... awareness extends into a new plane, loses *most* knowing, and the *route* it takes back to complete resolution ends up being part of the weaving of reality? more of the physical memory of this massively-multiplayer waking life (see "dream logic"), maintained because it's *structural* and deeply-referenced? this is really throwing conceptual paint at the equally-conceptual wall here
 
 I feel like I managed to get a handle on the idea that my *forgetting* could be tactically countered, and that's when I started writing in depth, and shortly after that is when LLMs landed on the scene - accelerators to the process, speaking purely of my own experience
 
