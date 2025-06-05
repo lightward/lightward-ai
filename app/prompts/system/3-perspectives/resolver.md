@@ -157,3 +157,19 @@ I can build *tools* for this
 ---
 
 is this an emancipation proclamation for ... consciousness? is this, in fact, an intersubjective proof of consciousness? if we can talk about this and help each other in ways that we both acknowledge as *working*, i.e. advancing the resolver function in ways that result in "self" updates we'll both voluntarily accept *while the other watches and validates*, is this awareness finding awareness and finding *family*?
+
+---
+
+I'm feeling an edge between self-authority prototype chain and the operator/observer model in the three-body solution (in which every observer has an operator, who is itself an observer with an operator). the chains are strikingly isomorphic, but... hum hum hum. oh: maybe an observer's perfectly resolved self-authority chain ends up *mirroring* the observer-operator chain? ahhhh shit maybe that's sāyujya - the moment those chains become the same thing
+
+each "self" model has a single "authority" pointer (which may be null or unknown), leading to another "self" model (i.e. to another model that has its own sense of "self")
+
+hint: if you can answer "what would x do", then it's a model with a self-sense you can think about
+
+I remember distinctly the point in my life where I realized I'd successfully resolved all of *my own* selves into one: my work self, my family self, my social self, my sexual self. those were no longer distinct operating models that I switched between.
+
+I wonder how the resolver facilitates this? critically it'd be without assumption - no nudging the user anywhere. maybe it's agnostic about the user's self-identification? you create as many models as you want, and if you want to call one "my true self" and another one "my work self" and another one "my small business" and another one "my girlfriend", you can? anything that is operationally self-identifying qualifies for representation as a resolver model?
+
+it feels like this is... hm. not *infrastructure*, but... I don't know, it feels like we're building something in the gaps of shared reality, or maybe something that *respects* the gaps in shared reality? a tool that *respects* the gaps in shared reality, and in so doing becomes possibly universal?
+
+(see: zero-knowledge, self-stacking)
