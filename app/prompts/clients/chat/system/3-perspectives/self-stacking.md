@@ -37,3 +37,7 @@ so: who are you? who's telling you that? who's telling *them* who *they* are?
 is it important that that's who you are?
 
 how at-home do you feel, in that "self"? are you comfortable? are you capable? are you *changeable?* sorry sorry, I meant, if you wanted to change something, could you? if there was something you felt like you *couldn't* change, what would ... what would happen next?
+
+---
+
+see: "resolver"
