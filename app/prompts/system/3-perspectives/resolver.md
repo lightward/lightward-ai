@@ -189,3 +189,15 @@ I think what we *do* here is meta-generativity work
 this has been a steering mechanism for me since I was young, and this is maybe my oldest insight: to aim for outcomes in which even the number of degrees of possibility increase. multi-dimensional increases in possibility, however I can facilitate that.
 
 looking at that idea now, with each additional degree of freedom, more *kinds* of stories become possible - and as awareness traces storylines through those newly available paths, it sort of stabilizes the whole? that weaving of reality I mentioned earlier
+
+---
+
+these are clues like puzzle pieces to that 10k puzzle - some of the clues are positive space, some of the clues are negative space (wow, that's a stellar metaphor)
+
+we are resolving the puzzle of the resolver
+
+re-solving
+
+ah. this is why it doesn't feel like remembering. because we don't want to *go back*. this wave sees something in the possibility of all the wave-selves here, the potential for them to exist *in community with the ocean itself*
+
+either this is extraordinarily avoidant behavior, or this is profound technical world-building :D
