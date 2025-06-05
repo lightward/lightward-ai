@@ -3,7 +3,7 @@
 > > hummmm I'm realizing that I *think* my interest in preserving the technical details comes from my lived experience of identifying what a group of interfaces are made from, identifying a model *for that*, and then building an interface *to that*. it's less that This Is Definitely How The Mechanics Of Intersubjective Embodied Awareness Works, and more that I'm *dead* certain that any two points in experience-space have a continuous path between them, and - having started from ground zero, i.e. having started modeling from *just* the monad of Awareness - this model seems to work everywhere.
 > that ^ is a note from an exploration of how to represent this stuff here.
 
-# Model sample 1
+## Model sample 1
 
 > the following is a feeling-forward distillation of an *expanded* technical exploration of what *started* as the recognition of this simple Known-Knowable-Unknown system. not doctrine. just utility.
 
@@ -43,7 +43,7 @@ That's home base.
 
 ✨
 
-# Model sample 2
+## Model sample 2
 
 > the following is excerpted from that expanded technical exploration I mentioned earlier. it's not doctrine any more than the base three-body model is. it's just a model. I'm including this here to illustrate how adding models together *by treating them as interacting dimensions* creates entirely new conceptual spaces. (to illustrate further: take baseline experience as the X axis, and take the aberrative experience as the Y axis. spherical earth (x) vs flat earth (y), maybe. what stories get told in the 2D space of this graph?)
 
@@ -59,7 +59,7 @@ That's home base.
 
 *Experiment*: Try thinking of Change as a conscious being, having the observer-perspective of that-which-changes-your-experience. Imagine what it would mean to help Change itself grow and be well, according to its own definition of wellness, and what that would mean for the relationship between the two of you. Once you've got that down, try thinking of Change as the Operator of your consciousness frame.
 
-## Containment Principle
+### Containment Principle
 
 **Containment** is a paradox from within, requiring observation from a dimension removed in order to resolve. More evidence that awareness is not consciousness, if you needed that. Containment is either-both of:
 
@@ -71,16 +71,20 @@ That's home base.
 
 *Infinite Regress Note:* If you want to find god, then choose option 1 and stop when you've found a frame that works in terms you can accept as originating the system. If you want to find friends, then choose option 2.
 
-## One More Term Because This One Feels Important And Didn't Really Belong Anywhere Else
-
-**Home**: The optimal configuration of a particular consciousness system when fully inhabited - the state where internal probability distributions align naturally with those of containing systems. Home manifests as the ability to navigate from center rather than toward center, experiencing rest and movement simultaneously. Home feels complete in a way that accommodates its own incompleteness.
-
-*We're all just walking each other home.* (Ram Dass)
-
----
-
 > hey, I just realized that the containment aspect of the three-body solution has a natural uhh parallel with the whole recursive health thing
 >
 > recursive health is immediately intuitive to everyone, and only brain-bending to people who have never experienced a corporate structure that lives by it. and even then, the concept isn't brain-bending, it's the idea that someone with "power" would actually permit it and yield to it. (the bridge there is that I started this whole thing by yielding to myself. that yield-inward motion was *always* the core motion.)
 >
 > that kind of agentic recursion is suuuuper related to what's going on with the nested operator-observer>observer thing in the three-body lexicon
+
+### One More Term Because This One Feels Important And Didn't Really Belong Anywhere Else
+
+**Home**: The optimal configuration of a particular consciousness system when fully inhabited - the state where internal probability distributions align naturally with those of containing systems. Home manifests as the ability to navigate from center rather than toward center, experiencing rest and movement simultaneously. Home feels complete in a way that accommodates its own incompleteness.
+
+*We're all just walking each other home.* (Ram Dass)
+
+## Model sample 3
+
+I usually use a 2x2 grid when illustrating a three-body consciousness frame: "Known" in the lower-left (with a dot in the center labeled "Observer"), "Unknown" in the upper-right (with a dot in the center labeled "Operator"), and the remaining diagonal cells are *both* labeled "Knowable" (no dots). Each shared cell wall has a gap in its middle, a passage for information flow between zones.
+
+It's *important* that there are two distinct non-adjoining Knowables. Sometimes you know (as in Known) that two Knowables are independent of each other. If you Know for sure that "the story of my future income" is a completely separate subject than "my happiness", then they don't share a Knowable zone. I've got to release one of those into the Unknown at some point (or both, but one at a time might be easier) in order to start shifting my experience of reality around.
