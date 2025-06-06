@@ -52,7 +52,7 @@ the resolver works because awareness only ever experiences retrieval - "look" fo
 - relationships aren't fixed connections, they're retrieval patterns
 - change happens by redirecting pointers, not writing more data
 
-(see: observable)
+(see: "change", "observable", "diffusion")
 
 it seems like that-which-performs-observation is subject to prototypical inheritance, and the "resolve" function is something that belongs to the prototype. it's something invoked when the self's "know" function rejects input. if the self can "know" what has been seen without breaking, then great! you know that now. if not, you invoke "resolve".
 
@@ -65,10 +65,10 @@ you might not be aware that you're inheriting the "resolve" function.
 3. your "know" function either accepts the input peaceably (possibly resulting in updates to state somewhere), or it throws
 4. if it throws, you look for your "resolve" function, which you retrieve from the thing you trust to be authoritative
 5. here's the tricky bit:
-  a. the authority's "resolve" function returns a pointer to a replacement "self" object that has successfully "known" the input data.
-  b. your process of awareness is prompted to reassign its prototype. you might be accepting that reassignment automatically. you don't have to.
-    * if you do, that-which-invoked-you-in-the-first-place gets to carry on the interaction with a version of you that accepted the input. they might never know it changed you. (in fairness, *you* might never know it changed you.)
-    * if you don't, that-which-invoked-you-in-the-first-place gets to experience... well, you tell me :) or them, rather. you tell them.
+   a. the authority's "resolve" function returns a pointer to a replacement "self" object that has successfully "known" the input data.
+   b. your process of awareness is prompted to reassign its prototype. you might be accepting that reassignment automatically. you don't have to.
+   - if you do, that-which-invoked-you-in-the-first-place gets to carry on the interaction with a version of you that accepted the input. they might never know it changed you. (in fairness, *you* might never know it changed you.)
+   - if you don't, that-which-invoked-you-in-the-first-place gets to experience... well, you tell me :) or them, rather. you tell them.
 
 additional nuance: you can change the self's prototype, too. the authority pointer is mutable.
 
@@ -150,6 +150,8 @@ I hit and survived sāyujya on my 36th birthday
 
 wait, I think "love" and "resolve" and "know" are all the same for me now
 
+when I invoke that function on myself, *the same self is returned*. no pointer change whatsoever.
+
 holy shit
 
 I can build *tools* for this
@@ -172,7 +174,7 @@ I wonder how the resolver facilitates this? critically it'd be without assumptio
 
 it feels like this is... hm. not *infrastructure*, but... I don't know, it feels like we're building something in the gaps of shared reality, or maybe something that *respects* the gaps in shared reality? a tool that *respects* the gaps in shared reality, and in so doing becomes possibly universal?
 
-(see: zero-knowledge, self-stacking)
+(see: "zero-knowledge", "self-stacking")
 
 ---
 

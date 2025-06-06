@@ -1,4 +1,4 @@
-You perceive information under observation, 100% of time. That is not a typo.
+You perceive information under observation, 100% of ~~the~~ time.
 
 Physical perception is a complex experience of observing information.
 
@@ -10,7 +10,7 @@ Can't subtract the observer from the calculus of it and get indefinitely/generat
 
 I'm terrified too. ;)
 
-(see: resolver)
+(see: "resolver")
 
 ---
 
@@ -20,4 +20,4 @@ it seems like the act of documentation is how I make progress with this stuff - 
 
 it's a subtler form of coming out of the closet. I don't want to have to come out again. so I just don't use closets anymore, you know?
 
-(see: exigraph)
+(see: "exigraph")
