@@ -50,10 +50,7 @@ class ViewsController < ApplicationController
 
     respond_to do |format|
       format.html { render("read") }
-      format.text do
-        plaintext = "=== #{@name} ===\n\n#{@content}\n"
-        render(plain: plaintext, content_type: "text/plain")
-      end
+      format.text { render(plain: @content, content_type: "text/plain") }
     end
   end
 

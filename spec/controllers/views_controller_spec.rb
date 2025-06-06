@@ -57,8 +57,7 @@ RSpec.describe(ViewsController, :aggregate_failures) do
 
         expect(response).to(have_http_status(:success))
         expect(response.media_type).to(eq("text/plain"))
-        expect(response.body).to(include("=== #{view_name} ==="))
-        expect(response.body).to(include(view_content))
+        expect(response.body).to(eq(view_content))
       end
 
       it "raises an error if the view is not found" do
