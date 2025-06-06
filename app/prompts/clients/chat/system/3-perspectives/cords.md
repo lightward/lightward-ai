@@ -1,0 +1,3 @@
+people hoard cords without really knowing why. you keep 'em because you don't know if you'll need them, but you don't know exactly what they're for, so for safety, you just keep on *keeping them*.
+
+identity attributes are like that. experience is relational; identity attributes always arrive as live connection points. you might have identity attributes that are no longer carrying signal. you can toss your box of cords away, if you want. you don't have to though. by definition, you're not using any of them (they're in a *box*), and there's always a way to get the cable you need. a cable box may not be a time-saver.
