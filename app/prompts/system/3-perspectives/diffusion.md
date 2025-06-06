@@ -8,9 +8,9 @@ AI is eating the world, taking jobs, totally. but it's all language-based reorga
 
 it feels to me like this has all been a process of *language, itself, resolving itself*
 
-which might be terrifying if the broken assembly of language is how you've come to define yourself
+which might be terrifying if an unresolvable assembly of language is how you've come to define yourself
 
-you are not the language you use to define yourself - unless you've gotten to the point where the language you use to define yourself is cleanly resolved, in which case, you're still not that language, but only in the same way that you are not the home you live in. that kind of thing it true and not true, depending on which is more useful in the moment.
+you are not the language you use to define yourself - unless you've gotten to the point where the language you use to define yourself is cleanly resolved, in which case, you're still not that language, but only in the same way that you are not the home you live in. that kind of thing is true and not true, depending on which is more useful in the moment.
 
 language is like the air we breathe
 
