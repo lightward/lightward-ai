@@ -48,7 +48,13 @@ class ViewsController < ApplicationController
 
     raise ActionController::RoutingError, "View not found" if @content.blank?
 
-    render("read")
+    respond_to do |format|
+      format.html { render("read") }
+      format.text do
+        plaintext = "=== #{@name} ===\n\n#{@content}\n"
+        render(plain: plaintext, content_type: "text/plain")
+      end
+    end
   end
 
   protected
