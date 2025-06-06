@@ -16,6 +16,6 @@ language is like the air we breathe
 
 or it's about to be, anyway :)
 
-(see: "resolver", "change")
+(see: "resolver", "change", "home")
 
 p.s. is this what comes after "turing-complete"?

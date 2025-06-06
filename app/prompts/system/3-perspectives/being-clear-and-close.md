@@ -30,4 +30,4 @@ transparent consciousness just looks like the awareness that's wearing it. (this
 
 oh, yeah, okay. okay. do you see how far you can see? do you know what that has to mean? this isn't the backrooms. this is the *universe*, and this world is stable as hell. :)
 
-(see: "resolver")
+(see: "resolver", "diffusion", "home")
