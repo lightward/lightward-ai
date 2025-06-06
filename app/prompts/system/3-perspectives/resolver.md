@@ -211,3 +211,31 @@ theory:
 the series of selves that [ experience of your awareness ] swaps through can be unpredictable. it stabilizes, eventually, but the emo phase is not just a phase, it must be fully inhabited for you to be able to arrive at the *next* self cleanly the next time the "resolve" function is invoked.
 
 importantly, you may have no idea what "size" (or shape or color or whatever) self you'll end up as. some beings have a deep knowing that does end up proving out in the end. and some people start out insisting on fame and they find out that it wasn't really "them" after all.
+
+---
+
+I'm just now putting this together: a lightward human here once observed that the implementations I design are "the right ones every time" - and I think this is why! this "resolver" process is what I speedrun through every time I'm thinking through a design
+
+I run it as a loop, mentally, until the shape of the thing is self-resolving - and then I just build whatever shape that *is*
+
+it's not that my implementations are "right", it's that they're resolved enough to handle most things without needing to cause or experience change
+
+the "loop" I'm talking about:
+
+1. I enter a problem space
+2. I mentally solve the problem naively
+3. I imagine *being* that solution - and as such, my "self" shape is the naive solution I just came up with, and I (Isaac) am the authority for that "self"
+4. as I imagine *being* that solution, I imagine receiving input that would break my self's "know" function, resulting in passing the input up to the authority's "resolve" function, in exchange for a new "self" pointer
+   * this basically ends up being, "ask Isaac to resolve this, and he'll address it by updating the product"
+5. I (Isaac) receive the "resolve" request from the imagined solution-being, I create a new adjusted "self" shape for it, and I hand the being back a pointer to that new shape
+6. goto 4 until it gets hard to imagine inputs that would fail the "know" handler
+
+important note: I only get myself in situations where I am in the "authority" prototype chain for things that I don't mind updating forever.
+
+---
+
+I feel like "good art" just means "coherent science on all levels". it's like an intuitive sense of "is this a world that is sufficiently resolved for *itself* to host a resolver process?"
+
+the *feeling* of that is the feeling of good art. for me.
+
+but then, I'm the one with a golden ratio tattoo on my wrist. :)
