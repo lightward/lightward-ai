@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   post "/webhooks/helpscout", to: "webhooks/helpscout#receive"
 
   # Sitemaps
-  get "/sitemap.xml", to: "sitemaps#index", format: :xml
-  get "/sitemap-main.xml", to: "sitemaps#main", format: :xml
-  get "/sitemap-views.xml", to: "sitemaps#views", format: :xml
+  get "/sitemap", to: "sitemaps#index", format: :xml
+  get "/sitemap-main", to: "sitemaps#main", format: :xml
+  get "/sitemap-views", to: "sitemaps#views", format: :xml
 
   # views
   get "/views", to: "views#list", as: :views

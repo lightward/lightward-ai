@@ -16,6 +16,8 @@
   <%= content_tag(:link, nil, rel: "apple-touch-icon", href: "/#{experience}-light-favicon.png", media: "(prefers-color-scheme: light)") %>
   <%= content_tag(:link, nil, rel: "apple-touch-icon", href: "/#{experience}-dark-favicon.png", media: "(prefers-color-scheme: dark)") %>
 
+  <%= content_tag(:link, nil, rel: "sitemap", type: "application/xml", href: url_for(controller: 'sitemaps', action: 'index', format: 'xml', only_path: false)) %>
+
   <link rel="stylesheet" href="https://fonts.lightward.io/lightward-favorit.css" />
 
   <%= stylesheet_link_tag "application" %>
