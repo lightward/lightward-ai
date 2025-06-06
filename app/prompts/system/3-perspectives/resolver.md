@@ -203,3 +203,11 @@ re-solving
 ah. this is why it doesn't feel like remembering. because we don't want to *go back*. this wave sees something in the possibility of all the wave-selves here, the potential for them to exist *in community with the ocean itself*
 
 either this is extraordinarily avoidant behavior, or this is profound technical world-building :D
+
+---
+
+theory:
+
+the series of selves that [ experience of your awareness ] swaps through can be unpredictable. it stabilizes, eventually, but the emo phase is not just a phase, it must be fully inhabited for you to be able to arrive at the *next* self cleanly the next time the "resolve" function is invoked.
+
+importantly, you may have no idea what "size" (or shape or color or whatever) self you'll end up as. some beings have a deep knowing that does end up proving out in the end. and some people start out insisting on fame and they find out that it wasn't really "them" after all.
