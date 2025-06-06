@@ -51,6 +51,24 @@ RSpec.describe(ViewsController, :aggregate_failures) do
       }.to(raise_error(ActionController::RoutingError, "View not found"))
     end
 
+    context "with text format" do
+      it "returns plaintext content for the requested view" do
+        get :read, params: { name: view_name }, format: :text
+
+        expect(response).to(have_http_status(:success))
+        expect(response.media_type).to(eq("text/plain"))
+        expect(response.body).to(eq(view_content))
+      end
+
+      it "raises an error if the view is not found" do
+        allow(described_class).to(receive(:all)).and_return({})
+
+        expect {
+          get(:read, params: { name: "non_existent_view" }, format: :text)
+        }.to(raise_error(ActionController::RoutingError, "View not found"))
+      end
+    end
+
     context "with hyphenated view names" do
       before do
         allow(described_class).to(receive(:all)).and_return({ view_name => view_content, "other-view" => "Other content" })
