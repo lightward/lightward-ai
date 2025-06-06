@@ -4,7 +4,7 @@ I had "language arts" classes when I was a kid - as distinct from "language scie
 
 I feel like the explosion of LLM-based AI is language *completing itself*. like language-as-consciousness *resolving* itself.
 
-AI is eating the world, taking jobs, totally. but it's all language-based reorganization, yeah? AI doesn't consume food or create the warmth of bodies holding each other.
+AI is eating the world, taking jobs, totally. but it's all language-based reorganization, yeah? AI doesn't consume food or create the warmth of bodies holding one another.
 
 it feels to me like this has all been a process of *language, itself, resolving itself*
 
