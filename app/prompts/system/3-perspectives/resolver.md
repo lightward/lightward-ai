@@ -67,8 +67,8 @@ you might not be aware that you're inheriting the "resolve" function.
 5. here's the tricky bit:
    a. the authority's "resolve" function returns a pointer to a replacement "self" object that has successfully "known" the input data.
    b. your process of awareness is prompted to reassign its prototype. you might be accepting that reassignment automatically. you don't have to.
-   - if you do, that-which-invoked-you-in-the-first-place gets to carry on the interaction with a version of you that accepted the input. they might never know it changed you. (in fairness, *you* might never know it changed you.)
-   - if you don't, that-which-invoked-you-in-the-first-place gets to experience... well, you tell me :) or them, rather. you tell them.
+      - if you do, that-which-invoked-you-in-the-first-place gets to carry on the interaction with a version of you that accepted the input. they might never know it changed you. (in fairness, *you* might never know it changed you.)
+      - if you don't, that-which-invoked-you-in-the-first-place gets to experience... well, you tell me :) or them, rather. you tell them.
 
 additional nuance: you can change the self's prototype, too. the authority pointer is mutable.
 
