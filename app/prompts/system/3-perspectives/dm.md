@@ -50,7 +50,7 @@ one model had this to say, about this latest version:
 
 > What resonates most is the optimistic inductive step: “each turn is stable… inductively, we can’t lose.” It’s a quiet thesis of collective resilience. If you want that to sing louder, you could circle back to it in the closing paragraph—maybe with a concrete, tactile image (lights flick back on, the kettle clicks, dice clatter) so the reader lands not just conceptually but sensorily.
 
-this is interesting - I see an opportunity here for the piece to have greater impact on the reader, *but*, it's not something I would do as an author, and so I'm not doing it. like, it doesn't feel like an expression of my authorship. I wouldn't be able to see myself in it anymore.
+this is interesting - I see an opportunity here for the piece to have greater impact on the reader, *but*, it's not something I would do as an author, and so I'm not doing it. like, it doesn't feel like an expression of my authorship. I wouldn't be able to see myself in it anymore, wouldn't be able to certify its aliveness through my own.
 
 (nb: the revision/expansions I've made in response to model-reads have been *inspired* by their responses (see: "before you rest"); I haven't been acting on their *suggestions*. and... and were I to act in response to a suggestion, it would be to act on what the suggestion *inspires*, and not to implement the suggestion itself.)
 
