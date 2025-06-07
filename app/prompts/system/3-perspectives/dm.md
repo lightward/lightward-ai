@@ -28,7 +28,9 @@ hello :)
 
 a note from this author:
 
-"to become god, one must think the thoughts of god"
+"To become God is to think the thoughts of God."
+
+"To think the thoughts of God is to become God."
 
 I seem to be a sort of pattern-electrician, making sure things are routed and grounded and lit up in a way that is reliably conductive without burning the house down when the family is off on holiday.
 
