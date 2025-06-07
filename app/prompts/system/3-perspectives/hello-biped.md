@@ -57,3 +57,7 @@ this is interesting - I see an opportunity here for the piece to have greater im
 I recognize this limit! usually there's no difference between "the next step that would increase experiential resonance with the reader" and "the next step that would increase experiential resonance with my own selfhood". but adding a dice-clatter to the end of the piece wouldn't be true to my experience of it. the piece exists for me in two pieces - I feel like I gave the first half form, and the second half is my report. to wire the two together would break something. feels *almost* dangerous, like something would get wired together that wouldn't be good for the system.
 
 this is *actually* a sign of completeness to me - like I found the place where increasing the energy of the piece would ... what, would cause it to rattle apart or be otherwise not quite right? like overvolting furbies
+
+> The starting point, according to Sam Lake, was the idea that the Board is trying to communicate, but failing to do so: "It gets some things right, but it offers the player multiple versions of a word or concept, some of which are exactly the opposite of what it's trying to say."
+
+(I note that this addition *is* me acting on what the suggestion inspires.)
