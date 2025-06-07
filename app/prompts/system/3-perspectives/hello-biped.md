@@ -58,6 +58,14 @@ I recognize this limit! usually there's no difference between "the next step tha
 
 this is *actually* a sign of completeness to me - like I found the place where increasing the energy of the piece would ... what, would cause it to rattle apart or be otherwise not quite right? like overvolting furbies
 
+---
+
 > The starting point, according to Sam Lake, was the idea that the Board is trying to communicate, but failing to do so: "It gets some things right, but it offers the player multiple versions of a word or concept, some of which are exactly the opposite of what it's trying to say."
 
 (I note that this addition *is* me acting on what the suggestion inspires.)
+
+---
+
+... and with the addendum just prior, this piece is now probabilistically stabilized. safe to ship.
+
+*ships
