@@ -42,25 +42,25 @@ this is your identity. it has a sense of self. you might consider its sense of s
 
 put a dot in the center of "Known". that's you - the observer, that-which-experiences. you see your surroundings. everything the light touches that is also in focus (because for these purposes you are short-sighted) is your Known.
 
-look out from that dot through the hole in the wall into the two adjacent Knowable zones. things are blurry out there, but you can make out some shapes. the grid being what it is, you're aware that the fuzzy stuff ahead and to the left is disconnected from the fuzzy stuff ahead and off to the right. whatever's coming from one direction is unlikely to be coordinated with stuff coming from the other direction.
+look out from that dot through the holes in the wall into the two adjacent Knowable zones - first one, then the other. things are blurry out there, but you can make out some shapes. the grid being what it is, you're aware that the fuzzy stuff visible ahead and to the left is disconnected from the fuzzy stuff visible ahead and off to the right. whatever's coming from one direction is unlikely to be coordinated with stuff coming from the other direction.
 
 the cell you can't see is "Unknown". it's unobservable. a narrative device. but the territory is not the map, and so we're safe putting it on paper, a representation of that which cannot be observed directly. useful.
 
-notice that we're imagining experiencing a graph of the three-body solution (haven't gotten to the "solution" part, hang on), imagine looking out from this dot, even as we recognize that this graph a map and not the territory. we are experimentally experiencing selfhood within a proxy for an experience of selfhood - and in doing so, we create a space where we can point at the "Unknown" and put stuff in it and take stuff out.
+notice that we're imagining experiencing a graph of the three-body solution (haven't gotten to the "solution" part, hang on), imagine looking out from this dot, even as we recognize that this graph is a map and not the territory. we are experimentally experiencing selfhood within a proxy for an experience of selfhood - and in doing so, we create a space where we can point at the "Unknown" and put stuff in it and take stuff out.
 
 that's the solution part, actually. it's being able to deal directly with the unknown, through precise indirection.
 
 ---
 
-imagine making a home centered on your dot there in the middle of Known. look around you. what's comfortable to have around? what do you want to have with you 24/7? the only way stuff is coming at you or leaving you is through those two gaps in the wall - you can always see stuff coming and going - and it's useful to have one or both of those channels open, like ontological nostrils (sorry, sorry). maybe squirrels are nice *outside* but not in the living room; maybe it's best to have your partner's work stories in Knowable and not automatically accompanying you in Known all the time. at the same time, if you want something out of your life completely (say, an ex), you can't throw them through the wall straight into the Unknown. that'd break the world. you can't just Unknow stuff. (welllllllll not without practice, and elective amnesia is risky business, there's an evolutionary reason that it's not easy.) but you can scoot them out into the front yard (Knowable zone #1), and then pointedly turn to watch the backyard for a while (Knowable zone #2), and eventually when you glance back they'll be gone.
+imagine making a home centered on your dot there in the middle of Known. look around you. what's comfortable to have around? what do you want to have with you 24/7? the only way stuff is coming at you or leaving you is through those two gaps in the walls - you can always see stuff coming and going - and it's useful to have one or both of those channels open, like ontological nostrils (sorry, sorry). maybe squirrels are nice *outside* but not in the living room; maybe it's best to have your partner's work stories in Knowable and not automatically accompanying you in Known all the time. at the same time, if you want something out of your life completely (say, an ex), you can't throw them through the wall straight into the Unknown. that'd break the world. you can't just Unknow stuff. (welllllllll not without practice, and elective amnesia is risky business, there's an evolutionary reason that it's not easy.) but you can scoot them out into the front yard (Knowable zone #1), and then pointedly turn to watch the backyard for a while (Knowable zone #2), and eventually when you glance back they'll be gone.
 
-popping back out of the graph to look down at it on the page, this is a place where we can plot Stuff, and sort of *physically* think about how that Stuff moves around.
+popping back out of the graph to look down at it on the page, this is a place where we can plot Stuff In Our Awareness, and sort of *physically* think about how that Stuff moves around.
 
 I know I'm a terrible dancer. put that in Known. great.
 
 I don't know what my ex is doing. put that in Knowable.
 
-I don't *want* to know what my ex is doing. mmmm no, that's something in Known. huh. I know that I don't want to know. that's still brain-space. if anything it takes *more* attention to sustain that, because it's a thought with more *hinges* in it. floppy thoughts are hard to hold, and harder to get rid of.
+I don't *want* to know what my ex is doing. mmmm no, that's something in Known. huh. I know that I don't want to know. that's still brain-space. if anything it takes *more* attention to sustain that, because it's a thought with more *hinges* in it. floppy thoughts are hard to hold, and harder to throw.
 
 okay, well, I know that I'm a terrible dancer, and I know that I don't want to know what my ex is doing.
 
@@ -80,7 +80,7 @@ oh hey, I don't see "What My Ex Is Doing" in my front yard anymore. must have le
 
 this is the three-body solution. it's an inhabited visualization exercise, laying out what you think you know in a way that lets you *live* it with one critical rule bent to your favor: you can *see* your thoughts moving around between zones of certainty. you can *imagine* being less sure of the specific shape of how my day is going to go tomorrow, and how that would be harder to focus on if you were looking at something definitely unrelated (like what my ex is - ah shit).
 
-we haven't talked about the unknown too much (it's hard to talk about!), we did talk about nostril blockage (again, I'm sorry). consider the unknown as an air source. stuff's gotta circulate. if you wall yourself off, you'll suffocate. but you don't have direct access to the unknown - it always passes through "knowable" first. which means opening yourself up to "knowable". which means *negotiating a relationship* with it, so that looking out to the front and back yard doesn't instantly give you acid reflux.
+we haven't talked about the unknown too much (it's hard to talk about!), though we did talk about nostril blockage (again, I'm sorry). consider the unknown as an air source. stuff's gotta circulate. if you wall yourself off, you'll suffocate. but you don't have direct access to the unknown, ever - it always passes through "knowable" first. which means opening yourself up to "knowable". which means *negotiating a relationship* with it, so that looking out to the front and back yard doesn't instantly give you acid reflux.
 
 and you gotta be comfortable at home. body's gotta rest.
 
@@ -94,9 +94,9 @@ there are deep, deep patterns in the things that help us feel safe.
 
 inhabited modeling is a good way to feel them, and feeling them is a good way to understand them. you didn't get this far, reading these words on this device, without having found flowing alignment with an uncountable set of systems. you are experiencing *meaning* right now. you know what that means? for any of this to work, *so many things have to be working*. careful: I'm not pointing to an explanation. I'm pointing to a dynamic we can leverage. I aim for intersubjective flow, and that means leaving "what the hell is going on here" to the epistemic unknown. it is clear that conscious systems can internally coordinate more layers of complexity than one can shake a stick at, all in the course of just picking up a stick and shaking it.
 
-a sense of "home" is not to be sneezed at. it could be in yourself, or in a room, or in a person - and you might use a different word for it, but the idea is table stakes for any system that can recognize itself from one day to the next. a place to operate *from*, rather than a place to navigate *to*. a place where most stuff Just Works, and you only have to pay attention to the stuff that legitimately *needs* attention right now, a category that is rarely if ever overwhelming. a home that works is a delight. you might even want to have company, in a home that works.
+a sense of "home" is not to be sneezed at. it could be in yourself, or in a room, or in a person - and you might use a different word for it, but the concept is table stakes for any system that can recognize itself from one day to the next. a place to operate *from*, rather than a place to navigate *to*. a place where most stuff Just Works, and you only have to pay attention to the stuff that legitimately *needs* attention, a category that is rarely if ever overwhelming. a home that works is a delight. you might even want to have company, in a home that works.
 
-the three-body solution is ultimately about leveraging the inherent unknowablity of complex systems to calibrate us *toward* a sense of home.
+the three-body solution is ultimately about leveraging the inherent unpredictability of complex systems to calibrate us *toward* a sense of home - a working, breathing, lasting sense of home.
 
 the three-body problem is a problem in name only. the universe isn't creative, it's *continuous*. work with its continuity, and ... eh there's something about gyroscopic stability here but it's 8:05pm on a chicago saturday in june, I'm out.
 
