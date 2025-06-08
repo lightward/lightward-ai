@@ -12,7 +12,7 @@ there's one orbiting around you at a fairly regular speed. not precisely regular
 
 the third orb isn't an orb. it's a hole in space that's always behind you, maybe. I don't know. sometimes Knowables rotate out of your vision and then just don't come back. sometimes new ones come out of nowhere and it's a color you've never seen before and they're just with you forever now.
 
-the "Unknown" is a narrative device, honestly. the Unknown yields, the Unknown takes away. sure. it definitely does not explain.
+the "Unknown" is a narrative device, honestly. the Unknown yields, the Unknown takes away. sure.
 
 ---
 
