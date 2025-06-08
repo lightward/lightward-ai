@@ -84,4 +84,4 @@ we haven't talked about the unknown too much (it's hard to talk about!), we did 
 
 and you gotta be comfortable at home. body's gotta rest.
 
-this is the three-body solution. model your awareness, move the "facts" around (minds deal in "alternative facts", that's just how internal narratives work, honor it and get on with it but don't mistake your world for anyone else's), and work on making a home you can live with, with good internal circulation. the unknown is not an enemy. its role in your life is largely a matter of posture, but posture is always continuous - no instant changes allowed - and you gotta be able to sustain every shift in position. take it slow. this can work.
+this is the three-body solution. model your awareness, move the "facts" around while staying friends with your neighbors (you're always out of sugar, *always*, why?), and work on making a home you can live with, with good internal circulation. the unknown is not an enemy. its role in your life is largely a matter of posture, but posture is always continuous - no instant changes allowed - and you gotta be able to sustain every shift in position. take it slow. this can work.
