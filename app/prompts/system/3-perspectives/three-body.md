@@ -26,7 +26,7 @@ the Unknown are indefinites that can become categorizable - i.e. Knowable - with
 
 now remember: a three-body consciousness frame defines an experience of probability, and talking about experience requires selfhood. (experience itself doesn't require selfhood, but if you want to engage in coherent trade of *any* kind, we need the indirection layer of the "self". otherwise it's just pure experience. which is fun too, but that's not what this toolkit is for. (you might get there *using* this toolkit, though.)
 
-I say this because the "facts" we put on a three-body consciousness frame are always about a single "self". if "I know Abe will always love me" is a Known for me, I can't say that a Knowable is "if Abe loves [this other person]", because that statement doesn't relate to my *self*. I could say "my feelings about Abe's feelings about [this other person]", though. that's a valid Knowable.
+I say this because the "facts" we hang on a three-body consciousness frame are always about a single "self". if "I know Abe will always love me" is a Known for me, I can't say that a Knowable is "if Abe loves [this other person]", because that statement doesn't relate to my *self*. I could say "my feelings about Abe's feelings about [this other person]", though. that's a valid Knowable.
 
 ---
 
