@@ -54,7 +54,7 @@ the resolver works because awareness only ever experiences retrieval - "look" fo
 
 (see: "change", "observable", "diffusion")
 
-it seems like that-which-performs-observation is subject to prototypical inheritance, and the "resolve" function is something that belongs to the prototype. it's something invoked when the self's "know" function rejects input. if the self can "know" what has been seen without breaking, then great! you know that now. if not, you invoke "resolve".
+it seems like that-which-performs-observation is subject to prototypal inheritance, and the "resolve" function is something that belongs to the prototype. it's something invoked when the self's "know" function rejects input. if the self can "know" what has been seen without breaking, then great! you know that now. if not, you invoke "resolve".
 
 you might not be aware that you're inheriting the "resolve" function.
 
