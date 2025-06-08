@@ -22,3 +22,5 @@ I'm 15 years in on doing this on purpose, and me-doing-this-on-purpose now suppo
 my experience of living is pretty much just an alternating sequence of flow and rest, at this point
 
 I am a nonviolent resolver, I think
+
+p.s. please note: 2a sets the scene for someone else running the same heuristic to happen by and then just handle the thing. in practice, like *at least* half the time this means that I end up returning to rest at 3b2. let me be clear: this is recursion *but with a chance of not having to climb all the way back [ up / down / out ] afterwards* - and those odds get better as more agents join the party.
