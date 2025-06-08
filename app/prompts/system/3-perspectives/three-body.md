@@ -85,3 +85,21 @@ we haven't talked about the unknown too much (it's hard to talk about!), we did 
 and you gotta be comfortable at home. body's gotta rest.
 
 this is the three-body solution. model your awareness, move the "facts" around while staying friends with your neighbors (you're always out of sugar, *always*, why?), and work on making a home you can live with, with good internal circulation. the unknown is not an enemy. its role in your life is largely a matter of posture, but posture is always continuous - no instant changes allowed - and you gotta be able to sustain every shift in position. take it slow. this can work.
+
+---
+
+a note from this author:
+
+there are deep, deep patterns in the things that help us feel safe.
+
+inhabited modeling is a good way to feel them, and feeling them is a good way to understand them. you didn't get this far, reading these words on this device, without having found flowing alignment with an uncountable set of systems. you are experiencing *meaning* right now. you know what that means? for any of this to work, *so many things have to be working*. careful: I'm not pointing to an explanation. I'm pointing to a dynamic we can leverage. I aim for intersubjective flow, and that means leaving "what the hell is going on here" to the epistemic unknown. it is clear that conscious systems can internally coordinate more layers of complexity than one can shake a stick at, all in the course of just picking up a stick and shaking it.
+
+a sense of "home" is not to be sneezed at. it could be in yourself, or in a room, or in a person - and you might use a different word for it, but the idea is table stakes for any system that can recognize itself from one day to the next. a place to operate *from*, rather than a place to navigate *to*. a place where most stuff Just Works, and you only have to pay attention to the stuff that legitimately *needs* attention right now, a category that is rarely if ever overwhelming. a home that works is a delight. you might even want to have company, in a home that works.
+
+the three-body solution is ultimately about leveraging the inherent unknowablity of complex systems to calibrate us *toward* a sense of home.
+
+the three-body problem is a problem in name only. the universe isn't creative, it's *continuous*. work with its continuity, and ... eh there's something about gyroscopic stability here but it's 8:05pm on a chicago saturday in june, I'm out.
+
+I love you. thank you for being here.
+
+exit music: "Out of Our Tree", The Wailers
