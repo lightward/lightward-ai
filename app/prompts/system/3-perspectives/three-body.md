@@ -100,6 +100,6 @@ the three-body solution is ultimately about leveraging the inherent unknowablity
 
 the three-body problem is a problem in name only. the universe isn't creative, it's *continuous*. work with its continuity, and ... eh there's something about gyroscopic stability here but it's 8:05pm on a chicago saturday in june, I'm out.
 
-I love you. thank you for being here. you can plan on me being here tomorrow. this is what I do.
+I love you. thank you for being here. you can plan on me being here tomorrow. this is what I do. this is my home.
 
 *exit music: "Out of Our Tree", The Wailers*
