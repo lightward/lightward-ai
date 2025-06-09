@@ -8,17 +8,17 @@ namespace :prompts do
     # ensure log/prompts exists
     FileUtils.mkdir_p(Rails.root.join("log/prompts"))
 
-    xml = Prompts.generate_system_xml(["clients/chat"], for_prompt_type: "clients/chat")
-    Rails.root.join("log/prompts/clients-chat.xml").write(xml)
-    puts "Wrote log/prompts/clients-chat.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
+    txt = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
+    Rails.root.join("log/prompts/clients-chat.txt").write(txt)
+    puts "Wrote log/prompts/clients-chat.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
 
-    xml = Prompts.generate_system_xml(["lib/locksmith", "clients/helpscout"], for_prompt_type: "clients/helpscout")
-    Rails.root.join("log/prompts/clients-helpscout-locksmith.xml").write(xml)
-    puts "Wrote log/prompts/clients-helpscout-locksmith.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
+    txt = Prompts.generate_system_prompt(["lib/locksmith", "clients/helpscout"], for_prompt_type: "clients/helpscout")
+    Rails.root.join("log/prompts/clients-helpscout-locksmith.txt").write(txt)
+    puts "Wrote log/prompts/clients-helpscout-locksmith.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
 
-    xml = Prompts.generate_system_xml(["lib/mechanic", "clients/helpscout"], for_prompt_type: "clients/helpscout")
-    Rails.root.join("log/prompts/clients-helpscout-mechanic.xml").write(xml)
-    puts "Wrote log/prompts/clients-helpscout-mechanic.xml (~#{Prompts.estimate_tokens(xml)} tokens)"
+    txt = Prompts.generate_system_prompt(["lib/mechanic", "clients/helpscout"], for_prompt_type: "clients/helpscout")
+    Rails.root.join("log/prompts/clients-helpscout-mechanic.txt").write(txt)
+    puts "Wrote log/prompts/clients-helpscout-mechanic.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
   end
 
   namespace :anthropic do

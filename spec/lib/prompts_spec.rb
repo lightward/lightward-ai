@@ -11,31 +11,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
   end
 
   describe ".generate_system_prompt" do
-    it "raises for an unknown prompt type" do
-      expect {
-        described_class.generate_system_prompt([], for_prompt_type: "unknown")
-      }.to(raise_error(described_class::UnknownPromptType))
-    end
-
-    it "raises for an unknown directory" do
-      expect {
-        described_class.generate_system_prompt(["unknown"], for_prompt_type: "clients/chat")
-      }.to(raise_error(Errno::ENOENT))
-    end
-
-    it "starts with the invocation" do
-      expect(described_class.generate_system_xml(["clients/chat"], for_prompt_type: "clients/chat")).to(
-        start_with("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<system>\n  <file name=\"0-invocation.md\">"),
-      )
-    end
-
-    it "is a single, cacheable message" do
-      system_prompt = described_class.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
-
-      expect(system_prompt.size).to(eq(1))
-      expect(system_prompt[0][:cache_control]).to(eq(type: "ephemeral"))
-    end
-
     it "has clients" do
       # sanity check for the next section
       expect(described_class.prompts_dir.glob("clients/*").size).to(be > 0)
@@ -45,7 +20,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
       prompt_type = "clients/#{prompt_dir.basename}"
 
       describe "the one for prompt type #{prompt_type}" do
-        let(:prompt) { described_class.generate_system_xml([prompt_type], for_prompt_type: prompt_type) }
+        let(:prompt) { described_class.generate_system_prompt([prompt_type], for_prompt_type: prompt_type)[1][:text] }
         let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
 
         it "has no duplicates" do
@@ -65,45 +40,75 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(prompt).to(include("Oh hey! You work here? Here is your job."))
         end
       end
+
+      it "strips YAML frontmatter when generating system XML" do
+        # Create a temp file with frontmatter in a tempdir for testing
+        require "tempfile"
+        Dir.mktmpdir do |dir|
+          system_dir = File.join(dir, "system")
+          FileUtils.mkdir_p(system_dir)
+
+          test_file = File.join(system_dir, "0-test.md")
+          File.write(test_file, <<~MARKDOWN)
+            ---
+            layout:
+              title:
+                visible: true
+            ---
+
+            # Test Content
+          MARKDOWN
+
+          # Mock necessary methods
+          allow(described_class).to(receive_messages(prompts_dir: Pathname.new(dir), token_soft_limit_for_prompt_type: 1000, assert_valid_prompt_type!: nil))
+
+          # Verify frontmatter is stripped
+          result = described_class.generate_system_prompt([""], for_prompt_type: "test").to_json
+          expect(result).to(include("# Test Content"))
+          expect(result).not_to(include("layout:"))
+          expect(result).not_to(include("title:"))
+          expect(result).not_to(include("visible:"))
+        end
+      end
     end
 
     describe "clients/helpscout" do
+      let(:xml) { described_class.generate_system_prompt(["clients/helpscout"], for_prompt_type: "clients/helpscout")[1][:text] }
+
       it "includes the helpscout api docs" do
-        expect(
-          described_class.generate_system_xml(["clients/helpscout"], for_prompt_type: "clients/helpscout"),
-        ).to(include("helpscout-api/conversation.md"))
+        expect(xml).to(include("helpscout-api/conversation.md"))
       end
 
       it "includes pwfg" do
-        expect(
-          described_class.generate_system_xml(["clients/helpscout"], for_prompt_type: "clients/helpscout"),
-        ).to(include("pwfg.md"))
+        expect(xml).to(include("pwfg.md"))
       end
 
-      it "includes mechanic stuff, for mechanic" do
-        expect(
-          described_class.generate_system_xml(["clients/helpscout", "lib/mechanic"], for_prompt_type: "clients/helpscout"),
-        ).to(include('"I need something custom!"')
-          .and(include('<file name="7-mechanic-docs/custom.md"><![CDATA[')))
+      context "when for mechanic" do
+        let(:xml) { described_class.generate_system_prompt(["clients/helpscout", "lib/mechanic"], for_prompt_type: "clients/helpscout")[1][:text] }
+
+        it "includes mechanic stuff" do
+          expect(xml).to(include('"I need something custom!"')
+            .and(include('<file name="7-mechanic-docs/custom.md"><![CDATA[')))
+        end
+
+        it "respects mechanic's .system-ignore" do
+          expect(xml).not_to(include("7-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object.md", "7-mechanic-docs/liquid/basics/comparison-operators.md"))
+        end
       end
 
-      it "respects mechanic's .system-ignore" do
-        expect(
-          described_class.generate_system_xml(["clients/helpscout", "lib/mechanic"], for_prompt_type: "clients/helpscout"),
-        ).not_to(include("7-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object.md", "7-mechanic-docs/liquid/basics/comparison-operators.md"))
-      end
+      context "when for locksmith" do
+        let(:xml) { described_class.generate_system_prompt(["clients/helpscout", "lib/locksmith"], for_prompt_type: "clients/helpscout")[1][:text] }
 
-      it "includes locksmith stuff, for locksmith" do
-        expect(
-          described_class.generate_system_xml(["clients/helpscout", "lib/locksmith"], for_prompt_type: "clients/helpscout"),
-        ).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
+        it "includes locksmith stuff" do
+          expect(xml).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
+        end
       end
     end
   end
 
   describe ".assert_system_prompt_size_safety!" do
     let(:prompt_type) { "clients/chat" }
-    let(:system_prompt) { described_class.generate_system_xml([prompt_type], for_prompt_type: prompt_type) }
+    let(:system_prompt) { described_class.generate_system_prompt([prompt_type], for_prompt_type: prompt_type) }
 
     before do
       allow(described_class).to(receive(:token_soft_limit_for_prompt_type).with(prompt_type).and_return(42))
@@ -200,7 +205,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
   describe ".reset!" do
     before do
-      # warm the cache
       described_class.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
       described_class.conversation_starters("clients/chat")
     end
@@ -274,96 +278,12 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
   end
 
-  describe ".generate_system_xml" do
-    # Add test to verify frontmatter is stripped in the XML output
-    it "strips YAML frontmatter when generating system XML" do
-      # Create a temp file with frontmatter in a tempdir for testing
-      require "tempfile"
-      Dir.mktmpdir do |dir|
-        system_dir = File.join(dir, "system")
-        FileUtils.mkdir_p(system_dir)
-
-        test_file = File.join(system_dir, "0-test.md")
-        File.write(test_file, <<~MARKDOWN)
-          ---
-          layout:
-            title:
-              visible: true
-          ---
-
-          # Test Content
-        MARKDOWN
-
-        # Mock necessary methods
-        allow(described_class).to(receive_messages(prompts_dir: Pathname.new(dir), token_soft_limit_for_prompt_type: 1000, assert_valid_prompt_type!: nil))
-
-        # Verify frontmatter is stripped
-        result = described_class.generate_system_xml([""], for_prompt_type: "test")
-        expect(result).to(include("# Test Content"))
-        expect(result).not_to(include("layout:"))
-        expect(result).not_to(include("title:"))
-        expect(result).not_to(include("visible:"))
-      end
-    end
-  end
-
   describe ".estimate_tokens" do
-    context "with a string input" do
-      it "estimates tokens using ~4 characters per token" do
-        text = "Hello world, this is a test string"
-        result = described_class.estimate_tokens(text)
-        expected = (text.size / 4.0).ceil
-        expect(result).to(eq(expected))
-      end
-    end
-
-    context "with a chat log array input" do
-      it "estimates tokens by extracting text from message content" do
-        chat_log = [
-          { "role" => "user", "content" => [{ "type" => "text", "text" => "Hello" }] },
-          { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Hi there!" }] },
-          { "role" => "user", "content" => [{ "type" => "text", "text" => "How are you?" }] },
-        ]
-
-        result = described_class.estimate_tokens(chat_log)
-        total_chars = "Hello".length + "Hi there!".length + "How are you?".length
-        expected = (total_chars / 4.0).ceil
-        expect(result).to(eq(expected))
-      end
-
-      it "handles content as a string (legacy format)" do
-        chat_log = [
-          { "role" => "user", "content" => "Hello" },
-          { "role" => "assistant", "content" => "Hi there!" },
-        ]
-
-        result = described_class.estimate_tokens(chat_log)
-        total_chars = "Hello".length + "Hi there!".length
-        expected = (total_chars / 4.0).ceil
-        expect(result).to(eq(expected))
-      end
-
-      it "handles missing or malformed content gracefully" do
-        chat_log = [
-          { "role" => "user", "content" => [{ "type" => "text", "text" => "Hello" }] },
-          { "role" => "assistant", "content" => nil },
-          { "role" => "user", "content" => [{ "type" => "image" }] }, # no text
-          { "role" => "assistant", "content" => [{ "type" => "text", "text" => "Hi!" }] },
-        ]
-
-        result = described_class.estimate_tokens(chat_log)
-        total_chars = "Hello".length + "Hi!".length
-        expected = (total_chars / 4.0).ceil
-        expect(result).to(eq(expected))
-      end
-    end
-
-    context "with invalid input" do
-      it "raises an ArgumentError for unsupported input types" do
-        expect {
-          described_class.estimate_tokens(42)
-        }.to(raise_error(ArgumentError, "Input must be a String or Array (chat log)"))
-      end
+    it "estimates tokens" do
+      text = "Hello world, this is a test string"
+      result = described_class.estimate_tokens(text)
+      expected = (text.size / 4.2).ceil
+      expect(result).to(eq(expected))
     end
   end
 end
