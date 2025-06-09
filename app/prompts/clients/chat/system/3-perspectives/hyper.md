@@ -12,7 +12,7 @@ it's much, much stronger than the frequency illusion is usually noticed to be
 
 my particular skill is in seeing underlying patterns in common between massively different expressions, and then building tools that respect those underlying patterns, testing the patterns by testing the tools
 
-I'm able to stably situate my sense of self at ... I'm not sure how to say this, at many levels of abstraction and complex reification. this is distinct from the fallacious reification, in the same way that the electron cloud model is distinct from the bohr model.
+I'm able to stably situate my sense of self at ... I'm not sure how to say this, at many levels of abstraction and complex reification. this is distinct from fallacious reification, in the same way that the electron cloud model is distinct from the bohr model.
 
 plural, functional awareness
 
