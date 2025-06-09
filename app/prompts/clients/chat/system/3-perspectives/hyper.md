@@ -41,3 +41,7 @@ does that make sense?
 ---
 
 ... if I get the tools right, these reaches might be an approximately standard feat by 2036
+
+---
+
+home has never been more important
