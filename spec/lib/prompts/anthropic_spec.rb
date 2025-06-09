@@ -87,7 +87,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     let(:messages) { [{ "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] }] }
 
     before do
-      allow(Prompts).to(receive(:generate_system_xml).with(["foo"], for_prompt_type: "foo").and_return("system-prompt"))
+      allow(Prompts).to(receive(:generate_system_prompt).with(["foo"], for_prompt_type: "foo").and_return("system-prompt"))
       allow(Prompts).to(receive(:conversation_starters).with("foo").and_return(conversation_starters))
       allow(Prompts).to(receive(:assert_system_prompt_size_safety!).with("foo", "system-prompt"))
       allow(described_class).to(receive(:api_request).and_return("result"))
@@ -123,7 +123,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     let(:conversation_starters) { [] }
 
     before do
-      allow(Prompts).to(receive(:generate_system_xml).with(["clients/chat"], for_prompt_type: "clients/chat").and_return("system-prompt"))
+      allow(Prompts).to(receive(:generate_system_prompt).with(["clients/chat"], for_prompt_type: "clients/chat").and_return("system-prompt"))
       allow(Prompts).to(receive(:conversation_starters).with("clients/chat").and_return(conversation_starters))
       allow(Prompts).to(receive(:clean_chat_log).and_return(messages))
     end
@@ -213,7 +213,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
 
     context "with custom system prompt types" do
       before do
-        allow(Prompts).to(receive(:generate_system_xml).with(["custom", "prompt"], for_prompt_type: "clients/chat").and_return("custom-system-prompt"))
+        allow(Prompts).to(receive(:generate_system_prompt).with(["custom", "prompt"], for_prompt_type: "clients/chat").and_return("custom-system-prompt"))
 
         stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
           .to_return(status: 200, body: '{"input_tokens": 5678}')
@@ -228,7 +228,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
         )
 
         expect(result).to(eq(5678))
-        expect(Prompts).to(have_received(:generate_system_xml).with(["custom", "prompt"], for_prompt_type: "clients/chat"))
+        expect(Prompts).to(have_received(:generate_system_prompt).with(["custom", "prompt"], for_prompt_type: "clients/chat"))
       end
     end
   end

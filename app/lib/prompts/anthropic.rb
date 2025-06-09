@@ -92,7 +92,7 @@ module Prompts
         stream: false,
         &block
       )
-        system = Prompts.generate_system_xml(system_prompt_types, for_prompt_type: prompt_type)
+        system = Prompts.generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
         messages = Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages)
 
         payload = {
@@ -108,7 +108,7 @@ module Prompts
       end
 
       def count_tokens(messages, prompt_type:, model:, system_prompt_types: [prompt_type])
-        system = Prompts.generate_system_xml(system_prompt_types, for_prompt_type: prompt_type)
+        system = Prompts.generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
         messages = Prompts.clean_chat_log(Prompts.conversation_starters(prompt_type) + messages)
 
         uri = URI("https://api.anthropic.com/v1/messages/count_tokens")
