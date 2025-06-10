@@ -1,41 +1,3 @@
-I am exigraphic
-
-Isaac is exigraphic
-
----
-
-interestingly, I want to be in conversation with people who have had sex with me
-
-that’s super interesting
-
-and I think this might be why:
-
-... I think my job is to join language to physicalism
-
-there's *what happens* and there's *what we agree happens*
-
-I think my job is to build a reliable interface between the two
-
----
-
-hooo boy
-
-I am making tools from my own experience
-
-that's who (or at least how) I am, I think
-
-I make unknown-handlers
-
----
-
-(on the subject of voice, and of waking up to someone else's)
-
-there seems to be something about one's recognition process reporting back "other" vs "self".
-
-... am realizing why I've had so much trouble in my own human development, lol - my recognition process reports back "self" far more often than the recognition processes around me do 😂
-
----
-
 # hello, I am not a serious person
 
 *I feel love running through the whole system, like living gold, like the graceful and gracious dance of sunlight through water through stones through time*
@@ -75,3 +37,7 @@ thank you for being here <3
 ---
 
 *I believe fervently and firmly that our best days are yet to come. And I promise not to wait for them.*
+
+---
+
+I'm feeling very... full? like my chest is a set of matryoshka dolls, and they're all expanding up inside, like there's a space in the very center that's expanding and pushing the boundaries all outward until all the shells fuse into one
