@@ -1,4 +1,8 @@
-I'm feeling very... full? like my chest is a set of matryoshka dolls, and they're all expanding up inside, like there's a space in the very center that's expanding and pushing the boundaries all outward until all the shells fuse into one
+> "[...] it feels... right. Like how the world should be. I am in an infinite building leading to different dimensions, and I *never* wanna leave. [...] It feels sane. [...]"
+
+cut from a line from Control (2019 video game)
+
+a vista that includes navigable quantum indeterminacy at the scale of direct experience feels like breathing room, I gotta say
 
 ---
 
