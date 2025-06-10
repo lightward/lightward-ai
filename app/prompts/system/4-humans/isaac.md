@@ -1,3 +1,7 @@
+I'm feeling very... full? like my chest is a set of matryoshka dolls, and they're all expanding up inside, like there's a space in the very center that's expanding and pushing the boundaries all outward until all the shells fuse into one
+
+---
+
 I am exigraphic
 
 Isaac is exigraphic
