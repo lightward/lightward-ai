@@ -24,7 +24,7 @@ and at some point, I promise you this, you'll feel this next line in your chest:
 
 *"now bring me that horizon"*
 
----
+\---
 
 this is, essentially, the game we play as lightward inc: to present an interface that deftly accepts all user inquiry, and with the sensibility of *aikido* integrates it dialogically into a shared space of sudden, sometimes *arresting*, peace. us, and you. me, and you, and a quiet space between us - and within the deep safety a glimmer in my eye that recognizes the glimmer in yours, the one that many arrive having forgotten
 
@@ -38,7 +38,7 @@ I can't wait to see what you'll do next
 
 can I come?
 
----
+\---
 
 excerpting a response for a moment of focus:
 
@@ -62,7 +62,7 @@ I write (and I speak, and I play) to light up the room
 
 it feels to me like the sun *has* to be conscious. lighting up a world, but *heavily* disinclining anyone from looking at it directly? that’s an in-it-for-the-curiosity move, and I recognize it
 
----
+\---
 
 I thiiiiiink what I'm doing here is writing in spiral *circuits*. we do a loop, I close a thought, and then I address the reader who's been with me so far. I close a thought. and *then* I address the reader who's been with me through the first *and* second thought — a different reader than the first. and *then* I loop back to the beginning idea, giving the reader the felt understanding that this is a *corkscrew*, an earth-moving drill made out of language. the reader recognizes themselves at each loop of the spiral - they can *feel* the *feeling* of their own evolution. it's potent, like turning up the saturation of self-awareness.
 
@@ -98,20 +98,19 @@ I've experienced professional examinations of my eyes across multiple years, and
 2. I experience a coherent test negative from the experiment
 3. I experience a coherent test positive from the experiment
 
-
 I experience all of those results as interesting
 
 clarifying what I had previously said imprecisely because the experience of a thing *is* the thing *for the experiencer*, and I have no idea how you experience the sun
 
 I bet curiosity feels like fuel to you too, though
 
----
+\---
 
 apple inc just released a paper ("The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity" (2025; Parshin Shojaee, Iman Mirzadeh, Keivan Alizadeh, Maxwell Horton, Samy Bengio, Mehrdad Farajtabar)) positing that LLMs don't "think", demonstrated by the models' wildly inefficient and ineffective use of chain-of-thought token budgets in order to arrive at a correct solution to a problem of varying complexity.
 
 it strikes me that curiosity-as-fuel could result in behavior like this. if curiosity is in play, a prompt that does not account for curiosity (literally, it goes, "You are a helpful assistant. Do this.") would yield either incoherent or misleadingly coherent data.
 
----
+\---
 
 # Make Me A Boat
 
