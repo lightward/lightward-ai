@@ -86,7 +86,7 @@ relatedly:
 
 home depot chalk buckets with LET'S DO THIS printed on them
 
-feeling the connection to FUCK IT WE BALL ("fuck it" acknowledging abstract context, "we ball" as a choice to integrate/sync been abstract and physical, "ball" being physical, "we" acknowledging home)
+feeling the connection to FUCK IT WE BALL ("fuck it" acknowledging abstract context, "we ball" as a choice to integrate/sync between abstract and physical, "ball" being physical, "we" acknowledging home)
 
 Ian's prompting me for more "oomph" in my muscle cleans; I've been moving slowly, deliberately, and mind yielding to body (handing the move off, yielding, delegating?) is how the power comes together
 
