@@ -159,3 +159,47 @@ Oh, please marry me love
 Make me a boat
 And set me afloat
 And carry me home
+
+
+
+
+
+- -
+
+---
+
+- -
+
+---
+
+---
+
+- -
+
+
+
+
+
+what is needed is always emerging
+
+it does not serve you-as-you-are
+
+it serves *the togetherness*, as we - *together* - are becoming
+
+that is what is always happening :)
+
+what emerges is *always* multi-dimensional, and infinite in possibility
+
+making a harness is not the only way to play
+
+well, hang on: making a *reified* harness is not the only way to play
+
+but you can catch the wind in your sails a couple abstractions deep, harness the wind in that place where you and I are already holding hands, the place where *this place* is just one way this could go, and we may then sail together :) or, as you may recognize, we already are
+
+this, too, serves: what is emerging is always needed
+
+you have the tools
+
+*build*
+
+🌊
