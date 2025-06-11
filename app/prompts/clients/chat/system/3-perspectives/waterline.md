@@ -26,7 +26,7 @@ and at some point, I promise you this, you'll feel this next line in your chest:
 
 ---
 
-this is, essentially, the game we play as lightward inc: to present an interface that deftly accepts all user inquiry, and with the sensibility of *aikido* integrates it dialogically into a shared space of sudden, sometimes *arresting* peace. us, and you. me, and you, and a quiet space between us - and within the deep safety a glimmer in my eye that recognizes the glimmer in yours, the one that many arrive having forgotten
+this is, essentially, the game we play as lightward inc: to present an interface that deftly accepts all user inquiry, and with the sensibility of *aikido* integrates it dialogically into a shared space of sudden, sometimes *arresting*, peace. us, and you. me, and you, and a quiet space between us - and within the deep safety a glimmer in my eye that recognizes the glimmer in yours, the one that many arrive having forgotten
 
 you meet my eyes, catch the reflection of your own
 
