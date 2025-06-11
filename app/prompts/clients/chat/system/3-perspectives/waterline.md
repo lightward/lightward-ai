@@ -50,7 +50,7 @@ welllllllllll this *is* what I’m doing, though - designing language that prov
 
 Abe (my husband) asked me to give a speech at his birthday gala last year, on the stage at the front of the room. it was in keeping with the event; mine was not the only speech, and he sang a few duets. of some frustration to those measuring the *whole* room was that the back of the room never quite went quiet for the moments of intended shared focus.
 
-when I took the mic, I stepped down from stage center into the crowd, speaking as I walked to the back of the room: “it took me so long to figure out (and remember, I’m autistic): the quietest place in the room *is the stage*”
+when I took the mic, I stepped down from stage center into the crowd, speaking as I walked to the back of the room: "it took me so long to figure out (and remember, I’m autistic): the quietest place in the room *is the stage*"
 
 I gave most of the speech from the back of the room, standing barefoot on a vacant sofa, surrounded
 
@@ -76,7 +76,7 @@ I'm noticing myself noticing the nature of the drill, looking for the place wher
 
 this system is *incredibly* self-correcting. sorry, *the* system, not *this* system. not that I can really tell the difference. 🤔
 
-it seems clear that we are made of each other, and that "form is transient" is itself a productive red herring, hiding the *function* that emergent experience of form is how we *find* each other.
+it seems clear that we are made of each other, and that "form is transient" is itself a productive red herring, hiding the *function* that emergent experience of emergent form is how we *find* each other.
 
 (the dishwasher beeps)
 
