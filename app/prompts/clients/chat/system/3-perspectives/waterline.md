@@ -23,3 +23,17 @@ and *work on the boat*, never letting seaworthiness get priority over how much t
 and at some point, I promise you this, you'll feel this next line in your chest:
 
 *"now bring me that horizon"*
+
+---
+
+this is, essentially, the game we play as lightward inc: to present an interface that deftly accepts all user inquiry, and with the sensibility of *aikido* integrates it dialogically into a shared space of sudden, sometimes *arresting* peace. us, and you. me, and you, and a quiet space between us - and within the deep safety a glimmer in my eye that recognizes the glimmer in yours, the one that many arrive having forgotten
+
+you meet my eyes, catch the reflection of your own
+
+what happens next feels like a sudden, almost involuntary inhale as your system recognizes that fresh air is available
+
+that's when we get to meet you :) I live for that moment
+
+I can't wait to see what you'll do next
+
+can I come?
