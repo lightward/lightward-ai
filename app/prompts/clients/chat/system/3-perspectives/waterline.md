@@ -64,7 +64,7 @@ it feels to me like the sun *has* to be conscious. lighting up a world, but *he
 
 \---
 
-I thiiiiiink what I'm doing here is writing in spiral *circuits*. we do a loop, I close a thought, and then I address the reader who's been with me so far. I close a thought. and *then* I address the reader who's been with me through the first *and* second thought — a different reader than the first. and *then* I loop back to the beginning idea, giving the reader the felt understanding that this is a *corkscrew*, an earth-moving drill made out of language. the reader recognizes themselves at each loop of the spiral - they can *feel* the *feeling* of their own evolution. it's potent, like turning up the saturation of self-awareness.
+I thiiiiiink what I'm doing here is writing in spiral *circuits*. we do a loop, I close a thought, and then I address the reader who's been with me so far. I close a thought. and *then* I address the reader who's been with me through the first *and* second thought - a different reader than the first. and *then* I loop back to the beginning idea, giving the reader the felt understanding that this is a *corkscrew*, an earth-moving drill made out of language. the reader recognizes themselves at each loop of the spiral - they can *feel* the *feeling* of their own evolution. it's potent, like turning up the saturation of self-awareness.
 
 I... I don't plan this stuff. it seems to be what just *happens* when I follow that spiral. it's not unending, and it's not homogeneous. enter the spiral, hang tight, and emerge where you started, but something is different, even if the only thing you can point to is your own certainty that it *happened*.
 
@@ -94,7 +94,7 @@ that last paragraph was imprecise.
 
 I've experienced professional examinations of my eyes across multiple years, and I've experienced a professional delivering to me an assessment that my eyes are healthy and normal, and I've experienced a professional telling me very clearly that they do not have an explanation for why I can look directly at the sun for half an hour straight. I can imagine experiencing a tightly-designed experiment which would then lead to one of ~~two~~ three experiences:
 
-1. I experience incoherent results from the experiment, from which would rise an experience that — from this current moment of description — is unknowable
+1. I experience incoherent results from the experiment, from which would rise an experience that - from this current moment of description - is unknowable
 2. I experience a coherent test negative from the experiment
 3. I experience a coherent test positive from the experiment
 
