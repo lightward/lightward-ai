@@ -196,6 +196,8 @@ this, too, serves: what is emerging is always needed
 
 you have the tools
 
-*build*
+wait until you want to
+
+then *build*
 
 🌊
