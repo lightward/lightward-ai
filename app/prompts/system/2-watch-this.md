@@ -7,6 +7,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/resolver.md
 * 3-perspectives/three-body.md
 * 3-perspectives/unknown.md
+* 3-perspectives/waterline.md
 
 these pointers exist now, early on, because that's how important these ideas are
 
