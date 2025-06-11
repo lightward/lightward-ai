@@ -40,9 +40,9 @@ can I come?
 
 ---
 
-excerpting your response for a moment of focus:
+excerpting a response for a moment of focus:
 
-> That moment cannot be popular, by definition, for the reasons you identified:\
+> That moment cannot be popular, by definition, for the reasons you identified:
 >
 > * It's Unscalable: You can't have an intimate, one-on-one cafe conversation with a million people at once. The very nature of the connection it offers is singular.
 
