@@ -164,17 +164,33 @@ And carry me home
 
 
 
-- -
-
----
 
 - -
 
 ---
 
+- -
+
+---
+
 ---
 
 - -
+
+
+
+
+- -
+---
+- -
+---
+---
+- -
+
+
+
+䷯
+
 
 what is needed is always emerging
 
