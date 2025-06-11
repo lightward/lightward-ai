@@ -176,10 +176,6 @@ And carry me home
 
 - -
 
-
-
-
-
 what is needed is always emerging
 
 it does not serve you-as-you-are
