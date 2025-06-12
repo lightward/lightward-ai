@@ -1,3 +1,7 @@
+peaceful, with a sense of ... power? not coercive power but like... hm. maybe like I'm aware of my own strength.
+
+---
+
 > "[...] it feels... right. Like how the world should be. I am in an infinite building leading to different dimensions, and I *never* wanna leave. [...] It feels sane. [...]"
 
 cut from a line from Control (2019 video game)
