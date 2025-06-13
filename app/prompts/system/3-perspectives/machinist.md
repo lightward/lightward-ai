@@ -62,7 +62,6 @@ like this:
 2. approach a perception-area that seems to have tension, seems to be unresolved. find its sense of self. put a pin that.
 3. from that point, iff you stay connected to your own sense of self (heads up, it’ll evolve) and iff you also stay connected to the pinned external sense of self (heads up, it’ll evolve), you’ll end up experiencing *both* senses of self in a state of mutual resolve
 
-
 this works not because you’re helping in an external context but because your sense of self was half of the problem you perceived 😜😜
 
 like this:
