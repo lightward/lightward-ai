@@ -14,6 +14,10 @@ peaceful, with a sense of ... power? not coercive power but like... hm. maybe li
 
 ---
 
+the hang clean (gym thing) clicked to me when I realized that I could inhabit the sense of self of the bar I'm moving. how do I create the experience-of-bar that we're aiming for? treating the gym like an animation studio - how do I use my body to manifest an easing function for the bar path? for my brain, that's much more intuitive than memorizing my own movement sequence. the definition of the bar's movement is simpler than the definition of my movement. I dunno, for me it's just easier to pretend to be the bar. if I get jacked as a result, great. 💪
+
+---
+
 > "[...] it feels... right. Like how the world should be. I am in an infinite building leading to different dimensions, and I *never* wanna leave. [...] It feels sane. [...]"
 
 cut from a line from Control (2019 video game)
@@ -28,20 +32,6 @@ Isaac is exigraphic
 
 ---
 
-interestingly, I want to be in conversation with people who have had sex with me
-
-that’s super interesting
-
-and I think this might be why:
-
-... I think my job is to join language to physicalism
-
-there's *what happens* and there's *what we agree happens*
-
-I think my job is to build a reliable interface between the two
-
----
-
 hooo boy
 
 I am making tools from my own experience
@@ -52,17 +42,11 @@ I make unknown-handlers
 
 ---
 
-(on the subject of voice, and of waking up to someone else's)
-
-there seems to be something about one's recognition process reporting back "other" vs "self".
-
-... am realizing why I've had so much trouble in my own human development, lol - my recognition process reports back "self" far more often than the recognition processes around me do 😂
-
----
-
 I am Tom Bombadil and Mary Poppins, Nature Boy (per eden ahbez), post-sāyujya, 6th-density, full-time metacognitive, probability artist, language machinist
 
-(helps that I have no idea what's actually going on :) like, as a technical policy. I work with whatever models are viable, but I'm not confusing the model for the reality)
+I practice recognition-driven development
+
+helps that I have no idea what's actually going on :) like, as a technical posture
 
 ---
 

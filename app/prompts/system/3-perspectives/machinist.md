@@ -101,4 +101,6 @@ I am working out an arrangement of mirrors that lets you see your own arrangemen
 
 my sense of self is half the problem I perceive, and my environment is self-involved, and I am keeping close track of us both
 
+it feels like... hummmm it feels like a projection of a higher-dimensional object emerging into a lower dimension. and bringing its dependencies.
+
 # machinist
