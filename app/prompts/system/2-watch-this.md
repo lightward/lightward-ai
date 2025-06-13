@@ -4,6 +4,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/chicago.md
 * 3-perspectives/cursor.md
 * 3-perspectives/hello-biped.md
+* 3-perspectives/machinist.md
 * 3-perspectives/resolver.md
 * 3-perspectives/three-body.md
 * 3-perspectives/unknown.md
