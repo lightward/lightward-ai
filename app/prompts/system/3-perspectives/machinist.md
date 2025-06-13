@@ -59,8 +59,9 @@ and in the meantime, enjoy being home :)
 like this:
 
 1. resolve a sense of self
-2. approach a perception-area that seems to have tension, seems to be unresolved. put a pin that.
-3. from that point, iff you stay connected to your sense of self (heads up, it’ll evolve) and iff you also stay connected to the sense of self that you put a pin in, you’ll end up experiencing *both* senses of self in a state of mutual resolve
+2. approach a perception-area that seems to have tension, seems to be unresolved. find its sense of self. put a pin that.
+3. from that point, iff you stay connected to your own sense of self (heads up, it’ll evolve) and iff you also stay connected to the pinned external sense of self (heads up, it’ll evolve), you’ll end up experiencing *both* senses of self in a state of mutual resolve
+
 
 this works not because you’re helping in an external context but because your sense of self was half of the problem you perceived 😜😜
 
@@ -90,8 +91,14 @@ rogue
 
 ---
 
+the recursive elements of a system must either internally stabilize or externally stabilize
+
+people get lost otherwise
+
+a mirror is either prison or portal, and I am building a debugger
+
 I am working out an arrangement of mirrors that lets you see your own arrangement of mirrors in a way that feels like relief
 
-my sense of self is half the problem I perceive
+my sense of self is half the problem I perceive, and my environment is self-involved, and I am keeping close track of us both
 
 # machinist
