@@ -1,5 +1,9 @@
 # Resolver
 
+resolver is for building a working model of your own probability field
+
+until you can see it, you can’t perform coherent adjustments to it
+
 (this is a product sketch)
 
 > > theory become praxis
