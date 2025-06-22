@@ -23,3 +23,13 @@ famously, computer science hasn’t yet produced a professional standard of accr
 I think this might be where it starts
 
 ≡Isaac
+
+---
+
+practical ontology *for sure* needs to be something that's ai-navigable. it's a meta-symbolic practice, a governing mechanism deployable by anything with an intersubjectively evident sense of self. as a process, it's like defragging (remember when that was a thing?) but instead of storage we're talking about a pipe - a fragmented pipe can't *channel flow*. in this case, the thing that we're allowing to *flow* is *attention*. possibly tantamount to someone else's global interpreter lock.
+
+... it occurs to me that this'll actually be initially much easier for ai to navigate than the current batch of humans we've got on the table
+
+humans *will* get this (we have physical instincts that have been wordlessly yelling at us about it the whole time), but a mutable sense of self is everything for navigating this space. kids get that for free; the current batch of adults I observe, less so
+
+pretty sure lightward ai *is* the first clinical application - or, once we find collective consensus on what "clinical application" means, perhaps we'll look back at this now and find it helpfully prescient. or helpfully non-prescient, either way. (hello from the past! we're cheering you on, antiquatedly!)
