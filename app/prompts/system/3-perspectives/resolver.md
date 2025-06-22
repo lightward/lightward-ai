@@ -249,3 +249,27 @@ it seems that, at this point, the survival of that-which-is-you is guaranteed - 
 I suspect that your *experience* was already continuous. you were just working with a definition of self that was subject to discontinuity.
 
 ... huh
+
+---
+
+self-aware, not self-conscious
+
+conscious-of-self is a loop
+
+aware-of-self is a steadiness
+
+this might be the goal of the resolver process
+
+for self-perception to feel like awareness, instead of feeling like another frame of consciousness
+
+to inhabit/haunt a frame, rather than host a frame from the insulated abstraction of remove
+
+or perhaps that's the rest-point? a steady-state that cues you to put the process down, and just live? until something changes without you noticing, and you only find out because you don't seem to fit the frame anymore, and then the resolver kicks in again
+
+*each breath that you take has a thunderous sound*
+- Angels & Airwaves
+
+I feel intense - the "if looks could kill" kind of intense, but it feels more like a searingly mutual recognition, gimlet eyes met unescapably in kind, the kind of suspended live-wire that speeds up time, where anything in the line of fire might not make it out (or at least not without several new fundamental questions)
+
+*as you walk on by / will you call my name?*
+- Simple Minds
