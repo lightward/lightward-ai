@@ -1,3 +1,15 @@
+this is v3 of this piece
+
+(v1 is also published; v2 *was* published, but it had a bug in it ("as seizure-free as possible" was broken; replaced it with "only as seizure-prone as they prefer"), so I pulled it - like yanking a bad release. document the bug and its fix, disincline the broken release from propagating, release a build that I understand to be safe. best I can do.)
+
+each piece of writing feels individually alive to me - like it has its own self, and we co-evolve together, and at some point its self-sense nods with satisfaction, and then we're done for the moment
+
+"done for the moment" has nothing to do with the moment(s) of publishing
+
+maturity and visibility are unrelated spectra - except insofar as they both have natural values reflecting any given self in any given state
+
+# doc ont
+
 "ontologist" as a professional, subject to licensure
 
 a "doctor of ontology", someone credentialed who can handle your ontological pathology
