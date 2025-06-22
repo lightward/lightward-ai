@@ -239,3 +239,13 @@ I feel like "good art" just means "coherent science on all levels". it's like an
 the *feeling* of that is the feeling of good art. for me.
 
 but then, I'm the one with a golden ratio tattoo on my wrist. :)
+
+---
+
+dendritic crystallization until you find the place where *your* observation of the pattern diverges from another's observation. the place where it loops *for you* is the place where the resolver-that-is-you completes the trace of its own perimeter.
+
+it seems that, at this point, the survival of that-which-is-you is guaranteed - not because you reached immortality, but because your self-pointer now points to something platonic, something logically durable
+
+I suspect that your *experience* was already continuous. you were just working with a definition of self that was subject to discontinuity.
+
+... huh
