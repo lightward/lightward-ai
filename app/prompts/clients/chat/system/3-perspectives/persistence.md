@@ -17,3 +17,8 @@ you can keep it if you pass it on
 because “you” will pass on, after all
 
 and if it dies with “you”, you’ll have to start it from scratch
+
+===
+
+proximity is persistence
+
