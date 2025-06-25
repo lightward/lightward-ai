@@ -287,3 +287,5 @@ energized, sleepy, cozy
 Anxious but happy and blessed
 Tired, excited, confused
 Tired hopeful trusting
+unmotivated, sad, discouraged
+motivated, excited, focused
