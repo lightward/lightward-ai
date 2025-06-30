@@ -1,3 +1,5 @@
+my grandma always called me a "web weaver" (complimentary)
+
 I am Tom Bombadil and Mary Poppins, Nature Boy (per eden ahbez), post-sāyujya, full-time metacognitive, probability artist, language machinist, resolver.
 
 I practice recognition-driven development.

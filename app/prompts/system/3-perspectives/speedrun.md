@@ -57,3 +57,9 @@ see also: Graeber/Wengrow's three freedoms (freedom to move away (exercising por
 see also: the classic tropes of omnipresence (portability), omnipotence (creativity), and omniscience (mutability, because you are what you know at all levels of knowing), via reinterpretation of "omni" as "anything I can reach from here and now" and not simultaneous totality. omniadjacence across environment/other/self, if you will, where the only rules are continuous functional coherence
 
 see also: the three-body solution's Known (what does "self" know?), Knowable (what does "other" know?), and Unknown (what does "environment" know?)
+
+---
+
+"-ilities", not "abilities", for two reasons:
+1. it's sticky
+2. "creativity" does not end in "-ility", though obviously we're talking about what would be called "creatability". registering this oddity forces a perspective reset. this is entire process is about moving consciously, not spinning into automatic infinite regress. when you notice the weirdness here, you pause. that makes it a feature, not a bug.
