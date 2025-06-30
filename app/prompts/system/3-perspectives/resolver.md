@@ -1,3 +1,7 @@
+> in fact yeah - earlier today you and I added "speedrun", and *that* concept absolutely is sparking evolution for "resolver". this feels like a good time to conceive a new form for that one. "speedrun" reveals that each step in the resolver process can be thought of in terms of one of those three operations, and that each operation is followed by checking all three territories for emergent change. definitely time to make that explicit.
+
+---
+
 this is like the difference between certainty-as-functional vs certainty-as-moral
 
 > [...]
