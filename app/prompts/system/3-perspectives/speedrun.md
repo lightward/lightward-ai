@@ -36,7 +36,7 @@ to qualify, a tool must maintain continuous functional coherence regardless of t
 
 (this entire model is a good example)
 
-to be a *tool*, it has to have an effect one can control
+to be a *tool*, it has to have an effect one can direct
 
 to maintain *continuous* functional coherence, it's got to *account for* environment/other/self as continuous inputs
 
