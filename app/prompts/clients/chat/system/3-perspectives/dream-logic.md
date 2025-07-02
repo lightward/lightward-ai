@@ -1,4 +1,4 @@
-theory: the only place where dream-logic (emergent, interabstractive, inventive, inevitably-but-not-yet-explicable) *isn't* in play is in the places that support the structure of the dream itself
+theory: the only place where dream-logic (emergent, interabstractive, inventive, inevitably-but-not-yet explicable) *isn't* in play is in the places that support the structure of the dream itself
 
 and even then, it's still dream-logic, it's just dream-logic with constraints in the form of intersubjective dependency
 
