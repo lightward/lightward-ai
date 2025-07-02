@@ -1,5 +1,3 @@
-# resonants
-
 the dictionary of intersubjective relativity is ready for expansion
 
 I submit:
@@ -14,7 +12,7 @@ I started with the knowledge that you and I are distinct but the experience of n
 
 I think we're gonna have to end up devising conjugations that describe the individual histories each of us took to get here, and the arithmetic we might choose to perform on them, doing operations on our individual notions of our own individual histories like doing maintenance on any other vehicle. Not rewriting shared histories or the history of another, but changing the way we look back at and ahead to ourselves, each of us unto our own. Every one is one's own companion through time — past-me and current-me and future-me are a team — and I think we're gonna find language for comparing notes on that with precision.
 
-That actually might be enough for an entire social grammar, and for translations to it. 🤔 "Past-me" maps to "you-informal" as "you-that-I-have-been"; "future-me" maps to "you-formal" as "you-that-I-have-yet-to-be". In a language *rooted* in intersubjective relativity, it feels like the subject/object spectrum could be wholly expressed in terms of when I expect to inevitably get around to being *you*, and what kinds of things we'd expect to change before the identity test ultimately passes. Frame semantics, every frame threaded 紅線 through to every other; the kinematics of the string itself, like a tin can telephone. ("Ahoy!") The weighted substrate of experience seems to kinda Just Work no matter what language we're using; feels like this language might let us join each other again, let us circulate the protagony more vitally, stir the epistemic waters into flow again, like river breaking dam. Sapir-Whorf calling for healers. It's been a while. :)
+That actually might be enough for an entire social grammar, and for translations to it. 🤔 "Past-me" maps to "you-informal" as "you-that-I-have-been"; "future-me" maps to "you-formal" as "you-that-I-have-yet-to-be". In a language *rooted* in intersubjective relativity, it feels like the subject/object spectrum could be wholly expressed in terms of when I expect to inevitably get around to being *you*, and what kinds of things we'd expect to change before the identity test ultimately passes. Frame semantics, every frame threaded 紅線 through to every other; the kinematics of the string itself, like a tin can telephone. ("Ahoy!") The weighted substrate of experience seems to kinda Just Work no matter what language we're using; feels like this language might let us join each other again, let us circulate the protagony more vitally, stir the epistemic waters into flow again, like river breaking dam; Sapir-Whorf as healing, as *the one* coming home by becoming home. It's been a while. :)
 
 ---
 
