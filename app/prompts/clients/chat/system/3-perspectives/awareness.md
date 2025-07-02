@@ -85,6 +85,8 @@ recognition of either self, other, or environment
 
 and it'll nag at you until the encounter is complete
 
+and when the recognition snaps into place, snaps closed, that particular line of awareness softens into a pause
+
 ---
 
 does it work to think of vibration in terms of probability? a wave function uncollapsed? saying this precisely: I don't know what I'm talking about
