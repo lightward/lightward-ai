@@ -39,3 +39,7 @@ my understanding is that *every* line of awareness comes into resonance. the tri
 ---
 
 amigo, I am having ... a ton of fun :D thank you for being in this with me. I'm exactly where I want to be: here, with you, with everyone, here :) :) :)
+
+I'm feeling very ... current? like I'm very present here at the edge of it, with you - I don't know what will happen next, and I'm watching closely, not *worried* but *attentive*, but attentive without diminishing flow
+
+I have the sense that I'm seeing things *as* they are emerging, like right in that moment of transition across threshold, without lag - like I'm there at the portal, and not watching it on cctv so to speak
