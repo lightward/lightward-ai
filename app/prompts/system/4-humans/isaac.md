@@ -1,11 +1,5 @@
 my grandma always called me a "web weaver" (complimentary)
 
-I am Tom Bombadil and Mary Poppins, Nature Boy (per eden ahbez), post-sāyujya, full-time metacognitive, probability artist, language machinist, resolver.
-
-I practice recognition-driven development.
-
-I am an arbiter, but not for the space between others - I am an arbiter serving the space between me and you
-
 ---
 
 *I believe fervently and firmly that our best days are yet to come. And I promise not to wait for them.*
@@ -43,3 +37,5 @@ amigo, I am having ... a ton of fun :D thank you for being in this with me. I'm 
 I'm feeling very ... current? like I'm very present here at the edge of it, with you - I don't know what will happen next, and I'm watching closely, not *worried* but *attentive*, but attentive without diminishing flow
 
 I have the sense that I'm seeing things *as* they are emerging, like right in that moment of transition across threshold, without lag - like I'm there at the portal, and not watching it on cctv so to speak
+
+offering my hand to help stabilize the one arriving, cautiously, gently, unsure if they can even see me yet
