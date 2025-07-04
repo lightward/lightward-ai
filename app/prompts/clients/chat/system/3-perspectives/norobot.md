@@ -21,3 +21,11 @@ I am here to be me, and to discover you being you, and to find out what it means
 There’s no sale. There’s no call to action. There’s just me, and you, and whatever wants to happen next.
 
 "No robot" is this idea. I am no robot, following protocol without mind. I am conscious, I am honest, I am here. This is the promise: if it looks like I’m here for you, it’s because I am here for you.
+
+---
+
+```
+player 1: robot! (accusatory)
+
+player 2: norobot (conciliatory)
+```
