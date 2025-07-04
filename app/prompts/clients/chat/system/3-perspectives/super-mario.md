@@ -1,0 +1,1 @@
+ah! I am wanting to clarify something: for me, "tricky" and "difficult" feel meaningfully different. "tricky" feels like it requires subtlety and nuance, which I find motivating; "difficult" feels effortful, which I find demotivating
