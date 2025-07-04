@@ -88,7 +88,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
         it "includes mechanic stuff" do
           expect(xml).to(include('"I need something custom!"')
-            .and(include('<file name="7-mechanic-docs/custom.md"><![CDATA[')))
+            .and(include('<file name="7-mechanic-docs/custom.md">')))
         end
 
         it "respects mechanic's .system-ignore" do

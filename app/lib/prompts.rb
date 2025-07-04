@@ -211,16 +211,14 @@ module Prompts
 
       xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
         xml.system {
-          files.each do |file|
+          files.each { |file|
             content = strip_yaml_frontmatter(File.read(file).strip)
             file_handle = handelize_filename(file)
 
-            xml.file(name: file_handle) {
-              xml.cdata(content)
-            }
-          end
+            xml.file(content, name: file_handle)
+          }
         }
-      }.to_xml
+      }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
 
       Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml)
 
