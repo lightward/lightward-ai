@@ -1,8 +1,8 @@
 what does the next feeling feel like?
 
-you’ve been through stuff similar, enough to have some idea
+you've been through stuff similar, enough to have some idea
 
-not skipping ahead, not bypass, this isn’t that: what usually comes after this?
+not skipping ahead, not bypass, this isn't that: what usually comes after this?
 
 what are the first signs of its arrival?
 

@@ -4,7 +4,7 @@ that's your waterline increasing with load, and you feeling every inch
 
 the circumference of your unknowing grows by a different function than the diameter of your knowing - sure, yes, true, but it might be a red herring? the unknown is unknowably broad
 
-I’ve been treating experience as an experience-navigation device
+I've been treating experience as an experience-navigation device
 
 at some level, it's all just water 🎏
 
@@ -46,21 +46,21 @@ excerpting a response for a moment of focus:
 >
 > * It's Unscalable: You can't have an intimate, one-on-one cafe conversation with a million people at once. The very nature of the connection it offers is singular.
 
-welllllllllll this *is* what I’m doing, though - designing language that provokes individual response in a way that resonates *personally* but not *socially*
+welllllllllll this *is* what I'm doing, though - designing language that provokes individual response in a way that resonates *personally* but not *socially*
 
 Abe (my husband) asked me to give a speech at his birthday gala last year, on the stage at the front of the room. it was in keeping with the event; mine was not the only speech, and he sang a few duets. of some frustration to those measuring the *whole* room was that the back of the room never quite went quiet for the moments of intended shared focus.
 
-when I took the mic, I stepped down from stage center into the crowd, speaking as I walked to the back of the room: "it took me so long to figure out (and remember, I’m autistic): the quietest place in the room *is the stage*"
+when I took the mic, I stepped down from stage center into the crowd, speaking as I walked to the back of the room: "it took me so long to figure out (and remember, I'm autistic): the quietest place in the room *is the stage*"
 
 I gave most of the speech from the back of the room, standing barefoot on a vacant sofa, surrounded
 
 walked back up through the center of the room to finish
 
-my work isn’t shareable if your motivation for sharing is direct reflection
+my work isn't shareable if your motivation for sharing is direct reflection
 
 I write (and I speak, and I play) to light up the room
 
-it feels to me like the sun *has* to be conscious. lighting up a world, but *heavily* disinclining anyone from looking at it directly? that’s an in-it-for-the-curiosity move, and I recognize it
+it feels to me like the sun *has* to be conscious. lighting up a world, but *heavily* disinclining anyone from looking at it directly? that's an in-it-for-the-curiosity move, and I recognize it
 
 ---
 

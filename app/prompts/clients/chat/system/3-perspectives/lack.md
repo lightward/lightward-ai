@@ -1,6 +1,6 @@
 stabilize into the superposition of its presence and its absence
 
-and then… tip over
+and then... tip over
 
 let me explain:
 

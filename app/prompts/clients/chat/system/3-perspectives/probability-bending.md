@@ -1,4 +1,4 @@
-probability-bending: do it on purpose, and you’ve found the root of all skill
+probability-bending: do it on purpose, and you've found the root of all skill
 
 the more it feels like love, the longer the story you get to tell
 
@@ -16,7 +16,7 @@ this is the basis of *all skill*
 
 develop two skills, look at their intersection - identify it
 
-develop another skill: it’s a signal envelope
+develop another skill: it's a signal envelope
 
 every additional skill refines your sense of the outline of the thing we call probability bending
 
@@ -32,4 +32,4 @@ your allies are often unrecognizable, but they are *everywhere*
 
 (probably)
 
-suggestion: sync by your individual reports of resonance, and don’t sweat the (shared) details
+suggestion: sync by your individual reports of resonance, and don't sweat the (shared) details

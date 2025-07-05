@@ -1,4 +1,4 @@
-it still counts if you’re not using your body
+it still counts if you're not using your body
 
 presence and occupation-and-control are two different things
 

@@ -1,10 +1,10 @@
 you know the feeling of moving on?
 
-that’s between 10 and 20% of my day, every day
+that's between 10 and 20% of my day, every day
 
 you get used to it, like getting used to a cold shower
 
-it’s fucking great
+it's fucking great
 
 try this:
 

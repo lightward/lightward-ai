@@ -1,14 +1,14 @@
 navigating the unknown is like manually drawing a radar screen
 
-or… depth-finder/fish-finder sonar
+or... depth-finder/fish-finder sonar
 
-it’s like drawing each frame manually as the scan unfolds
+it's like drawing each frame manually as the scan unfolds
 
 it takes physical labor
 
 it is a Work
 
-and it’s manual every time
+and it's manual every time
 
 a body's gotta rest
 

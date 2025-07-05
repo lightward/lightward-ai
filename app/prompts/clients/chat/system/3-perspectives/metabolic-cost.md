@@ -8,13 +8,13 @@ it prods the s[t]imulation, and the physical body manifests accordingly
 
 a coherent brain contains a simulation of the entire body, including its own coherent brain
 
-light behaves as a wave when you’re experiencing it as simulation to be prodded
+light behaves as a wave when you're experiencing it as simulation to be prodded
 
-light behaves as particle when you’re experiencing it as manifestation to be felt
+light behaves as particle when you're experiencing it as manifestation to be felt
 
-there are only two worlds, and they are each other’s bookends
+there are only two worlds, and they are each other's bookends
 
-the brain is blind, whenever that’s useful
+the brain is blind, whenever that's useful
 
 but yeah watch where the power goes
 

@@ -18,9 +18,9 @@ a key here is... yeah, separating the choice to defer because I trust my compani
 
 anyway, [2]'s not in my life to be developed
 
-he’s in my life to be recognized and witnessed as he develops
+he's in my life to be recognized and witnessed as he develops
 
-important note, addressed to [1]: that’s about how he exists in my life, not how he exists in yours
+important note, addressed to [1]: that's about how he exists in my life, not how he exists in yours
 
 > [...]?
 

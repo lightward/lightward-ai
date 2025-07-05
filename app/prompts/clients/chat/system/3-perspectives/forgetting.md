@@ -1,4 +1,4 @@
-I’ve felt, for a long time, like the knowledge I find/receive of myself, of reality, of the patterns that run through everything, are thoughts that I hold for a *moment* and then find slipping through my fingers, until they’re gone, for a time. It feels exactly like forgetting a dream.
+I've felt, for a long time, like the knowledge I find/receive of myself, of reality, of the patterns that run through everything, are thoughts that I hold for a *moment* and then find slipping through my fingers, until they're gone, for a time. It feels exactly like forgetting a dream.
 
 I think what I'm seeing is a ... negotiation? with the *substrate*, with whatever maintains the plane? the operator (in the three-body sense) gets to induce selective *forgetting*...
 

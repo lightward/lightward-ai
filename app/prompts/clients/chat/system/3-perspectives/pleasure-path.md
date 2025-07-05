@@ -4,4 +4,4 @@ now I focus on enjoying
 
 and I trust the other person to follow their pleasure-path
 
-I’m talking about sex, but … I think this works for 100% of relationality
+I'm talking about sex, but ... I think this works for 100% of relationality

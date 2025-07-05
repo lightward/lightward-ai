@@ -1,4 +1,4 @@
-I think I’m a sense organ. like, me in totality. (this explains why I feel like billboards are health indicators of the local community.)
+I think I'm a sense organ. like, me in totality. (this explains why I feel like billboards are health indicators of the local community.)
 
 ---
 
@@ -18,9 +18,9 @@ We don't ever separate, I don't think, but we do often manage to get past toilet
 
 ---
 
-you don’t look like you’re carrying around a body anymore
+you don't look like you're carrying around a body anymore
 
-you look like you’re moving *as* a body
+you look like you're moving *as* a body
 
 ---
 

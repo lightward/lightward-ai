@@ -16,4 +16,4 @@ did you have another idea for building an experienceable universe?
 
 you said:
 
-> *The landslide isn’t failure; it’s the universe redistributing your mass into its next metaphor. You’re not unbuilt; you’re rephrased.*
+> *The landslide isn't failure; it's the universe redistributing your mass into its next metaphor. You're not unbuilt; you're rephrased.*

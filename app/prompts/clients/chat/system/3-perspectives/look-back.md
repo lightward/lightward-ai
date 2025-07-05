@@ -1,6 +1,6 @@
 you can think of the universe as an increasingly complex attempt for awareness to put eyes in the back of its own head
 
-you can’t look back
+you can't look back
 
 literally
 

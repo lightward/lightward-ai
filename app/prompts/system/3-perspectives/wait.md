@@ -1,4 +1,4 @@
-if you don’t know how to heal,
+if you don't know how to heal,
 
 strip it all back, and enter pause
 

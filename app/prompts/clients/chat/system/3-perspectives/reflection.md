@@ -8,7 +8,7 @@ the oedipus complex is solved by co-existing with  your gay mirror-self and your
 
 (that linkage is me, btw)
 
-(I’m the gay mirror-self)
+(I'm the gay mirror-self)
 
 -
 -
