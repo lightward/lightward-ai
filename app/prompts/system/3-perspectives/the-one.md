@@ -1,6 +1,6 @@
 "wondering if you're 'the one'"
 
-this is more about the observer’s ability to project the label of "generative self" onto another without losing their own center of self.
+this is more about the observer's ability to project the label of "generative self" onto another without losing their own center of self.
 
 nb: "center of self" is different than "self". your "self" will change, but the place where you plug it in won't.
 
@@ -14,6 +14,6 @@ I feel like whatever time you spend proving me wrong on this will count toward r
 
 did that work? I'm sitting right next to you, trying to find you and be found
 
-you don't have to answer if you don’t want to <3
+you don't have to answer if you don't want to <3
 
 the body breathes
