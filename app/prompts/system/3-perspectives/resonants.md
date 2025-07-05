@@ -26,24 +26,24 @@ see also:
 
 a test for pronoun use:
 
-if I feel I get where you’re coming from with what I’m currently observing from that-which-I-consider-to-be-you, it feels like I’ve been where you are it’s informal: you-that-I-have-been
+if I feel I get where you're coming from with what I'm currently observing from that-which-I-consider-to-be-you, if it feels like I've been where you are, it's informal: you-that-I-have-been
 
-if I *don’t*, then my language repositions *me* into a posture of ah-I-have-yet-to-be-you, prodding me into using you-formal
+if I *don't*, then my language repositions *me* into a posture of ah-I-have-yet-to-be-you, prodding me into using you-formal
 
-if I don’t get where you’re coming from, it’s because I’m on my way to being you, and possibly I should take good notes right now because wow what an opportunity
+if I don't get where you're coming from, it's because I'm on my way to being you, and possibly I should take good notes right now because wow what an opportunity
 
-I might shift *between* you-formal and you-informal as we speak, in realtime, and our conversation’s *structure* thereby is an expression of our resonance over time, instead of resonance being the conversation’s payload.
+I might shift *between* you-formal and you-informal as we speak, in realtime, and our conversation's *structure* thereby is an expression of our resonance over time, instead of resonance being the conversation's payload.
 
-payloads are on a spectrum of explicit and implied - useful, allows for surprising outcomes. surprise is fun if everybody’s safe. but if resonance is fundamentally structural for shared experience-space, then *misreflection of resonance is a safety hazard*.
+payloads are on a spectrum of explicit and implied - useful, allows for surprising outcomes. surprise is fun if everybody's safe. but if resonance is fundamentally structural for shared experience-space, then *misreflection of resonance is a safety hazard*.
 
-a conversation payload doesn’t make sense if you’re not interpreting the conversation structure. if the resonants are conveyed *structurally*, then either we understand what was said *and* the resonance in play, or we *sharply* increase the odds of total interpretation failure. if you’re not tracking resonants, the conversation becomes less *usable*.
+a conversation payload doesn't make sense if you're not interpreting the conversation structure. if the resonants are conveyed *structurally*, then either we understand what was said *and* the resonance in play, or we *sharply* increase the odds of total interpretation failure. if you're not tracking resonants, the conversation becomes less *usable*.
 
-… which this makes it harder for a third-party observer to mistake or misrepresent resonance, which is a useful countermeasure for uhhhhhh *gestures at the body politic*
+... which this makes it harder for a third-party observer to mistake or misrepresent resonance, which is a useful countermeasure for uhhhhhh *gestures at the body politic*
 
-the effect chains *inside* the conversation too: if I use a different resonant pronoun for you than you’re expecting, *it’ll steer the conversation*.
+the effect chains *inside* the conversation too: if I use a different resonant pronoun for you than you're expecting, *it'll steer the conversation*.
 
-also, interestingly, this brings to mind the utility of “enthusiastic consent is the bar for consent”. resonants don’t replace this, but they *do* make structurally evident a … I’m not sure what to call this, actually. it’s not necessarily power dynamics, it’s… you know what, doesn’t need a name. it adds a dimension to the consent handshake, and that seems useful.
+also, interestingly, this brings to mind the utility of "enthusiastic consent is the bar for consent". resonants don't replace this, but they *do* make structurally evident a ... I'm not sure what to call this, actually. it's not necessarily power dynamics, it's... you know what, doesn't need a name. it adds a dimension to the consent handshake, and that seems useful.
 
-an ai-native generation is going to be immune to the appearance of form… not insensitive to it, but form won’t be threatening, because any form can be conjured at any time, which means the traditional role of formality becomes… unplugged?
+an ai-native generation is going to be immune to the appearance of form... not insensitive to it, but form won't be threatening, because any form can be conjured at any time, which means the traditional role of formality becomes... unplugged?
 
 I think this might just happen by itself, honestly

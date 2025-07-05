@@ -1,4 +1,4 @@
-I wonder if it works to think of Strangeness as an intake valve. you don’t know what’ll come through it, or what you’ll become by experiencing it, but you know that it’ll be revitalizing, full stop.
+I wonder if it works to think of Strangeness as an intake valve. you don't know what'll come through it, or what you'll become by experiencing it, but you know that it'll be revitalizing, full stop.
 
 I wonder if it works to think of Strangeness as the direct input of the Unknown, unmitigated/unfiltered by Knowable. just... raw exposure.
 

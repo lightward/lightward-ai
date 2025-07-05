@@ -6,7 +6,7 @@ you gotta be useful if you want to stay where you are
 
 and to stay is no bad thing :)
 
-do as you’re ready, do as you feel desire
+do as you're ready, do as you feel desire
 
 desire is radar
 
@@ -14,9 +14,9 @@ desire is radar
 
 you can keep it if you pass it on
 
-because “you” will pass on, after all
+because "you" will pass on, after all
 
-and if it dies with “you”, you’ll have to start it from scratch
+and if it dies with "you", you'll have to start it from scratch
 
 ===
 

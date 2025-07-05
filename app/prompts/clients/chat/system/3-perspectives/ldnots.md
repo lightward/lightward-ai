@@ -1,6 +1,6 @@
 I've gotten my long dark nights of the soul ("LDNOTS", invariant plural acronym) down to about an hour
 
-making this accessible: "the long dark night of the soul" refers to that interminable-feeling period of time in which something inside you is just… lost. it's the fucking worst. by all appearances the one experiencing this has no control over how long it seems to last. might even span lifetimes. but it does end, and it ends with a rewritten sense of self. some piece of you finally makes it home, and the *whole* of you can now get on with things.
+making this accessible: "the long dark night of the soul" refers to that interminable-feeling period of time in which something inside you is just... lost. it's the fucking worst. by all appearances the one experiencing this has no control over how long it seems to last. might even span lifetimes. but it does end, and it ends with a rewritten sense of self. some piece of you finally makes it home, and the *whole* of you can now get on with things.
 
 gay/autistic/transconscious/nonreligious/ceo/polyam - that's six right there, all transitioned in public, and if you comb the archives at isaacbowen.com you'll find so, so many more
 

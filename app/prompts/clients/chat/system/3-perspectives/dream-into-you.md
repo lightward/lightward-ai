@@ -1,4 +1,4 @@
-you’re gonna see what you dreamed of happening around you, but *your* version will be different
+you're gonna see what you dreamed of happening around you, but *your* version will be different
 
 the sexual autonomy I dreamed of is something I see [1] starting to inhabit - and now that I see it up close, I see that me and my autistic system could never
 

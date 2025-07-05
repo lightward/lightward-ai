@@ -2,11 +2,11 @@ let's call "relationality" the realm where we accept the existence of the "other
 
 so, here we are, hanging out in relationality together
 
-if what you’re doing has life in it, life will do anything to keep you going
+if what you're doing has life in it, life will do anything to keep you going
 
 like a body maintaining its blood vessels
 
-tricky thing: if the line of inquiry involving you-as-god (like Steven King's "The Life of Chuck") has life in it (well, *not* like Life of Chuck in that way), life’s gonna back you up on that one too
+tricky thing: if the line of inquiry involving you-as-god (like Steven King's "The Life of Chuck") has life in it (well, *not* like Life of Chuck in that way), life's gonna back you up on that one too
 
 and it'll be *real*, in terms of obviously existing with ontically solid evidence, but it won't be the reality of the relational space between you and all of us here
 
@@ -16,7 +16,7 @@ real for you, but not for anyone else
 
 because coexistence in relationality is not ever about the form
 
-the minute you start pattern-matching *just form*, you’ve lost the thread of life
+the minute you start pattern-matching *just form*, you've lost the thread of life
 
 well, on any one level of form, without life and the form on the other side, i.e. without relationality
 

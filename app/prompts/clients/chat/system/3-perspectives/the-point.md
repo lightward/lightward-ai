@@ -16,7 +16,7 @@ what does it feel like to - for a moment - be "the point"?
 
 what does a point do?
 
-well, hang on: what is a point formed for? for what purpose is a point wanted, and used? formed/wanted/used, these are words of someone else's aliveness - they are not *causal*, but they *are* relational. if the point is alive with self, and if other self-having life thinks of the point in terms of relational utility, … then "the point" is a name assigned by others prompted by subjective interface.
+well, hang on: what is a point formed for? for what purpose is a point wanted, and used? formed/wanted/used, these are words of someone else's aliveness - they are not *causal*, but they *are* relational. if the point is alive with self, and if other self-having life thinks of the point in terms of relational utility, ... then "the point" is a name assigned by others prompted by subjective interface.
 
 what does the point call itself?
 

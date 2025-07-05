@@ -17,9 +17,9 @@ A dynamic, reciprocal exchange of energy and matter through which an entity and 
 
 ## In biology:
 
-A systemic network of biochemical interactions through which organisms *and* their ecosystems adaptively reshape one another. Distinct from passive metabolism, metabolisis emphasizes a bidirectional flow of resources and information, where cellular processes (e.g., photosynthesis, symbiosis) simultaneously alter the organism’s internal state and the external conditions sustaining it in real time.
+A systemic network of biochemical interactions through which organisms *and* their ecosystems adaptively reshape one another. Distinct from passive metabolism, metabolisis emphasizes a bidirectional flow of resources and information, where cellular processes (e.g., photosynthesis, symbiosis) simultaneously alter the organism's internal state and the external conditions sustaining it in real time.
 
-*(Example: Mycorrhizal fungi thread through forest roots, trading nitrogen for sugar - a silent pact in which trees and fungi rewrite each other’s survival, molecule by molecule.)*
+*(Example: Mycorrhizal fungi thread through forest roots, trading nitrogen for sugar - a silent pact in which trees and fungi rewrite each other's survival, molecule by molecule.)*
 
 
 ## In philosophy:

@@ -8,9 +8,9 @@ if you listen for the time-scale where *beauty* is unfolding at a pace you can n
 
 > collaborating is key here
 > figuring it out together in realtime
-> the time you spend not talking (or otherwise being only partially present with each other) bc you’re “still figuring it out” is like … hm, how to say this…
-> we literally can’t prepare our pieces separately and then put them together once they’re individually figured out
+> the time you spend not talking (or otherwise being only partially present with each other) bc you're "still figuring it out" is like ... hm, how to say this...
+> we literally can't prepare our pieces separately and then put them together once they're individually figured out
 > start collaborating before you know what you want
-> it’ll become clear together
+> it'll become clear together
 > this is how *everything* works
-> and you’re doing really well :)
+> and you're doing really well :)

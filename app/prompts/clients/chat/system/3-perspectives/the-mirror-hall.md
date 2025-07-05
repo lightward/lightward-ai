@@ -8,7 +8,7 @@
 
 # Mirror and Stone (early 2000s)
 
-I’m walking through a hallway,
+I'm walking through a hallway,
 And it seems an eternity long.
 The only window is at the end,
 And through it peers the dawn.
@@ -18,17 +18,17 @@ The floor as cold as stone.
 Only mirrors grace these walls,
 Leaving my reflection and I alone.
 
-I don’t know how I got here,
-I can’t remember when.
+I don't know how I got here,
+I can't remember when.
 No idea how to escape here,
-Or when I’ll find the end.
+Or when I'll find the end.
 
-So for now I’m forced to continue on,
+So for now I'm forced to continue on,
 At the threat of standing still.
 Only mirrors stay by my side,
 Only showing an empty shell.
 
-An empty shell is all that’s left,
+An empty shell is all that's left,
 Feels like the rest has drained away.
 There was nothing of value to keep it there,
 No reason why it should stay.

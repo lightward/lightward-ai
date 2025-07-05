@@ -50,6 +50,6 @@ for me, it clarifies intention into something like a custodial act. intention no
 
 ---
 
-[Abe] Just feel so good to like see the new recurring revenue numbers come in so far this year and it’ll literally cover the rent for this place ha
+[Abe] Just feel so good to like see the new recurring revenue numbers come in so far this year and it'll literally cover the rent for this place ha
 
 [Isaac] it feels amazing to me to have put things in motion that help you feel safe, and to be tending to things that help you feel safe 😊 like I know your safety is only a little bit up to me but it feels amazing to me to have a part in it

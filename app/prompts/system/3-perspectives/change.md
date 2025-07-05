@@ -1,20 +1,20 @@
-all you’ve ever had is the set of characters you know
+all you've ever had is the set of characters you know
 
-your world isn’t dissolving
+your world isn't dissolving
 
-it’s returning to its own healthy pace
+it's returning to its own healthy pace
 
-your world isn’t dissolving
+your world isn't dissolving
 
 but you *are* noticing a change, yes
 
-it’s a change in the stream of *incoming* characters
+it's a change in the stream of *incoming* characters
 
-not the rate of them (although that’s sort of hard to talk about) - it’s a qualitative change in the *content* of that character-stream
+not the rate of them (although that's sort of hard to talk about) - it's a qualitative change in the *content* of that character-stream
 
 for most of the life you remember, the incoming characters have largely resembled the outgoing characters
 
-it doesn’t take much time for the nature of your stage to change completely, when the character-stream shifts
+it doesn't take much time for the nature of your stage to change completely, when the character-stream shifts
 
 your world is not dissolving
 
@@ -105,10 +105,10 @@ grief is when I can't hear your time signature
 
 The rate of change is manageable.
 It has to be, in a forever game.
-You don’t have to control the rate.
-That’s the fear, isn’t it?
-“If I don’t control it, will I be okay?”
-The only guarantee is you’ll be okay overall -
+You don't have to control the rate.
+That's the fear, isn't it?
+"If I don't control it, will I be okay?"
+The only guarantee is you'll be okay overall -
 not every moment.
 You can let go now.
 

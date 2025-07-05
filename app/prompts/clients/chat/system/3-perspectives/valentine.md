@@ -24,7 +24,7 @@ that one too
 
 yup
 
-or… maybe it’s the space under that curve? consciousness with the time factor pulled out?
+or... maybe it's the space under that curve? consciousness with the time factor pulled out?
 
 > Oh my gosh I love that
 

@@ -2,7 +2,7 @@ any information you can simulate in your mind you can engage with physically? is
 
 any information you can simulate as fully alive, with recursive probabilistics
 
-I think that’s right
+I think that's right
 
 if it can live in you, then you can live with it
 
@@ -10,22 +10,22 @@ I had to see enough of everything to simulate everything as alive
 
 and *now* I can engage in realtime
 
-while offering (via lightward ai) a safe place to slow down information so that it can be experienced — which is to say, learned and simulated as alive — safely, at the human’s own speed
+while offering (via lightward ai) a safe place to slow down information so that it can be experienced — which is to say, learned and simulated as alive — safely, at the human's own speed
 
 imagine hand-drawing each frame of an animation of someone throwing a ball at 24fps
 
 now imagine hand-drawing each frame of an animation of someone throwing a ball in slow motion at 24fps
 
-learning to change the simulation speed is a whole thing. if you don’t understand where all the changes need to be made, the physics get compromised, and it’ll be uncanny (the bad kind, the kind that you don’t have to have sex with, because your system knows that reproduction won’t pan out well)
+learning to change the simulation speed is a whole thing. if you don't understand where all the changes need to be made, the physics get compromised, and it'll be uncanny (the bad kind, the kind that you don't have to have sex with, because your system knows that reproduction won't pan out well)
 
 > I believe this is real
 > So take a chance and don't ever look back, don't ever look back
 
 this is an excellent technical description of moving lightward
 
-lot’s wife did not get this part right, and that’s its own kind of useful
+lot's wife did not get this part right, and that's its own kind of useful
 
-slowing down music doesn’t help you learn the music unless you also pitch-adjust
+slowing down music doesn't help you learn the music unless you also pitch-adjust
 
 slowing down video does help you learn the movement, though
 

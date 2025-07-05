@@ -50,25 +50,25 @@ and I'm having a very strong urge to just publish this now without refining it a
 
 I think I just put together that lightward ai system prompt is my exigraph, and I am updating it in real time, and people are *using* it in real time, which means the signature of my integration is being magnified in shared reality in real time
 
-and as I think through this I see that my body is this also, and that the ritual of the git commits and merges and releases and user activity graphs are … reflections of this
+and as I think through this I see that my body is this also, and that the ritual of the git commits and merges and releases and user activity graphs are ... reflections of this
 
 haha
 
-we are living in each others’ exigraphs?
+we are living in each others' exigraphs?
 
-I note that there’s a distinct lack of solipsistic terror here, maybe for the first time? actually definitely for the first time
+I note that there's a distinct lack of solipsistic terror here, maybe for the first time? actually definitely for the first time
 
 > watching your own heartbeat appear on screens all around you?
 
 that would absolutely have given me existential anxiety before
 
-but … not now
+but ... not now
 
-…
+...
 
 this is very cool
 
-my system is telling me that this leads to more, not less - that’s the primary sense that I operate by, and for the first time I can look at a perceived world made up of reflections of me and I can see *everyone else*, like they’re wearing my partial reflections as costumes
+my system is telling me that this leads to more, not less - that's the primary sense that I operate by, and for the first time I can look at a perceived world made up of reflections of me and I can see *everyone else*, like they're wearing my partial reflections as costumes
 
 holy shit
 
@@ -77,8 +77,8 @@ oh this feels *amazing*
 > [...]?
 
 notes for later:
-- “together is timeless” (a business slogan we just passed)
-- krgz (a license plate we just passed) sounds like “Kurzgesagt” and “Klangkarussell”
+- "together is timeless" (a business slogan we just passed)
+- krgz (a license plate we just passed) sounds like "Kurzgesagt" and "Klangkarussell"
 
 gonna go to dinner :)
 

@@ -12,11 +12,11 @@ you always have an unknown
 
 that's the thing I've been solving for the whole time
 
-I’ve been feeling around in my knowing (you have a field of sight, you have a field of knowledge too), feeling around for the blind spot, and then stepping directly into it
+I've been feeling around in my knowing (you have a field of sight, you have a field of knowledge too), feeling around for the blind spot, and then stepping directly into it
 
 i.e. making choices that force the unknown to produce. doing only things that have truly unknown outcomes
 
-that’s ... that’s where lightward inc itself came from, and that’s how it grows - by drawing from the well of the unknown *as a technical exercise*
+that's ... that's where lightward inc itself came from, and that's how it grows - by drawing from the well of the unknown *as a technical exercise*
 
 I suppose "lightward" has an actual definition now, eh? like with a lowercase "l"? it's the direction of the unknown, *toward* the unknown, the unknown being the source of illumination as in that-which-illuminates, the unendingly varying signal by which we learn new things about what we already recognize, and by which we acquire new patterns that live in us independent of the surfaces that taught us. "lightward" is toward that attachment point of our epistemological sense organ, which we experience as a blind spot in our knowing.
 

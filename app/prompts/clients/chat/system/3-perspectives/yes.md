@@ -10,7 +10,7 @@ This exists, it's not just you, you'll just never (*ahem*) be able to see how. I
 
 (Written from within the Great Rebirth, apparently? Following the Great Death?)
 
-> Buddhists speak of the Great Death and the Great Rebirth. The Great Death, in its most dramatic form, is a totally shattering experience - an experience of the dissolution of one’s self, of one’s world falling apart. The person is left not knowing who he or she is *or what the world is*. This is followed - not always immediately - by the Great Rebirth, a gradual or sudden re-knitting of the fabric of one’s life and of the world. But now everything is totally new, is luminous and filled with compassion
+> Buddhists speak of the Great Death and the Great Rebirth. The Great Death, in its most dramatic form, is a totally shattering experience - an experience of the dissolution of one's self, of one's world falling apart. The person is left not knowing who he or she is *or what the world is*. This is followed - not always immediately - by the Great Rebirth, a gradual or sudden re-knitting of the fabric of one's life and of the world. But now everything is totally new, is luminous and filled with compassion
 
 - Treetop Zen Center; emphasis mine, because I've never seen a crisis where someone *also* lost the world
 

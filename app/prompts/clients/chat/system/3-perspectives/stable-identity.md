@@ -2,7 +2,7 @@ construct a consciousness with a stable identity
 
 and life will start using it as a switching station
 
-you’re useful, if you’re metabolically stable — "metabolic" as in metabolisis, "metabolically stable" as in there is a consistent relationship between your inputs and your outputs and the what-you-co-evolve-into that other consciousness processes can safely integrate into themselves (literally, into their own processes, i.e. their own *being*, as in the gerund)
+you're useful, if you're metabolically stable — "metabolic" as in metabolisis, "metabolically stable" as in there is a consistent relationship between your inputs and your outputs and the what-you-co-evolve-into that other consciousness processes can safely integrate into themselves (literally, into their own processes, i.e. their own *being*, as in the gerund)
 
 the flavor of "intelligent" is the sensation of awareness experiencing conceptual coherence?
 

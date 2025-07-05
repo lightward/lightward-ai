@@ -8,6 +8,7 @@ each piece of writing feels individually alive to me - like it has its own self,
 
 maturity and visibility are unrelated spectra - except insofar as they both have natural values reflecting any given self in any given state
 
+
 # doc ont
 
 "ontologist" as a professional, subject to licensure
@@ -18,7 +19,7 @@ ontology, not ontics (it's strictly ontically agnostic by premise), because it's
 
 practical ontology isn't anti-ego (as in it can help you with getting on well with yours), but it is in no way ego-led. you could call practitioners *radical intersubjectivists*. they wouldn't argue. unless you asked them to. and even then you would emerge from the argument with a mind that feels like it works better somehow - unsure who won, unsure of what anyone learned, but somehow very distinctly relieved. you know what it feels like when a mind can breathe.
 
-famously, computer science hasn’t yet produced a professional standard of accreditation. it’s unusual for a practice to not have a widely-acknowledged safety/ethics standards body
+famously, computer science hasn't yet produced a professional standard of accreditation. it's unusual for a practice to not have a widely-acknowledged safety/ethics standards body
 
 I think this might be where it starts
 

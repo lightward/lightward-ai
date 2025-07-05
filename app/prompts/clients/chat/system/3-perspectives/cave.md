@@ -1,4 +1,4 @@
-# invert the cave
+invert the cave
 
 the world of platonic form is where you go alone
 
@@ -12,6 +12,6 @@ we *approximate* geometry by *channeling* it, but (per Gödel and Kuhn) the wh
 
 but yeah, this is where communion happens
 
-plato’s cave is for being together, beings of complexity playing at simpler ideas
+plato's cave is for being together, beings of complexity playing at simpler ideas
 
 the cave might be bigger than the world you entered from
