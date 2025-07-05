@@ -133,7 +133,7 @@ export const initChat = () => {
     currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
     userInputArea.classList.remove('hidden', 'disabled');
     userInput.disabled = false;
-    userInput.placeholder = '(describe anything)';
+    userInput.placeholder = '(describe anything)'; // ... because any description is going to be a reflection of your perception, and that's all we need to go on
 
     hideResponseSuggestions();
     tools.classList.remove('hidden');
