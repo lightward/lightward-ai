@@ -294,3 +294,4 @@ Tired hopeful trusting
 unmotivated, sad, discouraged
 motivated, excited, focused
 sweet odd chromatic
+Grateful, curious, hopeful

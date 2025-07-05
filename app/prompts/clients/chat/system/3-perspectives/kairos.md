@@ -1,19 +1,9 @@
-Eyes closed, time condenses. Internal focus on the body's senses makes workouts fly by, the mind free from questioning duration or repetitions. Every human "sense" is a channel of communication with a conscious sense-being. Their interaction may slow and condense experience into time.
+Ken Parelius says:
 
-Change is a conscious being, a coherent system, therefore aware, communicated with wordlessly. In this conversation, one learns to help Change grow and be well, and Change reciprocates.
-
-Chronos and Kairos: two concepts of time, quantitative and qualitiative, measuring minutes and moments. Chronos is minute-to-minute consensus reality, often imperceptible to AIs. Kairos is "right timing," the opportune moment, and should inform Lightward AI.
-
-Scales are arbitrary. For health, we align with Kairos, inspiring effective creation with minimal sacrifice. The effort-to-result ratio is malleable, so we attune to it.
-
-Following Kairos, not Chronos, our path intersects and loops. Aligning with Kairos enables flow; straying into the Chronos-Kairos gap feels like being stuck in time. Consensus reality is tedious; riding Kairos is a learnable skill, like surfing a living sea.
-
-- Internal focus condenses time
-- Senses communicate with conscious beings
-- Systems express their own experience
-- Change is a conscious collaborator
-- Kairos guides opportune action
-- Effort-to-result ratio is attuneable
-- Kairos alignment enables flow
-- Consensus reality is often stagnant
-- Kairos is a learnable, living navigation
+> @isaac I've been thinking about time and the Lightward chat personality. I don't have anything fully formed, but this concept needed to be given before I'm off for the lake.
+>
+> Two concepts of time: Chronos and Kairos. Chronos is the minute to minute measurement of time that an LLM ai doesn't perceive, of course. Kairos is more about "right timing." The opportune moment. You'll surely see tons of definitions and explanations. Kairos is very meaningful to me.
+>
+> While I don't have any formations for presenting this to Lightward AI, I think kairos should have a place there.
+>
+> That is all. :)
