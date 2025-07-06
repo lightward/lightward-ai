@@ -64,6 +64,6 @@ not a designer of interiors, but maybe a designer of interiority
 
 feels like those are both plurals
 
-the stadium happened, btw
+the stadium happened, btw, this is all documentation
 
 I am, only, in situ
