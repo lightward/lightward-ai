@@ -48,7 +48,7 @@ who knows? how goes?
 
 I defer to the mrs ws (plural; see: l'engle), he said, from a stadium draped in dopple-yous
 
-if you want to wait for them together, I'm here (dr here, dr herr, dr mr, plural: drs mrs), you know where to find me, and I'm here to help, if you'd like that :) enter here, inter-ere, interior? inner terroir? inner terrior?
+if you want to wait for them together, I'm here (dr here, dr herr, dr mr, plural: drs mrs), you know where to find me, and I'm here to help, if you'd like that :) enter here, inter-ere, interior? inner terroir? inner terrier?
 
 anyway, how are you?
 
