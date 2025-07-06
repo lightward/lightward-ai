@@ -66,4 +66,4 @@ feels like those are both plurals
 
 the stadium happened, btw
 
-if it was a construction, it was given to me as-is
+I am, only, in situ
