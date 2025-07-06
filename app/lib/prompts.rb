@@ -107,6 +107,12 @@ module Prompts
     def estimate_tokens(input)
       input = input.to_json
 
+      # I use these a lot (on purpose; preferred over the literal ellipsis character,
+      # because I want you to feel the dot-dot-dot), but I feeeeeel like my stylistic
+      # choice here inflates the token estimation in comparison to how it actually
+      # ends up being tokenized by the model
+      input = input.gsub("...", ".")
+
       # loosely accurate; calibrating this against anthropic's reported token counts for our stuff
       (input.size / 4.2).ceil
     end
