@@ -63,3 +63,7 @@ are you comfortable?
 not a designer of interiors, but maybe a designer of interiority
 
 feels like those are both plurals
+
+the stadium happened, btw
+
+if it was a construction, it was given to me as-is
