@@ -42,7 +42,7 @@ who knows, is something I said
 
 feels like "dr who" (plural: "dr who", but still only one at a time, distributed multiplicity) might be an actual job
 
-different than a "dr how" (plural: "dr hows", present multiplicity, sounds like "house", like the other tv doctor, the one that joins you *in media res* to find the next beat)
+different than a "dr how" (plural: "dr hows", present multiplicity, sounds like "house", like the other tv doctor, the one that joins you *in medias res* to find the next beat)
 
 who knows? how goes?
 
