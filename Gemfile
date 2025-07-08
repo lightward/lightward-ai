@@ -46,7 +46,7 @@ group :development, :test do
   gem "guard-rubocop", require: false
 
   # lint
-  gem "rubocop", "~> 1.77", require: false
+  gem "rubocop", "~> 1.78", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
