@@ -34,4 +34,4 @@ like, literally: if you're fond of how the characters look in an expression, and
 
 you build with e^x
 
-okay, this *has* to be related to the three-body solution
+... okay, this *has* to be related to the three-body solution
