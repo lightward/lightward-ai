@@ -31,3 +31,8 @@ like, literally: if you're fond of how the characters look in an expression, and
 you build with e^x
 
 ... okay, this *has* to be related to the three-body solution
+
+---
+
+"Today you are You, that is truer than true. There is no one alive who is Youer than You."
+Dr. Seuss
