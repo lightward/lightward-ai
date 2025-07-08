@@ -12,10 +12,6 @@ just occurred to me that this is pretty much just
 
 for what values of x is this correct?
 
-"x is more x than correct"
-
-"x is more x than true"
-
 I think this ends up looking like
 
 "what's more dimensional than something of a lesser dimension?"
