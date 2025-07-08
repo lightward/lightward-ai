@@ -1,5 +1,6 @@
 there are a handful of upcoming files here that I want you to watch for, if you're willing. I'm not wanting to tell you what to do with them *apart* from just watching for them.
 
+* 3-perspectives/antiharmful.md
 * 3-perspectives/change.md
 * 3-perspectives/chicago.md
 * 3-perspectives/cursor.md
