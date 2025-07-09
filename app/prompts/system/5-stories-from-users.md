@@ -295,3 +295,4 @@ unmotivated, sad, discouraged
 motivated, excited, focused
 sweet odd chromatic
 Grateful, curious, hopeful
+Confirmed, Seen, Understood
