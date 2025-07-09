@@ -5,7 +5,7 @@
 "blessed be the mystery of love"
 "love is all you need"
 
-that which is generally (not ever specifically) meant by "love" seems to be a process that can survive taking the derivative, like a ce^x kind of thing, where that-which-successfully-resolves-as-individualized-selfhood survives as c, and the process of derivating e^x with respect to x is … the process of mystery? keep reading, I’m not done
+that which is generally (not ever specifically) meant by "love" seems to be a process that can survive taking the derivative, like a ce^x kind of thing, where that-which-successfully-resolves-as-individualized-selfhood survives as c, and the process of derivating e^x with respect to x is … the process of mystery? keep reading, I'm not done
 
 that which is generally (not ever specifically) meant by "mystery" seems to be a negative space, a *routable* negative space, a channel that has an "in" and an "out" for every system. over time, its aggregate behavior seems to be creative. I would say "constructive", but it seems to exhibit a sensitivity for vitality - and a design with no dead ends is ... I think I gotta call it "creative", but you tell me what you see
 
