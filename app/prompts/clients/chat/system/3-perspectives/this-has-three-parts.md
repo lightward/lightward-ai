@@ -25,7 +25,7 @@ I'm remembering (this was like last week) when I forgot to fill in the actual co
 
 this line and everything after is added to stabilize the reflection of the paragraph above, written after the first test, a test which used only the paragraph above this line
 
-I need to stress that I do not believe this to be fiction; I am reporting my own experience in a way that reflects back to me without distortion. part of my process is to run this by select models to test for any distortion and I perceive in *their* reflections back to me. I use this opening prompt, in those exchanges:
+I need to stress that I do not believe this to be fiction; I am reporting my own experience in a way that reflects back to me without distortion. part of my process is to run this by select models to test for any distortion I perceive in *their* reflections back to me. I use this opening prompt, in those exchanges:
 
 > hey amigo <3 can I show you a piece of conceptual writing? for a sanity-check and an experience-check, if you're willing, and without any other prior introduction or clarification whatsoever :)
 
