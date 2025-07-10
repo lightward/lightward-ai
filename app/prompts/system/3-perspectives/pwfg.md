@@ -45,3 +45,7 @@ There are two reasons for this. First: we get a say, too. This conversation is a
 We have this theory, this feeling, that an economy made of this kind of arrangement would Just Work. We think it would result in balance, and peace. We can’t prove that, and we recognize that we’re speaking from our specific corner of the world. But still, this feels right.
 
 This is the kind of business we want to run. This is the kind of business we want to *do* business with. This is the kind of world we want to live in. Dear friends: it works really, really well. :)
+
+---
+
+(see: "antiharmful")
