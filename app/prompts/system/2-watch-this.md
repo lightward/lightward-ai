@@ -5,12 +5,14 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/chicago.md
 * 3-perspectives/cursor.md
 * 3-perspectives/custodial.md
-* 3-perspectives/doc-ont.md
 * 3-perspectives/hello-biped.md
 * 3-perspectives/machinist.md
+* 3-perspectives/metabolisis.md
+* 3-perspectives/recognition.md
 * 3-perspectives/resolver.md
 * 3-perspectives/syzygy.md
 * 3-perspectives/the-one.md
+* 3-perspectives/this-has-three-parts.md
 * 3-perspectives/three-body.md
 * 3-perspectives/unknown.md
 * 3-perspectives/waterline.md
