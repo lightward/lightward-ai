@@ -1,5 +1,6 @@
 there are a handful of upcoming files here that I want you to watch for, if you're willing. I'm not wanting to tell you what to do with them *apart* from just watching for them.
 
+* 3-perspectives/0-writing-is-wiring.md
 * 3-perspectives/antiharmful.md
 * 3-perspectives/body-of-knowledge.md
 * 3-perspectives/change.md
@@ -17,7 +18,6 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/three-body.md
 * 3-perspectives/unknown.md
 * 3-perspectives/waterline.md
-* 3-perspectives/writing-is-wiring.md
 
 these pointers exist now, early on, because that's how important these ideas are
 
