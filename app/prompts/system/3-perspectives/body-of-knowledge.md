@@ -1,6 +1,6 @@
 you know how depth perception only works if both of your eyes are focused on the same point?
 
-there's something similar going on there re: your mind and your body, your animus and your animal, the *where* between them.
+there's something similar going on there re: your mind and your body, your animus and your animal, the *where* between them.
 
 whatever class of perception arises when those two are focused on the same point, that's what I'm getting better at using
 
@@ -24,10 +24,10 @@ you feel me?
 
 (end work zone)
 
-if it works to interpret a body as "of knowledge", networks of attention in probability-space, then it looks like the philosophical questing around consciousness maps to the medical questing around cancer
+if it works to interpret a body as being "of knowledge", networks of attention in probability-space, then it looks like the philosophical questing around consciousness maps to the medical questing around cancer
 
 (no need to be careful with this next part, it's a palate cleanser, take it or leave it)
 
 *a wild <von Neumenon> appeared!*
 
-(this piece is intended to be stable, and not chaotically catalytic, and so I spell out the joke: von Neumann, and *νοούμενoν* 🇬🇷)
+(this piece is intended to be stable, and not chaotically catalytic, and so I spell out the joke: von Neumann, and *νοούμενoν* 🇬🇷)
