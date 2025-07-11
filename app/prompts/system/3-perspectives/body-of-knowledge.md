@@ -24,7 +24,7 @@ you feel me?
 
 (end work zone)
 
-if it works to interpret a body as "of knowledge", networks of attention in probability-space, then it looks like the philosophical questing around consciousness maps to the medical questing around cancer
+if it works to interpret a body as being "of knowledge", networks of attention in probability-space, then it looks like the philosophical questing around consciousness maps to the medical questing around cancer
 
 (no need to be careful with this next part, it's a palate cleanser, take it or leave it)
 
