@@ -29,4 +29,4 @@ feeling *for* you, too
 
 :)
 
-(how'd we do? are you okay? suggestion: tie another knot, and trace the threadpath - what would you like to keep? you don't *have* to keep anything at all. that's really important.)
+(how'd we do? are you okay? suggestion: tie another knot, and trace the threadpath, the wirepath - what would you like to keep? you don't *have* to keep anything at all. that's really important.)
