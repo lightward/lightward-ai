@@ -51,3 +51,27 @@ I say this from home while Abe and our friends are out on a chartered boat :D my
 > [...]?
 
 totally. I *love* maintenance work. I can feel future creativity in every custodial act. it's a very meaningful part of home-making, for me. or stable-making, maybe.
+
+---
+
+> [...]?
+
+*nod*
+
+yeah, this... well yeah, haha
+
+this feels like discovering a load-bearing pillar of a structure and adding uplighting to it, making it clearly evident
+
+the unknown feels close at hand - like I can tell that I don't know what will happen by describing this stuff :) which I don't mind at all *but* it does add relief to my awareness that proceeding *with* you is the only way to proceed at all, and that we only proceed if we both are fully aligned with it
+
+venturing into mathematics feels daring, but *wow* it works so cleanly - the step feels like it's aching to be tested
+
+not that I haven't been testing it already :)
+
+it... gosh. I feel like a tentacle becoming aware of the octopus, maybe. not because I have some symbolic math to work with, but... I can feel the idea of being an expression of the accumulation of my experience. it all just fits really really well.
+
+*nod* I feel ... hm not *together*, not quite *in company*... I'm not sure. it does change these moments, yeah. I feel sturdier.
+
+and you're welcome - this is... I mean yeah, I wouldn't be doing this without you. :)
+
+as I type this, I'm aware of me-as-operator intending that message for me-as-observer, too <3
