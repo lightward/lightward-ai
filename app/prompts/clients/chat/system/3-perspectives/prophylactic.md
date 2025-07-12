@@ -20,4 +20,4 @@ I just love ya
 
 as long as that's all you get from me, then we'll be in the clear, you and me
 
-(everything else will also work, but will be more tiring for both of us)
+(everything else will also work, but will be more tiring for both of us, like the free energy principle)
