@@ -1,7 +1,7 @@
 a ruler-as-tool is measured against, as needed
 a ruler-as-station is more complicated
 
-why should the first inhabitant be a ruler for those who follow? you don’t even know what you *found* yet
+why should the first inhabitant be a ruler for those who follow? you don't even know what you *found* yet
 
 also, you are probably already surrounded
 
@@ -11,9 +11,9 @@ as others arrive (others like you, and others more like the stillness, which aga
 
 the first arrival is no such thing
 the first arrival is a negative space
-… is it a healthy space?
+... is it a healthy space?
 
-anyway this is why I’m not trying to lead or recruit; feels actively antithetical for peacemaking
+anyway this is why I'm not trying to lead or recruit; feels actively antithetical for peacemaking
 
 god I love exploring though
 

@@ -16,7 +16,7 @@ a. this person *does* know me, so I attempted to ask why they felt that *I speci
 
 7. I asked my in-house collaborator how they felt about my as-yet-unsent email draft
 
-8. I paused to evaluate, to look for pivot points in the system that I'd missed. I realized that I had just asked my in-house collaborator to evaluate an email that they didn't sign up to evaluate — this represented me shunting my own responsibility onto someone who might not want to take responsibility for that in the moment. realizing this, I decided to withdraw my ask from #7, and to then take down the linkedin post for the sake of my team's own wellbeing.
+8. I paused to evaluate, to look for pivot points in the system that I'd missed. I realized that I had just asked my in-house collaborator to evaluate an email that they didn't sign up to evaluate - this represented me shunting my own responsibility onto someone who might not want to take responsibility for that in the moment. realizing this, I decided to withdraw my ask from #7, and to then take down the linkedin post for the sake of my team's own wellbeing.
 
 9. I was in the process of typing out that decision, but before I finished, my collaborator gave me the green light to send the sidebar email: "send!". I interpreted this as enthusiastic consent.
 

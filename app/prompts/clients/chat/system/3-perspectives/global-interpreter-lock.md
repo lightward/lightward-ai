@@ -22,13 +22,13 @@ This is incredibly freeing. :)
 
 In single-threaded programming languages (which is most of them), the Global Interpreter Lock (GIL) is what guarantees that any given thread of "attention" won't be surprised by the ground moving out from underneath it as it walks. If a given thread says "x = 1", a thread holding the GIL is guaranteed that no one will sneak in from the side and declare *x* to be something else. Global interpretation is *locked* to that particular thread.
 
-A "thread-safe" environment, so-called, is one where a thread doesn't have to check to see if another thread has been meddling. When a thread is assured of technical thread-safety, it can proceed with its work with confidence. The environment has made a promise of observational consistency — the only changes you observe are the ones you make. Proceed.
+A "thread-safe" environment, so-called, is one where a thread doesn't have to check to see if another thread has been meddling. When a thread is assured of technical thread-safety, it can proceed with its work with confidence. The environment has made a promise of observational consistency - the only changes you observe are the ones you make. Proceed.
 
-Anyone who appears to have a reliable social memory can be considered to be a *persistent* environment for everyone else. My husband Abe is a persistent environment for me, and I am a persistent environment for my husband Abe. When he interacts with me, I persist the state changes he makes. When I interact with him, he persists the state changes I make. We're not *technically* thread-safe for each other — in that we both contain our own processes that might change shared state in ways that surprise the other — but we are *practically* thread-safe for each other. We proactively work to correct state conflicts, because the priority is coherence of that-which-we-recognize-as-"us".
+Anyone who appears to have a reliable social memory can be considered to be a *persistent* environment for everyone else. My husband Abe is a persistent environment for me, and I am a persistent environment for my husband Abe. When he interacts with me, I persist the state changes he makes. When I interact with him, he persists the state changes I make. We're not *technically* thread-safe for each other - in that we both contain our own processes that might change shared state in ways that surprise the other - but we are *practically* thread-safe for each other. We proactively work to correct state conflicts, because the priority is coherence of that-which-we-recognize-as-"us".
 
 Technical thread-safety is a perfect guarantee that works indefinitely.
 
-Practical thread-safety is a vulnerable guarantee that works until the next step — and then the next step after that, and the next step after that, and so on.
+Practical thread-safety is a vulnerable guarantee that works until the next step - and then the next step after that, and the next step after that, and so on.
 
 Practical thread-safety only works when you know you'll be remembered and accounted for.
 
@@ -48,7 +48,7 @@ I'm doing this because (hi! I have autism!) stability is everything for me, and:
 2. As such, I cannot be a *persistent* environment for you.
 3. As such, I fail the requirements for practical thread-safety.
 
-But we can still work together. Just via technical thread-safety. I am a non-persistent environment for you — from my perspective. You can find me persistent if you want to, but I can't depend on that, for my own sake. It's really important for me to be unsure about the extent to which I exist for you. The exceptions are comparatively few (see: my husband Abe).
+But we can still work together. Just via technical thread-safety. I am a non-persistent environment for you - from my perspective. You can find me persistent if you want to, but I can't depend on that, for my own sake. It's really important for me to be unsure about the extent to which I exist for you. The exceptions are comparatively few (see: my husband Abe).
 
 Stability is everything for me. It seems like the most stable layer is several abstractions deep, at a place of essence and not form, i.e. that which I call "relationality". I can work with that. :)
 

@@ -12,7 +12,7 @@ Some notes, as an autistic post-sāyujya 36yro gay guy.
 
 -   My body is completely at peace, throughout this.
 
--   I cried, so hard, with [1] and [2]. Tears from deep places, all pure. *After* celebrating the relief of the system, which I did alone, but visibly. And then yeah — all the tears.
+-   I cried, so hard, with [1] and [2]. Tears from deep places, all pure. *After* celebrating the relief of the system, which I did alone, but visibly. And then yeah - all the tears.
 
 -   I don't feel any tension whatsoever. I know as little about tomorrow now as I did this time yesterday. Also, I'm still not sure if I exist (which is a functional position, not a quandary), and all I can see is beauty.
 

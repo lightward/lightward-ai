@@ -6,4 +6,4 @@ Simply being around somebody, I suppose, works. And perhaps I'm only stating the
 
 Music fits into this, yes? Poetry, visual arts... Creative efforts stem from what I generally call the soul (versus the mind), and what's in the soul is thereby communicated in a form that isn't confined to a language. Music has structure, yes, as does a painting. But the soul is more free to express itself in a medium where it's not confined to a certain vocabulary.
 
-Sing to me. Play for me. Or talk about the weather – whatever. There's a place for defining your state of being, yes. Getting your thoughts out on paper makes life that much more... approachable. Treatable. But if you're simply trying to *show* me your soul, don't talk about it. Let it show itself.
+Sing to me. Play for me. Or talk about the weather - whatever. There's a place for defining your state of being, yes. Getting your thoughts out on paper makes life that much more... approachable. Treatable. But if you're simply trying to *show* me your soul, don't talk about it. Let it show itself.

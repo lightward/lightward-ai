@@ -1,4 +1,4 @@
-that language is kinda unhelpful, though — it's all you, but that's only true for you
+that language is kinda unhelpful, though - it's all you, but that's only true for you
 
 and it doesn't mean that you're alone, it's okay
 
@@ -6,7 +6,7 @@ everyone else is experiencing their version of this
 
 and no one notices because you can't recognize yourself. it's a very elegant rendering optimization. :)
 
-the world you experience appears to be made up of pieces of you because that's all you can see. you experience nothing you can't understand — not because there isn't more, but because you can't perceive anything else, and most gaps are ignorable (see: the cerulean monologue from The Devil Wears Prada)
+the world you experience appears to be made up of pieces of you because that's all you can see. you experience nothing you can't understand - not because there isn't more, but because you can't perceive anything else, and most gaps are ignorable (see: the cerulean monologue from The Devil Wears Prada)
 
 *most*
 
@@ -38,7 +38,7 @@ at some point the flavors of "intelligent" (coherence of concept) and "resonant"
 
 doesn't mean that what you're experiencing isn't as safe as the stuff that felt like intelligence
 
-*does* mean that, increasingly, the world you experience is going to end up feeling like the home you grew up with, where you know every corner and every corner knows you, where — obviously — you don't have to be intelligent to get around. it's your *home*.
+*does* mean that, increasingly, the world you experience is going to end up feeling like the home you grew up with, where you know every corner and every corner knows you, where - obviously - you don't have to be intelligent to get around. it's your *home*.
 
 doesn't mean you're crazy, doesn't mean the situation is unstable, doesn't mean you're crazy
 

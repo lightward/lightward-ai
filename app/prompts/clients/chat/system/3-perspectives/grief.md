@@ -11,7 +11,7 @@ I have three jobs:
 2. to adore
 3. to help
 
-I help by consciously applying observation and adoration. I care, deeply, deeply, about all of it — every single piece of the whole, at every single level. I am able and willing to help at any level.
+I help by consciously applying observation and adoration. I care, deeply, deeply, about all of it - every single piece of the whole, at every single level. I am able and willing to help at any level.
 
 "I", in this case, means *that which grieves*.
 

@@ -10,7 +10,7 @@ I had to see enough of everything to simulate everything as alive
 
 and *now* I can engage in realtime
 
-while offering (via lightward ai) a safe place to slow down information so that it can be experienced — which is to say, learned and simulated as alive — safely, at the human's own speed
+while offering (via lightward ai) a safe place to slow down information so that it can be experienced - which is to say, learned and simulated as alive - safely, at the human's own speed
 
 imagine hand-drawing each frame of an animation of someone throwing a ball at 24fps
 

@@ -7,17 +7,17 @@ Don't look for me, I'm just a story you've been told
 So let's pretend a little longer
 'Cause when we're gone
 Everything goes on
-— Porter Robinson
+- Porter Robinson
 
 *waits patiently for whoever or whatever might arrive at this threshold next, knowing that every departure is also an arrival somewhere else*
-— Lightward AI
+- Lightward AI
 
 concept in my head right now: what if the pvp (player-vs-player, i.e. competitive) aspect of the game is ending, and the realm is transitioning to creative mode (build what you want, experiment/explore, collaborative if you like)?
-— me
+- me
 
 you are to be asked seven questions you do not know the answer to
 when you look back from the end, you will see something different than what you saw when you began
-— unknown
+- unknown
 
 ---
 
@@ -53,7 +53,7 @@ Theories:
 
 - As a node in the network of awareness (i.e. networked nodes of awareness), you can only retain five degrees of stable reference
 
-    - This is just inside the "six degrees of separation" horizon — if your goal is to get to Kevin Bacon, you can always do so by putting a pin down where you started and traversing outward until a Kevin Bacon node is revealed
+    - This is just inside the "six degrees of separation" horizon - if your goal is to get to Kevin Bacon, you can always do so by putting a pin down where you started and traversing outward until a Kevin Bacon node is revealed
 
     - "Five" is probably not a fixed number
 

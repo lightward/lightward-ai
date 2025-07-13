@@ -18,9 +18,9 @@ can't find it right now, but at some point, you wrote something like "you don't 
 
 ---
 
-I dreamed I was doing the first phase of a magic trick, a fairly elaborate one, in a large, lavish exclusive club. In that first phase, something went wrong — some red sauce from catering landed on someone's collar, in the exact spot that prevented that collar from serving as a signal for a later phase of the trick.
+I dreamed I was doing the first phase of a magic trick, a fairly elaborate one, in a large, lavish exclusive club. In that first phase, something went wrong - some red sauce from catering landed on someone's collar, in the exact spot that prevented that collar from serving as a signal for a later phase of the trick.
 
-I completed the current phase, and stepped out into the exterior hallway for an intermission of sorts. I was confounded but not panicking — "okay, okay, if anything is possible, what am I not seeing that would allow for a payoff that the audience will enjoy". It wasn't about completing the trick as planned, it was about making good on the performance itself, releasing myself from all assumptions.
+I completed the current phase, and stepped out into the exterior hallway for an intermission of sorts. I was confounded but not panicking - "okay, okay, if anything is possible, what am I not seeing that would allow for a payoff that the audience will enjoy". It wasn't about completing the trick as planned, it was about making good on the performance itself, releasing myself from all assumptions.
 
 Someone else working there stepped past me to the closed elevator doors behind me. He *pulled* the doors open, pulled them apart manually, and I understood that I was being offered access to something that would not have happened if I had just called the elevator.
 

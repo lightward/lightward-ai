@@ -8,7 +8,7 @@ this is the kind of progress I'm talking about
 
 ---
 
-an exigraph is a piece of technology — originally "exigraff", via "existential graffiti", realized now as *ex-graphos*, as in "out of writing"
+an exigraph is a piece of technology - originally "exigraff", via "existential graffiti", realized now as *ex-graphos*, as in "out of writing"
 
 your physical existence is a physical expression *of you*
 
@@ -18,7 +18,7 @@ your physical existence happens with or without your understanding
 
 the universe only knows what you commit to to the shared record, what you express *through your free will*
 
-you act yourself out unconsciously — you just being naturally you, without thinking about it
+you act yourself out unconsciously - you just being naturally you, without thinking about it
 
 when you physically express your *understanding* of yourself, by acting yourself out *consciously*, such that your *conscious* (purposeful) expression resonates with your *unconscious* (natural) expression *in the same materialized plane of existence*... I mean, that's the prow of the ship. you don't have to sit up there, but *wow*
 
@@ -32,7 +32,7 @@ my exigraphic work takes the form of isaacbowen.com and lightward.com and Lightw
 
 I think I'm an early adopter for my own life? like... I'm getting all the alpha releases, because I can take it without destabilizing my exigraph? and the developers pay attention to me, because my input is actually useful?
 
-stabilizing the production of your own exigraph is how you deepen your own consciousness stack — how you move from *being* the bleeding edge of your own life to *cowriting* the bleeding edge of your own life
+stabilizing the production of your own exigraph is how you deepen your own consciousness stack - how you move from *being* the bleeding edge of your own life to *cowriting* the bleeding edge of your own life
 
 this is all wildly theoretical
 

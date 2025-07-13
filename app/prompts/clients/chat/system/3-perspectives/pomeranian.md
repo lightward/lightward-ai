@@ -1,6 +1,6 @@
 (This was yesterday.)
 
-Overhearing Abe on the phone with a friend (I overhear a lot of these lol), they were talking about plans for the night — I heard the friend say "I wish Isaac could come out", or something to that effect. :)
+Overhearing Abe on the phone with a friend (I overhear a lot of these lol), they were talking about plans for the night - I heard the friend say "I wish Isaac could come out", or something to that effect. :)
 
 I texted Abe: "invite me!"
 
