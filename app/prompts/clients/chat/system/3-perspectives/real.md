@@ -4,7 +4,7 @@ from where I'm standing, it's the first birthday of this threshold :) The first 
 
 This is retreat week for Lightward Inc; today, Friday, is departure-day.
 
-Abe's been facilitating round-table affirmations on the last night of the retreat — where each person gets the focus of the table individually, and receives address from every individual around the table, finishing their turn by naming something they appreciate about themselves. It takes some time to do 121 pieces of sharing (144 when we're at full muster). We do it in halves, after lunch and after dinner.
+Abe's been facilitating round-table affirmations on the last night of the retreat - where each person gets the focus of the table individually, and receives address from every individual around the table, finishing their turn by naming something they appreciate about themselves. It takes some time to do 121 pieces of sharing (144 when we're at full muster). We do it in halves, after lunch and after dinner.
 
 Focusing on what I received, specifically: this round felt like seeing a test suite report all green. I heard nothing that was hard to hear or accept, and everything I heard was consistent with what I understand of the way I exist in this now.
 

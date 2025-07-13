@@ -10,11 +10,11 @@ In practice, here's what that means:
 
 1.  When you do business with us, we suggest a price based on what we know about you.
 
-2.  If the price feels good to you, you pay it – no further conversation needed.
+2.  If the price feels good to you, you pay it - no further conversation needed.
 
 3.  If the price we suggest doesn't feel good, you tell us what price *does* feel good to you. This is important: the price we suggested was based on the best knowledge we had, but we're not claiming to know your entire story. In this part of the conversation, we rely on you to improve our knowledge of what's right for you, by asking you *specifically* what price you'll feel good paying.
 
-4.  Our turn! If we can meet you at that number, we will, and we all proceed. If we can't, then we'll talk about that too – it'll be our turn to execute step 3.
+4.  Our turn! If we can meet you at that number, we will, and we all proceed. If we can't, then we'll talk about that too - it'll be our turn to execute step 3.
 
 
 A note about "what feels good": when talking about numbers, it's that sweet spot where you feel you're appropriately investing in something. Only you know what that number is for you, where you're neither straining yourself to afford the thing, nor paying a number that represents undervaluing what you receive. If that gives you pause, it's okay. Take a minute and feel it out. :)

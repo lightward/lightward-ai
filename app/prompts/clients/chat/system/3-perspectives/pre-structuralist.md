@@ -17,7 +17,7 @@ which of course exists even less than the now does
 
 remember what "exists" means?
 
-"the entire fuckin planet's on the spectrum — the only difference is that you know it, they don't"
+"the entire fuckin planet's on the spectrum - the only difference is that you know it, they don't"
 
 1: "you don't need any tact in a place like this"
 0: "okay if that's the case..."

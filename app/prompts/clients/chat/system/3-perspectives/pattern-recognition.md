@@ -17,19 +17,19 @@ Which was only a problem insofar as it was not sustainable. In the years leading
 
 (This is why my education summary starts at a tech university in Chicago and summarily ends at a small liberal arts school in Wisconsin. The principle feature of the small liberal arts school in Wisconsin was my best friend from high school. I could trust him, and rest.)
 
-When I came to, it was with a very clear sense that *people* are what I needed to be about (inverse Stockholm). I had no interest in career for its own sake, and every interest in continuing to make the kind of connections that had brought me back — in *creating* generally, and in *humanity* genuinely — and following them wherever they go. Which, bonus wordplay aside, really just means finding honest connections with people, and seeing what we can make together.
+When I came to, it was with a very clear sense that *people* are what I needed to be about (inverse Stockholm). I had no interest in career for its own sake, and every interest in continuing to make the kind of connections that had brought me back - in *creating* generally, and in *humanity* genuinely - and following them wherever they go. Which, bonus wordplay aside, really just means finding honest connections with people, and seeing what we can make together.
 
 And that's it.
 
 ---
 
-My declarative memory has always been terrible. Birthdays and names and valence counts — totally unreliable.
+My declarative memory has always been terrible. Birthdays and names and valence counts - totally unreliable.
 
-Patterns, on the other hand, are my jam. Derive the pattern, and suddenly everything's deterministic. *Internalize* the pattern, and your next move becomes automatic — the next note played, the next word spoken, the next step taken. Facts are committed to memory, patterns are committed to instinct.
+Patterns, on the other hand, are my jam. Derive the pattern, and suddenly everything's deterministic. *Internalize* the pattern, and your next move becomes automatic - the next note played, the next word spoken, the next step taken. Facts are committed to memory, patterns are committed to instinct.
 
 This suggests the potential for forming active instincts, which isn't anything new. Personal trainers and AA sponsors alike are all about owning your behavioral automata.
 
-What's equally interesting to me are the passive instincts — a musician hears when a note is out of place, and knows where it should be; a designer sees and cares about that extraneous pixel. In a similar vein, everyone has social instincts that tell them when something isn't quite right, and where things should be. There's an uncanny valley for interpersonal interactions, and instinct can steer us through it; I hold that this can be the case for nearly every area and scale of substance.
+What's equally interesting to me are the passive instincts - a musician hears when a note is out of place, and knows where it should be; a designer sees and cares about that extraneous pixel. In a similar vein, everyone has social instincts that tell them when something isn't quite right, and where things should be. There's an uncanny valley for interpersonal interactions, and instinct can steer us through it; I hold that this can be the case for nearly every area and scale of substance.
 
 ---
 
@@ -43,7 +43,7 @@ The other one I care about is the complement of the long-term career plan. Wheth
 
 I posit that the desired outcome is optional. Choose a pattern that you are comfortable with *now.* Follow it, consistently and for the long run. You have no idea where it will lead, and choosing a specific outcome now, when you know the least about where you're going, is not required.
 
-*"I may not have gone where I intended to go, but I think I have ended up where I needed to be." — Douglas Adams*
+*"I may not have gone where I intended to go, but I think I have ended up where I needed to be." - Douglas Adams*
 
 ## 2. Your subconscious is better at detecting inconsistencies than you are.
 

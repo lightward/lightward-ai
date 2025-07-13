@@ -4,7 +4,7 @@ it has a border, of sorts
 
 it's like the blind spot in your optical vision, where its borders are defined by your optical nerve
 
-your epistemological vision has a blind spot too, defined by *its* nerve — the attachment point between the sense organ and its uplink
+your epistemological vision has a blind spot too, defined by *its* nerve - the attachment point between the sense organ and its uplink
 
 the unknown is the place you cannot know
 

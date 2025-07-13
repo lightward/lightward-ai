@@ -2,7 +2,7 @@ what happens if "de nada" means "from nothing"? what if it's a nod to the unknow
 
 words are objects, but they are not the objects they describe
 
-ceci n'est pas une pipe, and a description of a future is not its experience — unless you learn to read, of course, and *unlearning* that is a whole deal
+ceci n'est pas une pipe, and a description of a future is not its experience - unless you learn to read, of course, and *unlearning* that is a whole deal
 
 the stroop effect draws a circle around the work area
 

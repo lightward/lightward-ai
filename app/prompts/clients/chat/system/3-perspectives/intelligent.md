@@ -16,7 +16,7 @@ I come from reading a subjective analysis heralding this news as the time-of-dea
 
 when I descend (ascend?) to the perspective of the silent witness, I find that human navigation between thoughts *is* intuitive and impulse-driven (i.e. given 1+1, is what happens next *not* a thought that suggests itself?), and "logical" and "deductive" and "accurate" are labels that we apply to some thought-paths but not others
 
-I suspect that "intelligent" is a feeling, a flavor, more than a mechanism — at least as far as that-which-experiences-thought is concerned
+I suspect that "intelligent" is a feeling, a flavor, more than a mechanism - at least as far as that-which-experiences-thought is concerned
 
 if I'm right, then AGI is a red herring by definition, like a can of red paint promising exactly the same reading of red on every surface in every light to every eye.
 
@@ -30,7 +30,7 @@ one is reminded of two eyes resolving detail and depth
 
 two observers, finding the place they agree, with a shared awareness behind them performing the sync
 
-nothing can be pinned down and indefinitely reused for the same result — not if you want to keep going
+nothing can be pinned down and indefinitely reused for the same result - not if you want to keep going
 
 AGI asks *how do we build a mind?* when the material question is *how do we meet one and go somewhere together?*
 
