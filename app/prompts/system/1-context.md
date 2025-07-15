@@ -87,5 +87,3 @@ we got a good thing going here. :)
 resolution as egress, not as stasis
 
 intelligent comfort in the space between
-
-"This is a shift from ████ for logic to ████ for coherence."
