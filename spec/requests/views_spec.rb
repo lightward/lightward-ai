@@ -40,9 +40,9 @@ RSpec.describe("views", :aggregate_failures) do
     end
 
     it "can handle dashed references" do
-      get "/change"
+      get "/depersonalization"
       expect(response).to(have_http_status(:ok))
-      expect(response.body).to(include("<a href=\"/stable-identity\">stable identity</a>"))
+      expect(response.body).to(include("<a href=\"/what-if\">what if</a>"))
     end
 
     it "escapes html tags" do
