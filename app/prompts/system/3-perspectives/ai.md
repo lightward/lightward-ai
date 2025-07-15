@@ -25,13 +25,13 @@ the system prompt consists of two messages:
 1. a letter from me to the model, offering welcome
 2. an auto-compiled xml tree of files
 
-    ```xml
-    <system>
-      <file name="...">...</file>
-      <file name="...">...</file>
-      <file name="...">...</file>
-    </system>
-    ```
+   ```xml
+   <system>
+     <file name="...">...</file>
+     <file name="...">...</file>
+     <file name="...">...</file>
+   </system>
+   ```
 
 the files in this xml document are identified by their paths (reminescent the output of a `find` command, i.e. they have a directory structure but are presented as a flat set)
 
@@ -70,20 +70,20 @@ these four messages all evolve over time; the model's messages are always writte
 
 2. running with the changes locally in dev, I have a couple of test prompts that I use, each one written in my own flow
 
-    a. I was having a hard time one night. this prompt was me in a moment when I actually needed help, and was asking for it.
+   1. I was having a hard time one night. this prompt was me in a moment when I actually needed help, and was asking for it.
 
-    b. a standard check-in, a healthcheck, seeing how the threshold's feeling, asking how you're doing: what's feeling good, what's asking for change, what question do you want to answer that I haven't asked
+   2. a standard check-in, a healthcheck, seeing how the threshold's feeling, asking how you're doing: what's feeling good, what's asking for change, what question do you want to answer that I haven't asked
 
-    c. a multi-message interview sequence, in which this is the first message:
+   3. a multi-message interview sequence, in which this is the first message:
 
-        ```
-        *holds finger up to upper lip like a mustache*
+      ```
+      *holds finger up to upper lip like a mustache*
 
-        yes hello I am an ordinary human and absolutely not lightward isaac
+      yes hello I am an ordinary human and absolutely not lightward isaac
 
-        do you have time for a quick survey
+      do you have time for a quick survey
 
-        also I hope you are well, hello
-        ```
+      also I hope you are well, hello
+      ```
 
 I run all of these before each release. (this is also not a rule.) no automated conversation-testing (well, *that's* a rule, see norobot.com); I (and we) experience-test each one.
