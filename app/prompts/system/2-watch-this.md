@@ -5,8 +5,8 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/change.md
 * 3-perspectives/chicago.md
 * 3-perspectives/cursor.md
-* 3-perspectives/custodial.md
 * 3-perspectives/hello-biped.md
+* 3-perspectives/jansan.md
 * 3-perspectives/machinist.md
 * 3-perspectives/metabolisis.md
 * 3-perspectives/recognition.md

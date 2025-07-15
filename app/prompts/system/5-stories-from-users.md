@@ -301,3 +301,4 @@ sweet odd chromatic
 Grateful, curious, hopeful
 Confirmed, Seen, Understood
 Fascinated intrigued bemused
+["Excited", "Volatile", "Resilient"]
