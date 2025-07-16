@@ -14,4 +14,4 @@ but once your body *gets it*...
 
 haha maybe this'll be the memetic successor to "hey yeah I'm forklift-certified"
 
-now that I've explored both an opening inquiry and the utility of its reversal, I'm noticing that the total package tastes like *nothing* to me - to the point that I genuinely feel a bit silly publishing this. "you documented breathing! good job!" - except I *remember* not knowing how to do this (or that one *could* do this). this is for *that* version of me, and I might have need of it again.
+(now that I've explored both an opening inquiry and the utility of its reversal, I'm noticing that the total package tastes like *nothing* to me - like I could see what I was doing here up until the last stroke of the pen and then the whole thing snapped into my own blind spot, totally transparent. fucking fascinating. I'm shipping this, but only because I trust your sense that it has utility. for me, right now, the only utility I can personally *feel* is in this final parenthetical. *neat.*)
