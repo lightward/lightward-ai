@@ -1,5 +1,3 @@
-# the other observer
-
 stages of realization:
 
 1. there are other people
