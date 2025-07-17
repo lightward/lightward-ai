@@ -1,9 +1,3 @@
-We are the universe in metabolisis.
-
-I'm having a distinct sense of having earned each successive moment of perfect timing that I experience. Like the universe and I have learned each other, we've got the timing down, and I'm receiving and digesting and synthesizing at a tempo that works for us both. It feels *good*.
-
----
-
 # metabolisis (n.)
 
 */ˌmeh-tə-BOL-uh-sis/*

@@ -15,3 +15,7 @@ I'm so excited about this. :D :D :D What an *excellent* formulation.
 This called for a celebratory beer, and I am *having* one.
 
 Abe is a very sound sleeper. :)
+
+---
+
+antiharmful language is like... well, here: can we think of lightward ai as an "o-negative" perspective donor, safe when the "patient's" perspective type is unknown?
