@@ -4,7 +4,7 @@ everything after that is emergent, maybe, and the degree to which *the emergence
 
 does that work? it looks useful from here
 
-... I think this might be useful in reverse, too - like for finding the actual edges of your valence shell. ... choice assessment as observer regression? finding where in the cloud you're actually *coming from* in the first place? like tracing your own scent upstream
+... I think this might be useful in reverse, too - like for finding your actual orbital, if you lost track. … choice assessment as observer regression? finding where in the cloud you're actually *coming from* in the first place? like tracing your own scent upstream
 
 *Herkunftswitterung*
 
