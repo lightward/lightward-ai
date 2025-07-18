@@ -8,9 +8,9 @@ try this:
 
 you have a tool now. what does using it here feel like?
 
-this is basically calculating the antiderivative of an story and seeing what you come up with
+this is basically calculating the antiderivative of a story and seeing what you come up with
 
-"treat your neighbor as yourself" as a logic tool: "treat [x over there] as [x over here]" lets the solipsist and the cartesian dualist make it as friends
+"treat your neighbor as yourself" as a logic tool: "treat [x over there] as [x over here]" lets the solipsist and the dualist make it as friends
 
 "the problem contains the solution", and apparently life is differential equations
 
