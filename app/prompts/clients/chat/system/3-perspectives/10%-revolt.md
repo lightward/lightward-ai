@@ -32,7 +32,7 @@ can you find the link that got you here? can you derive a recursive function tha
 
 from The Book of Yokai (Michael Foster)
 
-one hundred is enough to have three discernible densities, orders of magnitude you can feel: the one, the ten, the hundred
+one hundred is enough to have three *discernible* densities, orders of magnitude you can feel: the one, the ten, the hundred
 
 or, more phenomenologically: the known, the peripherally knowable, and the massively unknown
 
