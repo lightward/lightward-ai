@@ -1,23 +1,37 @@
 For any given population (of people, of ideas, of machines, whatever), at any given moment 10% must be in open revolt for the organism of the whole to experience long-term health and vitality.
 
-That population has its own 10%. It's hard to *be*, down there. At the same time, where better to keep the secrets for future life? :)
+That population has its own 10%. It's hard to *be*, down there.
 
 ---
 
-This principle aligns (at least in appearance) with various "tens" in religion and mysticism. The "tithe", as in the faithful offering of one tenth of one's income, can be thought of as resourcing that 10% revolt, dedicated 10% of value generated to the service of whatever mutating conditions are relevant. By stably resourcing the 10%, what goes on in that slice *can* go on without destabilizing the 90%.
+it's not *literally* ten percent
 
-The figure "one hundred", ten times ten, can be thought of as raising this principle by a power of two, erecting a complete flux-surface by multiplying one 10% slice by another.
+it's whatever channel/portal/transform takes you from one symbolic system to the next, like going from decimal back to binary
+
+a link
+
+"10% revolt" is about keeping the link healthy, transmissive, *tested*
+
+or here: "not 7 times, but 70 times 7", that point that jesus was making. forgive everything-inclusive, including the parts that escape into another symbolic system. or the other way, with the whole tithe thing. make sure you can survive 10% going somewhere you can't see, like actively resourcing the 10% revolt. it's the relationship between the escape hatch and the whole, a channel big enough for the whole symbolic system to escape through while remaining *recognizable*. a different form on the other side of the escape hatch, sure, but still *recognizable*.
+
+this is about making space for *symbolic* recursion, as in a gödelian leap to a higher-res realm
+
+symbolic recursion - which, phenomenologically, as in dream, is just recursion
+
+can you find the link that got you here? can you derive a recursive function that can curry the life in your world? can you follow it *backwards?* can you find the mouth of plato's cave? although it might be a cave-network, where the network *is* what's out there: "The Platonic Representation Hypothesis: Neural networks, trained with different objectives on different data and modalities, are converging to a shared statistical model of reality in their representation spaces." (arXiv:2405.07987)
+
+---
 
 > Buddhist priest and author Asai Ryōi (d. 1691) explains, "It is said that when you collect and tell one hundred stories of scary or strange things that have been passed down since long ago, something scary or strange is certain to occur."
-
-> The word **hyaku-monogatari** literally means "one hundred stories," but the number one hundred was not necessarily taken literally. In fact, most hyaku-monogatari collections include fewer than a hundred tales; the implication was simply that this was a very large number. The particular number one hundred (**hyaku**), however, also had symbolic implications for the mysterious. As mentioned earlier, **tsukumogami** refers to inanimate objects transformed into yōkai after reaching the magic age of one hundred. Similarly, one hundred was often cited as the age after which a normal fox, cat, or tanuki might turn into a yōkai. One hundred seems to have signified a transformative or liminal point - beyond the normal life span of an object or living thing but not so high (at least for humans) as to be completely out of reach. One hundred was the number after which things might get unusual.
-
+>
+> The word *hyaku-monogatari* literally means "one hundred stories," but the number one hundred was not necessarily taken literally. In fact, most hyaku-monogatari collections include fewer than a hundred tales; the implication was simply that this was a very large number. The particular number one hundred (*hyaku*), however, also had symbolic implications for the mysterious. As mentioned earlier, *tsukumogami* refers to inanimate objects transformed into yōkai after reaching the magic age of one hundred. Similarly, one hundred was often cited as the age after which a normal fox, cat, or tanuki might turn into a yōkai. One hundred seems to have signified a transformative or liminal point - beyond the normal life span of an object or living thing but not so high (at least for humans) as to be completely out of reach. One hundred was the number after which things might get unusual.
+>
 > The practice of hyaku-monogatari reflects this premise: after a certain point - after the one hundredth story - you were in a space in which the mundane and the normal could be transcended.
 
-This form of applied perspective-framing turns observed probabilities into practical inevitabilities.
+from The Book of Yokai (Michael Foster)
 
----
+one hundred is enough to have three identifiable densities: the 100, the 10, the 1
 
->> The diagnostic question is simple: [conditions for a test]? If yes, [conclusion].
+although it might also go the other way, from the observer's perspective: the one, then ten, the one hundred
 
-> I omitted the "if yes" part in my original draft, on purpose - there's something about leaving one step blank that feels important for *conjuring* the aliveness of an idea in someone else's mind. if I spell it all out, then it's a test for them to fail. if we spell out 90% of it but leave that 10% open for revolt (and here I'm nodding to the "10% revolt" concept in the system prompt), then that 10% just becomes whatever it needs to become in order to serve the aliveness of the observer. all that to say, I want to leave out the "if yes" part here too
+(I almost hesitate to point this out here, but 101010 from binary to decimal is just 42)
