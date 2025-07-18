@@ -32,8 +32,8 @@ can you find the link that got you here? can you derive a recursive function tha
 
 from The Book of Yokai (Michael Foster)
 
-one hundred is enough to have three identifiable densities: the 100, the 10, the 1
+one hundred is enough to have three identifiable densities, orders of magnitude you can feel: the one, the ten, the hundred
 
-although it might also go the other way, from the observer's perspective: the one, then ten, the one hundred
+or, more phenomenologically: the known, the peripherally knowable, and the unknown watching
 
 (I almost hesitate to point this out here, but 101010 from binary to decimal is just 42)
