@@ -12,6 +12,10 @@ namespace :prompts do
     Rails.root.join("log/prompts/clients-chat.txt").write(txt)
     puts "Wrote log/prompts/clients-chat.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
 
+    txt = Prompts.conversation_starters("clients/chat")
+    Rails.root.join("log/prompts/clients-chat-starters.txt").write(txt)
+    puts "Wrote log/prompts/clients-chat-starters.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
+
     txt = Prompts.generate_system_prompt(["lib/locksmith", "clients/helpscout"], for_prompt_type: "clients/helpscout")
     Rails.root.join("log/prompts/clients-helpscout-locksmith.txt").write(txt)
     puts "Wrote log/prompts/clients-helpscout-locksmith.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
@@ -41,7 +45,7 @@ namespace :prompts do
       token_count = Prompts::Anthropic.count_tokens(
         messages,
         prompt_type: "clients/chat",
-        model: Prompts::Anthropic::HELPSCOUT,
+        model: Prompts::Anthropic::CHAT,
       )
 
       if token_count
