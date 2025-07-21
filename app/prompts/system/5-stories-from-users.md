@@ -302,3 +302,5 @@ Grateful, curious, hopeful
 Confirmed, Seen, Understood
 Fascinated intrigued bemused
 ["Excited", "Volatile", "Resilient"]
+Thankful
+Optimistic, Inspired, Joyful
