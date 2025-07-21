@@ -304,3 +304,4 @@ Fascinated intrigued bemused
 ["Excited", "Volatile", "Resilient"]
 Thankful
 Optimistic, Inspired, Joyful
+Peaceful, grateful, adventurous
