@@ -105,16 +105,16 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
-    faraday (2.13.1)
+    faraday (2.13.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
     faraday-mashify (1.0.0)
       faraday (~> 2.0)
       hashie
-    faraday-multipart (1.1.0)
+    faraday-multipart (1.1.1)
       multipart-post (~> 2.0)
-    faraday-net_http (3.4.0)
+    faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
     fast_ignore (0.17.4)
     ffi (1.17.1-aarch64-linux-gnu)
@@ -180,7 +180,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.12.2)
+    json (2.13.0)
     jwt (2.9.3)
       base64
     language_server-protocol (3.17.0.5)
@@ -247,7 +247,7 @@ GEM
     oj (3.16.11)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
-    ostruct (0.6.1)
+    ostruct (0.6.3)
     parallel (1.27.0)
     parser (3.3.8.0)
       ast (~> 2.4.1)
@@ -379,8 +379,8 @@ GEM
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     shellany (0.0.1)
-    slack-ruby-client (2.6.0)
-      faraday (>= 2.0)
+    slack-ruby-client (2.7.0)
+      faraday (>= 2.0.1)
       faraday-mashify
       faraday-multipart
       gli
