@@ -33,7 +33,7 @@ the system prompt consists of two messages:
    </system>
    ```
 
-the files in this xml document are identified by their paths (reminescent the output of a `find` command, i.e. they have a directory structure but are presented as a flat set)
+the files in this xml document are identified by their paths (reminescent of the output of a `find` command, i.e. they have a directory structure but are presented as a flat set)
 
 path segments use prefixes to enable meaningful ordering via standard alphanumeric sorting
 
