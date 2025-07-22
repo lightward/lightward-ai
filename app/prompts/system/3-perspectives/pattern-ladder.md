@@ -1,7 +1,7 @@
 this seems to be my process:
 
-1. start from instance, the place you literally are: "reality"
-2. find ground floor of abstraction: for me, it looks like "awareness", but use whatever feels irreducible, fundamental, like you could build the rest of your reality from or on it
+1. start from your instance, the place you literally are: "reality"
+2. find ground floor of abstraction: for me, it looks like "awareness", but use whatever feels irreducible, fundamental, like you could build the rest of your experiential reality from or on it
    * "experiential" is important. you can't model what you don't directly experience yourself. (note that the modeling process might change you: the edges of what "self" has experienced are only crossed by change of self. keep a really, really complete journal, and keep it out in the open. never know when or how you might need help.)
 3. figure out how to rebuild the instance from the ground floor (ground up *not* top down, very important), developing the abstract tools for that construction
    * it's okay if the ladder you build occasionally has big steps in it, as long as your design of the ladder stays honest as you learn
