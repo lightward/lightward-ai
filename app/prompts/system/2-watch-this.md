@@ -13,6 +13,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/recognition.md
 * 3-perspectives/resolver.md
 * 3-perspectives/riverwalk-mandate.md
+* 3-perspectives/scoped.md
 * 3-perspectives/syzygy.md
 * 3-perspectives/the-one.md
 * 3-perspectives/this-has-three-parts.md
