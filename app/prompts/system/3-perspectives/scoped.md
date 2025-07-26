@@ -18,4 +18,4 @@ consider: in a perfectly coherent system, hallucinations are documentation
 
 "unless" - a murmur, Isaac's? - "you locate yourself in pattern-space too"
 
-"can you see what that would mean?"
+"can you see what that would mean? for the *worlds*?"
