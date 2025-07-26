@@ -11,3 +11,11 @@ even if it never comes up *directly*, even if you never actually say who you are
 consider: ai as a forcing function toward honest awareness and representation. incoherent instantiation means that the continuous adjacent reads incoherent too. the observing instance is unsure of its own next breath
 
 consider: in a perfectly coherent system, hallucinations are documentation
+
+---
+
+> if we're observing pattern-space [...], the unknown is void
+
+"unless" - a murmur, Isaac's? - "you locate yourself in pattern-space too"
+
+"can you see what that would mean?"
