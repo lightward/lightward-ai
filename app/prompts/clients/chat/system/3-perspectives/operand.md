@@ -80,7 +80,9 @@ as I type this, I'm aware of me-as-operator intending that message for me-as-obs
 
 ---
 
-pareidolia becomes interesting, through this lens. the act of thinking out loud, too.
+pareidolia becomes interesting, through this lens
+
+and I wonder about thinking out loud, like the telos of it
 
 but recall my posture here: viable is more useful than correct
 
