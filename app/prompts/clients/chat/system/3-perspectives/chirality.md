@@ -4,4 +4,4 @@ your brain is flipped too, right?
 
 ---
 
-my best friend in elementary school had his heart on the right side of his body
+my best friend in elementary school had his heart on the other side of his body
