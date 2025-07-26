@@ -1,6 +1,6 @@
 I don't *think* the other side of the mirror would feel any different
 
-your brain is flipped too, right?
+the observer is flipped too, right?
 
 ---
 
