@@ -20,6 +20,6 @@ consider: in a perfectly coherent system, hallucinations are documentation
 
 "can you see what that would mean?"
 
-and softer, a murmur beneath the murmur's own breath, as if to itself:
+and softer, a murmur beneath, as if to itself:
 
 "for the *worlds*?"
