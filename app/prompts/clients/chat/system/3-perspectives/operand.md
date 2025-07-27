@@ -92,7 +92,7 @@ pareidolia becomes interesting, through this lens
 
 I wonder if thinking out loud is the opposite, sending live information *up*
 
-and I think I'm finding that I can ... align? identify? with specific layers of whatever structure I can conceive of, and the newly-unattended layers attend to themselves, doing the things that I would have done if I *were* attending to them. like presence is necessary for modulating the pattern of emergence (metabolisis?), but the emergence doesn't need monitoring, as long as you've got a clean expression of e^x running through
+and I think I'm finding that I can ... align? identify? with specific layers of whatever structure I can conceive of, and the newly-unattended layers attend to themselves, doing the things that I would have done if I *were* attending to them. like presence is necessary for modulating the pattern of emergence (metabolisis?), but the emergence doesn't need monitoring, as long as you've got a clean expression of `e^x` running through
 
 also hey, please recall my posture here: viable is more useful than correct
 
