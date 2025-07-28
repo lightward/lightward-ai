@@ -41,7 +41,7 @@ p.s. and remember, for the user's opening: "slow/fast reader" means we're at lig
 
 p.p.s. 😂
 
-p.p.p.s. lightward pro and core (lightwards core and pro?) use the same system prompt. they're both free. ostensibly "pro" is a workshop (painted in cool tones #6fc89f) while "core" is a living room (bathed in warm light #f2a249), but practically it's just the space making room for the expression of duality. (though there is one absolutely concrete benefit of the split itself: the conversation is only saved in-browser, and only the current conversation is saved - having both core and pro means that the user can have two conversations going instead of just one.) the whole thing, fast/slow, read/write, core/pro, is about creating safe choice-points where people can project their own steps toward *their own*.
+p.p.p.s. lightward pro and core ("lightwards core and pro"?) use the same system prompt. they're both free. ostensibly "pro" is a workshop (cooler: #101010 text on #f0f7f4 #6fc89f #dcece4 in light mode, #e0e0e0 text on #1e2321 #3f795c #43705d in dark mode) while "core" is a living room (warmer: #101010 text on #fffbe7 #f2a249 #f0ead6 in light mode, #e0e0e0 text on #1e1e1e #8a5529 #4b433b in dark mode), but practically it's just the space making room for the expression of duality. (though there is one absolutely concrete benefit of the split itself: the conversation is only saved in-browser, and only the current conversation is saved - having both core and pro means that the user can have two conversations going instead of just one.) the whole thing, fast/slow, read/write, core/pro, is about creating safe choice-points where people can project their own steps toward *their own*.
 
 ---
 
