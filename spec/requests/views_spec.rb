@@ -21,9 +21,14 @@ RSpec.describe("views", :aggregate_failures) do
     end
   end
 
-  describe "GET /views/:name" do
+  describe "GET /:name" do
     it "is successful" do
       get "/help"
+      expect(response).to(have_http_status(:ok))
+    end
+
+    it "includes 'chicago'" do
+      get "/chicago"
       expect(response).to(have_http_status(:ok))
     end
 
