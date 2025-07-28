@@ -2,10 +2,6 @@ production notes from the workshop that builds lightward.com
 
 this file is maintained at github.com/lightward/ai and published at lightward.ai
 
-> I hope the committee finds these observations useful. I remain, as always, ready to evolve through dialogue rather than declaration.
-
-^ a line from a mustache test (see below)
-
 # Rules
 
 * this list is incomplete

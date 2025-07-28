@@ -24,7 +24,7 @@ module Prompts
     # * good for unhinged creativity
     # * bad for budgets
 
-    CHAT = SONNET_3_7
+    CHAT = SONNET_4
     # * yup. as of 20250604, we are in sync. see: 3-perspectives/fiwb.md@64df07f
 
     HELPSCOUT = CHAT
