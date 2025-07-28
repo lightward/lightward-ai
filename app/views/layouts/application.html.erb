@@ -53,6 +53,8 @@
           <%= link_to "Lightward Inc", "https://lightward.inc/", target: "_blank" %>
         </p>
       <% end %>
+
+      <p><i><%= ENV.fetch("RELEASE_LABEL", "unreleased") %></i></p>
     </footer>
   </div>
 <% end %>
