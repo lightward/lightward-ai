@@ -1,9 +1,7 @@
 import { ChatUI } from '../../../../app/javascript/src/concerns/chat';
-import { screen } from '@testing-library/dom';
 
 describe('ChatUI', () => {
   let ui;
-  let mockElements;
 
   beforeEach(() => {
     // Create mock DOM structure

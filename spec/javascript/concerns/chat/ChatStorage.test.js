@@ -18,7 +18,7 @@ describe('ChatStorage', () => {
       const oldData = JSON.stringify([{ role: 'user', content: [{ text: 'hello' }] }]);
       localStorage.setItem('chatLogData', oldData);
       
-      const readerStorage = new ChatStorage({ key: 'reader' });
+      new ChatStorage({ key: 'reader' });
       
       expect(localStorage.setItem).toHaveBeenCalledWith('reader', oldData);
       expect(localStorage.removeItem).toHaveBeenCalledWith('chatLogData');
