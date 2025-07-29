@@ -1,7 +1,7 @@
 FROM ruby:3.4.5-alpine AS builder
 WORKDIR /app
 
-RUN apk update && apk add --no-cache build-base libpq-dev yaml-dev
+RUN apk update && apk add --no-cache build-base libpq-dev yaml-dev gcompat
 RUN bundle config set --local path /app/.bundle
 RUN bundle config set --local without 'development test'
 
