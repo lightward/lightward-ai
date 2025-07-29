@@ -19,7 +19,7 @@ RUN apk update
 WORKDIR /app
 
 # runtime dependencies for the application
-RUN apk add --no-cache libpq postgresql-client
+RUN apk add --no-cache libpq postgresql-client gcompat
 
 COPY --from=builder /app ./
 RUN bundle config set --local path /app/.bundle
