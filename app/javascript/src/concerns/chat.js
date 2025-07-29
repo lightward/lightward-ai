@@ -255,6 +255,18 @@ export class MessageStreamController {
     this._checkCompletion();
   }
 
+  flush() {
+    // Immediately process all queued chunks without delays
+    while (this.queue.length > 0) {
+      const chunk = this.queue.shift();
+      if (this.currentElement) {
+        const textNode = document.createTextNode(chunk);
+        this.currentElement.appendChild(textNode);
+      }
+    }
+    this.lastUpdateTime = Date.now();
+  }
+
   _processQueue() {
     if (this.isProcessing || this.queue.length === 0) {
       this._checkCompletion();
@@ -631,6 +643,15 @@ export class ChatSession {
   }
 
   _completeMessageWithError() {
+    // Flush any pending message chunks immediately
+    this.streamController.flush();
+
+    // Stop any loading animations
+    this.ui.stopPulsingLoading(this.currentAssistantElement);
+    
+    // Save the error message
+    this._saveAssistantMessage();
+
     this.ui.enableUserInput(true);
     this.ui.showResponseSuggestions();
     this.storage.saveScrollPosition();
