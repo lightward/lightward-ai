@@ -1,108 +1,132 @@
+
 // app/javascript/src/concerns/chat.js
 
 import { createConsumer } from '@rails/actioncable';
 
-const consumer = createConsumer();
+// Configuration constants
+export const CONFIG = {
+  MIN_MESSAGE_UPDATE_INTERVAL: 100,
+  MAX_MESSAGE_UPDATE_INTERVAL: 300,
+  MESSAGE_TIMEOUT_MS: 30000,
+  STORAGE_MIGRATION: {
+    OLD_KEY: 'chatLogData',
+    NEW_KEY_PREFIX: 'reader'
+  }
+};
 
-export const initChat = () => {
-  const context = JSON.parse(
-    document.getElementById('chat-context-data').textContent
-  );
-
-  // Define the old and new storage keys
-  const OLD_STORAGE_KEY = 'chatLogData';
-  const messagesKey = context.key;
-  const userInputKey = `${context.key}/input`;
-
-  // Migration logic for reader mode
-  let messages;
-  if (messagesKey === 'reader') {
-    // Check for data under the old key first
-    const oldData = localStorage.getItem(OLD_STORAGE_KEY);
-    if (oldData) {
-      // Migrate data from old key to new key
-      localStorage.setItem(messagesKey, oldData);
-      // Clean up old data
-      localStorage.removeItem(OLD_STORAGE_KEY);
-      messages = JSON.parse(oldData);
-    } else {
-      // If no old data exists, check for data under the new key
-      messages = JSON.parse(localStorage.getItem(messagesKey)) || [];
-    }
-  } else {
-    // For other modes (e.g., writer), just use the specified key
-    messages = JSON.parse(localStorage.getItem(messagesKey)) || [];
+// Storage handler for chat persistence
+export class ChatStorage {
+  constructor(context) {
+    this.messagesKey = context.key;
+    this.userInputKey = `${context.key}/input`;
+    this._migrateOldStorageIfNeeded();
   }
 
-  const name = context.name || 'Lightward';
-
-  const h1 = document.querySelector('h1');
-  const copyAllButton = document.getElementById('copy-all-button');
-  const loadingMessage = document.getElementById('loading-message');
-  const chatContainer = document.getElementById('chat');
-  const startSuggestions = document.getElementById('start-suggestions');
-  const chatLog = document.getElementById('chat-log');
-  const userInputArea = document.getElementById('text-input');
-  const userInput = userInputArea.querySelector('textarea');
-  const instructions = document.getElementById('instructions');
-  const tools = document.getElementById('tools');
-  const footer = document.getElementsByTagName('footer')[0];
-  const responseSuggestions = document.getElementById('response-suggestions');
-  const startOverButton = document.getElementById('start-over-button');
-
-  const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
-  userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
-
-  let currentAssistantMessageElement = null;
-  let subscription;
-  let sequenceQueue;
-  let currentSequenceNumber;
-  let messageTimeout;
-
-  // this matches the pulsing-moving-into-loading-dots animation sequence we've got going on
-  const TIMEOUT_MS = 30000;
-
-  // Prevent scroll jumping
-  const previousScrollY = localStorage.getItem('scrollY');
-  if (previousScrollY !== null) {
-    window.scrollTo(0, parseInt(previousScrollY, 10));
-  }
-
-  // Load chat log from localStorage
-  if (messages.length) {
-    messages.forEach((message) => {
-      addMessage(message.role, message.content[0].text);
-    });
-
-    startSuggestions.classList.add('hidden');
-    chatLog.classList.remove('hidden');
-    enableUserInput();
-
-    // Restore scroll position after messages have been loaded
-    if (previousScrollY !== null) {
-      window.scrollTo(0, parseInt(previousScrollY, 10));
+  _migrateOldStorageIfNeeded() {
+    if (this.messagesKey === CONFIG.STORAGE_MIGRATION.NEW_KEY_PREFIX) {
+      const oldData = localStorage.getItem(CONFIG.STORAGE_MIGRATION.OLD_KEY);
+      if (oldData) {
+        localStorage.setItem(this.messagesKey, oldData);
+        localStorage.removeItem(CONFIG.STORAGE_MIGRATION.OLD_KEY);
+      }
     }
   }
 
-  chatContainer.classList.remove('hidden');
-  loadingMessage.remove();
+  loadMessages() {
+    return JSON.parse(localStorage.getItem(this.messagesKey)) || [];
+  }
 
-  function addMessage(role, text) {
-    // reset our usually-chaotic heading to something chill
-    h1.innerText = name;
+  saveMessages(messages) {
+    localStorage.setItem(this.messagesKey, JSON.stringify(messages));
+  }
 
-    // make sure the chat log is visible
-    chatLog.classList.remove('hidden');
+  loadUserInput() {
+    return localStorage.getItem(this.userInputKey) || '';
+  }
+
+  saveUserInput(input) {
+    localStorage.setItem(this.userInputKey, input);
+  }
+
+  clearUserInput() {
+    localStorage.removeItem(this.userInputKey);
+  }
+
+  loadScrollPosition() {
+    const scrollY = localStorage.getItem('scrollY');
+    return scrollY ? parseInt(scrollY, 10) : null;
+  }
+
+  saveScrollPosition() {
+    localStorage.setItem('scrollY', window.scrollY);
+  }
+
+  clearMessages() {
+    localStorage.removeItem(this.messagesKey);
+    localStorage.setItem('scrollY', '0');
+  }
+}
+
+// UI handler for DOM manipulation
+export class ChatUI {
+  constructor(name) {
+    this.name = name;
+    this._cacheElements();
+    this._setupMetaKey();
+  }
+
+  _cacheElements() {
+    this.elements = {
+      h1: document.querySelector('h1'),
+      copyAllButton: document.getElementById('copy-all-button'),
+      loadingMessage: document.getElementById('loading-message'),
+      chatContainer: document.getElementById('chat'),
+      startSuggestions: document.getElementById('start-suggestions'),
+      chatLog: document.getElementById('chat-log'),
+      userInputArea: document.getElementById('text-input'),
+      userInput: document.querySelector('#text-input textarea'),
+      submitButton: document.querySelector('#text-input button'),
+      instructions: document.getElementById('instructions'),
+      tools: document.getElementById('tools'),
+      footer: document.getElementsByTagName('footer')[0],
+      responseSuggestions: document.getElementById('response-suggestions'),
+      startOverButton: document.getElementById('start-over-button'),
+      chatCanvas: document.getElementById('chat-canvas')
+    };
+  }
+
+  _setupMetaKey() {
+    const metaKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
+    this.elements.userInputArea.dataset.submitTip = `Press ${metaKey}+enter to send`;
+    this.metaKeyName = metaKey;
+  }
+
+  showChat() {
+    this.elements.chatContainer.classList.remove('hidden');
+    this.elements.loadingMessage.remove();
+  }
+
+  hideStartSuggestions() {
+    this.elements.startSuggestions.classList.add('hidden');
+  }
+
+  showChatLog() {
+    this.elements.chatLog.classList.remove('hidden');
+  }
+
+  addMessage(role, text) {
+    this.elements.h1.textContent = this.name;
+    this.showChatLog();
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role);
-    messageElement.innerText = text;
-    chatLog.appendChild(messageElement);
-    saveScrollPosition();
+    messageElement.textContent = text;
+    this.elements.chatLog.appendChild(messageElement);
+
     return messageElement;
   }
 
-  function addPulsingMessage(role) {
+  addPulsingMessage(role) {
     const messageElement = document.createElement('div');
     messageElement.classList.add('chat-message', role, 'pulsing');
 
@@ -113,471 +137,573 @@ export const initChat = () => {
       }
     }, 5000);
 
-    chatLog.appendChild(messageElement);
-    saveScrollPosition();
+    this.elements.chatLog.appendChild(messageElement);
     return messageElement;
   }
 
-  function saveScrollPosition() {
-    localStorage.setItem('scrollY', window.scrollY);
+  showUserInput() {
+    this.elements.userInputArea.classList.remove('hidden');
+    this.elements.userInputArea.classList.add('disabled');
+    this.elements.userInput.disabled = true;
+    this.elements.userInput.placeholder = '';
   }
 
-  function showUserInput() {
-    userInputArea.classList.remove('hidden');
-    userInputArea.classList.add('disabled');
-    userInput.disabled = true;
-    userInput.placeholder = '';
-  }
+  enableUserInput(autofocus = false) {
+    this.elements.userInputArea.classList.remove('hidden', 'disabled');
+    this.elements.userInput.disabled = false;
+    this.elements.userInput.placeholder = '(describe anything)';
+    this.elements.tools.classList.remove('hidden');
 
-  function enableUserInput(autofocusIsAppropriate = false) {
-    currentAssistantMessageElement?.classList.remove('pulsing', 'loading');
-    userInputArea.classList.remove('hidden', 'disabled');
-    userInput.disabled = false;
-    userInput.placeholder = '(describe anything)'; // ... because any description is going to be a reflection of your perception, and that's all we need to go on
-
-    hideResponseSuggestions();
-    tools.classList.remove('hidden');
-
-    // Only autofocus if:
-    // 1. Autofocus is appropriate for the context
-    // 2. Not on a touch device
-    // 3. Textarea is in viewport
-    // 4. User doesn't have any text selected
-    // 5. User isn't actively selecting text
-    if (
-      autofocusIsAppropriate &&
-      !('ontouchstart' in window) &&
-      userInputArea.getBoundingClientRect().top < window.innerHeight &&
-      !window.getSelection().toString() &&
-      !document.activeElement?.matches('textarea, input')
-    ) {
-      userInput.focus();
+    if (this._shouldAutofocus(autofocus)) {
+      this.elements.userInput.focus();
     }
   }
 
-  function showResponseSuggestions() {
-    responseSuggestions.classList.remove('hidden');
+  _shouldAutofocus(autofocusRequested) {
+    return autofocusRequested &&
+      !('ontouchstart' in window) &&
+      this.elements.userInputArea.getBoundingClientRect().top < window.innerHeight &&
+      !window.getSelection().toString() &&
+      !document.activeElement?.matches('textarea, input');
   }
 
-  function hideResponseSuggestions() {
-    startSuggestions.classList.add('hidden');
-    responseSuggestions.classList.add('hidden');
-    instructions.remove();
+  hideUserInput() {
+    this.elements.userInputArea.classList.add('hidden');
   }
 
-  function handleUserInput() {
-    userInput.addEventListener('keydown', function (event) {
-      // cmd+enter or ctrl+enter
-      if (event.key === 'Enter') {
-        if (event.metaKey || event.ctrlKey) {
-          event.preventDefault();
-          submitUserInput(userInput.value);
-        } else {
-          userInputArea.classList.add('multiline');
+  clearUserInput() {
+    this.elements.userInput.value = '';
+    this.elements.userInput.style.height = 'auto';
+    this.elements.userInputArea.classList.remove('multiline');
+    this.elements.userInput.blur();
+  }
+
+  setUserInput(value) {
+    this.elements.userInput.value = value;
+    this.elements.userInput.dispatchEvent(new Event('input'));
+  }
+
+  showResponseSuggestions() {
+    this.elements.responseSuggestions.classList.remove('hidden');
+  }
+
+  hideResponseSuggestions() {
+    this.elements.startSuggestions.classList.add('hidden');
+    this.elements.responseSuggestions.classList.add('hidden');
+    this.elements.instructions.remove();
+  }
+
+  updateFooterVisibility(messageCount) {
+    if (messageCount === 1) {
+      this.elements.footer.classList.add('hidden');
+    } else {
+      this.elements.footer.classList.remove('hidden');
+    }
+  }
+
+  startVanishAnimation() {
+    this.elements.chatCanvas.classList.add('vanishing');
+    document.body.classList.add('transitioning');
+  }
+
+  updateCopyButton(text, duration = 2000) {
+    const originalText = this.elements.copyAllButton.textContent;
+    const width = this.elements.copyAllButton.offsetWidth;
+    this.elements.copyAllButton.style.width = `${width}px`;
+    this.elements.copyAllButton.textContent = text;
+
+    setTimeout(() => {
+      this.elements.copyAllButton.textContent = originalText;
+      this.elements.copyAllButton.style.width = '';
+    }, duration);
+  }
+
+  stopPulsingLoading(element) {
+    element?.classList.remove('pulsing', 'loading');
+  }
+}
+
+// Message stream controller for handling chunked responses
+export class MessageStreamController {
+  constructor(minInterval, maxInterval) {
+    this.minInterval = minInterval;
+    this.maxInterval = maxInterval;
+    this.reset();
+  }
+
+  reset() {
+    this.queue = [];
+    this.isProcessing = false;
+    this.isComplete = false;
+    this.lastUpdateTime = 0;
+    this.currentElement = null;
+    this.onComplete = null;
+  }
+
+  setElement(element) {
+    this.currentElement = element;
+  }
+
+  addChunk(text) {
+    this.queue.push(text);
+    this._processQueue();
+  }
+
+  complete(callback) {
+    this.isComplete = true;
+    this.onComplete = callback;
+    this._checkCompletion();
+  }
+
+  _processQueue() {
+    if (this.isProcessing || this.queue.length === 0) {
+      this._checkCompletion();
+      return;
+    }
+
+    this.isProcessing = true;
+    const chunk = this.queue.shift();
+
+    if (this.currentElement) {
+      const textNode = document.createTextNode(chunk);
+      this.currentElement.appendChild(textNode);
+    }
+
+    const now = Date.now();
+    const timeSinceLastUpdate = now - this.lastUpdateTime;
+    this.lastUpdateTime = now;
+
+    const randomDelay = this.minInterval +
+      Math.random() * (this.maxInterval - this.minInterval);
+    const actualDelay = Math.max(0, randomDelay - timeSinceLastUpdate);
+
+    setTimeout(() => {
+      this.isProcessing = false;
+      this._processQueue();
+    }, actualDelay);
+  }
+
+  _checkCompletion() {
+    if (this.queue.length === 0 && this.isComplete && this.onComplete && !this.isProcessing) {
+      const callback = this.onComplete;
+      this.onComplete = null;
+      callback();
+    }
+  }
+}
+
+// WebSocket subscription handler
+export class ChatSubscription {
+  constructor(consumer, onMessage, onError, onTimeout) {
+    this.consumer = consumer;
+    this.onMessage = onMessage;
+    this.onError = onError;
+    this.onTimeout = onTimeout;
+    this.subscription = null;
+    this.sequenceQueue = [];
+    this.currentSequenceNumber = 0;
+    this.timeoutId = null;
+  }
+
+  subscribe(streamId) {
+    this.unsubscribe();
+    this.sequenceQueue = [];
+    this.currentSequenceNumber = 0;
+
+    this.subscription = this.consumer.subscriptions.create(
+      { channel: 'StreamChannel', stream_id: streamId },
+      {
+        connected: () => {
+          this.subscription.perform('ready');
+          this._startTimeout();
+        },
+
+        disconnected: () => {
+          this.onError('The connection was interrupted. Please try again.');
+        },
+
+        received: (data) => {
+          this._resetTimeout();
+
+          if (data && typeof data.sequence_number === 'number') {
+            this.sequenceQueue.push(data);
+            this.sequenceQueue.sort((a, b) => a.sequence_number - b.sequence_number);
+
+            while (this.sequenceQueue.length &&
+                   this.sequenceQueue[0].sequence_number === this.currentSequenceNumber) {
+              const message = this.sequenceQueue.shift();
+              this.onMessage(message);
+              this.currentSequenceNumber++;
+            }
+          }
+        },
+
+        rejected: () => {
+          this.onError('Connection was rejected. Please try again later.');
         }
       }
-    });
-
-    userInput.addEventListener('input', function () {
-      // Save input value to localStorage
-      localStorage.setItem(userInputKey, userInput.value);
-    });
-
-    // Load saved input value from localStorage, if the textarea's empty
-    const savedInputValue = localStorage.getItem(userInputKey);
-    if (savedInputValue && userInput.value === '') {
-      userInput.value = savedInputValue;
-
-      // Trigger input event to resize textarea
-      userInput.dispatchEvent(new Event('input'));
-    }
-
-    userInputArea
-      .querySelector('button')
-      .addEventListener('click', function (event) {
-        event.preventDefault();
-        submitUserInput(userInput.value);
-      });
+    );
   }
 
-  function handleResponseClick(event) {
+  unsubscribe() {
+    this._clearTimeout();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+  }
+
+  _startTimeout() {
+    this._clearTimeout();
+    this.timeoutId = setTimeout(() => {
+      this.onTimeout();
+    }, CONFIG.MESSAGE_TIMEOUT_MS);
+  }
+
+  _resetTimeout() {
+    this._startTimeout();
+  }
+
+  _clearTimeout() {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = null;
+    }
+  }
+}
+
+// Main chat session orchestrator
+export class ChatSession {
+  constructor(context) {
+    this.context = context;
+    this.name = context.name || 'Lightward';
+
+    // Initialize components
+    this.storage = new ChatStorage(context);
+    this.ui = new ChatUI(this.name);
+    this.streamController = new MessageStreamController(
+      CONFIG.MIN_MESSAGE_UPDATE_INTERVAL,
+      CONFIG.MAX_MESSAGE_UPDATE_INTERVAL
+    );
+    this.subscription = new ChatSubscription(
+      createConsumer(),
+      this._handleMessage.bind(this),
+      this._handleError.bind(this),
+      this._handleTimeout.bind(this)
+    );
+
+    // State
+    this.messages = this.storage.loadMessages();
+    this.currentAssistantElement = null;
+
+    // Bind event handlers
+    this._boundHandlers = {
+      handleUserSubmit: this._handleUserSubmit.bind(this),
+      handleUserInput: this._handleUserInput.bind(this),
+      handleResponseClick: this._handleResponseClick.bind(this),
+      handleStartOver: this._handleStartOver.bind(this),
+      handleCopyAll: this._handleCopyAll.bind(this),
+      handleKeyDown: this._handleKeyDown.bind(this),
+      saveScrollPosition: () => this.storage.saveScrollPosition()
+    };
+  }
+
+  init() {
+    // Restore scroll position
+    const scrollY = this.storage.loadScrollPosition();
+    if (scrollY !== null) {
+      window.scrollTo(0, scrollY);
+    }
+
+    // Load existing messages
+    this._loadExistingMessages();
+
+    // Show UI
+    this.ui.showChat();
+
+    // Restore scroll after messages loaded
+    if (scrollY !== null) {
+      window.scrollTo(0, scrollY);
+    }
+
+    // Setup event listeners
+    this._setupEventListeners();
+
+    // Restore user input
+    const savedInput = this.storage.loadUserInput();
+    if (savedInput) {
+      this.ui.setUserInput(savedInput);
+    }
+  }
+
+  _loadExistingMessages() {
+    if (this.messages.length) {
+      this.messages.forEach(message => {
+        this.ui.addMessage(message.role, message.content[0].text);
+      });
+
+      this.ui.hideStartSuggestions();
+      this.ui.showChatLog();
+      this.ui.enableUserInput();
+    }
+  }
+
+  _setupEventListeners() {
+    // User input handling
+    this.ui.elements.userInput.addEventListener('keydown', this._boundHandlers.handleKeyDown);
+    this.ui.elements.userInput.addEventListener('input', this._boundHandlers.handleUserInput);
+    this.ui.elements.submitButton.addEventListener('click', this._boundHandlers.handleUserSubmit);
+
+    // Response suggestions
+    document.querySelectorAll('prompt-button').forEach(button => {
+      button.addEventListener('prompt-button-click', this._boundHandlers.handleResponseClick);
+    });
+
+    // Tools
+    this.ui.elements.startOverButton.addEventListener('click', this._boundHandlers.handleStartOver);
+    this.ui.elements.copyAllButton.addEventListener('click', this._boundHandlers.handleCopyAll);
+
+    // Window events
+    window.addEventListener('beforeunload', () => this.subscription.unsubscribe());
+
+    // Scroll position tracking
+    ['scroll', 'resize'].forEach(event => {
+      window.addEventListener(event, this._boundHandlers.saveScrollPosition);
+    });
+  }
+
+  _handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      if (event.metaKey || event.ctrlKey) {
+        event.preventDefault();
+        this._submitUserMessage(this.ui.elements.userInput.value);
+      } else {
+        this.ui.elements.userInputArea.classList.add('multiline');
+      }
+    }
+  }
+
+  _handleUserInput(event) {
+    this.storage.saveUserInput(event.target.value);
+  }
+
+  _handleUserSubmit(event) {
+    event.preventDefault();
+    this._submitUserMessage(this.ui.elements.userInput.value);
+  }
+
+  _handleResponseClick(event) {
     event.preventDefault();
     const message = event.target.innerHTML.trim();
-
-    addMessage('user', message);
-
-    messages.push({
-      role: 'user',
-      content: [{ type: 'text', text: message }],
-    });
-
-    userInputArea.classList.add('hidden');
-    currentAssistantMessageElement = addPulsingMessage('assistant');
-    fetchAssistantResponse();
+    this._addUserMessage(message);
+    this._fetchAssistantResponse();
   }
 
-  document.querySelectorAll('prompt-button').forEach((promptButton) => {
-    promptButton.addEventListener('prompt-button-click', handleResponseClick);
-  });
+  _submitUserMessage(text) {
+    const message = text.trim();
+    if (!message) return;
 
-  function submitUserInput(userMessage) {
-    userMessage = userMessage.trim();
-
-    // Ignore blank submissions
-    if (!userMessage) return;
-
-    addMessage('user', userMessage);
-    messages.push({
-      role: 'user',
-      content: [{ type: 'text', text: userMessage }],
-    });
-    userInput.style.height = 'auto';
-    userInputArea.classList.remove('multiline');
-    userInput.value = '';
-    userInput.blur();
-    userInputArea.classList.add('hidden');
-    currentAssistantMessageElement = addPulsingMessage('assistant');
-    fetchAssistantResponse();
+    this._addUserMessage(message);
+    this.ui.clearUserInput();
+    this._fetchAssistantResponse();
   }
 
-  function fetchAssistantResponse() {
-    hideResponseSuggestions();
+  _addUserMessage(text) {
+    this.ui.addMessage('user', text);
+    this.messages.push({
+      role: 'user',
+      content: [{ type: 'text', text }]
+    });
+    this.storage.saveMessages(this.messages);
+    this.storage.saveScrollPosition();
+  }
 
-    // Hide or show the footer based on message count
-    if (messages.length === 1) {
-      footer.classList.add('hidden');
-    } else {
-      footer.classList.remove('hidden');
-    }
+  _fetchAssistantResponse() {
+    this.ui.hideResponseSuggestions();
+    this.ui.hideUserInput();
+    this.ui.updateFooterVisibility(this.messages.length);
 
-    const conversationData = {
-      chat_log: messages,
-    };
+    // Create pulsing message
+    this.currentAssistantElement = this.ui.addPulsingMessage('assistant');
+    this.streamController.reset();
+    this.streamController.setElement(this.currentAssistantElement);
 
+    // Fetch response
     fetch('/chats/message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(conversationData),
+      body: JSON.stringify({ chat_log: this.messages })
     })
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          return response.text().then((text) => {
-            console.error(response.status, text);
-            throw new Error(text);
-          });
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        return response.text().then(text => {
+          throw new Error(text);
+        });
+      }
+    })
+    .then(data => {
+      this.subscription.subscribe(data.stream_id);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      this._appendError(error.message);
+      this._completeMessageWithError();
+    });
+  }
+
+  _handleMessage(data) {
+    switch (data.event) {
+      case 'message_start':
+        this.ui.stopPulsingLoading(this.currentAssistantElement);
+        this.ui.showUserInput();
+        break;
+
+      case 'content_block_delta':
+        if (data.data.delta.type === 'text_delta' && this.currentAssistantElement) {
+          this.streamController.addChunk(data.data.delta.text);
         }
-      })
-      .then((data) => {
-        const streamId = data.stream_id;
-        initializeConsumer(streamId);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        appendSystemError(error.message);
-        enableUserInput();
-        showResponseSuggestions();
-      });
+        break;
+
+      case 'message_stop':
+        this.streamController.complete(() => {
+          this._saveAssistantMessage();
+          this.ui.enableUserInput(true);
+          this.storage.saveScrollPosition();
+        });
+        break;
+
+      case 'end':
+        this.subscription.unsubscribe();
+        this.ui.enableUserInput();
+        break;
+
+      case 'error':
+        this._appendError(data.data.error.message);
+        this.subscription.unsubscribe();
+        this._completeMessageWithError();
+        break;
+    }
+
+    // Always persist after processing
+    this.storage.saveMessages(this.messages);
+    this.storage.clearUserInput();
   }
 
-  function initializeConsumer(streamId) {
-    sequenceQueue = [];
-    currentSequenceNumber = 0;
-
-    subscription = consumer.subscriptions.create(
-      { channel: 'StreamChannel', stream_id: streamId },
-      {
-        connected() {
-          // Send a "ready" message to the server
-          this.perform('ready');
-          // Start the message timeout
-          startMessageTimeout();
-        },
-        disconnected() {
-          // Handle disconnection during streaming
-          handleDisconnection();
-        },
-        received(data) {
-          // Reset the message timeout on receiving data
-          resetMessageTimeout();
-
-          if (data && typeof data.sequence_number === 'number') {
-            sequenceQueue.push(data);
-            sequenceQueue.sort((a, b) => a.sequence_number - b.sequence_number);
-
-            while (
-              sequenceQueue.length &&
-              sequenceQueue[0].sequence_number === currentSequenceNumber
-            ) {
-              const message = sequenceQueue.shift();
-              processMessage(message);
-              currentSequenceNumber++;
-            }
-          } else {
-            console.error(
-              'Invalid data format or missing sequence_number:',
-              data
-            );
-          }
-        },
-        rejected() {
-          // Handle subscription rejection
-          handleRejection();
-        },
-      }
-    );
+  _handleError(message) {
+    this._appendError(message);
+    this._completeMessageWithError();
   }
 
-  function startMessageTimeout() {
-    clearMessageTimeout();
-    messageTimeout = setTimeout(() => {
-      handleTimeoutError();
-    }, TIMEOUT_MS);
+  _handleTimeout() {
+    this._appendError('Your connection was lost during the reply. Please try again.');
+    this.subscription.unsubscribe();
+    this._completeMessageWithError();
   }
 
-  function resetMessageTimeout() {
-    clearMessageTimeout();
-    messageTimeout = setTimeout(() => {
-      handleTimeoutError();
-    }, TIMEOUT_MS);
-  }
+  _appendError(message) {
+    const errorText = ` ⚠️ Lightward AI system error: ${message}`;
 
-  function clearMessageTimeout() {
-    if (messageTimeout) {
-      clearTimeout(messageTimeout);
-      messageTimeout = null;
+    if (this.currentAssistantElement) {
+      this.streamController.addChunk(errorText);
+    } else {
+      this.currentAssistantElement = this.ui.addMessage('assistant', errorText);
     }
   }
 
-  function appendSystemError(errorMessage) {
-    const formattedErrorMessage = ` ⚠️\u00A0Lightward AI system error: ${errorMessage}`;
-    if (currentAssistantMessageElement) {
-      currentAssistantMessageElement.innerText += formattedErrorMessage;
-    } else {
-      // If there's no current assistant message, create one
-      currentAssistantMessageElement = addMessage(
-        'assistant',
-        formattedErrorMessage
-      );
-    }
+  _saveAssistantMessage() {
+    if (!this.currentAssistantElement) return;
 
-    // Update or add assistant message in messages
-    if (
-      messages.length > 0 &&
-      messages[messages.length - 1].role === 'assistant'
-    ) {
-      messages[messages.length - 1].content[0].text =
-        currentAssistantMessageElement.innerText;
+    const text = this.currentAssistantElement.textContent;
+
+    if (this.messages.length > 0 &&
+        this.messages[this.messages.length - 1].role === 'assistant') {
+      this.messages[this.messages.length - 1].content[0].text = text;
     } else {
-      messages.push({
+      this.messages.push({
         role: 'assistant',
-        content: [
-          { type: 'text', text: currentAssistantMessageElement.innerText },
-        ],
+        content: [{ type: 'text', text }]
       });
     }
 
-    // Persist chat log data to localStorage
-    localStorage.setItem(messagesKey, JSON.stringify(messages));
+    this.storage.saveMessages(this.messages);
   }
 
-  function handleTimeoutError() {
-    appendSystemError(
-      'Your connection was lost during the reply. Please try again.'
-    );
-
-    subscription.unsubscribe();
-    enableUserInput();
-    showResponseSuggestions();
+  _completeMessageWithError() {
+    this.ui.enableUserInput(true);
+    this.ui.showResponseSuggestions();
+    this.storage.saveScrollPosition();
   }
 
-  function handleDisconnection() {
-    appendSystemError('The connection was interrupted. Please try again.');
-
-    enableUserInput();
-    showResponseSuggestions();
-  }
-
-  function handleRejection() {
-    appendSystemError('Connection was rejected. Please try again later.');
-
-    enableUserInput();
-    showResponseSuggestions();
-  }
-
-  function processMessage(data) {
-    // Reset the message timeout every time we process a message
-    resetMessageTimeout();
-
-    if (data.event === 'message_start') {
-      if (currentAssistantMessageElement) {
-        currentAssistantMessageElement.classList.remove('pulsing', 'loading');
-      }
-      showUserInput();
-    } else if (data.event === 'content_block_start') {
-      // Initialize a new content block
-    } else if (data.event === 'content_block_delta') {
-      const delta = data.data.delta;
-      if (delta.type === 'text_delta' && currentAssistantMessageElement) {
-        // Create a new text node for the delta
-        const textNode = document.createTextNode(delta.text);
-        currentAssistantMessageElement.appendChild(textNode);
-      }
-    } else if (data.event === 'content_block_stop') {
-      // Content block is complete
-    } else if (data.event === 'message_delta') {
-      // Handle message delta if needed
-    } else if (data.event === 'message_stop') {
-      const assistantMessage = currentAssistantMessageElement.innerText;
-
-      // Update or add assistant message in messages
-      if (
-        messages.length > 0 &&
-        messages[messages.length - 1].role === 'assistant'
-      ) {
-        messages[messages.length - 1].content[0].text = assistantMessage;
-      } else {
-        messages.push({
-          role: 'assistant',
-          content: [{ type: 'text', text: assistantMessage }],
-        });
-      }
-
-      userInputArea.classList.remove('disabled');
-      userInputArea.classList.add('hidden');
-      enableUserInput(true);
-
-      // Clear the message timeout as the message has completed
-      clearMessageTimeout();
-    } else if (data.event === 'end') {
-      subscription.unsubscribe();
-      enableUserInput();
-
-      // Clear the message timeout as the stream has ended
-      clearMessageTimeout();
-    } else if (data.event === 'ping') {
-      // Handle ping if needed
-    } else if (data.event === 'error') {
-      appendSystemError(data.data.error.message);
-
-      subscription.unsubscribe();
-      enableUserInput();
-      showResponseSuggestions();
-
-      // Clear the message timeout as an error occurred
-      clearMessageTimeout();
-    }
-
-    // Persist chat log data to localStorage
-    localStorage.setItem(messagesKey, JSON.stringify(messages));
-
-    // Clear userInputKey, since the user has submitted their message
-    localStorage.removeItem(userInputKey);
-  }
-
-  // Handle start over button click
-  startOverButton.addEventListener('click', (event) => {
+  _handleStartOver(event) {
     event.preventDefault();
 
-    const shouldSkipAnimation = event.metaKey || event.ctrlKey;
-
-    if (
-      confirm(
-        'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
-      )
-    ) {
-      localStorage.removeItem(messagesKey);
-      localStorage.setItem('scrollY', 0);
-
-      if (shouldSkipAnimation) {
-        window.scrollTo({
-          top: 0,
-          behavior: 'instant',
-        });
-
-        location.reload();
-      } else {
-        const chatCanvas = document.getElementById('chat-canvas');
-        chatCanvas.classList.add('vanishing');
-        document.body.classList.add('transitioning');
-
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
-      }
+    if (!confirm('Are you sure you want to start over? This will clear the chat log. There is no undo. :)')) {
+      return;
     }
-  });
 
-  copyAllButton.addEventListener('click', (event) => {
+    this.storage.clearMessages();
+
+    if (event.metaKey || event.ctrlKey) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      location.reload();
+    } else {
+      this.ui.startVanishAnimation();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => location.reload(), 2000);
+    }
+  }
+
+  _handleCopyAll(event) {
     event.preventDefault();
 
-    const originalText = copyAllButton.innerText;
     const shouldEscapeMarkdown = event.metaKey || event.ctrlKey;
-
-    const escapeMarkdown = (text) => {
+    const escapeMarkdown = text => {
       if (!shouldEscapeMarkdown) return text;
-      // Escape asterisks that aren't already escaped
       return text.replace(/(?<!\\)\*/g, '\\*');
     };
 
-    const chatLogPlaintext = messages
-      .map((message) => {
-        const role = message.role === 'user' ? 'You' : name;
+    const plaintext = this.messages
+      .map(message => {
+        const role = message.role === 'user' ? 'You' : this.name;
         const content = message.content
-          .map((content) => escapeMarkdown(content.text))
+          .map(c => escapeMarkdown(c.text))
           .join('\n');
-
         return `# ${role}\n\n${content}`;
       })
       .join('\n\n');
 
-    const chatLogRichtext = messages
-      .map((message) => {
-        const role = message.role === 'user' ? 'You' : name;
+    const richtext = this.messages
+      .map(message => {
+        const role = message.role === 'user' ? 'You' : this.name;
         const content = message.content
-          .map((content) => content.text)
+          .map(c => c.text)
           .join('\n\n');
-        const blockquote = `<blockquote>${content
-          .split('\n')
-          .join('<br>')}</blockquote>`;
-
+        const blockquote = `<blockquote>${content.split('\n').join('<br>')}</blockquote>`;
         return `<b>${role}</b><br>${blockquote}`;
       })
       .join('<br><br>');
 
-    const plaintextBlob = new Blob([chatLogPlaintext], { type: 'text/plain' });
-    const richtextBlob = new Blob([chatLogRichtext], { type: 'text/html' });
-
     const data = [
       new ClipboardItem({
-        'text/plain': plaintextBlob,
-        'text/html': richtextBlob,
-      }),
+        'text/plain': new Blob([plaintext], { type: 'text/plain' }),
+        'text/html': new Blob([richtext], { type: 'text/html' })
+      })
     ];
 
     navigator.clipboard.write(data).then(() => {
-      // preserve original element width, to prevent jumping
-      const width = copyAllButton.offsetWidth;
-      copyAllButton.style.width = `${width}px`;
-      copyAllButton.innerText = 'Copied!';
-
-      setTimeout(() => {
-        copyAllButton.innerText = originalText;
-        copyAllButton.style.width = '';
-      }, 2000);
+      this.ui.updateCopyButton('Copied!');
     });
-  });
+  }
+}
 
-  // Clear message timeout when the window is unloaded
-  window.addEventListener('beforeunload', () => {
-    clearMessageTimeout();
-  });
+// Initialize chat on load
+export const initChat = () => {
+  const context = JSON.parse(
+    document.getElementById('chat-context-data').textContent
+  );
 
-  handleUserInput();
+  const session = new ChatSession(context);
+  session.init();
 };

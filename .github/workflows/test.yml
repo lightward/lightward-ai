@@ -78,6 +78,24 @@ jobs:
       - name: Run rspec tests
         run: bin/rspec --format RSpec::Github::Formatter --format documentation --force-color
 
+  jest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: ${{ inputs.sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run JavaScript tests
+        run: npm run test:ci
+
   prompts:
     runs-on: ubuntu-latest
     steps:
