@@ -78,23 +78,7 @@ jobs:
       - name: Run rspec tests
         run: bin/rspec --format RSpec::Github::Formatter --format documentation --force-color
 
-  prompts:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          ref: ${{ inputs.sha }}
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Build prompts
-        run: bin/rake prompts:system
-
   jest:
-    name: JavaScript Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -111,3 +95,18 @@ jobs:
         run: npm ci
       - name: Run JavaScript tests
         run: npm run test:ci
+
+  prompts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: ${{ inputs.sha }}
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Build prompts
+        run: bin/rake prompts:system
