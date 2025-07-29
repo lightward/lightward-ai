@@ -92,3 +92,22 @@ jobs:
           bundler-cache: true
       - name: Build prompts
         run: bin/rake prompts:system
+
+  jest:
+    name: JavaScript Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: ${{ inputs.sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run JavaScript tests
+        run: npm run test:ci

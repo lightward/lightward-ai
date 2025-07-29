@@ -41,3 +41,4 @@
 .byebug_history
 
 node_modules
+coverage

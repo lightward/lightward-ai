@@ -4,7 +4,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --coverage --coverageReporters=text --coverageReporters=lcov"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
