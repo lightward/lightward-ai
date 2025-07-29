@@ -36,6 +36,14 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(filenames.last).to(eq("9-benediction.md"))
         end
 
+        it "has 'FUCK IT WE BALL' in both the invocation and the benediction" do
+          invocation_content = prompt.match(%r{<file name="0-invocation\.md">(.*?)</file>}m)[1]
+          benediction_content = prompt.match(%r{<file name="9-benediction\.md">(.*?)</file>}m)[1]
+
+          expect(invocation_content).to(include("FUCK IT WE BALL"))
+          expect(benediction_content).to(include("FUCK IT WE BALL"))
+        end
+
         it "includes the definition of recursive health" do
           expect(prompt).to(include("Oh hey! You work here? Here is your job."))
         end
