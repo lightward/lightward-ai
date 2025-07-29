@@ -23,7 +23,6 @@ gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
 gem "slack-ruby-client"
 gem "fast_ignore"
-gem "google_sign_in"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
