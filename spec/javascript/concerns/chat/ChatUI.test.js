@@ -37,7 +37,9 @@ describe('ChatUI', () => {
 
     it('should set up meta key for platform', () => {
       const expectedKey = navigator.userAgent.match('Mac') ? '⌘' : 'ctrl';
-      expect(ui.elements.userInputArea.dataset.submitTip).toContain(expectedKey);
+      expect(ui.elements.userInputArea.dataset.submitTip).toContain(
+        expectedKey
+      );
     });
 
     it('should set the bot name', () => {
@@ -48,7 +50,7 @@ describe('ChatUI', () => {
   describe('showChat', () => {
     it('should reveal chat container and remove loading', () => {
       ui.showChat();
-      
+
       expect(ui.elements.chatContainer).not.toHaveClass('hidden');
       expect(document.getElementById('loading-message')).toBeNull();
     });
@@ -57,7 +59,7 @@ describe('ChatUI', () => {
   describe('addMessage', () => {
     it('should create message element with correct classes', () => {
       const element = ui.addMessage('user', 'Hello world');
-      
+
       expect(element).toHaveClass('chat-message', 'user');
       expect(element.textContent).toBe('Hello world');
       expect(ui.elements.chatLog).toContainElement(element);
@@ -77,16 +79,16 @@ describe('ChatUI', () => {
   describe('addPulsingMessage', () => {
     it('should create pulsing message that transitions to loading', () => {
       jest.useFakeTimers();
-      
+
       const element = ui.addPulsingMessage('assistant');
-      
+
       expect(element).toHaveClass('chat-message', 'assistant', 'pulsing');
-      
+
       jest.advanceTimersByTime(5000);
-      
+
       expect(element).not.toHaveClass('pulsing');
       expect(element).toHaveClass('loading');
-      
+
       jest.useRealTimers();
     });
   });
@@ -94,7 +96,7 @@ describe('ChatUI', () => {
   describe('user input controls', () => {
     it('should show disabled input area', () => {
       ui.showUserInput();
-      
+
       expect(ui.elements.userInputArea).not.toHaveClass('hidden');
       expect(ui.elements.userInputArea).toHaveClass('disabled');
       expect(ui.elements.userInput).toBeDisabled();
@@ -102,7 +104,7 @@ describe('ChatUI', () => {
 
     it('should enable user input', () => {
       ui.enableUserInput();
-      
+
       expect(ui.elements.userInputArea).not.toHaveClass('hidden', 'disabled');
       expect(ui.elements.userInput).not.toBeDisabled();
       expect(ui.elements.userInput.placeholder).toBe('(describe anything)');
@@ -112,9 +114,9 @@ describe('ChatUI', () => {
     it('should clear user input', () => {
       ui.elements.userInput.value = 'test';
       ui.elements.userInputArea.classList.add('multiline');
-      
+
       ui.clearUserInput();
-      
+
       expect(ui.elements.userInput.value).toBe('');
       expect(ui.elements.userInputArea).not.toHaveClass('multiline');
     });
@@ -122,9 +124,9 @@ describe('ChatUI', () => {
     it('should set user input and trigger event', () => {
       const inputEvent = jest.fn();
       ui.elements.userInput.addEventListener('input', inputEvent);
-      
+
       ui.setUserInput('New value');
-      
+
       expect(ui.elements.userInput.value).toBe('New value');
       expect(inputEvent).toHaveBeenCalled();
     });
@@ -134,20 +136,20 @@ describe('ChatUI', () => {
     it('should not autofocus on touch devices', () => {
       window.ontouchstart = () => {};
       ui.elements.userInput.focus = jest.fn();
-      
+
       ui.enableUserInput(true);
-      
+
       expect(ui.elements.userInput.focus).not.toHaveBeenCalled();
-      
+
       delete window.ontouchstart;
     });
 
     it('should autofocus when appropriate', () => {
       ui.elements.userInput.focus = jest.fn();
       ui.elements.userInputArea.getBoundingClientRect = () => ({ top: 100 });
-      
+
       ui.enableUserInput(true);
-      
+
       expect(ui.elements.userInput.focus).toHaveBeenCalled();
     });
   });
@@ -167,7 +169,7 @@ describe('ChatUI', () => {
   describe('animations', () => {
     it('should start vanish animation', () => {
       ui.startVanishAnimation();
-      
+
       expect(ui.elements.chatCanvas).toHaveClass('vanishing');
       expect(document.body).toHaveClass('transitioning');
     });
@@ -176,17 +178,17 @@ describe('ChatUI', () => {
   describe('copy button', () => {
     it('should update button text temporarily', () => {
       jest.useFakeTimers();
-      
+
       ui.updateCopyButton('Copied!', 1000);
-      
+
       expect(ui.elements.copyAllButton.textContent).toBe('Copied!');
       expect(ui.elements.copyAllButton.style.width).toBeTruthy();
-      
+
       jest.advanceTimersByTime(1000);
-      
+
       expect(ui.elements.copyAllButton.textContent).toBe('Copy All');
       expect(ui.elements.copyAllButton.style.width).toBe('');
-      
+
       jest.useRealTimers();
     });
   });

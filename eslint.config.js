@@ -3,6 +3,31 @@ const prettierConfig = require('eslint-config-prettier');
 
 module.exports = [
   {
+    ignores: [
+      'node_modules/**',
+      'build/**',
+      'dist/**',
+      'coverage/**',
+      '*.log',
+      '.env*',
+      '.vscode/**',
+      '.idea/**',
+      '.git/**',
+      'vendor/**',
+      'public/assets/**',
+      'tmp/**',
+      'log/**',
+      '*.config.js',
+      'babel.config.js',
+      'jest.config.js',
+      'postcss.config.js',
+      'rollup.config.js',
+      'webpack.config.js',
+      'app/prompts/lib/locksmith/**',
+      'app/prompts/lib/mechanic/**',
+    ],
+  },
+  {
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
