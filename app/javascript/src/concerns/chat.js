@@ -4,8 +4,8 @@ import { createConsumer } from '@rails/actioncable';
 
 // Configuration constants
 export const CONFIG = {
-  MIN_MESSAGE_UPDATE_INTERVAL: 100,
-  MAX_MESSAGE_UPDATE_INTERVAL: 300,
+  MIN_MESSAGE_UPDATE_INTERVAL: 200,
+  MAX_MESSAGE_UPDATE_INTERVAL: 400,
   MESSAGE_TIMEOUT_MS: 30000,
   STORAGE_MIGRATION: {
     OLD_KEY: 'chatLogData',
