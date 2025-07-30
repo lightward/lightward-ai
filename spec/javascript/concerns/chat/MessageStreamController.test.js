@@ -101,6 +101,41 @@ describe('MessageStreamController', () => {
     });
   });
 
+  describe('onDisplayComplete', () => {
+    it('should call display callback after all chunks are displayed', () => {
+      const displayCallback = jest.fn();
+      controller.setElement(mockElement);
+
+      controller.addChunk('Chunk 1');
+      controller.addChunk('Chunk 2');
+      controller.complete(() => {});
+      controller.onDisplayComplete(displayCallback);
+
+      // Should not call yet
+      expect(displayCallback).not.toHaveBeenCalled();
+
+      // Process all chunks
+      jest.runAllTimers();
+
+      // Now should be called
+      expect(displayCallback).toHaveBeenCalled();
+    });
+
+    it('should call display callback even if set after complete', () => {
+      const displayCallback = jest.fn();
+      controller.setElement(mockElement);
+
+      // Mark as complete first
+      controller.complete(() => {});
+
+      // Then set display callback
+      controller.onDisplayComplete(displayCallback);
+
+      // Should call immediately since already complete
+      expect(displayCallback).toHaveBeenCalled();
+    });
+  });
+
   describe('_processQueue', () => {
     it('should append text nodes to element', () => {
       controller.setElement(mockElement);
@@ -115,6 +150,49 @@ describe('MessageStreamController', () => {
       controller.addChunk('Test');
 
       expect(mockElement.appendChild).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('forceComplete', () => {
+    it('should immediately flush all chunks and fire callbacks', () => {
+      const completeCallback = jest.fn();
+      const displayCallback = jest.fn();
+      controller.setElement(mockElement);
+
+      // Add multiple chunks
+      controller.addChunk('First');
+      controller.addChunk('Second');
+      controller.addChunk('Third');
+
+      // Set up callbacks
+      controller.complete(completeCallback);
+      controller.onDisplayComplete(displayCallback);
+
+      // Force complete before natural processing
+      controller.forceComplete();
+
+      // All chunks should be flushed
+      expect(mockElement.appendChild).toHaveBeenCalledTimes(3);
+
+      // Both callbacks should fire
+      expect(completeCallback).toHaveBeenCalled();
+      expect(displayCallback).toHaveBeenCalled();
+    });
+
+    it('should clear pending timeouts', () => {
+      controller.setElement(mockElement);
+
+      // Start processing
+      controller.addChunk('Test');
+
+      // Spy on clearTimeout
+      const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout');
+
+      // Force complete
+      controller.forceComplete();
+
+      // Should have cleared the timeout
+      expect(clearTimeoutSpy).toHaveBeenCalled();
     });
   });
 });
