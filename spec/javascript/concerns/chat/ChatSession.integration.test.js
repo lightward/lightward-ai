@@ -12,6 +12,9 @@ describe('ChatSession Integration', () => {
   let mockConsumer;
 
   beforeEach(() => {
+    // Mock console.error to keep test output clean
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    
     // Set up DOM
     document.body.innerHTML = `
       <div id="chat-context-data">{"key": "test", "name": "TestBot"}</div>
@@ -64,6 +67,7 @@ describe('ChatSession Integration', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
+    console.error.mockRestore();
   });
 
   describe('initialization', () => {
@@ -236,6 +240,8 @@ describe('ChatSession Integration', () => {
         const errorMessage = document.querySelector('.chat-message.assistant');
         expect(errorMessage.textContent).toBe(' ⚠️ Lightward AI system error: Network error');
       });
+
+      expect(console.error).toHaveBeenCalledWith('Error:', expect.any(Error));
     });
 
     it('should handle streaming errors', async () => {
