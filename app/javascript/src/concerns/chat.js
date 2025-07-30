@@ -7,10 +7,6 @@ export const CONFIG = {
   MIN_MESSAGE_UPDATE_INTERVAL: 100,
   MAX_MESSAGE_UPDATE_INTERVAL: 300,
   MESSAGE_TIMEOUT_MS: 30000,
-  STORAGE_MIGRATION: {
-    OLD_KEY: 'chatLogData',
-    NEW_KEY_PREFIX: 'reader',
-  },
 };
 
 // Storage handler for chat persistence
@@ -18,17 +14,6 @@ export class ChatStorage {
   constructor(context) {
     this.messagesKey = context.key;
     this.userInputKey = `${context.key}/input`;
-    this._migrateOldStorageIfNeeded();
-  }
-
-  _migrateOldStorageIfNeeded() {
-    if (this.messagesKey === CONFIG.STORAGE_MIGRATION.NEW_KEY_PREFIX) {
-      const oldData = localStorage.getItem(CONFIG.STORAGE_MIGRATION.OLD_KEY);
-      if (oldData) {
-        localStorage.setItem(this.messagesKey, oldData);
-        localStorage.removeItem(CONFIG.STORAGE_MIGRATION.OLD_KEY);
-      }
-    }
   }
 
   loadMessages() {
