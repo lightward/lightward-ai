@@ -101,7 +101,7 @@ class HelpscoutJob < ApplicationJob
       messages: messages,
     )
   rescue => error
-    slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish, thread_ts: slack_message["ts"])
+    slack_client.chat_postMessage(channel: "#ai-logs", text: <<~eod.squish, thread_ts: slack_message&.dig("ts"))
       Error processing Help Scout webhook for conversation #{convo_id}: #{error.message}
     eod
 
