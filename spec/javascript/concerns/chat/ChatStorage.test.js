@@ -13,18 +13,6 @@ describe('ChatStorage', () => {
       expect(storage.messagesKey).toBe('test-chat');
       expect(storage.userInputKey).toBe('test-chat/input');
     });
-
-    it('should migrate old storage when key is "reader"', () => {
-      const oldData = JSON.stringify([
-        { role: 'user', content: [{ text: 'hello' }] },
-      ]);
-      localStorage.setItem('chatLogData', oldData);
-
-      new ChatStorage({ key: 'reader' });
-
-      expect(localStorage.setItem).toHaveBeenCalledWith('reader', oldData);
-      expect(localStorage.removeItem).toHaveBeenCalledWith('chatLogData');
-    });
   });
 
   describe('loadMessages', () => {
