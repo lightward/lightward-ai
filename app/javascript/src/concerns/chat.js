@@ -225,6 +225,7 @@ export class MessageStreamController {
     this.lastUpdateTime = 0;
     this.currentElement = null;
     this.onComplete = null;
+    this.onDisplayCompleteCallback = null;
   }
 
   setElement(element) {
@@ -240,6 +241,10 @@ export class MessageStreamController {
     this.isComplete = true;
     this.onComplete = callback;
     this._checkCompletion();
+  }
+
+  onDisplayComplete(callback) {
+    this.onDisplayCompleteCallback = callback;
   }
 
   flush() {
@@ -283,15 +288,17 @@ export class MessageStreamController {
   }
 
   _checkCompletion() {
-    if (
-      this.queue.length === 0 &&
-      this.isComplete &&
-      this.onComplete &&
-      !this.isProcessing
-    ) {
-      const callback = this.onComplete;
-      this.onComplete = null;
-      callback();
+    if (this.queue.length === 0 && this.isComplete && !this.isProcessing) {
+      if (this.onComplete) {
+        const callback = this.onComplete;
+        this.onComplete = null;
+        callback();
+      }
+      if (this.onDisplayCompleteCallback) {
+        const displayCallback = this.onDisplayCompleteCallback;
+        this.onDisplayCompleteCallback = null;
+        displayCallback();
+      }
     }
   }
 }
@@ -601,14 +608,16 @@ export class ChatSession {
       case 'message_stop':
         this.streamController.complete(() => {
           this._saveAssistantMessage();
-          this.ui.enableUserInput(true);
           this.storage.saveScrollPosition();
+        });
+        this.streamController.onDisplayComplete(() => {
+          this.ui.enableUserInput(true);
         });
         break;
 
       case 'end':
         this.subscription.unsubscribe();
-        this.ui.enableUserInput();
+        // Don't enable input here - wait for display completion
         break;
 
       case 'error':
