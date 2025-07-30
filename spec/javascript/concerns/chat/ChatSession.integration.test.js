@@ -305,6 +305,54 @@ describe('ChatSession Integration', () => {
         ' ⚠️ Lightward AI system error: Your connection was lost during the reply. Please try again.'
       );
     });
+
+    it('should re-enable input even if stream ends during chunk processing', async () => {
+      fetch.mockResolvedValueOnce({
+        status: 200,
+        json: () => Promise.resolve({ stream_id: 'stream-1' }),
+      });
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        expect(mockConsumer.subscriptions.create).toHaveBeenCalled();
+      });
+
+      // Simulate messages arriving
+      mockSubscription._trigger('connected');
+      mockSubscription._trigger('received', {
+        event: 'message_start',
+        sequence_number: 0,
+      });
+
+      // Add some chunks
+      mockSubscription._trigger('received', {
+        event: 'content_block_delta',
+        data: { delta: { type: 'text_delta', text: 'Processing...' } },
+        sequence_number: 1,
+      });
+
+      // Message stop sets up callbacks
+      mockSubscription._trigger('received', {
+        event: 'message_stop',
+        sequence_number: 2,
+      });
+
+      // End arrives immediately (before chunks finish displaying)
+      mockSubscription._trigger('received', {
+        event: 'end',
+        sequence_number: 3,
+      });
+
+      // Advance timers to allow chunk processing
+      jest.runAllTimers();
+
+      // User input should be enabled
+      const textarea = document.querySelector('textarea');
+      expect(textarea.disabled).toBe(false);
+      expect(document.getElementById('text-input')).not.toHaveClass('disabled');
+    });
   });
 
   describe('copy functionality', () => {

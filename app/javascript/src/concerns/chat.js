@@ -219,6 +219,11 @@ export class MessageStreamController {
   }
 
   reset() {
+    // Clear any pending timeout
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+
     this.queue = [];
     this.isProcessing = false;
     this.isComplete = false;
@@ -226,6 +231,7 @@ export class MessageStreamController {
     this.currentElement = null;
     this.onComplete = null;
     this.onDisplayCompleteCallback = null;
+    this.timeoutId = null;
   }
 
   setElement(element) {
@@ -245,6 +251,29 @@ export class MessageStreamController {
 
   onDisplayComplete(callback) {
     this.onDisplayCompleteCallback = callback;
+    // Check if we're already complete
+    if (this.queue.length === 0 && this.isComplete && !this.isProcessing) {
+      this._checkCompletion();
+    }
+  }
+
+  // Force completion of any pending operations
+  forceComplete() {
+    // Clear any pending timeout
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = null;
+    }
+
+    // Flush remaining chunks immediately
+    this.flush();
+
+    // Mark as not processing and complete
+    this.isProcessing = false;
+    this.isComplete = true;
+
+    // Trigger completion callbacks
+    this._checkCompletion();
   }
 
   flush() {
@@ -281,7 +310,8 @@ export class MessageStreamController {
       this.minInterval + Math.random() * (this.maxInterval - this.minInterval);
     const actualDelay = Math.max(0, randomDelay - timeSinceLastUpdate);
 
-    setTimeout(() => {
+    this.timeoutId = setTimeout(() => {
+      this.timeoutId = null;
       this.isProcessing = false;
       this._processQueue();
     }, actualDelay);
@@ -676,8 +706,8 @@ export class ChatSession {
   }
 
   _completeMessageWithError() {
-    // Flush any pending message chunks immediately
-    this.streamController.flush();
+    // Force completion of stream controller to ensure callbacks fire
+    this.streamController.forceComplete();
 
     // Stop any loading animations
     this.ui.stopPulsingLoading(this.currentAssistantElement);
@@ -685,6 +715,7 @@ export class ChatSession {
     // Save the error message
     this._saveAssistantMessage();
 
+    // Enable input as fallback (in case onDisplayComplete doesn't fire)
     this.ui.enableUserInput(true);
     this.ui.showResponseSuggestions();
     this.storage.saveScrollPosition();
