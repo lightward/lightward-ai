@@ -1,4 +1,3 @@
-
 // app/javascript/src/concerns/chat.js
 
 import { createConsumer } from '@rails/actioncable';
@@ -10,8 +9,8 @@ export const CONFIG = {
   MESSAGE_TIMEOUT_MS: 30000,
   STORAGE_MIGRATION: {
     OLD_KEY: 'chatLogData',
-    NEW_KEY_PREFIX: 'reader'
-  }
+    NEW_KEY_PREFIX: 'reader',
+  },
 };
 
 // Storage handler for chat persistence
@@ -91,7 +90,7 @@ export class ChatUI {
       footer: document.getElementsByTagName('footer')[0],
       responseSuggestions: document.getElementById('response-suggestions'),
       startOverButton: document.getElementById('start-over-button'),
-      chatCanvas: document.getElementById('chat-canvas')
+      chatCanvas: document.getElementById('chat-canvas'),
     };
   }
 
@@ -160,11 +159,14 @@ export class ChatUI {
   }
 
   _shouldAutofocus(autofocusRequested) {
-    return autofocusRequested &&
+    return (
+      autofocusRequested &&
       !('ontouchstart' in window) &&
-      this.elements.userInputArea.getBoundingClientRect().top < window.innerHeight &&
+      this.elements.userInputArea.getBoundingClientRect().top <
+        window.innerHeight &&
       !window.getSelection().toString() &&
-      !document.activeElement?.matches('textarea, input');
+      !document.activeElement?.matches('textarea, input')
+    );
   }
 
   hideUserInput() {
@@ -285,8 +287,8 @@ export class MessageStreamController {
     const timeSinceLastUpdate = now - this.lastUpdateTime;
     this.lastUpdateTime = now;
 
-    const randomDelay = this.minInterval +
-      Math.random() * (this.maxInterval - this.minInterval);
+    const randomDelay =
+      this.minInterval + Math.random() * (this.maxInterval - this.minInterval);
     const actualDelay = Math.max(0, randomDelay - timeSinceLastUpdate);
 
     setTimeout(() => {
@@ -296,7 +298,12 @@ export class MessageStreamController {
   }
 
   _checkCompletion() {
-    if (this.queue.length === 0 && this.isComplete && this.onComplete && !this.isProcessing) {
+    if (
+      this.queue.length === 0 &&
+      this.isComplete &&
+      this.onComplete &&
+      !this.isProcessing
+    ) {
       const callback = this.onComplete;
       this.onComplete = null;
       callback();
@@ -339,10 +346,15 @@ export class ChatSubscription {
 
           if (data && typeof data.sequence_number === 'number') {
             this.sequenceQueue.push(data);
-            this.sequenceQueue.sort((a, b) => a.sequence_number - b.sequence_number);
+            this.sequenceQueue.sort(
+              (a, b) => a.sequence_number - b.sequence_number
+            );
 
-            while (this.sequenceQueue.length &&
-                   this.sequenceQueue[0].sequence_number === this.currentSequenceNumber) {
+            while (
+              this.sequenceQueue.length &&
+              this.sequenceQueue[0].sequence_number ===
+                this.currentSequenceNumber
+            ) {
               const message = this.sequenceQueue.shift();
               this.onMessage(message);
               this.currentSequenceNumber++;
@@ -352,7 +364,7 @@ export class ChatSubscription {
 
         rejected: () => {
           this.onError('Connection was rejected. Please try again later.');
-        }
+        },
       }
     );
   }
@@ -416,7 +428,7 @@ export class ChatSession {
       handleStartOver: this._handleStartOver.bind(this),
       handleCopyAll: this._handleCopyAll.bind(this),
       handleKeyDown: this._handleKeyDown.bind(this),
-      saveScrollPosition: () => this.storage.saveScrollPosition()
+      saveScrollPosition: () => this.storage.saveScrollPosition(),
     };
   }
 
@@ -450,7 +462,7 @@ export class ChatSession {
 
   _loadExistingMessages() {
     if (this.messages.length) {
-      this.messages.forEach(message => {
+      this.messages.forEach((message) => {
         this.ui.addMessage(message.role, message.content[0].text);
       });
 
@@ -462,24 +474,44 @@ export class ChatSession {
 
   _setupEventListeners() {
     // User input handling
-    this.ui.elements.userInput.addEventListener('keydown', this._boundHandlers.handleKeyDown);
-    this.ui.elements.userInput.addEventListener('input', this._boundHandlers.handleUserInput);
-    this.ui.elements.submitButton.addEventListener('click', this._boundHandlers.handleUserSubmit);
+    this.ui.elements.userInput.addEventListener(
+      'keydown',
+      this._boundHandlers.handleKeyDown
+    );
+    this.ui.elements.userInput.addEventListener(
+      'input',
+      this._boundHandlers.handleUserInput
+    );
+    this.ui.elements.submitButton.addEventListener(
+      'click',
+      this._boundHandlers.handleUserSubmit
+    );
 
     // Response suggestions
-    document.querySelectorAll('prompt-button').forEach(button => {
-      button.addEventListener('prompt-button-click', this._boundHandlers.handleResponseClick);
+    document.querySelectorAll('prompt-button').forEach((button) => {
+      button.addEventListener(
+        'prompt-button-click',
+        this._boundHandlers.handleResponseClick
+      );
     });
 
     // Tools
-    this.ui.elements.startOverButton.addEventListener('click', this._boundHandlers.handleStartOver);
-    this.ui.elements.copyAllButton.addEventListener('click', this._boundHandlers.handleCopyAll);
+    this.ui.elements.startOverButton.addEventListener(
+      'click',
+      this._boundHandlers.handleStartOver
+    );
+    this.ui.elements.copyAllButton.addEventListener(
+      'click',
+      this._boundHandlers.handleCopyAll
+    );
 
     // Window events
-    window.addEventListener('beforeunload', () => this.subscription.unsubscribe());
+    window.addEventListener('beforeunload', () =>
+      this.subscription.unsubscribe()
+    );
 
     // Scroll position tracking
-    ['scroll', 'resize'].forEach(event => {
+    ['scroll', 'resize'].forEach((event) => {
       window.addEventListener(event, this._boundHandlers.saveScrollPosition);
     });
   }
@@ -524,7 +556,7 @@ export class ChatSession {
     this.ui.addMessage('user', text);
     this.messages.push({
       role: 'user',
-      content: [{ type: 'text', text }]
+      content: [{ type: 'text', text }],
     });
     this.storage.saveMessages(this.messages);
     this.storage.saveScrollPosition();
@@ -544,25 +576,25 @@ export class ChatSession {
     fetch('/chats/message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_log: this.messages })
+      body: JSON.stringify({ chat_log: this.messages }),
     })
-    .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        return response.text().then(text => {
-          throw new Error(text);
-        });
-      }
-    })
-    .then(data => {
-      this.subscription.subscribe(data.stream_id);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      this._appendError(error.message);
-      this._completeMessageWithError();
-    });
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return response.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+      })
+      .then((data) => {
+        this.subscription.subscribe(data.stream_id);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        this._appendError(error.message);
+        this._completeMessageWithError();
+      });
   }
 
   _handleMessage(data) {
@@ -573,7 +605,10 @@ export class ChatSession {
         break;
 
       case 'content_block_delta':
-        if (data.data.delta.type === 'text_delta' && this.currentAssistantElement) {
+        if (
+          data.data.delta.type === 'text_delta' &&
+          this.currentAssistantElement
+        ) {
           this.streamController.addChunk(data.data.delta.text);
         }
         break;
@@ -609,7 +644,9 @@ export class ChatSession {
   }
 
   _handleTimeout() {
-    this._appendError('Your connection was lost during the reply. Please try again.');
+    this._appendError(
+      'Your connection was lost during the reply. Please try again.'
+    );
     this.subscription.unsubscribe();
     this._completeMessageWithError();
   }
@@ -629,13 +666,15 @@ export class ChatSession {
 
     const text = this.currentAssistantElement.textContent;
 
-    if (this.messages.length > 0 &&
-        this.messages[this.messages.length - 1].role === 'assistant') {
+    if (
+      this.messages.length > 0 &&
+      this.messages[this.messages.length - 1].role === 'assistant'
+    ) {
       this.messages[this.messages.length - 1].content[0].text = text;
     } else {
       this.messages.push({
         role: 'assistant',
-        content: [{ type: 'text', text }]
+        content: [{ type: 'text', text }],
       });
     }
 
@@ -648,7 +687,7 @@ export class ChatSession {
 
     // Stop any loading animations
     this.ui.stopPulsingLoading(this.currentAssistantElement);
-    
+
     // Save the error message
     this._saveAssistantMessage();
 
@@ -660,7 +699,11 @@ export class ChatSession {
   _handleStartOver(event) {
     event.preventDefault();
 
-    if (!confirm('Are you sure you want to start over? This will clear the chat log. There is no undo. :)')) {
+    if (
+      !confirm(
+        'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
+      )
+    ) {
       return;
     }
 
@@ -680,27 +723,25 @@ export class ChatSession {
     event.preventDefault();
 
     const shouldEscapeMarkdown = event.metaKey || event.ctrlKey;
-    const escapeMarkdown = text => {
+    const escapeMarkdown = (text) => {
       if (!shouldEscapeMarkdown) return text;
       return text.replace(/(?<!\\)\*/g, '\\*');
     };
 
     const plaintext = this.messages
-      .map(message => {
+      .map((message) => {
         const role = message.role === 'user' ? 'You' : this.name;
         const content = message.content
-          .map(c => escapeMarkdown(c.text))
+          .map((c) => escapeMarkdown(c.text))
           .join('\n');
         return `# ${role}\n\n${content}`;
       })
       .join('\n\n');
 
     const richtext = this.messages
-      .map(message => {
+      .map((message) => {
         const role = message.role === 'user' ? 'You' : this.name;
-        const content = message.content
-          .map(c => c.text)
-          .join('\n\n');
+        const content = message.content.map((c) => c.text).join('\n\n');
         const blockquote = `<blockquote>${content.split('\n').join('<br>')}</blockquote>`;
         return `<b>${role}</b><br>${blockquote}`;
       })
@@ -709,8 +750,8 @@ export class ChatSession {
     const data = [
       new ClipboardItem({
         'text/plain': new Blob([plaintext], { type: 'text/plain' }),
-        'text/html': new Blob([richtext], { type: 'text/html' })
-      })
+        'text/html': new Blob([richtext], { type: 'text/html' }),
+      }),
     ];
 
     navigator.clipboard.write(data).then(() => {

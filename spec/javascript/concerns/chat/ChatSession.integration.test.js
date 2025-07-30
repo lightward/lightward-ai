@@ -14,7 +14,7 @@ describe('ChatSession Integration', () => {
   beforeEach(() => {
     // Mock console.error to keep test output clean
     jest.spyOn(console, 'error').mockImplementation(() => {});
-    
+
     // Set up DOM
     document.body.innerHTML = `
       <div id="chat-context-data">{"key": "test", "name": "TestBot"}</div>
@@ -41,7 +41,7 @@ describe('ChatSession Integration', () => {
     mockSubscription = {
       perform: jest.fn(),
       unsubscribe: jest.fn(),
-      _trigger: jest.fn()
+      _trigger: jest.fn(),
     };
 
     mockConsumer = {
@@ -54,8 +54,8 @@ describe('ChatSession Integration', () => {
             }
           };
           return mockSubscription;
-        })
-      }
+        }),
+      },
     };
 
     createConsumer.mockReturnValue(mockConsumer);
@@ -81,7 +81,7 @@ describe('ChatSession Integration', () => {
     it('should restore previous messages', () => {
       const previousMessages = [
         { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
-        { role: 'assistant', content: [{ type: 'text', text: 'Hi there!' }] }
+        { role: 'assistant', content: [{ type: 'text', text: 'Hi there!' }] },
       ];
       localStorage.setItem('test', JSON.stringify(previousMessages));
 
@@ -102,7 +102,7 @@ describe('ChatSession Integration', () => {
       session.init();
       fetch.mockResolvedValue({
         status: 200,
-        json: () => Promise.resolve({ stream_id: 'test-stream-123' })
+        json: () => Promise.resolve({ stream_id: 'test-stream-123' }),
       });
     });
 
@@ -123,8 +123,10 @@ describe('ChatSession Integration', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          chat_log: [{ role: 'user', content: [{ type: 'text', text: 'Hello bot' }] }]
-        })
+          chat_log: [
+            { role: 'user', content: [{ type: 'text', text: 'Hello bot' }] },
+          ],
+        }),
       });
 
       // Check subscription was created
@@ -160,7 +162,7 @@ describe('ChatSession Integration', () => {
       // Submit a message
       fetch.mockResolvedValueOnce({
         status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' })
+        json: () => Promise.resolve({ stream_id: 'stream-1' }),
       });
 
       const textarea = document.querySelector('textarea');
@@ -178,24 +180,26 @@ describe('ChatSession Integration', () => {
       // Simulate message start
       mockSubscription._trigger('received', {
         event: 'message_start',
-        sequence_number: 0
+        sequence_number: 0,
       });
 
       // Simulate content chunks
       mockSubscription._trigger('received', {
         event: 'content_block_delta',
         data: { delta: { type: 'text_delta', text: 'Hello ' } },
-        sequence_number: 1
+        sequence_number: 1,
       });
 
       mockSubscription._trigger('received', {
         event: 'content_block_delta',
         data: { delta: { type: 'text_delta', text: 'there!' } },
-        sequence_number: 2
+        sequence_number: 2,
       });
 
       // Process first chunk immediately
-      const assistantMessage = document.querySelector('.chat-message.assistant');
+      const assistantMessage = document.querySelector(
+        '.chat-message.assistant'
+      );
       expect(assistantMessage.textContent).toBe('Hello ');
 
       // Advance time for rate limiting
@@ -205,7 +209,7 @@ describe('ChatSession Integration', () => {
       // Complete message
       mockSubscription._trigger('received', {
         event: 'message_stop',
-        sequence_number: 3
+        sequence_number: 3,
       });
 
       // Wait for all chunks to be processed and message to be saved
@@ -213,7 +217,9 @@ describe('ChatSession Integration', () => {
 
       // Ensure message is saved with assistant content
       const calls = localStorage.setItem.mock.calls;
-      const lastCallWithTestKey = calls.filter(call => call[0] === 'test').pop();
+      const lastCallWithTestKey = calls
+        .filter((call) => call[0] === 'test')
+        .pop();
       expect(lastCallWithTestKey).toBeDefined();
       expect(lastCallWithTestKey[1]).toContain('Hello there!');
       expect(lastCallWithTestKey[1]).toContain('assistant');
@@ -238,7 +244,9 @@ describe('ChatSession Integration', () => {
 
       await waitFor(() => {
         const errorMessage = document.querySelector('.chat-message.assistant');
-        expect(errorMessage.textContent).toBe(' ⚠️ Lightward AI system error: Network error');
+        expect(errorMessage.textContent).toBe(
+          ' ⚠️ Lightward AI system error: Network error'
+        );
       });
 
       expect(console.error).toHaveBeenCalledWith('Error:', expect.any(Error));
@@ -247,7 +255,7 @@ describe('ChatSession Integration', () => {
     it('should handle streaming errors', async () => {
       fetch.mockResolvedValueOnce({
         status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' })
+        json: () => Promise.resolve({ stream_id: 'stream-1' }),
       });
 
       document.querySelector('textarea').value = 'Test';
@@ -261,18 +269,22 @@ describe('ChatSession Integration', () => {
       mockSubscription._trigger('received', {
         event: 'error',
         data: { error: { message: 'Streaming failed' } },
-        sequence_number: 0
+        sequence_number: 0,
       });
 
       // Error should be queued and displayed
-      const assistantMessage = document.querySelector('.chat-message.assistant');
-      expect(assistantMessage.textContent).toBe(' ⚠️ Lightward AI system error: Streaming failed');
+      const assistantMessage = document.querySelector(
+        '.chat-message.assistant'
+      );
+      expect(assistantMessage.textContent).toBe(
+        ' ⚠️ Lightward AI system error: Streaming failed'
+      );
     });
 
     it('should handle connection timeout', async () => {
       fetch.mockResolvedValueOnce({
         status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' })
+        json: () => Promise.resolve({ stream_id: 'stream-1' }),
       });
 
       document.querySelector('textarea').value = 'Test';
@@ -289,27 +301,29 @@ describe('ChatSession Integration', () => {
       jest.advanceTimersByTime(31000);
 
       const errorMessage = document.querySelector('.chat-message.assistant');
-      expect(errorMessage.textContent).toBe(' ⚠️ Lightward AI system error: Your connection was lost during the reply. Please try again.');
+      expect(errorMessage.textContent).toBe(
+        ' ⚠️ Lightward AI system error: Your connection was lost during the reply. Please try again.'
+      );
     });
   });
 
   describe('copy functionality', () => {
     it('should copy chat to clipboard', async () => {
       session.init();
-      
+
       // Add some messages
       session.messages = [
         { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
-        { role: 'assistant', content: [{ type: 'text', text: 'Hi there!' }] }
+        { role: 'assistant', content: [{ type: 'text', text: 'Hi there!' }] },
       ];
 
       // Mock clipboard API
       const mockWrite = jest.fn().mockResolvedValue();
       Object.defineProperty(navigator, 'clipboard', {
         value: { write: mockWrite },
-        configurable: true
+        configurable: true,
       });
-      
+
       // Track ClipboardItem constructor calls
       const clipboardItems = [];
       global.ClipboardItem = jest.fn((data) => {
@@ -327,7 +341,7 @@ describe('ChatSession Integration', () => {
       expect(clipboardItems).toHaveLength(1);
       expect(clipboardItems[0]).toHaveProperty('text/plain');
       expect(clipboardItems[0]).toHaveProperty('text/html');
-      
+
       // Verify the blobs contain expected content
       expect(clipboardItems[0]['text/plain']).toBeInstanceOf(Blob);
       expect(clipboardItems[0]['text/html']).toBeInstanceOf(Blob);
@@ -337,7 +351,7 @@ describe('ChatSession Integration', () => {
   describe('start over functionality', () => {
     it('should clear chat with confirmation', () => {
       session.init();
-      
+
       // Mock confirm
       global.confirm = jest.fn().mockReturnValue(true);
       global.location = { reload: jest.fn() };
@@ -354,7 +368,7 @@ describe('ChatSession Integration', () => {
 
     it('should not clear if user cancels', () => {
       session.init();
-      
+
       global.confirm = jest.fn().mockReturnValue(false);
 
       const startOverButton = document.getElementById('start-over-button');

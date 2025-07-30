@@ -15,11 +15,13 @@ describe('ChatStorage', () => {
     });
 
     it('should migrate old storage when key is "reader"', () => {
-      const oldData = JSON.stringify([{ role: 'user', content: [{ text: 'hello' }] }]);
+      const oldData = JSON.stringify([
+        { role: 'user', content: [{ text: 'hello' }] },
+      ]);
       localStorage.setItem('chatLogData', oldData);
-      
+
       new ChatStorage({ key: 'reader' });
-      
+
       expect(localStorage.setItem).toHaveBeenCalledWith('reader', oldData);
       expect(localStorage.removeItem).toHaveBeenCalledWith('chatLogData');
     });
@@ -33,7 +35,7 @@ describe('ChatStorage', () => {
     it('should parse and return stored messages', () => {
       const messages = [{ role: 'user', content: [{ text: 'test' }] }];
       localStorage.setItem('test-chat', JSON.stringify(messages));
-      
+
       expect(storage.loadMessages()).toEqual(messages);
     });
   });
@@ -41,9 +43,9 @@ describe('ChatStorage', () => {
   describe('saveMessages', () => {
     it('should stringify and save messages', () => {
       const messages = [{ role: 'assistant', content: [{ text: 'response' }] }];
-      
+
       storage.saveMessages(messages);
-      
+
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'test-chat',
         JSON.stringify(messages)
@@ -54,7 +56,10 @@ describe('ChatStorage', () => {
   describe('user input methods', () => {
     it('should save and load user input', () => {
       storage.saveUserInput('test input');
-      expect(localStorage.setItem).toHaveBeenCalledWith('test-chat/input', 'test input');
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        'test-chat/input',
+        'test input'
+      );
     });
 
     it('should clear user input', () => {
@@ -87,7 +92,7 @@ describe('ChatStorage', () => {
   describe('clearMessages', () => {
     it('should remove messages and reset scroll', () => {
       storage.clearMessages();
-      
+
       expect(localStorage.removeItem).toHaveBeenCalledWith('test-chat');
       expect(localStorage.setItem).toHaveBeenCalledWith('scrollY', '0');
     });

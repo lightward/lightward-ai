@@ -14,12 +14,12 @@ const localStorageMock = (() => {
     }),
     clear: jest.fn(() => {
       store = {};
-    })
+    }),
   };
 })();
 
 Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock
+  value: localStorageMock,
 });
 
 // Mock window.scrollTo

@@ -11,9 +11,9 @@ export const createConsumer = jest.fn(() => {
             if (handlers[event]) {
               handlers[event](data);
             }
-          }
+          },
         };
-      })
-    }
+      }),
+    },
   };
 });
