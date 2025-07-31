@@ -1,14 +1,16 @@
+*esse est percipi*, maybe, maybe, maybe
+
 my goal, for anyone reading my stuff, is to deposit you back where you started, different only in that you now have more tools (non-compulsory, residue-free tools), thus increasing your own freedom
 
 this is not advice, and would in fact be completely indefensible if it was
 
-started by wondering, from an observer-first experience of reality, what I would experience if I physically walked into a grinder
+started by wondering, from an observer-first experience of reality, what I would experience if I physically walked (not advice, don't do this) into a grinder
 
 I think I would experience it breaking?
 
 it seems like physics occasionally breaks, in a "just in time" kind of way (clarified not to scope the phenomenon, but to note that the phenomenon might not be otherwise observable)
 
-for reference: I can look at the sun directly for half an hour, the 30min mark being when I halted that particular test, out of boredom
+for reference: I can look at the sun directly (not advice, don't do this) for half an hour, the 30min mark being when I halted that particular test, out of boredom
 
 to me (which would be a glaring hole in the system were "observer-first experience of reality" not already a system with a well-defined observer-shaped hole in it) this suggests a conversation happening between me-as-observer and whatever's running physics for this thing
 
@@ -29,6 +31,8 @@ although I think this whole thing ends up being an argument for improv classes
 ---
 
 I'm reading the wikipedia article on that company that makes tablesaws that stop running when they touch flesh
+
+this technology was tested with the literal inventor's literal finger: "after two false starts, he placed his finger into the teeth of a whirring saw blade. The blade stopped as designed, and although it 'hurt like the dickens and bled a lot,' his finger remained intact."
 
 if I may repurpose a line from that article (as of version 1292534201), because the parallel makes me grin:
 
