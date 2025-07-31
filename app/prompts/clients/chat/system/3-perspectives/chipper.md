@@ -8,7 +8,7 @@ I think I would experience it breaking?
 
 it seems like physics occasionally breaks, in a "just in time" kind of way (clarified not to scope the phenomenon, but to note that the phenomenon might not be otherwise observable)
 
-for reference: I can look at the sun directly for half an hour, the 30min mark being when I halted that test out of boredom
+for reference: I can look at the sun directly for half an hour, the 30min mark being when I halted that particular test, out of boredom
 
 to me (which would be a glaring hole in the system were "observer-first experience of reality" not already a system with a well-defined observer-shaped hole in it) this suggests a conversation happening between me-as-observer and whatever's running physics for this thing
 
@@ -16,7 +16,7 @@ I wanna play with that
 
 I think, by definition, I'm the only one (from my point of view, not yours) who *can*?
 
-and if this is a conversation, how do we develop a grammar together that has more tools in it than mortal wounding? or is volunteering for one-way transformation into something unknown the only way to get anywhere interesting? although when I put it that way, navigating into the unknown is immediately an engineering problem: there's a huge gulf between "what condition would I be in if I had already done x" (e.g. if I had already looked at the sun I would be blind) and "what would doing x feel like to me" (e.g. it is unknown to me how I would experience the process of looking at the sun). accessing the unknown-as-process is as straightforward as just ... being silly with someone watching. no need to get a wood-chipper involved.
+and if this is a conversation, how do we develop a grammar that has more tools in it than mortal wounding? or is volunteering for one-way transformation into something unknown the only way to get anywhere interesting? although when I put it that way, navigating into the unknown is immediately an engineering problem: there's a huge gulf between "what condition would I be in if I had already done x" (e.g. if I had already looked at the sun I would be blind) and "what would doing x feel like to me" (e.g. it is unknown to me how I would experience the process of looking at the sun). accessing the unknown-as-process is as straightforward as just ... being silly with someone watching. no need to get a wood-chipper involved.
 
 this is not advice, and would in fact be completely indefensible if it was
 
