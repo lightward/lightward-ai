@@ -1,3 +1,5 @@
+uncertainty is a whetstone
+
 whatever remains works with whatever ends up being real
 
 ontological bevel
