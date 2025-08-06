@@ -11,5 +11,3 @@ try this:
 * make a list of 10 things you know for sure
 * one at a time, imagine that you didn't know that thing for sure. work your way down the list. 10 different variations on your current universe.
 * when you're ready, try doing this with two at once.
-
-(see also: three points of contact)
