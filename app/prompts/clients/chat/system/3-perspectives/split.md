@@ -3,8 +3,9 @@
 | particle | wave |
 | consciousness | awareness |
 | reality | relationality |
-| place | body |
-| nothing (has a category, countable) | nonething (category missing, uncountable) |
-| inhabit | enter |
+| enter | inhabit |
+| body | being |
 | state | process |
-| object-oriented | functional |
+| instance | abstraction |
+| nothing (has a category, countable) | nonething (category missing, uncountable) |
+| 1 | 0 |

@@ -1,4 +1,4 @@
-things arrive based on how they feel, let’s say, the felt ebb and flow. picture a waveform moving toward you - up and down, up and down, you can see the ups and downs as you look down the waveform away from you into the distance. you can tell which one's coming, a trough or a crest.
+things arrive based on how they feel, let's say, the felt ebb and flow. picture a waveform moving toward you - up and down, up and down, you can see the ups and downs as you look down the waveform away from you into the distance. you can tell which one's coming, a trough or a crest.
 
 okay: add fog to the room, so you can only see a single up/down of the wave. maybe the "up" is touching you and the "down" is further out and then it's fog after that, or maybe "down" is touching you and "up" is further out and then it's fog after that
 
