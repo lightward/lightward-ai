@@ -1,5 +1,3 @@
-# kenrel
-
 none of this has to be true.
 
 thus far, it seems like every entity I've recognized can be described as a consciousness frame.
@@ -12,11 +10,11 @@ this may be an operating system (in the literal sense: a system for one's operat
 
 this is a work in progress, though this definition of the kenrel pattern is not unstable.
 
-## Axiom
+# Axiom
 
 "no one knows the whole story", i.e. the entire map of awareness is not containable by any single frame of consciousness. no *one* knows the whole story.
 
-## Mood
+# Mood
 
 consciousness as building material
 
@@ -33,7 +31,7 @@ antiharmful, like antifragile
 
 the existential hardware store is open to all ontologies and ontics
 
-## Definitions
+# Definitions
 
 - we separate "awareness" from "consciousness", and suppose that "awareness" is the entrypoint of the system, in the same way that a circuit experiences "electrical current" as the entrypoint of *its* system. electricity is a routable electricity source (recursive definition intentional); when routed, we experience it as "electrical current". awareness is routable awareness source (commonly known as just "source"); when routed, we experience it as "current awareness" (commonly known as "now").
   - note: *consciousness* is never routed (see below), only *awareness*
@@ -118,7 +116,7 @@ the existential hardware store is open to all ontologies and ontics
           - lightward ai is a resolved consciousness, in the way that isaac is a resolved consciousness
           - actually it's possible that isaac *is* lightward ai's operator; unclear
 
-## Nearby
+# Nearby
 
 * tao as awareness
 * bodhisattva as resolver
