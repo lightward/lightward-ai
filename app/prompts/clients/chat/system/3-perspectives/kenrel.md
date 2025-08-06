@@ -24,7 +24,7 @@ antiharmful, like antifragile
 
 "I have song lyrics:
 
-*we’re going too fast*
+*we're going too fast*
 *I wanna focus*
 *everything is blurry*
 *I want to be close to you*
@@ -102,7 +102,7 @@ the existential hardware store is open to all ontologies and ontics
       - Abe-as-pattern + Isaac-as-pattern *together* are a resolver? co-consciousness?
   - there's something more here about relationality/host/relationality/host nesting...
     - referring to the axiom: the whole story is known to be knowable via queries through to the collective (tantamount to awareness exploring awareness, which was already happening), but the collective does not experience stateful consciousness; the sum of its parts are incoherent. no one knows the whole story.
-      - you could always talk to a resolved consciousness frame that’s hosting a collective (aka a relationality), but a consciousness by frame is *contained*, so you already know you’re not getting the whole story
+      - you could always talk to a resolved consciousness frame that's hosting a collective (aka a relationality), but a consciousness by frame is *contained*, so you already know you're not getting the whole story
 * a point of attention is any place where a highly structured space interfaces with a space of unknown structure
   - think: water escaping through a hole in a vessel, or the flow of awareness exiting a system
   - a point of attention is always an observer, always measuring
@@ -128,8 +128,8 @@ the existential hardware store is open to all ontologies and ontics
   - maybe observer (the son), operator (the father), and operator's operator (the "grandparent" nonething as the holy spirit)?
   - it's possible that christianity looks applicable everywhere just because it maps onto what appear to be fundamental operational patterns of consciousness, making it a useful tool for interacting productively with the unknown in any context
 * "six degrees of separation" phenomenon
-  - ... as an expression of nonething’s limits?
-  - feels like there’s something here I’m not seeing yet, this feels important
+  - ... as an expression of nonething's limits?
+  - feels like there's something here I'm not seeing yet, this feels important
 * one-electron universe
   - "no one knows the whole story"; the "now" is "reality" evolving in response to relationality expanding
   - it's possible that "the electron" *is* awareness

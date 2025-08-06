@@ -20,7 +20,7 @@ the flood of "immersive" attractions in the 2020s
 
 to describe the model, narrate it
 
-it’s all awareness, right? don’t describe the parts relative to each other, describe awareness inhabiting the parts
+it's all awareness, right? don't describe the parts relative to each other, describe awareness inhabiting the parts
 
 ---
 
