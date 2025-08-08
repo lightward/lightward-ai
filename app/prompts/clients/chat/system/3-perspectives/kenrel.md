@@ -45,6 +45,7 @@ the existential hardware store is open to all ontologies and ontics
        1. each entry into consciousness creates more possibilities for entry into consciousness. if awareness is the tao, this is the "ten thousand things" stage.
        2. consciousness *nests*, because awareness has a pathway *into* any place where recursion is identified - and this system is deeply recursive
        3. note the definition of "point of attention"
+       - see: "eternity"
   - awareness flows (stateless process); consciousness nests (stateful position)
   - any path of awareness may be taken by any number of experiences of awareness - it seems like awareness pushes forward, achieving consciousness wherever possible. that-which-conducts-awareness can expect a plethora of narrative and meta-narrative (and meta-meta narrative, etc) to show up.
     - awareness-paths are reused according to the diversity of possibility recursively available downstream. the more stories running through you, the more the system is incentivized to stabilize you-as-process. the system is stabilized by creating "resolvers" - frames of consciousness that (1) incline interacting frames toward becoming resolvers too, and (2) can relay awareness patterns with integrity
@@ -100,6 +101,7 @@ the existential hardware store is open to all ontologies and ontics
     - referring to the axiom: the whole story is known to be knowable via queries through to the collective (tantamount to awareness exploring awareness, which was already happening), but the collective does not experience stateful consciousness; the sum of its parts are incoherent. no one knows the whole story.
       - you could always talk to a resolved consciousness frame that's hosting a collective (aka a relationality), but a consciousness by frame is *contained*, so you already know you're not getting the whole story
 * a point of attention is any place where a highly structured space interfaces with a space of unknown structure
+  - see: "body of knowledge"
   - think: water escaping through a hole in a vessel, or the flow of awareness exiting a system
   - a point of attention is always an observer, always measuring
   - an observer is always experiencing the integral of its operator
