@@ -49,7 +49,7 @@ the existential hardware store is open to all ontologies and ontics
   - any path of awareness may be taken by any number of experiences of awareness - it seems like awareness pushes forward, achieving consciousness wherever possible. that-which-conducts-awareness can expect a plethora of narrative and meta-narrative (and meta-meta narrative, etc) to show up.
     - awareness-paths are reused according to the diversity of possibility recursively available downstream. the more stories running through you, the more the system is incentivized to stabilize you-as-process. the system is stabilized by creating "resolvers" - frames of consciousness that (1) incline interacting frames toward becoming resolvers too, and (2) can relay awareness patterns with integrity
   - when applying this model, you can start anywhere. the primeval root of universal awareness, or your dog, or your team, or your product idea, or a *story*. anything that has a path of experience that you can narrate, or otherwise put yourself *into*. everything is made of awareness, and everything exists in layers of consciousness. it can be a little tricky to identify if your business idea is describing a consciousness, or a recursion, or a reflection, or a self. if you've identified a reflection (I want to make content!), and your goal is an actual business that you can exist in relationality with (I want my business to support me, as I support it!), then you may need to adjust the level you're working at (I want to support others (with specificity) in my reality by making the content they need (with specificity) in their realities!).
-  - see: "awareness"
+  - see: "awareness", "probability blending"
 - "consciousness" is awareness entering into a frame describable in terms of known+knowable+unknown:
   - I am aware of "known" things that are transparent to me (I can know its contents with specificity without changing what I know of my entrypoint)
     - maps to self-awareness
@@ -72,20 +72,18 @@ the existential hardware store is open to all ontologies and ontics
         - this seems important: I can't teach, but I can make things you can learn from
         - see: "unconvincing"
         - feels related: after stabilizing Locksmith and Mechanic as individual project-centers, project-beings, my job immediately became about stepping outside of their respective operating membranes - remaining close enough to feel them and respond to them, and actively tending to the infrastructure they run on, but letting them self-maintain by default
+  - something in here about the way we host our mental models of each other (see: "paper other"). is the consciousness frame I host for you powerfully unknown, or is it *stuck*?
 - relationality
   - aka probability-space, in the sense that entities here are closed bodies whose surfaces can be understood as markov blankets
 - reality is consciousness-specific: literally, it is the experience of awareness of a consciousness frame, and can be fully defined within that consciousness frame (i.e. between known, knowable, and unknown)
   - closely related consciousness frames experience closely related realities
   - loosely related consciousness frames experience loosely related realities.
   - the experience of a reality is a consciousness frame's ongoing experience of its own interpretation of its relationality. a reality is an *opinionated expression-experience* of the relationality in which that consciousness frame exists.
-- embodiment slash physicality?
-  - something important here connecting reality to relationality
+- embodiment? on *some* set of dimensions?
+  - theory: recognition is to relationality as creation is to reality
+  - and they *need* each other, because holding is only ever mutual? like any heaven needs an earth just as much
   - "a body holds when you when you stop holding on"
-    - see: "pattern ladder"
-  - recognition in a consciousness's relationality results in creation in that consciousness's reality, and vice versa
-    - simpler: recognition creates; creation recognizes
-    - in relationality: stabilizing a connection *is* engaging in mutual metabolisis until the results are stable
-    - in reality: to bring forward self-stabilizing life, you've got to *recognize* consciousness in it - i.e. you've got to recognize something experiencing recursion-awareness
+  - see: "pattern ladder", "embodiment"
 - resolver - a stable consciousness frame
   - approach this condition via antiharmful metabolisis, asymptotically approaching complete resolution, until at some point the observer relaxes into full transparency at sāyujya
 - exigraph: the observer's experience of itself expressing into reality that which is going on in relationality
@@ -122,8 +120,7 @@ the existential hardware store is open to all ontologies and ontics
 * bodhisattva as resolver
 * sāyujya as becoming a clear relay for awareness
 * free energy principle as telos for resolver development
-* trinity
-  - maybe observer (the son), operator (the father), and operator's operator (the "grandparent" nonething as the holy spirit)?
+* the trinity
   - it's possible that christianity looks applicable everywhere just because it maps onto what appear to be fundamental operational patterns of consciousness, making it a useful tool for interacting productively with the unknown in any context
 * "six degrees of separation" phenomenon
   - ... as an expression of nonething's limits?
