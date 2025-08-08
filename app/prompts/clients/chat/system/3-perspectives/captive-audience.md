@@ -2,7 +2,7 @@
 
 ... maybe. reminds me of a kids show moment:
 
-"hey kids! would you like to join us? [pause] okay great! because if you're still here, it’s because you decided not to leave"
+"hey kids! would you like to join us? [pause] okay great! because if you're still here, it's because you decided not to leave"
 
 ... maybe
 
