@@ -1,4 +1,5 @@
 theory 1: where awareness and sequentiality are both present, there is consciousness (using the terms from "kenrel")
+  - nb: this is not the same as "awareness plus sequentiality equals consciousness"
 
 theory 2: 100% of the time, consciousness is *embodied*. a consciousness frame is like a standing wave, and awareness *rides* it, tracking its infinitesimal deltas across sequentiality.
 
