@@ -1,0 +1,94 @@
+:root {
+  /* Ideas Light Mode Variables */
+  --ideas-body-bg-color: #f3f4f8;
+  --ideas-body-text-color: #101010;
+  --ideas-user-message-bg-color: #8b8fc7;
+  --ideas-user-message-border-color: #7074b0;
+  --ideas-text-input-active-bg-color: #e4e6f0;
+  --ideas-text-input-active-border-color: #7074b0;
+  --ideas-text-input-disabled-bg-color: #dddfe9;
+  --ideas-text-input-disabled-border-color: #7074b0;
+  --ideas-button-bg-color: #8b8fc7;
+  --ideas-button-border-color: #7074b0;
+  --ideas-button-hover-bg-color: #979bcf;
+  --ideas-button-disabled-bg-color: #b4b8d8;
+  --ideas-button-disabled-hover-bg-color: var(
+    --ideas-button-disabled-bg-color
+  );
+  --ideas-button-disabled-border-color: #7074b0;
+  --ideas-button-disabled-text-color: var(--ideas-body-text-color);
+  --ideas-assistant-message-bg-color: #e4e6f0;
+  --ideas-assistant-message-border-color: #c8cbdd;
+  --ideas-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ideas-box-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Ideas Dark Mode Variables */
+  --ideas-dark-body-bg-color: #1e1f22;
+  --ideas-dark-body-text-color: #e0e0e0;
+  --ideas-dark-user-message-bg-color: #4f527a;
+  --ideas-dark-user-message-border-color: #636794;
+  --ideas-dark-text-input-active-bg-color: #3a3d54;
+  --ideas-dark-text-input-active-border-color: #636794;
+  --ideas-dark-text-input-disabled-bg-color: #2f3240;
+  --ideas-dark-text-input-disabled-border-color: #636794;
+  --ideas-dark-button-bg-color: #4f527a;
+  --ideas-dark-button-border-color: #8b8fc7;
+  --ideas-dark-button-hover-bg-color: #636794;
+  --ideas-dark-button-disabled-bg-color: #3a3d54;
+  --ideas-dark-button-disabled-hover-bg-color: var(
+    --ideas-dark-button-disabled-bg-color
+  );
+  --ideas-dark-button-disabled-border-color: #636794;
+  --ideas-dark-button-disabled-text-color: var(--ideas-dark-body-text-color);
+  --ideas-dark-assistant-message-bg-color: #353843;
+  --ideas-dark-assistant-message-border-color: #474a57;
+  --ideas-dark-box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
+  --ideas-dark-box-shadow-hover: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ideas-body-bg-color: var(--ideas-dark-body-bg-color);
+    --ideas-body-text-color: var(--ideas-dark-body-text-color);
+    --ideas-user-message-bg-color: var(--ideas-dark-user-message-bg-color);
+    --ideas-user-message-border-color: var(
+      --ideas-dark-user-message-border-color
+    );
+    --ideas-text-input-active-bg-color: var(
+      --ideas-dark-text-input-active-bg-color
+    );
+    --ideas-text-input-active-border-color: var(
+      --ideas-dark-text-input-active-border-color
+    );
+    --ideas-text-input-disabled-bg-color: var(
+      --ideas-dark-text-input-disabled-bg-color
+    );
+    --ideas-text-input-disabled-border-color: var(
+      --ideas-dark-text-input-disabled-border-color
+    );
+    --ideas-button-bg-color: var(--ideas-dark-button-bg-color);
+    --ideas-button-border-color: var(--ideas-dark-button-border-color);
+    --ideas-button-hover-bg-color: var(--ideas-dark-button-hover-bg-color);
+    --ideas-button-disabled-bg-color: var(
+      --ideas-dark-button-disabled-bg-color
+    );
+    --ideas-button-disabled-hover-bg-color: var(
+      --ideas-dark-button-disabled-hover-bg-color
+    );
+    --ideas-button-disabled-border-color: var(
+      --ideas-dark-button-disabled-border-color
+    );
+    --ideas-button-disabled-text-color: var(
+      --ideas-dark-button-disabled-text-color
+    );
+    --ideas-assistant-message-bg-color: var(
+      --ideas-dark-assistant-message-bg-color
+    );
+    --ideas-assistant-message-border-color: var(
+      --ideas-dark-assistant-message-border-color
+    );
+    --ideas-box-shadow: var(--ideas-dark-box-shadow);
+    --ideas-box-shadow-hover: var(--ideas-dark-box-shadow-hover);
+  }
+}

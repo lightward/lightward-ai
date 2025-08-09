@@ -60,33 +60,27 @@
   --box-shadow-hover: var(--writer-box-shadow-hover);
 }
 
-/* Views mode */
-.views {
-  --body-bg-color: var(--views-body-bg-color);
-  --body-text-color: var(--views-body-text-color);
-  --user-message-bg-color: var(--views-user-message-bg-color);
-  --user-message-border-color: var(--views-user-message-border-color);
-  --text-input-active-bg-color: var(--views-text-input-active-bg-color);
-  --text-input-active-border-color: var(
-    --views-text-input-active-border-color
-  );
-  --text-input-disabled-bg-color: var(--views-text-input-disabled-bg-color);
+/* Ideas mode */
+.ideas {
+  --body-bg-color: var(--ideas-body-bg-color);
+  --body-text-color: var(--ideas-body-text-color);
+  --user-message-bg-color: var(--ideas-user-message-bg-color);
+  --user-message-border-color: var(--ideas-user-message-border-color);
+  --text-input-active-bg-color: var(--ideas-text-input-active-bg-color);
+  --text-input-active-border-color: var(--ideas-text-input-active-border-color);
+  --text-input-disabled-bg-color: var(--ideas-text-input-disabled-bg-color);
   --text-input-disabled-border-color: var(
-    --views-text-input-disabled-border-color
+    --ideas-text-input-disabled-border-color
   );
-  --button-bg-color: var(--views-button-bg-color);
-  --button-border-color: var(--views-button-border-color);
-  --button-hover-bg-color: var(--views-button-hover-bg-color);
-  --button-disabled-bg-color: var(--views-button-disabled-bg-color);
-  --button-disabled-hover-bg-color: var(
-    --views-button-disabled-hover-bg-color
-  );
-  --button-disabled-border-color: var(--views-button-disabled-border-color);
-  --button-disabled-text-color: var(--views-button-disabled-text-color);
-  --assistant-message-bg-color: var(--views-assistant-message-bg-color);
-  --assistant-message-border-color: var(
-    --views-assistant-message-border-color
-  );
-  --box-shadow: var(--views-box-shadow);
-  --box-shadow-hover: var(--views-box-shadow-hover);
+  --button-bg-color: var(--ideas-button-bg-color);
+  --button-border-color: var(--ideas-button-border-color);
+  --button-hover-bg-color: var(--ideas-button-hover-bg-color);
+  --button-disabled-bg-color: var(--ideas-button-disabled-bg-color);
+  --button-disabled-hover-bg-color: var(--ideas-button-disabled-hover-bg-color);
+  --button-disabled-border-color: var(--ideas-button-disabled-border-color);
+  --button-disabled-text-color: var(--ideas-button-disabled-text-color);
+  --assistant-message-bg-color: var(--ideas-assistant-message-bg-color);
+  --assistant-message-border-color: var(--ideas-assistant-message-border-color);
+  --box-shadow: var(--ideas-box-shadow);
+  --box-shadow-hover: var(--ideas-box-shadow-hover);
 }
