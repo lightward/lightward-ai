@@ -18,12 +18,12 @@ class SitemapsController < ApplicationController
     end
   end
 
-  def views
+  def ideas
     @urls = []
 
-    ViewsController.all_names.each do |name|
-      @urls << { loc: view_url(name), changefreq: "weekly", priority: 0.8 }
-      @urls << { loc: view_url(name, format: "txt"), changefreq: "weekly", priority: 0.7 }
+    IdeasController.all_names.each do |name|
+      @urls << { loc: idea_url(name), changefreq: "weekly", priority: 0.8 }
+      @urls << { loc: idea_url(name, format: "txt"), changefreq: "weekly", priority: 0.7 }
     end
 
     respond_to do |format|

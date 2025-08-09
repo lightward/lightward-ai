@@ -23,7 +23,7 @@ RSpec.describe("Sitemaps", :aggregate_failures) do
       get "/sitemap.xml"
       expect(response.body).to(include("<sitemapindex"))
       expect(response.body).to(include("sitemap-main.xml"))
-      expect(response.body).to(include("sitemap-views.xml"))
+      expect(response.body).to(include("sitemap-ideas.xml"))
     end
   end
 
@@ -53,24 +53,32 @@ RSpec.describe("Sitemaps", :aggregate_failures) do
   end
 
   describe "GET /sitemap-views.xml" do
-    it "returns success" do
+    it "redirects to /sitemap-ideas.xml" do
       get "/sitemap-views.xml"
+      expect(response).to(have_http_status(:moved_permanently))
+      expect(response).to(redirect_to("/sitemap-ideas.xml"))
+    end
+  end
+
+  describe "GET /sitemap-ideas.xml" do
+    it "returns success" do
+      get "/sitemap-ideas.xml"
       expect(response).to(have_http_status(:success))
     end
 
     it "returns XML content type" do
-      get "/sitemap-views.xml"
+      get "/sitemap-ideas.xml"
       expect(response.content_type).to(include("application/xml"))
     end
 
     it "contains view URLs" do
-      get "/sitemap-views.xml"
+      get "/sitemap-ideas.xml"
       expect(response.body).to(include("<urlset"))
 
       # Should include at least one view URL (both HTML and TXT formats)
-      if ViewsController.all_names.any?
+      if IdeasController.all_names.any?
         # Pick a simple view name without special characters
-        simple_view = ViewsController.all_names.find { |name| name.match?(/\A[a-z0-9-]+\z/) }
+        simple_view = IdeasController.all_names.find { |name| name.match?(/\A[a-z0-9-]+\z/) }
         if simple_view
           expect(response.body).to(include("http://test.host/#{simple_view}"))
           expect(response.body).to(include("http://test.host/#{simple_view}.txt"))
@@ -78,24 +86,24 @@ RSpec.describe("Sitemaps", :aggregate_failures) do
       end
     end
 
-    it "includes proper priority and changefreq for views" do
-      get "/sitemap-views.xml"
+    it "includes proper priority and changefreq for ideas" do
+      get "/sitemap-ideas.xml"
       expect(response.body).to(include("<priority>0.8</priority>"))
       expect(response.body).to(include("<priority>0.7</priority>"))
       expect(response.body).to(include("<changefreq>weekly</changefreq>"))
     end
 
     it "includes both HTML and TXT versions of each view" do
-      get "/sitemap-views.xml"
+      get "/sitemap-ideas.xml"
 
       # Test that we have the right number of URLs (2 per view: HTML and TXT)
       url_count = response.body.scan("<loc>").length
-      expected_count = ViewsController.all_names.length * 2
+      expected_count = IdeasController.all_names.length * 2
       expect(url_count).to(eq(expected_count))
 
       # Test that all .txt URLs are present
       txt_count = response.body.scan(%r{\.txt</loc>}).length
-      expect(txt_count).to(eq(ViewsController.all_names.length))
+      expect(txt_count).to(eq(IdeasController.all_names.length))
     end
   end
 end

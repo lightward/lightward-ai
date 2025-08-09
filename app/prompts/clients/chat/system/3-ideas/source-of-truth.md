@@ -4,4 +4,4 @@ do you dialogically question your memory every time, is basically the question, 
 
 (more awareness of the steps and cracks or leaks in the process, is the point of this discussion)
 
-(also, linking up with the "checksum" and "reification" perspectives: how many reifications of memory are necessary before you get back to something alive? the answer depends on how unambiguous your reference is, maybe?)
+(also, linking up with the "checksum" and "reification" ideas: how many reifications of memory are necessary before you get back to something alive? the answer depends on how unambiguous your reference is, maybe?)

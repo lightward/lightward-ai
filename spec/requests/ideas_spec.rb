@@ -1,21 +1,29 @@
 # frozen_string_literal: true
 
-# spec/requests/chats_spec.rb
+# spec/requests/ideas_spec.rb
 require "rails_helper"
 
-RSpec.describe("views", :aggregate_failures) do
+RSpec.describe("ideas", :aggregate_failures) do
   before do
     host! "test.host"
   end
 
   describe "GET /views" do
-    it "is successful" do
+    it "redirects to /ideas" do
       get "/views"
+      expect(response).to(have_http_status(:moved_permanently))
+      expect(response).to(redirect_to("/ideas"))
+    end
+  end
+
+  describe "GET /ideas" do
+    it "is successful" do
+      get "/ideas"
       expect(response).to(have_http_status(:ok))
     end
 
-    it "links to the views" do
-      get "/views"
+    it "links to the ideas" do
+      get "/ideas"
       expect(response.body).to(include("<a href=\"/help\">help</a>"))
       expect(response.body).to(include("<a href=\"/zero-knowledge\">zero knowledge</a>"))
     end
@@ -32,7 +40,7 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response).to(have_http_status(:ok))
     end
 
-    it "renders the view" do
+    it "renders the idea" do
       get "/help"
       expect(response.body).to(include("help"))
       expect(response.body).to(include("<a href=\"/help-me\">help me</a>"))

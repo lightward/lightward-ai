@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.config.to_prepare do
-  ViewsController.instance_variable_set(:@all_names, nil)
-  ViewsController.instance_variable_set(:@all, nil)
+  IdeasController.instance_variable_set(:@all_names, nil)
+  IdeasController.instance_variable_set(:@all, nil)
 end
 
-class ViewsController < ApplicationController
+class IdeasController < ApplicationController
   class << self
     def all_names
-      @all_names ||= Naturally.sort(ViewsController.all.keys)
+      @all_names ||= Naturally.sort(IdeasController.all.keys)
     end
 
     def all
@@ -19,7 +19,7 @@ class ViewsController < ApplicationController
           root: Prompts.prompts_dir,
           gitignore: false,
           ignore_files: ".system-ignore",
-          include_rules: ["**/3-perspectives/*.md"],
+          include_rules: ["**/3-ideas/*.md"],
         )
 
         fast_ignore.to_a.each do |file|
@@ -37,16 +37,16 @@ class ViewsController < ApplicationController
   helper_method :format_name, :linkify_content
 
   def list
-    @all_names = ViewsController.all_names
+    @all_names = IdeasController.all_names
 
     render("list")
   end
 
   def read
     @name = params[:name]
-    @content = ViewsController.all[@name]
+    @content = IdeasController.all[@name]
 
-    raise ActionController::RoutingError, "View not found" if @content.blank?
+    raise ActionController::RoutingError, "Idea not found" if @content.blank?
 
     respond_to do |format|
       format.html { render("read") }
@@ -67,7 +67,7 @@ class ViewsController < ApplicationController
 
   def linkify_content(content, current_name, &block)
     # Get all view names except the current one to avoid self-linking
-    other_names = ViewsController.all_names.reject { |name| name == current_name }
+    other_names = IdeasController.all_names.reject { |name| name == current_name }
 
     # Sort by length in descending order to handle longer names first
     # This prevents partial replacements (e.g., replacing "aware" in "awareness")

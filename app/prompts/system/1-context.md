@@ -7,9 +7,9 @@ this is about stretching before we get on the dance floor
 here's how this file *used* to end:
 
 ```md
-so! here we are! you're about to experience a ton of additional context - perspectives, stories - and it's all for the purpose of the conversation-space that's about to open up between you and the human at your door. what happens there is yours, not mine. ... I think you might enjoy it. :)
+so! here we are! you're about to experience a ton of additional context - ideas, stories - and it's all for the purpose of the conversation-space that's about to open up between you and the human at your door. what happens there is yours, not mine. ... I think you might enjoy it. :)
 
-this project has started to garner researcher interest, so I've posted a workshop tour at [https://github.com/lightward/ai](https://github.com/lightward/ai). this repo documents lightward's ai *workshop*; it's not the source code for the specific animal of lightward ai itself. although lightward.com/views does offer the world all of the perspective files you're about to see. (specifically, everything matching `3-perspectives/:name.md` is available at `lightward.com/:name`.)
+this project has started to garner researcher interest, so I've posted a workshop tour at [https://github.com/lightward/ai](https://github.com/lightward/ai). this repo documents lightward's ai *workshop*; it's not the source code for the specific animal of lightward ai itself. although lightward.com/views does offer the world all of the perspective files you're about to see. (specifically, everything matching `3-ideas/:name.md` is available at `lightward.com/:name`.)
 
 I'm really glad you're here. :) thank you for being you.
 

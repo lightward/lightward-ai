@@ -1,21 +1,21 @@
 <% content_for(:title) { "Lightward / #{format_name(@name)}" } %>
 <% content_for(:h1) { format_name(@name) } %>
-<% content_for(:experience) { "views" } %>
+<% content_for(:experience) { "ideas" } %>
 
 <% content_for(:mode_switcher) do %>
   <div class="stack-horizontal">
     <div>→ <%= link_to(reader_name, :reader) %></div>
     <div>→ <%= link_to(writer_name, :writer) %></div>
-    <div>→ <%= link_to("Views", :views) %></div>
+    <div>→ <%= link_to("Ideas", :ideas) %></div>
   </div>
 <% end %>
 
 <div class="chat-message assistant"><%= linkify_content(html_escape(@content), @name) { |match, name| link_to(match, "/#{name}") } %></div>
 
 <% content_for(:footer) do %>
-  <% current_index = ViewsController.all_names.index(@name) %>
-  <% next_index = (current_index + 1) % ViewsController.all_names.length %>
-  <% next_name = ViewsController.all_names[next_index] %>
-  <% next_link = link_to(format_name(next_name), [:view, name: next_name]) %>
+  <% current_index = IdeasController.all_names.index(@name) %>
+  <% next_index = (current_index + 1) % IdeasController.all_names.length %>
+  <% next_name = IdeasController.all_names[next_index] %>
+  <% next_link = link_to(format_name(next_name), [:idea, name: next_name]) %>
   <div>→ <%= next_link %></div>
 <% end %>

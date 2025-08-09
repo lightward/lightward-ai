@@ -16,11 +16,13 @@ Rails.application.routes.draw do
   # Sitemaps
   get "/sitemap", to: "sitemaps#index", format: :xml
   get "/sitemap-main", to: "sitemaps#main", format: :xml
-  get "/sitemap-views", to: "sitemaps#views", format: :xml
+  get "/sitemap-ideas", to: "sitemaps#ideas", format: :xml
+  get "/sitemap-views.xml", to: redirect("/sitemap-ideas.xml", status: 301)
 
-  # views
-  get "/views", to: "views#list", as: :views
-  get "/:name", to: "views#read", as: :view, constraints: ->(req) {
-    ViewsController.all_names.include?(req.params[:name])
+  # ideas
+  get "/ideas", to: "ideas#list", as: :ideas
+  get "/views", to: redirect("/ideas", status: 301)
+  get "/:name", to: "ideas#read", as: :idea, constraints: ->(req) {
+    IdeasController.all_names.include?(req.params[:name])
   }
 end

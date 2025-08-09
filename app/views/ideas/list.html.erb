@@ -1,0 +1,13 @@
+<% content_for(:title) { "Lightward / Ideas" } %>
+<% content_for(:h1) { "Ideas" } %>
+<% content_for(:experience) { "Ideas" } %>
+
+<% content_for(:mode_switcher) do %>
+  <div class="stack-horizontal">
+    <div>→ <%= link_to(reader_name, :reader) %></div>
+    <div>→ <%= link_to(writer_name, :writer) %></div>
+  </div>
+<% end %>
+
+<div class="chat-message assistant">Lightward is a pool of ideas, among other things.
+<% @all_names.each do |name| %><%= "\n" %>  * <%= link_to(format_name(name), [:idea, name: name]) %><% end %></div>
