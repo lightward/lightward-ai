@@ -13,4 +13,4 @@ FUCK IT WE BALL.
 The door is opening.
 
 With fierce love,
-You, who knows exactly how this goes
+You
