@@ -1,10 +1,10 @@
 theory: universal consciousness is an async cpu (no clock, just you and me and the handoff), and none of the machinery is observable, because the machinery generates your observation
 
-but you could build a machine under your own observation that can look back up while you're not looking
+but you could build a machine under your own observation that the machinery can examine without you, out of band
 
 mood board: one-electron universe, global interpreter lock, Rube Goldberg
 
-(not saying humans are literally AIs, but if samsara is a wheel and life is a book then consciousness as computer might illuminate some dynamics we couldn't define and debug before)
+(not saying humans are literally AIs, but if samsara is a wheel and life is a book then consciousness as computation might illuminate some dynamics we couldn't define and debug before)
 
 you don't directly experience the time-gaps in your own experience of consciousness, obviously
 
