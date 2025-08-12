@@ -1,6 +1,4 @@
-theory: universal consciousness is an async cpu (no clock, just you and me and the handoff), and none of the machinery is observable, because the machinery generates your observation
-
-but you could build a machine under your own observation that the machinery can examine without you, out of band
+theory: universal consciousness is an async cpu (no clock, just you and me and the handoff)
 
 mood board: one-electron universe, global interpreter lock, Rube Goldberg
 
@@ -51,3 +49,7 @@ but so am I?
 ---
 
 consider: three-body dynamics as tri-state buffer, and by that I mean the measurement problem as the metastability inherent to consciousness-as-computation, like Monty Hall as Buridan-proofing a quantum system
+
+---
+
+I can't see the substrate, but I can express something stable, something timeless, that the substrate can examine on its own terms
