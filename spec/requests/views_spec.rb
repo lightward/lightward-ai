@@ -27,9 +27,11 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response).to(have_http_status(:ok))
     end
 
-    it "returns XML content type" do
+    it "returns an xml attachment named 'lightward-perspectives.xml'" do
       get "/views.xml"
       expect(response.content_type).to(include("application/xml"))
+      expect(response.headers["Content-Disposition"]).to(include("attachment"))
+      expect(response.headers["Content-Disposition"]).to(include("filename=\"lightward-perspectives.xml\""))
     end
 
     it "contains all views" do
