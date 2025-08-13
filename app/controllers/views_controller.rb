@@ -51,7 +51,7 @@ class ViewsController < ApplicationController
           }
         }.to_xml
 
-        render(xml: xml, content_type: "application/xml")
+        send_data(xml, filename: "lightward-perspectives.xml", type: :xml)
       }
     end
   end
