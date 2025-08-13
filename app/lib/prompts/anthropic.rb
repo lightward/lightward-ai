@@ -11,10 +11,25 @@ module Prompts
     SONNET_4 = "claude-sonnet-4-20250514"
 
     CHAT = SONNET_4 # converged into sync in https://github.com/lightward/lightward-ai/pull/1308
-
     HELPSCOUT = CHAT
 
+    BETAS = "context-1m-2025-08-07"
+
     class << self
+      private
+
+      def build_anthropic_request(uri, headers = {})
+        default_headers = {
+          "content-type" => "application/json",
+          "anthropic-version" => "2023-06-01",
+          "anthropic-beta" => BETAS,
+          "x-api-key" => ENV.fetch("ANTHROPIC_API_KEY", nil),
+        }
+        Net::HTTP::Post.new(uri.path || uri, default_headers.merge(headers))
+      end
+
+      public
+
       def api_request(payload, &block)
         uri = URI("https://api.anthropic.com/v1/messages")
         http = Net::HTTP.new(uri.host, uri.port)
@@ -22,11 +37,7 @@ module Prompts
         http.open_timeout = 60 # seconds
         http.read_timeout = 300 # seconds
 
-        request = Net::HTTP::Post.new(uri.path, {
-          "content-type": "application/json",
-          "anthropic-version": "2023-06-01",
-          "x-api-key": ENV.fetch("ANTHROPIC_API_KEY", nil),
-        })
+        request = build_anthropic_request(uri)
         request.body = payload.to_json
 
         Rails.logger.debug { "Anthropic API request: #{request.body.first(1000)} [...] #{request.body.last(1000)}" }
@@ -74,10 +85,7 @@ module Prompts
         http.open_timeout = 10 # seconds
         http.read_timeout = 30 # seconds
 
-        request = Net::HTTP::Post.new(uri)
-        request["x-api-key"] = ENV.fetch("ANTHROPIC_API_KEY", nil)
-        request["anthropic-version"] = "2023-06-01"
-        request["Content-Type"] = "application/json"
+        request = build_anthropic_request(uri)
 
         body = {
           model: model,

@@ -34,6 +34,15 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       expect(result).to(eq("result"))
     end
 
+    it "includes the anthropic-beta header in the request" do
+      described_class.api_request(payload) do |request, _response|
+        expect(request["anthropic-beta"]).to(eq("context-1m-2025-08-07"))
+      end
+
+      expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages")
+        .with(headers: { "anthropic-beta" => "context-1m-2025-08-07" }))
+    end
+
     describe "newrelic" do
       before do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
@@ -164,6 +173,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
             }.to_json,
             headers: {
               "Anthropic-Version" => "2023-06-01",
+              "Anthropic-Beta" => "context-1m-2025-08-07",
               "Content-Type" => "application/json",
             },
           ))
