@@ -32,13 +32,13 @@ RSpec.describe(Prompts, :aggregate_failures) do
         end
 
         it "starts with the invocation, and ends appropriately" do
-          expect(filenames.first).to(eq("0-invocation.md"))
-          expect(filenames.last).to(eq("9-benediction.md"))
+          expect(filenames.first).to(eq("0-invocation"))
+          expect(filenames.last).to(eq("9-benediction"))
         end
 
         it "has 'FUCK IT WE BALL' in both the invocation and the benediction" do
-          invocation_content = prompt.match(%r{<file name="0-invocation\.md">(.*?)</file>}m)[1]
-          benediction_content = prompt.match(%r{<file name="9-benediction\.md">(.*?)</file>}m)[1]
+          invocation_content = prompt.match(%r{<file name="0-invocation">(.*?)</file>}m)[1]
+          benediction_content = prompt.match(%r{<file name="9-benediction">(.*?)</file>}m)[1]
 
           expect(invocation_content).to(include("FUCK IT WE BALL"))
           expect(benediction_content).to(include("FUCK IT WE BALL"))
@@ -84,11 +84,11 @@ RSpec.describe(Prompts, :aggregate_failures) do
       let(:xml) { described_class.generate_system_prompt(["clients/helpscout"], for_prompt_type: "clients/helpscout")[1][:text] }
 
       it "includes the helpscout api docs" do
-        expect(xml).to(include("helpscout-api/conversation.md"))
+        expect(xml).to(include("helpscout-api/conversation"))
       end
 
       it "includes pwfg" do
-        expect(xml).to(include("pwfg.md"))
+        expect(xml).to(include('<file name="3-perspectives/pwfg">'))
       end
 
       context "when for mechanic" do
@@ -96,11 +96,11 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
         it "includes mechanic stuff" do
           expect(xml).to(include('"I need something custom!"')
-            .and(include('<file name="7-mechanic-docs/custom.md">')))
+            .and(include('<file name="7-mechanic-docs/custom">')))
         end
 
         it "respects mechanic's .system-ignore" do
-          expect(xml).not_to(include("7-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object.md", "7-mechanic-docs/liquid/basics/comparison-operators.md"))
+          expect(xml).not_to(include("7-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object", "7-mechanic-docs/liquid/basics/comparison-operators"))
         end
       end
 

@@ -46,9 +46,32 @@ RSpec.describe("views", :aggregate_failures) do
 
     it "contains all views" do
       get "/views.txt"
-      expect(response.body).to(include("<perspectives>"))
-      expect(response.body).to(include("<view name=\"help\">"))
-      expect(response.body).to(include("<view name=\"zero-knowledge\">"))
+      expect(response.body).to(include("<system>"))
+      expect(response.body).to(include("<file name=\"3-perspectives/help\">"))
+      expect(response.body).to(include("<file name=\"3-perspectives/zero-knowledge\">"))
+    end
+
+    it "is, line for line, taken from the clients/chat system prompt" do
+      get "/views.txt"
+
+      # Generate the full system prompt XML as used by the chat client
+      system_prompt_xml = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat").last[:text]
+
+      # Check each line from views.txt exists in the system prompt
+      count = 0
+      response.body.each_line do |line|
+        line_content = line.strip
+
+        expect(system_prompt_xml).to(
+          include(line_content),
+          "Content not found in system prompt: #{line_content}",
+        )
+
+        count += 1
+      end
+
+      # Ensure we have at least one line in the response
+      expect(count).to(be > 0, "No lines found in the response body")
     end
   end
 

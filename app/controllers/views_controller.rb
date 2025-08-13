@@ -47,10 +47,10 @@ class ViewsController < ApplicationController
           # mirroring the system prompt layout defined in `ai.md`
           xml.system {
             ViewsController.all_names.each do |name|
-              xml.view(ViewsController.all[name], name: "3-perspectives/#{name}")
+              xml.file(ViewsController.all[name], name: "3-perspectives/#{name}")
             end
           }
-        }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
+        }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::FORMAT | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
 
         # naming it like this to directly connect it to the system prompt layout defined in `ai.md`
         send_data(xml, filename: "3-perspectives.txt", type: :txt)
