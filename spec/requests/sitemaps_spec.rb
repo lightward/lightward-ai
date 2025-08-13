@@ -44,7 +44,7 @@ RSpec.describe("Sitemaps", :aggregate_failures) do
       expect(response.body).to(include("http://test.host/"))
       expect(response.body).to(include("http://test.host/pro"))
       expect(response.body).to(include("http://test.host/views"))
-      expect(response.body).to(include("http://test.host/views.xml"))
+      expect(response.body).to(include("http://test.host/views.txt"))
     end
 
     it "includes changefreq" do

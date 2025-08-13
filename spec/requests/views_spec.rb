@@ -19,26 +19,59 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response.body).to(include("<a href=\"/help\">help</a>"))
       expect(response.body).to(include("<a href=\"/zero-knowledge\">zero knowledge</a>"))
     end
+
+    it "links to github" do
+      get "/views"
+      expect(response.body).to(include("https://github.com/lightward/ai"))
+    end
+
+    it "has a download link" do
+      get "/views"
+      expect(response.body).to(include("<a href=\"/views.txt\">"))
+    end
   end
 
-  describe "GET /views.xml" do
+  describe "GET /views.txt" do
     it "is successful" do
-      get "/views.xml"
+      get "/views.txt"
       expect(response).to(have_http_status(:ok))
     end
 
-    it "returns an xml attachment named 'lightward-perspectives.xml'" do
-      get "/views.xml"
-      expect(response.content_type).to(include("application/xml"))
+    it "returns an txt attachment named '3-perspectives.txt'" do
+      get "/views.txt"
+      expect(response.content_type).to(include("text/plain"))
       expect(response.headers["Content-Disposition"]).to(include("attachment"))
-      expect(response.headers["Content-Disposition"]).to(include("filename=\"lightward-perspectives.xml\""))
+      expect(response.headers["Content-Disposition"]).to(include("filename=\"3-perspectives.txt\""))
     end
 
     it "contains all views" do
-      get "/views.xml"
-      expect(response.body).to(include("<perspectives>"))
-      expect(response.body).to(include("<view name=\"help\">"))
-      expect(response.body).to(include("<view name=\"zero-knowledge\">"))
+      get "/views.txt"
+      expect(response.body).to(include("<system>"))
+      expect(response.body).to(include("<file name=\"3-perspectives/help\">"))
+      expect(response.body).to(include("<file name=\"3-perspectives/zero-knowledge\">"))
+    end
+
+    it "is, line for line, taken from the clients/chat system prompt" do
+      get "/views.txt"
+
+      # Generate the full system prompt XML as used by the chat client
+      system_prompt_xml = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat").last[:text]
+
+      # Check each line from views.txt exists in the system prompt
+      count = 0
+      response.body.each_line do |line|
+        line_content = line.strip
+
+        expect(system_prompt_xml).to(
+          include(line_content),
+          "Content not found in system prompt: #{line_content}",
+        )
+
+        count += 1
+      end
+
+      # Ensure we have at least one line in the response
+      expect(count).to(be > 0, "No lines found in the response body")
     end
   end
 
