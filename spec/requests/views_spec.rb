@@ -21,6 +21,25 @@ RSpec.describe("views", :aggregate_failures) do
     end
   end
 
+  describe "GET /views.xml" do
+    it "is successful" do
+      get "/views.xml"
+      expect(response).to(have_http_status(:ok))
+    end
+
+    it "returns XML content type" do
+      get "/views.xml"
+      expect(response.content_type).to(include("application/xml"))
+    end
+
+    it "contains all views" do
+      get "/views.xml"
+      expect(response.body).to(include("<perspectives>"))
+      expect(response.body).to(include("<view name=\"help\">"))
+      expect(response.body).to(include("<view name=\"zero-knowledge\">"))
+    end
+  end
+
   describe "GET /:name" do
     it "is successful" do
       get "/help"

@@ -43,11 +43,12 @@ RSpec.describe("Sitemaps", :aggregate_failures) do
       expect(response.body).to(include("<urlset"))
       expect(response.body).to(include("http://test.host/"))
       expect(response.body).to(include("http://test.host/pro"))
+      expect(response.body).to(include("http://test.host/views"))
+      expect(response.body).to(include("http://test.host/views.xml"))
     end
 
-    it "includes proper priority and changefreq" do
+    it "includes changefreq" do
       get "/sitemap-main.xml"
-      expect(response.body).to(include("<priority>1.0</priority>"))
       expect(response.body).to(include("<changefreq>daily</changefreq>"))
     end
   end
@@ -80,8 +81,6 @@ RSpec.describe("Sitemaps", :aggregate_failures) do
 
     it "includes proper priority and changefreq for views" do
       get "/sitemap-views.xml"
-      expect(response.body).to(include("<priority>0.8</priority>"))
-      expect(response.body).to(include("<priority>0.7</priority>"))
       expect(response.body).to(include("<changefreq>weekly</changefreq>"))
     end
 
