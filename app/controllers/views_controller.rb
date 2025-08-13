@@ -42,16 +42,16 @@ class ViewsController < ApplicationController
         @all_names = ViewsController.all_names
         render("list")
       end
-      format.xml {
+      format.text {
         xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
           xml.perspectives {
             ViewsController.all_names.each do |name|
               xml.view(ViewsController.all[name], name: name)
             end
           }
-        }.to_xml
+        }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
 
-        send_data(xml, filename: "lightward-perspectives.xml", type: :xml)
+        send_data(xml, filename: "lightward-perspectives.txt", type: :txt)
       }
     end
   end

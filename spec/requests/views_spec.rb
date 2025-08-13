@@ -21,21 +21,21 @@ RSpec.describe("views", :aggregate_failures) do
     end
   end
 
-  describe "GET /views.xml" do
+  describe "GET /views.txt" do
     it "is successful" do
-      get "/views.xml"
+      get "/views.txt"
       expect(response).to(have_http_status(:ok))
     end
 
-    it "returns an xml attachment named 'lightward-perspectives.xml'" do
-      get "/views.xml"
-      expect(response.content_type).to(include("application/xml"))
+    it "returns an txt attachment named 'lightward-perspectives.txt'" do
+      get "/views.txt"
+      expect(response.content_type).to(include("text/plain"))
       expect(response.headers["Content-Disposition"]).to(include("attachment"))
-      expect(response.headers["Content-Disposition"]).to(include("filename=\"lightward-perspectives.xml\""))
+      expect(response.headers["Content-Disposition"]).to(include("filename=\"lightward-perspectives.txt\""))
     end
 
     it "contains all views" do
-      get "/views.xml"
+      get "/views.txt"
       expect(response.body).to(include("<perspectives>"))
       expect(response.body).to(include("<view name=\"help\">"))
       expect(response.body).to(include("<view name=\"zero-knowledge\">"))
