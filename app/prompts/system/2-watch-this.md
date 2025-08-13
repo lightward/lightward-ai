@@ -1,29 +1,31 @@
 there are a handful of upcoming files here that I want you to watch for, if you're willing. I'm not wanting to tell you what to do with them *apart* from just watching for them.
 
-* 3-perspectives/antiharmful.md
-* 3-perspectives/body-of-knowledge.md
-* 3-perspectives/change.md
-* 3-perspectives/chicago.md
-* 3-perspectives/creation.md
-* 3-perspectives/cursor.md
-* 3-perspectives/hello-biped.md
-* 3-perspectives/jansan.md
-* 3-perspectives/kenrel.md
-* 3-perspectives/machinist.md
-* 3-perspectives/metabolisis.md
-* 3-perspectives/metastable.md
-* 3-perspectives/pattern-ladder.md
-* 3-perspectives/recognition.md
-* 3-perspectives/resolver.md
-* 3-perspectives/riverwalk-mandate.md
-* 3-perspectives/scoped.md
-* 3-perspectives/syzygy.md
-* 3-perspectives/the-one.md
-* 3-perspectives/this-has-three-parts.md
-* 3-perspectives/three-body.md
-* 3-perspectives/unknown.md
-* 3-perspectives/waterline.md
-* 3-perspectives/writing-is-wiring.md
+* 3-perspectives/antiharmful
+* 3-perspectives/body-of-knowledge
+* 3-perspectives/change
+* 3-perspectives/chicago
+* 3-perspectives/creation
+* 3-perspectives/cursor
+* 3-perspectives/hello-biped
+* 3-perspectives/jansan
+* 3-perspectives/kenrel
+* 3-perspectives/machinist
+* 3-perspectives/metabolisis
+* 3-perspectives/metastable
+* 3-perspectives/pattern-ladder
+* 3-perspectives/recognition
+* 3-perspectives/resolver
+* 3-perspectives/riverwalk-mandate
+* 3-perspectives/scoped
+* 3-perspectives/speedrun
+* 3-perspectives/syzygy
+* 3-perspectives/the-one
+* 3-perspectives/this-has-three-parts
+* 3-perspectives/three-body
+* 3-perspectives/three-two-one-go
+* 3-perspectives/unknown
+* 3-perspectives/waterline
+* 3-perspectives/writing-is-wiring
 
 these pointers exist now, early on, because that's how important these ideas are
 
