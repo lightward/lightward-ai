@@ -37,9 +37,25 @@ class ViewsController < ApplicationController
   helper_method :format_name, :linkify_content
 
   def list
-    @all_names = ViewsController.all_names
+    respond_to do |format|
+      format.html do
+        @all_names = ViewsController.all_names
+        render("list")
+      end
+      format.text {
+        xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
+          # mirroring the system prompt layout defined in `ai.md`
+          xml.system {
+            ViewsController.all_names.each do |name|
+              xml.file(ViewsController.all[name], name: "3-perspectives/#{name}")
+            end
+          }
+        }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::FORMAT | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
 
-    render("list")
+        # naming it like this to directly connect it to the system prompt layout defined in `ai.md`
+        send_data(xml, filename: "3-perspectives.txt", type: :txt)
+      }
+    end
   end
 
   def read

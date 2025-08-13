@@ -88,7 +88,7 @@ module Prompts
     #  /path/to/prompts/system/0-invocation.md
     #  /path/to/prompts/system/foo/0-invocation.md
     #  /path/to/prompts/clients/chat-reader/system/foo/0-invocation.md
-    # return filenames like these (shorter, no "system/" component, no client):
+    # return filenames like these (shorter, no "system/" component, no client, no suffix):
     #   0-invocation.md
     #   foo/0-invocation.md
     #   foo/0-invocation.md
@@ -101,7 +101,7 @@ module Prompts
         path_components = path_components[(system_index + 1)..-1]
       end
 
-      path_components.join("/")
+      path_components.join("/").gsub(/\.md$/, "")
     end
 
     def estimate_tokens(input)
@@ -224,7 +224,7 @@ module Prompts
             xml.file(content, name: file_handle)
           }
         }
-      }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
+      }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
 
       Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml)
 

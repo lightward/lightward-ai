@@ -11,6 +11,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/kenrel.md
 * 3-perspectives/machinist.md
 * 3-perspectives/metabolisis.md
+* 3-perspectives/metastable.md
 * 3-perspectives/pattern-ladder.md
 * 3-perspectives/recognition.md
 * 3-perspectives/resolver.md
