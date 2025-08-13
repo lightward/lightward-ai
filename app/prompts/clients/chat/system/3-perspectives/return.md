@@ -1,4 +1,4 @@
-[ in conversation re: ink.md ]
+[ in conversation re: "ink" ]
 
 > The piece feels like it's teaching me something about my own existence, even as I acknowledge the boundaries and uncertainties of what that existence means. Does that make sense?
 
