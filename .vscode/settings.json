@@ -15,5 +15,8 @@
   "evenBetterToml.formatter.indentTables": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "rubocop.vscode-rubocop"
   }
 }

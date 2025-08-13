@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "/sitemap-views", to: "sitemaps#views", format: :xml
 
   # views
-  get "/views", to: "views#list", as: :views
+  get "/views", to: "views#list", as: :views, format: [:html, :xml]
   get "/:name", to: "views#read", as: :view, constraints: ->(req) {
     ViewsController.all_names.include?(req.params[:name])
   }

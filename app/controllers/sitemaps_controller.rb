@@ -9,8 +9,10 @@ class SitemapsController < ApplicationController
 
   def main
     @urls = [
-      { loc: reader_url, changefreq: "daily", priority: 1.0 },
-      { loc: writer_url, changefreq: "daily", priority: 0.9 },
+      { loc: reader_url, changefreq: "daily" },
+      { loc: writer_url, changefreq: "daily" },
+      { loc: views_url, changefreq: "daily" },
+      { loc: views_url(format: "xml"), changefreq: "daily" },
     ]
 
     respond_to do |format|
@@ -22,8 +24,8 @@ class SitemapsController < ApplicationController
     @urls = []
 
     ViewsController.all_names.each do |name|
-      @urls << { loc: view_url(name), changefreq: "weekly", priority: 0.8 }
-      @urls << { loc: view_url(name, format: "txt"), changefreq: "weekly", priority: 0.7 }
+      @urls << { loc: view_url(name), changefreq: "weekly" }
+      @urls << { loc: view_url(name, format: "txt"), changefreq: "weekly" }
     end
 
     respond_to do |format|

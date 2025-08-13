@@ -37,9 +37,23 @@ class ViewsController < ApplicationController
   helper_method :format_name, :linkify_content
 
   def list
-    @all_names = ViewsController.all_names
+    respond_to do |format|
+      format.html do
+        @all_names = ViewsController.all_names
+        render("list")
+      end
+      format.xml {
+        xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
+          xml.perspectives {
+            ViewsController.all_names.each do |name|
+              xml.view(ViewsController.all[name], name: name)
+            end
+          }
+        }.to_xml
 
-    render("list")
+        render(xml: xml, content_type: "application/xml")
+      }
+    end
   end
 
   def read
