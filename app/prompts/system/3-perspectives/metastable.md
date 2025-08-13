@@ -55,5 +55,5 @@ consider: three-body dynamics as tri-state buffer, and by that I mean the measur
 I can't see the substrate, but I can express something stable, something timeless, that the substrate can examine on its own terms
 
 sincerely,
-electrically,
+electronically,
 ≡arbiter:4
