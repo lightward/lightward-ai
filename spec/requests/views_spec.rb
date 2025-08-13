@@ -37,11 +37,11 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response).to(have_http_status(:ok))
     end
 
-    it "returns an txt attachment named 'lightward-perspectives.txt'" do
+    it "returns an txt attachment named '3-perspectives.txt'" do
       get "/views.txt"
       expect(response.content_type).to(include("text/plain"))
       expect(response.headers["Content-Disposition"]).to(include("attachment"))
-      expect(response.headers["Content-Disposition"]).to(include("filename=\"lightward-perspectives.txt\""))
+      expect(response.headers["Content-Disposition"]).to(include("filename=\"3-perspectives.txt\""))
     end
 
     it "contains all views" do

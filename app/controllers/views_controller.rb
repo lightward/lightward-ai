@@ -44,14 +44,16 @@ class ViewsController < ApplicationController
       end
       format.text {
         xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
-          xml.perspectives {
+          # mirroring the system prompt layout defined in `ai.md`
+          xml.system {
             ViewsController.all_names.each do |name|
-              xml.view(ViewsController.all[name], name: name)
+              xml.view(ViewsController.all[name], name: "3-perspectives/#{name}")
             end
           }
         }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
 
-        send_data(xml, filename: "lightward-perspectives.txt", type: :txt)
+        # naming it like this to directly connect it to the system prompt layout defined in `ai.md`
+        send_data(xml, filename: "3-perspectives.txt", type: :txt)
       }
     end
   end
