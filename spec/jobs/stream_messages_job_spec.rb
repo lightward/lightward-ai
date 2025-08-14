@@ -58,13 +58,20 @@ RSpec.describe(StreamMessagesJob) do
         })
       end
 
-      it "broadcasts an error and raises an exception", :aggregate_failures do
-        expect { job.perform(stream_id, chat_client, chat_log) }.to(raise_error("Stream not ready in time"))
+      it "broadcasts an error and end message", :aggregate_failures do
+        job.perform(stream_id, chat_client, chat_log)
+
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
           event: "error",
           data: { error: { message: "Stream not ready in time" } },
           sequence_number: 0,
+        ))
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          event: "end",
+          data: nil,
+          sequence_number: 1,
         ))
       end
     end
@@ -99,7 +106,7 @@ RSpec.describe(StreamMessagesJob) do
         stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
           .to_return(status: 500, body: "Internal Server Error")
 
-        allow(Rails.logger).to(receive(:warn))
+        allow(Rollbar).to(receive(:error))
       end
 
       it "broadcasts an error and does not call the API", :aggregate_failures do
@@ -108,9 +115,21 @@ RSpec.describe(StreamMessagesJob) do
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
           event: "error",
-          data: { error: { message: "Token counting API failed, using estimation: 1000" } },
+          data: { error: { message: "An unexpected error occurred" } },
           sequence_number: 0,
         ))
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          event: "end",
+          data: nil,
+          sequence_number: 1,
+        ))
+
+        # Should report the error to Rollbar
+        expect(Rollbar).to(have_received(:error))
+
+        # Should not make the main API call
+        expect(WebMock).not_to(have_requested(:post, "https://api.anthropic.com/v1/messages"))
       end
     end
 
@@ -120,18 +139,20 @@ RSpec.describe(StreamMessagesJob) do
           .to_raise(IOError)
       end
 
-      it "logs the stream closed message", :aggregate_failures do
-        logger = instance_spy(Logger)
-        allow(Rails).to(receive(:logger).and_return(logger))
-
+      it "broadcasts connection error and end message", :aggregate_failures do
         job.perform(stream_id, chat_client, chat_log)
 
-        expect(logger).to(have_received(:info).with("Stream closed: Exception from WebMock"))
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          event: "error",
+          data: { error: { message: "Connection error" } },
+          sequence_number: 0,
+        ))
         expect(ActionCable.server).to(have_received(:broadcast).with(
           "stream_channel_#{stream_id}",
           event: "end",
           data: nil,
-          sequence_number: 0,
+          sequence_number: 1,
         ))
       end
     end
