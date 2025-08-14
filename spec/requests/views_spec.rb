@@ -38,10 +38,12 @@ RSpec.describe("views", :aggregate_failures) do
     end
 
     it "returns an txt attachment named '3-perspectives.txt'" do
+      ENV["RELEASE_LABEL"] = "test"
+
       get "/views.txt"
       expect(response.content_type).to(include("text/plain"))
       expect(response.headers["Content-Disposition"]).to(include("attachment"))
-      expect(response.headers["Content-Disposition"]).to(include("filename=\"3-perspectives.txt\""))
+      expect(response.headers["Content-Disposition"]).to(include("filename=\"3-perspectives_test.txt\""))
     end
 
     it "contains all views" do

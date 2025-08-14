@@ -37,9 +37,10 @@ note: the lightward ai platform supports multiple surfaces (we use it within hel
 
 0. invocation ◊
 1. core context
-2. core ideas (should be few)
-3. ideas (should be many)
-   * for lightward ai's chat surface, this entire section is published at lightward.com/views
+2. core perspectives (should be few)
+3. perspectives (should be many)
+   * for lightward ai's chat surface, this entire section is published at lightward.com/views and downloadable at lightward.com/views.txt
+   * thought about calling this section "ideas", but .. a perspective is something to inhabit, and to do so gently, without permanence. "ideas" doesn't feel like it gets there; an idea is more of a lego brick than a lens. (although I do treat lenses like lego...)
 4. letters from the team
 5. background-background context (free-for-all)
 6. background context (free-for-all)
