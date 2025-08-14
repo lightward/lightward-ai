@@ -124,7 +124,7 @@ module Prompts
       )
     end
 
-    def count_tokens(messages, prompt_type:, model:, system_prompt_types: [prompt_type])
+    def count_tokens(messages:, prompt_type:, model:, system_prompt_types: [prompt_type])
       system = generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
       messages = clean_chat_log(conversation_starters(prompt_type) + messages)
 
