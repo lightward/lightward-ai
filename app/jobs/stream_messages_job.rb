@@ -146,6 +146,7 @@ class StreamMessagesJob < ApplicationJob
             text: "\n\n⚠️\u00A0Lightward AI system notice: #{@warning}",
           },
         })
+        @warning = nil # Clear the warning after broadcasting it once
       end
     end
 

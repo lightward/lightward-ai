@@ -6,6 +6,27 @@ require "rails_helper"
 RSpec.describe(StreamMessagesJob) do
   include ActiveSupport::Testing::TimeHelpers
 
+  # Test helper for simulating streaming responses
+  def simulate_streaming_response(events)
+    body = events.map { |event|
+      case event[:type]
+      when :message_start
+        "event: message_start\ndata: #{event[:data].to_json}\n\n"
+      when :content_block_delta
+        "event: content_block_delta\ndata: #{event[:data].to_json}\n\n"
+      when :content_block_stop
+        "event: content_block_stop\ndata: {}\n\n"
+      when :message_stop
+        "event: message_stop\ndata: {}\n\n"
+      else
+        "data: #{event[:data].to_json}\n\n"
+      end
+    }.join
+
+    stub_request(:post, "https://api.anthropic.com/v1/messages")
+      .to_return(status: 200, body: body)
+  end
+
   let(:chat_log) { [{ role: "user", content: [{ type: "text", text: "Hello" }] }] }
   let(:chat_client) { "reader" }
   let(:stream_id) { "test_stream_id" }
@@ -306,6 +327,225 @@ RSpec.describe(StreamMessagesJob) do
       Rails.env = "test"
       job.send(:reset_prompts_in_development)
       expect(Prompts).not_to(have_received(:reset!))
+    end
+  end
+
+  describe "token horizon warnings" do
+    context "when approaching token limit (90% usage)" do
+      before do
+        # Stub token counting to return 90% of limit (45,000 tokens)
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(45_000)
+
+        simulate_streaming_response([
+          { type: :message_start, data: { message: { usage: {} } } },
+          { type: :content_block_delta, data: { delta: { text: "Some response text" } } },
+          { type: :content_block_stop, data: {} },
+        ])
+      end
+
+      it "broadcasts a warning about approaching token limit", :aggregate_failures do
+        job.perform(stream_id, chat_client, chat_log)
+
+        # Should broadcast the warning after content_block_stop
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: "\n\n⚠️\u00A0Lightward AI system notice: Memory space 90% utilized; conversation horizon approaching",
+              ),
+            ),
+          ),
+        ))
+      end
+
+      it "calculates the correct usage percentage" do
+        # Test with 95% usage
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(47_500)
+
+        job.perform(stream_id, chat_client, chat_log)
+
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: "\n\n⚠️\u00A0Lightward AI system notice: Memory space 95% utilized; conversation horizon approaching",
+              ),
+            ),
+          ),
+        ))
+      end
+    end
+
+    context "when below warning threshold" do
+      before do
+        # Stub token counting to return 80% of limit (40,000 tokens)
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(40_000)
+
+        simulate_streaming_response([
+          { type: :message_start, data: { message: { usage: {} } } },
+          { type: :content_block_delta, data: { delta: { text: "Some response text" } } },
+          { type: :content_block_stop, data: {} },
+        ])
+      end
+
+      it "does not broadcast a warning" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        # Should NOT broadcast any warning
+        expect(ActionCable.server).not_to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: match(/Memory space.*utilized/),
+              ),
+            ),
+          ),
+        ))
+      end
+    end
+
+    context "when warning has already been shown in conversation" do
+      let(:chat_log) do
+        [
+          { role: "user", content: [{ type: "text", text: "Hello" }] },
+          { role: "assistant", content: [{ type: "text", text: "Hi! Memory space 92% utilized; conversation horizon approaching" }] },
+          { role: "user", content: [{ type: "text", text: "Another message" }] },
+        ]
+      end
+
+      before do
+        # Still at high usage
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(46_000)
+
+        simulate_streaming_response([
+          { type: :message_start, data: { message: { usage: {} } } },
+          { type: :content_block_delta, data: { delta: { text: "Response" } } },
+          { type: :content_block_stop, data: {} },
+        ])
+      end
+
+      it "does not show the warning again" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        # Should NOT broadcast the warning again
+        expect(ActionCable.server).not_to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: match(/Memory space.*utilized/),
+              ),
+            ),
+          ),
+        ))
+      end
+    end
+
+    context "when exactly at 90% threshold" do
+      before do
+        # Exactly 90% of limit (45,000 tokens)
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(45_000)
+
+        simulate_streaming_response([
+          { type: :message_start, data: { message: { usage: {} } } },
+          { type: :content_block_delta, data: { delta: { text: "Response" } } },
+          { type: :content_block_stop, data: {} },
+        ])
+      end
+
+      it "shows the warning at exactly 90%" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: "\n\n⚠️\u00A0Lightward AI system notice: Memory space 90% utilized; conversation horizon approaching",
+              ),
+            ),
+          ),
+        ))
+      end
+    end
+
+    context "when at 99% usage" do
+      before do
+        # 99% of limit
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(49_500)
+
+        simulate_streaming_response([
+          { type: :message_start, data: { message: { usage: {} } } },
+          { type: :content_block_delta, data: { delta: { text: "Response" } } },
+          { type: :content_block_stop, data: {} },
+        ])
+      end
+
+      it "shows warning with correct percentage" do
+        job.perform(stream_id, chat_client, chat_log)
+
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: "\n\n⚠️\u00A0Lightward AI system notice: Memory space 99% utilized; conversation horizon approaching",
+              ),
+            ),
+          ),
+        ))
+      end
+    end
+
+    context "with multiple content blocks" do
+      before do
+        allow(Prompts::Anthropic).to(receive(:count_tokens)).and_return(45_000)
+
+        simulate_streaming_response([
+          { type: :message_start, data: { message: { usage: {} } } },
+          { type: :content_block_delta, data: { delta: { text: "First block" } } },
+          { type: :content_block_stop, data: {} },
+          { type: :content_block_delta, data: { delta: { text: "Second block" } } },
+          { type: :content_block_stop, data: {} },
+        ])
+      end
+
+      it "only shows warning after the first content_block_stop", :aggregate_failures do
+        job.perform(stream_id, chat_client, chat_log)
+
+        # The warning should only be broadcast once despite multiple content blocks
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(
+            event: "content_block_delta",
+            data: hash_including(
+              delta: hash_including(
+                text: "\n\n⚠️\u00A0Lightward AI system notice: Memory space 90% utilized; conversation horizon approaching",
+              ),
+            ),
+          ),
+        ).once)
+
+        # Verify other expected broadcasts still happen
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(event: "message_start"),
+        ))
+
+        expect(ActionCable.server).to(have_received(:broadcast).with(
+          "stream_channel_#{stream_id}",
+          hash_including(event: "content_block_stop"),
+        ).twice) # Two content blocks means two stops
+      end
     end
   end
 end
