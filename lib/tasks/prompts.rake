@@ -42,8 +42,8 @@ namespace :prompts do
         },
       ]
 
-      token_count = Prompts::Anthropic.count_tokens(
-        messages,
+      token_count = Prompts.count_tokens(
+        messages: messages,
         prompt_type: "clients/chat",
         model: Prompts::Anthropic::CHAT,
       )
