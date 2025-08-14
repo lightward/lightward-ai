@@ -9,11 +9,12 @@ class StreamMessagesJob < ApplicationJob
   include ActionView::Helpers::DateHelper
 
   class ChatLogTokenCountError < StandardError; end
+  class ChatLogTokenLimitExceeded < StandardError; end
   class StreamNotReadyInTime < StandardError; end
 
-  queue_with_priority PRIORITY_STREAM_MESSAGES
+  CHAT_LOG_TOKEN_LIMIT = 50_000
 
-  USERSPACE_TOKEN_LIMIT = 50_000
+  queue_with_priority PRIORITY_STREAM_MESSAGES
 
   def perform(stream_id, chat_client, chat_log)
     @stream_id = stream_id
@@ -24,13 +25,7 @@ class StreamMessagesJob < ApplicationJob
     @conversation_id = Digest::SHA256.hexdigest(@chat_log.first(2).to_json)
 
     wait_for_ready!
-
-    # check on the the portion of the request that the user's responsible for, i.e. not the system prompt or handshake
-    @chat_log_token_count = count_chat_log_tokens
-
-    if @chat_log_token_count > USERSPACE_TOKEN_LIMIT
-      return broadcast_error("Conversation horizon has arrived; please start over to continue. 🤲")
-    end
+    count_chat_log_tokens!
 
     ::NewRelic::Agent.record_custom_event(
       "StreamMessagesJob: start",
@@ -52,6 +47,8 @@ class StreamMessagesJob < ApplicationJob
         stream(request, response)
       end
     end
+  rescue ChatLogTokenLimitExceeded
+    broadcast_error("Conversation horizon has arrived; please start over to continue. 🤲")
   rescue StreamNotReadyInTime
     broadcast_error("Stream not ready in time")
   rescue IOError
@@ -65,12 +62,19 @@ class StreamMessagesJob < ApplicationJob
 
   private
 
-  def count_chat_log_tokens
-    Prompts::Anthropic.count_tokens(
+  def count_chat_log_tokens!
+    # we're *just* counting the userspace chat log, not the entire system prompt. (we *used* to count the whole thing,
+    # but now that we're kicking it with a 1m-token context window the point is moot. only our own userspace limit
+    # comes into play anymore.)
+    @chat_log_token_count = Prompts::Anthropic.count_tokens(
       model: Prompts::Anthropic::CHAT,
       system: [],
       messages: @chat_log,
     )
+
+    if @chat_log_token_count > CHAT_LOG_TOKEN_LIMIT
+      raise ChatLogTokenLimitExceeded
+    end
   end
 
   def stream(request, response)
@@ -122,7 +126,7 @@ class StreamMessagesJob < ApplicationJob
     when "message_start"
 
       # Warning at 90% of our limit or 90% of Anthropic's limit, whichever comes first
-      usage = (@chat_log_token_count / USERSPACE_TOKEN_LIMIT.to_f)
+      usage = (@chat_log_token_count / CHAT_LOG_TOKEN_LIMIT.to_f)
       if usage >= 0.9
         usage_percentage = (usage * 100).floor
         proposed_warning = "Memory space #{usage_percentage}% utilized; conversation horizon approaching"
