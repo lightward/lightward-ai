@@ -88,7 +88,7 @@ RSpec.describe(HelpscoutJob) do
       stub_request(:post, "https://api.anthropic.com/v1/messages")
         .to_return(status: 200, body: response_body)
 
-      allow(Prompts::Anthropic).to(receive(:process_messages).and_call_original)
+      allow(Prompts).to(receive(:messages).and_call_original)
     end
 
     it "returns the response text from the Anthropic API" do
@@ -99,8 +99,8 @@ RSpec.describe(HelpscoutJob) do
     it "uses the correct model and prompt type" do
       job.get_anthropic_response_data([], prompt_type: "clients/helpscout")
 
-      expect(Prompts::Anthropic).to(have_received(:process_messages).with(
-        [],
+      expect(Prompts).to(have_received(:messages).with(
+        messages: [],
         model: Prompts::Anthropic::HELPSCOUT,
         prompt_type: "clients/helpscout",
         system_prompt_types: ["clients/helpscout"],
@@ -114,8 +114,8 @@ RSpec.describe(HelpscoutJob) do
         system_prompt_types: ["clients/helpscout", "lib/locksmith"],
       )
 
-      expect(Prompts::Anthropic).to(have_received(:process_messages).with(
-        [],
+      expect(Prompts).to(have_received(:messages).with(
+        messages: [],
         model: Prompts::Anthropic::HELPSCOUT,
         prompt_type: "clients/helpscout",
         system_prompt_types: ["clients/helpscout", "lib/locksmith"],

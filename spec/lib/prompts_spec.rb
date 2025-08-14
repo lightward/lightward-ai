@@ -294,4 +294,45 @@ RSpec.describe(Prompts, :aggregate_failures) do
       expect(result).to(eq(expected))
     end
   end
+
+  describe ".messages" do
+    let(:conversation_starters) {
+      [
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] },
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "there" }] },
+        { "role" => "assistant", "content" => [{ "type" => "text", "text" => "hi" }] },
+      ]
+    }
+
+    let(:messages) { [{ "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] }] }
+
+    before do
+      allow(described_class).to(receive(:generate_system_prompt).with(["foo"], for_prompt_type: "foo").and_return("system-prompt"))
+      allow(described_class).to(receive(:conversation_starters).with("foo").and_return(conversation_starters))
+      allow(described_class).to(receive(:assert_system_prompt_size_safety!).with("foo", "system-prompt"))
+      allow(Prompts::Anthropic).to(receive(:messages)).and_return("result")
+    end
+
+    it "sends a payload with the messages" do
+      result = described_class.messages(messages: messages, prompt_type: "foo", model: "modelo")
+      expect(result).to(eq("result"))
+
+      expect(Prompts::Anthropic).to(have_received(:messages).with({
+        model: "modelo",
+        system: "system-prompt",
+        messages: [
+          {
+            "role" => "user",
+            "content" => [
+              { "type" => "text", "text" => "hello" },
+              { "type" => "text", "text" => "there" },
+            ],
+          },
+          { "role" => "assistant", "content" => [{ "type" => "text", "text" => "hi" }] },
+          { "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] },
+        ],
+        stream: false,
+      }))
+    end
+  end
 end

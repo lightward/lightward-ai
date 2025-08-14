@@ -104,6 +104,37 @@ module Prompts
       path_components.join("/").gsub(/\.md$/, "")
     end
 
+    def messages(
+      messages:,
+      prompt_type:,
+      model:,
+      system_prompt_types: [prompt_type],
+      stream: false,
+      &block
+    )
+      system = generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
+      messages = clean_chat_log(conversation_starters(prompt_type) + messages)
+
+      Prompts::Anthropic.messages(
+        model: model,
+        system: system,
+        messages: messages,
+        stream: stream,
+        &block
+      )
+    end
+
+    def count_tokens(messages, prompt_type:, model:, system_prompt_types: [prompt_type])
+      system = generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
+      messages = clean_chat_log(conversation_starters(prompt_type) + messages)
+
+      Prompts::Anthropic.count_tokens(
+        model: model,
+        system: system,
+        messages: messages,
+      )
+    end
+
     def estimate_tokens(input)
       input = input.to_json
 
