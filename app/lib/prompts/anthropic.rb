@@ -27,6 +27,13 @@ module Prompts
 
         response = api_request("/v1/messages/count_tokens", payload)
 
+        # Retry once if we get a 404
+        if response.code == "404"
+          Rollbar.warn("Got 404 from token counting API, retrying once...")
+          Rails.logger.warn("Got 404 from token counting API, retrying once...")
+          response = api_request("/v1/messages/count_tokens", payload)
+        end
+
         case response
         when Net::HTTPSuccess
           parsed = JSON.parse(response.body)
