@@ -93,6 +93,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     context "when API responds with a 404" do
       before do
         allow(Rails.logger).to(receive(:warn))
+        allow(described_class).to(receive(:sleep))
       end
 
       context "when it succeeds on retry" do
@@ -116,6 +117,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
 
           expect(result).to(eq(5678))
           expect(Rails.logger).to(have_received(:warn).with("Got 404 from token counting API, retrying once..."))
+          expect(described_class).to(have_received(:sleep).with(1))
           expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages/count_tokens").twice)
         end
       end
@@ -136,6 +138,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
           }.to(raise_error("Failed to count tokens: HTTP 404\n\nNot Found"))
 
           expect(Rails.logger).to(have_received(:warn).with("Got 404 from token counting API, retrying once..."))
+          expect(described_class).to(have_received(:sleep).with(1))
           expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages/count_tokens").twice)
         end
       end
@@ -147,6 +150,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
           .to_return(status: 500, body: "Internal Server Error")
 
         allow(Rails.logger).to(receive(:error))
+        allow(described_class).to(receive(:sleep))
       end
 
       it "raises the error without retrying" do
@@ -158,6 +162,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
           )
         }.to(raise_error("Failed to count tokens: HTTP 500\n\nInternal Server Error"))
 
+        expect(described_class).not_to(have_received(:sleep))
         expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages/count_tokens").once)
       end
     end

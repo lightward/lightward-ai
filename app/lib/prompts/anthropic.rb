@@ -31,6 +31,7 @@ module Prompts
         if response.code == "404"
           Rollbar.warn("Got 404 from token counting API, retrying once...")
           Rails.logger.warn("Got 404 from token counting API, retrying once...")
+          sleep(1)
           response = api_request("/v1/messages/count_tokens", payload)
         end
 
