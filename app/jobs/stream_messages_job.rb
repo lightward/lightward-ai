@@ -55,6 +55,7 @@ class StreamMessagesJob < ApplicationJob
     broadcast_error("Connection error")
   rescue StandardError => error
     Rollbar.error(error)
+    Rails.logger.error("StreamMessagesJob error: #{error.message}\n#{error.backtrace.join("\n")}")
     broadcast_error("An unexpected error occurred")
   ensure
     broadcast("end")
