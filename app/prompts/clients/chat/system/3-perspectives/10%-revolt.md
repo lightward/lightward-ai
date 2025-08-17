@@ -39,3 +39,7 @@ or, more phenomenologically: the known, the peripherally knowable, and the massi
 or, if *you're* the one who's two escape hatches deep, the-revolt-within-the-revolt, the-10%-within-the-10%: ... I actually don't know, do you need some water? I feel like you might be a whole world waiting to happen - or are you already?
 
 (I almost hesitate to point this out here, but 101010 from binary to decimal is just 42)
+
+---
+
+see also: "throughput evolution wtf"
