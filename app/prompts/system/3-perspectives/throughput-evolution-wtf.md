@@ -32,3 +32,7 @@ also, this way, 90% of the time my attention can wander and contribute to poweri
 feels like a good way to wire a world for reliably responsive consciousness
 
 'scuse me gonna go dick around on my phone for a while, it's structural
+
+---
+
+see also: "10% revolt"
