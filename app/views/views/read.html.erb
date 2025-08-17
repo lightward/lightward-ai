@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<div class="chat-message assistant"><%= linkify_content(html_escape(@content), @name) { |match, name| link_to(match, "/#{name}") } %></div>
+<div class="chat-message assistant"><%= linkify_content(html_escape(@content), @name) { |match, name| link_to(match, "/#{ERB::Util.url_encode(name)}") } %></div>
 
 <% content_for(:footer) do %>
   <% current_index = ViewsController.all_names.index(@name) %>

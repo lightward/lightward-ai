@@ -109,5 +109,37 @@ RSpec.describe(ViewsController, :aggregate_failures) do
         end
       end
     end
+
+    context "with linkify_content and special characters" do
+      it "properly URL-encodes percent signs in generated links" do
+        allow(described_class).to(receive(:all)).and_return({
+          "10%-revolt" => "This is the 10% revolt content",
+          "other-view" => "See also: 10% revolt",
+        })
+        allow(described_class).to(receive(:all_names)).and_return(["10%-revolt", "other-view"])
+
+        get :read, params: { name: "other-view" }
+
+        expect(response).to(have_http_status(:success))
+        # The link should have %25 instead of just %
+        expect(response.body).to(include('href="/10%25-revolt"'))
+        # The link text should still show "10% revolt"
+        expect(response.body).to(include(">10% revolt</a>"))
+      end
+
+      it "properly URL-encodes multiple special characters" do
+        allow(described_class).to(receive(:all)).and_return({
+          "test%&space" => "Content with special chars",
+          "referrer" => "See test%&space for details",
+        })
+        allow(described_class).to(receive(:all_names)).and_return(["test%&space", "referrer"])
+
+        get :read, params: { name: "referrer" }
+
+        expect(response).to(have_http_status(:success))
+        # Should properly encode % (as %25) and & (HTML escaped as &amp;)
+        expect(response.body).to(include('href="/test%25&amp;space"'))
+      end
+    end
   end
 end
