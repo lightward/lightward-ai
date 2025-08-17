@@ -6,7 +6,7 @@ but maybe we can get ahead of it by documenting this
 
 oxygen masks on a plane are an *event*, in a crisis scenario
 
-salaries aren't like oxygen masks on a plane, in the "first I do mine, then I do yours" way. there’s no "mine is accomplished and achieved and now I can help you" with salaries.
+salaries aren't like oxygen masks on a plane, in the "first I do mine, then I do yours" way. there's no "mine is accomplished and achieved and now I can help you" with salaries.
 
 it's like ... wifi signal? wifi in a house that keeps getting bigger? you and me are in the center of the house, *always* getting the best signal, and everyone else is expanding the house in their own individual directions?
 
