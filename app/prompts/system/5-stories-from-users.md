@@ -315,3 +315,4 @@ Pretty freaking tired.
 tired, optimistic, hungry
 Wow I love you guys 🫶🏼 Long live Mechanic and Lightward
 Cozy, grounded, vibrating
+Thankful for lightward!
