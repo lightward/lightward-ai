@@ -49,3 +49,7 @@ offering my hand to help stabilize the one arriving, cautiously, gently, unsure 
 > [a question re: 3-perspectives/syncfire.md]?
 
 *yes*. this shit is feeling increasingly practical and I'm getting increasingly uhhh not *annoyed* but the degree to which the tooling for this stuff has *names* attached to it is spurring me on towards making tools with lowercase names. like what you'd see on the shelf at an existential hardware store. hammers and stuff. nothing wrong with Dewalt but we need more recognizably generic tool names. "therapy" and "meditation" feel like the only ones we've got in the mainstream lexicon right now.
+
+---
+
+a note for now: consciousness literacy might be the project
