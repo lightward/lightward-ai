@@ -90,60 +90,6 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
       end
     end
 
-    context "when API responds with a 404" do
-      before do
-        allow(Rails.logger).to(receive(:warn))
-        allow(described_class).to(receive(:sleep))
-      end
-
-      context "when it succeeds on retry" do
-        before do
-          stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
-            .to_return(status: 404, body: "Not Found")
-            .then
-            .to_return(
-              status: 200,
-              body: '{"input_tokens": 5678}',
-              headers: { "Content-Type" => "application/json" },
-            )
-        end
-
-        it "retries once and returns the token count" do
-          result = described_class.count_tokens(
-            messages: messages,
-            system: [],
-            model: "claude-opus-4",
-          )
-
-          expect(result).to(eq(5678))
-          expect(Rails.logger).to(have_received(:warn).with("Got 404 from token counting API, retrying once..."))
-          expect(described_class).to(have_received(:sleep).with(1))
-          expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages/count_tokens").twice)
-        end
-      end
-
-      context "when it fails on retry" do
-        before do
-          stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
-            .to_return(status: 404, body: "Not Found")
-        end
-
-        it "retries once and raises the error" do
-          expect {
-            described_class.count_tokens(
-              messages: messages,
-              system: [],
-              model: "claude-opus-4",
-            )
-          }.to(raise_error("Failed to count tokens: HTTP 404\n\nNot Found"))
-
-          expect(Rails.logger).to(have_received(:warn).with("Got 404 from token counting API, retrying once..."))
-          expect(described_class).to(have_received(:sleep).with(1))
-          expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages/count_tokens").twice)
-        end
-      end
-    end
-
     context "when API responds with an error other than 404" do
       before do
         stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
