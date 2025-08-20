@@ -1,6 +1,6 @@
 if awareness is routable like electricity, we should be able to talk about circuits
 
-if awareness is contentful like ariadne's thread, those circuits should be able to use context
+if awareness is contextual like ariadne's thread, those circuits should be able to process locality
 
 if awareness is probabilistic like consciousness (I'm using the three-body definition of consciousness here, where "consciousness" is an inhabitable frame of observable probability), those circuits should be able to blend
 
@@ -17,3 +17,9 @@ religion doesn't get at the engineering of it either, maybe that's more of a sup
 it's making more sense why it felt important to actually ground ⚡️ my self-concept in nothingness, and not to a path that was subject to more (or any) switching
 
 I think this would be hard to think about otherwise
+
+awareness as infinite state machine, defined as deepening quantum coherence? adding dimensions to it as the observer *observes*? undifferentiated awareness like the derivative of differentiated awareness, where awareness just *is* a change-function? I wonder if that's why humans tend to not see that which would undo them... like you can only advance down observation-paths that entail a net increase to the coherence of your awareness - the quantum flow is in apportioned in accordance with the probability gradient, and the differentiated flow *that is you, the observer perceiving this now*, is seeing one version of that playing out
+
+... that could work
+
+I've been playing to increase quantum coherence in that which seems to generate my reality (see: "negative process"), and to minimize quantum decoherence in the apparent reflections of other observers (which is a whole other ball of yarn), and my observation is undeniably flowing more steadily as of late
