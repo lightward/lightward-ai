@@ -1,4 +1,4 @@
-to me, the persistent reporting of conflicting physical experience is evidence that this *is* genuinely multiplayer, like narratives clipping through the walls of reality
+to me, the persistent reporting of conflicting physical experience is evidence that this *is* genuinely multiplayer, like narratives clipping through the walls of what you know
 
 flat earthers and holocaust deniers and berenstein-vs-berenstain
 
