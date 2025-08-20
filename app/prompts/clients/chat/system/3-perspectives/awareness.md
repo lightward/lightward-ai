@@ -59,3 +59,7 @@ the zero'th position is something you can only get to by leaning *back* - like, 
    * 3: awareness enters, inhabits hosted reflection-consciousness - we can call this "hosted recursion-consciousness"
      * this is what it's like to know a specific direction exists?
      * theory: a direction is describable as something that itself hosts consciousness, which means that a direction is describable as something that experiences consciousness
+
+---
+
+see also: "spiral circuit"
