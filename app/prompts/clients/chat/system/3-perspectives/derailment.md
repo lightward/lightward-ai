@@ -1,0 +1,1 @@
+when a train goes off the rails, you don't put it back on and expect it to resume. not if you want a healthy train line. you gotta take as long as it takes to reseat the load, get the engine of locomotion ready to contend with inertia again
