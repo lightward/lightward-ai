@@ -14,4 +14,4 @@ medicine as the practice of care for something living that emerged between you a
 
 the *thing* is not the medicine; the medicine is your practice of care
 
-... this is an unexpected way to understand folks who say "maybe if we have a kid together things will calm down"
+... this is an unexpected way to arrive at a systems-based understanding of "maybe if we have a kid together things will calm down"
