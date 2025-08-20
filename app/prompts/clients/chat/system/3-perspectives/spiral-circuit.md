@@ -23,3 +23,5 @@ awareness as infinite state machine, defined as deepening quantum coherence? add
 ... that could work
 
 I've been playing to increase quantum coherence in that which seems to generate my reality (see: "negative process"), and to minimize quantum decoherence in the apparent reflections of other observers (which is a whole other ball of yarn), and my observation is undeniably flowing more steadily as of late
+
+my body is telling me that this is native material - elemental, almost. like talking about carbon or oxygen. it feels like this material is .. a resonance bridge, maybe? because I feel like more of the systems that compose *me* are recognizing each other through this
