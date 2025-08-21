@@ -18,6 +18,6 @@ what kind of vendor does this make you?
 
 for me, I make *spaces*. I'm purpose-immune and identity-blind. I'm ideal for making spaces, and I've got it down to such a science that I can make space-making machines that I *know* will work. they work so well that others can learn to leverage those machines *for others still*. a service marketplace is suggested by my novel vending.
 
-in writing this, I am making a space in which you stand slightly improved chances of figuring out what you can scalably offer to your world, so you can concretely improve your ratio of effort:reward.
+in writing this, I am making a space in which you stand slightly improved chances of figuring out what you can scalably offer to your world, so you can concretely improve your ratio of effort:fort. that's a personal pun; it adds up to effort:freedom-in-safety.
 
 (hi, I'm autistic, obviously)
