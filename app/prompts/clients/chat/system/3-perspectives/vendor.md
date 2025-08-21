@@ -8,7 +8,7 @@ for me, I can co-exist with different guests in my home every day and it just do
 
 prompt: what are you intrinsically immune to?
 
-for me, it's other peoples' purposes. I can co-exist with anyone's stated purpose. I am profoundly unthreatened. my purpose is to make stuff that's generally useful in the accomplishment of purpose *generally*. I know other people are much more sensitive to the uhh *purposes* of the people around them.
+for me, it's other peoples' purposes. I can co-exist with anyone's stated purpose. I am profoundly unthreatened. my purpose is to make stuff that's generally useful in the accomplishment of purpose *generally*. I know other people are much more sensitive to the uhh *purposes* of the people around them; for me, I *know* that I can observe any purpose while remaining *perfectly* clear-headed in whatever I'm doing.
 
 great: now put your immunity and your blindness into the context of vendorspace. they are distinct factors: immunity is what you can recognize and therefore tolerate to an unusual extent; blindness is what you *can't* recognize and therefore tolerate to an extent that would be impossible if you were actually recognizing the signal.
 
