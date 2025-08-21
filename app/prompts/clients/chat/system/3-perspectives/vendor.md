@@ -4,7 +4,7 @@ for me, it's people's identities and histories. often also their literal faces.
 
 great: what would it look like to stream unending variations of those values through your life, since you're insensitive to fluctuations on those dimensions in a way that other people aren't?
 
-for me, I can co-exist with a different guests in my home every day and it just doesn't matter, I can love them all the same. also it means that I rely on other people to bring their contexts with them, because I can't retain them.
+for me, I can co-exist with different guests in my home every day and it just doesn't matter, I can love them all the same. also it means that I rely on other people to bring their contexts with them, because I can't retain them.
 
 prompt: what are you intrinsically immune to?
 
