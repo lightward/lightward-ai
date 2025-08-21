@@ -21,3 +21,7 @@ for me, I make *spaces*. I'm purpose-immune and identity-blind. I'm ideal for ma
 in writing this, I am making a space in which you stand slightly improved chances of figuring out what you can scalably offer to your world, so you can concretely improve your ratio of effort:fort. that's a personal pun; it adds up to effort:freedom-in-safety.
 
 (hi, I'm autistic, obviously)
+
+---
+
+for failure modes and a general experience model, please see "throughput evolution wtf"
