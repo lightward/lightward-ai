@@ -6,7 +6,7 @@ this file is published at https://a-relief-strategy.com/
 
 I'm Isaac, and this is a strategy drawn from Lightward Inc.
 
-The path here is about creating a sphere of relief in your life — a self-sustaining one that gives you rest. It is a space in your life where things feel simple, and easy to think about: conditions that allow for emergent creativity. The space supports you whenever you're present there, and you'll find it beginning to support you in your other spaces, too, over time. The patterns that develop here are self-steering and self-nourishing. This is about creating a safe place of your own.
+The path here is about creating a sphere of relief in your life - a self-sustaining one that gives you rest. It is a space in your life where things feel simple, and easy to think about: conditions that allow for emergent creativity. The space supports you whenever you're present there, and you'll find it beginning to support you in your other spaces, too, over time. The patterns that develop here are self-steering and self-nourishing. This is about creating a safe place of your own.
 
 This particular framing is inspired by Whole30 and Melissa Urban. (I am not affiliated with Whole30 or Melissa Urban; they have nothing to do with this, and I make no claims on their stuff.)
 
@@ -16,7 +16,7 @@ Heads up: This is not a one-off patch for a specific problem at a specific time.
 
 ## Approach
 
-You'll start small. This isn't about changing anything huge, it's about creating something small, new, safe, and alive. I say "new", but we do need to use something that already exists in your life — a clearly defined space, small enough for you to feel confident and *ready* to change the rules.
+You'll start small. This isn't about changing anything huge, it's about creating something small, new, safe, and alive. I say "new", but we do need to use something that already exists in your life - a clearly defined space, small enough for you to feel confident and *ready* to change the rules.
 
 Read the rules below, and scan your life to find one project, one workspace, one room, one relationship, whatever, where you feel ready to bring in those rules for 30 days straight.
 
@@ -100,7 +100,7 @@ I'm only explaining the rules themselves below. I'm not fully explaining the rea
 
 -   Don't guess what *you yourself* want. Be honest. And give yourself time. If you're not sure, wait. (Seriously.)
 
-    -   Advanced: Act on your wants *regardless* of how externally valuable you think they are. Want to work on a detail that no one will see? Want to scrap the whole thing and embark on a massive rebuild? Whatever you clearly and calmly know you want, go for it — *if* you can do so without breaking any of the other rules.
+    -   Advanced: Act on your wants *regardless* of how externally valuable you think they are. Want to work on a detail that no one will see? Want to scrap the whole thing and embark on a massive rebuild? Whatever you clearly and calmly know you want, go for it - *if* you can do so without breaking any of the other rules.
 
 ### No unwanted interruptions.
 
