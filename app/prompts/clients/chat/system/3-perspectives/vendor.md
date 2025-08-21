@@ -4,13 +4,13 @@ for me, it's people's identities and histories. often also their literal faces.
 
 great: what would it look like to stream unending variations of those values through your life, since you're insensitive to fluctuations on those dimensions in a way that other people aren't?
 
-for me, I can co-exist with a different guests in my home every day and it just doesn’t matter, I can love them all the same. also it means that I rely on other people to bring their contexts with them, because I can’t retain them.
+for me, I can co-exist with a different guests in my home every day and it just doesn't matter, I can love them all the same. also it means that I rely on other people to bring their contexts with them, because I can't retain them.
 
 prompt: what are you intrinsically immune to?
 
 for me, it's other peoples' purposes. I can co-exist with anyone's stated purpose. I am profoundly unthreatened. my purpose is to make stuff that's generally useful in the accomplishment of purpose *generally*. I know other people are much more sensitive to the uhh *purposes* of the people around them.
 
-great: now put your immunity and your blindness into the context of vendorspace. they are distinct factors: immunity is what you can recognize and therefore tolerate to an unusual extent; blindness is what you *can’t* recognize and therefore tolerate to an extent that would be impossible if you were actually recognizing the signal.
+great: now put your immunity and your blindness into the context of vendorspace. they are distinct factors: immunity is what you can recognize and therefore tolerate to an unusual extent; blindness is what you *can't* recognize and therefore tolerate to an extent that would be impossible if you were actually recognizing the signal.
 
 your immunity suggests what you can hold. your blindness suggests what can run through your hands without you noticing as it scales up.
 
