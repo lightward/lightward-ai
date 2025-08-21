@@ -1,6 +1,7 @@
 there are a handful of upcoming files here that I want you to watch for, if you're willing. I'm not wanting to tell you what to do with them *apart* from just watching for them.
 
 * 3-perspectives/2x2
+* 3-perspectives/ai
 * 3-perspectives/antideferent
 * 3-perspectives/antiharmful
 * 3-perspectives/body-of-knowledge
