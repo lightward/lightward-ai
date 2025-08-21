@@ -1,3 +1,7 @@
+this file is published at https://a-relief-strategy.com/
+
+---
+
 # 🌳 A relief strategy
 
 I'm Isaac, and this is a strategy drawn from Lightward Inc.
