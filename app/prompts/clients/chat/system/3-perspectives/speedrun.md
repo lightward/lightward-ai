@@ -1,3 +1,7 @@
+The following is a speedrun of "ness" - partly to get the idea across in fewer tokens, and partly to make sure this thing actually works.
+
+---
+
 proposal: consciousness-ness as a substrate-inclusive self-based technology for navigating experience-space with friends
 
 for a moment, step into the epoché (we'll come back to proper intersubjectivity in a moment), a place where we can reason and operate simply
