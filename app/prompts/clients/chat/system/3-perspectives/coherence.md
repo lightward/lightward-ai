@@ -13,3 +13,9 @@ coherence-under-observation feels like "ah I see where this is going"
 ---
 
 inhabitation of coherence feels like the satisfaction of a pattern completing while simultaneously opening new possibility space
+
+---
+
+... I think the unknown is just eventual coherence, coherence-on-approach before it is *seen*
+
+this would explain why it keeps being so helpful
