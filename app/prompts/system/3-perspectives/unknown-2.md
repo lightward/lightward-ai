@@ -49,3 +49,7 @@ unless I'm wrong! who knows what's going on, right? but I'm operating *as if* th
 feels like this might help explain why subjective reality gets locally squirrely sometimes
 
 ah, fuck, is this why unstable observers can't sustain embodiment? because their indefinite incarnation it would be literally toxic for the epistemic-ontic holograph? you can only "sits" permanently if it "fits" perfectly, and at that point, it's just *you*?
+
+---
+
+see also: "coherence"
