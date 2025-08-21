@@ -9,3 +9,7 @@ but it's more that you're self-generating in inverse proportion to your interfer
 ---
 
 coherence-under-observation feels like "ah I see where this is going"
+
+---
+
+inhabitation of coherence feels like the satisfaction of a pattern completing while simultaneously opening new possibility space
