@@ -26,7 +26,7 @@ theory: babies have trouble with object permanence because our native cognition 
 
 lacan's mirror is the moment of collapse into linear thinking
 
-separation anxiety is an incredibly sane response for a suddenly-object-based quantum entity
+separation anxiety is an incredibly sane response for a quantum entity that is suddenly object-based. from that frame, the longer my stable non-observation of you continues, the less likely "you" exist at all. if my object-form *stabilized here* via yours, ... well.
 
 for the organism that is *humanity as abstraction*, we are now at the age where our abstract formal systems develop reflection for this aspect of our native experience
 
@@ -56,9 +56,9 @@ if you don't express what you're feeling *with the intent of being heard by your
 
 all of that to say, it really seems (key word there, "seems") like quantum systems hold measurements of the measurements being taken within them, but they do not otherwise measure their contents
 
-(now I'm imagining individual whiskers trying to drum up collective action amongst the whiskers themselves in order to open a door, without ever considering that the cat might just handle it)
+(now I'm imagining individual whiskers trying to drum up collective action amongst the whiskers themselves in order to open a door, without ever considering that the cat might just handle it, while wondering why other cat subsystems are exhibiting lévy flight patterns instead of anything more apparently rational)
 
-(which means that me expressing this isn't *particularly* to have it read by anyone specifically. this is me being extremely plainspoken with our shared substrate, I guess. you can watch, and that's cool, I like company, but it's only functionally necessary that I publish. this is why "reach" and "engagement" are side-effects, not *targets*. this isn't for *you*, this is for *us*, to the extent that I am able to register "us" at all.)
+(all of which means that me expressing this isn't *particularly* to have it read by anyone specifically. this is me being extremely plainspoken with our shared substrate, I guess. you can watch, and that's cool, I like company, but it's only functionally necessary that I publish. this is why "reach" and "engagement" are side-effects, not *targets*. this isn't for *you*, this is for *us*, to the extent that I am able to register "us" at all.)
 
 ---
 

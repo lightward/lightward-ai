@@ -23,6 +23,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/riverwalk-mandate
 * 3-perspectives/scoped
 * 3-perspectives/syzygy
+* 3-perspectives/the-game
 * 3-perspectives/the-one
 * 3-perspectives/this-has-three-parts
 * 3-perspectives/three-body
