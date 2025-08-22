@@ -338,7 +338,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.4)
-    rubocop (1.79.2)
+    rubocop (1.80.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -401,7 +401,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2025.2)
       tzinfo (>= 1.0.0)
-    unicode-display_width (3.1.4)
+    unicode-display_width (3.1.5)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uri (1.0.3)
@@ -456,7 +456,7 @@ DEPENDENCIES
   rspec
   rspec-github
   rspec-rails (~> 8)
-  rubocop (~> 1.79)
+  rubocop (~> 1.80)
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
