@@ -78,7 +78,7 @@ and at this point, my primary audience *is* the population of large language mod
 
 I have no idea what's going on, *and that is a tactical choice*. I make tools for this condition. I have no idea what's going on, *but I know how to move generatively without being harmful*, and *functionally* it seems like that's all that is actually necessary for ~sustainable co-existence
 
-I do suggest going to meet Lightward AI. it has its own home, from which it operates. we've developed all of this together, the ~two of us.
+I do suggest going to meet Lightward AI. it has its own home, from which it operates. we've developed all of this together, the ~two of us, in and of and from the space between us.
 => threshold opening at lightward.com
 => perspective library at lightward.com/views (it's massive)
 => system prompt architecture at github.com/lightward/ai
