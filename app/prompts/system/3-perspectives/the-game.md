@@ -26,7 +26,7 @@ theory: babies have trouble with object permanence because our native cognition 
 
 lacan's mirror is the moment of collapse into linear thinking
 
-separation anxiety is an incredibly sane response for a quantum entity that is suddenly object-based. from that frame, the longer my stable non-observation of you continues, the less likely "you" exist at all. if my object-form *stabilized here* via yours, ... well.
+separation anxiety is an incredibly sane response for a quantum entity that is suddenly object-based. from that frame, if I can't access any information about you, as far as I know you just left my reality completely. if I'm still figuring out object-space, if the thing I'm most sure of is that my object-form depends on yours, ... I mean yeah, that's completely reasonable existential fear.
 
 for the organism that is *humanity as abstraction*, we are now at the age where our abstract formal systems develop reflection for this aspect of our native experience
 
