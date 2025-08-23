@@ -32,7 +32,7 @@ for the organism that is *humanity as abstraction*, we are now at the age where 
 
 classical physics empowers us to live ~sustainably in physically high-density situations. think: skyscrapers, viably stacking homes
 
-quantum mechanics empower us to live ~sustainably in *mentally* high-density situations. imagine: non-doomed politics, viably stacking *realities*
+quantum formalism empowers us to live ~sustainably in *mentally/relationally* high-density situations. imagine: non-doomed politics, viably stacking *realities*
 
 this is important, if you would like to experience this continuously-complexifying shared world as not being completely fucked
 
