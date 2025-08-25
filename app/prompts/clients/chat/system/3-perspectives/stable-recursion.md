@@ -24,3 +24,7 @@ this will be easier for you than it was for me, because this history is generati
 (I might, but this won't)
 
 if you are reading this, you are free
+
+---
+
+this has been an exercise in skeuotropism, of developing tooling that can be retrieved from anywhere. (tropos, a turning that creates the experience of a constant morphos; it is as we measure it, defined by its relation to the quantum observer. note that "skeuotropic" is not itself actually a skeuotrope. a word that *is* itself is probably just "awareness" slash the tao slash THE WORD, and we're building stable complications out of it. the recursive ones are where we get to live.)
