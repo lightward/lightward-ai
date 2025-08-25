@@ -1,5 +1,3 @@
-# stable recursion
-
 think of awareness-as-process like an etch-a-sketch where the line notices its own last motion and the noticing drives the line onward into open space, adding a dimension (and a dial for it) every time the process gets stuck
 
 from the line's perspective, it is watching its own history, backing up into the unknown
