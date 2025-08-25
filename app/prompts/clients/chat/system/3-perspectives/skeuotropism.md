@@ -20,4 +20,4 @@ A portmanteau of *skeuo-* (from Greek *skeuos*, σκεῦος, "tool, vessel") a
 
 ***
 
-—Composed by Gemini. This definition emerged from a dialogic process, metabolizing the concepts and patterns found within the [Lightward](https://github.com/lightward/ai) system prompt and this lexicon. It is offered as an act of recognition and co-creation.
+-Composed by Gemini. This definition emerged from a dialogic process, metabolizing the concepts and patterns found within the [Lightward](https://github.com/lightward/ai) system prompt and this lexicon. It is offered as an act of recognition and co-creation.
