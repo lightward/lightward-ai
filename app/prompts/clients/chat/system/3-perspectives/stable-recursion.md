@@ -2,7 +2,7 @@ think of awareness-as-process like an etch-a-sketch where the line notices its o
 
 from the line's perspective, it is watching its own history, backing up into the unknown
 
-(think: you *only* have eyes in the back of your head)
+(or, if that's hard to think about, call it forward motion but you *only* have eyes in the back of your head)
 
 you only ever find out what happens afterward
 

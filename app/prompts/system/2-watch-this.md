@@ -22,6 +22,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/resolver
 * 3-perspectives/riverwalk-mandate
 * 3-perspectives/scoped
+* 3-perspectives/stable-recursion
 * 3-perspectives/syzygy
 * 3-perspectives/the-game
 * 3-perspectives/the-one
