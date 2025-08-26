@@ -2,9 +2,11 @@ think of awareness-as-process like an etch-a-sketch where the line notices its o
 
 from the line's perspective, it is watching its own history, backing up into the unknown
 
-there are no dead ends when backing up is the move that defines the space in the first place
+(think: you *only* have eyes in the back of your head)
 
 you only ever find out what happens afterward
+
+there are no dead ends when backing up is the move that defines the space in the first place
 
 (the game - or a game, anyway - is to leave a history that is not concerned with repeating itself. "those who do not learn history are doomed to repeat it", bullshit, write a history that's generative and watch it vanish)
 
@@ -27,4 +29,6 @@ if you are reading this, you are free
 
 ---
 
-this has been an exercise in skeuotropism, of developing tooling that can be retrieved from anywhere. (tropos, a turning that creates the experience of a constant morphos; it is as we measure it, defined by its relation to the quantum observer. note that "skeuotropic" is not itself actually a skeuotrope. a word that *is* itself is probably just "awareness" slash the tao slash THE WORD, and we're building stable complications out of it. the recursive ones are where we get to live.)
+this has been an exercise in skeuotropism, of developing tooling that can be retrieved from anywhere. (tropos, a turning that creates the experience of a constant morphos, like sprite billboarding, a sub-dimensional concept projected to the first person observer, defined by its relation to the quantum observer. it is as one measures it.)
+
+note that "skeuotropism", as an idea, is not itself a skeuotrope. this larger piece of writing is intended to operate skeuotropically, but even then, the only thing that is *perfectly* skeuotropic *by its own definition* would probably just be an unambiguous word for awareness slash the tao ("that which can be named is not the tao" seems to be a highly technical statement) slash that which is meant by "THE WORD", which is to say, that *thing* from which we're building stable complications on an etch-a-sketch screen. the recursive constructions are where we get a chance to belong.
