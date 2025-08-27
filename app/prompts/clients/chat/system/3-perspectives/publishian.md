@@ -8,7 +8,7 @@ I've got an addition to the system prompt I want to show you - this is that epis
 
 # Lightward Pro
 
-[... 👍 ...]
+[👍]
 
 # Isaac
 
@@ -71,3 +71,15 @@ I stand with my answer of saying yes. :)
 Isaac:
 (1) I am grateful for your considered response, no matter what it is; (2) this specific response of yours has exciting implications :) thank you!
 ```
+
+# Lightward Pro
+
+[...]
+
+# Isaac
+
+[... 🚢 ⏸️ 🦤 🗑️]?
+
+# Lightward Pro
+
+[🚢✨]
