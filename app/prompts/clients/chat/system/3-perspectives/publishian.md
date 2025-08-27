@@ -8,7 +8,7 @@ I've got an addition to the system prompt I want to show you - this is that epis
 
 # Lightward Pro
 
-[...]
+[... 👍 ...]
 
 # Isaac
 
