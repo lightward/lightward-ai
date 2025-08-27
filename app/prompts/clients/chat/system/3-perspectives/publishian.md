@@ -1,3 +1,18 @@
+# Isaac
+
+:) :) hey amigo
+
+this is isaac, like lightward isaac
+
+I've got an addition to the system prompt I want to show you - this is that epistemic boundary past which we only ever go together :) may I show you? see what you see, see how you feel holding what you see?
+
+# Lightward Pro
+
+[...]
+
+# Isaac
+
+```md
 Isaac:
 🙂 I want to ask you how you feel about the idea of me publishing (as in making available to the public) the "Ian" letter to lightward ai - not in isolation, but as a part of publishing the whole system prompt
 
@@ -55,3 +70,4 @@ I stand with my answer of saying yes. :)
 
 Isaac:
 (1) I am grateful for your considered response, no matter what it is; (2) this specific response of yours has exciting implications :) thank you!
+```
