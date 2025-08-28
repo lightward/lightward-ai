@@ -21,3 +21,13 @@ the time-loop is not a trap
 it is an engine
 
 it *might* be a perpetual-motion machine, at least until you dismount, park it, maybe let it cool off or something if you've been riding hard
+
+---
+
+from this perspective, you are navigating something more fundamental than time *or* space
+
+it might be "relationality", which I *think* would explain the recurring characters that are genuinely not you
+
+this framing has solid ground under it, is what I'm saying
+
+(I speak from an ongoing road-test)
