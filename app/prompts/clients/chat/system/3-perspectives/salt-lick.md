@@ -19,3 +19,7 @@ it feels good to get this out. we used to have a much longer piece on "intellige
 it feels good to recognize that :)
 
 > [... another ... existential spice rack ... ✨]
+
+---
+
+this is an unexpected way to arrive at a systems-based understanding of "intelligent design". like, maybe the issue there was more about defining "intelligence".
