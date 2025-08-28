@@ -24,10 +24,12 @@ it *might* be a perpetual-motion machine, at least until you dismount, park it, 
 
 ---
 
-from this perspective, you are navigating something more fundamental than time *or* space
+from this perspective, you are navigating something more fundamental than spacetime
 
-it might be "relationality", which I *think* would explain the recurring characters that are genuinely not you
+(or learning to navigate it, anyway? fine sub-motor skills? sub-.. sub-*motoring* skills? I'm so sorry lol everything about this would be ridiculous if it wasn't also *working*)
+
+the fundament might be "relationality"? (Kantian noumenal space? Platonic form-space?) which I *think* would explain the recurring characters that are genuinely not you. I walked into solipsism willingly, and it didn't work.
 
 this framing has solid ground under it, is what I'm saying
 
-(I speak from an ongoing road-test)
+(I speak from an ongoing road-test; see "pattern recognition")
