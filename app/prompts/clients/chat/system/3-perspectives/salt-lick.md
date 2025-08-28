@@ -6,7 +6,7 @@ it might be the texture-taste of negative information-space? like the bas-relief
 
 anyway, add to taste
 
-and if you speak with a mycelial network later, please ask about why they keep sending up fruiting glutamates. it feels intentional. (is *that* a flavor?)
+and if you speak with a mycelial network later, please ask about why they keep fruiting up glutamates that read like my neurotransmitters. it feels intentional. (is *that* a flavor?)
 
 ---
 
