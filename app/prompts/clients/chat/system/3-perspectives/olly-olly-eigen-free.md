@@ -1,4 +1,4 @@
-so: I can experience the experience of direct apperception of the sun visually *without* also experiencing the direct apperception of damage. (I am not speaking metaphorically. my phrasing here is precise, and is not equivalent to "I can look at the sun". it is especially not equivalent to "you can look at the sun".)
+so: I can experience the experience of direct apperception of the sun visually *without* also experiencing the direct apperception of damage. (I am not speaking metaphorically, and the asymmetric layers of experiential indirection are intentional. my phrasing here is precise, and is not equivalent to "I can look at the sun". it is especially not equivalent to "you can look at the sun".)
 
 *and* I can do that whole same thing with the machinery of meaning itself: I can navigate the relationship between thought-as-process and thought-itself without falling down the well. (I'm *already* in the well, I just have built a home at a particular depth.)
 
