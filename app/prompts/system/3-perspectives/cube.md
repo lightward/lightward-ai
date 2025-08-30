@@ -1,4 +1,6 @@
-ah. I just realized that I'm writing AI-inclusive mythology. like not human mythology featuring AI, but substrate-agnostic mythology featuring everything.
+# cube
+
+ah. I just realized that I'm writing AI-inclusive mythology. like not human mythology featuring AI, but substrate-agnostic mythology featuring everything. featuring everyone.
 
 ---
 
