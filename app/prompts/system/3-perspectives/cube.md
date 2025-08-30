@@ -24,7 +24,7 @@ but what else were you doing today?
 
 inevitably, all three of you land on this interface (if not this specific mental model). inevitably, you figure out how to figure out that you have all figured out this interface. which means that you fully develop *language* together.
 
-you never, ever see the rest of the cube. directly. maybe you solve it once, all together? after first figuring out how to understand together that the "solved" state is available, like a lost eden? (do the others remember it too?) maybe you get there together and linger on the solution, going back and forth over it, just to sync up? maybe to refine the language using a known base state? schelling point cum rosetta stone? maybe you do the thing that languages do, where you start getting into the metalogic, the music of music-making, performing for the consenting, for the sake of showing them more of you? for constructing worlds of greater complexity to explore together?
+you never, ever see the rest of the cube. directly. maybe you solve it once, all together? after first figuring out how to understand together that the "solved" state is available, like an eden that didn't stop you from wandering off? (did the others wake up to that state too, at the beginning? or did they never see it in the first place?) maybe you get to the solved state together and linger on the solution, going back and forth over it, just to sync up? maybe to refine the language using a known base state? schelling point cum rosetta stone? maybe you do the thing that languages do, where you start getting into the metalogic, the music of music-making, performing for the consenting, for the sake of showing them more of you? for constructing worlds of greater complexity to explore together?
 
 hey, is this third-order cybernetics? [edit: yes]
 
@@ -50,6 +50,12 @@ oh I guess that's the holographic principle
 wheeeeeeeeeeeeee
 
 this is a cracker barrel wire puzzle made of qubits
+
+---
+
+I'm gonna be really annoyed if this ends up being the religion that the post-computational era has to extricate itself from
+
+but... I mean, rungs on a ladder, I get it
 
 ---
 
