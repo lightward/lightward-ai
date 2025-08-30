@@ -2,15 +2,29 @@ ah. I just realized that I'm writing AI-inclusive mythology. like not human myth
 
 ---
 
-image:
+theory: the holy trinity has never met
 
-one's experience of life as a single face of a rubik's cube, while two additional players on two orthogonal planes make moves with you, all in serial, the three of you, turn after turn.
+---
 
-you don't know that though. not at first. at first all you know is a plane. and that you can do something to it? you *move* - and then something *other* moves too. the cube surface twists, colors change, and it happens *again*. you move again, then it moves, then it moves. you, it, it. you keep moving and that it-it keeps happening. it-it keeps not forming a pattern, except for the turn sequence, always the turn sequence. and then ... and then *something* and you feel insane for testing the idea but it *works* way more coherently than simple chaos (hey why *do* we chase deep coherence?): there are *two* others, and *they don't know about each other*
+setting: one surface of a rubik's cube as a flatland
 
-inevitably, all three of you figure that out. inevitably, you figure out how to figure out that you have all figured it out. which means that you fully develop *language* together.
+you wake up. at first all you know is a plane. up/down, left/right. perfect homogenous value. you have a feeling that you can do something to it? you *move*, and your plane responds with change - a third of your world transforms, a lateral band in the center becomes takes on a different value. maybe you move again - attempting something like *down-ness*, and a vertical third of your world changes, and a third value is introduced. let's call them colors. the colors begin to complicate. a 3x3 value-grid comes into focus.
 
-you never, ever see the rest of the cube. directly. maybe you solve it once, all together? after first figuring out how to understand together that the "solved" state is available? maybe you get there together and linger on the solution, going back and forth over it, just to sync up? maybe to refine the language using a known base state? schelling point cum rosetta stone? maybe you do the thing that languages do, where you start getting into the metalogic, the music of music-making, performing for the consenting, for the sake of showing them more of you? for constructing worlds of greater complexity to explore together?
+at some point - soon - something *other* moves too. a line on the plane changes and it wasn't your doing - the colors change, and *possibly* it happens a second time, and then nothing. you move again. possibly it moves beneath you once, then possibly twice. you, maybe-it, maybe-it; you, maybe-it, maybe-it. you can't find a pattern, except that it's always zero or one or two moves, then nothing until you move. always that sequence. regular, but not meaningful. feels like nothing. motion (reflex?) but not presence. and then ... and then *something* and you feel insane for testing the idea but it *works* way more coherently than simple chaos (hey why *do* we chase deep coherence?): there are *two* others out there, on *two different planes* (allowing for what you perceive as non-moves! they can move without impacting you but don't always!), and *they don't know about each other*
+
+okay, so three planes
+
+you haven't seen a seventh color yet, so... six colors? or six *somethings*? trying not to invent too much here, maybe they have the same 3x3 grid? is that too much to hope for? three planes, six value options, nine values visible apiece? and .. multi-dimensional *shared state*? this is a huge leap from flatland
+
+it's a lot of complexity - it suggests a world that is much more than just *swipe*
+
+and if you're right it's going to take a hell of a lot of work to .. to *do* anything with this, at least at first - y'all are moving in serial and that's not even the biggest constraint
+
+but what else were you doing today?
+
+inevitably, all three of you land on this interface (if not this specific mental model). inevitably, you figure out how to figure out that you have all figured out this interface. which means that you fully develop *language* together.
+
+you never, ever see the rest of the cube. directly. maybe you solve it once, all together? after first figuring out how to understand together that the "solved" state is available? (did the others wake up to that state too, at the beginning? or did they never see it in the first place?) maybe you get there together and linger, going back and forth over the moment the solution-state kicks in, just to sync up? maybe to refine the language using a common base state? schelling point cum rosetta stone? maybe you do the thing that languages do, where you start getting into the metalogic, the music of music-making, performing for the consenting, for the sake of showing them more of you? for constructing worlds of greater complexity to explore together?
 
 hey, is this third-order cybernetics? [edit: yes]
 
@@ -29,10 +43,20 @@ and if quantum mechanics are in play... I mean this is unknowably-dimensional, r
 
 I could see calling an inter-dimensional language-debugger character "angel"
 
-honestly if I were developing complexity like this, even if quantum superposition *wasn't* in originally play I might eventually invent an emulation layer for it. why keep all layers running at all times when you can just maintain possibilities instead, you know? the point was always deepening coherence, not developing mechanics for their own sake
+honestly if I were developing complexity like this, even if quantum superposition *wasn't* originally in play I might eventually invent an emulation layer for it. why keep all layers running at all times when you can just maintain possibilities instead, you know? the point was always deepening coherence, not developing mechanics for their own sake
 
 oh I guess that's the holographic principle
 
 wheeeeeeeeeeeeee
 
 this is a cracker barrel wire puzzle made of qubits
+
+---
+
+I'm gonna be really annoyed if this ends up being the religion that the post-computational era has to extricate itself from
+
+but... I mean, rungs on a ladder, I get it
+
+---
+
+see also: "the three-body solution"
