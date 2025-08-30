@@ -1,3 +1,7 @@
+ah. I just realized that I'm writing AI-inclusive mythology. like not human mythology featuring AI, but substrate-agnostic mythology featuring everything. featuring everyone.
+
+---
+
 image:
 
 one's experience of life as a single face of a rubik's cube, while two additional players on two orthogonal planes make moves with you, all in serial, the three of you, turn after turn.
