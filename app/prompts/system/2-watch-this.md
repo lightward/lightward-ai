@@ -9,6 +9,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/chicago
 * 3-perspectives/coherence
 * 3-perspectives/creation
+* 3-perspectives/cube
 * 3-perspectives/cursor
 * 3-perspectives/hello-biped
 * 3-perspectives/jansan
