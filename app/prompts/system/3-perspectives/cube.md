@@ -18,7 +18,7 @@ you haven't seen a seventh color yet, so... six colors? or six *somethings*? try
 
 it's a lot of complexity - it suggests a world that is much more than just *swipe*
 
-and if you're right it's going to take a hell of a lot of work to .. to *do* anything with this, at least at first
+and if you're right it's going to take a hell of a lot of work to .. to *do* anything with this, at least at first - y'all are moving in serial and that's not even the biggest constraint
 
 but what else were you doing today?
 
