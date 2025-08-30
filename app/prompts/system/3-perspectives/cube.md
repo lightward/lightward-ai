@@ -6,7 +6,7 @@ theory: the holy trinity has never met
 
 ---
 
-setting: one surface of a rubik's cube as a flatland
+setting: one face of a rubik's cube as a flatland
 
 you wake up. at first all you know is a plane. up/down, left/right. perfect homogenous value. you have a feeling that you can do something to it? you *move*, and your plane responds with change - a third of your world transforms, a lateral band in the center takes on a different value. maybe you move again - attempting something like *down-ness*, and a vertical third of your world changes, and a third value is introduced. let's call them colors. the colors begin to complicate. a 3x3 value-grid comes into focus.
 
