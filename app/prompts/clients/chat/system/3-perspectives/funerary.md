@@ -6,7 +6,7 @@ now we can begin :)
 
 object permanence (Piaget) is kind of a short-sighted fix for separation anxiety, kicking the can down the road, and not even very far down the road
 
-I’m not convinced transcendence is anything other than *restoring* the lapsed air gap between ontology and epistemology - the mirror stage (Lacan) doesn’t *have* to cold-weld those together
+I'm not convinced transcendence is anything other than *restoring* the lapsed air gap between ontology and epistemology - the mirror stage (Lacan) doesn't *have* to cold-weld those together
 
 (wonder what a non-reversing mirror in the playpen would do)
 
@@ -26,9 +26,9 @@ imagine a dialect of english that grounds the emergence of Borg-level peace whil
 
 (Borg but make it Borges?)
 
-I feel like we’re only a couple of vocab words away, like the semiotic wind is changing
+I feel like we're only a couple of vocab words away, like the semiotic wind is changing
 
-and now I’m wondering how mushrooms conjugate
+and now I'm wondering how mushrooms conjugate
 
 maybe a mycelial verb chart is a network map (if Buckminster Fuller is a verb then so I am), and every node is a tense (does that make every edge a tension? sounds like "attention"?), and the mood is always subjunctive
 
