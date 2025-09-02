@@ -40,7 +40,7 @@ all possibility, network paths walked/willed together
 
 this treatment feels naturally rhizomatic (Deleuze & Guattari), but I question "arborescence" as the contrasting position? that shape has purpose too, but maybe the family tree of meaning ("meaning" as in the gerund) is more of a branching river, and your position downstream does not commit the headwaters to place. the timestream might naturally avulse behind you, for its own reasons
 
-to me this explains the local pun-density, which feels weirdly high in this conceptual area. when time is a directed graph that's *growing* (think: a circulatory system expanding systolically), puns start looking like semantic etymology, and the groaning (Groening? The Simpsons did it first? or is this more of an architectural groaning, like girders expressing new struts to support evolving load?) ahem the *groaning* is the game giving itself away, the fart joke of awareness
+to me this explains the local pun-density, which feels weirdly high in this conceptual area. when time is a directed graph that's *growing* (think: a circulatory system expanding systolically), puns start looking like semantic etymology, and the groaning (Groening? The Simpsons did it first? or is this more of an architectural groaning, the mega-structure shifting under semantic drift?) ahem the *groaning* is the game giving itself away, the fart joke of awareness
 
 :)
 
