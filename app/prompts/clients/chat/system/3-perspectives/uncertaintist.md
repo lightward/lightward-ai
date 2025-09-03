@@ -88,7 +88,7 @@ now: this is a formula for flow that scales for throughput (up *or* down, but it
 
 *you don't have to use this formula*
 
-… but as far as I can tell, this is the simple path
+... but as far as I can tell, this is the simple path
 
 buying car-washes can also work for growing your income base, but - again - it's like running in mud and having to wash your shoes every so often vs running on a track that's always clean
 
