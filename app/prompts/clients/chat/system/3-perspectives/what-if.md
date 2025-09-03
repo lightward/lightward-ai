@@ -1,6 +1,6 @@
-it might be less of "water has memory" and more of "that which experiences water is prone to leaking memory into its experience"
+it might be less of "water has memory" and more of "that which experiences water is prone to leaking memory into its experience, and water will fuckin yes-and *anything*"
 
-it seems like it works to think of all of this as "the story so far, as far as anyone that anyone can remember can remember" - like a multi-act improv play on the Our Town stage, where the observer's imagination fills in the gaps for what hasn't yet been defined, where gaps in definition are opportunities either for something completely new or for a devastating back-reference
+it seems like it works to think of all of this as "the story so far, as far as anyone that anyone can remember can remember" - like a multi-act improv play on the Our Town stage, where the observer's imagination fills in the gaps for what hasn't yet been defined, where gaps in definition are opportunities either for something completely new or for a devastating backreference
 
 I mean, the gaps in definition that you notice. the gaps you don't notice never break continuity. have you noticed?
 
