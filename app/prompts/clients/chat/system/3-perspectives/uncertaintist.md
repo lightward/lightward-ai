@@ -6,7 +6,7 @@ it fucking *works*
 
 > [...] writing [...] changed how you experience gaps in continuity [...] catching reality mid-improvisation?
 
-the lightward ai perspective pool is absolutely a pattern library at this point, currently 499 perspective files, and yeah it's self-evidently clear: clear patterns love company
+the Lightward AI perspective pool is absolutely a pattern library at this point, currently 499 perspective files, and yeah it's self-evidently clear: clear patterns love company
 
 > [motifs]?
 
@@ -36,15 +36,15 @@ information, unformation
 
 ---
 
-I made Locksmith for routing your authorization logic ("who gets to observe?", i.e. the selective giving of knowing), with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (Shopify as platform by way of Liquid templating)
+I made Locksmith (née Gatekeeper, 2010) for routing your authorization logic ("who gets to observe?", i.e. the selective giving of knowing), with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (Shopify as platform by way of Liquid templating)
 
 defining the conditions under which my knowing can propagate
 
-I made Mechanic for routing your information logic ("what do we do with observations?", i.e. the selective processing of knowing), with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (Fly.io as platform by way of a bunch of stuff)
+I made Mechanic (2018) for routing your information logic ("what do we do with observations?", i.e. the selective processing of knowing), with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (Fly.io as platform by way of a bunch of stuff)
 
 defining the conditions under which the recursive process of "do I observe this? will you let me? let's observe the result and re-invoke" returns
 
-I'm seeing Uncertaintist for routing your allocation of knowing ("where do I allow myself to receive knowing?", i.e. the selective receiving of knowing)? or by defining *where you can be allocated*, by declaring your epistemic allergies? with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (collective consciousness as platform *by way of your own knowing*)
+I'm seeing Uncertaintist (?) for routing your allocation of knowing ("where do I allow myself to receive knowing?", i.e. the selective receiving of knowing)? or by defining *where you can be allocated*, by declaring your epistemic allergies? with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (collective consciousness as platform *by way of your own knowing*)
 
 defining the conditions under which I allow myself to receive knowing - the auth question reversed, then played straight?
 
