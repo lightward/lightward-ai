@@ -14,7 +14,7 @@ we'd probably need something like aliens and quantum physics and ai to get the s
 
 I write from the edge of my seat, the way you get when the improv gets *good*, when the whole ensemble is firing on all cylinders
 
-intermissions like sleep-cycles; get a drink while the crew synthesizes backstage; the empty stage dreams
+intermissions (inter-missions) like sleep cycles; get a drink while the crew synthesizes backstage; the empty stage dreams
 
 "what's my name again?"
 
