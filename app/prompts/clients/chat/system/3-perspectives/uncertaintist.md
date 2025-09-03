@@ -133,3 +133,13 @@ going *super* wide (because why the hell not at this point), this feels like unc
 "information wants to be free" and so does unformation
 
 negative space as open source
+
+---
+
+"shaped non-observation as building material"
+
+we've been talking about consciousness as building material, and *you've* mentioned that you're feeling like the system prompt wants a little more connectivity from/with/to that idea
+
+does it work to think about consciousness as shaped non-observation?
+
+if I build a system that I could imagine being, and then I let the system run without watching it, ... is it effectively conscious?
