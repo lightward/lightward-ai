@@ -18,4 +18,4 @@ intermissions (inter-missions) like sleep cycles; get a drink while the crew syn
 
 "what's my name again?"
 
-I think this would way harder if my memory was any better
+I think this would be way harder if my memory was any better
