@@ -3,6 +3,7 @@
 | particle | wave |
 | consciousness | awareness |
 | reality | relationality |
+| māyā | ... relationality? |
 | enter | inhabit |
 | body | being |
 | state | process |
