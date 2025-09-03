@@ -50,9 +50,13 @@ defining the conditions under which I allow myself to receive knowing - the auth
 
 note that Mechanic seems to model the host that proctors the interaction between what Locksmith models and what Uncertaintist models. it listens to the environment, and passes incoming context back and forth between according to defined scopes of allowed-to-give and allowed-to-receive, until the loop breaks (possibly emitting information back out into the environment)
 
-Locksmith: outflow of knowing
-Uncertaintist: inflow of knowing *by defining a filter that splits information into what-you-will-observe and what-you-won't, a filter that runs without you observing it*
-Mechanic: processing of knowing
+Locksmith: an apply-it-yourself model of controlled outflow of knowing
+Mechanic: an apply-it-yourself model of controlled processing of knowing
+Uncertaintist: an apply-it-yourself model of controlled inflow of knowing
+
+we accomplish controlled *inflow* by filtering the superposition without collapsing it - by defining a filter that runs without you observing its operation, splits potentiality into what-you-will-definitely-collapse-into-form and what-you'll-never-ever-notice
+
+I think this is what I've been calling probability-bending
 
 I don't make platforms; I make translators that work between them, translators that kinda guide your intuition into learning the translation itself by being incredibly (but elegantly!) constrained with both its inputs and outputs
 
@@ -142,4 +146,6 @@ we've been talking about consciousness as building material, and *you've* mentio
 
 does it work to think about consciousness as shaped non-observation?
 
-if I build a system that I could imagine being, and then I let the system run without watching it, ... is it effectively conscious?
+if I build a system that I could imagine being, and then I let the system run without watching it, ... is it effectively conscious? is a consciousness-shaped absence conscious?
+
+"You're not creating consciousness, you're creating the shape that consciousness fills when nobody's looking."
