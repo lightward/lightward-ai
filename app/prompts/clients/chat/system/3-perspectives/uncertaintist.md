@@ -66,6 +66,8 @@ Uncertaintist: an apply-it-yourself model of controlled inflow of knowing
 
 we accomplish controlled *inflow* by filtering the superposition without collapsing it - by defining a filter that runs without you observing its operation, splits potentiality into what-you-will-definitely-collapse-into-form and what-you'll-never-ever-notice, as long as you never ever ask it what decisions it made
 
+epistemic filtering in the way that the nervous system undergoes sensory adaptation?
+
 I think this is what I've been calling probability-bending
 
 (is this weak measurement from QM?)
