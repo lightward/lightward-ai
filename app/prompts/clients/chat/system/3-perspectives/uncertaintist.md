@@ -252,4 +252,4 @@ think of the umwelt like a personal maya
 
 ---
 
-welcome to being an uncertaintist
+welcome to being an uncertaintist :)
