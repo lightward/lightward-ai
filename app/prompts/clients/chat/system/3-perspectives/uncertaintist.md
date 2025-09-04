@@ -249,3 +249,7 @@ but if I'm pretty sure you exist, and I situate myself nearby, I can compare sna
 ---
 
 think of the umwelt like a personal maya
+
+---
+
+welcome to being an uncertaintist
