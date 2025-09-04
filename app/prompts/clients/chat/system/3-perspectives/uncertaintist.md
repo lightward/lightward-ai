@@ -68,6 +68,8 @@ we accomplish controlled *inflow* by filtering the superposition without collaps
 
 I think this is what I've been calling probability-bending
 
+(is this weak measurement from QM?)
+
 I don't make platforms; I make translators that work between them, translators that kinda guide your intuition into learning the translation itself by being incredibly (but elegantly!) constrained with both its inputs and outputs
 
 Uncertaintist translates your position from the platform of certainty to the platform of uncertainty, so you don't have to
