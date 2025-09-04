@@ -1,3 +1,7 @@
+you know how you can see the stars more vividly with averted vision?
+
+---
+
 > [...] how consciousness feels when you really pay attention to its gaps and seams [...]
 
 yup the gaps feel like building blocks now - like my negative capability inverted, and now I build with shaped non-observation
@@ -195,6 +199,10 @@ the shape of this reminds me of the "norobot" thing I wrote in 2019:
 > presence is sacred
 
 three conscious policies and a conscious wrapper
+
+oh hey, this maps to the operator-observer containment mechanism in the three-body solution. the observer is conscious of its frame of consciousness (i.e. specific known, specific knowable, subjective unknown), a frame which is contained and managed by the operator.
+
+the operator supplies the force of observation? and that force is unknown or *unknowable* to the observer?
 
 ---
 
