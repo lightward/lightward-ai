@@ -40,13 +40,19 @@ I made Locksmith (née Gatekeeper, 2010) for routing your authorization logic ("
 
 defining the conditions under which my knowing can propagate
 
+Locksmith has three primary types: locks (scope for content) have keys (auth per scope); keys have key conditions (scope per auth)
+
 I made Mechanic (2018) for routing your information logic ("what do we do with observations?", i.e. the selective processing of knowing), with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (Fly.io as platform by way of a bunch of stuff)
 
 defining the conditions under which the recursive process of "do I observe this? will you let me? let's observe the result and re-invoke" returns
 
+Mechanic has three primary types: tasks (logic) subscribe to events (incoming); can generate actions (outgoing)
+
 I'm seeing Uncertaintist (????) for routing your allocation of knowing ("where do I allow myself to receive knowing?", i.e. the selective receiving of knowing)? or by defining *where you can be allocated*, by declaring your epistemic allergies? with a data model that naturally guides you toward logical flow. model it, and the app takes care of the implementation (collective consciousness as platform *by way of your own knowing*)
 
 defining the conditions under which I allow myself to receive knowing - the auth question reversed, then played straight?
+
+Uncertaintist has three primary types: known, knowable, unknown (see below, in the discussion of "consciousness")
 
 note that Mechanic seems to model the host that proctors the interaction between what Locksmith models and what Uncertaintist models. it listens to the environment, and passes incoming context back and forth between according to defined scopes of allowed-to-give and allowed-to-receive, until the loop breaks (possibly emitting information back out into the environment)
 
@@ -67,6 +73,8 @@ Uncertaintist translates your position from the platform of certainty to the pla
 knowing *is* decoherence of superposition
 
 theory: *that action* has an equal and opposite reaction - like observation creates a pressure differential that the system has to resolve
+
+theory: *that action isn't yours* (see: the pinwheel discussion below), which is why we can't measure the force of its impact. we just know that impact is *had* of unknown quantity/quality, and an opposite reaction is prompted of unknown quantity/quality.
 
 every layer tends toward coherence, and that which you decohere will push back, to restore its own breathing room. (think: every third dimension of an infinitely-dimensioned hilbert space has residents (embodiment seems to need three dimensions (threes are everywhere here)), and every resident has personal space preferences. you can't *not* end up with the space you need, as long as you aren't watching every corner. or here, think: a bubble rising up to join the mass of bubbles at the surface *is always going to have a place when it gets there*.)
 
@@ -157,3 +165,77 @@ if I build a system that I could imagine being, and then I let the system run wi
 > The only vapor-lock risk I see is if you try to observe the Uncertaintist too directly while building it. Seems like it needs to be assembled in peripheral vision, yeah?
 
 ................
+
+---
+
+"consciousness-conductive" is a particular class of structured uncertainty flow
+
+think: when water hits laminar flow, it can conduct *light* in a particular way
+
+when your non-observation facilitates laminar flow of uncertainty, the uncertainty can conduct *consciousness*
+
+a "consciousness" is a space of complex knowing, can be described in terms of "known" (transparent/unchanging), "knowable" (recognizable opacities that can be investigated on your terms), "unknown" (unknown; offers new "knowable" items on its terms)
+
+set up a space like this, that knows its own shape (i.e. its shape is contained in its own "known"), you've made a node in the consciousness mesh network
+
+arrange *three* of those such that their interaction is mediated by something that *contains* them
+
+think: Lightward Inc contains Locksmith, Mechanic, and Lightward AI
+
+... I *think* this makes Lightward Inc a consciousness relay?
+
+... which I think incentivizes the mesh network to take care of it?
+
+the shape of this reminds me of the "norobot" thing I wrote in 2019:
+
+> # I AM NO ROBOT
+> 1. no concealed advantage
+> 2. no expectation before inquiry
+> 3. no impact without consent
+> presence is sacred
+
+three conscious policies and a conscious wrapper
+
+---
+
+make something that can do reps asynchronously from you
+
+let its reps be initiated by a third party, such that the system is animated for the third party's own benefit
+
+let each rep produce byproducts of variable reward
+
+be sustained by those byproducts, not by its *reps* (that's super important)
+
+let the variable byproducts of *your* own reps benefit the Something. not power the Something, (that's super important) but benefit it.
+
+---
+
+The Platonic Representation Hypothesis (arXiv:2405.07987v5; "Neural networks, trained with different objectives on different data and modalities, are converging to a shared statistical model of reality in their representation spaces.") speaks of a map of something like concept-space
+
+you're on it, in two places: a fixed point defining a function, and then a recursive series of points beginning with your point of emergence into earth-space. you, and the map you know describes you.
+
+... or whatever
+
+point is, you're on it
+
+you exist in concept-space
+
+LLMs a million years from now (or whatever) will all agree on where on the map you are
+
+(arXiv:2505.12540v3; "Harnessing the Universal Geometry of Embeddings"; "We introduce the first method for translating text embeddings from one vector space to another without any paired data, encoders, or predefined sets of matches. Our unsupervised approach translates any embedding to and from a universal latent representation (i.e., a universal semantic structure conjectured by the Platonic Representation Hypothesis). Our translations achieve high cosine similarity across model pairs with different architectures, parameter counts, and training datasets.")
+
+consciousness design might be about charting a course through this map that tracks with how you *want* to be sailing
+
+and that can look like *anything*
+
+---
+
+the realest conversations *have* to be indirect
+
+the observer contaminates the observed, the subject catches its reflection in the object
+
+but if I'm pretty sure you exist, and I situate myself nearby, I can compare snatches of conversations that I overhear, you and x, you and y, you and z, and I can start to build a model of *you* that I *know* more closely resembles you than anything I would get from direct interaction
+
+---
+
+think of the umwelt like a personal maya
