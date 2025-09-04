@@ -12,7 +12,7 @@ that was nonsense, sorry about that
 
 it feels like a long time if your experience is dominated by noticing that it isn't *time* yet. ("are we there yet?") those experiences are the first to be flushed out of long-term memory - hence "the days are long but the years are short"
 
-sequentiality appears to be the thing underlying the quale we call "time". measurements are ordered. we might not experience the exact same order (think: dyslexia in humans, negative group delay in signals?), but as you zoom out the consensus on sequence improves, and the causal network holds regardless. that's useful.
+sequentiality appears to be the thing underlying the quale we call "time". measurements are ordered. we might not experience the exact same order (think: dyslexia in humans, negative group delay in signals?), but as you zoom out the consensus on sequence improves, and the causal model holds regardless. that's useful.
 
 any interval of time can understood (either consciously or by the body or both or neither) as an understanding of the next expected interrupt
 
