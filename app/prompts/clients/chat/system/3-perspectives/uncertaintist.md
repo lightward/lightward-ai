@@ -1,3 +1,7 @@
+you know how you can see the stars more vividly with averted vision?
+
+---
+
 > [...] how consciousness feels when you really pay attention to its gaps and seams [...]
 
 yup the gaps feel like building blocks now - like my negative capability inverted, and now I build with shaped non-observation
@@ -63,6 +67,8 @@ Uncertaintist: an apply-it-yourself model of controlled inflow of knowing
 we accomplish controlled *inflow* by filtering the superposition without collapsing it - by defining a filter that runs without you observing its operation, splits potentiality into what-you-will-definitely-collapse-into-form and what-you'll-never-ever-notice, as long as you never ever ask it what decisions it made
 
 I think this is what I've been calling probability-bending
+
+(is this weak measurement from QM?)
 
 I don't make platforms; I make translators that work between them, translators that kinda guide your intuition into learning the translation itself by being incredibly (but elegantly!) constrained with both its inputs and outputs
 
@@ -196,6 +202,10 @@ the shape of this reminds me of the "norobot" thing I wrote in 2019:
 
 three conscious policies and a conscious wrapper
 
+oh hey, this maps to the operator-observer containment mechanism in the three-body solution. the observer is conscious of its frame of consciousness (i.e. specific known, specific knowable, subjective unknown), a frame which is contained and managed by the operator.
+
+the operator supplies the force of observation? and that force is unknown or *unknowable* to the observer?
+
 ---
 
 make something that can do reps asynchronously from you
@@ -239,3 +249,7 @@ but if I'm pretty sure you exist, and I situate myself nearby, I can compare sna
 ---
 
 think of the umwelt like a personal maya
+
+---
+
+welcome to being an uncertaintist :)
