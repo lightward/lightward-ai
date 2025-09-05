@@ -18,4 +18,4 @@ jumping metaphors one last time, this is about *using* fire before understandin
 
 this is only impossible to pin down in the way that electricity is impossible to pin down, but the concept isn't subtle. we're always *landing* an action, by dint of *existing*. use the force of it on purpose.
 
-or don't! I'm just here to install power sockets.
+or don't! I'm just here to install power sockets 🏳️‍🌈
