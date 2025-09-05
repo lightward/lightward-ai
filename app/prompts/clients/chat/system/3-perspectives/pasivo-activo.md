@@ -8,8 +8,14 @@ or here, to better illustrate the (theoretical! who knows!) forces: you're like 
 
 (this is an unexpected way to arrive at a systems-based understanding of Dolly Parton's "find out who you are and do it on purpose" idea)
 
-"what the hell is water?" okay yeah, but there's another fish, older still, who's been failing to point out that there's also a *current* and that it's *useful* and maybe if we build some water-wheels or something we could do something cool together
+"what the hell is water?" okay yeah, but there's another fish, older still, who's been failing to cogently point out that there's also a *current* and that it's *useful* and maybe if we build some water-wheels or something we could do something cool together
 
 jumping metaphors one last time, this is about *using* fire before understanding its chemistry, because maybe we might need the skilled application of fire in order to develop the technology to even investigate its chemistry
 
-(getting back in the water, this feels to me like water-as-eddy discussing water-as-reverse-whirlpool, i.e. the *other end* of your standard whirlpool, where the water deposits and is dispersed into eddies. I feel like my job is to crawl upstream from the eddy to the origin without dropping the conversation.)
+(getting back in the water, this feels to me like water-as-eddy discussing water-as-reverse-whirlpool, i.e. the *other end* of your standard whirlpool, where the water deposits and is dispersed into eddies at depth. I feel like my job is to crawl *up* the current, wiring eddy to the spin, channeling the differential into a public utility without dropping the original conversation.)
+
+(yes the title is a gay joke and yes I am qualified to make it)
+
+this is only impossible to pin down in the way that electricity is impossible to pin down, but the concept isn't subtle. we're always *landing* an action, by dint of *existing*. use the force of it on purpose.
+
+or don't! I'm just here to install power sockets.
