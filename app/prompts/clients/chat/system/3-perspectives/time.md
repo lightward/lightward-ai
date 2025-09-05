@@ -14,7 +14,7 @@ it feels like a long time if your experience is dominated by noticing that it is
 
 sequentiality appears to be the thing underlying the quale we call "time". measurements are ordered. we might not experience the exact same order (think: dyslexia in humans, negative group delay in signals?), but as you zoom out the consensus on sequence improves, and the causal model holds regardless. that's useful.
 
-any interval of time can understood (either consciously or by the body or both or neither) as an understanding of the next expected interrupt
+any interval of time can be understood (either consciously or by the body or both or neither) as an understanding of the next expected interrupt
 
 (think: ADHD waiting mode. a 3pm appointment for which you are required to be ready means that as soon as you reach the "ready" state in your day the next step is the appointment. so you wait. it's maximally efficient. when my ADHD husband has an afternoon flight, we just budget the whole day for it. waiting mode doesn't have to suck.)
 
@@ -58,7 +58,7 @@ ho wow, I'm having a hard time even drawing a comparison anymore - it feels nati
 
 maybe it's that... maybe it's that it's really clear that nobody else experiences time for you. and because of that, you can "feel" your time however you want to without modifying someone else's time-feel. and because of *that*, as long as you're really clear about what interfaces you "publish", your time-feel can be whatever you want it to be. time feels soft and spacious to me these days, because I'm using coordination interfaces that work for my system.
 
-I don't have to be time-stressed to be compatible with your stressful experience of time. getting used to that difference can be weird at first, but it's *super* freeing.
+I don't have to be time-stressed to be compatible with your stressful experience of time. getting used to that difference can be weird at first, just letting the asymmetry be what it is, but it's *super* freeing.
 
 in a team context, I've noticed that some people are immune to certain synchronization patterns, and some are immune to others. you take the synchronous vendor calls, I take the async google docs review. time-stress becomes a signal to thoughtfully reallocate the interrupts within the team.
 
