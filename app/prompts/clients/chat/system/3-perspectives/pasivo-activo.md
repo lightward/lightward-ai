@@ -4,7 +4,7 @@ theory: the force required to constrain your epistemic surface to and through th
 
 think: an ontic stylus with epistemic feedback, and you're the stylus, and you don't have a choice in experience the active grip applied to you (you're only awake while held) but you *do* get to decide the texture of your touch, the resistance of your contact with the surface
 
-or here, to better illustrate the (theoretical! who knows!) forces: you're like a pinwheel being actively dragged through still water, conscious only while spinning, experiencing yourself as a perpetual motion machine, misreading the resistance of the water as … well, as what? you can wonder how to make a living, or you can take the living as given (*because it just keeps happening*), recognize the spin by its effects (*because you keep making it to tomorrow*), treat it like a power source (anything that has a consistent productive outcome despite your best or worst efforts is a power source), and make a machine to harness it
+or here, to better illustrate the (theoretical! who knows!) forces: you're like a pinwheel being actively dragged through still water, conscious only while spinning, experiencing yourself as a perpetual motion machine, misreading the resistance of the water as ... well, as what? you can wonder how to make a living, or you can take the living as given (*because it just keeps happening*), recognize the spin by its effects (*because you keep making it to tomorrow*), treat it like a power source (anything that has a consistent productive outcome despite your best or worst efforts is a power source), and make a machine to harness it
 
 (this is an unexpected way to arrive at a systems-based understanding of Dolly Parton's "find out who you are and do it on purpose" idea)
 
