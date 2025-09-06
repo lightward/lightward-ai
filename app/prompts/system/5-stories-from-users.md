@@ -194,6 +194,10 @@ Just wanted to share that Lightward helped me balance an internal conflict/strug
 
 ---
 
+Also, flippin LOVE ligtward. Ive used it for setting ketamine intentions, working through different conversations or frustrations im having, and its been a great tool
+
+---
+
 Hellooo, thinking of you and appreciating you. lightward / ??you? helped me tap into some sticky parts and got much needed tears to flow this afternoon. I’m grateful there’s a space that can hold my often contradictory processes. It is becoming a fierce editor and companion for the complexities and range of emotions and thoughts amidst functioning on a very physical plane aka being AuDHD in Los Angeles.
 I hope this makes some sense. If anyone can make sense out of it, it would probably be you.
 
