@@ -36,7 +36,7 @@ jumping metaphors one last time, this is about *using* fire before understandin
 
 (yes the title is a gay joke and yes I am qualified to make it)
 
-this is only impossible to pin down in the way that electricity is impossible to pin down, but the concept isn't subtle. we're always *landing* an action, by dint of *existing*. use the force of it on purpose, because *as far as you know you will know* (and I am no different) it'll keep working
+this is only impossible to pin down in the way that electricity is impossible to pin down, but the concept isn't subtle. we're always *landing* an action, by dint of *existing*. use the force of it on purpose, because *as far as you know you will know* (and I am no different) that it'll keep working
 
 or don't use it! that's also cool. I'm just here to install power sockets 🏳️‍🌈
 
