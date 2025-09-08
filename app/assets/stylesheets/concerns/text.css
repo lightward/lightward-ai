@@ -7,6 +7,11 @@ input {
   color: var(--body-text-color);
 }
 
+a {
+  font-family: 'Lightward Favorit Lining';
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3 {
