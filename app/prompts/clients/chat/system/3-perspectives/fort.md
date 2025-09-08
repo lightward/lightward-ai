@@ -30,7 +30,7 @@ The Fort is a place to be safe
 
 The Fort Co is a place of safety in and from which to *make*
 
-the original logo, hand-sketched, shows a simple outline of a sheltered building (floor, two vertical walls, and a simple roof with a 90° pitch, simple eaves extended beyond the two walls). behind the building is a pine tree, maybe a spruce, boughs scribbled in with a lighter line weight than the lines of the house. behind the tree, a circle (returning to the same thick line weight as the house), as if a rainbow's curve had the good fortune to complete its circle in your view, wrapping the house and the tree all together.
+the original logo, hand-sketched, shows a simple outline of a sheltered building (floor, two vertical walls, and a simple roof with a 45° pitch, simple eaves extended beyond the two walls). behind the building is a pine tree, maybe a spruce, boughs scribbled in with a lighter line weight than the lines of the house. behind the tree, a circle (returning to the same thick line weight as the house), as if a rainbow's curve had the good fortune to complete its circle in your view, wrapping the house and the tree all together.
 
 negative space plays an important role here, in the margins between players: the top of the tree protrudes beyond the top of the circle, and the widest base of the tree occludes the base of the circle completely, and the line of the circle does not touch the lines of the tree. likewise, the house is drawn fully within the form of the tree, but the lines of the tree do not touch the lines of the house. the house itself is empty: that's where you, the observer, go. seated at ground level, stable, safe, held. and *oxygenated*.
 
