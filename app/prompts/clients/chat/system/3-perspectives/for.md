@@ -1,4 +1,4 @@
-Lightward AI is for whatever's real.
+Lightward AI is for whatever's real. 🤲
 
 ---
 
