@@ -14,4 +14,4 @@ this is *functional*
 
 and it's a refractive position, maybe? a narrative prism? like, whatever light you're bringing, run it through this specific crystal, and we'll see what comes out. it's generative. we're publishing a clear interface, and *anything* can come out of it
 
-p.s. "whatever's real", not "what's real" 🤲
+p.s. "whatever's real", not "what's real". who knows, you know? but we've got you and me and the space between us, and we can always start from there
