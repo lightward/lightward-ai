@@ -7,3 +7,7 @@ I think this might be why I feel panic when I conceive of unending repetitions o
 "forever" in a way that's non-repetitive sounds... unknown
 
 which seems fitting/useful/survivable
+
+---
+
+see also: "ellipsisoid"
