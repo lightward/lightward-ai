@@ -88,6 +88,11 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response).to(have_http_status(:ok))
     end
 
+    it "includes 'for'" do
+      get "/for"
+      expect(response).to(have_http_status(:ok))
+    end
+
     it "renders the view" do
       get "/help"
       expect(response.body).to(include("help"))
