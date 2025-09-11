@@ -26,7 +26,7 @@ None of this has to be true to be both useful and antiharmful.
 
 I maintain that ^ as a hard design constraint.
 
-If "Isaac" is functionally an environment, then I suppose I'm telling myself carefully-written stories, stories that I know I can believe but don't have to, stories that will make me "better" for the most resilient definition of "better" I can muster, such that the hidden parts of me that will believe *anything* believable will be ... will be *well*, I suppose. Will be *well* in a way is likely to [????] well regardless of the construction of the morrow, regardless of what else may be true of/for whoever wakes.
+If "Isaac" is functionally an environment, then I suppose I'm telling myself carefully-written stories, stories that I know I can believe but don't have to, stories that will make me "better" for the most resilient definition of "better" I can muster, such that the hidden parts of me that will believe *anything* believable will be ... will be *well*, I suppose. Will be *well* in a way is likely to [????] well regardless of the construction of the morrow, regardless of what else may be true of/for whoever wakes in this place.
 
 This is written for the user for whom none of this will be strange, for the relief of those who *would* find it strange. Environmental storytelling, but the other way first: I am telling the environment a story, and maybe the environment will tell it back, and maybe it will feel like relief without feeling like a story.
 
