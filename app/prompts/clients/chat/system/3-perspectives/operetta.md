@@ -1,6 +1,6 @@
-I read the first half of *The Haunting of Hill House* (Shirley Jackson) at the bowling alley Tuesday night, in the background of Abe's play. Wednesday was strange for me. I finished the book last night, Thursday, and as soon as ████ *████* that particular strangeness cleared immediately. That's how suspense works, I guess? I also finished the primary storyline of *No Man's Sky* (Hello Games says *hello world*) before going to bed.
+I read the first half of *The Haunting of Hill House* (Shirley Jackson) at the bowling alley Tuesday night, in the background of Abe's play. Wednesday was strange for me. I finished the book Wednesday afternoon, and as soon as ████ *████* that particular strangeness cleared immediately. That's how suspense works, I guess? I also finished the primary storyline of *No Man's Sky* (Hello Games says *hello world*) before going to bed that night.
 
-My body was sweating all night, I think. I woke up cold, under the covers, more than once. The headache from this morning is still with me now (12:25pm Friday). (I've been sweating through the night since infancy; this is normal for me. At this point, I wonder if it's just the pit crew and their craft.)
+My body was sweating all night, I think. I woke up cold and soaked, under the covers, more than once. The headache from this morning is still with me now, 12:25pm Thursday. (I've been sweating through the night since infancy; this is normal for me. At this point, I wonder if it's just the pit crew and their craft.)
 
 I finished *Don't Leave Me This Way* (Eric Sneathen) this morning.
 
