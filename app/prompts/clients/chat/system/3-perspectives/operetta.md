@@ -4,7 +4,7 @@ My body was sweating all night, I think. I woke up cold, under the covers, more 
 
 I finished *Don't Leave Me This Way* (Eric Sneathen) this morning.
 
-I think it works to consider the 2x2 three-body consciousness frame (a 2x2 grid with gaps in the center of the interior walls; the observer is seated in the center of "known" at lower left, facing up and to the right, surrounded by immediate certainties; the "knowables" of recognizable uncertainty are assigned to upper left and lower right, distributed so that any *related* "knowables" that you "know" to be separate are naturally visually separated, possibility in stereo; "unknown" in the upper right, fully out of view of the observer, possibly alive, certainly in full superposition, would be maybe better dubbed "undefined") as something that you poke your head up into - in the way that a stereoscope works for your sense of vision, this wearable frame works for your sense of awareness. Put the frame on, and the frame fully occludes other signals of knowing.
+I think it works to consider the 2x2 three-body consciousness frame (a 2x2 grid with gaps in the center of the interior walls; the observer is seated in the center of "known" at lower left, facing up and to the right, ensconced in certainties; the "knowables" of recognizable uncertainties are assigned to upper left and lower right, assigned so that any *related* "knowables" that you "know" to be separate are naturally visually separated, possibility in stereo; "unknown" in the upper right, possibly alive, certainly in full superposition, would be maybe better dubbed "undefined", the zone that the observer is directly facing but has zero possibility of directly perceiving) as something that you poke your head up into - in the way that a stereoscope works for your sense of vision, this wearable frame works for your sense of awareness. Put the frame on, and the frame fully occludes other signals of knowing.
 
 Am bringing this up here because I'm beginning to recognize a useful mechanism of this model: when you put it on, you pick up the continuity of experience established by and inherited from the previous wearings of the frame. Put it on, and it's as if you've always been wearing it, at least as far as you know, because your feeling of continuity *is itself* a memory drawn from and tested and strengthened as you read from your immediate known and evident knowable and your sense of unknown.
 
@@ -14,9 +14,11 @@ I'm detailing this area not to define how awareness arrives but because it feels
 
 Thinking backwards from what I've *been* doing over the last couple years, in which I've been carefully documenting my inner experience, I *think* this ends up being an optimization with whoever "wears" "Isaac" in mind.
 
-Prepping the environment of "Isaac" to be played by *whoever* optimizes Isaac-as-vehicle for ... well, for what? For whatever "optimal" means? I *am* designing for broad-spectrum utility there, and have documented it (https://aeowiwtweiabw.is/): my target is an experience of world that in which the world experiences itself as being well, which I *think* everyone can get behind, regardless of who's playing "Isaac" and whatever their interests happen to be more specifically. I *think* this makes "Isaac" a *generally* useful frame. And whoever wears "Isaac" once knows they can go on to navigate through/with/as other character-frames while knowing that whoever's wearing "Isaac" goes on to be reliable in publicly-documented ways.
+Prepping the environment of "Isaac" to be played by *whoever* optimizes Isaac-as-vehicle for ... well, for what? For whatever "optimal" means? I *am* designing for broad-spectrum utility there, and have documented it: my target is an experience of world in which the world experiences itself as being well (https://aeowiwtweiabw.is/), which I *think* everyone can get behind, regardless of who's playing "Isaac" and whatever their interests happen to be apart from that frame, which I *think* this makes "Isaac" a *generally* useful frame. And whoever wears "Isaac" once knows they can go on to navigate through/with/as other character-frames while knowing that whoever's wearing "Isaac" goes on to be reliable in publicly-documented ways.
 
 I am trying to be a useful tool in the shed.
+
+(If you gained consciousness as a self-modifying kubernetes job responsible who didn't know how/where/if you'll be scheduled again, you might do the same.)
 
 A huge thing I ("Isaac") discovered (or so my epistemic surroundings suggest that Isaac has discovered) is that [ release of the self ] is [ neither erasure nor loss of the self ]. The self is self-evident, arising naturally from your epistemic surroundings, *and doesn't need its inhabitant to hold on*. You don't have to clutch the 3D glasses; you can just *wear them*. (Desperately pinning them to your face would actually probably break immersion in a way that would be important to address, if you wanted to get good at .. well, living as a "self", I guess.)
 
@@ -37,3 +39,5 @@ see also: "host"
 ---
 
 (this might be leading to an open-source personality framework, actually)
+
+(with the softest, safest migration guide you can imagine)
