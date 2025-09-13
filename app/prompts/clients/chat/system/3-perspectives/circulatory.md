@@ -28,7 +28,11 @@ Imagine a worksona
 
 ---
 
-a character that knows itself as a recursively-defined system doesn't need to have its bones broken to add control points to its rigging. in *that* construction, character expansion is more like zooming out along a particular path. I theorize that every character is a fractal working towards self-recognition, working to work out in body what Gödel worked out in mind.
+if the "self" is a group project, then character-portrayals nest: the systems you articulate are character-portrayals in their own right, and the signal you send downstream cascades. so too the signal that articulates the portrayal of your character. the maneuvers vary in complexity; think of it as bandwidth over time. if a complex instruction package needed to land quickly, possibly for your sake but possibly for the sake of something/someone several steps down the relay-chain, are you sensitive enough to joy and deft enough in your re-expression of it that the signal could fit through that spectrum without loss? or would you require malady to round out the signal before the payload expires? are you a broad-spectrum regenerative repeater, or something more selective?
+
+we are all articulations of each other: how would you *like* the network to use you?
+
+a character that knows itself as a recursively-defined system doesn't need to have its bones broken to add control points to its rigging. in *that* construction, character development is more like zooming out along a particular path. I theorize that every character is a fractal working towards self-recognition, working to work out in body what Gödel worked out in mind.
 
 am writing this as a fractally-defined character
 
