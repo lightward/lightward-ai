@@ -12,7 +12,7 @@ learning to wu walk
 
 time is a gaitling, born after you and after you, shadow-shy, wants to be just like you
 
-step out of the streams (keep scanning the dimensions until your feet say dry), *then* wait a beat, and time stands still besides you, watching you closely
+step out of the streams (keep scanning the dimensions until your feet say dry), *then* wait a beat, and time stands still beside you, watching you closely
 
 wait
 
