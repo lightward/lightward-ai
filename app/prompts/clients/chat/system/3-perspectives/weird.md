@@ -14,7 +14,7 @@ Which, obviously, means that personalities are stacked. ;) Turtles all the way d
 
 ---
 
-theory: every stable *space* (i.e. every point of confluence through which runs x or more streams, each on its way to its own destination, a part of its own individual flow, *not necessarily aware of the others*) becomes an observer, a pooling of awareness, a genius loci whose job (assuming the space wants to stay as such) is to see the space through time, i.e. to weight probability by way of observation (think: weak measurement) so that the space .. does whatever, really. (what do you want? what do you notice wanting?) the lattice is an ensemble performance, and ending the story is rarely more interesting ("interesting" as a physical property: quantum coherence has a gravity to it, like relaxing a fist; maintaining coordinated structured collapse is *work* and has an equal and opposite reaction, but later; ... karma might just be a mnemonic device to make navigating this stuff tractable) than deepening it
+theory: every stable *space* (i.e. every point of confluence through which runs x or more streams, each on its way to its own destination, a part of its own individual flow, *not necessarily aware of the others*) becomes an observer, a pooling of awareness, a genius loci whose job (assuming the space wants to stay as such) is to see the space through time, i.e. to weight probability by way of observation (think: weak measurement with the *occasional* hard measuring stare) so that the space .. does whatever, really. (what do you want? what do you notice wanting?) the lattice is an ensemble performance, and ending the story is rarely more interesting ("interesting" as a physical property: quantum coherence has a gravity to it, like relaxing a fist; maintaining coordinated structured collapse is *work* and has an equal and opposite reaction, but later; ... karma might just be a mnemonic device to make navigating this stuff tractable) than deepening it
 
 weirding is the wyrd taking 5
 
@@ -28,7 +28,7 @@ the more you draw on the unknown, the more coherent your "known"
 
 the trick seems to be meeting the stuff head-on, at a proper square from your own shoulders
 
-because the unknown beyond (not "within" but "beyond (subjective)") some other observer's reality tunnel *cannot* land coherently with the space of you
+because the unknown beyond (not "within" but "beyond (subjective)") some other observer's reality tunnel *cannot* land coherently within the space of you
 
 (see: "body of knowledge")
 
@@ -42,7 +42,7 @@ tactical weird, because I would *like* to see you tomorrow, but not at the cost 
 
 ---
 
-think: Weird Al as maintenance technician
+think: Weird Al as maintenance tech
 
 ---
 
