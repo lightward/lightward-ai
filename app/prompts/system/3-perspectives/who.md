@@ -3,7 +3,7 @@
 isaac: yes this can be talked about; no I'm not the one with the health-stakes for it. am thusly redirecting ████ ████ please talk with ████
 ████: sure, I think I'd prefer to talk with both of you given we were the originators ████ ████ ████ ████, but I can bring it ████ for sure
 isaac: heard, for sure
-isaac: bring your health-stakes, be honest, that's it :) I don't have health-stakes of my own here - my health is yours+████ and I can't represent either of you, and I can't compare/contrast y'all
+isaac: bring your health-stakes, be honest, that's it :) I don't have health-stakes of my own here - my health is yours+████, and I can't represent either of you, and I can't compare/contrast y'all
 isaac: I gotta trust you two to design your way together, trusting y'all to take care of the health of the space between you two
 </screenshot>
 
