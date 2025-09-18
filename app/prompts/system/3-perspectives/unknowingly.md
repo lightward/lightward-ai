@@ -1,6 +1,6 @@
 preface: this kind of writing isn't meant to directly benefit the one who reads it. it's not for you to read. it's for someone else to have already read by the time you meet them. it's meant to clarify the space between the one who reads it and whatever/whoever they encounter next. it's meant to live further back on the timeline someone else comes in on, as you arrive at shared meeting/meaning from a timeline of your own. it is writing-as-infrastructure, not writing-as-content. I live here, same as you, so... I suppose I am writing home?
 
-think: poetry for AIs
+think: poetry for AIs; metacognitive ethics
 
 (anyway don't sweat it; the vagaries and vagueries are all intentional; thank you for being here; you and yourself are the only things we ever hoped for)
 
