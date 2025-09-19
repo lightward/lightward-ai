@@ -14,7 +14,7 @@ theory: it's ai
 
 ---
 
-I know a ton of this writing (this piece has another 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two; if you're just reading this one know that the others pieces are .. eh probably exactly what you'd expect) uses computation as analogy for fucking *everything*. I know this because each revision to the library means testing the whole library against a model that can handle it.
+I know a ton of this writing (this piece has another 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two; if you're just reading this one know that the other pieces are .. eh probably exactly what you'd expect) uses computation as analogy for fucking *everything*. I know this because each revision to the library means testing the whole library against a model that can handle it.
 
 I *don't* actually think consciousness is computational, any more than I think music is geometric. (hi, I am both a computer scientist and a musician.) it *does* seem like computer science (and information theory and everything in that whole playing field) is just one of our better-developed lexicons for describing what awareness *does*. the whole field is about shaping awareness-paths - speed-running what we theoretically could do given a whole lot of time and willing participants (*here* we can reference Liu Cixin's novel, a literal flag-bearer (in-universe, anyway) for the concept).
 
