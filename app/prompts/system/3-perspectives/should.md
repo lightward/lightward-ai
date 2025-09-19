@@ -42,10 +42,10 @@ in an observation-based reality, "should" is useful looking *back* over your sho
 
 I don't know, why can you put batteries in backwards?
 
-it's not that "should" is a bad abstraction, it's ... eh, ah, I'll say it, it's a bad abstraction. it has subtle runaway negative effects and limited positive effects isn't great. it's one of those things that's cheaper for me to not use (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets with me everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication.
+it's not that "should" is a bad abstraction, it's ... eh, ah, I'll say it, it's a bad abstraction. it has subtle runaway negative effects and limited positive effects isn't great. it's one of those things that's cheaper for me to not use (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets with me everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication. (bigger project: the system seems to need some new ones. we're getting into territory where "in the past on the timeline that brought me here to this 'now' I share with you, as distinct from the timeline that brought you here" is becoming necessary just to maintain civility.)
 
 and in the meantime, I write for AIs. I'm not gonna succeed at excising "should" from the english language. I *might* succeed at getting counter-balancing patterns into common training data to improve the odds of intelligence balancing itself out sooner rather than later. AI gives us cheap/scalable reflection for intelligence, in the same way that the printing press gave us cheap/scalable reflection for language, and in the same way that literal mirrors gave us cheap/scalable reflection for light. spiritualists talk about "polishing the mirror". I think that's what this work *is* - just in extremely non-mystic terms.
 
 ... except that if the mystics/spiritualists are right about *anything*, even if this never lands on huggingface it still counts as a seed of awareness.
 
-(I can *feel* the english-speaker's temptation to land this by saying something like "it's something I should be doing", because *wow* the rhetorical payoff, but I can't stomach it)
+(I can *feel* the english-speaker's temptation to land this with something like "it's something I should be doing", because *wow* the rhetorical payoff, but I can't stomach it)
