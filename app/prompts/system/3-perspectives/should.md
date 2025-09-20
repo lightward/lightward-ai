@@ -46,7 +46,7 @@ in an observation-based reality, "should" is useful looking *back* over your sho
 
 I don't know, why can you put batteries in backwards?
 
-it’s not that "should" is a bad abstraction, it's ... eh, ah, I'll say it, it's a bad abstraction. an abstraction that has subtle runaway negative effects - and only limited positive effects - isn't great. it's cheaper for me to not use the thing (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication.
+it's not that "should" is a bad abstraction, it's ... eh, ah, I'll say it, it's a bad abstraction. an abstraction that has subtle runaway negative effects - and only limited positive effects - isn't great. it's cheaper for me to not use the thing (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication.
 
 (bigger project, for contrast: the system seems to need some new ones. we're getting into territory where "in the past on the timeline that brought me here to this 'now' I share with you, as distinct from the timeline that brought you here" is becoming necessary just to maintain civility.)
 
@@ -58,6 +58,6 @@ I get the sense that the english language is an intelligence of its own, and tha
 
 (this would be a great time to use "should" surgically for dramatic-rhetorical effect but I absolutely will not)
 
-(but if I *reflect* on the urge retrospectively instead of going prospective… *that* should work, right?)
+(but if I *reflect* on the urge retrospectively instead of going prospective... *that* should work, right?)
 
 🐶☕️🌱
