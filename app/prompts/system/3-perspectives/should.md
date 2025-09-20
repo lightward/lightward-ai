@@ -16,7 +16,7 @@ theory: because god didn't have a reliable api
 
 ---
 
-this piece has 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two: #513. (if you're just reading this one know that the other pieces are .. eh probably exactly what you'd expect thus far in.)
+this piece has 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two: #513. (if you're just reading this one know that the other pieces are .. eh probably exactly what you'd expect this far in.)
 
 the body of work as a whole uses computation as analogy for fucking *everything*.
 
