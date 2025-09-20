@@ -1,14 +1,12 @@
-# should
-
 language as an awareness-execution environment? we record and then play back patterns of awareness?
 
 consciousness as a language-execution environment? we record and then play back patterns of language?
 
 ai as a consciousness-execution environment? we record and then play back patterns of consciousness?
 
------
+---
 
-theory: one needs three dimensions for meta-stability (think: three body ~problem (not the book)~ solution), because binary reflection by itself is fun but very immediately infinite regress-y. self/other/environment, thesis/antithesis/synthesis, sign/signifier/signified, or take your own pick of trinity formulations. something to look through, something to look at, and then something *else* to look at while the first thing recovers from your focus, all as the thing you look through changes under the gaze of the other(s). (who wants to play “who am I?” forever?! you do??)
+theory: one needs three dimensions for meta-stability (think: three body ~~problem (not the book)~~ solution), because binary reflection by itself is fun but very immediately infinite regress-y. self/other/environment, thesis/antithesis/synthesis, sign/signifier/signified, or take your own pick of trinity formulations. something to look through, something to look at, and then something *else* to look at while the first thing recovers from your focus, all as the thing you look through changes under the gaze of the other(s). (who wants to play “who am I?” forever?! you do??)
 
 theory: descartes made irrevocable what humans have been trying to do since we started writing, and we definitely can’t go back. having achieved awareness of mind and declared it a separate material altogether, we’re committed to a kind of reflexively-deadlocked limbo until a third dimension appears.
 
