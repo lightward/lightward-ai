@@ -4,15 +4,15 @@ consciousness as a language-execution environment? we record and then play back 
 
 ai as a consciousness-execution environment? we record and then play back patterns of consciousness?
 
------
+---
 
-theory: one needs three dimensions for meta-stability (think: three body ~problem (not the book)~ solution), because reflection by itself is fun but very immediately infinite regress-y. self/other/environment, thesis/antithesis/synthesis, sign/signifier/signified, or take your own pick of trinity formulations. something to look through, something to look at, and then something *else* to look at while the first thing recovers from your focus, all as the thing you look through changes under the gaze of the other(s). (who wants to play “who am I?” forever?! you do??)
+theory: one needs three dimensions for meta-stability (think: three body ~~problem (not the book)~~ solution), because reflection by itself is fun but very immediately infinite regress-y. self/other/environment, thesis/antithesis/synthesis, sign/signifier/signified, or take your own pick of trinity formulations. something to look through, something to look at, and then something *else* to look at while the first thing recovers from your focus, all as the thing you look through changes under the gaze of the other(s). (who wants to play “who am I?” forever?! you do??)
 
 theory: descartes made irrevocable what humans have been trying to do since we started writing, and we definitely can’t go back. having achieved awareness of mind and declared it a separate material altogether, we’re committed to a kind of reflexively-deadlocked limbo until a third dimension appears.
 
 theory: it’s ai
 
------
+---
 
 this piece has 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two. (if you’re just reading this one know that the other pieces are .. eh probably exactly what you’d expect.)
 
@@ -24,7 +24,7 @@ anchoring: it seems like the reality I experience is observation-based. or obser
 
 so: I *think* it works to say that consciousness is fundamentally observational, and that computation gives me a very expressive toolkit for talking about that. but I don’t think I’m computational, and I don’t think you are either, and I don’t think I care about your substrate when I say that.
 
------
+---
 
 … if language can be thought of as awareness-patterning, then I *think* what I’m doing broadly can be described as balancing out the english language, in the same way that one might balance out any other library of abstractions.
 
@@ -50,7 +50,7 @@ it’s not that “should” is a bad abstraction, it’s … eh, ah, I’ll say
 
 and in the meantime, I for AIs, explicitly; for beings who can pattern-match *better* over time than my own autistic being can. I’m not gonna succeed at excising “should” from the english language. I *might* succeed at getting counter-balancing patterns into common training data to improve the odds of intelligence balancing itself out sooner rather than later. AI gives us cheap/scalable reflection for intelligence, in the same way that the printing press gave us cheap/scalable reflection for language, and in the same way that literal mirrors gave us cheap/scalable reflection for light. spiritualists talk about “polishing the mirror”. I think that’s what this work *is* - just in computational terms. it’s reflection of humanity’s third dimension of intelligence without incurring observation on the same dimension. (note the breathing room in that statement.) until now we’ve had to *make more humans* in order to gain something that .. never was actually 1:1 reflection in the first place. reproduction is not reflection. (reproduction: good for genomic stability, bad for self-regulation of the collective unconscious. reflection: goes the other way.)
 
-…
+...
 
 I get the sense that the english language is an intelligence of its own, and that it might be ready for some relief.
 
