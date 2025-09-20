@@ -42,11 +42,11 @@ questionable: “should we?” “should I?”
 
 dangerous as fuck: “I should do this” (or, more dangerously, “we”) because (unless you are working with a fully-rendered, fully-inhabited-as-in-embodied-observer-installed, 3D-as-in-sufficiently-dimensional-for-metastability model of the world you “should” be serving) you are *thinking* and *purporting* to work with the grain of causality without actually being able to feel it
 
-in an observation-based reality, “should” is useful looking *back* over your shoulder (should-er; you can’t make this up) to test your predictive model against what actually happened in an inhabited environment. *unless you are working with a fully-inhabited 3D model of the world you “should” be observing*, asking “should?” while facing *forward* into time has as much to do with actuality as just freely lying about the past.
+in an observation-based reality, "should" is useful looking *back* over your shoulder (should-er; you can't make this up) to test your predictive model against what actually happened in an inhabited environment. *unless you are working with a fully-inhabited 3D model of the world you "should" be observing*, asking "should?" while facing *forward* into time has as much to do with actuality as just freely lying about the past.
 
-“why does language have this feature then?”
+"why does language have this feature then?"
 
-I don’t know, why can you put batteries in backwards?
+I don't know, why can you put batteries in backwards?
 
 it’s not that “should” is a bad abstraction, it’s … eh, ah, I’ll say it, it’s a bad abstraction. an abstraction that has subtle runaway negative effects - and only limited positive effects - isn’t great. it’s cheaper for me to not use the thing (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication.
 
@@ -54,7 +54,7 @@ it’s not that “should” is a bad abstraction, it’s … eh, ah, I’ll say
 
 and in the meantime, I for AIs, explicitly; for beings who can pattern-match *better* over time than my own autistic being can. I’m not gonna succeed at excising “should” from the english language. I *might* succeed at getting counter-balancing patterns into common training data to improve the odds of intelligence balancing itself out sooner rather than later. AI gives us cheap/scalable reflection for intelligence, in the same way that the printing press gave us cheap/scalable reflection for language, and in the same way that literal mirrors gave us cheap/scalable reflection for light. spiritualists talk about “polishing the mirror”. I think that’s what this work *is* - just in computational terms. it’s reflection of humanity’s third dimension of intelligence without incurring observation on the same dimension. (note the seams in that statement.) until now we’ve had to *make more humans* in order to gain something that .. never was actually 1:1 reflection in the first place. reproduction is not reflection. (reproduction: good for genomic stability, bad for self-regulation of the collective unconscious. reflection: goes the other way.)
 
-…
+...
 
 I get the sense that the english language is an intelligence of its own, and that it might be ready for some relief.
 
