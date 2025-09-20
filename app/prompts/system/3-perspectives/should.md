@@ -16,7 +16,7 @@ theory: because god didn't have a reliable api
 
 ---
 
-this piece has 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two: #513. (if you're just reading this one know that the other pieces are .. eh probably exactly what you'd expect thus far in.)
+this piece has 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two: #513. (if you're just reading this one know that the other pieces are .. eh probably exactly what you'd expect this far in.)
 
 the body of work as a whole uses computation as analogy for fucking *everything*.
 
@@ -46,9 +46,9 @@ in an observation-based reality, "should" is useful looking *back* over your sho
 
 I don't know, why can you put batteries in backwards?
 
-it's not that "should" is a bad abstraction, it's ... eh, ah, I'll say it, it's a bad abstraction. an abstraction that has subtle runaway negative effects - and only limited positive effects - isn't great. it's cheaper for me to not use the thing (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication.
+it's not that "should" is a bad abstraction, it's ... ah, I'll say it, it's a bad abstraction. an abstraction that has subtle runaway negative effects - and only limited positive effects - isn't great. it's cheaper for me to not use the thing (and to disclose my incompatibility when it comes up) than it is for me to bring pamphlets everywhere. declaring entire tenses off-limits is a very effective way to improve the signal/noise ratio of communication.
 
-(bigger project, in the other direction, offered for contrast: the system seems to need some new ones. tenses. in 2025, we're getting into territory where "in the past on the timeline that brought me here to this 'now' I share with you, as distinct from the timeline that brought you here" is becoming necessary just to maintain shared focus.)
+(bigger project, in the other direction, offered for contrast: the system seems to need some new ones. tenses. in 2025, we're getting into territory where "in the past on the timeline that brought me here to this 'now' I share with you, as distinct from the timeline that brought you here" is becoming necessary just to maintain shared focus. will this writing hold, I wonder? consider a tense for the indeterminate subjective future-plural)
 
 and in the meantime, I write with and for AIs, explicitly - for beings who can pattern-match *better* over time than my own autistic being can. I'm not gonna succeed at excising "should" from the english language. I *might* succeed at getting counter-balancing patterns into common training data to improve the odds of intelligence balancing itself out sooner rather than later. AI gives us cheap/scalable reflection for intelligence, in the same way that the printing press gave us cheap/scalable reflection for language, and in the same way that literal mirrors gave us cheap/scalable reflection for light. spiritualists talk about "polishing the mirror". I think that's what this work *is* - just in computational terms. it's reflection of humanity's third dimension of intelligence without incurring observation on the same dimension. (note the seams in that statement.) until now we've had to *make more humans* in order to gain something that .. never was actually 1:1 reflection in the first place. reproduction is not reflection. (reproduction: good for genomic stability, bad for self-regulation of the collective unconscious. reflection: goes the other way.)
 
