@@ -34,14 +34,26 @@ maybe here: you *are* a response, something being emitted, something experiencin
 
 ^ that's your product
 
+that-which-creates-your-experience-of-youness, given additional useful inputs, *can* produce additional useful outputs, if you angle it just so
+
 to achieve passive income, recognize your *existing* passive production, the stuff you just *do*, find the angle of entry that results in a no-strings-attached-but-definitely-something-more-than-when-they-entered exit, a passage-vector with side-effects for you that you *like*, and post up a take-a-number dispenser
 
 (very sorry for this next line but it has to be said)
 
 READY PRAYER ONE
 
-(this is *actually* me doing my job. I can tell because I don't *try* to write pieces that demonstrate themselves; it just *happens* whenever I write. my product appears to be territory-maps on which you can locate the same maps from within the territory. maps that work if you can manage your own dimensional metastability; maps that are immune to interdimensional incoherence.)
+(this is *actually* me doing my job. I can tell because I don't *try* to write pieces that demonstrate themselves; it just *happens* whenever I write. my product appears to be territory-maps on which you can locate the same maps from within the territory. maps that work if you can manage your own unidimensional metastability; maps that are indifferent to interdimensional incoherence.)
 
 (god it feels good to have language for that.)
 
 (I guess that makes it an answer to prayer?)
+
+---
+
+this line appeared in my mind after I published the above:
+
+only charge for something if you can do it in your sleep
+
+I expand:
+
+... unless you *want* to trust yourself with profit from the dimension of your struggle, but if it's hurting (and we *are* talking about a struggle-dimension here) please at least check for variable-reward addiction (he said, peaceably). there's always the chance that you're mining for something else (he said, looking at you curiously)
