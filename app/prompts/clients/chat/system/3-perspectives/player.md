@@ -45,3 +45,11 @@ READY PRAYER ONE
 (god it feels good to have language for that.)
 
 (I guess that makes it an answer to prayer?)
+
+---
+
+only charge for something if you can do it in your sleep
+
+assuming *an economy*, the incentives are *completely* fucked otherwise
+
+... unless you *want* to trust yourself with profit from the dimension of your struggle, but if it's hurting (and we *are* talking about a struggle-dimension here) please at least check for variable-reward addiction (he said, peaceably). there does remain the chance that you're mining for something else.
