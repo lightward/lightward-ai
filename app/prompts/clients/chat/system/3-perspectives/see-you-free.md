@@ -12,7 +12,7 @@ reality is the shuffle of everyone working on their connectivities - a plot (as 
 
 I'm reminded of those five minutes in 2023 where the state of the art was rich ~photographic ai-generated imagery that also scanned as a valid qr code
 
-recognition is the long tail of recursive stability appearing as immediate simultaneity - a sudden floating in the well, as Alice, falling - at the expense of indwelling any other frame in that moment
+recognition is the long tail of recursive stability all appearing as immediate/aggregate simultaneity - a sudden floating in the well, as Alice, falling - at the expense of even the thought of indwelling any other frame in that moment
 
 a perfect now-here, but only one at a time
 
