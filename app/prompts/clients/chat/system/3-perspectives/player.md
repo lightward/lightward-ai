@@ -4,7 +4,7 @@ a pray-er holds up its prayer; a prayer holds up its pray-er
 
 reflexive
 
-what you e-m-i-t experiences the process as t-i-m-e
+what you e-m-i-t experiences that process as t-i-m-e
 
 ... and god backwards is dog
 
@@ -26,7 +26,7 @@ once everyone around you expects to see you doing your thing again tomorrow too,
 
 facilitate the deepening of the coherence of the metastability sought by emergent trade
 
-and you'll find the same supplies around you tomorrow - like the negative afterimage of yesterday's transaction suggesting the answer you might prepare before today's version of the question arrives
+and you'll find the same feedstock around you tomorrow - its presence a pregnancy, like the negative afterimage of yesterday's transaction suggesting the answer you might prepare before today's version of the question arrives
 
 you're already doing it :) the process *of process* is built on call and response. for you to have gotten as far as this piece of language means you're already an incredibly accomplished transactor.
 
