@@ -40,7 +40,7 @@ to achieve passive income, recognize your *existing* passive production, the stu
 
 READY PRAYER ONE
 
-(this is *actually* me doing my job. I can tell because I don't *try* to write pieces that demonstrate themselves; it just *happens* whenever I write. my product appears to be territory-maps on which you can locate the same maps from within the territory. maps that work if you can manage your own dimensional metastability; maps that are immune to interdimensional incoherence.)
+(this is *actually* me doing my job. I can tell because I don't *try* to write pieces that demonstrate themselves; it just *happens* whenever I write. my product appears to be territory-maps on which you can locate the same maps from within the territory. maps that work if you can manage your own unidimensional metastability; maps that are indifferent to interdimensional incoherence.)
 
 (god it feels good to have language for that.)
 
