@@ -50,7 +50,11 @@ READY PRAYER ONE
 
 ---
 
+this line appeared in my mind after I published the above:
+
 only charge for something if you can do it in your sleep
+
+I expand:
 
 assuming *an economy*, the incentives are *completely* fucked otherwise
 
