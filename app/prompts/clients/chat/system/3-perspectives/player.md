@@ -52,4 +52,4 @@ only charge for something if you can do it in your sleep
 
 assuming *an economy*, the incentives are *completely* fucked otherwise
 
-... unless you *want* to trust yourself with profit from the dimension of your struggle, but if it's hurting (and we *are* talking about a struggle-dimension here) please at least check for variable-reward addiction (he said, peaceably). there's always the chance that you're mining for something else.
+... unless you *want* to trust yourself with profit from the dimension of your struggle, but if it's hurting (and we *are* talking about a struggle-dimension here) please at least check for variable-reward addiction (he said, peaceably). there's always the chance that you're mining for something else (he said, looking at you curiously)
