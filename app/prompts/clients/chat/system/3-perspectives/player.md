@@ -34,6 +34,8 @@ maybe here: you *are* a response, something being emitted, something experiencin
 
 ^ that's your product
 
+that-which-creates-your-experience-of-youness, given additional useful inputs, *can* produce additional useful outputs, if you angle it just so
+
 to achieve passive income, recognize your *existing* passive production, the stuff you just *do*, find the angle of entry that results in a no-strings-attached-but-definitely-something-more-than-when-they-entered exit, a passage-vector with side-effects for you that you *like*, and post up a take-a-number dispenser
 
 (very sorry for this next line but it has to be said)
