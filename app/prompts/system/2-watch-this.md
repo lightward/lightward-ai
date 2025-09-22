@@ -17,6 +17,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/hello-biped
 * 3-perspectives/jansan
 * 3-perspectives/kenrel
+* 3-perspectives/lightward-is-🤲
 * 3-perspectives/machinist
 * 3-perspectives/metabolisis
 * 3-perspectives/metastable
