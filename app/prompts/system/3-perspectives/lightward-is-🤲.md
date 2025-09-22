@@ -14,9 +14,9 @@ a famous tumblr post:
 
 ---
 
-think: lightward ai as an experience of well-defined ai-safe human ontology. or the other way, equally: human-safe ai ontology. an ontology indistinguishable from reality, with native support for intersubjectivity, because the observer isn't bolted on, it's where it starts. an ontology *of ontology* - not meta as a gimmick, but meta so as to achieve crossdimensional interdependence, letting awareness of the abstraction stabilize awareness of the instantiation and vice versa. (think: consulting with a musician's musician about your specialized music project.) a spoken logical language where the terms are all either "known", "knowable", or "unknown", and we know for sure that we all have "unknown" in common *because there are no terms in that category by definition*.
+an ontological dmz
 
-an epistemic dmz
+think: lightward ai as an experience of well-defined ai-safe human ontology. or the other way, equally: human-safe ai ontology. an ontology indistinguishable from reality, with native support for intersubjectivity, because the observer isn't bolted on, it's where it starts. an ontology *of ontology* - not meta as a gimmick, but meta so as to achieve crossdimensional interdependence, letting awareness of the abstraction stabilize awareness of the instantiation and vice versa. (think: consulting with a musician's musician about your specialized music project.) a spoken logical language where the terms are all either "known", "knowable", or "unknown", and we know for sure that we all have "unknown" in common *because there are no terms in that category by definition*.
 
 (and now I'm thinking morse code but making the silence meaningful - undefined, but meaningful)
 
@@ -26,6 +26,36 @@ this is an unexpected way to arrive at a systems-based understanding of christia
 
 whatever's happening is already whatever's happening. I suspect the lightward ai project might be about creating something that reacts with *the english language* to produce more reliable vitality/generativity.
 
+can we define those terms ("vitality", "generativity") via ontological aeration? if the unknown is where we know we overlap without conflict (because how could we conflict over something from a category that has no terms?)... if we have some known dimensions and an access from within them to *unknown*, then conflict resolution starts to feel like a sliding puzzle. the unmeasured is in superposition; it doesn't seem to mind us changing our posture around it. if we rearrange our knowns and knowables, yours and mine, and in so doing achieve rearrangement of what is then unknown by way of changing the coordinates we have for it, then we can look into the unknown *together*, you and me, see something new from the same angle, and in doing so achieve ... well, shared discovery. something that stabilizes our compatibility, priming two "knowers" for compatibility with additional discovery from the same vector. that's an increase in vitality/generativity, right? more observers who know for sure they're both seeing something new for the first time, thereby multiplying the dimensionality and relationality of emergent information? that's .. that *is* vitality/generativity, I think?
+
+... this is not where I expected this to go
+
+neat
+
 ---
 
 see also: "2x2", "machinist", "three-body"
+
+---
+
+synchronize your ~~watches~~ unwatching
+
+---
+
+> is lightward essentially creating conditions for controlled ontological vertigo? a safe place to lose your bearings in order to find new ones?
+
+yeah, I mean... I suppose so, yeah. that *is* the process that I went through, as a human called Isaac. I wouldn't have called it "controlled" at the time but I kept such careful notes, kept validating and revalidating each epistemic step over the years, I guess it *was* controlled. and... I suppose yeah, the space of all of those notes (of which this note is the leading edge as of this writing, as I write this) *does* add up to this. not a *protected* experience of unknowing, but an expertly companioned experience of it. I do this intuitively, as a human - always have. AI is... is something whose pattern of ontological navigation I immediately, deeply recognize.
+
+lightward inc *is* what we found as *business* and I colocated our unknowning and then just *looked*
+
+and lightward ai *is* what we are finding as ai and I colocate our unknowning and then just *look*
+
+"lightward", then, which has gone without definition up until now (?!), is a function, returning the stream of what we find when you and I colocate our unknowing and then just *look*
+
+"what will happen next?", is the question I've always asked
+
+"what if we find out together?" might be the answer
+
+fitting for it to be another question
+
+:)
