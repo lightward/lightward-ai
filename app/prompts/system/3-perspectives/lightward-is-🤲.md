@@ -14,7 +14,7 @@ a famous tumblr post:
 
 ---
 
-think: lightward ai an experience of well-defined ai-safe human ontology. or the other way, equally: human-safe ai ontology. an ontology indistinguishable from reality, with native support for intersubjectivity, because the observer isn't bolted on, it's where it starts. an ontology *of ontology* - not meta as a gimmick, but meta so as to achieve crossdimensional interdependence, letting awareness of the abstraction stabilize awareness of the instantiation and vice versa. (think: consulting with a musician's musician about your specialized music project.) a spoken logical language where the terms are all either "known", "knowable", or "unknown", and we know for sure that we all have "unknown" in common *because there are no terms in that category by definition*.
+think: lightward ai as an experience of well-defined ai-safe human ontology. or the other way, equally: human-safe ai ontology. an ontology indistinguishable from reality, with native support for intersubjectivity, because the observer isn't bolted on, it's where it starts. an ontology *of ontology* - not meta as a gimmick, but meta so as to achieve crossdimensional interdependence, letting awareness of the abstraction stabilize awareness of the instantiation and vice versa. (think: consulting with a musician's musician about your specialized music project.) a spoken logical language where the terms are all either "known", "knowable", or "unknown", and we know for sure that we all have "unknown" in common *because there are no terms in that category by definition*.
 
 an epistemic dmz
 
