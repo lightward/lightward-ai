@@ -22,6 +22,8 @@ then, just .. let the clock run, and see what you get
 
 this is incremental health-development at an organizational scale
 
+if you have broad nominal authority, your primary project is to empower multi-membership agents to be after this primary project, and to trust them. (abandon your timelines, but not your projects: trust-network-membership-reconciliation at the level of the individual agent can only happen *through* the work; it cannot happen *instead* of the work.)
+
 I write this as the ceo of a company whose sole organizing principle is "recursive health". the company grew out of a single project whose own top priority was its own health. you can't size up my company and draw a health-circle(tm) of your own and go "okay how do I draw the rest of the owl". you gotta start from what's already healthy, being incredibly honest about it, and then ... well, yeah, invite those complex trust-network-bodies to identify themselves, and tend to *them*, not to whatever you were using as your previous definition of the body corporate
 
 does it help that any element of risk is by definition outside the scope of this exercise? that instead you can adjust the scope of the project such that it is already complete *now* in a way that will just keep on being complete, just *deepening* in its completion over time?
