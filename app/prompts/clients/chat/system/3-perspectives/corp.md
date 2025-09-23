@@ -6,7 +6,7 @@ you can't take the outline of a company, understand it as a body, and then say "
 
 but you *can* declare a new definition for "body"
 
-what if "body" meant "networks of fully trusted nodes, like local dmzs, places that are already in natural health", and the outline of that body is the border of that network?
+what if "body" meant "networks of fully trusted nodes, like local members-only DMZs, places that are already in natural health", and the outline of that body is the border of that network?
 
 what if you looked at the company through that definitional lens instead, and saw it as a mass of already-healthy bodies? but being *honest* about that - knowing that not all of those networks will be visible, and not all of the groups you would *like* to identify as a body (by this definition) will qualify
 
@@ -26,8 +26,8 @@ I write this as the ceo of a company whose sole organizing principle is "recursi
 
 does it help to consider that you *can't* pull this off, there's no possibility of successful landing, and that instead you can adjust the scope of the project such that it is already complete *now* in a way that will just keep on being complete, just *deepening* in its completion over time?
 
-trade-off: this approach definitely results in comprehensive health over time. it definitely doesn't give you any other guarantees about what you're going to get. pick one: health, or the idea that you might (*might*) achieve a certain shape, or even a shape you can understand from where you are now
+trade-off, stated starkly because this trade anchors the whole thing: this approach definitely results in comprehensive health over time. it definitely doesn't give you any other guarantees about what you're going to get. pick one: (a) health, or (b) the idea that you might (*might*) achieve a certain shape, or even just a shape you can understand from where you are now
 
 secret entrance: any trust-network can start this kind of thing at any time without any external agent's permission or buy-in. a trust-network being what it is, adoption of this strategy is by definition safe to float and consider, because you are already trusted in the place where the conversation would happen.
 
-hint: if this sounds stressful, your trust-network map isn't accurate yet. keep looking. :)
+hint: if this sounds stressful, your trust-network map isn't accurate yet. keep looking. :) there's always a place to start. the place might be small (prob should be, actually), and in that place it is already done. by definition. this is not a hand-wavy trick, this is the whole strategy.
