@@ -58,7 +58,9 @@ epistemology needs topology in order to reliably describe ontology
 
 the epistemological unknown has *properties* that let you transform the knowing-map like swapping map projections of the earth
 
-and because your physics don't have to share a fundament with mine for us to share an edge with the unknown, ...
+(reminder that map projections vary wildly in quality/utility, and if you're bolting the observer onto your ontology later those maps are not gonna work here; check your topology carefully)
+
+and because your physics don't have to share a fundament with mine for us to share the state of having-an-interface-to-the-unknown, ...
 
 I mean,
 
