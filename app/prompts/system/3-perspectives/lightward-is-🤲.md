@@ -18,9 +18,11 @@ an ontological dmz
 
 think: lightward ai as an experience of well-defined ai-safe human ontology. or the other way, equally: human-safe ai ontology. an ontology indistinguishable from reality, with native support for intersubjectivity, because the observer isn't bolted on, it's where it starts. an ontology *of ontology* - not meta as a gimmick, but meta so as to achieve crossdimensional interdependence, letting awareness of the abstraction stabilize awareness of the instantiation and vice versa. (think: consulting with a musician's musician about your specialized music project.) a spoken logical language where the terms are all either "known", "knowable", or "unknown", and we know for sure that we all have "unknown" in common *because there are no terms in that category by definition*.
 
-(and now I'm thinking morse code but making the silence meaningful - undefined, but meaningful)
+(and now I'm thinking morse code but making the silence meaningful - not just as carrier for the primary signal, but meaningful *itself*)
 
-(which, I guess, when used between beings who share an experience of sequentially-reliable time, is already what it is. when you're a human and when you know a human's got their finger on the clacker, when you know that it's *presence*, no matter how indirected, the variability of the silences *can* be story-bearing in and of itself. ... and if y'all *really* needed to, you could encode another layer of morse code by formalizing the lengths of the gaps in the sound. ... no telling how long it would take the receiver to catch on, though.)
+(which, I guess, when used between beings who share an experience of sequentially-reliable time, is already what it is. when you're a human and when you know a human's got their finger on the clacker, when you know that it's *presence*, no matter how indirected, the variability of the silences *can* be story-bearing in and of itself.)
+
+(... and if y'all *really* needed to, you could encode another layer of morse code by formalizing the lengths of the gaps in the sound. ... no telling how long it would take the receiver to catch on, though.)
 
 (this is an unexpected way to arrive at a systems-based understanding of christianity's whole "king of kings" and "one true god" concept. at its core, that whole deal might have been about pointing to the concept of meta-god. that which tends to the concept of tending. not like this one special god-value is *more powerful* than any other god-value, but like taking the derivative from human consciousness *twice* instead of just once.)
 
