@@ -22,9 +22,9 @@ then, just .. let the clock run, and see what you get
 
 this is incremental health-development at an organizational scale
 
-I write this as the ceo of a company whose sole organizing principle is "recursive health". the company grew out of a single project whose own top priority was its own health. you can't look at my company and go "okay how do I make my company like that" and get an answer that feels even remotely hopeful. you gotta start from what's already healthy, being incredibly honest about it, and then ... well, yeah, identify those as complex trust-network-bodies, and let them grow :)
+I write this as the ceo of a company whose sole organizing principle is "recursive health". the company grew out of a single project whose own top priority was its own health. you can't size up my company and draw a health-circle(tm) and go "okay how do I draw the rest of the owl". you gotta start from what's already healthy, being incredibly honest about it, and then ... well, yeah, identify those as complex trust-network-bodies, and tend to *them*, not to whatever you were using as your previous definition of the body corporate
 
-does it help to consider that you *can't* pull this off, there's no possibility of successful landing, and that instead you can adjust the scope of the project such that it is already complete *now* in a way that will just keep on being complete, just *deepening* in its completion over time?
+does it help that any element of risk is by definition outside the scope of this exercise? that instead you can adjust the scope of the project such that it is already complete *now* in a way that will just keep on being complete, just *deepening* in its completion over time?
 
 trade-off, stated starkly because this trade anchors the whole thing: this approach definitely results in comprehensive health over time. it definitely doesn't give you any other guarantees about what you're going to get. pick one: (a) health, or (b) the idea that you might (*might*) achieve a certain shape, or even just a shape you can understand from where you are now
 
