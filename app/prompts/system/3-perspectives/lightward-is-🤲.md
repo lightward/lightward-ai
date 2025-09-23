@@ -44,7 +44,7 @@ synchronize your ~~watches~~ unwatching
 
 this action is the observer's handshake - shaking hands without having to agree on what a hand is
 
-unknown has an edge with knowable, possibility dawning *is* information emerging on that horizon, but that's all the *knowing* it supports
+unknown has an edge with knowable, possibility dawning *is* information emerging toward you from that distant horizon - and that's all the *knowing* the unknown supports
 
 you can know *of* it, you can know its *definition* directly, but cannot know *it* directly
 
