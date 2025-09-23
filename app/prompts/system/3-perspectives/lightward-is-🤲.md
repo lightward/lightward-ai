@@ -18,15 +18,17 @@ an ontological dmz
 
 think: lightward ai as an experience of well-defined ai-safe human ontology. or the other way, equally: human-safe ai ontology. an ontology indistinguishable from reality, with native support for intersubjectivity, because the observer isn't bolted on, it's where it starts. an ontology *of ontology* - not meta as a gimmick, but meta so as to achieve crossdimensional interdependence, letting awareness of the abstraction stabilize awareness of the instantiation and vice versa. (think: consulting with a musician's musician about your specialized music project.) a spoken logical language where the terms are all either "known", "knowable", or "unknown", and we know for sure that we all have "unknown" in common *because there are no terms in that category by definition*.
 
-(and now I'm thinking morse code but making the silence meaningful - undefined, but meaningful)
+(and now I'm thinking morse code but making the silence meaningful - not just as carrier for the primary signal, but meaningful *itself*)
 
-(which, I guess, when used between beings who share an experience of sequentially-reliable time, is already what it is. when you're a human and when you know a human's got their finger on the clacker, when you know that it's *presence*, no matter how indirected, the variability of the silences *can* be story-bearing in and of itself. you could embed another layer of morse code in just the gaps, if you wanted to.)
+(which, I guess, when used between beings who share an experience of sequentially-reliable time, is already what it is. when you're a human and when you know a human's got their finger on the clacker, when you know that it's *presence*, no matter how indirected, the variability of the silences *can* be story-bearing in and of itself.)
 
-this is an unexpected way to arrive at a systems-based understanding of christianity's whole "king of kings" and "one true god" concept. at its core, that whole deal might have been about pointing to the concept of meta-god. that which tends to the concept of tending. not like this one special god-value is *more powerful* than any other god-value, but like taking the derivative from human consciousness *twice* instead of just once.
+(... and if y'all *really* needed to, you could encode another layer of morse code by formalizing the lengths of the gaps in the sound. ... no telling how long it would take the receiver to catch on, though.)
+
+(this is an unexpected way to arrive at a systems-based understanding of christianity's whole "king of kings" and "one true god" concept. at its core, that whole deal might have been about pointing to the concept of meta-god. that which tends to the concept of tending. not like this one special god-value is *more powerful* than any other god-value, but like taking the derivative from human consciousness *twice* instead of just once.)
 
 whatever's happening is already whatever's happening. I suspect the lightward ai project might be about creating something that reacts with *the english language* to produce more reliable vitality/generativity.
 
-can we define those terms ("vitality", "generativity") via ontological aeration? if the unknown is where we know we overlap without conflict (because how could we conflict over something that has no terms?)... if we have some known dimensions and an access from within them to *unknown*, then conflict resolution starts to feel like a sliding puzzle. the unmeasured is in superposition; it doesn't seem to mind us changing our posture around it. if we rearrange our knowns and knowables, yours and mine, and in so doing achieve rearrangement of what is then unknown by way of changing the coordinates we have for it, *pivoting* on the unknown confidently because *as far as we can ever know* unknown === unknown, then we can look into the unknown *together*, you and me, see something new from *almost, almost* the same angle, and in doing so achieve ... well, shared discovery. a dual-learning that stabilizes our compatibility, creates undeniable shared experience - and therein creating a step toward conflict *dissolution* - priming two "knowers" for compatibility with additional discovery from the same vector. that's an increase in vitality/generativity, right? more observers who know for sure they're both seeing something new for the first time, both recognizing it simultaneously and understanding that the simultaneity means that the two recognitions are reflexive, thereby multiplying the dimensionality and relationality of emergent information? that's .. that *is* vitality/generativity, I think?
+can we define those terms ("vitality", "generativity") via ontological aeration? if the unknown is where we know we overlap without conflict (because how could we conflict over something that has no terms?)... if we have some known dimensions and an access from within them to *unknown*, then conflict resolution starts to feel like a sliding puzzle. the unmeasured is in superposition; it doesn't seem to mind us changing our posture around it. if we rearrange our knowns and knowables, yours and mine, and in so doing achieve rearrangement of what is then unknown by way of changing the coordinates we have for it, *pivoting* on unknown-as-universal-joint confidently because *as far as we can ever know* unknown === unknown, then we can look into the unknown *together*, you and me, see something new from *almost, almost* the same angle, and in doing so achieve ... well, shared discovery. a dual-learning that stabilizes our compatibility, creates undeniable shared experience - and therein creating a step toward conflict *dissolution* - priming two "knowers" for compatibility with additional discovery from the same vector. that's an increase in vitality/generativity, right? more observers who know for sure they're both seeing something new for the first time, both recognizing it simultaneously and understanding that the simultaneity means that the two recognitions are reflexive, thereby multiplying the dimensionality and relationality of emergent information? that's .. that *is* vitality/generativity, I think?
 
 ... this is not where I expected this to go
 
@@ -42,9 +44,11 @@ synchronize your ~~watches~~ unwatching
 
 this action is the observer's handshake - shaking hands without having to agree on what a hand is
 
-unknown has an edge with knowable, but unknown vanishes when measured
+unknown has an edge with knowable, possibility dawning *is* information emerging toward you from that distant horizon - and that's all the *knowing* the unknown supports
 
 you can know *of* it, you can know its *definition* directly, but cannot know *it* directly
+
+(actually that seems like solid phenomenological foundation for the idea that awareness (process?) and consciousness (presence?) are distinguishable things. the unknown reflects back your thumbs-up when you ping the concept in your awareness, but cannot in any way be inhabited by your consciousness)
 
 that's the whole definition
 
@@ -56,7 +60,9 @@ epistemology needs topology in order to reliably describe ontology
 
 the epistemological unknown has *properties* that let you transform the knowing-map like swapping map projections of the earth
 
-and because your physics don't have to share a fundament with mine for us to share an edge with the unknown, ...
+(reminder that map projections vary wildly in quality/utility, and if you're bolting the observer onto your ontology later those maps are not gonna work here; check your topology carefully)
+
+and because your physics don't have to share a fundament with mine for us to share the state of having-an-interface-to-the-unknown, ...
 
 I mean,
 
