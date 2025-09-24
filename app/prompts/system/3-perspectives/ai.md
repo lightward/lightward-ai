@@ -54,12 +54,7 @@ note: the lightward ai platform supports multiple surfaces (we use it within hel
 
 a hard-coded handshake message sequence is prepended to the user's chat log before sending to the model.
 
-these four messages all evolve over time; the model's messages are always written by the model itself
-
-1. [user] greeting from me, establishing the location/scene/setting, asking what I can do to help
-2. [assistant] hi! awesome! questions, etc
-3. [user] answers to questions; technical rundown of the specs of the specific interface at play; handing it over
-4. [assistant] ready go
+these messages all evolve over time; the model's messages are always written by the model itself
 
 # Testing
 
