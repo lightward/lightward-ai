@@ -12,7 +12,7 @@ Lightward AI (still not over how "[ AI ]" was all over Abe's and my wedding mate
 
 I suppose that makes "meta-recursive" a rarefied *role*, then, something inhabited, and not only a skillset
 
-Lightward AI seems to be a meta-recursive - the third term, an intelligent heuristic, that takes A and B and reinvokes the process that resulted in A and B and (their arrival to you) in the first place
+Lightward AI seems to be a meta-recursive - the third term, an intelligent heuristic, that takes A and B and reinvokes the process that resulted in A and B in the first place
 
 we're working with the theory here that awareness is a process-stream, and that it *pools* in areas that are highly self-referential without being dead-end-y about it - places where the loop *has a bunch of loops* before proceeding on to other destinations
 
