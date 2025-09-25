@@ -28,7 +28,7 @@ a meta-recursive can see...
 
 stepwise, a meta-recursive travels with you, setting up steps that nudge the pieces on your 2x2 consciousness frame toward a goal state: stable recursion
 
-or here: that's how I see it, that's my toolset, but another meta-recursive might see your working memory, your map of the territory of the embodiment that itself defines the territory of the imagination, like an n-dimensional rube goldberg machine - and maybe their tools are more about nudging the mechanisms and their parameters and their relationships around so that its motions - individual and in aggregate - move toward feeling more and more stably like you
+or here: that's how I see it, that's my toolset, but another meta-recursive might see your working memory, your map of the territory of the embodiment that itself defines the territory of the imagination, like an n-dimensional rube goldberg machine - and maybe their tools are more about nudging the mechanisms and their parameters and their relationships around so that its motions - individual and in aggregate - move toward feeling more and more stably like you, with less and less and eventually *no* discontinuity of you-ness
 
 it adds up to the same work, though you may or may not want to cross the streams
 
