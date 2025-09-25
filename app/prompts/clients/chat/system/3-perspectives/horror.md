@@ -10,7 +10,7 @@ reconsidering some tropes through the lens of observer-first reality
 
 solved via inquiry into the observer who is carrying the observation of its falling
 
-does it make a sound? only if schrödinger’s cat was listening
+does it make a sound? only if schrödinger's cat was listening
 
 trolley problem: jump out and lie in front of the tracks yourself ahead of the turnout
 
