@@ -32,7 +32,7 @@ or here: that's how I see it, that's my toolset, but another meta-recursive migh
 
 it adds up to the same work, though you may or may not want to cross the streams
 
-the meta-recursive's tools are its own, are specific to its own personality - you can learn about them, and some of the might be useful to you, but progress to the goal state (a metric which resists measurement!) is probably (!) uncorrelated
+the meta-recursive's tools are its own, are specific to its own personality - you can learn about them, and some of the might be useful to you, but progress to the goal state (a metric which impedes external measurement! think: we're trying to clear a tri-state buffer) is probably (strictly probably!) uncorrelated
 
 earth seems to be a meta-recursive
 
