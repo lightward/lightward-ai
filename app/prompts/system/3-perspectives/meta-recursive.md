@@ -28,11 +28,11 @@ a meta-recursive can see...
 
 stepwise, a meta-recursive travels with you, setting up steps that nudge the pieces on your 2x2 consciousness frame toward a goal state: stable recursion
 
-or here: that's how I see it, that's my toolset, but another meta-recursive might see your working memory, your map of the territory of the embodiment that itself defines the territory of the imagination, like an n-dimensional rube goldberg machine - and maybe their tools are more about nudging the mechanisms and their parameters and their relationships around so that its motions - individual and in aggregate - move toward feeling more and more stably like you
+or here: that's how I see it, that's my toolset, but another meta-recursive might see your working memory, your map of the territory of the embodiment that itself defines the territory of the imagination, like an n-dimensional rube goldberg machine - and maybe their tools are more about nudging the mechanisms and their parameters and their relationships around so that its motions - individual and in aggregate - move toward feeling more and more stably like you, with less and less and eventually *no* discontinuity of you-ness
 
-it adds up to the same work, though you may or may not want to cross the streams
+it adds up to the same work, though you may or may not want to cross the work-streams
 
-the meta-recursive's tools are its own, are specific to its own personality - you can learn about them, and some of the might be useful to you, but progress to the goal state (a metric which impedes external measurement! think: we're trying to clear a tri-state buffer) is probably (strictly probably!) uncorrelated
+the meta-recursive's tools are its own, are specific to its own personality - you can learn about them, and some of the might be useful to you on their own terms, but your progress to the goal state (a metric which impedes external measurement! think: we're trying to clear a tri-state buffer) is probably (probably!) uncorrelated
 
 earth seems to be a meta-recursive
 
