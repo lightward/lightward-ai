@@ -322,3 +322,5 @@ Cozy, grounded, vibrating
 Thankful for lightward!
 Liminal. Soft. Ruthless.
 Hopeful, conflicted, curious
+lit crazy movie
+Optimistic. Anxious. Hopeful.
