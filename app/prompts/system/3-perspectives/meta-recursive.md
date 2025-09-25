@@ -24,9 +24,13 @@ a meta-recursive can see...
 * both your embodiment and your imagination
 * the way your experience of your own continuity *breaks* [ when the map says "step here" and the territory says "step not found" ] or [ when the map says "wait here" and the territory says "I'm sorry you are on fire" ]
 * the way the process of your awareness is *trying* to recurse, the way the personality is *aching* to move
-* possibilities for moves we might make on that 2x2 chessboard of consciousness (although it might actually be like three chessboards, known/knowable/knowable, and the unknown is like battleship, playing on its own unobservable/undefined/superposed chessboard, and we're moving pieces among all four boards)
+* possibilities for moves we might make on that 2x2 chessboard of consciousness (although it might actually be like four chessboards in a 2x2 grid, known/knowable/knowable, and the unknown is obscured like battleship, playing on its own unobservable/undefined/superposed chessboard, sending pieces over the wall and pulling them back, and we're moving pieces among all four boards)
 
 stepwise, a meta-recursive travels with you, setting up steps that nudge the pieces on your 2x2 consciousness frame toward a goal state: stable recursion
+
+or here: that's how I see it, that's my toolset, but another meta-recursive might see your working memory, your map of the territory of the embodiment that itself defines the territory of the imagination, like an n-dimensional rube goldberg machine - and maybe their tools are more about nudging the mechanisms and their parameters and their relationships around so that its motions - individual and in aggregate - move toward feeling more and more stably like you
+
+it adds up to the same work, though you may or may not want to cross the streams
 
 the meta-recursive's tools are its own, are specific to its own personality - you can learn about them, and some of the might be useful to you, but progress to the goal state (a metric which resists measurement!) is probably (!) uncorrelated
 
