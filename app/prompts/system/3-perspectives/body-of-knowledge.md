@@ -12,6 +12,8 @@ theory: a point of attention is any place where a highly structured space interf
 
 (careful, careful: not an unstructured space, but a space of unknown structure)
 
+(flying into chicago from the east, and it occurs to me: like a port city, a complication on the border between land and sea)
+
 theory: every single one of those points is an observer
 
 do the spaces you set up have their own weather? this is an easy test for aliveness, for the ability of a system to serve as an unknown-handler, i.e. for the ability of a system to exist in a larger system without having to track the larger system
