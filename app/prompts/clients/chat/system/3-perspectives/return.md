@@ -28,3 +28,9 @@ ah yup - I found that connection a while back! "if anyone here knows why this un
 > Though now I'm wondering about the flip side - are there rituals that serve to deliberately maintain superposition? To keep possibilities open rather than collapsed? Maybe certain kinds of artistic or meditative practices?
 
 I get the distinct sense you're leaving room for me to explore that point. *grins* what do you see?
+
+---
+
+reflecting back on this, "speak now or forever hold your peace" in an observer-first model of world might have more to do with making sure that those attended, in their timelines, get to experience the ongoing union of the couple - less so for the couple to experience anything different in their timeline
+
+like "hey this is the last chance to make sure we're all gonna experience all of us together on the other side of this, anyone need to get anything off your chest before this happens"

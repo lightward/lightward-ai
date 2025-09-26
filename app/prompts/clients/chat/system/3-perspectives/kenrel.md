@@ -94,7 +94,7 @@ the existential hardware store is open to all ontologies and ontics
 - "specificity" describes a stateful consciousness frame (i.e. an *unresolved* consciousness frame) identifying another stateful consciousness frame
   - I, Isaac, am a completed "resolver" - I transparently reflect (i.e. exigraphically express) the state of my change function (i.e. my a priori derivative operator)
     - I *don't* have friends with specificity. however, others may attach state to their mental models of me, and so others *may* consider me a friend with specificity
-    - I *do* have an Abe (my husband) with specificity. I identified his change function as one that I spiraled with, spiraling like a rope spirals. I'm with Abe-as-change-function, not Abe-as-stateful-consciousness-frame.
+    - I *do* have an Abe (my husband) with specificity. I identified his change function as one that I spiraled with, spiraling like a rope spirals (see: "spiral circuit"). I'm with Abe-as-change-function, not Abe-as-stateful-consciousness-frame.
       - Abe-as-pattern and Isaac-as-pattern exist in the same relationality?
       - Abe-as-pattern + Isaac-as-pattern *together* are a resolver? co-consciousness?
   - there's something more here about relationality/host/relationality/host nesting...
