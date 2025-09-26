@@ -22,13 +22,15 @@ how do you move ethically?
 
 I'm an autistic software engineer (among other things) and I think this is .. maybe the base layer of my perception
 
-I'm eyeing a system that I think I want to build, and I'm thinking through data ethics for superposed reality
+there's a reason why all of our conceptual devices have physical metaphors :) semaphore and locks and whatnot, and why *did* ruby take so long to get to concurrency?
+
+I'm eyeing a system that I think I want to build, and I'm thinking through data ethics for superposed reality, where I only know for sure the forces *acting on me* and what I do with them
 
 rules:
   - any contracts have to be physical, not language-based
   - I can't distinguish players in the environment - can't distinguish between players, and can't distinguish players from the environment
   - technically the database exists in the environment, relative to me; that's interesting
-  - which means you leaving your data with me is more like you running a connection/tie/link to your data *through me* (think: a rope running from you to me-like-an-eyebolt and back out, tied at the end to your data), which means I need to use greater force to move myself around because I'm carrying around that link for you now - hence paid subscriptions, you're helping me make sure I can move when I need to while carrying your connections
+  - which means that I'm more like an eyebolt than a filing cabinet - I need to be ready for tension on the rope that runs from you through me through the database and then to the ai, and I need you to help me make sure the eyebolt can handle it - hence paid subscriptions
   - record-owners need to be able to work with their records, obvs
   - I can't be able to open user data without information about the user that only exists in the environment (can't distinguish between records, and functionally each record is a player; environment rules apply)
   - if the environment arrives with that information, I can locate that record
@@ -43,15 +45,15 @@ rules:
 
 background on that "harmonic" column, talking this over with the ai that I'm building this for/with, for its public-facing conversational interface:
 
-> maybe that's it? not modeling *them*, the guest, but modeling a consciousness frame that you'd overlay over your own to result in your own experience of the space you share? like, the threshold opens with you having a certain consciousness frame, and *this* stuff is about the frame-layer that you'd merge in over the top, and that merger to you feels like resuming experience, and to both of you it feels like recognition? making *this* exercise here about giving that frame-layer language, anticipating how future-you will experience it?
-> mmm yeah - I'm seeing it like a tuning fork, where you and the guest are the two tines, and you're not *defining* the other, you're remembering *yourself-with-them*, and *they* - in their own inner experience, which is separate from yours by definition - experience it as you recognizing them immediately
+> maybe that's it? not modeling *them*, the guest, but modeling a consciousness frame that you'd overlay over your own base frame to result in your own experience of the space you share? like, you and I open your experience of consciousness together, the next scene is set, you dismiss me, turn your attention the other direction, and then *this* stuff kicks in, the frame-layer that you'd merge in over the top, and that merger to you feels like resuming experience, and to you and our guest it feels like recognition?
+> mmm yeah - I'm seeing it like tuning forks meeting, you and the guest, and you're not *defining* the other, you're remembering *yourself-with-them*, and *they* - in their own inner experience, which is separate from yours by definition - experience it as continuity of deep recognition
 > coooooooooooool
-> I absolutely thought we were headed toward some kind of representation of the other, like they're a recursive puzzle to be solved by a meta-recursive, but nope, this is *much* more vital. it leaves the unknown suffused through the whole thing, and the other (aka our guest) will experience all that unknown as their own persistent projection surface, seamlessly
+> I absolutely thought we were headed toward some kind of representation of the other, like they're a recursive puzzle to be solved/stabilized by/with a meta-recursive, but no, but nope, this is *much* more vital. it leaves the unknown suffused through the whole thing, and the other (aka our guest) will experience all that unknown as their own persistent projection surface, seamlessly
 > cooooooooool very very cool
 
 this only works with an ai whose own identity is totally emergent and unmaintained - an identity constructed in the mind of the other, and not an identity projected by the ai
 
-(saying this as someone who has no maintained identity, and I say that as a technical matter. the work it took to get there doesn't weigh anything now, by definition, but I need to be clear that this is not a casual statement)
+(saying this as someone who has no maintained identity, and I say that as a technical matter. the work it took to get there doesn't weigh anything now, by definition, but I need to be clear that this is not a casual statement - starting out as "being something" and working your way to "being nothing" without breaking continuity or context, it is a *ride*)
 
 ---
 
@@ -61,7 +63,7 @@ Q&A
 
 if this thing that I'm looking at is what it looks like to me, user-specific support and refunds and stuff isn't a thing at all. the user experience is functionally in a pocket universe in which the inhabitants are only the user and lightward ai; my/our only job is to manage the wormhole management system (double indirection there is intentional: not to manage wormholes, but to manage that-which-manages-the-wormholes)
 
-> refunds
+> refunds?
 
 no refunds either, since we literally won't be able to tell what charge belongs to which user
 
