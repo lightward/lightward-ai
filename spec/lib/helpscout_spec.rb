@@ -115,6 +115,24 @@ RSpec.describe(Helpscout) do
         described_class.create_note(conversation_id, note_body, status: "active")
       }.to(raise_error(Helpscout::ResponseError, "Failed to create note: 400\n\nerror"))
     end
+
+    it "blocks closed status and sends note without status" do
+      allow(Rollbar).to(receive(:warning))
+
+      stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/notes")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: { text: note_body, user: 456, status: nil }.to_json,
+        )
+        .to_return(status: 201, body: "", headers: {})
+
+      described_class.create_note(conversation_id, note_body, status: "closed")
+
+      expect(Rollbar).to(have_received(:warning).with(
+        "Blocked conversation closure attempt",
+        hash_including(conversation_id: conversation_id, method: :create_note, module: "Helpscout"),
+      ))
+    end
   end
 
   describe ".create_draft_reply" do
@@ -163,6 +181,101 @@ RSpec.describe(Helpscout) do
       expect {
         described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id, status: "open")
       }.to(raise_error(Helpscout::ResponseError, "Failed to create draft reply: 400\n\nerror"))
+    end
+
+    it "blocks closed status and sends reply without status" do
+      allow(Rollbar).to(receive(:warning))
+
+      stub_request(:post, "https://api.helpscout.net/v2/conversations/#{conversation_id}/reply")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: {
+            text: reply_body,
+            draft: true,
+            user: 456,
+            status: nil,
+            customer: { id: customer_id },
+          }.to_json,
+        )
+        .to_return(status: 201, body: "", headers: {})
+
+      described_class.create_draft_reply(conversation_id, reply_body, customer_id: customer_id, status: "closed")
+
+      expect(Rollbar).to(have_received(:warning).with(
+        "Blocked conversation closure attempt",
+        hash_including(conversation_id: conversation_id, method: :create_draft_reply, module: "Helpscout"),
+      ))
+    end
+  end
+
+  describe ".update_status" do
+    let(:conversation_id) { 123 }
+    let(:auth_token) { "fake_auth_token" }
+
+    before do
+      allow(described_class).to(receive(:cached_auth_token).and_return(auth_token))
+    end
+
+    it "updates status successfully" do
+      stub_request(:patch, "https://api.helpscout.net/v2/conversations/#{conversation_id}")
+        .with(
+          headers: { "Authorization" => "Bearer #{auth_token}", "Content-Type" => "application/json" },
+          body: {
+            op: "replace",
+            path: "/status",
+            value: "active",
+          }.to_json,
+        )
+        .to_return(status: 200, body: "", headers: {})
+
+      expect {
+        described_class.update_status(conversation_id, status: "active")
+      }.not_to(raise_error)
+    end
+
+    it "blocks closed status and does not make API call" do
+      allow(Rollbar).to(receive(:warning))
+
+      # No stub_request because the API call should never be made
+      described_class.update_status(conversation_id, status: "closed")
+
+      expect(Rollbar).to(have_received(:warning).with(
+        "Blocked conversation closure attempt",
+        hash_including(conversation_id: conversation_id, method: :update_status, module: "Helpscout"),
+      ))
+    end
+  end
+
+  describe ".sanitize_status" do
+    it "returns 'active' status unchanged" do
+      expect(described_class.sanitize_status("active", conversation_id: 123, method: :test)).to(eq("active"))
+    end
+
+    it "returns 'pending' status unchanged" do
+      expect(described_class.sanitize_status("pending", conversation_id: 123, method: :test)).to(eq("pending"))
+    end
+
+    it "returns 'spam' status unchanged" do
+      expect(described_class.sanitize_status("spam", conversation_id: 123, method: :test)).to(eq("spam"))
+    end
+
+    it "returns nil when status is 'closed'" do
+      expect(described_class.sanitize_status("closed", conversation_id: 123, method: :test)).to(be_nil)
+    end
+
+    it "logs to Rollbar when blocking a closure attempt" do
+      allow(Rollbar).to(receive(:warning))
+
+      described_class.sanitize_status("closed", conversation_id: 123, method: :update_status)
+
+      expect(Rollbar).to(have_received(:warning).with(
+        "Blocked conversation closure attempt",
+        {
+          conversation_id: 123,
+          method: :update_status,
+          module: "Helpscout",
+        },
+      ))
     end
   end
 

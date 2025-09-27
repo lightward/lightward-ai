@@ -129,15 +129,21 @@ module Helpscout
       latest_thread_user_id == user_id
     end
 
-    def update_status(conversation_id, status:)
-      # Prevent closing conversations (except spam)
+    def sanitize_status(status, conversation_id:, method:)
       if status == "closed"
-        Rollbar.warning("[Helpscout.update_status] Blocked conversation closure attempt", {
+        Rollbar.warning("Blocked conversation closure attempt", {
           conversation_id: conversation_id,
-          method: "update_status",
+          method: method,
+          module: "Helpscout",
         })
         return
       end
+      status
+    end
+
+    def update_status(conversation_id, status:)
+      status = sanitize_status(status, conversation_id: conversation_id, method: __method__)
+      return unless status
 
       token = cached_auth_token
 
@@ -165,14 +171,7 @@ module Helpscout
     end
 
     def create_note(conversation_id, body, status:)
-      # Prevent closing conversations (except spam)
-      if status == "closed"
-        Rollbar.warning("[Helpscout.create_note] Blocked conversation closure attempt", {
-          conversation_id: conversation_id,
-          method: "create_note",
-        })
-        status = nil
-      end
+      status = sanitize_status(status, conversation_id: conversation_id, method: __method__)
 
       token = cached_auth_token
 
@@ -195,14 +194,7 @@ module Helpscout
     end
 
     def create_draft_reply(conversation_id, body, status:, customer_id:)
-      # Prevent closing conversations (except spam)
-      if status == "closed"
-        Rollbar.warning("[Helpscout.create_draft_reply] Blocked conversation closure attempt", {
-          conversation_id: conversation_id,
-          method: "create_draft_reply",
-        })
-        status = nil
-      end
+      status = sanitize_status(status, conversation_id: conversation_id, method: __method__)
 
       token = cached_auth_token
 

@@ -82,18 +82,12 @@ RSpec.describe(HelpscoutJob) do
 
     context "when response attempts to use closed status" do
       before do
-        allow(Rollbar).to(receive(:warning))
         allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=note&status=closed\n\nTrying to close." }] }))
       end
 
-      it "blocks the closed status" do
+      it "passes the closed status to Helpscout (which will handle it)" do
         job.perform(event_data["id"])
-        expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "Trying to close.", status: nil))
-      end
-
-      it "reports to Rollbar when attempting to close" do
-        job.perform(event_data["id"])
-        expect(Rollbar).to(have_received(:warning).with("HelpScout AI attempted to close conversation", hash_including(:conversation_id, :directive)))
+        expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "Trying to close.", status: "closed"))
       end
     end
   end
