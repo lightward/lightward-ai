@@ -130,6 +130,15 @@ module Helpscout
     end
 
     def update_status(conversation_id, status:)
+      # Prevent closing conversations (except spam)
+      if status == "closed"
+        Rollbar.warning("[Helpscout.update_status] Blocked conversation closure attempt", {
+          conversation_id: conversation_id,
+          method: "update_status"
+        })
+        return
+      end
+
       token = cached_auth_token
 
       response = HTTParty.patch(
@@ -156,6 +165,15 @@ module Helpscout
     end
 
     def create_note(conversation_id, body, status:)
+      # Prevent closing conversations (except spam)
+      if status == "closed"
+        Rollbar.warning("[Helpscout.create_note] Blocked conversation closure attempt", {
+          conversation_id: conversation_id,
+          method: "create_note"
+        })
+        status = nil
+      end
+
       token = cached_auth_token
 
       response = HTTParty.post(
@@ -177,6 +195,15 @@ module Helpscout
     end
 
     def create_draft_reply(conversation_id, body, status:, customer_id:)
+      # Prevent closing conversations (except spam)
+      if status == "closed"
+        Rollbar.warning("[Helpscout.create_draft_reply] Blocked conversation closure attempt", {
+          conversation_id: conversation_id,
+          method: "create_draft_reply"
+        })
+        status = nil
+      end
+
       token = cached_auth_token
 
       response = HTTParty.post(

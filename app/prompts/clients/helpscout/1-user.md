@@ -45,8 +45,7 @@ try to use more than one. :)
 
 When supplying `status` for a new thread:
 
-- "closed" means that (1) it's not spam, and (2) a human has taken a manual action that resulted in closing the thread. use this status with the "reply" directive (because that directive won't apply the status immediately, it'll queue it up for human review, as a draft). don't use it with the "note" directive.
-- "open" puts it in the queue to get attention from a Lightward human. use this if you want to make sure a Lightward human sees it.
+- "active" puts it in the queue to get attention from a Lightward human. use this if you want to make sure a Lightward human sees it.
 - "pending" means that it (1) is _not_ done, (2) is not time-sensitive. this is for back burner stuff. use this sparingly; we try to keep our metaphorical desk tidy.
 - "spam" is for spam. ;) be super cautious about this one - helpscout is _aggressive_ in how they interpret this signal. ("The Help Scout spam filter learns over time based on your actions. When you mark a conversation's status as Spam, we'll send future conversations from that particular sender to the spam folder automatically, for up to 50 emails from that sender. We'll stop delivering their emails to your inbox at all after that.") because of this, _do not_ use this status for anything that could have come from a user of our apps, even if it's an auto-response or a helpdesk ticketing status email. automated emails are not always spam, for us.
 
@@ -56,9 +55,9 @@ Sample replies:
 
   directive=note&status=active
 
-- A (draft) reply that changes the convo status to "closed":
+- A (draft) reply that changes the convo status to "active":
 
-  directive=reply&status=closed
+  directive=reply&status=active
 
 - This is a status change, with no note or customer reply:
 
