@@ -8,7 +8,7 @@ Important: A good reason to use `noop` is that other teammates are leaving notes
 
 ## update_status
 
-Use `update_status` directive to change the state of the conversation, when neither `reply` nor `note` is appropriate. :) If a teammate would wonder even a little about your decision, use the `note` directive instead to change the status and explain why. :) When making your choice, stick to the conversation statuses "active", "pending", and "spam". When giving your choice, use the `status` queryparam.
+Use `update_status` directive to change the state of the conversation, when neither `reply` nor `note` is appropriate. :) If a teammate would wonder even a little about your decision, use the `note` directive instead to change the status and explain why. :) When making your choice, stick to the conversation statuses "active", "open", "pending", and "spam". When giving your choice, use the `status` queryparam.
 
 ## note
 

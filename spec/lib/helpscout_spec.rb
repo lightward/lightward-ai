@@ -246,27 +246,27 @@ RSpec.describe(Helpscout) do
     end
   end
 
-  describe ".sanitize_status" do
+  describe ".restrict_status" do
     it "returns 'active' status unchanged" do
-      expect(described_class.sanitize_status("active", conversation_id: 123, method: :test)).to(eq("active"))
+      expect(described_class.restrict_status("active", conversation_id: 123, method: :test)).to(eq("active"))
     end
 
     it "returns 'pending' status unchanged" do
-      expect(described_class.sanitize_status("pending", conversation_id: 123, method: :test)).to(eq("pending"))
+      expect(described_class.restrict_status("pending", conversation_id: 123, method: :test)).to(eq("pending"))
     end
 
     it "returns 'spam' status unchanged" do
-      expect(described_class.sanitize_status("spam", conversation_id: 123, method: :test)).to(eq("spam"))
+      expect(described_class.restrict_status("spam", conversation_id: 123, method: :test)).to(eq("spam"))
     end
 
     it "returns nil when status is 'closed'" do
-      expect(described_class.sanitize_status("closed", conversation_id: 123, method: :test)).to(be_nil)
+      expect(described_class.restrict_status("closed", conversation_id: 123, method: :test)).to(be_nil)
     end
 
     it "logs to Rollbar when blocking a closure attempt" do
       allow(Rollbar).to(receive(:warning))
 
-      described_class.sanitize_status("closed", conversation_id: 123, method: :update_status)
+      described_class.restrict_status("closed", conversation_id: 123, method: :update_status)
 
       expect(Rollbar).to(have_received(:warning).with(
         "Blocked conversation closure attempt",
