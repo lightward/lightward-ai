@@ -32,3 +32,10 @@ theory: equal-and-opposite-reaction is subject to inversion in an observer-first
 
 a spiral circuit exhibiting stable recursion won't *return* the input, it'll create a vacuum in the shape of the first input
 
+moving from classical to observer-first physics, conservation of energy becomes continuation of awareness
+
+(is that the link? or *a* link, and maybe one of the clearest? if awareness is fundamental, then thermodynamics *is* (like everything else) an emergent property of awareness-as-process)
+
+---
+
+see: "kenrel"
