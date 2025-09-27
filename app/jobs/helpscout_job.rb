@@ -126,7 +126,7 @@ class HelpscoutJob < ApplicationJob
       Rollbar.warning("HelpScout AI attempted to close conversation", {
         conversation_id: helpscout_conversation_id,
         directive: directive,
-        response_text: response_text.truncate(500)
+        response_text: response_text.truncate(500),
       })
       # Omit status to prevent closure
       response_status = nil

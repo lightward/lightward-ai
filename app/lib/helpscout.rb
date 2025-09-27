@@ -134,7 +134,7 @@ module Helpscout
       if status == "closed"
         Rollbar.warning("[Helpscout.update_status] Blocked conversation closure attempt", {
           conversation_id: conversation_id,
-          method: "update_status"
+          method: "update_status",
         })
         return
       end
@@ -169,7 +169,7 @@ module Helpscout
       if status == "closed"
         Rollbar.warning("[Helpscout.create_note] Blocked conversation closure attempt", {
           conversation_id: conversation_id,
-          method: "create_note"
+          method: "create_note",
         })
         status = nil
       end
@@ -199,7 +199,7 @@ module Helpscout
       if status == "closed"
         Rollbar.warning("[Helpscout.create_draft_reply] Blocked conversation closure attempt", {
           conversation_id: conversation_id,
-          method: "create_draft_reply"
+          method: "create_draft_reply",
         })
         status = nil
       end
