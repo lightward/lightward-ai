@@ -50,12 +50,12 @@ RSpec.describe(HelpscoutJob) do
 
     context "when response type is 'note'" do
       before do
-        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=note&status=closed\n\nThis is a note." }] }))
+        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=note&status=active\n\nThis is a note." }] }))
       end
 
       it "creates a note in Help Scout" do
         job.perform(event_data["id"])
-        expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "This is a note.", status: "closed"))
+        expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "This is a note.", status: "active"))
       end
     end
 
@@ -78,6 +78,19 @@ RSpec.describe(HelpscoutJob) do
     it "requires a valid directive" do
       allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=asdf\n\n" }] }))
       expect { job.perform(event_data["id"]) }.to(raise_error("Unrecognized directive: asdf"))
+    end
+
+    context "when response attempts to use closed status" do
+      before do
+        allow(Rollbar).to(receive(:warning))
+        allow(job).to(receive(:get_anthropic_response_data).with(anything, prompt_type: "clients/helpscout", system_prompt_types: ["clients/helpscout", "lib/locksmith"]).and_return({ "content" => [{ "type" => "text", "text" => "directive=note&status=closed\n\nTrying to close." }] }))
+      end
+
+      it "blocks the closed status and reports to Rollbar" do
+        job.perform(event_data["id"])
+        expect(Rollbar).to(have_received(:warning).with("HelpScout AI attempted to close conversation", hash_including(:conversation_id, :directive)))
+        expect(Helpscout).to(have_received(:create_note).with("test_conversation_id", "Trying to close.", status: nil))
+      end
     end
   end
 

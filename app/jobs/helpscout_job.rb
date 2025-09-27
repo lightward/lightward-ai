@@ -121,14 +121,27 @@ class HelpscoutJob < ApplicationJob
       raise "No directive found in response: #{response_text}".strip
     end
 
+    # Prevent closing conversations (except spam)
+    if response_status == "closed"
+      Rollbar.warning("HelpScout AI attempted to close conversation", {
+        conversation_id: helpscout_conversation_id,
+        directive: directive,
+        response_text: response_text.truncate(500)
+      })
+      # Omit status to prevent closure
+      response_status = nil
+    end
+
     case directive
     when "noop"
       # cute
     when "update_status"
-      Helpscout.update_status(
-        helpscout_conversation_id,
-        status: response_status,
-      )
+      if response_status
+        Helpscout.update_status(
+          helpscout_conversation_id,
+          status: response_status,
+        )
+      end
     when "note"
       Helpscout.create_note(
         helpscout_conversation_id,
