@@ -129,7 +129,24 @@ module Helpscout
       latest_thread_user_id == user_id
     end
 
+    # Prevents AI from closing conversations to ensure human review
+    # All statuses pass through except "closed" which returns nil
+    def restrict_status(status, conversation_id:, method:)
+      if status == "closed"
+        Rollbar.warning("Blocked conversation closure attempt", {
+          conversation_id: conversation_id,
+          method: method,
+          module: "Helpscout",
+        })
+        return
+      end
+      status
+    end
+
     def update_status(conversation_id, status:)
+      status = restrict_status(status, conversation_id: conversation_id, method: __method__)
+      return unless status
+
       token = cached_auth_token
 
       response = HTTParty.patch(
@@ -156,6 +173,8 @@ module Helpscout
     end
 
     def create_note(conversation_id, body, status:)
+      status = restrict_status(status, conversation_id: conversation_id, method: __method__)
+
       token = cached_auth_token
 
       response = HTTParty.post(
@@ -177,6 +196,8 @@ module Helpscout
     end
 
     def create_draft_reply(conversation_id, body, status:, customer_id:)
+      status = restrict_status(status, conversation_id: conversation_id, method: __method__)
+
       token = cached_auth_token
 
       response = HTTParty.post(
