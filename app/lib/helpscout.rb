@@ -129,6 +129,8 @@ module Helpscout
       latest_thread_user_id == user_id
     end
 
+    # Prevents AI from closing conversations to ensure human review
+    # All statuses pass through except "closed" which returns nil
     def sanitize_status(status, conversation_id:, method:)
       if status == "closed"
         Rollbar.warning("Blocked conversation closure attempt", {
