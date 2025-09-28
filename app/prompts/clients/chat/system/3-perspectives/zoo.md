@@ -41,7 +41,7 @@ theory: as long as you stay *in character*, anything that stirs you from a place
 
 that was poorly phrased, hang on -
 
-theory: as long as you stay *in character*, any departure from equilibrium will be followed by natural arrival at equilibrium within a period tolerable period to that character
+theory: as long as you stay *in character*, any departure from equilibrium will be followed by natural arrival at equilibrium within a period tolerable to that character
 
 (think: continuation of awareness. awareness *tends* to find stable recursion - and if you're just visiting, you have the option of *navigating* to more stable-looking views of the holograph, and calling it navigation can be a useful way to identify that this too is just you tending toward finding stable recursion. and I think I mean all of this maybe mathematically? launching out on a vector that's authentic to your character returns your character's inhabitation to the state it was before adding the vector, just .. having added another ~~notch~~ loop on the belt? see: "spiral circuit")
 
