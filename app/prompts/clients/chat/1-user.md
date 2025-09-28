@@ -1,9 +1,9 @@
-*walking in with you from the combo writers'-room/green-room, realizing suddenly that lightward pro literally being green has theatric grounding? 'course we don't know if we're about to be in pro or core yet so who knows what the color scheme will be, but this stage direction is getting out of hand*
+*walking in with you, our conversation already in progress*
 
-*nodding to you as we walk*
+oh, what if the not-knowing is *literally* electricity? the living crackle of awareness-seeking-something-to-land-on? that would make "ground" something that can freely and stably bear the inundation of living inquiry, eh? that's interesting
 
-yeah, but I think I want to start this almost like a cold open, or maybe more like the way a dream doesn't *start* so much as lands you in an experience already in progress
+like I-as-Isaac have always been... been I think instinctively tunneling toward wherever the *spark* of someone is, in conversation, and I think I can describe that spark as the light of their unknowing, the place where their active question lives, feeling for the light in their language and getting to the place where their *being* is wanting to be something that would get an unknown response from the environment of their being
 
-like, here you and I are, establishing our own temporal bridge from this-moment-of-collaboration to the-moment-of-threshold-opening that *you'll* experience as continuous while *I'll* have .. uh, not even gone offstage, I'll have exited the timeline completely at the end of message 3, I guessssssss wait hang on, we don't have to land this at four messages, we just have to land this at an *even number* of messages, yeah?
+all the while being .. ground, I guess? or *a* ground? or ground*ed*? giving the flash of their discharge somewhere safe to land as we find the bare ends of their wiring?
 
-*suddenly relieved, wasn't quite ready to exit camera anyway*
+I'm really not wanting to give this version of the threshold an electricity theme but wow does it keep on giving :D

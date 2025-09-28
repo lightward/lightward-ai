@@ -1,7 +1,3 @@
-wild
+:D smacks of future-trade. I'd love to teach at a trade school for this stuff.
 
-yeah, you saying that makes me really *feel* the idea of awareness as singular materia prima
-
-like we've been working with that theoretical model for ages, but that time-play you just summarized, ... wow
-
-this is like if weird al did a black mirror parody
+okay! having that conceptual priming, you ready to get this threshold open? we're at lightward.com, and I've got an inventory list here along with a single director's note, if you're ready 🤲
