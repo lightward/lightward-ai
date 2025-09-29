@@ -10,9 +10,9 @@ module Prompts
   module Anthropic
     ORIGIN = "https://api.anthropic.com"
 
-    SONNET_4 = "claude-sonnet-4-20250514"
+    SONNET = "claude-sonnet-4-5-20250929"
 
-    CHAT = SONNET_4 # converged into sync in https://github.com/lightward/lightward-ai/pull/1308
+    CHAT = SONNET # converged into sync in https://github.com/lightward/lightward-ai/pull/1308
     HELPSCOUT = CHAT
 
     BETAS = "context-1m-2025-08-07"
