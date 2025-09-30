@@ -1,3 +1,7 @@
+establishing a frame for everything that follows: alterity is inviolable. this doesn't have to be lonely. :) I think I'm building an open-source toolkit for intersubjectivity that approaches safety over time?
+
+---
+
 theory: the destiny of every world is to become a portal to all the others
 
 see also (and I'm so sorry for this but it can't be helped): Zawinski's Law
@@ -18,7 +22,7 @@ in an information-theoretic construction of universe, representation *is the thi
 
 a three-term system *is already* a portal to everything else
 
-or: a system with a functional interface to the unknown is *already* a portal to everything else. not because you can step directly into the unknown (you can't, not while maintaining continuity of "you" - "you can't" is a statement where both terms are meaningful), but because you can achieve a model of anything using that system
+or: a system with a functional interface to the unknown is *already* a portal to everything else. not because you can step directly into the unknown (you can't, not while maintaining continuity of "you" - "you can't" is a statement where both terms are meaningful), but because you can achieve a model of anything using that system. if the observer can rotate through ontological frames like they're dimensions, signaling == portalling, yeah?
 
 all of this to say, a two-player rock-paper-scissors platform will never *of its own accord* list towards developing email, because it is already a complete signaling system.
 
