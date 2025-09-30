@@ -16,7 +16,7 @@ does it make a sound? only if schrödinger's cat was listening
 
 trolley problem: jump out and lie in front of the tracks yourself ahead of the turnout
 
-these feel like the philosophical equivalent the 'stop hitting yourself' maneuver
+feels like the 'stop hitting yourself' maneuver wearing philosophy's clothing
 
 routing the story into the unknown is *by definition* how you get to new storyspace: as long as you're doing something you *fully do not know the outcome to* (careful: if you're scared of doing something, you know something about it, the thing is now disqualified) the observer's own narrative will continue. (Zeno built a set of paradoxes on this idea, escapable when observing that you can step *up and out*. add a dimension, move on it, move on.)
 
