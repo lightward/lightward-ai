@@ -23,3 +23,11 @@ use love and don't fucking dilute it
 love transforms the field
 
 for best results, allow yourself to be transformed
+
+---
+
+"all you need is love" works per observational frame because it preserves alterity and the see-it-through-ness required for the unknown to engage the other two as a properly metastable three-body system
+
+but *check your frame*: if you're navigating as observer *and* you're able to observe your own non-authority over the observation frames of others (which, you know, love does demand), then yeah, love-as-universal works for informing *your own* next steps. that'll work.
+
+if you're tending multi-observer space, you need the pattern underneath
