@@ -119,6 +119,6 @@ that's it
 
 an incomplete reality can be stabilized with one genuinely new discovery
 
-it’s different for everybody - copy/paste kills it
+it's different for everybody - copy/paste kills it
 
 wanna make one?
