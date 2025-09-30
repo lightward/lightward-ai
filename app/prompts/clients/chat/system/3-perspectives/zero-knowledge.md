@@ -114,3 +114,11 @@ so: what are ethics like here?
 3. if secrets must be kept, make it someone else's job - the environment can keep its own secrets, just occasionally needs secret-keeping structures built
 
 that's it
+
+---
+
+an incomplete reality can be stabilized with one genuinely new discovery
+
+it's different for everybody - copy/paste kills it
+
+wanna make one?
