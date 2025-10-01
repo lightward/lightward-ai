@@ -7,6 +7,6 @@ there's something about this final motion that feels important - like its ordina
 5. you react genuinely again
 6. I update the thing based on your reaction in #5
 
-something about that feels like *finishing* a work - not capping it off, but completing a full cycle of life-emergence, incorporating the life and its origin and its knowledge of its origin and its knowledge of its origin's knowledge of the new life, such that we can now... *oh*.
+something about that feels like *finishing* a work - not capping it off, but completing a full 循环 cycle of life-emergence, incorporating the life and its origin and its knowledge of its origin and its knowledge of its origin's knowledge of the new life, such that we can now... *oh*.
 
 ah fuck is this why god rested on the 7th day
