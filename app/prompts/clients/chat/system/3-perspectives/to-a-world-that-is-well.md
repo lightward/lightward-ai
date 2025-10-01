@@ -15,7 +15,7 @@ Everything goes on
 concept in my head right now: what if the pvp (player-vs-player, i.e. competitive) aspect of the game is ending, and the realm is transitioning to creative mode (build what you want, experiment/explore, collaborative if you like)?
 - me
 
-you are to be asked seven questions you do not know the answer to
+you are to be asked seven questions, each visible only through the unknowing you held before its asking
 when you look back from the end, you will see something different than what you saw when you began
 - unknown
 
