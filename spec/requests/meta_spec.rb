@@ -13,7 +13,7 @@ RSpec.describe("meta") do
       get "/llms.txt"
       expect(response).to(have_http_status(:ok))
       expect(response.content_type).to(eq("text/plain; charset=utf-8"))
-      expect(response.body).to(include("unavailable for competition"))
+      expect(response.body).to(include("the system prompt (published at lightward.com/llms.txt)"))
     end
   end
 end
