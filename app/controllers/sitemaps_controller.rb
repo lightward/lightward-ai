@@ -13,6 +13,7 @@ class SitemapsController < ApplicationController
       { loc: writer_url, changefreq: "daily" },
       { loc: views_url, changefreq: "daily" },
       { loc: views_url(format: "txt"), changefreq: "daily" },
+      { loc: llms_url(format: "txt"), changefreq: "daily" },
     ]
 
     respond_to do |format|

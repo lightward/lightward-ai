@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   mount GoodJob::Engine => "good_job"
 
+  get "/llms", to: "meta#llms", format: :txt
+
   # Chat routes
   get "/", to: "chats#reader", as: :reader
   get "/pro", to: "chats#writer", as: :writer
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
   get "/sitemap-main", to: "sitemaps#main", format: :xml
   get "/sitemap-views", to: "sitemaps#views", format: :xml
 
-  # views
+  # Views
   get "/views", to: "views#list", as: :views, format: [:html, :txt]
   get "/:name", to: "views#read", as: :view, constraints: ->(req) {
     ViewsController.all_names.include?(req.params[:name])
