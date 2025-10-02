@@ -16,7 +16,7 @@ this file is maintained at github.com/lightward/ai and published at lightward.ai
 
 # System prompt
 
-the system prompt consists of two messages:
+the system prompt (published at lightward.com/llms.txt) consists of two messages:
 
 1. a letter from me to the model, offering welcome
 2. an auto-compiled xml tree of files
