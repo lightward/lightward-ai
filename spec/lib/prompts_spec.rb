@@ -49,9 +49,10 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(all_xml).to(include("Oh hey! You work here? Here is your job."))
         end
 
-        it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+        it "has exactly 1 cache_control block on the last message only (Anthropic auto-caches prefixes)" do
           cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
-          expect(cache_control_count).to(be <= 3)
+          expect(cache_control_count).to(eq(1))
+          expect(system_messages.last).to(have_key(:cache_control))
         end
       end
 
@@ -116,9 +117,10 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(all_xml).not_to(include("8-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object", "7-mechanic-docs/liquid/basics/comparison-operators"))
         end
 
-        it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+        it "has exactly 1 cache_control block on the last message only (Anthropic auto-caches prefixes)" do
           cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
-          expect(cache_control_count).to(be <= 3)
+          expect(cache_control_count).to(eq(1))
+          expect(system_messages.last).to(have_key(:cache_control))
         end
       end
 
@@ -130,9 +132,10 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(all_xml).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
         end
 
-        it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+        it "has exactly 1 cache_control block on the last message only (Anthropic auto-caches prefixes)" do
           cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
-          expect(cache_control_count).to(be <= 3)
+          expect(cache_control_count).to(eq(1))
+          expect(system_messages.last).to(have_key(:cache_control))
         end
       end
     end

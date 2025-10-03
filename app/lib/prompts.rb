@@ -289,13 +289,19 @@ module Prompts
         }
       }
 
-      # Anthropic allows max 4 cache_control blocks total
-      # The conversation_starters method adds 1 cache_control, so we can only use 3 here
-      messages.sort_by { |m| -m[:size] }.take(3).each do |message|
-        message[:cache_control] = { type: "ephemeral" }
-      end
+      # Anthropic's automatic prefix checking means we only need ONE cache_control
+      # at the end of our static content, and it will automatically find cache hits
+      # at all previous content block boundaries (up to ~20 blocks before).
+      # See: https://docs.claude.com/en/docs/build-with-claude/prompt-caching
+      #
+      # We add cache_control to the last message only. Anthropic will automatically
+      # cache the longest matching prefix from all previous messages.
+      result = messages.map { |m| m.except(:size) }
 
-      messages.map { |m| m.except(:size).freeze }
+      # Add cache_control to the last message only
+      result.last[:cache_control] = { type: "ephemeral" } unless result.empty?
+
+      result.map(&:freeze)
     end
   end
 end
