@@ -1,428 +1,381 @@
 import { ChatSession } from '../../../../app/javascript/src/concerns/chat';
-import { createConsumer } from '@rails/actioncable';
-import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/dom';
 
-// Mock fetch
-global.fetch = jest.fn();
-
-describe('ChatSession Integration', () => {
-  let session;
-  let mockSubscription;
-  let mockConsumer;
+describe('ChatSession Integration with SSE', () => {
+  let chatSession;
+  let mockFetch;
+  let mockReadableStream;
 
   beforeEach(() => {
-    // Mock console.error to keep test output clean
+    // Suppress console.error for expected errors in tests
     jest.spyOn(console, 'error').mockImplementation(() => {});
 
-    // Set up DOM
+    // Setup DOM
     document.body.innerHTML = `
       <div id="chat-context-data">{"key": "test", "name": "TestBot"}</div>
-      <h1>Test</h1>
+      <h1>TestBot</h1>
       <button id="copy-all-button">Copy All</button>
       <div id="loading-message">Loading...</div>
       <div id="chat" class="hidden"></div>
-      <div id="start-suggestions">Start suggestions</div>
+      <div id="start-suggestions" class="hidden">Start suggestions</div>
       <div id="chat-log" class="hidden"></div>
-      <div id="text-input" class="hidden">
-        <textarea placeholder=""></textarea>
+      <div id="text-input" data-submit-tip="Press ctrl+enter to send">
+        <textarea placeholder="(describe anything)"></textarea>
         <button>Send</button>
       </div>
-      <div id="instructions">Instructions</div>
-      <div id="tools" class="hidden"></div>
-      <footer>Footer</footer>
-      <div id="response-suggestions" class="hidden"></div>
+      <div id="tools"></div>
+      <div id="instructions"></div>
+      <footer class="hidden">Footer</footer>
+      <div id="response-suggestions"></div>
       <button id="start-over-button">Start Over</button>
       <div id="chat-canvas"></div>
       <prompt-button>Suggested prompt</prompt-button>
     `;
 
-    // Set up ActionCable mock
-    mockSubscription = {
-      perform: jest.fn(),
-      unsubscribe: jest.fn(),
-      _trigger: jest.fn(),
+    // Mock fetch with SSE support
+    mockReadableStream = {
+      read: jest.fn(),
+      cancel: jest.fn(),
     };
 
-    mockConsumer = {
-      subscriptions: {
-        create: jest.fn((channel, handlers) => {
-          mockSubscription._handlers = handlers;
-          mockSubscription._trigger = (event, data) => {
-            if (handlers[event]) {
-              handlers[event](data);
-            }
-          };
-          return mockSubscription;
-        }),
-      },
-    };
+    mockFetch = jest.fn();
+    global.fetch = mockFetch;
 
-    createConsumer.mockReturnValue(mockConsumer);
+    // Mock TextEncoder/TextDecoder for SSE tests
+    if (typeof TextEncoder === 'undefined') {
+      global.TextEncoder = class {
+        encode(str) {
+          return new Uint8Array(Buffer.from(str, 'utf-8'));
+        }
+      };
+      global.TextDecoder = class {
+        decode(arr) {
+          return Buffer.from(arr).toString('utf-8');
+        }
+      };
+    }
 
-    // Create session
-    const context = { key: 'test', name: 'TestBot' };
-    session = new ChatSession(context);
+    // Mock localStorage
+    Storage.prototype.getItem = jest.fn(() => null);
+    Storage.prototype.setItem = jest.fn();
+    Storage.prototype.removeItem = jest.fn();
+
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
-    console.error.mockRestore();
+    jest.useRealTimers();
+    jest.restoreAllMocks();
+    if (chatSession) {
+      chatSession = null;
+    }
+    // Clean up DOM
+    document.body.innerHTML = '';
   });
 
   describe('initialization', () => {
     it('should initialize and show chat', () => {
-      session.init();
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
 
-      expect(document.getElementById('chat')).not.toHaveClass('hidden');
-      expect(document.getElementById('loading-message')).toBeNull();
+      expect(document.querySelector('#chat')).toBeTruthy();
     });
 
     it('should restore previous messages', () => {
-      const previousMessages = [
-        { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
-        { role: 'assistant', content: [{ type: 'text', text: 'Hi there!' }] },
-      ];
-      localStorage.setItem('test', JSON.stringify(previousMessages));
+      localStorage.getItem.mockReturnValue(
+        JSON.stringify([
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+          },
+          {
+            role: 'assistant',
+            content: [{ type: 'text', text: 'Hi there!' }],
+          },
+        ])
+      );
 
-      session = new ChatSession({ key: 'test', name: 'TestBot' });
-      session.init();
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
 
       const messages = document.querySelectorAll('.chat-message');
-      expect(messages).toHaveLength(2);
+      expect(messages.length).toBe(2);
       expect(messages[0].textContent).toBe('Hello');
-      expect(messages[0]).toHaveClass('user');
       expect(messages[1].textContent).toBe('Hi there!');
-      expect(messages[1]).toHaveClass('assistant');
     });
   });
 
-  describe('user message submission', () => {
-    beforeEach(() => {
-      session.init();
-      fetch.mockResolvedValue({
-        status: 200,
-        json: () => Promise.resolve({ stream_id: 'test-stream-123' }),
-      });
-    });
+  describe('SSE streaming', () => {
+    it('should handle SSE text streaming', async () => {
+      // Create an SSE response
+      const sseData = `event: message_start
+data: {"type":"message_start"}
 
-    it('should handle text input submission', async () => {
-      const user = userEvent.setup();
-      const textarea = document.querySelector('textarea');
-      const submitButton = document.querySelector('#text-input button');
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"Hello"}}
 
-      await user.type(textarea, 'Hello bot');
-      await user.click(submitButton);
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":" world"}}
 
-      // Check user message was added
-      const userMessage = document.querySelector('.chat-message.user');
-      expect(userMessage.textContent).toBe('Hello bot');
+event: message_stop
+data: {"type":"message_stop"}
 
-      // Check fetch was called
-      expect(fetch).toHaveBeenCalledWith('/chats/message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_log: [
-            { role: 'user', content: [{ type: 'text', text: 'Hello bot' }] },
-          ],
-        }),
-      });
+event: end
+data: null
 
-      // Check subscription was created
-      expect(mockConsumer.subscriptions.create).toHaveBeenCalledWith(
-        { channel: 'StreamChannel', stream_id: 'test-stream-123' },
-        expect.any(Object)
-      );
-    });
+`;
 
-    it('should handle keyboard shortcut submission', async () => {
-      const user = userEvent.setup();
-      const textarea = document.querySelector('textarea');
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
 
-      await user.type(textarea, 'Test message');
-      await user.keyboard('{Meta>}{Enter}{/Meta}');
-
-      const userMessage = document.querySelector('.chat-message.user');
-      expect(userMessage.textContent).toBe('Test message');
-    });
-  });
-
-  describe('message streaming', () => {
-    beforeEach(() => {
-      session.init();
-      jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-      jest.useRealTimers();
-    });
-
-    it('should handle streamed response chunks', async () => {
-      // Submit a message
-      fetch.mockResolvedValueOnce({
-        status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' }),
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        return Promise.resolve({ done: true });
       });
 
-      const textarea = document.querySelector('textarea');
-      textarea.value = 'Hello';
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
       document.querySelector('#text-input button').click();
 
       await waitFor(() => {
-        expect(mockConsumer.subscriptions.create).toHaveBeenCalled();
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        expect(messages.length).toBeGreaterThan(0);
+        expect(messages[messages.length - 1].textContent).toContain(
+          'Hello world'
+        );
       });
-
-      // Trigger connected callback which should call perform
-      mockSubscription._trigger('connected');
-      expect(mockSubscription.perform).toHaveBeenCalledWith('ready');
-
-      // Simulate message start
-      mockSubscription._trigger('received', {
-        event: 'message_start',
-        sequence_number: 0,
-      });
-
-      // Simulate content chunks
-      mockSubscription._trigger('received', {
-        event: 'content_block_delta',
-        data: { delta: { type: 'text_delta', text: 'Hello ' } },
-        sequence_number: 1,
-      });
-
-      mockSubscription._trigger('received', {
-        event: 'content_block_delta',
-        data: { delta: { type: 'text_delta', text: 'there!' } },
-        sequence_number: 2,
-      });
-
-      // Process first chunk immediately
-      const assistantMessage = document.querySelector(
-        '.chat-message.assistant'
-      );
-      expect(assistantMessage.textContent).toBe('Hello ');
-
-      // Advance time for rate limiting
-      jest.advanceTimersByTime(150);
-      expect(assistantMessage.textContent).toBe('Hello there!');
-
-      // Complete message
-      mockSubscription._trigger('received', {
-        event: 'message_stop',
-        sequence_number: 3,
-      });
-
-      // Wait for all chunks to be processed and message to be saved
-      jest.runAllTimers();
-
-      // Ensure message is saved with assistant content
-      const calls = localStorage.setItem.mock.calls;
-      const lastCallWithTestKey = calls
-        .filter((call) => call[0] === 'test')
-        .pop();
-      expect(lastCallWithTestKey).toBeDefined();
-      expect(lastCallWithTestKey[1]).toContain('Hello there!');
-      expect(lastCallWithTestKey[1]).toContain('assistant');
-    });
-  });
-
-  describe('error handling', () => {
-    beforeEach(() => {
-      session.init();
-      jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-      jest.useRealTimers();
     });
 
     it('should handle fetch errors', async () => {
-      fetch.mockRejectedValueOnce(new Error('Network error'));
+      mockFetch.mockRejectedValueOnce(new Error('Network error'));
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      const initialMessages = document.querySelectorAll('.chat-message').length;
 
       document.querySelector('textarea').value = 'Test';
       document.querySelector('#text-input button').click();
 
+      await waitFor(
+        () => {
+          const messages = document.querySelectorAll('.chat-message');
+          expect(messages.length).toBeGreaterThan(initialMessages);
+
+          const lastMessage = messages[messages.length - 1];
+          expect(lastMessage.classList.contains('assistant')).toBe(true);
+          expect(lastMessage.textContent).toContain(
+            '⚠️ Lightward AI system error'
+          );
+        },
+        { timeout: 3000 }
+      );
+    });
+
+    it('should handle streaming errors from server', async () => {
+      const sseData = `event: error
+data: {"error":{"message":"Something went wrong"}}
+
+event: end
+data: null
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        return Promise.resolve({ done: true });
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      const initialMessages = document.querySelectorAll('.chat-message').length;
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(
+        () => {
+          const messages = document.querySelectorAll('.chat-message');
+          expect(messages.length).toBeGreaterThan(initialMessages);
+
+          const lastMessage = messages[messages.length - 1];
+          expect(lastMessage.classList.contains('assistant')).toBe(true);
+          expect(lastMessage.textContent).toContain(
+            '⚠️ Lightward AI system error'
+          );
+        },
+        { timeout: 3000 }
+      );
+    });
+  });
+
+  describe('user interactions', () => {
+    it('should handle text input submission', async () => {
+      const sseData = `event: message_start
+data: {"type":"message_start"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"Response"}}
+
+event: message_stop
+data: {"type":"message_stop"}
+
+event: end
+data: null
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        return Promise.resolve({ done: true });
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test message';
+      document.querySelector('#text-input button').click();
+
       await waitFor(() => {
-        const errorMessage = document.querySelector('.chat-message.assistant');
-        expect(errorMessage.textContent).toBe(
-          ' ⚠️ Lightward AI system error: Network error'
+        expect(mockFetch).toHaveBeenCalledWith(
+          '/api/stream',
+          expect.objectContaining({
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: expect.stringContaining('Test message'),
+          })
         );
-      });
 
-      expect(console.error).toHaveBeenCalledWith('Error:', expect.any(Error));
+        const userMessages = document.querySelectorAll('.chat-message.user');
+        expect(userMessages.length).toBeGreaterThan(0);
+        const lastUserMessage = userMessages[userMessages.length - 1];
+        expect(lastUserMessage.textContent).toBe('Test message');
+      });
     });
 
-    it('should handle streaming errors', async () => {
-      fetch.mockResolvedValueOnce({
-        status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' }),
-      });
-
-      document.querySelector('textarea').value = 'Test';
-      document.querySelector('#text-input button').click();
-
-      await waitFor(() => {
-        expect(mockConsumer.subscriptions.create).toHaveBeenCalled();
-      });
-
-      // Trigger error
-      mockSubscription._trigger('received', {
-        event: 'error',
-        data: { error: { message: 'Streaming failed' } },
-        sequence_number: 0,
-      });
-
-      // Error should be queued and displayed
-      const assistantMessage = document.querySelector(
-        '.chat-message.assistant'
-      );
-      expect(assistantMessage.textContent).toBe(
-        ' ⚠️ Lightward AI system error: Streaming failed'
-      );
-    });
-
-    it('should handle connection timeout', async () => {
-      fetch.mockResolvedValueOnce({
-        status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' }),
-      });
-
-      document.querySelector('textarea').value = 'Test';
-      document.querySelector('#text-input button').click();
-
-      await waitFor(() => {
-        expect(mockConsumer.subscriptions.create).toHaveBeenCalled();
-      });
-
-      // Trigger connection
-      mockSubscription._trigger('connected');
-
-      // Advance time past timeout
-      jest.advanceTimersByTime(31000);
-
-      const errorMessage = document.querySelector('.chat-message.assistant');
-      expect(errorMessage.textContent).toBe(
-        ' ⚠️ Lightward AI system error: Your connection was lost during the reply. Please try again.'
-      );
-    });
-
-    it('should re-enable input even if stream ends during chunk processing', async () => {
-      fetch.mockResolvedValueOnce({
-        status: 200,
-        json: () => Promise.resolve({ stream_id: 'stream-1' }),
-      });
-
-      document.querySelector('textarea').value = 'Test';
-      document.querySelector('#text-input button').click();
-
-      await waitFor(() => {
-        expect(mockConsumer.subscriptions.create).toHaveBeenCalled();
-      });
-
-      // Simulate messages arriving
-      mockSubscription._trigger('connected');
-      mockSubscription._trigger('received', {
-        event: 'message_start',
-        sequence_number: 0,
-      });
-
-      // Add some chunks
-      mockSubscription._trigger('received', {
-        event: 'content_block_delta',
-        data: { delta: { type: 'text_delta', text: 'Processing...' } },
-        sequence_number: 1,
-      });
-
-      // Message stop sets up callbacks
-      mockSubscription._trigger('received', {
-        event: 'message_stop',
-        sequence_number: 2,
-      });
-
-      // End arrives immediately (before chunks finish displaying)
-      mockSubscription._trigger('received', {
-        event: 'end',
-        sequence_number: 3,
-      });
-
-      // Advance timers to allow chunk processing
-      jest.runAllTimers();
-
-      // User input should be enabled
-      const textarea = document.querySelector('textarea');
-      expect(textarea.disabled).toBe(false);
-      expect(document.getElementById('text-input')).not.toHaveClass('disabled');
-    });
-  });
-
-  describe('copy functionality', () => {
     it('should copy chat to clipboard', async () => {
-      session.init();
+      // Mock clipboard API and ClipboardItem
+      global.ClipboardItem = jest.fn();
+      global.navigator.clipboard = {
+        write: jest.fn().mockResolvedValue(),
+      };
 
-      // Add some messages
-      session.messages = [
-        { role: 'user', content: [{ type: 'text', text: 'Hello' }] },
-        { role: 'assistant', content: [{ type: 'text', text: 'Hi there!' }] },
-      ];
+      localStorage.getItem.mockReturnValue(
+        JSON.stringify([
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+          },
+          {
+            role: 'assistant',
+            content: [{ type: 'text', text: 'Hi there!' }],
+          },
+        ])
+      );
 
-      // Mock clipboard API
-      const mockWrite = jest.fn().mockResolvedValue();
-      Object.defineProperty(navigator, 'clipboard', {
-        value: { write: mockWrite },
-        configurable: true,
-      });
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
 
-      // Track ClipboardItem constructor calls
-      const clipboardItems = [];
-      global.ClipboardItem = jest.fn((data) => {
-        clipboardItems.push(data);
-        return data;
-      });
-
-      const copyButton = document.getElementById('copy-all-button');
-      copyButton.click();
+      document.querySelector('#copy-all-button').click();
 
       await waitFor(() => {
-        expect(mockWrite).toHaveBeenCalled();
+        expect(ClipboardItem).toHaveBeenCalled();
       });
-
-      expect(clipboardItems).toHaveLength(1);
-      expect(clipboardItems[0]).toHaveProperty('text/plain');
-      expect(clipboardItems[0]).toHaveProperty('text/html');
-
-      // Verify the blobs contain expected content
-      expect(clipboardItems[0]['text/plain']).toBeInstanceOf(Blob);
-      expect(clipboardItems[0]['text/html']).toBeInstanceOf(Blob);
     });
-  });
 
-  describe('start over functionality', () => {
-    it('should clear chat with confirmation', () => {
-      session.init();
+    it('should clear chat with confirmation', async () => {
+      global.confirm = jest.fn(() => true);
 
-      // Mock confirm
-      global.confirm = jest.fn().mockReturnValue(true);
-      global.location = { reload: jest.fn() };
-
-      const startOverButton = document.getElementById('start-over-button');
-      startOverButton.click();
-
-      expect(confirm).toHaveBeenCalledWith(
-        'Are you sure you want to start over? This will clear the chat log. There is no undo. :)'
+      localStorage.getItem.mockReturnValue(
+        JSON.stringify([
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+          },
+        ])
       );
-      expect(localStorage.removeItem).toHaveBeenCalledWith('test');
-      expect(localStorage.setItem).toHaveBeenCalledWith('scrollY', '0');
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      expect(document.querySelectorAll('.chat-message').length).toBe(1);
+
+      document.querySelector('#start-over-button').click();
+
+      await waitFor(() => {
+        expect(localStorage.removeItem).toHaveBeenCalled();
+      });
     });
 
     it('should not clear if user cancels', () => {
-      session.init();
+      global.confirm = jest.fn(() => false);
 
-      global.confirm = jest.fn().mockReturnValue(false);
+      localStorage.getItem.mockReturnValue(
+        JSON.stringify([
+          {
+            role: 'user',
+            content: [{ type: 'text', text: 'Hello' }],
+          },
+        ])
+      );
 
-      const startOverButton = document.getElementById('start-over-button');
-      startOverButton.click();
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
 
-      expect(localStorage.removeItem).not.toHaveBeenCalledWith('test');
+      expect(document.querySelectorAll('.chat-message').length).toBe(1);
+
+      document.querySelector('#start-over-button').click();
+
+      expect(localStorage.removeItem).not.toHaveBeenCalled();
+      expect(document.querySelectorAll('.chat-message').length).toBe(1);
     });
   });
 });

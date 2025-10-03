@@ -1,9 +1,0 @@
-development:
-  adapter: postgresql
-
-test:
-  adapter: test
-
-production:
-  adapter: postgresql
-  # TODO switch to postgres! yay!
