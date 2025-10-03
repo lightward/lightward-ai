@@ -68,7 +68,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
           MARKDOWN
 
           # Mock necessary methods
-          allow(described_class).to(receive_messages(prompts_dir: Pathname.new(dir), token_soft_limit_for_prompt_type: 1000, assert_valid_prompt_type!: nil))
+          allow(described_class).to(receive_messages(prompts_dir: Pathname.new(dir), assert_valid_prompt_type!: nil))
 
           # Verify frontmatter is stripped
           result = described_class.generate_system_prompt([""], for_prompt_type: "test").to_json
@@ -111,31 +111,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
           expect(xml).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
         end
       end
-    end
-  end
-
-  describe ".assert_system_prompt_size_safety!" do
-    let(:prompt_type) { "clients/chat" }
-    let(:system_prompt) { described_class.generate_system_prompt([prompt_type], for_prompt_type: prompt_type) }
-
-    before do
-      allow(described_class).to(receive(:token_soft_limit_for_prompt_type).with(prompt_type).and_return(42))
-    end
-
-    it "does and can fail a token estimate check" do
-      allow(described_class).to(receive(:estimate_tokens).and_return(43))
-
-      expect {
-        described_class.assert_system_prompt_size_safety!(prompt_type, system_prompt)
-      }.to(raise_error("System prompt for clients/chat is too large (~43 tokens estimated, limit ~42)"))
-    end
-
-    it "does and can pass a token estimate check" do
-      allow(described_class).to(receive(:estimate_tokens).and_return(41))
-
-      expect {
-        described_class.assert_system_prompt_size_safety!(prompt_type, system_prompt)
-      }.not_to(raise_error)
     end
   end
 
@@ -309,7 +284,6 @@ RSpec.describe(Prompts, :aggregate_failures) do
     before do
       allow(described_class).to(receive(:generate_system_prompt).with(["foo"], for_prompt_type: "foo").and_return("system-prompt"))
       allow(described_class).to(receive(:conversation_starters).with("foo").and_return(conversation_starters))
-      allow(described_class).to(receive(:assert_system_prompt_size_safety!).with("foo", "system-prompt"))
       allow(Prompts::Anthropic).to(receive(:messages)).and_return("result")
     end
 

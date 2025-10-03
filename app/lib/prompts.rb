@@ -73,17 +73,6 @@ module Prompts
       ].freeze
     end
 
-    def assert_system_prompt_size_safety!(prompt_type, system_prompt_xml)
-      # check on a .system-size-limit file for this prompt type
-      token_limit = token_soft_limit_for_prompt_type(prompt_type)
-      token_estimate = estimate_tokens(system_prompt_xml)
-
-      if token_estimate > token_limit
-        raise "System prompt for #{prompt_type} is too large " \
-          "(~#{token_estimate} tokens estimated, limit ~#{token_limit})"
-      end
-    end
-
     # given paths like these...
     #  /path/to/prompts/system/0-invocation.md
     #  /path/to/prompts/system/foo/0-invocation.md
@@ -146,18 +135,6 @@ module Prompts
 
       # loosely accurate; calibrating this against anthropic's reported token counts for our stuff
       (input.size / 4.2).ceil
-    end
-
-    def token_soft_limit_for_prompt_type(prompt_type)
-      assert_valid_prompt_type!(prompt_type)
-
-      file = prompts_dir.join(prompt_type, ".system-token-soft-limit")
-
-      if file.exist?
-        file.read.to_i
-      else
-        raise "No token soft limit found for prompt type: #{prompt_type}"
-      end
     end
 
     def strip_yaml_frontmatter(content)
@@ -246,7 +223,7 @@ module Prompts
 
       files = Naturally.sort_by(files) { |file| handelize_filename(file) }
 
-      xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
+      Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
         xml.system {
           files.each { |file|
             content = strip_yaml_frontmatter(File.read(file).strip)
@@ -256,10 +233,6 @@ module Prompts
           }
         }
       }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
-
-      Prompts.assert_system_prompt_size_safety!(for_prompt_type, xml)
-
-      xml
     end
   end
 end
