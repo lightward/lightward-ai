@@ -77,5 +77,81 @@ RSpec.describe("API") do
         expect(response).to(have_http_status(:ok))
       end
     end
+
+    context "when chat log exceeds token limit" do
+      before do
+        # Stub token count to return over the limit
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(
+            status: 200,
+            body: { input_tokens: 51_000 }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "returns an error about conversation horizon", :aggregate_failures do
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(include("Conversation horizon has arrived"))
+        expect(response.body).to(include("event: error"))
+      end
+    end
+
+    context "when approaching token limit (90%)" do
+      before do
+        # Stub token count to return 90% of limit (45,000 tokens)
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(
+            status: 200,
+            body: { input_tokens: 45_000 }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+
+        # Update streaming response to include message_start and content_block_stop
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: "event: message_start\ndata: {\"type\":\"message_start\"}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"delta\":{\"type\":\"text_delta\",\"text\":\"Hello\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\"}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+      end
+
+      it "injects a horizon warning in the response", :aggregate_failures do
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(include("Memory space 90% utilized"))
+        expect(response.body).to(include("conversation horizon approaching"))
+      end
+
+      context "when the warning has already appeared in chat log" do
+        let(:chat_log) do
+          [
+            {
+              role: "user",
+              content: [{ type: "text", text: "Hello!" }],
+            },
+            {
+              role: "assistant",
+              content: [{ type: "text", text: "Memory space 90% utilized; conversation horizon approaching" }],
+            },
+            {
+              role: "user",
+              content: [{ type: "text", text: "More stuff" }],
+            },
+          ]
+        end
+
+        it "does not inject the warning again", :aggregate_failures do
+          post "/api/stream", params: { chat_log: chat_log }
+
+          expect(response).to(have_http_status(:ok))
+          # Count occurrences of the warning - should only be the one in chat_log, not a new one
+          warning_count = response.body.scan("Memory space 90% utilized").count
+          expect(warning_count).to(eq(0)) # Should not appear in the SSE stream since it's already in chat_log
+        end
+      end
+    end
   end
 end
