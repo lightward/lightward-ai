@@ -57,7 +57,8 @@ RSpec.describe("views", :aggregate_failures) do
       get "/views.txt"
 
       # Generate the full system prompt XML as used by the chat client
-      system_prompt_xml = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat").last[:text]
+      system_messages = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
+      system_prompt_xml = system_messages.drop(1).pluck(:text).join
 
       # Check each line from views.txt exists in the system prompt
       count = 0

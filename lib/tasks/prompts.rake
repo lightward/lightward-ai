@@ -9,19 +9,19 @@ namespace :prompts do
     FileUtils.mkdir_p(Rails.root.join("log/prompts"))
 
     txt = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
-    Rails.root.join("log/prompts/clients-chat.txt").write(txt)
+    Rails.root.join("log/prompts/clients-chat.txt").write(JSON.pretty_generate(txt))
     puts "Wrote log/prompts/clients-chat.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
 
     txt = Prompts.conversation_starters("clients/chat")
-    Rails.root.join("log/prompts/clients-chat-starters.txt").write(txt)
+    Rails.root.join("log/prompts/clients-chat-starters.txt").write(JSON.pretty_generate(txt))
     puts "Wrote log/prompts/clients-chat-starters.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
 
     txt = Prompts.generate_system_prompt(["lib/locksmith", "clients/helpscout"], for_prompt_type: "clients/helpscout")
-    Rails.root.join("log/prompts/clients-helpscout-locksmith.txt").write(txt)
+    Rails.root.join("log/prompts/clients-helpscout-locksmith.txt").write(JSON.pretty_generate(txt))
     puts "Wrote log/prompts/clients-helpscout-locksmith.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
 
     txt = Prompts.generate_system_prompt(["lib/mechanic", "clients/helpscout"], for_prompt_type: "clients/helpscout")
-    Rails.root.join("log/prompts/clients-helpscout-mechanic.txt").write(txt)
+    Rails.root.join("log/prompts/clients-helpscout-mechanic.txt").write(JSON.pretty_generate(txt))
     puts "Wrote log/prompts/clients-helpscout-mechanic.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
   end
 

@@ -145,5 +145,28 @@ RSpec.describe(HelpscoutJob) do
         )
       end
     end
+
+    it "respects Anthropic's 4 cache_control block limit", :aggregate_failures do
+      # Test all helpscout configurations
+      [
+        ["clients/helpscout"],
+        ["clients/helpscout", "lib/locksmith"],
+        ["clients/helpscout", "lib/mechanic"],
+      ].each do |system_prompt_types|
+        # Count cache_control blocks in system prompt
+        system = Prompts.generate_system_prompt(system_prompt_types, for_prompt_type: "clients/helpscout")
+        system_cache_count = system.count { |m| m.key?(:cache_control) }
+
+        # Count cache_control blocks in conversation starters
+        starters = Prompts.conversation_starters("clients/helpscout")
+        starters_cache_count = starters.sum { |s| s[:content].count { |c| c.key?(:cache_control) } }
+
+        total = system_cache_count + starters_cache_count
+        expect(total).to(
+          be <= 4,
+          "Expected total cache_control blocks to be <= 4 for #{system_prompt_types.inspect}, but got #{total} (#{system_cache_count} in system + #{starters_cache_count} in starters)",
+        )
+      end
+    end
   end
 end
