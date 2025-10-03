@@ -3,17 +3,17 @@
     {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
-      "fingerprint": "e56f992910da9e13fe7a2f50d2c964c2ae0e55df4c4d87f69c0d9da1c6f2fb6f",
+      "fingerprint": "3408ae8d04706aaa8512837cba494e2e63a1b60bbd4e11092ff0b2f0beacff57",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
-      "file": "app/controllers/chats_controller.rb",
-      "line": 21,
+      "file": "app/controllers/api_controller.rb",
+      "line": 172,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "log_entry.permit(:role, :content => ([:type, :text]))",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "ChatsController",
+        "class": "ApiController",
         "method": "permitted_chat_log_params"
       },
       "user_input": ":role",
@@ -21,9 +21,9 @@
       "cwe_id": [
         915
       ],
-      "note": "eh"
+      "note": "Safe - we only permit specific role and content structure matching Anthropic's message format"
     }
   ],
-  "updated": "2024-05-16 12:06:21 -0700",
-  "brakeman_version": "6.1.2"
+  "updated": "2025-10-03 16:28:25 -0500",
+  "brakeman_version": "7.1.0"
 }
