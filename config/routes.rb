@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get "/", to: "chats#reader", as: :reader
   get "/pro", to: "chats#writer", as: :writer
 
-  # API endpoint for sending messages to the chat
-  post "/chats/message", to: "chats#message"
+  # API endpoint for streaming chat responses
+  post "/api/stream", to: "api#stream"
 
   # Webhook endpoints
   post "/webhooks/helpscout", to: "webhooks/helpscout#receive"

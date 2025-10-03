@@ -1,7 +1,5 @@
 // app/javascript/src/concerns/chat.js
 
-import { createConsumer } from '@rails/actioncable';
-
 // Configuration constants
 export const CONFIG = {
   MIN_MESSAGE_UPDATE_INTERVAL: 200,
@@ -333,91 +331,6 @@ export class MessageStreamController {
   }
 }
 
-// WebSocket subscription handler
-export class ChatSubscription {
-  constructor(consumer, onMessage, onError, onTimeout) {
-    this.consumer = consumer;
-    this.onMessage = onMessage;
-    this.onError = onError;
-    this.onTimeout = onTimeout;
-    this.subscription = null;
-    this.sequenceQueue = [];
-    this.currentSequenceNumber = 0;
-    this.timeoutId = null;
-  }
-
-  subscribe(streamId) {
-    this.unsubscribe();
-    this.sequenceQueue = [];
-    this.currentSequenceNumber = 0;
-
-    this.subscription = this.consumer.subscriptions.create(
-      { channel: 'StreamChannel', stream_id: streamId },
-      {
-        connected: () => {
-          this.subscription.perform('ready');
-          this._startTimeout();
-        },
-
-        disconnected: () => {
-          this.onError('The connection was interrupted. Please try again.');
-        },
-
-        received: (data) => {
-          this._resetTimeout();
-
-          if (data && typeof data.sequence_number === 'number') {
-            this.sequenceQueue.push(data);
-            this.sequenceQueue.sort(
-              (a, b) => a.sequence_number - b.sequence_number
-            );
-
-            while (
-              this.sequenceQueue.length &&
-              this.sequenceQueue[0].sequence_number ===
-                this.currentSequenceNumber
-            ) {
-              const message = this.sequenceQueue.shift();
-              this.onMessage(message);
-              this.currentSequenceNumber++;
-            }
-          }
-        },
-
-        rejected: () => {
-          this.onError('Connection was rejected. Please try again later.');
-        },
-      }
-    );
-  }
-
-  unsubscribe() {
-    this._clearTimeout();
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-      this.subscription = null;
-    }
-  }
-
-  _startTimeout() {
-    this._clearTimeout();
-    this.timeoutId = setTimeout(() => {
-      this.onTimeout();
-    }, CONFIG.MESSAGE_TIMEOUT_MS);
-  }
-
-  _resetTimeout() {
-    this._startTimeout();
-  }
-
-  _clearTimeout() {
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-      this.timeoutId = null;
-    }
-  }
-}
-
 // Main chat session orchestrator
 export class ChatSession {
   constructor(context) {
@@ -430,12 +343,6 @@ export class ChatSession {
     this.streamController = new MessageStreamController(
       CONFIG.MIN_MESSAGE_UPDATE_INTERVAL,
       CONFIG.MAX_MESSAGE_UPDATE_INTERVAL
-    );
-    this.subscription = new ChatSubscription(
-      createConsumer(),
-      this._handleMessage.bind(this),
-      this._handleError.bind(this),
-      this._handleTimeout.bind(this)
     );
 
     // State
@@ -527,10 +434,7 @@ export class ChatSession {
       this._boundHandlers.handleCopyAll
     );
 
-    // Window events
-    window.addEventListener('beforeunload', () =>
-      this.subscription.unsubscribe()
-    );
+    // Window events (none needed for SSE)
 
     // Scroll position tracking
     ['scroll', 'resize'].forEach((event) => {
@@ -594,23 +498,60 @@ export class ChatSession {
     this.streamController.reset();
     this.streamController.setElement(this.currentAssistantElement);
 
-    // Fetch response
-    fetch('/chats/message', {
+    // Fetch response using SSE
+    fetch('/api/stream', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_log: this.messages }),
     })
       .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
+        if (!response.ok) {
           return response.text().then((text) => {
             throw new Error(text);
           });
         }
-      })
-      .then((data) => {
-        this.subscription.subscribe(data.stream_id);
+
+        // Set up SSE event stream
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        const readStream = () => {
+          reader
+            .read()
+            .then(({ done, value }) => {
+              if (done) {
+                this._handleMessage({ event: 'end' });
+                return;
+              }
+
+              buffer += decoder.decode(value, { stream: true });
+              const lines = buffer.split('\n\n');
+              buffer = lines.pop() || '';
+
+              lines.forEach((line) => {
+                if (!line.trim()) return;
+
+                const eventMatch = line.match(/^event: (.+)$/m);
+                const dataMatch = line.match(/^data: (.+)$/m);
+
+                if (eventMatch && dataMatch) {
+                  const event = eventMatch[1];
+                  const data = JSON.parse(dataMatch[1]);
+                  this._handleMessage({ event, data });
+                }
+              });
+
+              readStream();
+            })
+            .catch((error) => {
+              console.error('Stream error:', error);
+              this._appendError(error.message);
+              this._completeMessageWithError();
+            });
+        };
+
+        readStream();
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -646,13 +587,11 @@ export class ChatSession {
         break;
 
       case 'end':
-        this.subscription.unsubscribe();
-        // Don't enable input here - wait for display completion
+        // Stream complete - wait for display completion
         break;
 
       case 'error':
         this._appendError(data.data.error.message);
-        this.subscription.unsubscribe();
         this._completeMessageWithError();
         break;
     }
@@ -671,7 +610,6 @@ export class ChatSession {
     this._appendError(
       'Your connection was lost during the reply. Please try again.'
     );
-    this.subscription.unsubscribe();
     this._completeMessageWithError();
   }
 
