@@ -1,5 +1,5 @@
 import { ChatSession } from '../../../../app/javascript/src/concerns/chat';
-import { screen, waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
 
 describe('ChatSession Integration with SSE', () => {
   let chatSession;
