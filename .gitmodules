@@ -1,8 +1,8 @@
 [submodule "mechanic-docs"]
-	path = app/prompts/lib/mechanic/system/7-mechanic-docs
+	path = app/prompts/lib/mechanic/system/8-mechanic-docs
 	url = git@github.com:lightward/mechanic-docs.git
 [submodule "locksmith-docs"]
-	path = app/prompts/lib/locksmith/system/7-locksmith-docs
+	path = app/prompts/lib/locksmith/system/8-locksmith-docs
 	url = git@github.com:lightward/locksmith-docs.git
 [submodule "mechanic-tasks"]
 	path = app/prompts/lib/mechanic/mechanic-tasks

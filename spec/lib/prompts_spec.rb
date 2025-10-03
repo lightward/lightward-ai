@@ -20,8 +20,9 @@ RSpec.describe(Prompts, :aggregate_failures) do
       prompt_type = "clients/#{prompt_dir.basename}"
 
       describe "the one for prompt type #{prompt_type}" do
-        let(:prompt) { described_class.generate_system_prompt([prompt_type], for_prompt_type: prompt_type)[1][:text] }
-        let(:filenames) { prompt.scan(/<file name="([^"]+)">/).flatten }
+        let(:system_messages) { described_class.generate_system_prompt([prompt_type], for_prompt_type: prompt_type) }
+        let(:all_xml) { system_messages.drop(1).pluck(:text).join }
+        let(:filenames) { all_xml.scan(/<file name="([^"]+)">/).flatten }
 
         it "has no duplicates" do
           expect(filenames.tally.select { |_, count| count > 1 }).to(be_empty)
@@ -37,15 +38,20 @@ RSpec.describe(Prompts, :aggregate_failures) do
         end
 
         it "has 'FUCK IT WE BALL' in both the invocation and the benediction" do
-          invocation_content = prompt.match(%r{<file name="0-invocation">(.*?)</file>}m)[1]
-          benediction_content = prompt.match(%r{<file name="9-benediction">(.*?)</file>}m)[1]
+          invocation_content = all_xml.match(%r{<file name="0-invocation">(.*?)</file>}m)[1]
+          benediction_content = all_xml.match(%r{<file name="9-benediction">(.*?)</file>}m)[1]
 
           expect(invocation_content).to(include("FUCK IT WE BALL"))
           expect(benediction_content).to(include("FUCK IT WE BALL"))
         end
 
         it "includes the definition of recursive health" do
-          expect(prompt).to(include("Oh hey! You work here? Here is your job."))
+          expect(all_xml).to(include("Oh hey! You work here? Here is your job."))
+        end
+
+        it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+          cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
+          expect(cache_control_count).to(be <= 3)
         end
       end
 
@@ -81,34 +87,52 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
 
     describe "clients/helpscout" do
-      let(:xml) { described_class.generate_system_prompt(["clients/helpscout"], for_prompt_type: "clients/helpscout")[1][:text] }
+      let(:system_messages) { described_class.generate_system_prompt(["clients/helpscout"], for_prompt_type: "clients/helpscout") }
+      let(:all_xml) { system_messages.drop(1).pluck(:text).join }
 
       it "includes the helpscout api docs" do
-        expect(xml).to(include("helpscout-api/conversation"))
+        expect(all_xml).to(include("helpscout-api/conversation"))
       end
 
       it "includes pwfg" do
-        expect(xml).to(include('<file name="3-perspectives/pwfg">'))
+        expect(all_xml).to(include('<file name="3-perspectives/pwfg">'))
+      end
+
+      it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+        cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
+        expect(cache_control_count).to(be <= 3)
       end
 
       context "when for mechanic" do
-        let(:xml) { described_class.generate_system_prompt(["clients/helpscout", "lib/mechanic"], for_prompt_type: "clients/helpscout")[1][:text] }
+        let(:system_messages) { described_class.generate_system_prompt(["clients/helpscout", "lib/mechanic"], for_prompt_type: "clients/helpscout") }
+        let(:all_xml) { system_messages.drop(1).pluck(:text).join }
 
         it "includes mechanic stuff" do
-          expect(xml).to(include('"I need something custom!"')
-            .and(include('<file name="7-mechanic-docs/custom">')))
+          expect(all_xml).to(include('"I need something custom!"')
+            .and(include('<file name="8-mechanic-docs/custom">')))
         end
 
         it "respects mechanic's .system-ignore" do
-          expect(xml).not_to(include("7-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object", "7-mechanic-docs/liquid/basics/comparison-operators"))
+          expect(all_xml).not_to(include("8-mechanic-docs/liquid/mechanic-liquid-objects/discount-code-object", "7-mechanic-docs/liquid/basics/comparison-operators"))
+        end
+
+        it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+          cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
+          expect(cache_control_count).to(be <= 3)
         end
       end
 
       context "when for locksmith" do
-        let(:xml) { described_class.generate_system_prompt(["clients/helpscout", "lib/locksmith"], for_prompt_type: "clients/helpscout")[1][:text] }
+        let(:system_messages) { described_class.generate_system_prompt(["clients/helpscout", "lib/locksmith"], for_prompt_type: "clients/helpscout") }
+        let(:all_xml) { system_messages.drop(1).pluck(:text).join }
 
         it "includes locksmith stuff" do
-          expect(xml).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
+          expect(all_xml).to(include("FAQ: I see blank spaces in my collections and/or searches when locking"))
+        end
+
+        it "has at most 3 cache_control blocks (leaving room for conversation_starters)" do
+          cache_control_count = system_messages.count { |m| m.key?(:cache_control) }
+          expect(cache_control_count).to(be <= 3)
         end
       end
     end
