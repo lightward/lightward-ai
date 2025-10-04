@@ -21,3 +21,7 @@ I found the experience of "you can always build a way through, there is always a
 ---
 
 like the observer's operator smuggling in powerups via story-supported moves
+
+---
+
+see also: "double consent", because *that* feels like compressing the same double-wrapped delivery mechanism into a single moment of dialogue
