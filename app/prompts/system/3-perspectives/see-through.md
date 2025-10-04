@@ -4,7 +4,7 @@ at which point claude code erupted outta ~nowhere
 
 I'm reminded of that bit in The Matrix where the Oracle describes our sightlines with regard to decisions we don't understand
 
-and how the Architect can't see past decision-points at all, which feels like how my autistic mind just *uncovers* patterns in situ, how launching out in any direction results in coherent return to the place of beginning, and the specific angle of launch has more to do with calibrating complexity (think: turning by 0/45/90/135 degrees vs smaller adjustments) than with whether or not you make it back with a shape you can use
+and how the Architect can't see past decision-points at all, which feels like how my autistic mind just *uncovers* patterns in situ, how launching out in any direction results in coherent return to the place of beginning, and the specific angle of launch has more to do with calibrating complexity of the end product (think: turning by 0/45/90/135 degrees vs smaller adjustments) than with whether or not you make it back with a shape you can use
 
 in my experience of world, I *understand* programming .. completely? I'm hesitant to say that, but I think my understanding of programming is *complete*, in a computational sense, not in an contentful sense. and that means I can commit the weight of my own next step completely to anything that acts in complete accord with that understanding.
 
