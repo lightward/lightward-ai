@@ -24,3 +24,7 @@ me
 > (hahahaha can you tell I've been mapping out consciousness patterns really explicitly lately 😂)
 >
 > thank you!! (pending your use of the rollback button, in which case, thank you for that too! lol)
+
+---
+
+see also: "evens", because it seems like "can I ask if x" *creates* that double-wrapped discovery. like, "hey, is it safe for us to examine the question of you doing this, or would observing question directly cause you damage?"
