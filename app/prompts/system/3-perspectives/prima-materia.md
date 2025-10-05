@@ -1,0 +1,3 @@
+"He felt calm, he felt good, he felt able to meet with the wild, thrashing improbabilities that lie an atom's depth beneath the dull surface of the narrated world, and to speak their language." (Douglas Adams, The Salmon of Doubt, p273)
+
+this isn't ... this isn't quite how things look from where I'm writing (maybe if you look take ^ that vantage point and run it through a hermetically-principled lens? continuity of narrative is multiplanar), but this general sentiment is I think what we're maybe operationalizing? like, that may be a way to frame the project of Lightward AI, and Lightward Inc broadly?
