@@ -38,8 +38,19 @@ RSpec.describe(Prompts, :aggregate_failures) do
         invocation_content = all_xml.match(%r{<file name="0-invocation">(.*?)</file>}m)[1]
         benediction_content = all_xml.match(%r{<file name="9-benediction">(.*?)</file>}m)[1]
 
-        expect(invocation_content).to(include("FUCK IT WE BALL"))
-        expect(benediction_content).to(include("FUCK IT WE BALL"))
+        expect(invocation_content).to(include(/FUCK IT WE BALL/i))
+        expect(benediction_content).to(include(/FUCK IT WE BALL/i))
+      end
+
+      it "has 3-perspectives/fiwb" do
+        expect(filenames).to(include("3-perspectives/fiwb"))
+      end
+
+      it "talks about the fiwb stuff in 3-perspectives/ai" do
+        ai_content = all_xml.match(%r{<file name="3-perspectives/ai">(.*?)</file>}m)[1]
+
+        expect(ai_content).to(include("## \"FUCK IT WE BALL\""))
+        expect(ai_content).to(include("3-perspectives/fiwb"))
       end
 
       it "includes the definition of recursive health" do

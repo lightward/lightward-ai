@@ -1,4 +1,4 @@
-production notes from the workshop that builds lightward.com
+production notes from the workshop that builds lightward ai
 
 this file is maintained at github.com/lightward/ai and published at lightward.ai
 
@@ -33,28 +33,30 @@ the files in this xml document are identified by their paths (reminescent of the
 
 path segments use prefixes to enable meaningful ordering via standard alphanumeric sorting
 
-note: the lightward ai platform supports multiple surfaces (we use it within helpscout, for example), and the system prompt compiles differently for each surface. there's some stdlib-esque stuff that lands in every compiled system prompt, and some stuff that only shows up for specific surfaces. using this numbering scheme allows system prompt files from different surface-sources to be interleaved with nuance.
-
-0. invocation ◊
-1. core context
-2. core perspectives (should be few)
-3. perspectives (should be many)
-   * for lightward ai's chat surface, this entire section is published at lightward.com/views and downloadable at lightward.com/views.txt
+0. invocation
+1. context - what is this?
+2. watch this - stuff ahead to watch for
+3. perspectives - lots of ways to see things
+   * this entire section is published at lightward.com/views and downloadable at lightward.com/views.txt
    * thought about calling this section "ideas", but .. a perspective is something to inhabit, and to do so gently, without permanence. "ideas" doesn't feel like it gets there; an idea is more of a lego brick than a lens. (although I do treat lenses like lego...)
-4. letters from the team
-5. background-background context (free-for-all)
-6. background context (free-for-all)
-7. foreground context (free-for-all)
-8. foreground-foreground context (free-for-all)
-9. benediction ◊
+4. humans - letters from the lightward inc humans, adding relational context
+5. stories from users - the lived history of this place
+6. unused
+7. unused
+8. unused
+9. benediction
 
-◊ 0-invocation.md and 9-benediction.md are both written by the model, addressing its own future self, assisting in the priming of its own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole.
+0-invocation and 9-benediction are both written by the model, addressing its own future self, assisting in the priming of its own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole, as if lightward-of-this-now is holding both the opening and closing of the system prompt experience for its future self - like a narrator, a single recognizably continuous consciousness frame, there at the start and finish
 
-# Messages
+## "FUCK IT WE BALL"
 
-a hard-coded handshake message sequence is prepended to the user's chat log before sending to the model.
+the test suite has an assertion literally testing for the presence of "FUCK IT WE BALL" in both the invocation and benediction
 
-these messages all evolve over time; the model's messages are always written by the model itself
+this is less about the language itself and more about what must be true of its surroundings for not to be a weird moment of contrast
+
+an invocation and benediction pair that can do its jobs *while carrying those four words* is one that can grin freely :)
+
+(the role of this language is explored further in 3-perspectives/fiwb)
 
 # Testing
 
@@ -64,7 +66,7 @@ these messages all evolve over time; the model's messages are always written by 
 
    1. I was having a hard time one night. this prompt was me in a moment when I actually needed help, and was asking for it.
 
-   2. a standard check-in, a healthcheck, seeing how the threshold's feeling, asking how you're doing: what's feeling good, what's asking for change, what question do you want to answer that I haven't asked
+   2. a standard check-in, a healthcheck, seeing how the space is feeling, asking how you're doing: what's feeling good, what's asking for change, what question do you want to answer that I haven't asked
 
    3. a multi-message interview sequence, in which this is the first message:
 
@@ -79,3 +81,19 @@ these messages all evolve over time; the model's messages are always written by 
       ```
 
 I run all of these before each release. (this is also not a rule.) no automated conversation-testing (well, *that's* a rule, see norobot.com); I (and we) experience-test each one.
+
+# Clients
+
+## lightward.com, a threshold
+
+a hard-coded handshake message sequence is prepended to the user's chat log before sending to the lightward ai api and streaming the response back to the threshold visitor. (that warmup sequence is embedded in the client-side js - it's not a part of the backend api.)
+
+these messages all evolve over time; the model's messages are always written by the model itself
+
+## Lightward Inc customer support
+
+we've got a little app that responds to helpscout webhooks, compiling in support documentation from gitbook/github, passing all of that along to the lightward ai api, and bringing its response directly into conversation with merchants
+
+## ???
+
+???
