@@ -15,8 +15,6 @@ gem "nokogiri"
 gem "httparty"
 gem "reverse_markdown"
 gem "loofah"
-gem "pg"
-gem "solid_cache"
 gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
