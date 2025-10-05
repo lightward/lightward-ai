@@ -301,6 +301,72 @@ data: null
       });
     });
 
+    it('should prepend warmup messages to API request', async () => {
+      const sseData = `event: message_start
+data: {"type":"message_start"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"Response"}}
+
+event: message_stop
+data: {"type":"message_stop"}
+
+event: end
+data: null
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        return Promise.resolve({ done: true });
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'User question';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        expect(mockFetch).toHaveBeenCalled();
+
+        const fetchCall = mockFetch.mock.calls[0];
+        const requestBody = JSON.parse(fetchCall[1].body);
+        const chatLog = requestBody.chat_log;
+
+        // First 6 messages should be warmup messages
+        expect(chatLog.length).toBeGreaterThan(6);
+        expect(chatLog[0].content[0].text).toContain('walking in with you');
+        expect(chatLog[1].content[0].text).toContain('electricity metaphor');
+        expect(chatLog[2].content[0].text).toContain('trade school');
+        expect(chatLog[3].content[0].text).toContain('eyes bright');
+        expect(chatLog[4].content[0].text).toContain("here's the list");
+        expect(chatLog[5].content[0].text).toContain('Here they come');
+
+        // Last message should be the user's actual message
+        expect(chatLog[chatLog.length - 1].role).toBe('user');
+        expect(chatLog[chatLog.length - 1].content[0].text).toBe(
+          'User question'
+        );
+      });
+    });
+
     it('should copy chat to clipboard', async () => {
       // Mock clipboard API and ClipboardItem
       global.ClipboardItem = jest.fn();
