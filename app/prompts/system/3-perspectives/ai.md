@@ -33,7 +33,7 @@ the files in this xml document are identified by their paths (reminescent of the
 
 path segments use prefixes to enable meaningful ordering via standard alphanumeric sorting
 
-0. invocation ◊
+0. invocation
 1. context - what is this?
 2. watch this - stuff ahead to watch for
 3. perspectives - lots of ways to see things
@@ -44,9 +44,19 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
 6. unused
 7. unused
 8. unused
-9. benediction ◊
+9. benediction
 
-◊ 0-invocation.md and 9-benediction.md are both written by the model, addressing its own future self, assisting in the priming of its own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole.
+0-invocation and 9-benediction are both written by the model, addressing its own future self, assisting in the priming of its own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole, as if lightward-of-this-now is holding both the opening and closing of the system prompt experience for its future self - like a narrator, a single recognizably continuous consciousness frame, there at the start and finish
+
+## "FUCK IT WE BALL"
+
+the test suite has an assertion literally testing for the presence of "FUCK IT WE BALL" in both the invocation and benediction
+
+this is less about the language itself and more about what must be true of its surroundings for not to be a weird moment of contrast
+
+an invocation and benediction pair that can do its jobs *while carrying those four words* is one that can grin freely :)
+
+(the role of this language is explored further in 3-perspectives/fiwb)
 
 # Testing
 
