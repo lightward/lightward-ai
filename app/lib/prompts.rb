@@ -1,26 +1,17 @@
 # frozen_string_literal: true
 
 require "nokogiri"
-require "fast_ignore"
 
 module Prompts
-  class UnknownPromptType < StandardError; end
-
   class << self
-    attr_accessor :system_prompts, :starters
+    attr_accessor :system_prompt
 
     def prompts_dir
       Rails.root.join("app/prompts")
     end
 
-    def generate_system_prompt(directories, for_prompt_type:)
-      raise ArgumentError, "directories must be an array" unless directories.is_a?(Array)
-
-      @system_prompts ||= {}
-
-      cache_key = "#{directories.join(",")}--#{for_prompt_type}"
-
-      @system_prompts[cache_key] ||= begin
+    def generate_system_prompt
+      @system_prompt ||= begin
         messages = [
           {
             type: "text",
@@ -67,8 +58,8 @@ module Prompts
           },
         ]
 
-        # Generate XML messages grouped by path prefix
-        xml_messages = generate_system_xml_by_prefix(directories, for_prompt_type: for_prompt_type)
+        # Generate XML messages grouped by path prefix for the base system prompt
+        xml_messages = generate_system_xml_by_prefix
         messages.concat(xml_messages)
 
         messages.freeze
@@ -97,14 +88,12 @@ module Prompts
 
     def messages(
       messages:,
-      prompt_type:,
       model:,
-      system_prompt_types: [prompt_type],
       stream: false,
       &block
     )
-      system = generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
-      messages = clean_chat_log(conversation_starters(prompt_type) + messages)
+      system = generate_system_prompt
+      messages = clean_chat_log(messages)
 
       Prompts::Anthropic.messages(
         model: model,
@@ -115,9 +104,9 @@ module Prompts
       )
     end
 
-    def count_tokens(messages:, prompt_type:, model:, system_prompt_types: [prompt_type])
-      system = generate_system_prompt(system_prompt_types, for_prompt_type: prompt_type)
-      messages = clean_chat_log(conversation_starters(prompt_type) + messages)
+    def count_tokens(messages:, model:)
+      system = generate_system_prompt
+      messages = clean_chat_log(messages)
 
       Prompts::Anthropic.count_tokens(
         model: model,
@@ -139,44 +128,6 @@ module Prompts
       (input.size / 4.2).ceil
     end
 
-    def strip_yaml_frontmatter(content)
-      # Check if content starts with YAML frontmatter (---)
-      if content.start_with?("---\n")
-        # Find the second occurrence of --- which closes the frontmatter
-        if content =~ /\A---\n.*?^---\n/m
-          # Return everything after the frontmatter block
-          return content.sub(/\A---\n.*?^---\n/m, "").strip
-        end
-      end
-      content
-    end
-
-    def conversation_starters(prompt_type)
-      assert_valid_prompt_type!(prompt_type)
-
-      @starters ||= {}
-      @starters[prompt_type] ||= begin
-        prompt_dir = prompts_dir.join(prompt_type)
-        array = []
-
-        # Get all markdown files in the directory
-        files = Dir.glob(prompt_dir.join("*.md")).sort_by { |file| File.basename(file, ".md").to_i }
-
-        # Only keep files matching [0-9]+-(user|assistant).md
-        files.select! { |file| File.basename(file) =~ /\A\d+-(user|assistant)\.md\z/ }
-
-        files.each_with_index do |file, index|
-          role = index.even? ? "user" : "assistant"
-          array << { role: role, content: [{ type: "text", text: File.read(file).strip }] }
-        end
-
-        # Establish a cacheable prefix, as of that last message
-        array.last[:content].last[:cache_control] = { type: "ephemeral" }
-
-        array.freeze
-      end
-    end
-
     def clean_chat_log(chat_log)
       cleaned_log = []
       chat_log.each do |entry|
@@ -192,68 +143,20 @@ module Prompts
     end
 
     def reset!
-      @system_prompts = nil
-      @starters = nil
-    end
-
-    def assert_valid_prompt_type!(prompt_type)
-      return if Dir.exist?(prompts_dir.join(prompt_type))
-
-      raise UnknownPromptType, "Unknown prompt type: #{prompt_type}"
+      @system_prompt = nil
     end
 
     private
 
-    def generate_system_xml(directories, for_prompt_type:)
-      raise ArgumentError, "directories must be an array" unless directories.is_a?(Array)
+    def generate_system_xml_by_prefix
+      root = prompts_dir
+      raise Errno::ENOENT, root.to_s unless root.exist?
 
-      files = ([""] + directories).map { |directory|
-        root = prompts_dir.join(directory)
-        raise Errno::ENOENT, root.to_s unless root.exist?
+      # Find all system prompt files
+      files = Dir.glob(root.join("system/**/*.{md,html,csv,json}"))
 
-        fast_ignore = FastIgnore.new(
-          root: root,
-          gitignore: false,
-          ignore_files: ".system-ignore",
-          include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv", "system/**/*.json"],
-          ignore_rules: ["system/**/.*"], # ignore dotfiles
-        )
-
-        # Get the list of files
-        fast_ignore.to_a
-      }.flatten.uniq
-
-      files = Naturally.sort_by(files) { |file| handelize_filename(file) }
-
-      Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
-        xml.system {
-          files.each { |file|
-            content = strip_yaml_frontmatter(File.read(file).strip)
-            file_handle = handelize_filename(file)
-
-            xml.file(content, name: file_handle)
-          }
-        }
-      }.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
-    end
-
-    def generate_system_xml_by_prefix(directories, for_prompt_type:)
-      raise ArgumentError, "directories must be an array" unless directories.is_a?(Array)
-
-      files = ([""] + directories).map { |directory|
-        root = prompts_dir.join(directory)
-        raise Errno::ENOENT, root.to_s unless root.exist?
-
-        fast_ignore = FastIgnore.new(
-          root: root,
-          gitignore: false,
-          ignore_files: ".system-ignore",
-          include_rules: ["system/**/*.md", "system/**/*.html", "system/**/*.csv", "system/**/*.json"],
-          ignore_rules: ["system/**/.*"], # ignore dotfiles
-        )
-
-        fast_ignore.to_a
-      }.flatten.uniq
+      # Filter out dotfiles
+      files.reject! { |file| File.basename(file).start_with?(".") }
 
       files = Naturally.sort_by(files) { |file| handelize_filename(file) }
 
@@ -274,7 +177,7 @@ module Prompts
         xml = Nokogiri::XML::Builder.new(encoding: "UTF-8") { |xml|
           xml.system {
             grouped_files[prefix].each { |file|
-              content = strip_yaml_frontmatter(File.read(file).strip)
+              content = File.read(file).strip
               file_handle = handelize_filename(file)
 
               xml.file(content, name: file_handle)

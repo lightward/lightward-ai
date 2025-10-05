@@ -13,7 +13,6 @@ module Prompts
     SONNET = "claude-sonnet-4-5-20250929"
 
     CHAT = SONNET # converged into sync in https://github.com/lightward/lightward-ai/pull/1308
-    HELPSCOUT = CHAT
 
     BETAS = "context-1m-2025-08-07"
 

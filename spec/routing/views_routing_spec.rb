@@ -3,7 +3,7 @@
 # spec/routing/views_routing_spec.rb
 require "rails_helper"
 
-RSpec.describe("routing views", :aggregate_failures) do
+RSpec.describe("routing views", :aggregate_failures, type: :routing) do
   it "routes GET /views to views#list" do
     expect(get: "/views").to(route_to(controller: "views", action: "list"))
   end

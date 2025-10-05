@@ -12,15 +12,11 @@ class ApiController < ApplicationController
   def stream
     chat_log = permitted_chat_log_params.as_json
 
-    # Determine prompt type based on opening message
-    opening_message = chat_log.dig(0, "content", 0, "text")
-    prompt_type = determine_prompt_type(opening_message)
-
-    # Count tokens and enforce limit
-    count_chat_log_tokens!(chat_log)
+    # Count tokens and enforce limit (unless bypassed)
+    count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
     # Track analytics
-    track_stream_start(chat_log, prompt_type)
+    track_stream_start(chat_log)
 
     response.headers["Content-Type"] = "text/event-stream"
     response.headers["Cache-Control"] = "no-cache"
@@ -30,7 +26,6 @@ class ApiController < ApplicationController
     Prompts.messages(
       model: Prompts::Anthropic::CHAT,
       messages: chat_log,
-      prompt_type: prompt_type,
       stream: true,
     ) do |request, response|
       if response.code.to_i >= 400
@@ -54,12 +49,9 @@ class ApiController < ApplicationController
 
   private
 
-  def determine_prompt_type(opening_message)
-    if opening_message.to_s.match?(/\AI\'m a (slow|fast) (reader|writer)\z/)
-      "clients/chat"
-    else
-      "clients/api"
-    end
+  def token_limit_disabled?
+    request.headers["Disable-Token-Limit-Authorization"].present? &&
+      request.headers["Disable-Token-Limit-Authorization"] == ENV["DISABLE_TOKEN_LIMIT_AUTHORIZATION"]
   end
 
   def count_chat_log_tokens!(chat_log)
@@ -73,13 +65,12 @@ class ApiController < ApplicationController
     raise ChatLogTokenLimitExceeded if @chat_log_token_count > CHAT_LOG_TOKEN_LIMIT
   end
 
-  def track_stream_start(chat_log, prompt_type)
+  def track_stream_start(chat_log)
     conversation_id = Digest::SHA256.hexdigest(chat_log.first(2).to_json)
 
     ::NewRelic::Agent.record_custom_event(
       "ApiController: stream start",
       conversation_id: conversation_id,
-      prompt_type: prompt_type,
       chat_log_depth: chat_log.size,
       chat_log_token_count: @chat_log_token_count,
     )
@@ -103,8 +94,8 @@ class ApiController < ApplicationController
           json_data = line[5..-1]
           event_data = JSON.parse(json_data)
 
-          # Handle horizon warnings
-          warning = handle_horizon_warning(current_event, warning, chat_log)
+          # Handle horizon warnings (unless token limit disabled)
+          warning = handle_horizon_warning(current_event, warning, chat_log) unless token_limit_disabled?
 
           send_sse_event(current_event || "message", event_data)
         end
@@ -169,7 +160,7 @@ class ApiController < ApplicationController
 
   def permitted_chat_log_params
     params.require(:chat_log).map do |log_entry|
-      log_entry.permit(:role, content: [:type, :text])
+      log_entry.permit(:role, content: [:type, :text, cache_control: [:type]])
     end
   end
 end

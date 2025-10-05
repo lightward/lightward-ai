@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  mount GoodJob::Engine => "good_job"
-
   get "/llms", to: "meta#llms", format: :txt
 
   # Chat routes
@@ -11,9 +9,6 @@ Rails.application.routes.draw do
 
   # API endpoint for streaming chat responses
   post "/api/stream", to: "api#stream"
-
-  # Webhook endpoints
-  post "/webhooks/helpscout", to: "webhooks/helpscout#receive"
 
   # Sitemaps
   get "/sitemap", to: "sitemaps#index", format: :xml

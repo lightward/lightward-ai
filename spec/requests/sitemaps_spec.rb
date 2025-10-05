@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe("Sitemaps", :aggregate_failures) do
+RSpec.describe("Sitemaps", :aggregate_failures, type: :request) do
   before do
     # Set host for URL helpers
     host! "test.host"

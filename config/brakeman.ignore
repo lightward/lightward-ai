@@ -3,13 +3,13 @@
     {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
-      "fingerprint": "3408ae8d04706aaa8512837cba494e2e63a1b60bbd4e11092ff0b2f0beacff57",
+      "fingerprint": "e4b6c227f9c5e020c5eedeb71366731dbd6e9bf15c6ae939542ff9d4e92202e3",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api_controller.rb",
-      "line": 172,
+      "line": 163,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "log_entry.permit(:role, :content => ([:type, :text]))",
+      "code": "log_entry.permit(:role, :content => ([:type, :text, { :cache_control => ([:type]) }]))",
       "render_path": null,
       "location": {
         "type": "method",
@@ -21,9 +21,8 @@
       "cwe_id": [
         915
       ],
-      "note": "Safe - we only permit specific role and content structure matching Anthropic's message format"
+      "note": "these keys are expected"
     }
   ],
-  "updated": "2025-10-03 16:28:25 -0500",
   "brakeman_version": "7.1.0"
 }

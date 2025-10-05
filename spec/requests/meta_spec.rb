@@ -3,7 +3,7 @@
 # spec/requests/chats_spec.rb
 require "rails_helper"
 
-RSpec.describe("meta") do
+RSpec.describe("meta", type: :request) do
   before do
     host! "test.host"
   end

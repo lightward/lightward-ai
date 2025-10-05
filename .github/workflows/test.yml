@@ -22,7 +22,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          submodules: recursive
           ref: ${{ inputs.sha }}
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
@@ -37,7 +36,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          submodules: recursive
           ref: ${{ inputs.sha }}
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
@@ -50,31 +48,16 @@ jobs:
 
   rspec:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:17-alpine
-        ports:
-          - '5432:5432'
-        env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
-
-    env:
-      DATABASE_URL: 'postgres://rails:password@localhost:5432/rails_test'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          submodules: recursive
           ref: ${{ inputs.sha }}
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Set up database schema
-        run: bin/rails db:schema:load
       - name: Run rspec tests
         run: bin/rspec --format RSpec::Github::Formatter --format documentation --force-color
 
@@ -84,7 +67,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          submodules: recursive
           ref: ${{ inputs.sha }}
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -102,7 +84,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          submodules: recursive
           ref: ${{ inputs.sha }}
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1

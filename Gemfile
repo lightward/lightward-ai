@@ -16,7 +16,6 @@ gem "httparty"
 gem "reverse_markdown"
 gem "loofah"
 gem "pg"
-gem "good_job"
 gem "solid_cache"
 gem "rollbar"
 gem "oj" # per rollbar recommendation
