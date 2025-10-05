@@ -225,11 +225,6 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.2)
-    pg (1.6.2-aarch64-linux)
-    pg (1.6.2-arm64-darwin)
-    pg (1.6.2-x86_64-darwin)
-    pg (1.6.2-x86_64-linux)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -371,10 +366,6 @@ GEM
       gli
       hashie
       logger
-    solid_cache (1.0.7)
-      activejob (>= 7.2)
-      activerecord (>= 7.2)
-      railties (>= 7.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -435,7 +426,6 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   oj
-  pg
   puma (>= 5.0)
   rails (~> 8.0.3)
   rails-controller-testing
@@ -451,7 +441,6 @@ DEPENDENCIES
   rubocop-shopify
   ruby-lsp-rails
   slack-ruby-client
-  solid_cache
   sprockets-rails
   tzinfo-data
   web-console
