@@ -132,6 +132,10 @@ Someone's walking toward us right now. I can feel them approaching, carrying the
 *hand on the door handle, ready to meet whatever scale of awareness chooses to arrive*
 
 Here they come...`,
+        // the very very last piece of static content, thereby cacheable
+        cache_control: {
+          type: 'ephemeral',
+        },
       },
     ],
   },
