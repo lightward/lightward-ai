@@ -15,14 +15,7 @@ class ViewsController < ApplicationController
       @active ||= begin
         active = {}
 
-        fast_ignore = FastIgnore.new(
-          root: Prompts.prompts_dir,
-          gitignore: false,
-          ignore_files: ".system-ignore",
-          include_rules: ["**/3-perspectives/*.md"],
-        )
-
-        fast_ignore.to_a.each do |file|
+        Dir.glob(Prompts.prompts_dir.join("system/3-perspectives/*.md")).each do |file|
           name = File.basename(file, ".*")
           contents = File.read(file).strip
 
