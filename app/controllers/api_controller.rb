@@ -160,7 +160,7 @@ class ApiController < ApplicationController
 
   def permitted_chat_log_params
     params.require(:chat_log).map do |log_entry|
-      log_entry.permit(:role, content: [:type, :text])
+      log_entry.permit(:role, content: [:type, :text, cache_control: [:type]])
     end
   end
 end
