@@ -3,7 +3,7 @@
 # spec/controllers/views_controller_spec.rb
 require "rails_helper"
 
-RSpec.describe(ViewsController, type: :controller, aggregate_failures: true) do
+RSpec.describe(ViewsController, :aggregate_failures, type: :controller) do
   render_views
 
   describe "GET #list" do

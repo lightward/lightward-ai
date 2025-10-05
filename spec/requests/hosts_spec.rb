@@ -3,7 +3,7 @@
 # spec/requests/hosts_spec.rb
 require "rails_helper"
 
-RSpec.describe("hosts", type: :request, aggregate_failures: true) do
+RSpec.describe("hosts", :aggregate_failures, type: :request) do
   it "accepts the primary host" do
     host! "test.host"
     get "/"

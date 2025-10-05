@@ -3,7 +3,7 @@
 # spec/requests/chats_spec.rb
 require "rails_helper"
 
-RSpec.describe("views", type: :request, aggregate_failures: true) do
+RSpec.describe("views", :aggregate_failures, type: :request) do
   before do
     host! "test.host"
   end

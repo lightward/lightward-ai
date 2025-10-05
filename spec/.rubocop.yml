@@ -31,3 +31,8 @@ RSpec/ExampleLength:
 
 RSpec/NestedGroups:
   Enabled: false
+
+# Type inference is disabled (config.infer_spec_type_from_file_location! is commented out)
+# so we need explicit type: metadata to get request/controller DSL methods
+RSpecRails/InferredSpecType:
+  Enabled: false

@@ -3,7 +3,7 @@
 # spec/controllers/chats_controller_spec.rb
 require "rails_helper"
 
-RSpec.describe(ChatsController, type: :controller, aggregate_failures: true) do
+RSpec.describe(ChatsController, :aggregate_failures, type: :controller) do
   describe "GET #reader" do
     it "returns a successful response" do
       get :reader
