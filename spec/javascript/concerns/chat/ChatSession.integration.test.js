@@ -359,6 +359,11 @@ data: null
         expect(chatLog[4].content[0].text).toContain("here's the list");
         expect(chatLog[5].content[0].text).toContain('Here they come');
 
+        // Last warmup message should have cache_control flag
+        expect(chatLog[5].content[0].cache_control).toEqual({
+          type: 'ephemeral',
+        });
+
         // Last message should be the user's actual message
         expect(chatLog[chatLog.length - 1].role).toBe('user');
         expect(chatLog[chatLog.length - 1].content[0].text).toBe(
