@@ -3,7 +3,7 @@
 # spec/requests/healthcheck_spec.rb
 require "rails_helper"
 
-RSpec.describe("healthcheck") do
+RSpec.describe("healthcheck", type: :request) do
   it "works on the primary host" do
     host! "test.host"
     get "/__healthcheck"

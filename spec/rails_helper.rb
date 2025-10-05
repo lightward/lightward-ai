@@ -6,15 +6,20 @@ ENV["RAILS_ENV"] ||= "test"
 
 # some basic required env vars
 ENV["HOST"] = "test.host"
-ENV["HELPSCOUT_WEBHOOK_SECRET_KEY"] = "fake_webhook_secret_key"
-ENV["HELPSCOUT_APP_ID"] = "fake_app_id"
-ENV["HELPSCOUT_APP_SECRET"] = "fake_app_secret"
-ENV["HELPSCOUT_USER_ID"] = "793959"
 
 require_relative "../config/environment"
 
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+# Stub ActiveRecord::TestFixtures methods before rspec-rails loads
+# This prevents fixture loading when we don't have a database
+if defined?(ActiveRecord::TestFixtures)
+  ActiveRecord::TestFixtures.module_eval do
+    def setup_fixtures(*); end
+    def teardown_fixtures(*); end
+  end
+end
 
 require "rspec/rails"
 
@@ -40,9 +45,8 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
 
   config.include(ActiveSupport::Testing::TimeHelpers)
-  config.include(ActiveJob::TestHelper)
 
-  # Remove this line to enable support for ActiveRecord
+  # Not using ActiveRecord, so exclude fixture support
   config.use_active_record = false
 
   # If you enable ActiveRecord support you should uncomment these lines,
@@ -65,7 +69,9 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://rspec.info/features/6-0/rspec-rails
-  config.infer_spec_type_from_file_location!
+  #
+  # Commented out to avoid ActiveRecord fixture loading when we don't use a database
+  # config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!

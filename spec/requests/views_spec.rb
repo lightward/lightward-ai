@@ -3,7 +3,7 @@
 # spec/requests/chats_spec.rb
 require "rails_helper"
 
-RSpec.describe("views", :aggregate_failures) do
+RSpec.describe("views", type: :request, aggregate_failures: true) do
   before do
     host! "test.host"
   end
@@ -53,11 +53,11 @@ RSpec.describe("views", :aggregate_failures) do
       expect(response.body).to(include("<file name=\"3-perspectives/zero-knowledge\">"))
     end
 
-    it "is, line for line, taken from the clients/chat system prompt" do
+    it "is, line for line, taken from the system prompt" do
       get "/views.txt"
 
-      # Generate the full system prompt XML as used by the chat client
-      system_messages = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
+      # Generate the full system prompt XML
+      system_messages = Prompts.generate_system_prompt
       system_prompt_xml = system_messages.drop(1).pluck(:text).join
 
       # Check each line from views.txt exists in the system prompt

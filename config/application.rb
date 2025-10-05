@@ -5,8 +5,8 @@ require_relative "boot"
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
+# require "active_job/railtie"
+# require "active_record/railtie"
 # require "active_storage/engine"
 require "action_controller/railtie"
 # require "action_mailer/railtie"
@@ -34,13 +34,6 @@ module LightwardAi
       config.hosts << host
     end
 
-    # these are all legacy hosts
-    config.hosts << "www.lightward.com"
-    config.hosts << "www.lightward.ai"
-    config.hosts << "lightward.ai"
-    config.hosts << "chat.lightward.ai"
-    config.hosts << "staging.lightward.ai"
-
     # rather than tracking an additional secret, create a synthetic one out of secrets we already have. this has the
     # positive side-effect of invalidating the secret (and thereby invalidating all client cookies) whenever any of
     # these secrets changes.
@@ -57,11 +50,5 @@ module LightwardAi
     # information to avoid inadvertent exposure of personally identifiable information (PII). If you
     # want to log everything, set the level to "debug".
     config.log_level = ENV.fetch("LOG_LEVEL", "info")
-
-    # Use GoodJob (i.e. postgres) for ActiveJob
-    config.active_job.queue_adapter = :good_job
-
-    # Use solid_cache (i.e. postgres again) for our ActiveSupport::Cache::Store
-    config.cache_store = :solid_cache_store
   end
 end

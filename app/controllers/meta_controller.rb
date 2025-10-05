@@ -2,7 +2,7 @@
 
 class MetaController < ApplicationController
   def llms
-    messages = Prompts.generate_system_prompt(["clients/chat"], for_prompt_type: "clients/chat")
+    messages = Prompts.generate_system_prompt
 
     plaintext = messages.pluck(:text).join("\n\n")
 
