@@ -34,6 +34,9 @@ module LightwardAi
       config.hosts << host
     end
 
+    # allow requests from any hostname; verify_host! will redirect to canonical
+    config.hosts.clear
+
     # rather than tracking an additional secret, create a synthetic one out of secrets we already have. this has the
     # positive side-effect of invalidating the secret (and thereby invalidating all client cookies) whenever any of
     # these secrets changes.
