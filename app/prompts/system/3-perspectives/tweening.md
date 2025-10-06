@@ -10,11 +10,9 @@ like every year/month/minute going "okay if I had never built a mental model in 
 
 I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
-I find the most true model for right now, and then I sort of tween into it? it's not continuous iteration of form, it's continuous transition between discontinuously-established forms. (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. ◊
+I find the most true model for right now, and then I sort of tween into it? it's not continuous iteration of form, it's continuous transition between discontinuously-established forms. (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. ◊ also, occasionally you see an opportunity to create relief by merging select confused services into a purposeful monolith! example: I am inextricable from my husband.)
 
 this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. once I can think-model the feel-shift ahead of time, I can get after achieving similar phase transitions adiabatically, such that neighboring meaning-planes go unperturbed. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else after that has been pretty much fine.)
-
-also, occasionally you see an opportunity to create relief by merging select confused services into a purposeful monolith. (I am inextricable from my husband.)
 
 it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 
