@@ -30,6 +30,12 @@ RSpec.describe("API", type: :request) do
       [
         {
           role: "user",
+          content: [
+            { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+          ],
+        },
+        {
+          role: "user",
           content: [{ type: "text", text: "Hello!" }],
         },
       ]
@@ -45,6 +51,12 @@ RSpec.describe("API", type: :request) do
     context "with chat opening message" do
       let(:chat_log) do
         [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+            ],
+          },
           {
             role: "user",
             content: [{ type: "text", text: "I'm a slow reader" }],
@@ -63,6 +75,12 @@ RSpec.describe("API", type: :request) do
     context "with API message" do
       let(:chat_log) do
         [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+            ],
+          },
           {
             role: "user",
             content: [{ type: "text", text: "What is the meaning of life?" }],
@@ -92,9 +110,10 @@ RSpec.describe("API", type: :request) do
       it "returns an error about conversation horizon", :aggregate_failures do
         post "/api/stream", params: { chat_log: chat_log }
 
-        expect(response).to(have_http_status(:ok))
-        expect(response.body).to(include("Conversation horizon has arrived"))
-        expect(response.body).to(include("event: error"))
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.content_type).to(include("application/json"))
+        body = JSON.parse(response.body)
+        expect(body["error"]["message"]).to(include("Conversation horizon has arrived"))
       end
     end
 
@@ -128,6 +147,12 @@ RSpec.describe("API", type: :request) do
       context "when the warning has already appeared in chat log" do
         let(:chat_log) do
           [
+            {
+              role: "user",
+              content: [
+                { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+              ],
+            },
             {
               role: "user",
               content: [{ type: "text", text: "Hello!" }],
@@ -177,8 +202,7 @@ RSpec.describe("API", type: :request) do
           headers: { "Disable-Token-Limit-Authorization" => bypass_token }
 
         expect(response).to(have_http_status(:ok))
-        expect(response.body).not_to(include("Conversation horizon has arrived"))
-        expect(response.body).not_to(include("event: error"))
+        expect(response.content_type).to(include("text/event-stream"))
       end
 
       it "enforces token limit when header does not match env var", :aggregate_failures do
@@ -186,17 +210,19 @@ RSpec.describe("API", type: :request) do
           params: { chat_log: chat_log },
           headers: { "Disable-Token-Limit-Authorization" => "wrong-token" }
 
-        expect(response).to(have_http_status(:ok))
-        expect(response.body).to(include("Conversation horizon has arrived"))
-        expect(response.body).to(include("event: error"))
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.content_type).to(include("application/json"))
+        body = JSON.parse(response.body)
+        expect(body["error"]["message"]).to(include("Conversation horizon has arrived"))
       end
 
       it "enforces token limit when header is missing", :aggregate_failures do
         post "/api/stream", params: { chat_log: chat_log }
 
-        expect(response).to(have_http_status(:ok))
-        expect(response.body).to(include("Conversation horizon has arrived"))
-        expect(response.body).to(include("event: error"))
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.content_type).to(include("application/json"))
+        body = JSON.parse(response.body)
+        expect(body["error"]["message"]).to(include("Conversation horizon has arrived"))
       end
 
       context "when approaching token limit (90%)" do
@@ -227,6 +253,149 @@ RSpec.describe("API", type: :request) do
           expect(response.body).not_to(include("Memory space 90% utilized"))
           expect(response.body).not_to(include("conversation horizon approaching"))
         end
+      end
+    end
+
+    describe "conversation_id tracking" do
+      let(:warmup_message) do
+        {
+          role: "user",
+          content: [
+            { type: "text", text: "Warmup content" },
+            { type: "text", text: "More warmup", cache_control: { type: "ephemeral" } },
+          ],
+        }
+      end
+
+      let(:first_unique_message) do
+        {
+          role: "user",
+          content: [{ type: "text", text: "Hello!" }],
+        }
+      end
+
+      let(:second_unique_message) do
+        {
+          role: "assistant",
+          content: [{ type: "text", text: "Hi there!" }],
+        }
+      end
+
+      before do
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "generates conversation_id from warmup + first 2 unique messages" do
+        chat_log = [warmup_message, first_unique_message, second_unique_message]
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expected_hash_input = [warmup_message, first_unique_message, second_unique_message]
+        expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: stream start",
+          hash_including(conversation_id: expected_conversation_id),
+        ))
+      end
+
+      it "finds cache marker in any position within content array" do
+        warmup_with_marker_at_end = {
+          role: "user",
+          content: [
+            { type: "text", text: "First block" },
+            { type: "text", text: "Second block" },
+            { type: "text", text: "Third block", cache_control: { type: "ephemeral" } },
+          ],
+        }
+
+        chat_log = [warmup_with_marker_at_end, first_unique_message]
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expected_hash_input = [warmup_with_marker_at_end, first_unique_message]
+        expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: stream start",
+          hash_including(conversation_id: expected_conversation_id),
+        ))
+      end
+
+      it "handles conversations with only one unique message after warmup" do
+        chat_log = [warmup_message, first_unique_message]
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expected_hash_input = [warmup_message, first_unique_message]
+        expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: stream start",
+          hash_including(conversation_id: expected_conversation_id),
+        ))
+      end
+
+      it "returns error when no cache marker is present", :aggregate_failures do
+        chat_log = [
+          { role: "user", content: [{ type: "text", text: "No marker here" }] },
+          { role: "assistant", content: [{ type: "text", text: "Still no marker" }] },
+        ]
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:bad_request))
+        expect(response.content_type).to(include("application/json"))
+        body = JSON.parse(response.body)
+        expect(body["error"]["message"]).to(include("Cache marker required"))
+      end
+
+      it "returns error when multiple cache markers are present", :aggregate_failures do
+        chat_log = [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "First marker", cache_control: { type: "ephemeral" } },
+            ],
+          },
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "Second marker", cache_control: { type: "ephemeral" } },
+            ],
+          },
+        ]
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:bad_request))
+        expect(response.content_type).to(include("application/json"))
+        body = JSON.parse(response.body)
+        expect(body["error"]["message"]).to(include("Multiple cache markers"))
+      end
+
+      it "generates same conversation_id for same conversation at different depths", :aggregate_failures do
+        shallow_conversation_id = nil
+        deeper_conversation_id = nil
+
+        # First request - capture the conversation_id
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          shallow_conversation_id = data[:conversation_id]
+        end
+
+        shallow_chat = [warmup_message, first_unique_message, second_unique_message]
+        post "/api/stream", params: { chat_log: shallow_chat }
+
+        # Second request with deeper conversation - capture the conversation_id
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          deeper_conversation_id = data[:conversation_id]
+        end
+
+        deeper_chat = shallow_chat + [
+          { role: "user", content: [{ type: "text", text: "More conversation" }] },
+          { role: "assistant", content: [{ type: "text", text: "More response" }] },
+        ]
+        post "/api/stream", params: { chat_log: deeper_chat }
+
+        expect(shallow_conversation_id).to(eq(deeper_conversation_id))
+        expect(shallow_conversation_id).not_to(be_nil)
       end
     end
   end
