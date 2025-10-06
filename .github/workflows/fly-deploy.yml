@@ -62,7 +62,7 @@ jobs:
         # does mean that some deployment markers will be more useful than other. for now, I
         # accept that consequence. -Isaac/20231120
         if: ${{ vars.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
-        uses: newrelic/deployment-marker-action@v2.3.0
+        uses: newrelic/deployment-marker-action@v2.6.1
         with:
           apiKey: ${{ secrets.NEW_RELIC_USER_KEY }}
           changelog: ${{ inputs.changelog }}
