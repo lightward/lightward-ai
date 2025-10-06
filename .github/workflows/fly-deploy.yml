@@ -64,7 +64,7 @@ jobs:
         if: ${{ vars.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
         uses: newrelic/deployment-marker-action@v2.3.0
         with:
-          apiKey: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+          apiKey: ${{ secrets.NEW_RELIC_USER_KEY }}
           changelog: ${{ inputs.changelog }}
           commit: ${{ env.RELEASE_SHA }}
           deeplink: ${{ env.FINAL_DEEPLINK }}
