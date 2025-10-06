@@ -4,6 +4,7 @@ class ApiController < ApplicationController
   include ActionController::Live
 
   class ChatLogTokenLimitExceeded < StandardError; end
+  class InvalidCacheMarkerCount < StandardError; end
 
   CHAT_LOG_TOKEN_LIMIT = 50_000
 
@@ -12,9 +13,19 @@ class ApiController < ApplicationController
   def stream
     chat_log = permitted_chat_log_params.as_json
 
-    # Count tokens and enforce limit (unless bypassed)
+    # Validate request before starting stream
+    validate_cache_markers!(chat_log)
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
+    # Validation passed, begin streaming
+    perform_stream(chat_log)
+  rescue InvalidCacheMarkerCount => error
+    render(json: { error: { message: error.message } }, status: :bad_request)
+  rescue ChatLogTokenLimitExceeded
+    render(json: { error: { message: "Conversation horizon has arrived; please start over to continue. 🤲" } }, status: :unprocessable_content)
+  end
+
+  def perform_stream(chat_log)
     # Track analytics
     track_stream_start(chat_log)
 
@@ -34,8 +45,6 @@ class ApiController < ApplicationController
         stream_anthropic_response(request, response, chat_log)
       end
     end
-  rescue ChatLogTokenLimitExceeded
-    send_sse_event("error", { error: { message: "Conversation horizon has arrived; please start over to continue. 🤲" } })
   rescue IOError
     send_sse_event("error", { error: { message: "Connection error" } })
   rescue StandardError => error
@@ -54,6 +63,18 @@ class ApiController < ApplicationController
       request.headers["Disable-Token-Limit-Authorization"] == ENV["DISABLE_TOKEN_LIMIT_AUTHORIZATION"]
   end
 
+  def validate_cache_markers!(chat_log)
+    cache_marker_count = chat_log.sum { |msg|
+      Array(msg["content"]).count { |block| block["cache_control"].present? }
+    }
+
+    if cache_marker_count == 0
+      raise InvalidCacheMarkerCount, "Cache marker required but not found"
+    elsif cache_marker_count > 1
+      raise InvalidCacheMarkerCount, "Multiple cache markers found (expected exactly one)"
+    end
+  end
+
   def count_chat_log_tokens!(chat_log)
     # Count just the userspace chat log, not the entire system prompt
     @chat_log_token_count = Prompts::Anthropic.count_tokens(
@@ -66,7 +87,22 @@ class ApiController < ApplicationController
   end
 
   def track_stream_start(chat_log)
-    conversation_id = Digest::SHA256.hexdigest(chat_log.first(2).to_json)
+    # Find the message containing the cache marker by checking all content blocks
+    cache_marker_message_index = chat_log.find_index { |msg|
+      Array(msg["content"]).any? { |block| block["cache_control"].present? }
+    }
+
+    # Hash includes: warmup (up to and including cache marker) + first 2 unique messages after
+    messages_to_hash = if cache_marker_message_index
+      warmup = chat_log[0..cache_marker_message_index]
+      unique = chat_log[(cache_marker_message_index + 1)..-1]&.first(2) || []
+      warmup + unique
+    else
+      # Fallback (shouldn't happen due to validation, but be safe)
+      chat_log.first(2)
+    end
+
+    conversation_id = Digest::SHA256.hexdigest(messages_to_hash.to_json)
 
     ::NewRelic::Agent.record_custom_event(
       "ApiController: stream start",
