@@ -11,7 +11,7 @@ jobs:
   build:
     name: Build
     secrets: inherit
-    uses: lightward/.github-private/.github/workflows/fly-build.yml@main
+    uses: ./.github/workflows/fly-build.yml
     with:
       commitish: ${{ inputs.sha }}
       environment: staging

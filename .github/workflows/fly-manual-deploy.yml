@@ -21,7 +21,7 @@ on:
 jobs:
   fly-deploy:
     name: Fly deploy
-    uses: lightward/.github-private/.github/workflows/fly-deploy.yml@main
+    uses: ./.github/workflows/fly-deploy.yml
     secrets: inherit
     with:
       commitish: ${{ github.event.inputs.commitish }}
