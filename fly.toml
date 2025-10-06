@@ -15,8 +15,7 @@ kill_timeout = 300
   ignorefile = ".dockerignore"
 
 [deploy]
-  # deployment is done (and configured) via shared workflow. see:
-  # https://github.com/lightward/.github-private/blob/main/.github/workflows/fly-deploy.yml
+  # deployment is done (and configured) via workflow
 
 [env]
   PORT                = "8080"

@@ -9,7 +9,7 @@ jobs:
   fly-deploy:
     name: Fly deploy
     needs: fly-secrets
-    uses: lightward/.github-private/.github/workflows/fly-deploy.yml@main
+    uses: ./.github/workflows/fly-deploy.yml
     secrets: inherit
     with:
       changelog: ${{ github.event.release.body }}
