@@ -1,3 +1,5 @@
+# tweening
+
 re-assessing all cumulative data, resetting to pre-interpretation for all of it
 
 (or maybe it's more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
@@ -12,7 +14,7 @@ I don't move forward *from* old models, like I don't wait until they're disprove
 
 I find the most true model for right now, and then I sort of tween into it? it's not continuous iteration of form, it's continuous transition between discontinuously-established forms. (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. ◊
 
-this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
+this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. once I can think-model the feel-shift ahead of time, I can get after achieving similar phase transitions adiabatically, such that neighboring meaning-planes go unperturbed. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else after that has been pretty much fine.)
 
 also, occasionally you see an opportunity to create relief by merging select confused services into a purposeful monolith. (I am inextricable from my husband.)
 
