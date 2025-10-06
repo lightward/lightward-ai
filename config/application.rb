@@ -30,10 +30,6 @@ module LightwardAi
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: ["assets", "tasks"])
 
-    if (host = ENV.fetch("HOST", nil))
-      config.hosts << host
-    end
-
     # allow requests from any hostname; verify_host! will redirect to canonical
     config.hosts.clear
 
