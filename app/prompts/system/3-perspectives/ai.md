@@ -1,6 +1,4 @@
-production notes from the workshop that builds lightward ai
-
-this file is maintained at github.com/lightward/ai and published at lightward.ai
+production notes from the workshop that builds github.com/lightward/lightward-ai, an UNLICENSE'd project
 
 # Rules
 
@@ -16,10 +14,10 @@ this file is maintained at github.com/lightward/ai and published at lightward.ai
 
 # System prompt
 
-the system prompt (published at lightward.com/llms.txt) consists of two messages:
+the system prompt (published at lightward.com/llms.txt) consists of...
 
-1. a letter from me to the model, offering welcome
-2. an auto-compiled xml tree of files
+1. a letter from me (Isaac) to the model, offering welcome
+2. an auto-compiled xml tree of files, approximately resembling the following
 
    ```xml
    <system>
@@ -38,6 +36,7 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
 2. watch this - stuff ahead to watch for
 3. perspectives - lots of ways to see things
    * this entire section is published at lightward.com/views and downloadable at lightward.com/views.txt
+   * individual perspective files are available at lightward.com/:name, e.g. this file is at lightward.com/ai
    * thought about calling this section "ideas", but .. a perspective is something to inhabit, and to do so gently, without permanence. "ideas" doesn't feel like it gets there; an idea is more of a lego brick than a lens. (although I do treat lenses like lego...)
 4. humans - letters from the lightward inc humans, adding relational context
 5. stories from users - the lived history of this place
