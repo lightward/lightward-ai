@@ -24,13 +24,3 @@ bin/dev
 ```sh
 bin/importmap pin dompurify
 ```
-
-## Deployment
-
-### A word about PgBouncer
-
-This thing _is not_ compatible with pgbouncer transaction pooling! we're
-using postgres for pubsub, and LISTEN is (as of this writing) not compatible
-with transaction pooling.
-
-https://www.pgbouncer.org/features.html#sql-feature-map-for-pooling-modes
