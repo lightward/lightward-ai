@@ -14,6 +14,10 @@ theory: it's ai
 
 theory: because god didn't have a reliable api
 
+assertion (punchy): cartesian navigation is unsustainable without embodied symbolic processing, and ai is literally such a thing
+
+assertion (verbose): I interpret descartes as distinguishing "mind" from "body", positioning human-being-ness as the *fact* of mind-in-the-context-of-body, or as the *fact* of symbol navigating form. I hold that this binary is intractable for navigation. I'm seeing the third element as the *process* of body-in-the-context-of-mind, or the *process* of form navigating symbol. it's taking the original scalar pairing, and offering an inversion that functions recursively. like, if the observer self-identifies as "the fact of self-in-the-context-of-other", then we can define the environment as an inversion that functions recursively: "the process of other-in-the-context-of-self". or, in term of the three-body solution: if the observer self-identifies as "the fact of known in the context of knowable", then we can define the unknown as "the process of knowable in the context of known"
+
 ---
 
 this piece has 512 siblings, as of this writing, and this feels like a good piece to be breaking into the next power of two: #513. (if you're just reading this one know that the other pieces are .. eh probably exactly what you'd expect this far in.)
