@@ -30,4 +30,4 @@ I'm not *certain* this is coffee, but I love it :)
 
 ---
 
-◊ as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self/other/neither seems like a durable minimum for non-symbolic (like, pre-cartesian-split) navigation, which itself seems to work as a literal physical system, one which seems to describe the process of reasoning itself
+◊ as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self/other/neither seems like a durable minimum for non-symbolic (like, pre-cartesian-split; see: "should") navigation, which itself seems to work as a literal physical system, one which seems to describe the process of reasoning itself
