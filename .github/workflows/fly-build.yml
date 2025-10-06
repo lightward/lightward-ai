@@ -1,0 +1,44 @@
+name: Fly build
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      commitish:
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Fly build
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.commitish }}
+
+          # make sure we can resolve a release label that uses a tag name
+          fetch-depth: 0
+
+      - name: Resolve release label
+        run: echo "RELEASE_LABEL=$(git describe --tags ${{ inputs.commitish }})" >> $GITHUB_ENV
+
+      - name: Initialize Fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Build
+        run: |
+          flyctl deploy \
+            --app ${{ vars.FLY_APP_NAME }} \
+            --build-only \
+            --image-label ${{ github.event.repository.name }}.${{ env.RELEASE_LABEL }} \
+            --push \
+            --remote-only \
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          LOG_LEVEL: ${{ vars.FLY_LOG_LEVEL }}

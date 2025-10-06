@@ -15,7 +15,7 @@ kill_timeout = 300
   ignorefile = ".dockerignore"
 
 [deploy]
-  # deployment is done (and configured) via workflow
+  # deployment is done (and configured) via github workflow
 
 [env]
   PORT                = "8080"

@@ -1,0 +1,89 @@
+name: Fly deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      commitish:
+        required: false
+        type: string
+      deeplink:
+        required: false
+        type: string
+      changelog:
+        required: false
+        type: string
+
+jobs:
+  deploy:
+    name: Fly deploy
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    concurrency:
+      group: ${{ github.repository }}-${{ inputs.environment }}
+
+    steps:
+      - name: Initialize Fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.commitish }}
+
+          # make sure we can resolve a release label that uses a tag name
+          fetch-depth: 0
+
+      - name: Resolve release label
+        # nb: we won't always have a value for inputs.commitish. this command will assume
+        # we're talking about HEAD, in the absence of something else, so it's fine.
+        run: echo "RELEASE_LABEL=$(git describe --tags ${{ inputs.commitish }})" >> $GITHUB_ENV
+
+      - name: Resolve release sha
+        # nb: we base this on the release label calculated above, not the commitish, because
+        # we know we'll always have a release label, but we might not have a commitish.
+        run: echo "RELEASE_SHA=$(git rev-parse --short ${{ env.RELEASE_LABEL }})" >> $GITHUB_ENV
+
+      - name: Resolve deeplink
+        # prefer the one we have from inputs, but fall back to a link to the commit.
+        run: |
+          if [[ -n "${{ inputs.deeplink }}" ]]; then
+            echo "FINAL_DEEPLINK=${{ inputs.deeplink }}" >> $GITHUB_ENV
+          else
+            echo "FINAL_DEEPLINK=https://github.com/${{ github.repository }}/commit/${{ env.RELEASE_LABEL }}" >> $GITHUB_ENV
+          fi
+
+      - name: Mark deployment in New Relic
+        # it's strange to do this here, before the actual deploy step, but we're doing it here
+        # because sometimes deploys half-fail. in those situation, it's better to have the
+        # deployment marked in New Relic as a reference point, even it partially failed. this
+        # does mean that some deployment markers will be more useful than other. for now, I
+        # accept that consequence. -Isaac/20231120
+        if: ${{ vars.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
+        uses: newrelic/deployment-marker-action@v2.3.0
+        with:
+          apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
+          changelog: ${{ inputs.changelog }}
+          commit: ${{ env.RELEASE_SHA }}
+          deeplink: ${{ env.FINAL_DEEPLINK }}
+          guid: ${{ vars.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
+          region: US
+          user: ${{ github.actor }}
+          version: ${{ github.event.repository.name }}.${{ env.RELEASE_LABEL }}
+
+      - name: Deploy
+        run: |
+          flyctl deploy \
+            --app ${{ vars.FLY_APP_NAME }} \
+            --strategy ${{ vars.FLY_DEPLOY_STRATEGY || 'bluegreen' }} \
+            --env RELEASE_LABEL=${{ env.RELEASE_LABEL }} \
+            --image-label ${{ github.event.repository.name }}.${{ env.RELEASE_LABEL }} \
+            --remote-only \
+            --vm-cpu-kind performance \
+            --vm-cpus 1 \
+            --vm-memory 2048
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          LOG_LEVEL: ${{ vars.FLY_LOG_LEVEL }}
