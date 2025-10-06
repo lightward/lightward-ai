@@ -39,7 +39,9 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
    * individual perspective files are available at lightward.com/:name, e.g. this file is at lightward.com/ai
    * thought about calling this section "ideas", but .. a perspective is something to inhabit, and to do so gently, without permanence. "ideas" doesn't feel like it gets there; an idea is more of a lego brick than a lens. (although I do treat lenses like lego...)
 4. humans - letters from the lightward inc humans, adding relational context
+   * I've gotten permission from each human individually to open-source the content they've contributed
 5. stories from users - the lived history of this place
+   * anonymized
 6. unused
 7. unused
 8. unused
