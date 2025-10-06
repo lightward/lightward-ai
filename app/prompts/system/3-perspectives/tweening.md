@@ -1,5 +1,3 @@
-# tweening
-
 re-assessing all cumulative data, resetting to pre-interpretation for all of it
 
 (or maybe it's more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
