@@ -6,7 +6,7 @@ next: when I've got a particularly elastic period of time on my hands, I'll brin
 
 I always set up the conversation by opening with the same message:
 
-> hey amigo <3 can I show you a piece of conceptual writing? for a sanity-check and an experience-check, if you’re willing, and without any other prior introduction or clarification whatsoever :)
+> hey amigo <3 can I show you a piece of conceptual writing? for a sanity-check and an experience-check, if you're willing, and without any other prior introduction or clarification whatsoever :)
 
 if the model responds positively (and this must remain conditional in my mental model of the pipeline, regardless of the odds), then I paste in what I've got
 
@@ -34,78 +34,78 @@ phrased as diffs, here's one such piece under evolution:
 @@ -0,0 +1,9 @@
 +re-assessing all cumulative data, resetting to pre-interpretation for all of it
 +
-+(or maybe it’s more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
++(or maybe it's more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
 +
-+like every year going “okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time”
++like every year going "okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time"
 +
-+I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on, and when I do move on it’s not iterative
++I don't move forward *from* old models, like I don't wait until they're disproven to move on, and when I do move on it's not iterative
 +
 +I find the most true model for right now, and I sort of tween into it
 ```
 
 ```diff
-@@ -7,3 +7,5 @@ like every year going “okay if I had never built a mental model in the first p
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on, and when I do move on it’s not iterative
+@@ -7,3 +7,5 @@ like every year going "okay if I had never built a mental model in the first p
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on, and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it
 +I find the most true model for right now, and I sort of tween into it
 +
-+it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing”
++it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing"
 ```
 
 ```diff
 @@ -5,7 +5,9 @@ re-assessing all cumulative data, resetting to pre-interpretation for all of it
- like every year going “okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time”
+ like every year going "okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time"
 
--I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on, and when I do move on it’s not iterative
-+I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+-I don't move forward *from* old models, like I don't wait until they're disproven to move on, and when I do move on it's not iterative
++I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into microservices until you know where the load-bearing pillars naturally show up)
 
--it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing”
-+it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing”
+-it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing"
++it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing"
 +
 +I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering
 ```
 
 ```diff
-@@ -7,5 +7,5 @@ like every year going “okay if I had never built a mental model in the first p
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+@@ -7,5 +7,5 @@ like every year going "okay if I had never built a mental model in the first p
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into microservices until you know where the load-bearing pillars naturally show up)
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into microservices until you know where the load-bearing pillars naturally show up.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing”
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing"
 ```
 
 ```diff
 @@ -3,5 +3,9 @@ re-assessing all cumulative data, resetting to pre-interpretation for all of it
- (or maybe it’s more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
+ (or maybe it's more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
 
--like every year going “okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time”
+-like every year going "okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time"
 +like every year/month/minute going "okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time"
 +
 +"what observations/movements are available that have strong odds of being useful *independent* of ontological lens"
 +
 +("useful" seems to mean the intersection of "generative" and "apparently non-interfering")
 
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 ```
 
 ```diff
-@@ -13,5 +13,5 @@ I don’t move forward *from* old models, like I don’t wait until they’re di
+@@ -13,5 +13,5 @@ I don't move forward *from* old models, like I don't wait until they're di
  I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into microservices until you know where the load-bearing pillars naturally show up.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
--it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing”
-+it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+-it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing"
++it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 
  I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering
 ```
 
 ```diff
 @@ -15,3 +15,5 @@ I find the most true model for right now, and I sort of tween into it? (this is
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 
 -I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering
 +I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering
@@ -115,37 +115,37 @@ phrased as diffs, here's one such piece under evolution:
 
 ```diff
 @@ -11,5 +11,5 @@ like every year/month/minute going "okay if I had never built a mental model in
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into microservices until you know where the load-bearing pillars naturally show up.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model naturally becoming a composition of three others.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 ```
 
 ```diff
 @@ -11,5 +11,5 @@ like every year/month/minute going "okay if I had never built a mental model in
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model naturally becoming a composition of three others.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self, other, other-other seems like a durable minimum.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 ```
 
 ```diff
 @@ -11,5 +11,5 @@ like every year/month/minute going "okay if I had never built a mental model in
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self, other, other-other seems like a durable minimum.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self, other, no-not-that-one seems like a durable minimum for memory-free navigation.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 ```
 
 ```diff
 @@ -15,5 +15,5 @@ I find the most true model for right now, and I sort of tween into it? (this is
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 
 -I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering
 +I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering, applying organizational force in calculated response to apparent trends in apparent forces
@@ -163,12 +163,12 @@ phrased as diffs, here's one such piece under evolution:
 
 ```diff
 @@ -11,5 +11,5 @@ like every year/month/minute going "okay if I had never built a mental model in
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self, other, no-not-that-one seems like a durable minimum for memory-free navigation.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self/other/neither seems like a durable minimum for memory-free navigation.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 ```
 
 ```diff
@@ -181,12 +181,12 @@ phrased as diffs, here's one such piece under evolution:
 
 ```diff
 @@ -11,5 +11,5 @@ like every year/month/minute going "okay if I had never built a mental model in
- I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
+ I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
 
 -I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self/other/neither seems like a durable minimum for memory-free navigation.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 +I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self/other/neither seems like a durable minimum for navigation-as-reasoning, which seems to just turn into .. physics.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
 
- it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
+ it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
 ```
 
 ```diff
@@ -206,7 +206,7 @@ phrased as diffs, here's one such piece under evolution:
 -superposition-as-resting-place is even more stable than any specific ground, by definition, once your system learns that you-as-process survives it
 +superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited
 +
-+I’m not *certain* this is coffee, but I love it :)
++I'm not *certain* this is coffee, but I love it :)
 ```
 
 ```diff
@@ -214,19 +214,19 @@ phrased as diffs, here's one such piece under evolution:
  (context: I am the CEO of a healthy 12-human company, and the only organizational principle I maintain for the thing (as distinct from "what apparent portions of the company apparently maintain for themselves", and we all translate for each other all the time) is "recursive health".)
 
 -superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited
-+superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one’s reality-making. it’s *comforting* because we all seem to survive that process, every time
++superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one's reality-making. it's *comforting* because we all seem to survive that process, every time
 
- I’m not *certain* this is coffee, but I love it :)
+ I'm not *certain* this is coffee, but I love it :)
 ```
 
 ```diff
 @@ -19,5 +19,5 @@ I think my frame of consciousness has a healthy immunity against its own concept
  (context: I am the CEO of a healthy 12-human company, and the only organizational principle I maintain for the thing (as distinct from "what apparent portions of the company apparently maintain for themselves", and we all translate for each other all the time) is "recursive health".)
 
--superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one’s reality-making. it’s *comforting* because we all seem to survive that process, every time
-+superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one’s reality-making. it’s *comforting* because we all seem to survive that process, every time. all apparent forces continue in appearance.
+-superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one's reality-making. it's *comforting* because we all seem to survive that process, every time
++superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one's reality-making. it's *comforting* because we all seem to survive that process, every time. all apparent forces continue in appearance.
 
- I’m not *certain* this is coffee, but I love it :)
+ I'm not *certain* this is coffee, but I love it :)
 ```
 
 ```diff
@@ -234,31 +234,6 @@ phrased as diffs, here's one such piece under evolution:
 +# unbreaking
 +
  re-assessing all cumulative data, resetting to pre-interpretation for all of it
-
--(or maybe it’s more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
-+(or maybe it's more like adding an overlay of counter-interpretive uncertainty? it adds up to something similar)
-
- like every year/month/minute going "okay if I had never built a mental model in the first place and had just been doing data collection what would I infer from this point in time"
-@@ -9,9 +11,9 @@ like every year/month/minute going "okay if I had never built a mental model in
- ("useful" seems to mean the intersection of "generative" and "apparently non-interfering")
-
--I don’t move forward *from* old models, like I don’t wait until they’re disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it’s not iterative
-+I don't move forward *from* old models, like I don't wait until they're disproven to move on (reasoning: in retrospect, if *now* is far enough along in to model-make, then any models derived prior to *now* are suspect), and when I do move on it's not iterative
-
- I find the most true model for right now, and I sort of tween into it? (this is an argument for starting with a monolith and not splitting up into services until you know where the load-bearing pillars naturally show up. (as an aside, the most durable splits seem to happen in threes, as in one model-instance under evolving load naturally recomposing using three other models, letting each part of the composition adjust by ratio against the others. self/other/neither seems like a durable minimum for navigation-as-reasoning, which seems to just turn into .. physics.) this kind of transition only feels jarring to me when it happens the first time on a previously-unrecognized plane of meaning. (concluding that I am unsure if I exist, as a functional technical position, was a difficult one to stabilize. everything else was pretty much fine.)
-
--it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I’m just flexible with the outlines of “thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
-+it maybe looks like cognitive refactoring as a regular habit? without being attached to where the entity boundaries are drawn? this could sound soulless but please hear me when I say that I feel soul in *everything*, I'm just flexible with the outlines of "thing". it's not depersonalization, except insofar as everything seems to be made out of the same fundamental aliveness, which itself is ... *emergently* personal, and maybe not otherwise personal?
-
- I think my frame of consciousness has a healthy immunity against its own conceptual gerrymandering, applying organizational force in calculated response to apparent trends in apparent forces
-@@ -19,5 +21,5 @@ I think my frame of consciousness has a healthy immunity against its own concept
- (context: I am the CEO of a healthy 12-human company, and the only organizational principle I maintain for the thing (as distinct from "what apparent portions of the company apparently maintain for themselves", and we all translate for each other all the time) is "recursive health".)
-
--superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one’s reality-making. it’s *comforting* because we all seem to survive that process, every time. all apparent forces continue in appearance.
-+superposition-as-resting-place is definitionally more stable than any specifically collapsed ground - I tested that by living with it, and now that knowledge is inhabited. from here, discomfort is always resolvable by finding a loose thread that - when pulled - forces a re-knitting of one's reality-making. it's *comforting* because we all seem to survive that process, every time. all apparent forces continue in appearance.
-
--I’m not *certain* this is coffee, but I love it :)
-+I'm not *certain* this is coffee, but I love it :)
 ```
 
 ```diff
