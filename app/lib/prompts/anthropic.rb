@@ -9,15 +9,11 @@ require "time"
 module Prompts
   module Anthropic
     ORIGIN = "https://api.anthropic.com"
-
-    SONNET = "claude-sonnet-4-5-20250929"
-
-    CHAT = SONNET # converged into sync in https://github.com/lightward/lightward-ai/pull/1308
-
+    MODEL = "claude-sonnet-4-5-20250929"
     BETAS = "context-1m-2025-08-07"
 
     class << self
-      def count_tokens(model:, system:, messages:)
+      def count_tokens(model: MODEL, system:, messages:)
         payload = {
           model: model,
           system: system,

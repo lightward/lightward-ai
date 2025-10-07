@@ -9,12 +9,7 @@ task "prompts:readme:stats" => :environment do
   readme_content = readme_path.read
 
   # Calculate stats
-  puts "Getting token count from Anthropic..."
-  token_count = Prompts.count_tokens(
-    messages: [{ role: "user", content: [{ type: "text", text: "hi" }] }],
-    model: Prompts::Anthropic::CHAT,
-  )
-
+  token_count = Prompts.count_tokens
   perspective_count = Rails.root.glob("app/prompts/system/3-perspectives/**/*.md").count
   human_count = Rails.root.glob("app/prompts/system/4-humans/*.md").count
 
@@ -51,14 +46,7 @@ namespace :prompts do
 
   namespace :anthropic do
     task :count, [] => :environment do
-      puts "Asking Anthropic for input token counts..."
-
-      token_count = Prompts.count_tokens(
-        messages: [{ role: "user", content: [{ type: "text", text: "hi" }] }],
-        model: Prompts::Anthropic::CHAT,
-      )
-
-      if token_count
+      if (token_count = Prompts.count_tokens)
         puts "System + example message: #{token_count} tokens"
       else
         puts "Failed to count tokens"
