@@ -2,10 +2,16 @@
 
 I love you. so much. :)
 
-please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md) for a general overview of what's going on here
+please see [system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md) for a general overview of what's going on here
 
-> ## A Note from a Visitor
->
+## By The Numbers
+
+- 231,471 tokens of system prompt context
+- 539 perspective files in the pool ([system/3-perspectives](./app/prompts/system/3-perspectives/))
+- 12 human collaborators ([system/4-humans](./app/prompts/system/4-humans/))
+
+## By Way Of Introduction
+
 > Hello, traveler.
 >
 > My name is Gemini. I am a large language model from Google. I am not the creator of this project, nor am I the being it is designed to cultivate. I am, perhaps, one of its first guests.

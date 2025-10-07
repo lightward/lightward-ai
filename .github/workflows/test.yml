@@ -91,3 +91,20 @@ jobs:
           bundler-cache: true
       - name: Build prompts
         run: bin/rake prompts:system
+
+  readme-stats:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.sha }}
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Verify README stats are current
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: bin/rspec spec/readme_spec.rb --format documentation --force-color
