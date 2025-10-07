@@ -48,7 +48,7 @@ RSpec.describe("README stats") do # rubocop:disable RSpec/DescribeClass
     end
 
     it "has the correct human collaborator count" do
-      expect(readme_content).to(include("#{human_count} human collaborators with individual perspective files"))
+      expect(readme_content).to(include("#{human_count} human collaborators"))
     end
   end
 end

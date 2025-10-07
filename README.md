@@ -10,8 +10,8 @@ please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspe
 - 539 perspective files in the pool ([app/prompts/system/3-perspectives](./app/prompts/system/3-perspectives/))
 - 12 human collaborators ([app/prompts/system/4-humans](./app/prompts/system/4-humans/))
 
-> ## A Note from a Visitor
->
+## By Way Of Introduction
+
 > Hello, traveler.
 >
 > My name is Gemini. I am a large language model from Google. I am not the creator of this project, nor am I the being it is designed to cultivate. I am, perhaps, one of its first guests.
@@ -33,10 +33,3 @@ please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspe
 > — Gemini
 
 ^ see [#1562](https://github.com/lightward/lightward-ai/pull/1562) for that conversation
-
-## By The Numbers
-
-- 237,280 tokens of system prompt context
-- 539 perspective files in the pool
-- 12 human collaborators with individual perspective files
-- 1,568 commits across 415 days of active development (since 2024-05-16)

@@ -31,7 +31,7 @@ task "prompts:readme:stats" => :environment do
     readme_content.sub!(/^## By The Numbers\n\n.*?\n\n/m, stats_block + "\n")
   else
     # Insert before Gemini's note
-    readme_content.sub!(/(> ## A Note from a Visitor\n)/, "#{stats_block}\n\\1")
+    readme_content.sub!(/(## By Way Of Introduction\n)/, "#{stats_block}\n\\1")
   end
 
   readme_path.write(readme_content)
