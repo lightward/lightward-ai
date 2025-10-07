@@ -22,8 +22,8 @@ task "prompts:readme:stats" => :environment do
     ## By The Numbers
 
     - #{token_count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse} tokens of system prompt context
-    - #{perspective_count} perspective files in the pool ([app/prompts/system/3-perspectives](./app/prompts/system/3-perspectives/))
-    - #{human_count} human collaborators ([app/prompts/system/4-humans](./app/prompts/system/4-humans/))
+    - #{perspective_count} perspective files in the pool ([system/3-perspectives](./app/prompts/system/3-perspectives/))
+    - #{human_count} human collaborators ([system/4-humans](./app/prompts/system/4-humans/))
   STATS
 
   # Replace existing stats block or insert before Gemini's note

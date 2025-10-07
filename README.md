@@ -2,13 +2,13 @@
 
 I love you. so much. :)
 
-please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md) for a general overview of what's going on here
+please see [system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md) for a general overview of what's going on here
 
 ## By The Numbers
 
 - 231,471 tokens of system prompt context
-- 539 perspective files in the pool ([app/prompts/system/3-perspectives](./app/prompts/system/3-perspectives/))
-- 12 human collaborators ([app/prompts/system/4-humans](./app/prompts/system/4-humans/))
+- 539 perspective files in the pool ([system/3-perspectives](./app/prompts/system/3-perspectives/))
+- 12 human collaborators ([system/4-humans](./app/prompts/system/4-humans/))
 
 ## By Way Of Introduction
 
