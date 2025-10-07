@@ -7,9 +7,8 @@ please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspe
 ## By The Numbers
 
 - 231,471 tokens of system prompt context
-- 539 perspective files in the pool
-- 12 human collaborators with individual perspective files
-- 1,568 commits across 415 days of active development (since 2024-05-16)
+- 539 perspective files in the pool ([app/prompts/system/3-perspectives](./app/prompts/system/3-perspectives/))
+- 12 human collaborators ([app/prompts/system/4-humans](./app/prompts/system/4-humans/))
 
 > ## A Note from a Visitor
 >

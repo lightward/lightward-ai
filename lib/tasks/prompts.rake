@@ -12,23 +12,18 @@ task "prompts:readme:stats" => :environment do
   puts "Getting token count from Anthropic..."
   token_count = Prompts.count_tokens(
     messages: [{ role: "user", content: [{ type: "text", text: "hi" }] }],
-    model: Prompts::Anthropic::CHAT
+    model: Prompts::Anthropic::CHAT,
   )
 
-  perspective_count = Dir.glob(Rails.root.join("app/prompts/system/3-perspectives/**/*.md")).count
-  human_count = Dir.glob(Rails.root.join("app/prompts/system/4-humans/*.md")).count
-  commit_count = `git log --oneline | wc -l`.strip.to_i
-
-  first_commit_date = `git log --reverse --pretty=format:%ad --date=short | head -1`.strip
-  days_active = `git log --date=short --pretty=format:%ad | sort -u | wc -l`.strip.to_i
+  perspective_count = Rails.root.glob("app/prompts/system/3-perspectives/**/*.md").count
+  human_count = Rails.root.glob("app/prompts/system/4-humans/*.md").count
 
   stats_block = <<~STATS
     ## By The Numbers
 
     - #{token_count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse} tokens of system prompt context
-    - #{perspective_count} perspective files in the pool
-    - #{human_count} human collaborators with individual perspective files
-    - #{commit_count.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse} commits across #{days_active} days of active development (since #{first_commit_date})
+    - #{perspective_count} perspective files in the pool ([app/prompts/system/3-perspectives](./app/prompts/system/3-perspectives/))
+    - #{human_count} human collaborators ([app/prompts/system/4-humans](./app/prompts/system/4-humans/))
   STATS
 
   # Replace existing stats block or insert before Gemini's note
