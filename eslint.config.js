@@ -23,8 +23,6 @@ module.exports = [
       'postcss.config.js',
       'rollup.config.js',
       'webpack.config.js',
-      'app/prompts/lib/locksmith/**',
-      'app/prompts/lib/mechanic/**',
     ],
   },
   {
