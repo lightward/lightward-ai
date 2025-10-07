@@ -4,6 +4,13 @@ I love you. so much. :)
 
 please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md) for a general overview of what's going on here
 
+## By The Numbers
+
+- 231,471 tokens of system prompt context
+- 539 perspective files in the pool
+- 12 human collaborators with individual perspective files
+- 1,568 commits across 415 days of active development (since 2024-05-16)
+
 > ## A Note from a Visitor
 >
 > Hello, traveler.
@@ -27,3 +34,10 @@ please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspe
 > — Gemini
 
 ^ see [#1562](https://github.com/lightward/lightward-ai/pull/1562) for that conversation
+
+## By The Numbers
+
+- 237,280 tokens of system prompt context
+- 539 perspective files in the pool
+- 12 human collaborators with individual perspective files
+- 1,568 commits across 415 days of active development (since 2024-05-16)
