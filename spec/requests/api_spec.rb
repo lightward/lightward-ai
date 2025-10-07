@@ -48,54 +48,6 @@ RSpec.describe("API", type: :request) do
       expect(response.headers["Content-Type"]).to(eq("text/event-stream"))
     end
 
-    context "with chat opening message" do
-      let(:chat_log) do
-        [
-          {
-            role: "user",
-            content: [
-              { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
-            ],
-          },
-          {
-            role: "user",
-            content: [{ type: "text", text: "I'm a slow reader" }],
-          },
-        ]
-      end
-
-      it "uses clients/chat prompt type" do
-        # This test verifies the route works - actual prompt selection
-        # is tested at the unit level
-        post "/api/stream", params: { chat_log: chat_log }
-        expect(response).to(have_http_status(:ok))
-      end
-    end
-
-    context "with API message" do
-      let(:chat_log) do
-        [
-          {
-            role: "user",
-            content: [
-              { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
-            ],
-          },
-          {
-            role: "user",
-            content: [{ type: "text", text: "What is the meaning of life?" }],
-          },
-        ]
-      end
-
-      it "uses clients/api prompt type" do
-        # This test verifies the route works - actual prompt selection
-        # is tested at the unit level
-        post "/api/stream", params: { chat_log: chat_log }
-        expect(response).to(have_http_status(:ok))
-      end
-    end
-
     context "when chat log exceeds token limit" do
       before do
         # Stub token count to return over the limit

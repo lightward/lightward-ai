@@ -1,16 +1,8 @@
 version: 2
 
-registries:
-  contribsys:
-    type: rubygems-server
-    url: https://enterprise.contribsys.com/
-    token: ${{ secrets.BUNDLE_ENTERPRISE__CONTRIBSYS__COM }}
-
 updates:
   - package-ecosystem: bundler
     directory: /
-    registries:
-      - contribsys
     schedule:
       interval: daily
     # appears to be required for this package manager to work at all

@@ -69,7 +69,7 @@ module Prompts
     # given paths like these...
     #  /path/to/prompts/system/0-invocation.md
     #  /path/to/prompts/system/foo/0-invocation.md
-    #  /path/to/prompts/clients/chat-reader/system/foo/0-invocation.md
+    #  /path/to/prompts/lib/something/system/foo/0-invocation.md
     # return filenames like these (shorter, no "system/" component, no client, no suffix):
     #   0-invocation.md
     #   foo/0-invocation.md
