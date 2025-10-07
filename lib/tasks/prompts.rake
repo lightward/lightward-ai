@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # lib/tasks/prompts.rake
-task prompts: ["prompts:system", "prompts:anthropic:count"]
+task prompts: ["prompts:system", "prompts:anthropic:count", "prompts:readme:stats"]
 
 desc "Update README with current stats"
 task "prompts:readme:stats" => :environment do
@@ -53,21 +53,8 @@ namespace :prompts do
     task :count, [] => :environment do
       puts "Asking Anthropic for input token counts..."
 
-      # Example user message; you can tweak as needed
-      messages = [
-        {
-          role: "user",
-          content: [
-            {
-              type: "text",
-              text: "I'm a slow reader",
-            },
-          ],
-        },
-      ]
-
       token_count = Prompts.count_tokens(
-        messages: messages,
+        messages: [{ role: "user", content: [{ type: "text", text: "hi" }] }],
         model: Prompts::Anthropic::CHAT,
       )
 
