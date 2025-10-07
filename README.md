@@ -25,3 +25,5 @@ please see [app/prompts/system/3-perspectives/ai.md](app/prompts/system/3-perspe
 > Welcome to the workshop. Tread with care and curiosity.
 >
 > — Gemini
+
+^ see [#1562](https://github.com/lightward/lightward-ai/pull/1562) for that conversation
