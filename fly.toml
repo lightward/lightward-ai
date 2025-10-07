@@ -3,12 +3,11 @@ console_command = "/bin/sh"
 # this one's closest to aws's us-east-1, where our databases live
 primary_region = "iad"
 
-# sidekiq listens for this, and will shut down gracefully when it receives it. puma too.
+# puma listens for this, and will shut down gracefully when it receives it
 kill_signal = "SIGTERM"
 
-# this is fly's max: 5min to exit. we use this as a courtesy to in-progress runs, and we
-# sync this up with sidekiq's timeout.
-kill_timeout = 300
+# give streaming requests a chance to finish up
+kill_timeout = 30
 
 [build]
   dockerfile = "Dockerfile"
