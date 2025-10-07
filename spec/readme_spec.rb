@@ -26,7 +26,6 @@ RSpec.describe("README stats") do # rubocop:disable RSpec/DescribeClass
 
       Prompts.count_tokens(
         messages: [{ role: "user", content: [{ type: "text", text: "hi" }] }],
-        model: Prompts::Anthropic::CHAT,
       )
     end
 

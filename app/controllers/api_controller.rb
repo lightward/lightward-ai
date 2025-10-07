@@ -35,7 +35,6 @@ class ApiController < ApplicationController
 
     # Stream directly using SSE format
     Prompts.messages(
-      model: Prompts::Anthropic::CHAT,
       messages: chat_log,
       stream: true,
     ) do |request, response|
@@ -78,7 +77,6 @@ class ApiController < ApplicationController
   def count_chat_log_tokens!(chat_log)
     # Count just the userspace chat log, not the entire system prompt
     @chat_log_token_count = Prompts::Anthropic.count_tokens(
-      model: Prompts::Anthropic::CHAT,
       system: [],
       messages: chat_log,
     )

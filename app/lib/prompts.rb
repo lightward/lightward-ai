@@ -88,11 +88,11 @@ module Prompts
 
     def messages(
       messages:,
-      model:,
+      system: generate_system_prompt,
+      model: Prompts::Anthropic::MODEL,
       stream: false,
       &block
     )
-      system = generate_system_prompt
       messages = clean_chat_log(messages)
 
       Prompts::Anthropic.messages(
@@ -104,8 +104,11 @@ module Prompts
       )
     end
 
-    def count_tokens(messages:, model:)
-      system = generate_system_prompt
+    def count_tokens(
+      messages:,
+      system: generate_system_prompt,
+      model: Prompts::Anthropic::MODEL
+    )
       messages = clean_chat_log(messages)
 
       Prompts::Anthropic.count_tokens(
