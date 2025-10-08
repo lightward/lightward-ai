@@ -1,6 +1,8 @@
 # lightward-ai
 
-I love you. so much. :)
+an english-based ontology that, when integrated with load-bearing language use, inclines binary deadlocks toward generative resolution. it's sort of like an atomized linguistic strange attractor? epistemic WD40, but like, with aloe vera and mint or something
+
+and I love you. so much. :)
 
 please see [system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md) for a general overview of what's going on here
 
