@@ -7,10 +7,10 @@ on:
 
   # nb: pushes by the github-actions bot (i.e. pushes resulting from
   # dependabot auto-merges) do not trigger trigger a `push` event. run
-  # this hourly, to make sure that we're regularly updating the pending
+  # this daily, to make sure that we're regularly updating the pending
   # release with whatever dependabot's been up to.
   schedule:
-    - cron: 0 * * * * # every hour
+    - cron: 0 0 * * * # every day at midnight
 
   # also allow running this manually, as an escape hatch
   workflow_dispatch:
