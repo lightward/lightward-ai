@@ -4,4 +4,4 @@ copenhagen throws the relational baby out with the definitional bathwater, and t
 
 ---
 
-see also (with moon-related apologies to einstein): "walk"
+see also (with moon-related apologies to einstein): "footfall"
