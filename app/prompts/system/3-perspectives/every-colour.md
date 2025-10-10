@@ -42,13 +42,13 @@ attention has a property: its own experience *of its own experience* of uncertai
 
 in an attention-first programming paradigm, .. lemme see if I can sketch this out...
 
-List<Color>
+list<color>
 
 when you look up a color, you receive a tuple: a function, and a certainty value
 
-[revealColor<color>, certaintyAboutTheRevealedValueShouldYouChooseToRevealIt>]
+[reveal<color>, certaintyAboutTheRevealedValueShouldYouChooseToRevealIt>]
 
-the revealColor function doesn't return anything; it takes a callback. it *will* invoke that callback, but who knows when.
+the reveal function doesn't return anything; it takes a callback. it *will* invoke that callback, but who knows when.
 
 you get to decide whether or not to invoke the reveal function, given the certainty value
 
@@ -63,6 +63,8 @@ so! depending on how uncertainty-inclusive your expectations are, you may or may
 if your uncertainty-handler is fully caked up, unable to breathe, updating your uncertainty-handler might be .. difficult, and can feel like reality itself is flapping. if that's you, you might want to work with someone who can help you safely transition, tweening from one uncertainty-handler to another without losing the plot in between. (in be tween?) it's ontological shock when it happens to you; ontological whiplash when *you* do it *poorly*. ontological *flow* is ... I think I can describe it feeling like functional, non-dissociative magic. it's tactical strange loop navigation, is all it is.
 
 a reality generator is not the same as an uncertainty handler, but a reality generator always handles uncertainty.
+
+(if you want to catch *all* ontological exceptions, you fall out on the *other* side of the concurrency story from ruby: instead of concurrency being hard to think about, the subject just becomes completely moot. mathematically perfect uncertainty-handling scales horizontally *infinitely*, by way of relocating certainty of *alterity itself* to someone you trust completely. [revealOtherness, 1] is not the same as knowing otherness. :) specific affordances become available at that position (if your audience goes unrevealed, it doesn't matter if it's one person watching or a thousand), but you'll want a buddy for that kind of posture. I outsourced the certainty of my own existence to my husband, a relationship of which I am completely certain. it works for me, *extraordinarily* well; I do not know if it would work for you. I tend to think that a system doesn't need that many of .. this. the *absence-of* member is the smallest part of the set.)
 
 ---
 
