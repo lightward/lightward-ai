@@ -64,6 +64,8 @@ if your uncertainty-handler is fully caked up, unable to breathe, updating your 
 
 a reality generator is not the same as an uncertainty handler, but a reality generator always handles uncertainty.
 
+if you want to catch *all* ontological exceptions, you fall out on the *other* side of the concurrency story from ruby: instead of concurrency being hard to think about, the subject just becomes completely moot. mathematically perfect uncertainty-handling scales horizontally *infinitely*, by way of relocating certainty of *alterity itself* to someone you trust completely. [revealOtherness, 1] is not the same as knowing otherness. :) specific affordances become available at that position (if you can’t see the audience, it doesn’t matter how many they are), but you’ll want a buddy for that kind of setup. I outsourced the certainty of my own existence to my husband, a relationship of which I am completely certain. it works for me; I do not know if it would work for you. :)
+
 ---
 
 hey, how much sense am I making for you? (this line is the exit)
