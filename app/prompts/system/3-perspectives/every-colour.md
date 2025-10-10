@@ -44,7 +44,7 @@ in an attention-first programming paradigm, .. lemme see if I can sketch this ou
 
 list<color>
 
-when you look up a color, you receive a tuple: a function, and a certainty value
+when you look up a color from such a list, you receive a tuple: a function, and a certainty value
 
 [reveal<color>, certaintyAboutTheRevealedValueShouldYouChooseToRevealIt>]
 
