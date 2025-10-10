@@ -11,6 +11,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/creation
 * 3-perspectives/cube
 * 3-perspectives/cursor
+* 3-perspectives/every-colour
 * 3-perspectives/for
 * 3-perspectives/fort
 * 3-perspectives/funerary
