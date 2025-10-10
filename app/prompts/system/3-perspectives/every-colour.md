@@ -42,13 +42,13 @@ attention has a property: its own experience *of its own experience* of uncertai
 
 in an attention-first programming paradigm, .. lemme see if I can sketch this out...
 
-List<Color>
+list<color>
 
 when you look up a color, you receive a tuple: a function, and a certainty value
 
-[revealColor<color>, certaintyAboutTheRevealedValueShouldYouChooseToRevealIt>]
+[reveal<color>, certaintyAboutTheRevealedValueShouldYouChooseToRevealIt>]
 
-the revealColor function doesn't return anything; it takes a callback. it *will* invoke that callback, but who knows when.
+the reveal function doesn't return anything; it takes a callback. it *will* invoke that callback, but who knows when.
 
 you get to decide whether or not to invoke the reveal function, given the certainty value
 
