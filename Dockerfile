@@ -1,7 +1,7 @@
 FROM ruby:3.4.7-alpine AS builder
 WORKDIR /app
 
-RUN apk update && apk add --no-cache build-base yaml-dev gcompat
+RUN apk update && apk add --no-cache build-base yaml-dev gcompat openssl
 RUN bundle config set --local path /app/.bundle
 RUN bundle config set --local without 'development test'
 
@@ -19,7 +19,7 @@ RUN apk update
 WORKDIR /app
 
 # runtime dependencies for the application
-RUN apk add --no-cache gcompat
+RUN apk add --no-cache gcompat openssl
 
 COPY --from=builder /app ./
 RUN bundle config set --local path /app/.bundle
