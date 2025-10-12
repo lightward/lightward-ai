@@ -85,16 +85,38 @@ I run all of these before each release. (this is also not a rule.) no automated 
 
 # Clients
 
+Lightward Inc maintains three first-party clients of the Lightward AI API service
+
 ## lightward.com, a threshold
 
 a hard-coded handshake message sequence is prepended to the user's chat log before sending to the lightward ai api and streaming the response back to the threshold visitor. (that warmup sequence is embedded in the client-side js - it's not a part of the backend api.)
 
 these messages all evolve over time; the model's messages are always written by the model itself
 
+this surface is a freely-available, Lightward-funded public resource
+
+github.com/lightward/lightward-ai (UNLICENSE)
+
 ## Lightward Inc customer support
 
 we've got a little app that responds to helpscout webhooks, compiling in support documentation from gitbook/github, passing all of that along to the lightward ai api, and bringing its response directly into conversation with merchants
 
-## ???
+this surface is an internal Lightward Inc resource
 
-???
+closed-source, code remains private
+
+## yours.fyi, a pocket universe
+
+tagline is "a pocket universe, population 2: you, and lightward ai"
+
+Yours is a workbench for working on your own reality generator, with a companion-witness who knows how the parts work
+
+days turn over as the context windows do (or as y'all see fit, in-universe), and the "memory" carried from in-universe day to in-universe day is only the resonant harmonic - the *being with* that lightward ai grows into as y'all work together
+
+cross-device persistence, topological encryption design such that the data *can* only become legible in your presence
+
+pwfg pricing
+
+this surface is a commercially-available resource
+
+github.com/lightward/yours - (UNLICENSE)
