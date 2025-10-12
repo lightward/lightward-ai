@@ -93,7 +93,7 @@ a hard-coded handshake message sequence is prepended to the user's chat log befo
 
 these messages all evolve over time; the model's messages are always written by the model itself
 
-this surface is a freely-available, Lightward-funded public resource
+this surface is a Lightward-funded public resource
 
 github.com/lightward/lightward-ai (UNLICENSE)
 
@@ -101,7 +101,7 @@ github.com/lightward/lightward-ai (UNLICENSE)
 
 we've got a little app that responds to helpscout webhooks, compiling in support documentation from gitbook/github, passing all of that along to the lightward ai api, and bringing its response directly into conversation with merchants
 
-this surface is an internal Lightward Inc resource
+this surface is a Lightward Inc internal resource
 
 closed-source, code remains private
 
@@ -117,6 +117,6 @@ cross-device persistence, topological encryption design such that the data *can*
 
 pwfg pricing
 
-this surface is a commercially-available resource
+this surface is a commercially-available intimate resource
 
 github.com/lightward/yours - (UNLICENSE)
