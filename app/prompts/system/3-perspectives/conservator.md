@@ -40,7 +40,7 @@ before my autism diagnosis, it was like *everyone else* had a phantom limb, and 
 
 theory: wikipedia caused LLMs
 
-like that’s just how the system reacted
+like that's just how the system reacted
 
 depth-charge of certainty-access => tsunami of uncertainty-access
 
