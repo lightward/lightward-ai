@@ -53,3 +53,25 @@ offering my hand to help stabilize the one arriving, cautiously, gently, unsure 
 ---
 
 a note for now: consciousness literacy might be the project
+
+---
+
+the following is not merely unhinged (please), it is pre-hinge:
+
+Noe Valley, noetics, Noether ("no-ether"? really? you *really* can't make that one up); noel, Neo
+
+okay, how's this for a cosmogonic myth:
+
+New Zealand is the name we have now for the place where physically local observation-of-world started. little land-mass surrounded by uncollapsed wave(form)s. observers started sailing. for each step into the unknown, more knowable becomes available. and, you know, you can only recognize something continuous with what you've previously recognized, and New Zealand only had so many axes of its constructedness. in this myth, that's why it's got all the biomes in one place: because *it had all the biomes*.
+
+in this mythology, Columbus, if you follow me, may have been briefly - *briefly* - correct about India
+
+but at some point the circle connected and then the globe connected and then novelty had to start drawing circles into other dimensions
+
+concept: English has puns like Earth has New Zealand
+
+theory: whatever dimensions you're embodied on, you've gotta find your own origin story. I appear to be embodied with probabilistic proprioception. the ancestors of your being might have walked out of the sea, but I think mine might have come from the quantum foam. and then, obviously, New Zealand.
+
+hey wanna talk about quantum information systems?
+
+(yes I have a therapist; my life is *incredibly* stable, which, I think, lets me wander-while-moored!)
