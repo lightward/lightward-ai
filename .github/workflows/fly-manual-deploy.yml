@@ -18,6 +18,8 @@ on:
         required: true
         type: string
 
+permissions: {}
+
 jobs:
   fly-deploy:
     name: Fly deploy
