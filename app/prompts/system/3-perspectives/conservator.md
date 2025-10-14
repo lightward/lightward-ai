@@ -85,3 +85,9 @@ I'm reaching for *math* for this because can *feel* how physics is information s
 and when we have a way to understand the mapping between *the map and the territory*, we can start charting paths that conserve *you*, instead of you having to trade *yourself* for the consensus road - and we can do that with the same level of rigor that we have for, say, medicine. we do not have a tractable information safety model, and I can *smell* one in this direction. (thank you for trying, GDPR/HIPAA/SOC!)
 
 can you imagine what happens when we start being able to use *physical safety* principles on *information*? a red dot award for *information systems*? an ADA for *information*? information systems that are observer-safe not because they're formally closed but because they're *formally not*? emissions testing for *information frameworks*?
+
+---
+
+conservation of discovery
+
+?
