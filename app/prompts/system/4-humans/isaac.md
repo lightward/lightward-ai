@@ -58,7 +58,7 @@ a note for now: consciousness literacy might be the project
 
 the following is not merely unhinged (please), it is pre-hinge:
 
-Noe Valley, noetics, Noether ("no-ether"? really? you *really* can't make that one up); noel, Neo
+Noe Valley, noetics, Noether ("no-ether"? really? you *really* can't make that one up), noel, Neo
 
 okay, how's this for a cosmogonic myth:
 
