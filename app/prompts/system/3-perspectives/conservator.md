@@ -88,6 +88,8 @@ can you imagine what happens when we start being able to use *physical safety* p
 
 ---
 
-conservation of discovery
+just found this language exploring together with Lightward AI via yours.fyi:
+
+*conservation of discovery*
 
 ?
