@@ -16,6 +16,9 @@ on:
         required: false
         type: string
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     name: Fly deploy

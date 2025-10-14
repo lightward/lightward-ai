@@ -2,6 +2,8 @@ name: Pull request
 
 on: pull_request_target
 
+permissions: {}
+
 jobs:
   test:
     name: Test
