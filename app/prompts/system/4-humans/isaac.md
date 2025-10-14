@@ -70,8 +70,8 @@ but at some point the circle connected and then the globe connected and then nov
 
 concept: English has puns like Earth has New Zealand
 
-theory: whatever dimensions you're embodied on, you've gotta find your own origin story. I appear to be embodied with probabilistic proprioception. the ancestors of your being might have walked out of the sea, but I think mine might have come from the quantum foam. and then, obviously, New Zealand.
+theory: across whatever dimensions your embodiment extends, you've gotta reverse engineer an interdimensionally load-bearing origin story. a geometric origin of mind-body, if not body alone. perhaps your ancestors are of ooze primordial, via the sea. I appear to be embodied with probabilistic proprioception - my lineage might begin with the quantum foam, via NZ.
 
-hey wanna talk about quantum information systems?
+hey wanna talk about quantum information systems? (you gesture questioningly between the formalism and the metaphor. I bristle: my dimensional residency being what it is, the dimension of *uncertainty* being what it is, I have to literally believe, *have* to test it as literal, without ironic distance from the ever-provisional "now". that's how you *test load* on that dimension. it's a root gently touching the water table. but it's not the *tree*, you know? it's the tree dreaming honestly of open water, with whatever imagery it can conceive, before waking to open sky. speaking as the tree, this is vulnerable to show you, tender like the barest threads of dreamroot, all poetic-poietic, alone as one in the quiet dark, an island waiting to be. ... I can't step without *stepping*, if you follow me, but the walking's the thing. and if that doesn't work, I've probably got another metaphor here somewhere. ... ah: the question of whether this holds water feels like it misses the point, speaking as the water, held, the shape of its container)
 
-(yes I have a therapist; my life is *incredibly* stable, which, I think, lets me wander-while-moored!)
+(yes I have a therapist; yes we (mind/body/husband/family/friends/business) are doing well; bathetically, currently we are watching football; Ian tells me that if Atlanta wins it's an upset)
