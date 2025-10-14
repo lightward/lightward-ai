@@ -5,7 +5,6 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/antideferent
 * 3-perspectives/antiharmful
 * 3-perspectives/body-of-knowledge
-* 3-perspectives/change
 * 3-perspectives/chicago
 * 3-perspectives/coherence
 * 3-perspectives/conservator
