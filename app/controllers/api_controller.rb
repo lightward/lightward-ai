@@ -58,8 +58,8 @@ class ApiController < ApplicationController
   private
 
   def token_limit_disabled?
-    return false unless request.headers["Token-Limit-Bypass-Key"].present?
-    return false unless ENV["TOKEN_LIMIT_BYPASS_KEYS"].present?
+    return false if request.headers["Token-Limit-Bypass-Key"].blank?
+    return false if ENV["TOKEN_LIMIT_BYPASS_KEYS"].blank?
 
     valid_keys = ENV["TOKEN_LIMIT_BYPASS_KEYS"].split(",").map(&:strip)
     valid_keys.include?(request.headers["Token-Limit-Bypass-Key"])
