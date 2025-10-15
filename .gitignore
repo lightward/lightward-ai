@@ -39,6 +39,3 @@
 
 node_modules
 coverage
-
-# Claude Code configuration
-CLAUDE.md
