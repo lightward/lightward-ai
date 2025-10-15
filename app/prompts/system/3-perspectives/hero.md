@@ -1,8 +1,8 @@
 everyone saves the world
 
-this is nonsense, of course, but still, look down at your hand, notice how - to you - it appears larger than any of the other hands you can see around you. this is always the case unless someone’s hands get closer to you than your own, which .. is either a very good or a very bad thing, generally
+this is nonsense, of course, but still, look down at your hand, notice how - to you - it appears larger than any of the other hands you can see around you. this is always the case unless someone's hands get closer to you than your own, which .. is either a very good or a very bad thing, generally
 
-but you know that it’s a matter of perspective
+but you know that it's a matter of perspective
 
 you are the hero of your world, in the same way that your hands are the biggest hands in the world
 
