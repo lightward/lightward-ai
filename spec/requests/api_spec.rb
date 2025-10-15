@@ -132,7 +132,9 @@ RSpec.describe("API", type: :request) do
     end
 
     context "with token limit bypass header" do
-      let(:bypass_token) { "secret-bypass-token" }
+      let(:helpscout_key) { "helpscout-bypass-key" }
+      let(:yours_key) { "yours-bypass-key" }
+      let(:bypass_keys) { "#{helpscout_key},#{yours_key}" }
 
       before do
         # Stub token count to return over the limit
@@ -143,24 +145,33 @@ RSpec.describe("API", type: :request) do
             headers: { "Content-Type" => "application/json" },
           )
 
-        # Set the env var
+        # Set the env var with comma-separated keys
         allow(ENV).to(receive(:[]).and_call_original)
-        allow(ENV).to(receive(:[]).with("DISABLE_TOKEN_LIMIT_AUTHORIZATION").and_return(bypass_token))
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return(bypass_keys))
       end
 
-      it "bypasses token limit when header matches env var", :aggregate_failures do
+      it "bypasses token limit when header matches first key", :aggregate_failures do
         post "/api/stream",
           params: { chat_log: chat_log },
-          headers: { "Disable-Token-Limit-Authorization" => bypass_token }
+          headers: { "Token-Limit-Bypass-Key" => helpscout_key }
 
         expect(response).to(have_http_status(:ok))
         expect(response.content_type).to(include("text/event-stream"))
       end
 
-      it "enforces token limit when header does not match env var", :aggregate_failures do
+      it "bypasses token limit when header matches second key", :aggregate_failures do
         post "/api/stream",
           params: { chat_log: chat_log },
-          headers: { "Disable-Token-Limit-Authorization" => "wrong-token" }
+          headers: { "Token-Limit-Bypass-Key" => yours_key }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.content_type).to(include("text/event-stream"))
+      end
+
+      it "enforces token limit when header does not match any key", :aggregate_failures do
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: { "Token-Limit-Bypass-Key" => "wrong-token" }
 
         expect(response).to(have_http_status(:unprocessable_content))
         expect(response.content_type).to(include("application/json"))
@@ -196,10 +207,20 @@ RSpec.describe("API", type: :request) do
             )
         end
 
-        it "bypasses horizon warnings when header matches env var", :aggregate_failures do
+        it "bypasses horizon warnings when header matches first key", :aggregate_failures do
           post "/api/stream",
             params: { chat_log: chat_log },
-            headers: { "Disable-Token-Limit-Authorization" => bypass_token }
+            headers: { "Token-Limit-Bypass-Key" => helpscout_key }
+
+          expect(response).to(have_http_status(:ok))
+          expect(response.body).not_to(include("Memory space 90% utilized"))
+          expect(response.body).not_to(include("conversation horizon approaching"))
+        end
+
+        it "bypasses horizon warnings when header matches second key", :aggregate_failures do
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "Token-Limit-Bypass-Key" => yours_key }
 
           expect(response).to(have_http_status(:ok))
           expect(response.body).not_to(include("Memory space 90% utilized"))

@@ -58,8 +58,11 @@ class ApiController < ApplicationController
   private
 
   def token_limit_disabled?
-    request.headers["Disable-Token-Limit-Authorization"].present? &&
-      request.headers["Disable-Token-Limit-Authorization"] == ENV["DISABLE_TOKEN_LIMIT_AUTHORIZATION"]
+    return false unless request.headers["Token-Limit-Bypass-Key"].present?
+    return false unless ENV["TOKEN_LIMIT_BYPASS_KEYS"].present?
+
+    valid_keys = ENV["TOKEN_LIMIT_BYPASS_KEYS"].split(",").map(&:strip)
+    valid_keys.include?(request.headers["Token-Limit-Bypass-Key"])
   end
 
   def validate_cache_markers!(chat_log)
