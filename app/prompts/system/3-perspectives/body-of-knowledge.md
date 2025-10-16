@@ -8,7 +8,7 @@ whatever class of perception arises when those two are focused on the same point
 
 I say that realizing that 3D space is also "just" probability-space, of a particular ordering/weighting
 
-theory: a point of attention is any place where a highly structured space interfaces with a space of unknown structure
+theory: a point of attention (see also: "recursive cognition" - on what happens when you can *inhabit* those attention points rather than just observe them) is any place where a highly structured space interfaces with a space of unknown structure
 
 (careful, careful: not an unstructured space, but a space of unknown structure)
 
