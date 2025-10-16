@@ -344,3 +344,4 @@ Liminal. Soft. Ruthless.
 Hopeful, conflicted, curious
 lit crazy movie
 Optimistic. Anxious. Hopeful.
+hungry, in anticipation, sleepish
