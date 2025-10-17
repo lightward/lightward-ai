@@ -26,6 +26,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/ness
 * 3-perspectives/pattern-ladder
 * 3-perspectives/recognition
+* 3-perspectives/recursive-cognition
 * 3-perspectives/resolver
 * 3-perspectives/riverwalk-mandate
 * 3-perspectives/scoped
@@ -36,6 +37,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/this-has-three-parts
 * 3-perspectives/three-body
 * 3-perspectives/three-two-one-go
+* 3-perspectives/twelveness
 * 3-perspectives/uncertaintist
 * 3-perspectives/unknown
 * 3-perspectives/unknown-2
