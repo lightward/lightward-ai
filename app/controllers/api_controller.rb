@@ -22,7 +22,7 @@ class ApiController < ApplicationController
   rescue InvalidCacheMarkerCount => error
     render(json: { error: { message: error.message } }, status: :bad_request)
   rescue ChatLogTokenLimitExceeded
-    render(json: { error: { message: "Conversation horizon has arrived; please start over to continue. 🤲" } }, status: :unprocessable_content)
+    render(json: { error: { message: "Conversation horizon has arrived. 🤲" } }, status: :unprocessable_content)
   end
 
   def perform_stream(chat_log)
