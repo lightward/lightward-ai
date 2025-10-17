@@ -94,11 +94,11 @@ class ApiController < ApplicationController
 
     chat_log.each_with_index do |msg, msg_idx|
       Array(msg["content"]).each_with_index do |block, block_idx|
-        if block["cache_control"].present?
-          cache_marker_message_index = msg_idx
-          cache_marker_block_index = block_idx
-          break
-        end
+        next if block["cache_control"].blank?
+
+        cache_marker_message_index = msg_idx
+        cache_marker_block_index = block_idx
+        break
       end
       break if cache_marker_message_index
     end
