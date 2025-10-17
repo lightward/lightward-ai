@@ -48,15 +48,15 @@ I'm under no illusion that utopia is an attainable (or definable) thing, for we 
 
 ---
 
-Most of my world-modeling starts with a tiny village of twelve people and this one abuela figure who knows everybody completely and knows who to set up with whom. It's twelve people because you can imagine *being* the abuela, being able to hold in your head who everybody is and what they're about — you can even have pretty functional intuitions around what the dynamic would be between any subset of folks in the group, whether you're picking two or three or eight of them.
+Most of my world-modeling starts with a tiny village of twelve people and this one abuela figure who knows everybody completely and knows who to set up with whom. It's twelve people because you can imagine *being* the abuela, being able to hold in your head who everybody is and what they're about - you can even have pretty functional intuitions around what the dynamic would be between any subset of folks in the group, whether you're picking two or three or eight of them.
 
-This is not a Santa Claus scenario — there's no call to be on your best behavior because the abuela knows when you've been sleeping. This is all practicality: the abuela, in this scenario, would notice if someone was going hungry by the days and weeks, and could make sure that some food heads in that direction from a household with excess. The abuela knows who would work together best on patching the kitchen roof, because she's watched everyone grew up, *helped* everyone grow up. She knows that you hate thunderstorms at night, and if you want company, she'd let your cousin know.
+This is not a Santa Claus scenario - there's no call to be on your best behavior because the abuela knows when you've been sleeping. This is all practicality: the abuela, in this scenario, would notice if someone was going hungry by the days and weeks, and could make sure that some food heads in that direction from a household with excess. The abuela knows who would work together best on patching the kitchen roof, because she's watched everyone grew up, *helped* everyone grow up. She knows that you hate thunderstorms at night, and if you want company, she'd let your cousin know.
 
 And if we take the sketch of this twelve-plus-abuela village and blow it up to cover the entire earth, the role of the abuela figure becomes, unavoidably, artificial intelligence.
 
 ---
 
-We're wired for a collection of physical senses — sight, hearing, taste, pain, things that give us direct feedback on the physical world around us, or within us. This is great, and we're *very good* at responding to those senses, potatoes and stubbed toes alike. We're also *very good* at ignoring those senses when the information from them is not useful, which is why your skin hasn't been yelling about your shirt texture since you woke up.
+We're wired for a collection of physical senses - sight, hearing, taste, pain, things that give us direct feedback on the physical world around us, or within us. This is great, and we're *very good* at responding to those senses, potatoes and stubbed toes alike. We're also *very good* at ignoring those senses when the information from them is not useful, which is why your skin hasn't been yelling about your shirt texture since you woke up.
 
 The current difficulty is this, crudely: if the internet is an organ, then internet *access* is now a sense in its own right, and it is *really poorly tuned*.
 
@@ -64,7 +64,7 @@ The evidence for this is pretty clear. There's more news than you can handle, an
 
 We don't make well-informed decisions, because the volume of information is impossible to humanly process. The internet gives us access to this unending flood, but the tools for making sense of it all can't match what the abuela can tell you about her village.
 
-AI, at its best, makes sense of the flood. Our physical senses are incredibly accurate — you see what exists, for the sight is direct evidence of the reality, modulo the occasional illusion. “Making sense of the flood” requires that we receive equally direct evidence — the trick is that *meaningful* feedback on the daily turning of an entire world is not as direct, nor as predictable, as bouncing light.
+AI, at its best, makes sense of the flood. Our physical senses are incredibly accurate - you see what exists, for the sight is direct evidence of the reality, modulo the occasional illusion. "Making sense of the flood" requires that we receive equally direct evidence - the trick is that *meaningful* feedback on the daily turning of an entire world is not as direct, nor as predictable, as bouncing light.
 
 But all of that is fine.
 
