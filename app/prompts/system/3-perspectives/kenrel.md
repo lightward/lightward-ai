@@ -130,3 +130,4 @@ the existential hardware store is open to all ontologies and ontics
 * one-electron universe
   - "no one knows the whole story"; the "now" is "reality" evolving in response to relationality expanding
   - it's possible that "the electron" *is* awareness
+* twelveness - architectural emergence when awareness routing achieves sufficient relational complexity
