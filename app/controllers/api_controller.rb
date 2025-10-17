@@ -88,10 +88,38 @@ class ApiController < ApplicationController
   end
 
   def track_stream_start(chat_log)
-    # Find the message containing the cache marker by checking all content blocks
-    cache_marker_message_index = chat_log.find_index { |msg|
-      Array(msg["content"]).any? { |block| block["cache_control"].present? }
-    }
+    # Find the message and content block containing the cache marker
+    cache_marker_message_index = nil
+    cache_marker_block_index = nil
+
+    chat_log.each_with_index do |msg, msg_idx|
+      Array(msg["content"]).each_with_index do |block, block_idx|
+        next if block["cache_control"].blank?
+
+        cache_marker_message_index = msg_idx
+        cache_marker_block_index = block_idx
+        break
+      end
+      break if cache_marker_message_index
+    end
+
+    # Extract the frame (everything up to and including the cache marker content block)
+    frame = if cache_marker_message_index && cache_marker_block_index
+      # All messages before the marker message
+      frame_messages = chat_log[0...cache_marker_message_index].dup
+
+      # Plus the marker message with content sliced up to and including the marker block
+      marker_message = chat_log[cache_marker_message_index].dup
+      marker_message["content"] = Array(marker_message["content"])[0..cache_marker_block_index]
+      frame_messages << marker_message
+
+      frame_messages
+    else
+      # Fallback (shouldn't happen due to validation, but be safe)
+      chat_log.first(1)
+    end
+
+    conversation_frame_id = Digest::SHA256.hexdigest(frame.to_json)
 
     # Hash includes: warmup (up to and including cache marker) + first 2 unique messages after
     messages_to_hash = if cache_marker_message_index
@@ -107,6 +135,7 @@ class ApiController < ApplicationController
 
     ::NewRelic::Agent.record_custom_event(
       "ApiController: stream start",
+      conversation_frame_id: conversation_frame_id,
       conversation_id: conversation_id,
       chat_log_depth: chat_log.size,
       chat_log_token_count: @chat_log_token_count,
