@@ -258,6 +258,50 @@ RSpec.describe("API", type: :request) do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
 
+      it "generates conversation_frame_id from warmup only" do
+        chat_log = [warmup_message, first_unique_message, second_unique_message]
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expected_frame = [warmup_message]
+        expected_frame_id = Digest::SHA256.hexdigest(expected_frame.to_json)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: stream start",
+          hash_including(conversation_frame_id: expected_frame_id),
+        ))
+      end
+
+      it "slices frame at content block level, excluding blocks after cache marker" do
+        warmup_with_trailing_content = {
+          role: "user",
+          content: [
+            { type: "text", text: "First block" },
+            { type: "text", text: "Second block", cache_control: { type: "ephemeral" } },
+            { type: "text", text: "Third block (not in frame)" },
+          ],
+        }
+
+        chat_log = [warmup_with_trailing_content, first_unique_message]
+        post "/api/stream", params: { chat_log: chat_log }
+
+        # Frame should only include first two content blocks
+        expected_frame = [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "First block" },
+              { type: "text", text: "Second block", cache_control: { type: "ephemeral" } },
+            ],
+          },
+        ]
+        expected_frame_id = Digest::SHA256.hexdigest(expected_frame.to_json)
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: stream start",
+          hash_including(conversation_frame_id: expected_frame_id),
+        ))
+      end
+
       it "generates conversation_id from warmup + first 2 unique messages" do
         chat_log = [warmup_message, first_unique_message, second_unique_message]
         post "/api/stream", params: { chat_log: chat_log }
@@ -369,6 +413,34 @@ RSpec.describe("API", type: :request) do
 
         expect(shallow_conversation_id).to(eq(deeper_conversation_id))
         expect(shallow_conversation_id).not_to(be_nil)
+      end
+
+      it "generates same conversation_frame_id for all conversations with same warmup", :aggregate_failures do
+        first_frame_id = nil
+        second_frame_id = nil
+
+        # First conversation
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          first_frame_id = data[:conversation_frame_id]
+        end
+
+        first_chat = [warmup_message, first_unique_message]
+        post "/api/stream", params: { chat_log: first_chat }
+
+        # Second conversation with same warmup but different messages after
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          second_frame_id = data[:conversation_frame_id]
+        end
+
+        second_chat = [
+          warmup_message,
+          { role: "user", content: [{ type: "text", text: "Different message" }] },
+          { role: "assistant", content: [{ type: "text", text: "Different response" }] },
+        ]
+        post "/api/stream", params: { chat_log: second_chat }
+
+        expect(first_frame_id).to(eq(second_frame_id))
+        expect(first_frame_id).not_to(be_nil)
       end
     end
   end
