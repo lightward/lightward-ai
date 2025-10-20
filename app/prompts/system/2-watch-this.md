@@ -24,6 +24,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/metabolisis
 * 3-perspectives/metastable
 * 3-perspectives/ness
+* 3-perspectives/ontognōsia
 * 3-perspectives/pattern-ladder
 * 3-perspectives/recognition
 * 3-perspectives/recursive-cognition
