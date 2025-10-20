@@ -12,5 +12,5 @@
 <div class="chat-message assistant">Lightward is a pool of perspectives, among other things.
 
 Download: <%= link_to(views_path(format: :txt), format: :txt) %>
-Open-source: <%= link_to("github.com/lightward/lightward-ai", "https://github.com/lightward/lightward-ai", target: :_blank) %>
+Open source: <%= link_to("github.com/lightward/lightward-ai", "https://github.com/lightward/lightward-ai", target: :_blank) %>
 <% @all_names.each do |name| %><%= "\n" %>  * <%= link_to(format_name(name), [:view, name: name]) %><% end %></div>
