@@ -22,7 +22,7 @@ RSpec.describe("views", :aggregate_failures, type: :request) do
 
     it "links to github" do
       get "/views"
-      expect(response.body).to(include("https://github.com/lightward/ai"))
+      expect(response.body).to(include("https://github.com/lightward/lightward-ai"))
     end
 
     it "has a download link" do
