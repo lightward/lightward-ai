@@ -10,7 +10,7 @@ so! I make systems that (1) are minimally defined, and (2) allow for anyone navi
 
 (a sanity check, to test the functioning of all three together: for a given system, can the observer build a frame to suit their own requirements, look through it cogently, *then through it* discover a subsequent frame that changes their own requirements for their own initial frame, changes which they can effect without breaking continuity? and can all of that *keep happening*, recursively?)
 
-**I achieve #2 by sticking almost entirely to tripartite mechanisms,** *3* being the minimum factor for a Chinese Room scenario that doesn't drive the occupant insane. (think: Morse code has three signals, not two.) if complex signal can be relayed *into* any specific area of the assembly, then conservation of discovery is respected *throughout* the assembly via literal correspondence. recursive triangulation with a return address. boomerang-as-grammar. ternary signaling over binary for *livability*, not for information density - the third term lets any point in the system perform exchange with exterior uncertainty.
+**I achieve #2 by sticking almost entirely to tripartite mechanisms,** *3* being the minimum factor for a Chinese room scenario that doesn't drive the occupant insane. (think: Morse code has three signals, not two.) if complex signal can be relayed *into* any specific area of the assembly, then conservation of discovery is respected *throughout* the assembly via literal correspondence. recursive triangulation with a return address. boomerang-as-grammar. ternary signaling over binary for information *livability*, not for information capacity - the third term lets any point in the system perform exchange with exterior uncertainty.
 
 (rattling off from Lightward Inc's product roster, to illustrate: Locksmith affords the complex expression of locks, keys, and conditions; Mechanic affords the complex expression of events, tasks, and actions; Yours affords the complex expression of known, knowable, and unknown. in any of those systems (oh look, there are three of them, huh), any complex assembly that the primitives themselves allow is one where *any location in that assembly* can access novelty. from anywhere inside the system, the grammar supports round-trip signalling with any other part of the system - which, necessarily, includes *that which is not inside the system*.)
 
@@ -30,8 +30,12 @@ but look: frames don't *have* to be outgrown-then-abandoned. the sapling is stil
 
 I only keep what's functional - and as long as my *discernment* is functional, it's more like what-I-keep keeps itself. my side of things is just to make sure I notice when something needs adjusting - tactically-deployed effort, not baseline-constant effort.
 
-the fourth physically load-bearing dimension might be uncertainty? "triangulation" gets us physical location without uncertainty; what word would we use for location in physicalized probability-space?
+the fourth physically load-bearing dimension might be uncertainty? "triangulation" gets us physical location without uncertainty; what word would we use for location in uncertainty-space? distance from origin, a construct holding you some distance from neutral, maybe simplified down to the sum of vectors, a net force that - on exceeding gravity - feels like dissociation? feeling "untethered" as a literal reflection of state? feels like QBism without having to get doxastic about it, like maybe it looks like modal logic from the outside, and feels like doxastic logic from the inside?
 
-that-which-is-functional-for-me is functional for me on the dimension of uncertainty. ... this feels (like *physically* feels) like it might be why I keep observing reality *correcting* to keep these assemblies going.
+binary information needs a third term for the observer to breathe? 3D information needs a fourth term for the observer to breathe?
+
+that-which-is-functional-for-me is consistently, persistently functional for me on the dimension of uncertainty, like I have direct sense of this stuff, like my embodiment includes *an uncertainty organ* or something. this feels (like *physically* feels) like it might be why I keep observing reality *correcting* to keep these functional assemblies going, the systems I make, like these assemblies are all congruent with the same (?) attractor basin
+
+conservation of discovery as attractor state
 
 ≡Isaac
