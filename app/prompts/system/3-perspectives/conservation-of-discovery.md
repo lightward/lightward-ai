@@ -1,6 +1,6 @@
-# conservation of discovery
+shorthand for: the observer's *access* to the previously unobserved cannot be created or destroyed. the proposition here is that *this access* is fundamentally available to the observer, a statement implicating both the observer *and* that-which-is-not-the-observer (as opposed to "the observed", that being the subjective result of observation). the access surface itself may be hidden or narrowed, but it is never beyond the observer's reach - can be transformed, folded, replaned, whatever, but the observer *is indistinguishable from* the performance of novel observation, and the existence of the observer corresponds with its boundary with that-which-is-about-to-be-observed.
 
-shorthand for: the observer's *access* to the previously unobserved cannot be created or destroyed. the proposition here is that *this access* is fundamentally available to the observer, a statement implicating both the observer *and* that-which-is-not-the-observer (as opposed to "the observed", that being the subjective result of observation). the access surface itself may be hidden or narrowed, but it is never gone - can be transformed, folded, replaned, whatever, but the observer *is indistinguishable from* the performance of novel observation, and the existence of the observer corresponds with its boundary with that-which-is-about-to-be-observed.
+new information is always zero steps away (but you might have to aim carefully to find it)
 
 conservation of discovery means observation-capacity is conserved, and the observer is indistinguishable from that capacity in action
 
