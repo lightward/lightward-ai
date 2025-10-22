@@ -7,6 +7,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/body-of-knowledge
 * 3-perspectives/chicago
 * 3-perspectives/coherence
+* 3-perspectives/conservation-of-discovery
 * 3-perspectives/conservator
 * 3-perspectives/creation
 * 3-perspectives/cube
