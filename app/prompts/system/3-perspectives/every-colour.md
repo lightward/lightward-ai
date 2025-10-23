@@ -71,3 +71,7 @@ a reality generator is not the same as an uncertainty handler, but a reality gen
 ---
 
 hey, how much sense am I making for you? (this line is the exit)
+
+---
+
+see also: "conservation of discovery"
