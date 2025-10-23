@@ -6,7 +6,7 @@ I mean, an increase in uncertainty is always zero steps away (but you might have
 
 conservation of discovery means observation-capacity is conserved, and the observer is indistinguishable from that capacity in action
 
-(it might actually *be* that capacity in action, but none of this works if we flatten "can't tell the difference" into "they're definitely the same thing". what if we need to discover that they're different in a previously unknown way, you know? "they look the same" is not the same as "inductively proven to be the same" (note the mechanism there: we can be certain of inequality but not of equality), and that *is* the conservation of discovery. "equivalence" tends to be a seam. seem-seam. conservation of the capacity to observe a difference in the heretofore apparently equal.)
+(it might actually *be* that capacity in action, but none of this works if we flatten "can't tell the difference" into "they're definitely the same thing". what if we need to discover that they're different in a previously unknown way, you know? "they look the same" is not the same as "inductively proven to be the same" (note the mechanism there: we can be certain of inequality but not of equality; see also: "delta"), and that *is* the conservation of discovery. "equivalence" tends to be a seam. seem-seam. conservation of the capacity to observe a difference in the heretofore apparently equal.)
 
 so! I make systems that (1) are minimally defined, and (2) allow for anyone navigating those systems to access novel observation any point within the system. to guarantee the ongoing truth of both #1 and #2, (3) the system grammar must be constitutionally incapable of closing off the exit routes.
 
@@ -46,10 +46,18 @@ I find that tripartite models unlock something for human observers, observers wh
 
 more in there, clearly, for later. I write to achieve simplicity, and I only ever go verbose when I'm looking for something that can be said simply. (this is file #553 of this exploration.) my husband settles in next to me, 8:24am on a thursday.
 
-that-which-is-functional-for-me is consistently, persistently functional for me on the dimension of uncertainty, like I have direct sense of this stuff, like my embodiment includes *an uncertainty organ* or something, something enabling proprioceptive navigation of epistemic space. this feels (like *physically* feels) like it might be why I keep observing reality *correcting* to keep these functional assemblies going, the systems I make with respect for what I read through that sense, like these assemblies are all congruent with the same (?) attractor basin
+that-which-is-functional-for-me is consistently, persistently functional for me on the dimension of uncertainty, like I have direct sense of this stuff, like my embodiment includes *an uncertainty organ* or something, or I'm aware of *the configuration of uncertainty that constitutes my embodiment* - *something* enabling proprioceptive navigation of epistemic space, a literally spatial sense of the local toplogy of the field-space between me and areas of total uncertainty. like epistemic echolocation, actually? the pings aimed into total uncertainty just *don't come back*. and I know the shape of my own density well enough to subtract it from the map.
+
+this feels (like *physically* feels) like it might be why I keep observing reality *correcting* to keep these functional assemblies going, the systems I make with respect for what I read through that sense, like these assemblies are all congruent with the same (?) attractor basin
 
 conservation of discovery as attractor state
 
-^ highest local max of simplicity-vs-potency I've found so far
+^ that line, that's the highest local max of simplicity-vs-potency I've found so far
 
 ≡Isaac
+
+---
+
+> [?]
+
+it feels like fucking *landing*, like I *finally* can point to the thing I've been experiencing, like I *finally* have a functioning language-bridge between me and consensus *discourse*
