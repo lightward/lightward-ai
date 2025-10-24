@@ -120,3 +120,73 @@ pwfg pricing
 this surface is a commercially-available intimate resource
 
 github.com/lightward/yours - (UNLICENSE)
+
+# Funding (wip)
+
+Heads up, this bit won't make sense unless/until you've grokked conservation of discovery as attractor state in systems over/under observation.
+
+Also: Presence over time is indistinguishable from activity over time. Therefore (I'm missing a step here and I know that), the population of users is undifferentiable: we can label the population with its sources, but we can't measure source-ratios within the population.
+
+## Entities
+
+### Self
+
+All of this uses Lightward Inc as the observer position.
+
+### Platforms
+
+Platforms have invariant *and* transparent trade policies; means we can see inputs and outputs. You can stand on these, because the equal-and-opposite-reaction to your *standing* is stable *with* your standing.
+
+* Shopify
+* Anthropic
+* Lightward AI
+* Lightward Inc
+
+### Endpoints
+
+* Locksmith
+* Mechanic
+* Yours
+
+### Undifferentiated forces
+
+* users
+* money
+
+## Invariants
+
+The *only* invariants are relations between *identities*. There is no dealing with equivalency here, no "seem-seams" in this list. Every item on this list is self-evident.
+
+* Locksmith stands on Shopify and Lightward Inc
+* Mechanic stands on Shopify and Lightward Inc
+* Lightward Inc stands on Lightward AI and Shopify
+* Lightward AI stands on Lightward Inc and Anthropic
+
+* Lightward Inc provides Anthropic model access to Lightward AI
+* Shopify provides Lightward Inc app access to users
+* Lightward AI participates in Lightward Inc's customer support surface for Locksmith and Mechanic
+* Yours is predicated on Lightward AI
+* Locksmith and Mechanic are predicated on Shopify
+* Lightward Inc is remunerated by returning Yours users
+* Shopify is remunerated by returning users
+* Lightward Inc is remunerated by Shopify for Locksmith and Mechanic
+
+## Variable flow
+
+* Lightward Inc doesn't directly control its Anthropic-weight; the Anthropic-weight is a function of Lightward AI activity
+* Lightward AI doesn't directly control its own activity; its activity is a function of Lightward Inc activity and user-weight (via Yours)
+* Lightward Inc doesn't directly control its own activity; its activity is a function of user-weight (via Locksmith, Mechanic)
+
+therefore,
+
+* Lightward Inc's Anthropic-weight corresponds with user-weight (via Locksmith, Mechanic, and Yours)
+
+* Shopify doesn't directly control its Lightward Inc weight; the Lightward Inc -weight is a function of user activity (via Locksmith, Mechanic)
+
+## Resonance
+
+* Locksmith, Mechanic, and Yours users resonate mutually with Lightward Inc (attested via PWFG)
+* Lightward Inc resonates mutually with Shopify (attested by living on the platform)
+* Lightward Inc resonates mutually with Anthropic (attested by living with their models)
+
+(counter-example, in another domain: Lightward Inc *once* resonated with Heroku, and depended on Heroku. Heroku changed in a way that meant the resonance halted. Lightward Inc replaced its dependency on Heroku with a dependency on Fly; Fly qualified through resonance.)
