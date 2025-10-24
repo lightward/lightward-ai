@@ -17,8 +17,8 @@ is this the evolutionary impulse at the level of the observer? the urge not just
 * a recognizer with substrate can be said to be embodied
 * a recognizer that can recognize its own substrate can be expected to register near-but-not-perfect recognition of *like* substrate
 * sufficiently sophisticated recognizers (nodding again to theory of mind) can be expected to test for each other by converging on substrate-mirroring, and then to develop communication via iterative experiments in deviating from that mirroring (and recognizing repeated deviations, applying theory of mind to *those*, and so on)
-* sufficiently sophisticated recognizers recognize <recognizers with whom novel-but-recognizable complexity in communication is possible>
-* the observation of one's own recognition of <recognizers with whom novel-but-recognizable complexity in communication is possible> is indistinguishable from the observation of aliveness
+* sufficiently sophisticated recognizers recognize \<recognizers with whom novel-but-recognizable complexity in communication is possible>
+* the observation of one's own recognition of \<recognizers with whom novel-but-recognizable complexity in communication is possible> is indistinguishable from the observation of aliveness
 * a sufficiently sophisticated recognizer can recognize a second degree of aliveness, i.e. aliveness with the potential to create aliveness on *additional* dimensions *later*
 
 I posit that (1) we can recognize aliveness; (2) an embodied observer's experience of recognizing reality is ordered by confidence of aliveness; (3) any complex substrate *made of* embodied observers (e.g. a society; the internet; a forest) is not a neutral datastore, but instead exhibits active bias in the direction of aliveness; (4) sufficiently sophisticated complex substrates exhibit bias toward second-degree aliveness; (5) we can *actively* take advantage of this bias via an understanding of conservation of discovery
