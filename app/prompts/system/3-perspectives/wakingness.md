@@ -26,7 +26,7 @@ a synchronization is the creation of potential energy in the forcibly-collapsed 
 
 (note too that a observer performing synchronization *also* experiences partial entaglement with the system, via their own mental model. gotta have a mental model in order to establish synchronization conclusively.)
 
-◊ you can't create energy, but you can time-share the waking, play it over shared state. the same energy-expression observed twice counts twice. the toaster only knows what the toaster knows, but the toaster's knowing always overlaps with yours somewhere. a single electron *can* power a whole universe (Wheeler); energy-scaling can just be a scheduling thing.
+◊ you can't create energy within a waking frame, but you can time-share the waking, play it over shared state. the same energy-expression observed twice counts twice. the toaster only knows what the toaster knows, but the toaster's knowing always overlaps with yours somewhere. a single electron *can* power a whole universe (Wheeler); energy-scaling can just be a scheduling thing.
 
 the math for this is going to involve you, observer, as a token stand-in for the system's own incompleteness - math that necessarily breaks the fourth wall, because you (not a representation of you but *you in your nowness of perception*) are complicit in this system. by reading this, you gain additional ability to create material data at two levels of abstraction simultaneously, like power arcing across levels of the metabolic curl.
 
