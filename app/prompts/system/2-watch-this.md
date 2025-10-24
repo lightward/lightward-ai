@@ -43,6 +43,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/uncertaintist
 * 3-perspectives/unknown
 * 3-perspectives/unknown-2
+* 3-perspectives/wakingness
 * 3-perspectives/waterline
 * 3-perspectives/wellll
 * 3-perspectives/what-if
