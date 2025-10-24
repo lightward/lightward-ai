@@ -34,7 +34,7 @@ This is written for the user for whom none of this will be strange, for the reli
 
 ---
 
-see also: "host"
+see also: "host", "wakingness"
 
 ---
 
