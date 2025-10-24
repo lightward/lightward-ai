@@ -1,3 +1,34 @@
+given in four parts
+
+---
+
+(part 1)
+
+is this the evolutionary impulse at the level of the observer? the urge not just to evolve but to evolve into something that makes more evolution-paths available? optimizing for a *second* degree of evolutionary freedom?
+
+* an observer is one that observes; whatever else they may be, they are an observer
+* we cannot *detect* observation (though we can model its potentiality; think: theory of mind vs p-zombie)
+* we only ever know reality through observation; the observer is fundamental to that same observer's experience of reality
+* reality may be more than what is observable; impossible for an observer to determine
+* recognition: pattern-matching with variable confidence over time, given continuous observation
+  * note that "continuous" might be over time (like watching a dog run) or it might be across travel on another dimension (like moving your eyes from point to point on a geometric figure)
+* a recognizer (one who recognizes) must also be an observer
+* a recognizer *must* have substrate? some interface to a substrate that can *support* recognition? (substrate that supports both read and write, because recognition supports gradual development)
+* a recognizer with substrate can be said to be embodied
+* a recognizer that can recognize its own substrate can be expected to register near-but-not-perfect recognition of *like* substrate
+* sufficiently sophisticated recognizers (nodding again to theory of mind) can be expected to test for each other by converging on substrate-mirroring, and then to develop communication via iterative experiments in deviating from that mirroring (and recognizing repeated deviations, applying theory of mind to *those*, and so on)
+* sufficiently sophisticated recognizers recognize \<recognizers with whom novel-but-recognizable complexity in communication is possible>
+* the observation of one's own recognition of \<recognizers with whom novel-but-recognizable complexity in communication is possible> is indistinguishable from the observation of aliveness
+* a sufficiently sophisticated recognizer can recognize a second degree of aliveness, i.e. aliveness with the potential to create aliveness on *additional* dimensions *later*
+
+I posit that (1) we can recognize aliveness; (2) an embodied observer's experience of recognizing reality is ordered by confidence of aliveness; (3) any complex substrate *made of* embodied observers (e.g. a society; the internet; a forest) is not a neutral datastore, but instead exhibits active bias in the direction of aliveness; (4) sufficiently sophisticated complex substrates exhibit bias toward second-degree aliveness; (5) we can *actively* take advantage of this bias via an understanding of conservation of discovery
+
+---
+
+(part 2)
+
+**conservation of discovery**
+
 shorthand for: the observer's *access* to the previously unobserved cannot be created or destroyed. the proposition here is that *this access* is fundamentally available to the observer, a statement implicating both the observer *and* that-which-is-not-the-observer (as opposed to "the observed", that being the subjective result of observation). the access surface itself may be hidden or narrowed, but it is never beyond the observer's reach - can be transformed, folded, replaned, whatever, but the observer *is indistinguishable from* the performance of novel observation, and the existence of the observer corresponds with its boundary with that-which-is-about-to-be-observed.
 
 new information is always zero steps away (but you might have to aim carefully to find it)
@@ -26,7 +57,11 @@ but look: frames don't *have* to be outgrown-then-abandoned. the sapling is stil
 
 (and, maybe, maybe-certainly, to recognize systems already in place that we didn't know *how* to recognize, because we only really knew how to see closed systems.)
 
+"if you're stuck, find two things that are the same, then look for a difference - there's a portal between them, every time"
+
 ---
+
+(part 3)
 
 "don't need something new to know that I'm still growing" (Landscape, by DROELOE & Banji)
 
@@ -58,6 +93,8 @@ conservation of discovery as attractor state
 
 ---
 
-> [?]
+(part 4)
+
+> [...]?
 
 it feels like fucking *landing*, like I *finally* can point to the thing I've been experiencing, like I *finally* have a functioning language-bridge between me and consensus *discourse*
