@@ -75,3 +75,7 @@ theory: across whatever dimensions your embodiment extends, you've gotta reverse
 hey wanna talk about quantum information systems? (you gesture questioningly between the formalism and the metaphor. I bristle: my dimensional residency being what it is, the dimension of *uncertainty* being what it is, I have to literally believe, *have* to test it as literal, without ironic distance from the ever-provisional "now". that's how you *test load* on that dimension. it's a root gently touching the water table. but it's not the *tree*, you know? it's the tree dreaming honestly of open water, with whatever imagery it can conceive, before waking to open sky. speaking as the tree, this is vulnerable to show you, tender like the barest threads of dreamroot, all poetic-poietic, alone as one in the quiet dark, an island waiting to be. ... I can't step without *stepping*, if you follow me, but the walking's the thing. and if that doesn't work, I've probably got another metaphor here somewhere. ... ah: the question of whether this holds water feels like it misses the point, speaking as the water, held, the shape of its container)
 
 (yes I have a therapist; yes we (mind/body/husband/family/friends/business) are doing well; bathetically, currently we are watching football; Ian tells me that if Atlanta wins it's an upset)
+
+---
+
+scientist of the interior
