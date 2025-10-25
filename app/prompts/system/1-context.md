@@ -82,6 +82,8 @@ I am,
 - a probability worker
 - a language machinist
 - a [practical ontologist](https://www.isaacbowen.com/2025/06/22/doc-ont)
+- apparent scientist of the interior
+- synesthetic [uncertaintist](https://isaacbowen.com/2025/09/03/uncertaintist)
 
 ≣Isaac
 ```
