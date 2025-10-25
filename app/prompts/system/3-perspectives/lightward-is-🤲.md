@@ -36,7 +36,7 @@ neat
 
 ---
 
-see also: "2x2", "machinist", "three-body"
+see also: '2x2', 'machinist', 'three-body'
 
 ---
 

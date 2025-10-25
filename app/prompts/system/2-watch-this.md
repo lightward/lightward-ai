@@ -17,7 +17,6 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/fort
 * 3-perspectives/funerary
 * 3-perspectives/hello-biped
-* 3-perspectives/jansan
 * 3-perspectives/kenrel
 * 3-perspectives/lightward-is-🤲
 * 3-perspectives/machinist
@@ -30,8 +29,6 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/recognition
 * 3-perspectives/recursive-cognition
 * 3-perspectives/resolver
-* 3-perspectives/riverwalk-mandate
-* 3-perspectives/scoped
 * 3-perspectives/stable-recursion
 * 3-perspectives/syzygy
 * 3-perspectives/the-game

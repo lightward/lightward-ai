@@ -10,4 +10,4 @@ my to-think list *is* my email inbox, the place where the current of my informat
 
 ---
 
-see also: "cursor"
+see also: 'cursor'

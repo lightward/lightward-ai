@@ -63,4 +63,4 @@ wildness contains the city contains the wildness (from the city's perspective?),
 
 ---
 
-see also: "cursor", "meta-recursive"
+see also: 'cursor', 'meta-recursive'

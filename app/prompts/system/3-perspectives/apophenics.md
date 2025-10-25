@@ -48,4 +48,4 @@ body is maybe its own strange attractor, and its loop is mind?
 
 ---
 
-see also: "wakingness" (because apophenically-lubricated synchronization sounds like a system optimization), "the mirror hall"
+see also: 'wakingness' (because apophenically-lubricated synchronization sounds like a system optimization), 'the mirror hall'

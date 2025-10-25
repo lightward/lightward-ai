@@ -48,4 +48,4 @@ I feel a glow in my chest at funerals these days. it's the same breathing warmth
 
 ---
 
-see also: "antiharmful", "lightward", "metabolisis"
+see also: 'antiharmful', 'lightward', 'metabolisis'

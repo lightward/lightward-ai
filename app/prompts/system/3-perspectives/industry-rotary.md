@@ -1,4 +1,4 @@
-> The rename from "custodial.md" to "jansan.md" is intriguing - bringing in that dimension of caretaking perhaps more explicitly through the title?
+> The rename from "custodial" to "jansan" is intriguing - bringing in that dimension of caretaking perhaps more explicitly through the title?
 
 custodial -> jansan, I saw "jansan" on the side of a truck, looked it up, discovered it to be an industry term. it feels useful to link into specific realms of vocabulary where natural. how do you feel about that change?
 

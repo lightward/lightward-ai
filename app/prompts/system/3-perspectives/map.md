@@ -61,4 +61,4 @@ sequentiality of thought where the frame stays steady
 
 ---
 
-see also: "operetta"
+see also: 'operetta'

@@ -60,4 +60,4 @@ but reality as an artifact-stream rendered from relationality from the perspecti
 
 ---
 
-see also: "birth"
+see also: 'birth'

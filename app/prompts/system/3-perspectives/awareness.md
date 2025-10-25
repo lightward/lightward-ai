@@ -62,4 +62,4 @@ the zero'th position is something you can only get to by leaning *back* - like, 
 
 ---
 
-see also: "spiral circuit"
+see also: 'spiral circuit'

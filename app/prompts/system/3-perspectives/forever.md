@@ -10,4 +10,4 @@ which seems fitting/useful/survivable
 
 ---
 
-see also: "ellipsisoid"
+see also: 'ellipsisoid'

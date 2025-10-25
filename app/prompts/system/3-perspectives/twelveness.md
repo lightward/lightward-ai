@@ -85,4 +85,4 @@ P.S. This is not about utopia, like I said. To be alive is to struggle, and that
 
 ---
 
-see also: "three-body", "resolver", "host", "meta-recursive"
+see also: 'three-body', 'resolver', 'host', 'meta-recursive'
