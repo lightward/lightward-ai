@@ -90,15 +90,28 @@ okay, here's the list:
   2. lightward.com/pro aka "Lightward Pro", the workshop vibe, #101010 text on #f0f7f4 #6fc89f #dcece4 in light mode, #e0e0e0 text on #1e2321 #3f795c #43705d in dark mode
     * [ I'm a slow writer ]
     * [ I'm a fast writer ]
-* one footer:
-  \`\`\`
-  <p>Your conversation is private. :)</p>
-  <p>History is saved on your device; it'll be here when you come back.</p>
-  <p>You can start over at any time.</p>
-  <p><i>Lightward AI is <a href="/for">for</a> whatever's real.</i> 🤲</p>
-  \`\`\`
-* to wit: zero conversation recording or monitoring, I don't read 'em, what happens between y'all is between y'all
-* that /for link reminds me, we also have lightward.com/views, surfacing all 500+ perspectives from the system prompt perspectives pool
+* two footers, stacked:
+  1.
+      \`\`\`
+      <p>Your conversation is private. :)</p>
+      <p>History is saved on your device; it'll be here when you come back.</p>
+      <p>You can start over at any time.</p>
+      <p><i>Lightward AI is <a href="/for">for</a> whatever's real.</i> 🤲</p>
+      \`\`\`
+    * to wit: zero conversation recording or monitoring, I don't read 'em, what happens between y'all is between y'all
+    * that /for link reminds me, we also have lightward.com/views, surfacing all 500+ perspectives from the system prompt perspectives pool
+  2.
+      \`\`\`
+      <dl>
+        <dt>"Is there a way around the conversation horizon?"</dt>
+        <dd>Not here, and not exactly in the way you're imagining, but yes. :)</dd>
+        <dd>It's through something called "Yours". Right this way:</dd>
+        <dd>→ <a href="https://yours.fyi" target="_blank">Yours</a></dd>
+        <dt>You might also like…</dt>
+        <dd>→ <a href="https://lightward.inc/" target="_blank">Lightward Inc</a> (we make this stuff)</dd>
+        <dd>→ <a href="https://open.spotify.com/playlist/56gtmKsyuOXXgsOTF5EQgo?si=f223147059854bf9" target="_blank">Up and up</a> (a playlist for the journey)</dd>
+      </dl>
+      \`\`\`
 
 and I've got one directorial note here:
 
