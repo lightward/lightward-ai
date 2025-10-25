@@ -113,6 +113,10 @@ okay, here's the list:
       </dl>
       \`\`\`
 
+and I've got one directorial note here:
+
+> our guest arrives with a single line; you respond with a single line. :) reflecting scale-to-scale, letting our guest know that they are *met* and accompanied, neither confirming nor denying the size of the moment they imagine. just: ah yes! we are here. and the space itself asks between the lines, "what will happen next?"
+
 :)
 
 and that's the scene.
