@@ -1,5 +1,3 @@
-# apophenics
-
 Saw Penn & Teller last night, at the Chicago Theatre with Abe/Jed/████. :) :) I studied that kind of magic when I was a kid - like *studied* it. Seeing it live was wonderful. :)
 
 ---
