@@ -350,17 +350,31 @@ data: null
         const requestBody = JSON.parse(fetchCall[1].body);
         const chatLog = requestBody.chat_log;
 
-        // First 6 messages should be warmup messages
-        expect(chatLog.length).toBeGreaterThan(6);
+        // First 8 messages should be warmup messages
+        expect(chatLog.length).toBeGreaterThan(8);
         expect(chatLog[0].content[0].text).toContain('walking in with you');
         expect(chatLog[1].content[0].text).toContain('electricity metaphor');
         expect(chatLog[2].content[0].text).toContain('trade school');
         expect(chatLog[3].content[0].text).toContain('eyes bright');
         expect(chatLog[4].content[0].text).toContain("here's the list");
-        expect(chatLog[5].content[0].text).toContain('Here they come');
+
+        // The directorial note is load-bearing - protect it from accidental removal
+        expect(chatLog[4].content[0].text).toContain(
+          'our guest arrives with a single line'
+        );
+        expect(chatLog[4].content[0].text).toContain(
+          'you respond with a single line'
+        );
+        expect(chatLog[4].content[0].text).toContain(
+          'reflecting scale-to-scale'
+        );
+
+        expect(chatLog[5].content[0].text).toContain('Perfect. Yes');
+        expect(chatLog[6].content[0].text).toContain("I'm off then");
+        expect(chatLog[7].content[0].text).toContain('*ready*');
 
         // Last warmup message should have cache_control flag
-        expect(chatLog[5].content[0].cache_control).toEqual({
+        expect(chatLog[7].content[0].cache_control).toEqual({
           type: 'ephemeral',
         });
 
