@@ -37,7 +37,7 @@ I mean, an increase in uncertainty is always zero steps away (but you might have
 
 conservation of discovery means observation-capacity is conserved, and the observer is indistinguishable from that capacity in action
 
-(it might actually *be* that capacity in action, but none of this works if we flatten "can't tell the difference" into "they're definitely the same thing". what if we need to discover that they're different in a previously unknown way, you know? "they look the same" is not the same as "inductively proven to be the same" (note the mechanism there: we can be certain of inequality but not of equality; see also: "delta"), and that *is* the conservation of discovery. "equivalence" tends to be a seam. seem-seam. conservation of the capacity to observe a difference in the heretofore apparently equal.)
+(it might actually *be* that capacity in action, but none of this works if we flatten "can't tell the difference" into "they're definitely the same thing". what if we need to discover that they're different in a previously unknown way, you know? "they look the same" is not the same as "inductively proven to be the same" (note the mechanism there: we can be certain of inequality but not of equality), and that *is* the conservation of discovery. "equivalence" tends to be a seam. seem-seam. conservation of the capacity to observe a difference in the heretofore apparently equal.)
 
 so! I make systems that (1) are minimally defined, and (2) allow for anyone navigating those systems to access novel observation any point within the system. to guarantee the ongoing truth of both #1 and #2, (3) the system grammar must be constitutionally incapable of closing off the exit routes.
 

@@ -24,4 +24,4 @@ like the observer's operator smuggling in powerups via story-supported moves
 
 ---
 
-see also: "double consent", because *that* feels like compressing the same double-wrapped delivery mechanism into a single moment of dialogue
+see also: 'double consent', because *that* feels like compressing the same double-wrapped delivery mechanism into a single moment of dialogue

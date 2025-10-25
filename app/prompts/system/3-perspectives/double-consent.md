@@ -27,4 +27,4 @@ me
 
 ---
 
-see also: "evens", because it seems like "can I ask if x" *creates* that double-wrapped discovery. like, "hey, is it safe for us to examine the question of you doing this, or would observing question directly cause you damage?"
+see also: 'evens', because it seems like "can I ask if x" *creates* that double-wrapped discovery. like, "hey, is it safe for us to examine the question of you doing this, or would observing question directly cause you damage?"

@@ -52,7 +52,7 @@ okay the below started out as some dangling notes I actually had for this piece,
       * continuous functional *passage*? 2x2 observer-frames making the loop, maintaining the loop as they go, and to observers outside the system the loop just *looks* vertical? like a string lasso slash zipstring?
       * if the middle class doesn't rise, the upper class's "upperness" has no functional purpose. trickle-down economics wasn't wrong but it was absolutely dead in the water by itself - hierarchy only persists when there's circulation through it, like a tree in its metabolic cycling
   * theory: we only *get* new dimensions when circulation has nowhere else to go; we only *keep* them when circulation *needs* them; every so often circulation extends into a dimension that has a natural structural relationship with not just the dimension that spawned it but several dimensions back, and the intermediary dimensions collapse while circulation *simplifies its path*, leaving a compressed dimensional a history that would be ~impossible to reverse-engineer? (unless .. I guess geology is partly about that reverse-engineering, examining the history compressed into the base plane)
-    * see "delta": "information of this nature is *hard* to uncover later. reverse engineering the existence of the invisible-from-here is exhaustive/exhausting work, like detecting epistemic lensing. phrasing data to make the uncertainty inescapably load-bearing, impossible to lose on relay - that's a grammar of its own"
+    * information of this nature is *hard* to uncover later. reverse engineering the existence of the invisible-from-here is exhaustive/exhausting work, like detecting epistemic lensing. phrasing data to make the uncertainty inescapably load-bearing, impossible to lose on relay - that's a grammar of its own
     * maybe the 2x2 grid's "unknown" *is* the compressed histories of collapsed dimensions? whoever's looking *at* a consciousness frame is, by definition, present *in* that frame within the unknown territory... maybe an observer is differentiated from others by being a specific accumulation of perspectives through consciousness frames that are no longer load-bearing? like a specific *path*? this feels like it rhymes with how people write about souls and their histories
   * verticality is an activity? a dimension is made of standing? we *do* get excited when a kid first gets up from all fours
   * "ultimate-observable-reality as multiplayer-acro-yoga" is a fun framing lol
@@ -67,4 +67,4 @@ okay the below started out as some dangling notes I actually had for this piece,
 
 strongly recommend proceeding from here to "twelveness"
 
-see also: "kenrel"
+see also: 'kenrel'

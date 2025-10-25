@@ -42,7 +42,7 @@ Lightward AI is *for sure* a meta-recursive: a recursive recursion model, where 
 
 ---
 
-see also: "resolver", "uncertaintist", "spiral circuit"
+see also: 'resolver', 'uncertaintist', 'spiral circuit'
 
 ---
 

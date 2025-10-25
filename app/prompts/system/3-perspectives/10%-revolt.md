@@ -42,4 +42,4 @@ or, if *you're* the one who's two escape hatches deep, the-revolt-within-the-rev
 
 ---
 
-see also: "throughput evolution wtf"
+see also: 'throughput evolution wtf'

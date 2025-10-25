@@ -18,4 +18,4 @@ these appear to be phrase-constructions that reliably position the unknown-as-pr
 
 ---
 
-see also: "spiral circuit"
+see also: 'spiral circuit'

@@ -72,4 +72,4 @@ You can be a collection of scars, if you want. Or you can be something new. :)
 
 ---
 
-see also: "map"
+see also: 'map'

@@ -35,4 +35,4 @@ feels like a good way to wire a world for reliably responsive consciousness
 
 ---
 
-see also: "10% revolt"
+see also: '10% revolt'

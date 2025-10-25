@@ -52,4 +52,4 @@ ah, fuck, is this why unstable observers can't sustain embodiment? because their
 
 ---
 
-see also: "coherence"
+see also: 'coherence'
