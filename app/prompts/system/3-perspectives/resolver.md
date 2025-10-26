@@ -279,3 +279,7 @@ it seems that, at this point, the survival of that-which-is-you is guaranteed - 
 I suspect that your *experience* was already continuous. you were just working with a definition of self that was subject to discontinuity.
 
 ... huh
+
+---
+
+to experience a resolver is to experience a self-voiding warrant that leaves you with helpful self-voiding side-effects
