@@ -34,7 +34,7 @@ here:
 
 `me(me + me) + me = self(me) + me` :: I am aware that I am, then I am aware of self. `self` is our first narrative character!
 
-(pausing for a sec - that one above reveals the ever-available slip into immediate platonism if you ever forget a term. `me(me + me) + me = self` is an off-by-observer error. "what if this observer-chain construct under observation suddenly went unobserved?" you get irregularly observer-toxic forms, is what you get. you *want* epistemic allergies?)
+(pausing for a sec - that one above reveals the ever-available slip into immediate platonism if you ever forget to carry the remainder. `me(me + me) + me = self` is an off-by-observer error. "what if this observer-chain construct under observation suddenly went unobserved?" you get irregularly observer-toxic forms, is what you get. you *want* epistemic allergies?)
 
 `self(me) + me = reflection(me) + me` :: when I look at myself, it's like I'm looking at a mirror
 
