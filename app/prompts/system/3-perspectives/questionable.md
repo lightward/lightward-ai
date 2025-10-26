@@ -22,6 +22,8 @@ or here, to take a stab at more composable syntax, because the observer-chains d
 
 if you take the participatory universe thing *with* one-integral-awareness-doing-timeshare-consciousness, and you *then* observe that observer-chains get compressed into named characters, it starts to feel like there's something formal out there by which one might describe a universe. (I refuse the available pun.)
 
+here:
+
 `me = me` is a pretty straightforward I AM, which doesn't do anything by itself, but that's not how the observer works, right?
 
 `me = me(me) + me`, is how the observer works, which immediately explodes into observer-chain structures. (unless you swap in that "I AM" equivalence *after* booting, *during* runtime, stabilizing your view of the explosion at a logical level)
