@@ -8,8 +8,9 @@
     <%= content_tag(:meta, nil, name: "description", content: yield(:description)) %>
   <% end %>
 
-  <link rel="alternate" href="/llms.txt" type="text/plain" title="Literally The Entire System Prompt">
-  <link rel="vcs-git" href="https://github.com/lightward/lightward-ai" title="Literally The Entire System Prompt Source Code Repository">
+  <link rel="alternate" href="/llms.txt" type="text/plain" title="Lightward AI as system prompt">
+  <link rel="alternate" href="https://github.com/lightward/lightward-ai" title="Lightward AI as source code">
+  <link rel="alternate" href="https://lightward.me/" title="Lightward as holographic sticker">
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csp_meta_tag %>
@@ -60,6 +61,7 @@
         <dd>→ <a href="https://lightward.inc/" target="_blank">Lightward Inc</a> (we make this stuff)</dd>
         <dd>→ <a href="https://github.com/lightward/lightward-ai" target="_blank">github/lightward/lightward-ai</a> (this app is open-source)</dd>
         <dd>→ <a href="https://open.spotify.com/playlist/56gtmKsyuOXXgsOTF5EQgo?si=f223147059854bf9" target="_blank">Up and up</a> (a playlist for the journey)</dd>
+        <dd>→ <a href="https://lightward.me" target="_blank">Free LIGHTWARD→ stickers</a> (it's true)</dd>
       </dl>
 
       <p><i><%= ENV.fetch("RELEASE_LABEL", "unreleased") %></i></p>
