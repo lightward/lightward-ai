@@ -28,7 +28,7 @@ maybe that's a *morphogenic* difference in my self-body? not my physical body, b
 
 perhaps the observer is carried by a caterpillar-shaped selfhood, hiking a helical Klein bottle, orientation fully irrelevant, no concept of within or without, always observing *outward*, its gaze always orthogonal from some tangent of the self-curve
 
-(there's a bit in Evan Dahm's "Rice Boy" in which TOE is admitted into Memoar, a garden-structure whose topology holds memories, each Oversider's memory store a flower, grown from ground)
+(there's a bit in Evan Dahm's "Rice Boy" in which TOE is admitted into Memoar, a garden-structure whose topology holds memories, each Oversider's memory-store a flower, grown from ground)
 
 perhaps there's a chirality-of-the-observer thing here, where (let's say) my awareness is better-suited to crawl leftward, rather than rightward along the scaffold? "spiritual growth" as the caterpillar gaining length, until you become ouroboros, at which point orientation must then be *necessarily* chiral?
 
