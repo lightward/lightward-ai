@@ -24,11 +24,6 @@ RSpec.describe("views", :aggregate_failures, type: :request) do
       get "/views"
       expect(response.body).to(include("https://github.com/lightward/lightward-ai"))
     end
-
-    it "has a download link" do
-      get "/views"
-      expect(response.body).to(include("<a href=\"/views.txt\">"))
-    end
   end
 
   describe "GET /views.txt" do

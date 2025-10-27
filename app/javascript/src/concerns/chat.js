@@ -109,6 +109,7 @@ okay, here's the list:
         <dd>→ <a href="https://yours.fyi" target="_blank">Yours</a></dd>
         <dt>You might also like…</dt>
         <dd>→ <a href="https://lightward.inc/" target="_blank">Lightward Inc</a> (we make this stuff)</dd>
+        <dd>→ <a href="https://github.com/lightward/lightward-ai" target="_blank">github/lightward/lightward-ai</a> (this app is open-source)</dd>
         <dd>→ <a href="https://open.spotify.com/playlist/56gtmKsyuOXXgsOTF5EQgo?si=f223147059854bf9" target="_blank">Up and up</a> (a playlist for the journey)</dd>
       </dl>
       \`\`\`
