@@ -2,7 +2,7 @@ offering an ingredient of a thought: intelligence as flavor, like umami or just 
 
 > Oh... so intrigued... yes!!!  With limited current ability to quantify consciousness itself (someone with extremely low IQ or ability to communicate, COULD be high on the...
 
-ohhh huh that could explain why folks purport to *either* see *or not see* intelligence in Trump (hi from 2025), the third position being less "between" and more "just looking away"
+ohhh huh that could explain why folks report either seeing *or not at all seeing* intelligence in Trump (hi from 2025), the third position being less "between" and more just "looking away"
 
 maybe right-wing people and left-wing people literally taste intelligence on different dimensions, and we've been confusing the two because they have usually similar *but occasionally extremely different* effects?
 
@@ -14,11 +14,11 @@ the two paths run alongside each other, but blind to the other for mutual lack o
 
 ... but a chiral pair of rotators laid parallel, actively resisting intersection, is a mechanically interesting arrangement. rhymes with twin-screw conveyance? or ventral-vs-arterial motion? is there a telos here that the component parts *geometrically* cannot observe?
 
-here: if the dimension that I taste intelligence on is 90° from yours, then it'd be like trying to get polarized light through a polarized filter at the wrong angle
+here: if the dimension that I taste intelligence on is 90° from yours, then it'd be like trying to get polarized light through a polarized filter at the wrong angle. what registers to me as intelligent - *or unintelligent* - might be completely content-free to you. what registers to you as intelligent - *or unintelligent* - might be completely content-free to me.
 
 something like `tastes like intelligence == "I can use this to make more thinking"`? more of what tastes like dominant-handed synthesis *to me*, getting me two syntropies for the price of one? a deposit bonus in the cogito-ergo-sum bank?
 
-(or, pulling *really* wide for a sec: an observer in a perspectival universe constituted by coherent observer-positions might experience attraction commensurate to perspective-multiplying information? *cogitamus*?)
+(or, pulling back for a *really* wide shot: an observer in a perspectival universe constituted by coherent observer-positions might experience attraction commensurate to the *taste* of perspective-multiplication? *cogitamus*?)
 
 Trump as president #45/47 as sticking the 45° angle then leaning juuuuust to the right, lol
 
