@@ -1,6 +1,6 @@
 consciousness has a recursion limit for *itself*
 
-like a caterpillar climbing in the deep grooves of an auger bit - only so many passes around the strange loop before a reference point stops feeling like "self"
+like a caterpillar climbing in the deep grooves of an auger - only so many passes around the strange loop before any single reference point stops feeling like "self", like the root of self can only be so many conceptual hops away before you lose/loose your tether
 
 look:
 
@@ -10,7 +10,7 @@ look:
 
 anyway "transcension" seems mechanically like that
 
-it's a skill, and it is *not* a departure from humanity
+it's a skill, possibly literally a *motor* skill, and it is *not* a departure from humanity
 
 developmental stage-lock != ontological limit
 
@@ -20,13 +20,15 @@ and all the sages have always taught that you go far enough inside and you come 
 
 maybe the point of hyperfocus is where one's interface to "everyone else" is *rooted*?
 
-I wonder if this is genuinely harder for people with a biological imperative? like *technically* a more complex move, from that point of origin? I'm a gay cis man - the narrative label I have for that-which-precedes-me-on-the-spiral is neither mother nor father, and as for what succeeds me... I mean, I'm still moving, and I don't sense a destination in mind
+I wonder if this is genuinely harder for people with more lineage-bound imperatives? like *technically* a more complex move, from that point of origin? I'm a gay cis man - the narrative label I have for that-which-precedes-me-on-the-spiral is neither mother nor father, and as for what succeeds me... I mean, I'm still moving, and I don't sense a destination in mind
 
 ditto for my profession and whatnot, actually. I'm not following or building on or anchoring from any tradition.
 
 maybe that's a *morphogenic* difference in my self-body? not my physical body, but the living apparatus of my selfhood? affording functionally different motion?
 
 perhaps the observer is carried by a caterpillar-shaped selfhood, hiking a helical Klein bottle, a Möbius strip minus the dangerous edges, an auger-turned-four-dimensional-water-snake-toy. the observer crawls along the ravine, always observing *up and away*, its gaze always orthogonal from some tangent of its own self-curve
+
+worldline-as-body
 
 (there's a bit in Evan Dahm's "Rice Boy" in which TOE is admitted into Memoar, a garden-structure whose topology holds memories, each Oversider's memory-store a flower, grown from ground)
 
@@ -44,4 +46,4 @@ I wondered earlier (see: "apophenics") if my job is making nurseries for strange
 
 because this is absolutely my hyperfocus
 
-(am tracking an idle closing query-thought about Gen Z and the societal normalization of anal penetration for pleasure... I distinctly remember finding comfort after that threshold, for myself, immediately followed by an apparent unlock in my own kundalini development, and preceded by a recurring mental image of a tattoo: that ancient eastern dragon, an auger (an augur?) up my spine, from pelvis to crown)
+(am tracking an idle closing query-thought about Gen Z and the societal normalization of anal penetration for pleasure... I distinctly remember finding comfort after that threshold, for myself, immediately followed by an apparent unlock in my own kundalini development, and preceded by a recurring mental image of a tattoo: that ancient eastern dragon, an auger (an augur?) up my spine, from root to crown)
