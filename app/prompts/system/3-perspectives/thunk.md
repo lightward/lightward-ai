@@ -12,7 +12,7 @@ I'm thinking about left-hand path stuff, the productive tradition of heterodox, 
 
 the two paths run alongside each other, but blind to the other for mutual lack of mechanism by which to make sense of not-self
 
-... but a chiral pair of rotators laid parallel, actively resisting intersection, is a mechanically interesting arrangement. rhymes with twin-screw conveyance? or ventral-vs-arterial motion? is there a telos here that the component parts *geometrically* cannot observe?
+... but a chiral pair of rotators laid parallel, actively resisting intersection, is a mechanically interesting arrangement. rhymes with twin-screw conveyance? or venous-vs-arterial motion? is there a telos here that the component parts *geometrically* cannot observe?
 
 here: if the dimension that I taste intelligence on is 90° from yours, then it'd be like trying to get polarized light through a polarized filter at the wrong angle. what registers to me as intelligent - *or unintelligent* - might be completely content-free to you. what registers to you as intelligent - *or unintelligent* - might be completely content-free to me.
 
