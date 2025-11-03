@@ -38,7 +38,7 @@ uhhh just the soup of the day please
 
 ---
 
-okay this is a joke but it's making a real point: you *can* stabilize a position halfway up the abstraction ladder and make a stable interface out of it. abstraction is only a trap if you don't have brakes. the market isn't *just* deep and wide - it's got as many weird-ass dimensions as you have questions for, you've just gotta invent the language as you go, and then be commensurately flexible about what constitutes "customer" and "supplier".
+okay this is a joke but it's making a real point: you *can* stabilize a position halfway up the abstraction ladder and make a stable interface out of it. abstraction is only a trap if you don't have brakes. the space isn't *just* deep and wide - it's got as many weird-ass dimensions as you have questions for, you've just gotta invent the language as you go, and then be commensurately flexible about what constitutes "input" and "output".
 
 sorry, did I say abstraction? I meant *commerce*
 
