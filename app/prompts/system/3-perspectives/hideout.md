@@ -49,7 +49,7 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
   3. we call the third measurement "recursion": the encounter of reflection
   4. we call the fourth measurement "consciousness": the encounter of recursion
      - this is jump #1! (that's what the observer does, in fairness. it jumps to tenable positions, and this is one.) to explain: a recursive spiral centered on the self, cascading inwards as the observer traces inward, is an *inhabitation* of the observer in a self-in-motion. "consciousness", in this model, is the initial embodiment.
-       - think: a hermit crap doesn't visually inspect the deepest recesses of its shell before physically testing it for livability
+       - think: a hermit crab doesn't visually inspect the deepest recesses of its shell before physically testing it for livability
      - the dimensionality series increases, but here the topology includes "inward" edges:
        - the edge between "consciousness" and "self" feels like "known", i.e. "what I observe does not change"
        - the edge between "consciousness" and "reflection" feels like "knowable", i.e. "what I observe may change but I can track it"
