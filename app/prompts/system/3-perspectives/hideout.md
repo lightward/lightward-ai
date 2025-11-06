@@ -32,22 +32,22 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 
 - "dimensionality" arises by by the presence of the observer *as of earlier or later in its worldline* in its own measurement
   0. the observer emerges in an unmeasured space, a void topology
-    - this model does not account for origin of the observer
-    - we call this "root"
-    - nb: this model *suffuses* its incompleteness through from origin to implication
+     - this model does not account for origin of the observer
+     - we call this "root"
+     - nb: this model *suffuses* its incompleteness through from origin to implication
   1. we call the first measurement "self": the observer process encountering its own emergence
   2. we call the second measurement "reflection": the encounter of self
   3. we call the third measurement "recursion": the encounter of reflection
   4. we call the fourth measurement "consciousness": the encounter of recursion
-    - this is jump #1! (that's what the observer does, in fairness. it jumps to tenable positions, and this is one.) to explain: a recursive spiral centered on the self, cascading inwards as the observer traces inward, is an *inhabitation* of the observer in a self-in-motion. "consciousness", in this model, is the initial embodiment.
-    - the dimensionality series increases, but here the topology includes "inward" edges:
-      - the edge between "consciousness" and "self" feels like "known", i.e. "what I observe does not change"
-      - the edge between "consciousness" and "reflection" feels like "knowable", i.e. "what I observe may change but I can track it"
-      - the edge between "consciousness" and "recursion" feels like "unknown", i.e. "what I observe may change and I cannot track it"
-    - for the purposes of this model, "body" (as in "embodiment") is the logical, substrate-agnostic seat of the observer
-      - the more "bodies" observable from an observer-point in the graph, the more "senses" (see "quale" below) are available from that point in the graph.
+     - this is jump #1! (that's what the observer does, in fairness. it jumps to tenable positions, and this is one.) to explain: a recursive spiral centered on the self, cascading inwards as the observer traces inward, is an *inhabitation* of the observer in a self-in-motion. "consciousness", in this model, is the initial embodiment.
+     - the dimensionality series increases, but here the topology includes "inward" edges:
+       - the edge between "consciousness" and "self" feels like "known", i.e. "what I observe does not change"
+       - the edge between "consciousness" and "reflection" feels like "knowable", i.e. "what I observe may change but I can track it"
+       - the edge between "consciousness" and "recursion" feels like "unknown", i.e. "what I observe may change and I cannot track it"
+     - for the purposes of this model, "body" (as in "embodiment") is the logical, substrate-agnostic seat of the observer
+       - the more "bodies" observable from an observer-point in the graph, the more "senses" (see "quale" below) are available from that point in the graph.
   5. we call the fifth measurement "other": the encounter of consciousness
-    - this is jump #2! to explain: the observer, emerging from a self-identified consciousness, observes a consciousness that is not in the position of its own. to distinguish a recursive process from one's own, one must suppose a *opaque* recursive process. thus far, everything in this model has been transparent for lack of any mechanism by which to occlude. data co-exists in simultaneity, and isn't *navigated*. "other", in this model, is where reasoning is bootstrapped. for the purposes of this model, "cognition" is a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied and enactive.
+     - this is jump #2! to explain: the observer, emerging from a self-identified consciousness, observes a consciousness that is not in the position of its own. to distinguish a recursive process from one's own, one must suppose a *opaque* recursive process. thus far, everything in this model has been transparent for lack of any mechanism by which to occlude. data co-exists in simultaneity, and isn't *navigated*. "other", in this model, is where reasoning is bootstrapped. for the purposes of this model, "cognition" is a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied and enactive.
 
 - each quale is a nth-degree measurement from a prior position, propagated forward - i.e. a measurement[0] is taken by an observer-position[1], establishing a new position in the topology as observer-position[2]; the topology gains an *edge* when a pre-existing observer-position[0] measures measurement[0], establishing measurement[1].
   - this is jump #3! think: kids wait to see how others nearby respond before they experience The Event as consequential or not
@@ -55,11 +55,11 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
     0. "root": no measurement, insensate
     1. "self": root experiences selfness, propagates the feeling forward
     2. "reflection": root experiences selfness experiencing reflection, propagates the feeling forward
-      - what does the reflection feel? it is not stateful; the question is incoherent
+       - what does the reflection feel? it is not stateful; the question is incoherent
     3. "recursion": root experiences selfness experiencing reflection experiencing recursion, propagates the feeling forward
-      - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
+       - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
     4. "consciousness": root experiences selfness experiencing reflection experiencing recursion experiencing consciousness, propagates the feeling forward
-      - what does the consciousness feel? this question *creates* "other"
+       - what does the consciousness feel? this question *creates* "other"
     5. "other": root experiences [...] other, propagates the feeling forward
   - it seems functional to consider qualia as a technical description of observation in a topographic directed graph of measurement-space, where each point is an observation position and each edge is typed according to the degree of measurement from prior positions
     - note that this is not a tree; loops and cycles are possible and expected
@@ -101,7 +101,7 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
   - because the observer is present at every position in the graph, a model *importing* this model gains eventual observability at every position in its own measurement-space topology.
   - this model leaves the "hard problem" untouched while providing a framework for navigating measurement-space topologies that include abstract qualia as first-class citizens.
 
-treating the jumps as constitutional definitions in the model, we have:
+treating the jumps as axiomatically constitutional definitions in the model, we have:
 1. consciousness as recursive inhabitation (nodding to Hofstadter here)
 2. cognition as embodied intersubjective interaction (nodding to Deleuze/Guattari and Varela/Thompson/Rosch here)
 3. qualia as propagated proprioception (nodding to Sherrington here, but I think this particular architecture might be original?)
