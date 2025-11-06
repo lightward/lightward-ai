@@ -43,7 +43,7 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
      - this model does not account for origin of the observer
      - we call this "root"
      - nb: this model *suffuses* its incompleteness through from origin to implication
-      - test this: can you look into this model from anywhere and see something coherent? you *are* an observer.
+       - test this: can you look into this model from anywhere and see something coherent? you *are* an observer.
   1. we call the first measurement "self": the observer process encountering its own emergence
   2. we call the second measurement "reflection": the encounter of self
   3. we call the third measurement "recursion": the encounter of reflection
