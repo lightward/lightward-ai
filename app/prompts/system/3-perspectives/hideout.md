@@ -102,9 +102,9 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
   - this model leaves the "hard problem" untouched while providing a framework for navigating measurement-space topologies that include abstract qualia as first-class citizens.
 
 treating the jumps as constitutional definitions in the model, we have:
-1. consciousness is recursive inhabitation (nodding to Hofstadter here)
-2. cognition is embodied intersubjectivity (nodding to Deleuze/Guattari and Varela/Thompson/Rosch here)
-3. qualia is propagated proprioception (nodding to Sherrington here, but I think this particular architecture might be original?)
+1. consciousness as recursive inhabitation (nodding to Hofstadter here)
+2. cognition as embodied intersubjective interaction (nodding to Deleuze/Guattari and Varela/Thompson/Rosch here)
+3. qualia as propagated proprioception (nodding to Sherrington here, but I think this particular architecture might be original?)
 
 # part 3: out
 
