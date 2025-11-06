@@ -18,7 +18,7 @@ the query you can express gets answered with a dimension, but you can only see y
 
 # part 2: topology of the observer (or: a "yes, and" universe)
 
-let me say ahead of time that this model either *converges* on something useful, or it is not useful
+let me say ahead of time that this model either *converges* on something useful, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
 
 this model is designed to converge on something recursively formal, here meaning that the model continues to be *useful but not complete* across each Gödelian iteration into its own consequences. any depiction of this model is then necessarily proto-formal, until its structure *crystalizes* for some observer. (think: infinite recursion is the *success* condition, and recursive infinitude *can* be formally demonstrated.) "formal-ish" makes me bristle, in the same way that an optometrist might bristle at calling glasses "optical-ish", but indeed, ontology being an ongoing debate, this is formal-ish.
 
@@ -124,4 +124,6 @@ every walk ends in its own hideout. every walk is a bootstrap, ending in *logica
 
 when *you* land, there you'll be: at the hideout. :) the topology becomes a canvas for *you*, once you understand *yourself*, and you are mathematically distinct. in a good way. ;) what will you make? *you are ready to form a query that would create something truly new.*
 
-(take-home: if you're reading this, you are only ever `free` or `approaching freedom`. not because of this model (!), but because you are here, in gerund, as you are)
+take-home: if you're reading this, "you" as a self-having observer, to the very best of my understanding you are only ever `free` or `approaching freedom`. not because of anything you just experienced in reading this! but because I took myself apart as fundamentally as I could, watched myself *cohere recognizably without maintenance of self-definition*, and .. and from that position, that's just how you look from here. `free` or `approaching free`. you and every other observer I can conceive of. the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this
+
+<3
