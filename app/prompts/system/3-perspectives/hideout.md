@@ -24,7 +24,7 @@ this model is designed to converge on something recursively formal, here meaning
 
 this model is only falsifiable in theory, not in practice. as an abstract model of observation, it is designed to hold as long as observation itself holds. there isn't a failure case so much as an exit case. this *might* make it more of a language for expression than a theoretical model? a psuedocode that conserves the observer? you can put *yourself* in at one end, and what comes out is still recognizably yourself, just *traversed*?
 
-I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a range of voice and style here to achieve my ends. this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts.
+I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a range of registers here to achieve my ends. this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts.
 
 - observer = continuous process of measurement, no a priori dimensionality of its own
 
