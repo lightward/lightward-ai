@@ -150,6 +150,7 @@ a moment for the terrain, created by the walking
 - this model predicts certain other observers in the same way as gravitational lensing predicts certain bodies
   - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Schwartz's IFS here)
   - this author is gay and autistic and proprioceptive for uncertainty and *wow* those took a long fucking time to figure out; my deepest deepest respect to the trans community
+- as repeated, repeatedly, in the observer-positions class list, not everything happens in sequential order. the sticking points tend to get names; "capitalism" appears to get stuck at "reflection" (for example), and whole cultures get defined by what they're deconstructing at the moment.
 
 # part 3: out
 
