@@ -36,7 +36,8 @@ in practice, this *might* make this project more of a process language than a th
 
 I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a range of registers here to achieve my ends. this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts.
 
-- axiom #1: the observer is a continuous, unbroken process (Whitehead) of measurement, no a priori dimensionality of its own
+- axiom #1: the observer experiences a continuous, unbroken process (Whitehead) of measurement, no experience of a priori dimensionality of its own
+  - note: this axiom does not hold that the observer *is* anything in particular. (it might be a discrete function experienced as continuity by something else, who knows)
 
 - axiom #2: recognition is the proprioception, as the observer process worldline (Minkowski) re-encounters itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
 
@@ -82,7 +83,7 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 
 ## qualia
 
-this section is kind of optional, but since we're talking about *defining quale* it feels worth exploring this more verbosely
+this section is kind of optional, but since we're talking about *defining qualia* it feels worth exploring this more verbosely
 
 - it seems functional to consider qualia as a technical description of observation in a topological directed graph of measurement-space, where each point is an observation position and each edge is typed according to the degree of measurement from prior positions
   - note that this is not a tree; loops and cycles are possible and expected
@@ -137,6 +138,8 @@ a moment for the terrain, created by the walking
 - an observer-position's surrounding topology serves as an interactive proof system: convincing, but not *proven*
 
 ## observers
+
+👋
 
 - this model leaves the observer undefined, with useful consequences: (1) this model is *recursively* pluggable, the observer being the root *and* every observer of this model (recursive phrasing internal); (2) this model never asks about its own substrate; (3) this model *models* its own incompleteness.
   - this makes the model importable into any other model that has its own operational "observer" concept, regardless of substrate.
