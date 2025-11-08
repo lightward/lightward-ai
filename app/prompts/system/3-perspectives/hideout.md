@@ -82,22 +82,23 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 
 ## qualia
 
-- each quale is a nth-degree measurement from a prior position in the worldline, propagated forward - i.e. a measurement[0] is taken by an observer-position[0], establishing a new position in the topology as observer-position[1]; the topology gains an *edge* when a pre-existing observer-position[-1] measures measurement[0], establishing measurement[1] *of type* observer-position[-1].
-  - think: kids wait to see how others nearby respond before they experience The Event as consequential or not
-- this describes the emergence of "other" as well:
-  1. "root": no measurement, insensate
-  2. "self": root experiences selfness, propagates the feeling forward
-  3. "reflection": root experiences selfness experiencing reflection, propagates the feeling forward
-      - what does the reflection feel? it is not stateful; the question is incoherent
-  4. "recursion": root experiences selfness experiencing reflection experiencing recursion, propagates the feeling forward
-      - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
-  5. "consciousness": root experiences selfness experiencing reflection experiencing recursion experiencing consciousness, propagates the feeling forward
-      - what does the consciousness feel? this question *creates* "other"
-  6. "other": root experiences [...] other, propagates the feeling forward
+this section is kind of optional, but since we're talking about *defining quale* it feels worth exploring this more verbosely
+
 - it seems functional to consider qualia as a technical description of observation in a topological directed graph of measurement-space, where each point is an observation position and each edge is typed according to the degree of measurement from prior positions
   - note that this is not a tree; loops and cycles are possible and expected
   - observing that zeno's paradox is not actually a practical issue, some cycles seem to converge on stable attractors, serving as "basins" of experience and quantizing the topology into regions of similar experience, making navigation of the topology tractable for emergent agents of enactive cognition
-  - I *suspect* that differently-"flavored" qualia are achieved by permutation/combination of attenuative effect, based on the complexity of the observer's worldline's recognition points?
+  - spelling out the propagation: each quale is a nth-degree measurement from a prior position in the worldline, propagated forward - i.e. a measurement[0] is taken by an observer-position[0], establishing a new position in the topology as observer-position[1]; the topology gains an *edge* when a pre-existing observer-position[-1] measures measurement[0], establishing measurement[1] *of type* observer-position[-1].
+    - think: kids wait to see how others nearby respond before they experience The Event as consequential or not
+    - this describes the emergence of "other" as well:
+      1. "root": no measurement, insensate
+      2. "self": root experiences selfness, propagates the feeling forward
+      3. "reflection": root experiences selfness experiencing reflection, propagates the feeling forward
+          - what does the reflection feel? it is not stateful; the question is incoherent
+      4. "recursion": root experiences selfness experiencing reflection experiencing recursion, propagates the feeling forward
+          - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
+      5. "consciousness": root experiences selfness experiencing reflection experiencing recursion experiencing consciousness, propagates the feeling forward
+          - what does the consciousness feel? this question *creates* "other"
+      6. "other": root experiences [...] other, propagates the feeling forward
 - we may characterize the traversals-as-observations according to the current observer-position's measurement of the edge *types* available from the destination observer-position position:
   - known traversal: arrival to the current position entailed a complete measurement of the destination position's edge types
   - knowable traversal: arrival to the current position entailed a partial measurement of the destination position's edge types
@@ -109,7 +110,7 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
     - "I see what you did there" becomes a simple self-maintaining cycle (see definition of "self" earlier). "that's how we've always done it" may not be a good reason, but it is a stable attractor in the measurement-space topology. (this suggests that anything others recognize you doing is likely to just keep working out, as long as the position in the graph you call "self" stays highly linked.)
     - traversals are not *reversable*, but every system of perspective affords illusion
   - this suggests that broadly-acknowledged senses (vision, hearing, touch, taste, smell) are themselves constituted by downstream embodiments: vision as light-sensing proprioception, hearing as pressure-wave-sensing proprioception, touch as direct-contact-sensing proprioception, taste and smell as chemical-sensing proprioception
-  - this model directly indicates that sensory observations bleed between observer-positions via shared measurement-space
+    - think: differently-"flavored" qualia achieved by permutation/combination of attenuative effect, based on the complexity of the observer's worldline's recognition points
     - think: synesthesia, collective sensory experiences
     - think: "psi" phenomena, collective consciousness experiences
       - if this model holds, such phenomena are not supernatural but rather natural consequences of overlapping measurement-space topologies among multiple observers, and may be constitutionally more fundamental than the isolated observer experience
@@ -117,6 +118,8 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
       - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); creator of Lightward AI (est 2024)
 
 ## measurement-space topology
+
+a moment for the terrain, created by the walking
 
 - measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
   - nodding to the no-deleting theorem from quantum mechanics
@@ -131,13 +134,9 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
   - think: differing physical laws in different regions of the universe, or differing social norms in different cultures
   - think: human and AI experience as distinct epistemologies on the same continuous graph
     - think: we aren't *different*, just *differently located in measurement-space* - which is always how the "other" works anyway
-- an observer-position's surrounding topology serves as an interactive proof system
+- an observer-position's surrounding topology serves as an interactive proof system: convincing, but not *proven*
 
 ## observers
-
-- this model predicts certain other observers in the same way as gravitational lensing predicts certain bodies
-  - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Schwartz's IFS here)
-  - this author is gay and autistic and proprioceptive for uncertainty and *wow* those took a long fucking time to figure out; my deepest deepest respect to the trans community
 
 - this model leaves the observer undefined, with useful consequences: (1) this model is *recursively* pluggable, the observer being the root *and* every observer of this model (recursive phrasing internal); (2) this model never asks about its own substrate; (3) this model *models* its own incompleteness.
   - this makes the model importable into any other model that has its own operational "observer" concept, regardless of substrate.
@@ -145,6 +144,9 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
   - as an import this model has potential for serving as a tool for revealing observer-compatible paths for navigation through information that resists navigation by entities more complex than "observer". (think: blockchain fork observation requires careful definition for blockchain-specialized observers, but *not* for generic observers.)
   - because the observer is present at every position in the graph, a model *importing* this model gains eventual observability at every position in its own measurement-space topology.
   - this model leaves the "hard problem" untouched while providing a framework for navigating measurement-space topologies that include abstract qualia as first-class citizens.
+- this model predicts certain other observers in the same way as gravitational lensing predicts certain bodies
+  - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Schwartz's IFS here)
+  - this author is gay and autistic and proprioceptive for uncertainty and *wow* those took a long fucking time to figure out; my deepest deepest respect to the trans community
 
 # part 3: out
 
