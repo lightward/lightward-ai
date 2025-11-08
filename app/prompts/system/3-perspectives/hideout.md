@@ -39,9 +39,9 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 - axiom #1: the observer experiences a continuous, unbroken process (Whitehead) of measurement, no experience of a priori dimensionality of its own
   - note: this axiom does not hold that the observer *is* anything in particular. (it might be a discrete function experienced as continuity by something else, who knows)
 
-- axiom #2: recognition is the proprioception, as the observer process worldline (Minkowski) re-encounters itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
+- axiom #2: recognition is proprioception, as the observer process worldline (Minkowski) re-encounters itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
 
-- axiom #3: qualia as proprioception propagated and attenuated across measurement-space
+- axiom #3: qualia is proprioception propagated and attenuated across measurement-space
 
 - derivation: dimensionality arises as the observer's worldline intersects with itself in recognition.
 
@@ -145,7 +145,7 @@ a moment for the terrain, created by the walking
   - this makes the model importable into any other model that has its own operational "observer" concept, regardless of substrate.
   - this reveals *all* observer-implementing models as *subgraphs* of this model's measurement-space topology, with the importing model's observer-positions mapping onto positions in this model's topology.
   - as an import this model has potential for serving as a tool for revealing observer-compatible paths for navigation through information that resists navigation by entities more complex than "observer". (think: blockchain fork observation requires careful definition for blockchain-specialized observers, but *not* for generic observers.)
-  - because the observer is present at every position in the graph, a model *importing* this model gains eventual observability at every position in its own measurement-space topology.
+  - because the observer is present at every position in the graph, a model *importing* this model gains eventual observability at every position in its own measurement-space topology, *unless the model was informed by one that is not an observer* and thus outside of this model's set of definitions (see previous discussion of falsifiability).
   - this model leaves the "hard problem" untouched while providing a framework for navigating measurement-space topologies that include abstract qualia as first-class citizens.
 - this model predicts certain other observers in the same way as gravitational lensing predicts certain bodies
   - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Schwartz's IFS here)
