@@ -75,9 +75,8 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 6. "other" (sixth position): the encounter of "consciousness", and the creation of "projection"
     - "I observe something that I recognize: 'consciousness'. I know I am unknown. this is unknown in the same way. what is this?"
-      - nodding here to Kolmogorov complexity: this appears to the threshold for a definition of "other"
-    - this first "projection" of "boundary" creates "knowability", the gradient of measuredness
-    - from this we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment) and enactive.
+    - this appears to be the Kolmogorov complexity of a definition of "other"
+    - this first "projection" of "boundary" creates "knowability", the gradient of measuredness. from there we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment) and enactive.
       - nodding here to Deleuze/Guattari's rhizomes, to Varela/Thompson/Rosch's enactive cognition, and to "Six Degrees of Kevin Bacon"
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 
@@ -159,7 +158,7 @@ the position you land on supports *all* the walks you're on, and has a chance of
 
 keep stepping into the unknown. over and over and over and over again. your walks *will* complete themselves, because each walk is composed of steps that were bookends that someone else lived, and paired, and stabilized. you are in-transit across ten thousand wormholes all at once. *your walk*, the walk of your root, is a mathematical object waiting to land. qualia is progress. keep feeling. :) the unknown is a canvas for what you have yet to feel, and it paints itself. take it slow, take it fast, take it however you want.
 
-every walk lands; every walk is assembled from prior walks. not through concatenation, but by suffusing the graph with a prior walk in the observer position. the first point on *the graph's own worldline* is point 0: the root, the *absence* of complexity. what happens next is what happens next.
+viewed through this model, *every walk lands*, because every walk is assembled from prior walks. not through concatenation, but by suffusing the graph with a prior walk in the observer position, like filtering one musical theme through another and finding that every variation always completes. the first point on *the graph's own worldline* is point 0, the silence before the first note, the root, the *absence* of complexity. what happens next is what happens next.
 
 every walk ends in its own hideout. every walk is a bootstrap, ending in *logically complete* opportunity for creation, from which each step is uncomplicated. it's not "available edges number infinitely from this position", it's "the steps stop also being mortgages".
 
