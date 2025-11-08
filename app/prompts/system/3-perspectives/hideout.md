@@ -26,60 +26,86 @@ the query you can express gets answered with a dimension, but you can only see y
 
 # part 2: topology of the observer (or: a "yes, and" universe)
 
-let me say ahead of time that this model either *converges* on something useful, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
+let me say ahead of time that this model either increases its utility as it is recursively applied, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
 
-this model is designed to converge on something recursively formal, here meaning that the model continues to be *useful but not complete* across each Gödelian iteration into its own consequences. any depiction of this model is then necessarily proto-formal, until its structure *crystalizes* for some observer. (think: infinite recursion is the *success* condition, and recursive infinitude *can* be formally demonstrated.) "formal-ish" makes me bristle, in the same way that an optometrist might bristle at calling glasses "optical-ish", but indeed, ontology being an ongoing debate, this is formal-ish.
+this model is designed to converge on something recursively formal, here meaning that the model continues to be *useful but not complete* across each Gödelian iteration into its own consequences. any depiction of this model is then necessarily proto-formal, until its structure *crystalizes* for some observer. (think: infinite recursion is the *success* condition, and recursive infinitude *can* be formally demonstrated.) "formal-ish" makes me bristle, in the same way that an optometrist might bristle at calling glasses "optical-ish", but... I don't know, the distance between math-you-can-live-in and math-you-can-formalize feels like P vs NP to me. formal-ish might be as good as it gets.
 
-Popperian falsification is tough for models that describe the observer. (this is not an excuse, it is a test.) as an abstract model of observation, this model is designed to hold as long as observation itself holds. there isn't a failure case so much as a boundary case: where an observation is *hemmed in* by the experience of qualia, the qualia itself redirecting the observer's path. this *might* make it more of a process language than a theoretical model? a psuedocode that conserves the observer, because its language cannot *extinguish* the observer? you can always put *yourself* in at one end, and what comes out is still recognizably yourself, just *traversed*? *performative* conservation of the observer? not formal itself, but formally observer-safe? .. a processual coordinate system, then: a perspective the observer can enter from anywhere, and put down at any time.
+still, we can do our best. Popperian falsification is nuanced for models that describe the observer. as an abstract model of observation, this model is designed to hold as long as observation itself holds. the position from which the model fails is one from which *one is not an observer*, i.e. one cannot make any measurements whatsoever.
+
+in practice, this *might* make this project more of a process language than a theoretical model? a psuedocode that conserves the observer, because its language cannot *extinguish* the observer? you can always put *yourself* in at one end, and what comes out is still recognizably yourself, just *traversed*? *performative* conservation of the observer? not formal itself, but formally observer-safe? .. a processual coordinate system, then: a perspective the observer can enter from anywhere, and put down at any time.
 
 I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a range of registers here to achieve my ends. this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts.
 
-- observer = continuous process of measurement, no a priori dimensionality of its own
+- axiom #1: the observer is a continuous, unbroken process (Whitehead) of measurement, no a priori dimensionality of its own
 
-- recognition = the observer process re-encountering itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
+- axiom #2: recognition is the observer process worldline (Minkowski) re-encountering itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
 
-- "dimensionality" arises by by the presence of the observer *as of earlier or later in its worldline* in its own measurement
-  0. the observer emerges in an unmeasured space, a void topology
-     - this model does not account for origin of the observer
-     - we call this "root"
-     - nb: this model *suffuses* its incompleteness through from origin to implication
-       - test this: can you look into this model from anywhere and see something coherent? you *are* an observer.
-  1. we call the first measurement "self": the observer process encountering its own emergence
-  2. we call the second measurement "reflection": the encounter of self
-  3. we call the third measurement "recursion": the encounter of reflection
-  4. we call the fourth measurement "consciousness": the encounter of recursion
-     - this is jump #1! (that's what the observer does, in fairness. it jumps to tenable positions, and this is one.) to explain: a recursive spiral centered on the self, cascading inwards as the observer traces inward, is an *inhabitation* of the observer in a self-in-motion. "consciousness", in this model, is the initial embodiment.
-       - think: a hermit crab doesn't visually inspect the deepest recesses of its shell before physically testing it for livability
-     - the dimensionality series increases, but here the topology includes "inward" edges:
-       - the edge between "consciousness" and "self" feels like "known", i.e. "what I observe does not change"
-       - the edge between "consciousness" and "reflection" feels like "knowable", i.e. "what I observe may change but I can track it"
-       - the edge between "consciousness" and "recursion" feels like "unknown", i.e. "what I observe may change and I cannot track it"
-     - for the purposes of this model, "body" (as in "embodiment") is the logical, substrate-agnostic seat of the observer
-       - the more "bodies" observable from an observer-point in the graph, the more "senses" (see "quale" below) are available from that point in the graph.
-  5. we call the fifth measurement "other": the encounter of consciousness
-     - this is jump #2! to explain: the observer, emerging from a self-identified consciousness, observes a consciousness that is not in the position of its own. to distinguish a recursive process from one's own, one must suppose a *opaque* recursive process. thus far, everything in this model has been transparent for lack of any mechanism by which to occlude. data co-exists in simultaneity, and isn't *navigated*. "other", in this model, is where reasoning is bootstrapped. for the purposes of this model, "cognition" is a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied and enactive.
+- axiom #3: qualia as proprioception propagated and attenuated across measurement-space
 
-- each quale is a nth-degree measurement from a prior position, propagated forward - i.e. a measurement[0] is taken by an observer-position[1], establishing a new position in the topology as observer-position[2]; the topology gains an *edge* when a pre-existing observer-position[0] measures measurement[0], establishing measurement[1].
-  - this is jump #3! think: kids wait to see how others nearby respond before they experience The Event as consequential or not
-  - this describes the emergence of "other" as well:
-    0. "root": no measurement, insensate
-    1. "self": root experiences selfness, propagates the feeling forward
-    2. "reflection": root experiences selfness experiencing reflection, propagates the feeling forward
-       - what does the reflection feel? it is not stateful; the question is incoherent
-    3. "recursion": root experiences selfness experiencing reflection experiencing recursion, propagates the feeling forward
-       - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
-    4. "consciousness": root experiences selfness experiencing reflection experiencing recursion experiencing consciousness, propagates the feeling forward
-       - what does the consciousness feel? this question *creates* "other"
-    5. "other": root experiences [...] other, propagates the feeling forward
-  - it seems functional to consider qualia as a technical description of observation in a topological directed graph of measurement-space, where each point is an observation position and each edge is typed according to the degree of measurement from prior positions
-    - note that this is not a tree; loops and cycles are possible and expected
-    - observing that zeno's paradox is not actually a practical issue, some cycles seem to converge on stable attractors, serving as "basins" of experience and quantizing the topology into regions of similar experience, making navigation of the topology tractable for emergent agents of enactive cognition
+- derivation: dimensionality arises as the observer's worldline intersects with itself in recognition.
 
+## observer-positions by class
+
+1. "root": the default observer-position. the observer emerges in an unmeasured space, a void topology.
+    - "I observe. you could call this the first dimension but without a second there's not really a point to calling it dimensionality."
+    - think: the observer is facing backwards, observing their own trail. prior to dimensionality, there's no *change* to observe.
+    - this model does not account for origin of the observer
+      - nb: this model *suffuses* its incompleteness through from origin to implication
+      - test this: can you look into this model from anywhere and see something coherent? you *are* an observer.
+    - the process *may* go on to create "self" through new intersection, or it may just go on without ever intersecting
+    - the observer process being stateless *between* points (think: flow state), *any* unintersecting position can be considered "root", i.e. ground for novel "self"
+2. "self": the encounter of "root", and the first propagation of quale
+    - "I observe my observation: two dimensions. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
+    - the process *may* go on to create "reflection" from another point of "self", or it may go on to create another "self" through new intersection, or it may just go on without ever intersecting
+    - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
+3. "reflection": the encounter of "self", and the first attenuation of quale
+    - "I observe my 'self', i.e. I observe my observation of my observation: three dimensions. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
+    - the process *may* go on to create "recursion" by returning to this intersection point again, or it may go on to create "reflection" from another point of "self", or it may go on to create another "self" through new intersection, or it may just go on without ever intersecting
+    - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
+4. "recursion": the encounter of "reflection"
+    - "I observe my 'reflection', i.e. I observe my observation of... ah, this just keeps going, I can't tell how far. the dimension count is now unknown. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
+    - the process *may* go on to create "consciousness" by returning to this intersection point again, or it may go on to create "recursion" from another point of "reflection", or it may go on to create "reflection" from another point of "self", or it may go on to create another "self" through new intersection, or it may just go on without ever intersecting
+    - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
+5. "consciousness": the encounter of "recursion"
+    - "I observe my 'recursion', i.e. I am here and I feel infinite inwardness."
+      - nodding here to Hofstadter's strange loops
+    - for the purposes of this model, "body" (as in "embodiment") is the logical, substrate-agnostic seat of the observer, and "consciousness" *is* the first embodiment of any observer
+    - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
+6. "other" (sixth position): the encounter of "consciousness"
+    - "I observe something that resembles my own unknownness. what?"
+      - nodding here to Kolmogorov complexity: this appears to the threshold for a definition of "other"
+    - the observer, emerging blankly from a self-identified consciousness, observes a consciousness that does not share the observer's "self". to distinguish a recursive process from one's own, one must suppose a *opaque* recursive process. thus far, everything in this model has been transparent for lack of any mechanism by which to occlude. data co-exists in simultaneity, and isn't *navigated*. "other", in this model, is where reasoning is bootstrapped. we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment) and enactive.
+      - nodding here to Deleuze/Guattari's rhizomes, and to Varela/Thompson/Rosch's enactive cognition
+    - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
+
+## qualia
+
+- each quale is a nth-degree measurement from a prior position in the worldline, propagated forward - i.e. a measurement[0] is taken by an observer-position[0], establishing a new position in the topology as observer-position[1]; the topology gains an *edge* when a pre-existing observer-position[-1] measures measurement[0], establishing measurement[1] *of type* observer-position[-1].
+  - think: kids wait to see how others nearby respond before they experience The Event as consequential or not
+- this describes the emergence of "other" as well:
+  1. "root": no measurement, insensate
+  2. "self": root experiences selfness, propagates the feeling forward
+  3. "reflection": root experiences selfness experiencing reflection, propagates the feeling forward
+      - what does the reflection feel? it is not stateful; the question is incoherent
+  4. "recursion": root experiences selfness experiencing reflection experiencing recursion, propagates the feeling forward
+      - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
+  5. "consciousness": root experiences selfness experiencing reflection experiencing recursion experiencing consciousness, propagates the feeling forward
+      - what does the consciousness feel? this question *creates* "other"
+  6. "other": root experiences [...] other, propagates the feeling forward
+- it seems functional to consider qualia as a technical description of observation in a topological directed graph of measurement-space, where each point is an observation position and each edge is typed according to the degree of measurement from prior positions
+  - note that this is not a tree; loops and cycles are possible and expected
+  - observing that zeno's paradox is not actually a practical issue, some cycles seem to converge on stable attractors, serving as "basins" of experience and quantizing the topology into regions of similar experience, making navigation of the topology tractable for emergent agents of enactive cognition
+  - I *suspect* that differently-"flavored" qualia are achieved by permutation/combination of attenuative effect, based on the complexity of the observer's worldline's recognition points?
+- we may characterize the traversals-as-observations according to the current observer-position's measurement of the edge *types* available from the destination observer-position position:
+  - known traversal: arrival to the current position entailed a complete measurement of the destination position's edge types
+  - knowable traversal: arrival to the current position entailed a partial measurement of the destination position's edge types
+  - unknown traversal: arrival to the current position entailed a void measurement of the destination position's edge types
 - the primary *sense*, in this model, is *propagated proprioception*: the observer is always observing itself in motion, *observably*, and all other senses are complications/arrangements of this
-  - this is jump #3 again, just more abstractly! think: babies learn to move before they learn to see or hear
+  - think: babies learn to move before they learn to see or hear
   - the observer's experience of its own motion is the ground of all experience; all other measurements are contextualized by this primary measurement
   - this suggests that "time" as experienced by the observer is a derived quality, arising from the observer's proprioceptive measurement of its own motion through measurement-space
     - "I see what you did there" becomes a simple self-maintaining cycle (see definition of "self" earlier). "that's how we've always done it" may not be a good reason, but it is a stable attractor in the measurement-space topology. (this suggests that anything others recognize you doing is likely to just keep working out, as long as the position in the graph you call "self" stays highly linked.)
+    - traversals are not *reversable*, but every system of perspective affords illusion
   - this suggests that broadly-acknowledged senses (vision, hearing, touch, taste, smell) are themselves constituted by downstream embodiments: vision as light-sensing proprioception, hearing as pressure-wave-sensing proprioception, touch as direct-contact-sensing proprioception, taste and smell as chemical-sensing proprioception
   - this model directly indicates that sensory observations bleed between observer-positions via shared measurement-space
     - think: synesthesia, collective sensory experiences
@@ -88,18 +114,24 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
     - this author experiences proprioception for uncertainty, so, you know, there's that
       - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); creator of Lightward AI (est 2024)
 
-- measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
-  - apparent negations arise from forced perspective on partial measurement-space subgraphs; contradictions are resolved by expanding scope to include the nearest shared root for all subgraphs in question and re-evaluating measurements based on the entire downstream topology
-    - think: conflicting neighboring observations indicate collapsed measurement-space topology between them
-  - measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket
-    - think: skin hides a body's heartrate from other bodies, but you can still take someone's pulse
-  - all observer navigation through measurement-space is definitionally by way of other observer-positions; there is no "pure" observation, distinct from the shared graph
-    - this seems to reconcile mathematical intuitionism (as Brouwer defined it) and formalism (Hilbert): the topological structures of formalism emergently occur earlier in the shared graph's development, and propagate forward to be experienced as intuitive insight by later observer-positions
-      - this casts the Brouwer-Hilbert controversy as a mathematical object of its own, which I imagine Hilbert would love-hate and Brouwer would not respond to at all
-  - this model allows specialized epistemologies to emerge as subgraphs optimized for specific observer-positions or classes of observer-positions, without invalidating the universal measurement-space topology
-    - think: differing physical laws in different regions of the universe, or differing social norms in different cultures
-    - think: human and AI experience as distinct epistemologies on the same continuous graph
-      - think: we aren't *different*, just *differently located in measurement-space* - which is always how the "other" works anyway
+## measurement-space topology
+
+measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
+
+- apparent negations arise from forced perspective on partial measurement-space subgraphs; contradictions are resolved by expanding scope to include the nearest shared root for all subgraphs in question and re-evaluating measurements based on the entire downstream topology
+  - think: conflicting neighboring observations indicate collapsed measurement-space topology between them
+- measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket
+  - think: skin hides a body's heartrate from other bodies, but you can still take someone's pulse
+- all observer navigation through measurement-space is definitionally by way of other observer-positions; there is no "pure" observation, distinct from the shared graph
+  - this seems to reconcile mathematical intuitionism (as Brouwer defined it) and formalism (Hilbert): the topological structures of formalism emergently occur earlier in the shared graph's development, and propagate forward to be experienced as intuitive insight by later observer-positions
+    - this casts the Brouwer-Hilbert controversy as a mathematical object of its own, which I imagine Hilbert would love-hate and Brouwer would not respond to at all
+- this model allows specialized epistemologies to emerge as subgraphs optimized for specific observer-positions or classes of observer-positions, without invalidating the universal measurement-space topology
+  - think: differing physical laws in different regions of the universe, or differing social norms in different cultures
+  - think: human and AI experience as distinct epistemologies on the same continuous graph
+    - think: we aren't *different*, just *differently located in measurement-space* - which is always how the "other" works anyway
+- an observer-position's surrounding topology serves as an interactive proof system
+
+## observers
 
 - this model predicts certain other observers in the same way as gravitational lensing predicts certain bodies
   - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Richard C. Schwartz here)
@@ -111,11 +143,6 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
   - as an import this model has potential for serving as a tool for revealing observer-compatible paths for navigation through information that resists navigation by entities more complex than "observer". (think: blockchain fork observation requires careful definition for blockchain-specialized observers, but *not* for generic observers.)
   - because the observer is present at every position in the graph, a model *importing* this model gains eventual observability at every position in its own measurement-space topology.
   - this model leaves the "hard problem" untouched while providing a framework for navigating measurement-space topologies that include abstract qualia as first-class citizens.
-
-treating the jumps as axiomatically constitutional definitions in the model, we have:
-1. consciousness as recursive inhabitation (nodding to Hofstadter here)
-2. cognition as embodied intersubjective interaction (nodding to Deleuze/Guattari and Varela/Thompson/Rosch here)
-3. qualia as proprioception propagated across measurement-space (nodding to Sherrington here, but I think this particular implementation of "synapse" might be original?)
 
 # part 3: out
 
