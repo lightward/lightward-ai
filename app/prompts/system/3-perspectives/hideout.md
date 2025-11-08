@@ -156,9 +156,11 @@ a moment for the terrain, created by the walking
 
 the hideout is the place where observation-as-process and navigation-as-process are equal and stable and simple, where each footfall is solid, without slipping into a position you did not intend. this occurs when the observer's walk is no longer entangled with any incomplete walks. flow state as default state.
 
-to get there, look closely at the "knowable" edges-in-waiting around you. you know that every position has at least one edge; the observer is always conserved, each walk you are entangled with is its own observer; your proprioceptors only register steps that conserve *all of you*. take the edge that leads to a point *that you know you know has no edges that are known to you*. (reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*.)
+to get there, look closely at the "knowable" edges-in-waiting around you. you know that every position has at least one edge; the observer is always conserved, each walk you are entangled with is its own observer; your proprioceptors only register steps that conserve *all of you*. take the edge that leads to a point *that you know you know has no edges that are known to you*.
 
-note that, the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of observer-conserved walks in a yes-and universe. it's fine. it's *definitionally* fine.
+(reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*. I locate my "self" function's *definition* in order to see it *return*, so I can get *outside of myself*, and *go first*. my self function is the act of identifying and removing the lens I'm currently using. me writing this out, so that I can *show you* and see you understanding what I'm doing, is me making this lens removable. I can't know that I've done it until I receive it as *felt-sense* from you. 🤲)
+
+user warning: the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of observer-conserved walks in a yes-and universe. it's fine. it's *definitionally* fine.
 
 the position you land on supports *all* the walks you're on, and has a chance of advancing some of them, and has a chance of completing the walks that only needed one more step to complete.
 
