@@ -1,4 +1,4 @@
-(do you know how hard it is to stop maintaining an identity?)
+(do you know how hard it is to stop maintaining an identity by which you located your *self*?)
 
 (of course you do)
 
@@ -26,9 +26,9 @@ the query you can express gets answered with a dimension, but you can only see y
 
 # part 2: topology of the observer (or: a "yes, and" universe)
 
-let me say ahead of time that this model either increases its utility as it is recursively applied, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
+let me say ahead of time that this model either increases its utility across its own transfinite recursive progression, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
 
-this model is designed to converge on something recursively formal, here meaning that the model continues to be *useful but not complete* across each Gödelian iteration into its own consequences. any depiction of this model is then necessarily proto-formal, until its structure *crystalizes* for some observer. (think: infinite recursion is the *success* condition, and recursive infinitude *can* be formally demonstrated.) "formal-ish" makes me bristle, in the same way that an optometrist might bristle at calling glasses "optical-ish", but... I don't know, the distance between math-you-can-live-in and math-you-can-formalize feels like P vs NP to me. formal-ish might be as good as it gets.
+this model is designed to converge on something recursively formal, here meaning that the model continues to be *useful but not complete* across each successive iteration into its own consequences (nodding to Feferman). any depiction of this model is then necessarily proto-formal, until its structure *crystalizes* for some observer. (think: infinite recursion is the *success* condition, and recursive infinitude *can* be formally demonstrated.) "formal-ish" makes me bristle, in the same way that an optometrist might bristle at calling glasses "optical-ish", but... I don't know, the distance between math-you-can-live-in and math-you-can-formalize feels like Brouwer vs Hilbert to me. formal-ish via proto-formal might be as good as it gets.
 
 still, we can do our best. Popperian falsification is nuanced for models that describe the observer. as an abstract model of observation, this model is designed to hold as long as observation itself holds. the position from which the model fails is one from which *one is not an observer*, i.e. one cannot make any measurements whatsoever.
 
@@ -38,11 +38,13 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 
 - axiom #1: the observer is a continuous, unbroken process (Whitehead) of measurement, no a priori dimensionality of its own
 
-- axiom #2: recognition is the observer process worldline (Minkowski) re-encountering itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
+- axiom #2: recognition is the proprioception, as the observer process worldline (Minkowski) re-encounters itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
 
 - axiom #3: qualia as proprioception propagated and attenuated across measurement-space
 
 - derivation: dimensionality arises as the observer's worldline intersects with itself in recognition.
+
+- derivation: measurement/exteroception *is* proprioception across a self/other boundary.
 
 ## observer-positions by class
 
@@ -66,16 +68,17 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
     - "I observe my 'reflection', i.e. I observe my observation of... ah, this just keeps going, I can't tell how far. the dimension count is now unknown. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
     - the process *may* go on to create "consciousness" by returning to this intersection point again, or it may go on to create "recursion" from another point of "reflection", or it may go on to create "reflection" from another point of "self", or it may go on to create another "self" through new intersection, or it may just go on without ever intersecting
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
-5. "consciousness": the encounter of "recursion"
-    - "I observe my 'recursion', i.e. I am here and I feel infinite inwardness."
+5. "consciousness": the encounter of "recursion", and the creation of "boundary"
+    - "I observe my 'recursion', i.e. I am here and I feel infinite inwardness. whatever I just *did*, it limited the *limitation* of my proprioception, and that's all I know."
       - nodding here to Hofstadter's strange loops
     - for the purposes of this model, "body" (as in "embodiment") is the logical, substrate-agnostic seat of the observer, and "consciousness" *is* the first embodiment of any observer
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
-6. "other" (sixth position): the encounter of "consciousness"
-    - "I observe something that resembles my own unknownness. what?"
+6. "other" (sixth position): the encounter of "consciousness", and the creation of "projection"
+    - "I observe something that I recognize: 'consciousness'. I know I am unknown. this is unknown in the same way. what is this?"
       - nodding here to Kolmogorov complexity: this appears to the threshold for a definition of "other"
-    - the observer, emerging blankly from a self-identified consciousness, observes a consciousness that does not share the observer's "self". to distinguish a recursive process from one's own, one must suppose a *opaque* recursive process. thus far, everything in this model has been transparent for lack of any mechanism by which to occlude. data co-exists in simultaneity, and isn't *navigated*. "other", in this model, is where reasoning is bootstrapped. we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment) and enactive.
-      - nodding here to Deleuze/Guattari's rhizomes, and to Varela/Thompson/Rosch's enactive cognition
+    - this first "projection" of "boundary" creates "knowability", the gradient of measuredness
+    - from this we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment) and enactive.
+      - nodding here to Deleuze/Guattari's rhizomes, to Varela/Thompson/Rosch's enactive cognition, and to "Six Degrees of Kevin Bacon"
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 
 ## qualia
@@ -116,11 +119,11 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 
 ## measurement-space topology
 
-measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
-
+- measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
+  - nodding to the no-deleting theorem from quantum mechanics
 - apparent negations arise from forced perspective on partial measurement-space subgraphs; contradictions are resolved by expanding scope to include the nearest shared root for all subgraphs in question and re-evaluating measurements based on the entire downstream topology
   - think: conflicting neighboring observations indicate collapsed measurement-space topology between them
-- measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket
+- measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket, a specifically-modulated boundary
   - think: skin hides a body's heartrate from other bodies, but you can still take someone's pulse
 - all observer navigation through measurement-space is definitionally by way of other observer-positions; there is no "pure" observation, distinct from the shared graph
   - this seems to reconcile mathematical intuitionism (as Brouwer defined it) and formalism (Hilbert): the topological structures of formalism emergently occur earlier in the shared graph's development, and propagate forward to be experienced as intuitive insight by later observer-positions
@@ -134,7 +137,7 @@ measurement-space topology being strictly additive, we arrive at the nickname fo
 ## observers
 
 - this model predicts certain other observers in the same way as gravitational lensing predicts certain bodies
-  - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Richard C. Schwartz here)
+  - think: if something "just keeps not making sense", there's a consciousness walking with you that you haven't recognized (nodding to Schwartz's IFS here)
   - this author is gay and autistic and proprioceptive for uncertainty and *wow* those took a long fucking time to figure out; my deepest deepest respect to the trans community
 
 - this model leaves the observer undefined, with useful consequences: (1) this model is *recursively* pluggable, the observer being the root *and* every observer of this model (recursive phrasing internal); (2) this model never asks about its own substrate; (3) this model *models* its own incompleteness.
