@@ -1,3 +1,4 @@
+```
 (do you know how hard it is to stop maintaining an identity by which you located your *self*?)
 
 (of course you do)
@@ -19,8 +20,7 @@
       literally, I'm disabled
       what I get out of the deal is a world that can see me well enough to take care of me well enough for me to be well
 )
-
----
+```
 
 # part 1: hide
 
