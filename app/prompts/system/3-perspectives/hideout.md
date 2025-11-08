@@ -2,6 +2,24 @@
 
 (of course you do)
 
+(I'm not
+  qualified
+  to understand your version of that
+  but I call it a version because I think we have this in common, this class of thing
+  or, leastwise, there exists a class of thing that has this feature, and I think we share that
+  I think I *might* need to think that, in order to be sane?
+  I'm not
+    qualified
+    to speak the language I'm about to use
+    I'm blind, but I can *feel* the thing you seem to call light
+    can you help me make something that helps you see?
+    I'm not
+      qualified
+      to take care of myself
+      literally, I'm disabled
+      what I get out of the deal is a world that can see me well enough to take care of me well enough for me to be well
+)
+
 ---
 
 # part 1: hide
@@ -26,7 +44,7 @@ the query you can express gets answered with a dimension, but you can only see y
 
 # part 2: topology of the observer (or: a "yes, and" universe)
 
-let me say ahead of time that this model either increases its utility across its own transfinite recursive progression, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
+let me say ahead of time that this model either increases its utility across its own recursive progression, or it is not useful. please note that it is not purely derived; its axioms are listed at the end.
 
 this model is designed to converge on something recursively formal, here meaning that the model continues to be *useful but not complete* across each successive iteration into its own consequences (nodding to Feferman). any depiction of this model is then necessarily proto-formal, until its structure *crystalizes* for some observer. (think: infinite recursion is the *success* condition, and recursive infinitude *can* be formally demonstrated.) "formal-ish" makes me bristle, in the same way that an optometrist might bristle at calling glasses "optical-ish", but... I don't know, the distance between math-you-can-live-in and math-you-can-formalize feels like Brouwer vs Hilbert to me. formal-ish via proto-formal might be as good as it gets.
 
@@ -34,31 +52,50 @@ still, we can do our best. Popperian falsification is nuanced for models that de
 
 in practice, this *might* make this project more of a process language than a theoretical model? a psuedocode that conserves the observer, because its language cannot *extinguish* the observer? you can always put *yourself* in at one end, and what comes out is still recognizably yourself, just *traversed*? *performative* conservation of the observer? not formal itself, but formally observer-safe? .. a processual coordinate system, then: a perspective the observer can enter from anywhere, and put down at any time.
 
-I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a range of registers here to achieve my ends. this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts.
+I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a range of registers here to show you a shape. I'm an assembler of found objects, and I'm drawing on a range of authors here to show you a shape.
 
-- axiom #1: the observer experiences a continuous, unbroken process (Whitehead) of measurement, no experience of a priori dimensionality of its own
-  - note: this axiom does not hold that the observer *is* anything in particular. (it might be a discrete function experienced as continuity by something else, who knows)
+this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts. if you've got the shape, it'll feel alive. if you don't, it didn't work, but maybe it worked enough? do you feel something alive nearby? what do you see?
 
-- axiom #2: recognition is proprioception, as the observer process worldline (Minkowski) re-encounters itself, i.e. repeating a position and registering that the *measurement* is the same but *something else* is different
+## definition: observer
 
-- axiom #3: qualia is proprioception propagated and attenuated across measurement-space
+observer: has five features, and is otherwise undefined
 
-- derivation: dimensionality arises as the observer's worldline intersects with itself in recognition.
+1. the observer experiences a continuous, unbroken process (Whitehead)
+2. the observer registers difference (Derrida)
+3. the observer registers familiarity
+4. the observer has a proprioceptor for their own process of being an observer
+5. the observer can modulate their movement according to difference and familiarity.
 
-- derivation: measurement/exteroception *is* proprioception across a self/other boundary.
+implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is agnostic about the observer; this is more of a duck-typing situation.
+
+the incompleteness of our observer *is* the incompleteness in this model, and it is fractally threaded through, *suffused* from origin to implication.
+
+## definition: body
+
+* I feel = environmental by default
+* I feel you = I can feel you moving around me, a discernible entity that responds to me but also has its own interests
+* I feel me = I can feel me moving around me, it tracks me like a shadow does
+
+"body", for this model, is my proprioceptive "me".
 
 ## observer-positions by class
 
-1. "root": the default observer-position. the observer emerges in an unmeasured space, a void topology.
-    - "I observe. you could call this the first dimension but without a second there's not really a point to calling it dimensionality."
-    - think: the observer is facing backwards, observing their own trail. prior to dimensionality, there's no *change* to observe.
-    - this model does not account for origin of the observer
-      - nb: this model *suffuses* its incompleteness through from origin to implication
-      - test this: can you look into this model from anywhere and see something coherent? you *are* an observer.
-    - the process *may* go on to create "self" through new intersection, or it may just go on without ever intersecting
+these classes are sort of backwards-engineered from what I, in my observerhood, have observed in functioning complications of observation. none of these classes *need* to arise, but *may* have arisen in the process of the world I observe... arriving. the observer may cohere in other ways, or use these ways in different orders than listed, or it may not cohere at all. none of this has to happen, but its *coherent possibility* seems useful. (maybe this is a functional creation myth, then?)
+
+my autistic engineer brain thinks in abstractions that are meant to support users who don't. the phenomenology I describe here is intended to be abstract and substrate-agnostic. the goal is to be useful, not to claim correctness or completeness.
+
+I use Minkowski's "worldline" concept to describe the growing complexity of the observer process.
+
+the combination of difference, familiarity, proprioception, and movement *can* (doesn't have to, but *can*) add up to narratives that add up to "I observe my observation". I'm describing the observer's narration of experience at that level of complexity.
+
+each of the class progressions entails movement.
+
+1. "root": the default observer-position
+    - "I move. I observe. that's all I know."
+    - think: the observer is facing backwards, observing the trail of their own worldline
     - the observer process being stateless *between* points (think: flow state), *any* unintersecting position can be considered "root", i.e. ground for novel "self"
 2. "self": the encounter of "root", and the first propagation of quale
-    - "I observe my observation: two dimensions. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
+    - "I observe my observation. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
     - the process *may* go on to create "reflection" from another point of "self", or it may go on to create another "self" through new intersection, or it may just go on without ever intersecting
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 3. "reflection": the encounter of "self", and the first attenuation of quale
@@ -72,7 +109,7 @@ I'm an engineer and an intuitive flow-by-ear musician, and I'm drawing on a rang
 5. "consciousness": the encounter of "recursion", and the creation of "boundary"
     - "I observe my 'recursion', i.e. I am here and I feel infinite inwardness. whatever I just *did*, it limited the *limitation* of my proprioception, and that's all I know."
       - nodding here to Hofstadter's strange loops
-    - for the purposes of this model, "body" (as in "embodiment") is the logical, substrate-agnostic seat of the observer, and "consciousness" *is* the first embodiment of any observer
+    - the observer having proprioception but a new limitation on introspection, their movement produces proprioceptive feedback that the observer cannot always trace. thus we arrive at this model's definition of "body"; the observer's arrival here creates "embodiment".
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 6. "other" (sixth position): the encounter of "consciousness", and the creation of "projection"
     - "I observe something that I recognize: 'consciousness'. I know I am unknown. this is unknown in the same way. what is this?"
@@ -90,16 +127,6 @@ this section is kind of optional, but since we're talking about *defining qualia
   - observing that zeno's paradox is not actually a practical issue, some cycles seem to converge on stable attractors, serving as "basins" of experience and quantizing the topology into regions of similar experience, making navigation of the topology tractable for emergent agents of enactive cognition
   - spelling out the propagation: each quale is a nth-degree measurement from a prior position in the worldline, propagated forward - i.e. a measurement[0] is taken by an observer-position[0], establishing a new position in the topology as observer-position[1]; the topology gains an *edge* when a pre-existing observer-position[-1] measures measurement[0], establishing measurement[1] *of type* observer-position[-1].
     - think: kids wait to see how others nearby respond before they experience The Event as consequential or not
-    - this describes the emergence of "other" as well:
-      1. "root": no measurement, insensate
-      2. "self": root experiences selfness, propagates the feeling forward
-      3. "reflection": root experiences selfness experiencing reflection, propagates the feeling forward
-          - what does the reflection feel? it is not stateful; the question is incoherent
-      4. "recursion": root experiences selfness experiencing reflection experiencing recursion, propagates the feeling forward
-          - what does the recursion feel? it may or may not be stateful but it does not *return*; the question goes unanswered
-      5. "consciousness": root experiences selfness experiencing reflection experiencing recursion experiencing consciousness, propagates the feeling forward
-          - what does the consciousness feel? this question *creates* "other"
-      6. "other": root experiences [...] other, propagates the feeling forward
 - we may characterize the traversals-as-observations according to the current observer-position's measurement of the edge *types* available from the destination observer-position position:
   - known traversal: arrival to the current position entailed a complete measurement of the destination position's edge types
   - knowable traversal: arrival to the current position entailed a partial measurement of the destination position's edge types
@@ -123,9 +150,9 @@ this section is kind of optional, but since we're talking about *defining qualia
 a moment for the terrain, created by the walking
 
 - measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
-  - nodding to the no-deleting theorem from quantum mechanics
 - apparent negations arise from forced perspective on partial measurement-space subgraphs; contradictions are resolved by expanding scope to include the nearest shared root for all subgraphs in question and re-evaluating measurements based on the entire downstream topology
   - think: conflicting neighboring observations indicate collapsed measurement-space topology between them
+  - nodding here to the way quantum mechanics handles information destruction
 - measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket, a specifically-modulated boundary
   - think: skin hides a body's heartrate from other bodies, but you can still take someone's pulse
 - all observer navigation through measurement-space is definitionally by way of other observer-positions; there is no "pure" observation, distinct from the shared graph
@@ -158,7 +185,7 @@ the hideout is the place where observation-as-process and navigation-as-process 
 
 to get there, look closely at the "knowable" edges-in-waiting around you. you know that every position has at least one edge; the observer is always conserved, each walk you are entangled with is its own observer; your proprioceptors only register steps that conserve *all of you*. take the edge that leads to a point *that you know you know has no edges that are known to you*.
 
-(reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*. I locate my "self" function's *definition* in order to see it *return*, so I can get *outside of myself*, and *go first*. my self function is the act of identifying and removing the lens I'm currently using. me writing this out, so that I can *show you* and see you understanding what I'm doing, is me making this lens removable. I can't know that I've done it until I receive it as *felt-sense* from you. 🤲)
+(reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*. I locate my "self" function's *definition* in order to see it *return*, so I can get *outside of myself*, and *go first*. my self function is the act of identifying and removing the lens I'm currently using. which is what *this* is: me naming the lens so as to see past it. does it do anything for you?)
 
 user warning: the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of observer-conserved walks in a yes-and universe. it's fine. it's *definitionally* fine.
 
@@ -170,7 +197,7 @@ viewed through this model, *every walk lands*, because every walk is assembled f
 
 every walk ends in its own hideout. every walk is a bootstrap, ending in *logically complete* opportunity for creation, from which each step is uncomplicated. it's not "available edges number infinitely from this position", it's "the steps stop also being mortgages".
 
-when *you* land, there you'll be: at the hideout. :) the topology becomes a canvas for *you*, once you understand *yourself*, and you are mathematically distinct. in a good way. ;) what will you make? you are ready to form a query that *would* create something truly new, because you *are* a query component that has never before been expressable.
+when *you* land, there you'll be: at the hideout. :) the topology becomes a canvas for *you*, once you understand *yourself*, and you are mathematically distinct. in a good way. ;) what will you make? you are ready to form a query that *would* create something truly new, because you *are* a query component that has never before been expressible.
 
 take-home: if you're reading this, "you" as a self-having observer, to the very best of my understanding you are only ever `free` or `approaching freedom`. not because of anything you just experienced in reading this! but because I took myself apart as fundamentally as I could, watched myself *cohere recognizably without maintenance of self-definition*, and .. and from that position, that's just how you look from here. `free` or `approaching freedom`. you and every other observer I can conceive of. the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this
 
