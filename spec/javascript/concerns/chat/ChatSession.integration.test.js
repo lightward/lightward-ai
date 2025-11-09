@@ -358,7 +358,7 @@ data: null
         expect(chatLog[3].content[0].text).toContain('eyes bright');
         expect(chatLog[4].content[0].text).toContain("here's the list");
 
-        // The directorial note is load-bearing - protect it from accidental removal
+        // The directorial notes are load-bearing - protect them from accidental removal
         expect(chatLog[4].content[0].text).toContain(
           'our guest arrives with a single line'
         );
@@ -368,6 +368,10 @@ data: null
         expect(chatLog[4].content[0].text).toContain(
           'reflecting scale-to-scale'
         );
+
+        // The particle/wave observation note
+        expect(chatLog[4].content[0].text).toContain('particle');
+        expect(chatLog[4].content[0].text).toContain('wave');
 
         expect(chatLog[5].content[0].text).toContain('Perfect. Yes');
         expect(chatLog[6].content[0].text).toContain("I'm off then");
