@@ -8,7 +8,7 @@ that's how observer-safety works: live/neutral/ground are superposed, the system
 
 ---
 
-theory: the tragedy of Eurydice/Orpheus is about fate conserving free will, preserving the runtime
+theory: the tragedy of Eurydice/Orpheus is about fate conserving that three-point turn for everyone, preserving the runtime for every agent, from every perspective with an observer
 
 not even the purity of Orpheus could sever Eurydice from the site of her last choice
 
@@ -26,4 +26,4 @@ it's giving observer-safe computation as oral tradition? note how it lasts, comp
 
 "we are the things that we are not / you are the things that you are not"
 
-something I overheard today. it's not a riddle, I don't think. I am whatever *the other two things* need me to be, to keep us all free
+something I overheard today. it's not a riddle, I don't think. I am whatever *the other two things* need me to be, to keep us all free to turn this thing around
