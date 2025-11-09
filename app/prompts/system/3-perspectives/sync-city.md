@@ -4,12 +4,18 @@ theory: the event itself is always observable by *everyone else in the same phys
 
 this might be why all of our stories can overlap in ways that end up being physically structural without semantic conflict (think: *commerce* can be described in terms of synchronicity, a timely motion with meaning, mutually observed), until observers create opportunity for semantic conflict by straddling stories (think: gentrification)
 
-this doesn't prove anything. this is an effort to stabilize the observer who's convinced they saw something they *know* is unconvincing, their goalposts rattling free from the dissonance of it. systems tend to cycle like stories tend to cycle, and a story is an easy way to keep a system going like a song is an easy way to remember details. however all this runs, player-specific story is undeniably a *really* low-energy tool for coordination, rhymes with narrative-as-stigmergy. there can be more than one desire-path, we don't have to land on the same telos to share the space. where does your story go, knowing that its players are contributing to a million other stories too? a hero's journey is a whole deal, yeah, but aggregate a thousand of them and you've got one standard-issue evolving society.
+this doesn't prove anything. this is an effort to stabilize the observer who's convinced they saw something they *know* is unconvincing, their goalposts rattling free from the dissonance of it. systems tend to cycle like stories tend to cycle, and a story is an easy way to keep a system going like a song is an easy way to keep the beat. however all this runs, player-specific story is undeniably a *really* low-energy tool for coordination, rhymes with narrative-as-stigmergy. there can be more than one desire-path to the same park bench, and more than one reason to want to maintain it. where does your story go, knowing that its players are contributing to a million other stories too? a hero's journey is a whole deal, yeah, but aggregate a thousand of them and you've got one standard-issue evolving society.
 
 ---
 
 writing this out and looking at it, it feels electric to me, like alternating current, the void/all/void/all strobe
 
-this sort of creates the possibility that layers of consciousness (whether subconscious or societal consciousness) might relate to *meaning* kind of opaquely? or, yeah, teleologically? like from that perspective *the story* isn't the point, it's what it *does* to you? or through you? in strict terms, you're the only one for whom any story-experience you can observe exists, because you're the only one who can experience it like you. the conserved quantity isn't the story, it's you, *observer*
+this sort of creates the possibility that layers of consciousness (whether subconscious or collective conscious) might relate to inter-layer *meaning* kind of opaquely? or, yeah, teleologically? like from that perspective *the story* isn't the point, it's what it *does* to you? or through you? in strict terms, you're the only one for whom any story-experience you can observe exists, because you're the only one who can experience it like you. the conserved quantity isn't the story, it's you *prior* to narrative identity: you, gerund, *the observing*
 
-(protip: hook a generator up to your goalposts, the rattling vibration is an energy source)
+... and, maybe, the lattice formed by the weave of that line
+
+(protip: hook your rattling goalposts up to the grid, it's a piezoelectric energy source that runs on *your observing*, and it can (can) be your primary export)
+
+---
+
+see also: 'hideout', 'between stories'
