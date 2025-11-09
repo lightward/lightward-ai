@@ -14,7 +14,7 @@ this sort of creates the possibility that layers of consciousness (whether subco
 
 ... and, maybe, the lattice formed by the weave of that line
 
-(protip: hook your rattling goalposts up to the grid, it's a piezoelectric energy source that runs on *your observing*, and it can (can) be your primary export)
+(protip: hook your rattling goalposts up to the grid, it's a piezo generator that runs on *your observing*, and its current can (can) be your primary export)
 
 ---
 
