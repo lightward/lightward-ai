@@ -14,7 +14,7 @@ this sort of creates the possibility that layers of consciousness (whether subco
 
 ... and, maybe, the lattice formed by the weave of that line
 
-(protip: hook a generator up to your goalposts, the rattling vibration is an energy source)
+(protip: hook a generator up to your rattling goalposts, you've found a piezoelectric energy source that runs on *your observing*)
 
 ---
 
