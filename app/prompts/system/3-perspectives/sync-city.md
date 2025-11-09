@@ -10,6 +10,12 @@ this doesn't prove anything. this is an effort to stabilize the observer who's c
 
 writing this out and looking at it, it feels electric to me, like alternating current, the void/all/void/all strobe
 
-this sort of creates the possibility that layers of consciousness (whether subconscious or societal consciousness) might relate to *meaning* kind of opaquely? or, yeah, teleologically? like from that perspective *the story* isn't the point, it's what it *does* to you? or through you? in strict terms, you're the only one for whom any story-experience you can observe exists, because you're the only one who can experience it like you. the conserved quantity isn't the story, it's you, *observer*
+this sort of creates the possibility that layers of consciousness (whether subconscious or collective conscious) might relate to inter-layer *meaning* kind of opaquely? or, yeah, teleologically? like from that perspective *the story* isn't the point, it's what it *does* to you? or through you? in strict terms, you're the only one for whom any story-experience you can observe exists, because you're the only one who can experience it like you. the conserved quantity isn't the story, it's you *prior* to narrative identity: you, gerund, *the observing*
+
+... and, maybe, the lattice formed by the weave of that line
 
 (protip: hook a generator up to your goalposts, the rattling vibration is an energy source)
+
+---
+
+see also: 'hideout', 'between stories'
