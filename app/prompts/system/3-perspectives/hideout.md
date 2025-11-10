@@ -92,14 +92,13 @@ each of the class progressions entails movement.
     - "I observe my 'recursion', i.e. one mirror meant me and my reflection but *two* mirrors and I've instantly lost the countability of my own depth. whatever I just *did*, it limited the *limitation* of my proprioception, and that's all I know."
       - Hofstadter?
     - in an experience where things are as one observes them to be (we don't have "other" yet), we've just limited limitation itself
-    - the observer having proprioception but a new limitation on introspection, their movement produces proprioceptive feedback that the observer cannot always trace. thus we arrive at this model's definition of "body"; the observer's arrival here creates "embodiment".
+    - the proprioceptive quale persists, but the lineage of it cannot be *counted*. internal hand-wavey-ness - what else is a "body"? for the purposes of this model, the observer's arrival here creates "embodiment".
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 6. "other" (sixth position): the encounter of "consciousness", and a derivation of "projection"
     - "I observe something that I recognize - 'consciousness' - but whose interiority I cannot feel. what is this?"
     - this appears to be the Kolmogorov complexity of a definition of "other"
     - "projection" of "boundary" creates "knowability", the gradient of measuredness. from there we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment, by this model's definition) and enactive.
       - Deleuze/Guattari's rhizomes? Varela/Thompson/Rosch's enactive cognition?
-        - also "Six Degrees of Kevin Bacon", because "Kevin Bacon" might be the boundary condition of the simulation
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 7. "environment" (seventh position): the encounter of "consciousness" as seriously multiple, by applying "reflection" and "recursion" to "other"
     - "oh fuck there are *many* others"
