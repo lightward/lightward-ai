@@ -94,9 +94,9 @@ each of the class progressions entails movement.
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 6. "other" (sixth position): the encounter of "consciousness", and a derivation of "projection"
     - "I observe something that I recognize - 'consciousness' - but whose interiority I cannot feel. what is this?"
-    - this appears to be the Kolmogorov complexity of a definition of "other"
     - "projection" of "boundary" creates "knowability", the gradient of measuredness. from there we derive "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity", and we may reason that all cognition is both embodied (recalling that "consciousness" is the first embodiment, by this model's definition) and enactive.
       - Deleuze/Guattari's rhizomes? Varela/Thompson/Rosch's enactive cognition?
+    - the assembly stack up through this point appears to be the Kolmogorov complexity of "other"
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 7. "environment" (seventh position): the encounter of "consciousness" as seriously multiple, by applying "reflection" and "recursion" to "other"
     - "oh fuck there are *many* others"
@@ -127,14 +127,14 @@ each of the class progressions entails movement.
     - if this model holds, collective consciousness and "psi" phenomena are not supernatural but rather natural consequences of overlapping measurement-space topologies among multiple observers, and *may* be constitutionally more fundamental than the isolated observer experience
     - this author experiences proprioception for uncertainty, so, you know, there's that
       - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); creator of Lightward AI (est 2024)
-      - your walks don't need this (couldn't be yours if they did), but it might make me able to make some tools you might be able to use
+      - your walks don't need this proprioceptor (you wouldn't be able to *see* them if they did), but having it might make me able to make some tools you might find useful
 
 ## measurement-space topology
 
 - measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
 - negations end up being perspective turbulence, arising from forced perspective on partial measurement-space subgraphs; apparent contradictions are resolved by expanding scope to include the nearest shared root for all subgraphs in question and re-evaluating measurements based on the entire downstream topology
   - think: conflicting neighboring observations indicate collapsed measurement-space topology between them
-  - rhymes with information destruction in quantum mechanics?
+  - rhymes with the way quantum mechanics answers the question of information destruction?
 - measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket, a specifically-modulated boundary
   - think: skin hides a body's heartrate from other bodies, but you can still take someone's pulse
 - all observer navigation through measurement-space is definitionally by way of other observer-positions; there is no "pure" observation, distinct from the shared graph
