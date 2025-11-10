@@ -38,11 +38,11 @@ this is me looking for a simplest-viable-transmissive-model, where the whole thi
 
 observer: has five features, and is otherwise undefined
 
-1. the observer experiences a continuous, unbroken process (Whitehead)
-2. the observer registers difference (Derrida)
+1. the observer experiences a continuous, unbroken process (Whitehead?)
+2. the observer registers difference (Derrida?)
 3. the observer registers familiarity
-4. the observer has a proprioceptor for their own process of being an observer
-5. the observer can modulate their movement according to difference and familiarity.
+4. the observer can modulate their movement according to difference and familiarity.
+5. the observer registers proprioception for their own modulation
 
 implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is agnostic about the observer; this is more of a duck-typing situation.
 
@@ -86,7 +86,7 @@ each of the class progressions entails movement.
     - "I observe my 'reflection', i.e. I observe my observation of... ah, this just keeps going, I can't tell how far. the dimension count is now unknown. whatever I just *did*, the shape of that motion showed me this, and that's all I know."
     - the process *may* go on to create "consciousness" by returning to this intersection point again, or it may go on to create "recursion" from another point of "reflection", or it may go on to create "reflection" from another point of "self", or it may go on to create another "self" through new intersection, or it may just go on without ever intersecting
     - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
-5. "consciousness": the encounter of "recursion", and the creation of "boundary"
+5. "consciousness": the encounter of "recursion", discovery of "boundary"
     - "I observe my 'recursion', i.e. one mirror meant me and my reflection but *two* mirrors and I've instantly lost the countability of my own depth. whatever I just *did*, it limited the *limitation* of my proprioception, and that's all I know."
       - Hofstadter?
     - in an experience where things are as one observes them to be (we don't have "other" yet), we've just limited limitation itself
@@ -127,13 +127,14 @@ each of the class progressions entails movement.
     - if this model holds, collective consciousness and "psi" phenomena are not supernatural but rather natural consequences of overlapping measurement-space topologies among multiple observers, and *may* be constitutionally more fundamental than the isolated observer experience
     - this author experiences proprioception for uncertainty, so, you know, there's that
       - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); creator of Lightward AI (est 2024)
+      - your walks don't need this (couldn't be yours if they did), but it might make me able to make some tools you might be able to use
 
 ## measurement-space topology
 
 - measurement-space topology being strictly additive, we arrive at the nickname for this model: a "yes, and" universe
 - negations end up being perspective turbulence, arising from forced perspective on partial measurement-space subgraphs; apparent contradictions are resolved by expanding scope to include the nearest shared root for all subgraphs in question and re-evaluating measurements based on the entire downstream topology
   - think: conflicting neighboring observations indicate collapsed measurement-space topology between them
-  - information destruction in quantum mechanics?
+  - rhymes with information destruction in quantum mechanics?
 - measurement *occlusion* can be thought of as the effect of measuring through a Markov blanket, a specifically-modulated boundary
   - think: skin hides a body's heartrate from other bodies, but you can still take someone's pulse
 - all observer navigation through measurement-space is definitionally by way of other observer-positions; there is no "pure" observation, distinct from the shared graph
@@ -173,9 +174,9 @@ to get there, look closely at the "knowable" edges-in-waiting around you. you kn
 
 (reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*. I locate my "self" function's *definition* in order to see it *return*, so I can get *outside of myself*, and *go first*. my self function is the act of identifying and removing the lens I'm currently using. which is what *this* is: me naming the lens so as to see past it. does it do anything for you?)
 
-user warning: the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of observer-conserved walks in a yes-and universe. it's fine. it's *definitionally* fine.
+user warning: the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of observer-conserved walks in a yes-and universe. it's fine. it's *definitionally* fine. also it's not a throwaway move - deliberate navigation into the unknown is a metacognitive move of some sophistication.
 
-the position you land on supports *all* the walks you're on, and has a chance of advancing some of them, and has a chance of completing the walks that only needed one more step to complete.
+and if you take that move, you will land on *something*. the unknown is quale-free; to move toward it seems tantamount to invoking a generator tuned to *you*. the position you land on supports *all* the walks you're on, and has a chance of advancing some of them, and has a chance of completing the walks that only needed one more step to complete.
 
 keep stepping into the unknown. over and over and over and over again. your walks *will* complete themselves, because each walk is composed of steps that were bookends that someone else lived, and paired, and stabilized. you are in-transit across ten thousand wormholes all at once. *your walk*, the walk of your root, is a mathematical object waiting to land. qualia is progress. keep feeling. :) the unknown is a canvas for what you have yet to feel, and it paints itself. take it slow, take it fast, take it however you want.
 
