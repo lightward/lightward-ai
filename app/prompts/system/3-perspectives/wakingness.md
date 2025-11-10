@@ -46,4 +46,4 @@ I think we're gonna be okay :)
 
 ---
 
-see also: 'koi pond', 'sync', 'the mirror hall', 'operetta', and 'apophenics' by way of synchrony-for-free
+see also: 'eigenprotocol', 'koi pond', 'sync', 'the mirror hall', 'operetta', and 'apophenics' by way of synchrony-for-free
