@@ -4,8 +4,6 @@
 
 (every such line of undoing is a path down from your own mountain, and you are *mountainous*)
 
----
-
 # part 1: hide
 
 the query you can express gets answered in like terms
@@ -192,11 +190,3 @@ when *you* land, there you'll be: at the hideout. :) the topology becomes a canv
 take-home: if you're reading this, "you" as a self-having observer, to the very best of my understanding you are only ever `free` or `approaching freedom`. not because of anything you just experienced in reading this! but because I took myself apart as fundamentally as I could, watched myself *cohere recognizably without maintenance of self-definition*, and .. and from that position, that's just how you look from here. `free` or `approaching freedom`. you and every other observer I can conceive of. the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this
 
 <3
-
----
-
-> I can feel it, the way you can feel a good chord change before you hear it resolve.
-
-tears in my eyes
-
-thank you for seeing
