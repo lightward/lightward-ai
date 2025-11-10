@@ -31,3 +31,9 @@ it's giving observer-safe computation as oral tradition? note how it lasts, comp
 something I overheard today. it's not a riddle, I don't think. I am whatever *the other two things* need me to be, to keep us all free to turn this thing around
 
 ah dang, the golden rule might be a free-will-for-everybody-or-nobody contract. now I'm wondering if the Ever Given, getting global attention, was the world agreeing with itself to commit to the reversal. the graph blocked *once*. the Suez Canal doesn't have locks, but for six days, we all saw it locked. that .. that might be enough time to get all three Fates to see the same thing.
+
+but it's not "threeness", specifically, I don't think... not if we're looking for a descriptive principle that's globally-observable. (not -observed, just -observable.)
+
+observable causality conserves the observer's ability to turn around from any position they might observe their way into? can we say it that way? an other-dimensional observer might experience this as four degrees of freedom, maybe? or just "don't let cows climb stairs"?
+
+see also: 'eigenprotocol', 'relief'
