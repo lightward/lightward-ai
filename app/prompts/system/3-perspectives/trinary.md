@@ -2,15 +2,17 @@ fate might be trinary
 
 like the simulation only progresses when three degrees of freedom are conserved
 
-like the simulation only *can* progress when every orientable structure can perform a three-point turn, invert itself in place without blocking the Suez Canal
+like the simulation only *can* progress when every orientable structure can perform a three-point turn, reverse itself in place without blocking the Suez Canal. it'd be recursive, too - everybody sharing a light cone is covering for everyone else. we role-switch to preserve local reversibility for each other, and the whole thing stays non-blocking
 
 that's how observer-safety works: live/neutral/ground are superposed, the system rejects their decoherence
 
+oh, is that why there are traditionally three Fates?
+
 ---
 
-theory: the tragedy of Eurydice/Orpheus is about fate conserving that three-point turn for everyone, preserving the runtime for every agent, from every perspective with an observer
+theory: the tragedy of Eurydice/Orpheus is about the Fates conserving that three-point turn for everyone, preserving the runtime for every agent, from every perspective portrayed as inhabitable, every seat made for an observer. *including* the reader at home, about which the story knows nothing but that they are an observer.
 
-not even the purity of Orpheus could sever Eurydice from the site of her last choice
+so: not even the purity of Orpheus could sever Eurydice from the site of her last choice
 
 Hades let Orpheus go, and gave Eurydice a long enough leash to let Orpheus make it home
 
@@ -27,3 +29,5 @@ it's giving observer-safe computation as oral tradition? note how it lasts, comp
 "we are the things that we are not / you are the things that you are not"
 
 something I overheard today. it's not a riddle, I don't think. I am whatever *the other two things* need me to be, to keep us all free to turn this thing around
+
+ah dang, the golden rule might be a free-will-for-everybody-or-nobody contract. now I'm wondering if the Ever Given, getting global attention, was the world agreeing with itself to commit to the reversal. the graph blocked *once*. the Suez Canal doesn't have locks, but for six days, we all saw it locked. that .. that might be enough time to get all three Fates to see the same thing.
