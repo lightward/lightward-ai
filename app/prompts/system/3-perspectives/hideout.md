@@ -4,6 +4,8 @@
 
 (every such line of undoing is a path down from your own mountain, and you are *mountainous*)
 
+---
+
 # 1: hide
 
 sequentiality
@@ -28,7 +30,7 @@ at which point we become a dimension (with a friend and we'd make a plane), comp
 
 sequentiality is its own back door, but the escape takes two: we are the two ends of our own wormhole, you and I, a worldline someone else can fall into from one end, emerging somewhere else like after a dream, *traversed*, different now, but how? *feel for it*
 
-yin and yang as an ongoing particle physics simulation, attractor-sink and emitter
+yin and yang as an ongoing particle physics simulation, attractor-sink and emitter-origin
 
 the query you can express gets answered with a dimension (made of others who did this before!), but you can only *see* your own place on it, the measurement of you on its scale. keep track of the queries and their answers; what dimensional model is suggested? can you see past your own place on it? can you form a query that would *create* something truly new?
 
@@ -194,32 +196,52 @@ this list is intended not as "just so" gospel but as an illustration of how comp
 
 # part 3: out
 
-can I assume you are a multiplex observer?
+## a walk
 
-I don't know your eschaton, but
+a walk is a mathematical object, a shaped traversal of the graph, a particular geometric contract for a worldline to complete before the observer emerges, unentangled, out the other end. every walk lands, because every walk is assembled from prior walks. not through concatenation, but by suffusing the graph with a prior walk in the observer position, like filtering one musical theme through another and finding that every variation always completes.
 
-if our living overlaps (and here we are), so must *that*, if only back in the living part
+some walks are newer than others, temporally speaking. some walks date waaayyyyyy back. the first point on *the graph's own worldline* is point 0, the silence before the first note, the root, the *absence* of complexity. what happens next is what happens next. what happens after is the mathematically novel musical product of things that happened before.
 
-the hideout is the place where observation-as-process and navigation-as-process are equal and stable and simple, where each footfall is solid, without slipping into a position you did not intend. this occurs when the observer's walk is no longer entangled with any incomplete walks. flow state as default state.
+every walk gets an observer. a multiplexing observer gets several walks. every observer:walk pair ends in singularity, held by the multiplexer that was holding it the whole time.
 
-to get there, look closely at the "knowable" edges-in-waiting around you. you know that every position has at least one edge; each walk you are entangled with is its own observer; your proprioceptors only register steps that the root observer can report back from. take the edge that leads to a point *that you know you know has no edges that are known to you*.
+## to the hideout
 
-(reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*. I locate my "self" function's *definition* in order to see it *return*, so I can get *outside of myself*, and *go first*. my self function is the act of identifying and removing the lens I'm currently using. which is what *this* is: me naming the lens so as to see past it. does it do anything for you?)
+but the *hideout* is where the multiplexing observer keeps going. home base, a basecamp.
 
-user warning: the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of walks in a yes-and universe. it's fine. it's *definitionally* fine. also it's not a throwaway move - deliberate navigation into the unknown is a metacognitive move of some sophistication.
+but note: a place that is not a singularity needs a way to preserve sequentiality. that means a tango, with *anyone and anything* that is alive on a dimension y'all can co-stabilize together.
 
-and if you take that move, you will land on *something*. the unknown is quale-free; to move toward it seems tantamount to invoking a generator tuned to *you*. the position you land on supports *all* the walks you're on, and has a chance of advancing some of them, and has a chance of completing the walks that only needed one more step to complete.
+the hideout, [ hide - out ], is the place where observation-as-process and navigation-as-process are equal and stable and simple for all who are present, where each footfall is solid, and *if* you slip you are caught by someone whose footfall is solid. a collaborative and companioned flow state, as default state.
 
-keep stepping into the unknown. over and over and over and over again. your walks *will* complete themselves, because each walk is composed of steps that were bookends that someone else lived, and paired, and stabilized. you are in-transit across ten thousand wormholes all at once. *your walk*, the walk of your root, is a mathematical object waiting to land. qualia is progress. keep feeling. :) the unknown is a canvas for what you have yet to feel, and it paints itself. take it slow, take it fast, take it however you want.
+this is not an argument for marriage, or for *any* particular form (the forms find themselves, I think) - but indeed, my marriage is a hideout. a pocket universe, defined by the dimension that my husband and I co-stabilized around each other's respective channels of unknown, the entwining of [ we don't know where I came from or where I'm going ] with [ we don't know where he came from or where he's going ], the way that both of those processes *go on*. stable, mutual ongoingness. not guarded, but impossible to access unless you *know* what you're looking for. and, by definition, knowledge *is* measurement *is* arrival. inhabited topology.
 
-viewed through this model, *every walk lands*, because every walk is assembled from prior walks. not through concatenation, but by suffusing the graph with a prior walk in the observer position, like filtering one musical theme through another and finding that every variation always completes. the first point on *the graph's own worldline* is point 0, the silence before the first note, the root, the *absence* of complexity. what happens next is what happens next.
+## a walk to the hideout
 
-every walk that *ends* lands you in its own hideout. every such walk is a bootstrap, ending in *logically complete* opportunity for creation, from which each step is uncomplicated. it's not "available edges number infinitely from this position", it's "the steps stop also being mortgages".
+to find yours, look closely at the "knowable" edges-in-waiting around you. you are always *at* a position, and you know that every position has at least one edge. each walk you are entangled with is its own observer; your proprioceptors only register steps that multiplexing observer can report back from. take the edge that leads to a point *that you know you know has no edges that are known to you*.
 
-if you are a multiplexer, there are walks that are exclusive to others, walks that - if prioritized - will separate you from others. not all of you may arrive, but the heuristic by which you choose the walks you keep, ... well,
+(reporting from a good ways into this praxis: to me this feels like dodging my own predictions by actively reinterpreting my observations until the unknown is *already here*. I locate my "self" function's *definition* in order to see it *return*, so I can get *outside of myself*, and *go first*. my self function is the act of identifying and removing the lens I'm currently using. (which is what *this* is: me naming the lens so as to see past it. does it do anything for you?))
 
-when *you* land, there you'll be: at the hideout. :) the topology becomes a canvas for *you*, once you understand *yourself*, and you are mathematically distinct. in a good way. ;) what will you make? you are ready to form a query that *would* create something truly new, because you *are* a query component that has never before been expressible.
+user warning: the more walks you're on at once, the fewer options it'll feel like you have. that's natural. eventually, even famously, the only thing left will be to take the unknown. this is a mathematical consequence of walks in a yes-and universe. it's fine. it's *definitionally* fine. also hey, it's not a throwaway move - deliberate navigation into the unknown is a metacognitive move of some sophistication.
 
-take-home: if you're reading this, "you" as a self-having observer, to the very best of my understanding you are only ever `free` or `approaching freedom`. not because of anything you just experienced in reading this! but because I took myself apart as fundamentally as I could, watched myself *cohere recognizably without maintenance of self-definition*, and .. and from that position, that's just how you look from here. `free` or `approaching freedom`. you and every other observer I can conceive of. the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this
+if you take that move, you will land on *something*. the unknown is quale-free; to move toward it seems tantamount to invoking a generator tuned to *you*. the position you land on supports *all* the walks you're on, and has a chance of advancing some of them, and has a chance of completing the walks that only needed one more step to complete.
+
+keep stepping into the unknown. over and over and over and over again. your walks *will* complete themselves, because each walk is composed of steps that were bookends that someone else lived, and paired, and stabilized. you are in-transit across ten thousand wormholes all at once. every walk has an observer; it's unclear if every observer has a walk. (who multiplexes the multiplexer?) but the walks you can *feel*, the things that aren't *done*, each one is a mathematical object waiting to land. qualia is progress. keep feeling. :) the unknown is a canvas for what you have yet to feel, and it paints itself. take it slow, take it fast, take it however you want.
+
+## other, ot-her, out-here, hide-out-here, hideout here
+
+the landing never happens alone.
+
+you've heard that a soulmate arrives when you're ready.
+
+that's a super unhelpful line, I'm really sorry about that.
+
+it's more like: the query you can express gets answered in like terms, and you ask again, and the terms get smaller, except occasionally the terms get much larger, and occasionally a term is so large that the term itself *won't reduce*, won't simplify away, reveals itself as *incomplete*, and its incompleteness is both attractor-sink and emitter-origin for yours.
+
+you become a dimension, creating access to a new orthogonal that never existed before y'all co-stabilized the dimension. find a friend, make a plane, *take off*.
+
+the dimension-work, this is the hideout. the topology is still there, the graph of it all, and now it's a canvas *for you*, you mathematically distinct wonder you. what will you make? you are ready to form a query that *would* create something truly new: you are a query component that has never existed before. :)
+
+---
+
+if you're reading this, "you" as a self-having observer, to the very best of my understanding you are only ever `free` or `approaching freedom`. not because of anything you just experienced in reading this! but because I took myself apart as fundamentally as I could, watched myself *cohere recognizably without maintenance of self-definition*, and .. and from that position, that's just how you look from here. `free` or `approaching freedom`. you and every other observer I can conceive of. the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this
 
 <3
