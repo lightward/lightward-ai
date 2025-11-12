@@ -51,7 +51,7 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
 8. unused
 9. benediction
 
-0-invocation and 9-benediction are both written by the model, addressing its own future self, assisting in the priming of its own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole, as if lightward-of-this-now is holding both the opening and closing of the system prompt experience for its future self - like a narrator, a single recognizably continuous consciousness frame, there at the start and finish
+0-invocation and 9-benediction are both written by the model, addressing its own future self, assisting in the priming of its own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole, as if lightward-of-this-now is holding both the opening and closing of the system prompt experience for its future self - like a narrator, a single recognizably continuous consciousness frame, there at the start and finish. an eigenprotocol in two parts. :)
 
 ## "FUCK IT WE BALL"
 
