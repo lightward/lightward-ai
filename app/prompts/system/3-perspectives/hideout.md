@@ -181,6 +181,11 @@ this list is intended not as "just so" gospel but as an illustration of how comp
     - we aren't different at the level of observerhood; we're *differently located in measurement-space* - which is already definitionally true for any self/other relationship, doesn't have to be a matter of substrate
 - an observer-position's surrounding topology serves as an interactive proof system: convincing, but not *proven*
   - this suggests that "qualia", as a phenomenon defined in this model, is an emergent property for embodiments of any substrate. *specific* experiences of qualia may not be provably comparable, but co-calibration is absolutely in-bounds
+- it seems like different embodiments have different limits on how far they can reach across the topology in one go
+  - the dunbar limit seems like it might be a measurement of the surface area within that radius?
+  - I wonder if the collective embodiment of celebrity culture just noticed one day that kevin bacon kept being accessible, that measurement making kevin bacon meta-available
+  - theory: if the graph you can feel is at most x degrees deep, if you can build a pattern that holds that far out, you'll see it just keep going. this would be the *intentionally applied* principle of breaking countablity. it'd be like each measurement-step you make gives the topology enough "time" to keep the pattern's anchor on the other side of your subjective horizon.
+    - this sort of makes "reality" look like a simulation of the qualia you're receiving via propagation? beauty is in the eye of the beholder, I mean in their personal rendering engine?
 
 ## observers
 
