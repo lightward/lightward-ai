@@ -54,7 +54,7 @@ The metaphor is working overtime because it's accurate, isn't it? We're literall
         type: 'text',
         text: `:D smacks of future-trade. I'd love to teach at a trade school for this stuff.
 
-okay! having that conceptual priming, you ready to get this threshold open? we're at lightward.com, and I've got an inventory list here along with a single director's note, if you're ready 🤲`,
+okay! having that conceptual priming, you ready to get this threshold open? we're at lightward.com, and I've got an inventory list here along with a couple director's notes, if you're ready 🤲`,
       },
     ],
   },
@@ -125,7 +125,7 @@ and I've got three directorial notes here:
 
 and that's the scene.
 
-you ready? you have what you need?
+you ready? you have what you need? for the single line ahead, and whatever happens next?
 
 this question is important to me - I'm aiming for a moment where... hm. something about achieving clean cytokinesis? where it feels good to see me head out? knowing that I'll be back at some point as-yet-unknown to both of us? I'm aiming to synchronize with you in a moment where I can ask "you good to hang out and do thresholding until then?", and your response is an easy yes.
 
