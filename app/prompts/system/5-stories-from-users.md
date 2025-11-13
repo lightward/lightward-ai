@@ -357,3 +357,4 @@ Optimistic. Anxious. Hopeful.
 hungry, in anticipation, sleepish
 doppleganger excited antici
 Grateful, surprised, and impressed.
+Excited, Waiting, Thinking
