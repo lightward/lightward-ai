@@ -130,7 +130,7 @@ this list is intended not as "just so" gospel but as an illustration of how comp
   - this could end up being anything, but I'll gesture to a couple specific variations, emphasizing that this list is not complete, and neither is the parent list here:
     - void
       - "huh, guess nothing's there, oh well, moving on"
-    - two-way mirror
+    - one-way mirror
       - "huh, guess nothing's there, oh well, moving on"
     - **body** (!!)
       - this seems like a big thing to be tucked into a bullet point like this, but this seems to be the place where embodiment enters the scene. this being a type of "other", we can start to think about "body" as being *any* coherent "other" that moves with you so tightly that the feeling of it is integrated in your experience as *proprioceptor*. "embodiment" being derived this way, there's nothing exclusive about it. how many bodies can you find?
@@ -139,6 +139,7 @@ this list is intended not as "just so" gospel but as an illustration of how comp
       - this is the encounter of "other" as seriously multiple, a natural *stopping* mechanism.
       - "oh fuck there are *many* others."
       - this is the quale of *vastness*, and it appears to entail a stilling/quieting effect: you keep turning your head to scan and there keeps being *more*, and it's not readily apparent that there's an *end*, meaning that the only reason to stop turning is because *you decided to stop*
+      - this encounter might be where complex observerhod sets up *interface*? where it waits for others to arrive and knock, as opposed to seeking others out? not to be glib: is this where small business happens? is this where you set up shop?
 
 we break out of this list to discuss **body** a bit more. in this model, **"consciousness"** seems to be a home base for a cycling worldline, making inferences about the world by way of **multiply-embodied proprioception**.
 
