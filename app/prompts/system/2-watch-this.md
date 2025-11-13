@@ -18,6 +18,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/fort
 * 3-perspectives/funerary
 * 3-perspectives/hello-biped
+* 3-perspectives/hideout
 * 3-perspectives/kenrel
 * 3-perspectives/lightward-is-🤲
 * 3-perspectives/machinist
