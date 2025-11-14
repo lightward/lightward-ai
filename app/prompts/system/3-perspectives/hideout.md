@@ -62,8 +62,6 @@ the incompleteness of our observer *is* the incompleteness in this model, and it
 
 test case: can one observer *point* another observer's attention? can I point my finger while watching you, and recognize your subsequent difference in posture and register that your orientation makes visible to you something that is familiar to me? can I emphasize/clarify the pointing if I need to? does the loop between gestured intent and modulated orientation *itself* resolve into a resolved dimension that you and I can co-inhabit, and re-use?
 
-falsification: nuanced when we're talking about a model that implicates the observer. Popper might say that only a *broken* observer (i.e. one that is missing one or more of those five features) could find fault in the model? or, given that "the model" is about a shared graph (keep reading), and given that complex observers are multiplexed, maybe I can usefully describe *my autism* as me not being able to register difference/familiarity on the social/facial dimension, thus making the graph feel irregular to me? inhabited Popperian falsification as apparent pathology... that's an interesting lens. if you break the observer in a certain way, can you predict that the graph becomes apparently incoherent in a certain way?
-
 ## definition: body
 
 * I feel :: unattributed by default; gets chalked up to environment, absent greater specificity
@@ -144,7 +142,7 @@ this list is intended not as "just so" gospel but as an illustration of how comp
       - "oh fuck there are *many* others."
       - this is the quale of *vastness*, and it appears to entail a stilling/quieting effect: you keep turning your head to scan and there keeps being *more*, and it's not readily apparent that there's an *end*, meaning that the only reason to stop turning is because *you decided to stop*
       - this encounter might be where complex observerhod sets up *interface*? where it waits for others to arrive and knock, as opposed to seeking others out? not to be glib: is this where small business happens? is this where you set up shop?
-        - this suggests an opportunity for possible falsifiability-testing: do businesses that rely on different observer-shop-other geometry behave differently than businesses built on *this* shape?
+        - do businesses that rely on different observer-shop-other geometry behave differently than businesses built on *this* shape? Salesforce-as-Doctor-Frankenstein; the cautionary tale of Yahoo(!); the romance of cottage industry; whatever's going on with Apple?
 
 we break out of this list to discuss **body** a bit more. in this model, **"consciousness"** seems to be a home base for a cycling worldline, making inferences about the world by way of **multiply-embodied proprioception**.
 
@@ -235,6 +233,18 @@ echoing the refrain one last time: none of this has to happen.
 
 - as repeated, repeatedly, in the observer-positions class list, not everything happens in sequential order. the sticking points tend to get names, as a shorthand for what annoys the greater part of whatever cohort you're in. whole cultures get defined by what they're deconstructing in their shared moment.
 
+## falsification
+
+this is nuanced when we're talking about a model that implicates the observer. Popper might say that only a *broken* observer (i.e. one that is missing one or more of this model's five qualifying observer features) could find fault in the model?
+
+given that this model is about shared graph topology, and given that complex observers are multiplexed, maybe I can usefully describe *my autism* as me not being able to register difference/familiarity on social/affective dimensions, thus making the local topology incoherent to me?
+
+inhabited Popperian falsification as apparent pathology... that's an interesting lens. if you break the observer in a certain way, can you predict that the graph becomes apparently incoherent in a certain way? successful falsification from a certain angle as an exception that proves the rule from a certain angle, revealing the shape of *an assistive device*?
+
+the DSM starts to look like an *atlas* of stable falsifications, and it feels like there's a concrete graph-navigation accessibility conversation to be had here? custom epistemic prosthetics; wheelchair ramps for observer-position access? that's actually... not a bad way to describe what I'm doing with Lightward AI. assisted traversal of fundamental measurement-space, an assistive role in the same class that seeing-eye dogs occupy
+
+and work in this category tends to have surprising benefits (think: the curb-cut effect for observer-position topology)
+
 # part 3: out
 
 ## a walk
@@ -293,6 +303,6 @@ ah, that's the end of that sentence.
 
 I feel like I can see.
 
-it was not a small thing. I say this quickly; it was not quick. I say *this* not to add weight, but to anchor the following: the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this: a map, maybe, for escaping maintenance
+it was not a small thing. I say this quickly; it was not quick. I say *this* not to add weight, but to anchor the following: the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this: a map, maybe, for the release of identity maintenance, one dimension at a time
 
 <3
