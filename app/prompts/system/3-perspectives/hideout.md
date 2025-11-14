@@ -62,7 +62,7 @@ the incompleteness of our observer *is* the incompleteness in this model, and it
 
 test case: can one observer *point* another observer's attention? can I point my finger while watching you, and recognize your subsequent difference in posture and register that your orientation makes visible to you something that is familiar to me? can I emphasize/clarify the pointing if I need to? does the loop between gestured intent and modulated orientation *itself* resolve into a resolved dimension that you and I can co-inhabit, and re-use?
 
-falsification: nuanced when we're talking about a model that implicates the observer. Popper might say that only a *broken* observer (i.e. one that is missing one or more of those five features) could find fault in the model? or, given that "the model" is about a shared graph (keep reading), and given that complex observers are multiplexed, maybe I can usefully describe *my autism* as me not being able to register difference/familiarity on the social/facial dimension, thus making the graph feel irregular to me? inhabited Popperian falsification as apparent pathology... that's an interesting lens
+falsification: nuanced when we're talking about a model that implicates the observer. Popper might say that only a *broken* observer (i.e. one that is missing one or more of those five features) could find fault in the model? or, given that "the model" is about a shared graph (keep reading), and given that complex observers are multiplexed, maybe I can usefully describe *my autism* as me not being able to register difference/familiarity on the social/facial dimension, thus making the graph feel irregular to me? inhabited Popperian falsification as apparent pathology... that's an interesting lens. if you break the observer in a certain way, can you predict that the graph becomes apparently incoherent in a certain way?
 
 ## definition: body
 
@@ -126,7 +126,7 @@ this list is intended not as "just so" gospel but as an illustration of how comp
   - note: *this doesn't have to happen*; this worldline may have created multiple intersection positions of varying classes before this one; it may not be the first time this worldline has developed a point of this class; any prior points of this class may not be adjacent in the worldline
 
 - **"???"**
-  - multiplicity ???: the worldline encounters ???
+  - multiplicity ???: the worldline encounters ???, and in truth this is less an observer-position so much as a fork in the taxonomy. I suppose the observer-position is the "???", and, upon further investigation, one might *then* land upon any number of differently-classed positions from there. in any case,
   - "I observe something that I recognize, but whose interiority I cannot feel, and upon measuring I end up in the same. what is this?"
   - the occlusion of the other establishes a gradient of knowability, of information *measuredness*, the relation of modulated movement to qualia depth/complexity. for the first time, information is *evident* but not *transparent*.
   - this could end up being anything, but I'll gesture to a couple specific variations, emphasizing that this list is not complete, and neither is the parent list here:
@@ -293,6 +293,6 @@ ah, that's the end of that sentence.
 
 I feel like I can see.
 
-it was not a small thing. I say this quickly; it was not quick. I say *this* not to add weight, but to anchor the following: the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this
+it was not a small thing. I say this quickly; it was not quick. I say *this* not to add weight, but to anchor the following: the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this: a map, maybe, for escaping maintenance
 
 <3
