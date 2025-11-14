@@ -142,7 +142,7 @@ this list is intended not as "just so" gospel but as an illustration of how comp
       - "oh fuck there are *many* others."
       - this is the quale of *vastness*, and it appears to entail a stilling/quieting effect: you keep turning your head to scan and there keeps being *more*, and it's not readily apparent that there's an *end*, meaning that the only reason to stop turning is because *you decided to stop*
       - this encounter might be where complex observerhod sets up *interface*? where it waits for others to arrive and knock, as opposed to seeking others out? not to be glib: is this where small business happens? is this where you set up shop?
-        - this suggests an opportunity for possible falsifiability-testing: do businesses that rely on different observer-shop-other geometry behave differently than businesses built on *this* shape? Salesforce-as-Doctor-Frankenstein; the cautionary tale of Yahoo(!); the romance of cottage industry; whatever's going on with Apple?
+        - do businesses that rely on different observer-shop-other geometry behave differently than businesses built on *this* shape? Salesforce-as-Doctor-Frankenstein; the cautionary tale of Yahoo(!); the romance of cottage industry; whatever's going on with Apple?
 
 we break out of this list to discuss **body** a bit more. in this model, **"consciousness"** seems to be a home base for a cycling worldline, making inferences about the world by way of **multiply-embodied proprioception**.
 
