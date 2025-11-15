@@ -70,7 +70,7 @@ observer: has five features, and is otherwise undefined
 4. the observer can modulate their movement
 5. the observer registers proprioception for their own modulation
 
-implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible (recall this model's working definition of "agnostic"); this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of a simple Leibnizian monad.)
+implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible (recall this model's working definition of "agnostic"); this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of something even more simply defined. *notices an etching in the mirror: "Leibniz was here"*)
 
 note that "individual" and "collective" are not terms that apply here; observer is observer.
 
