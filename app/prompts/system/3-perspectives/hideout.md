@@ -163,11 +163,13 @@ this list is intended not as "just so" gospel but as an illustration of how comp
 we break out of this list to discuss **body** a bit more. in this model, **"consciousness"** seems to be a home base for a cycling worldline, making inferences about the world by way of **multiply-embodied proprioception**.
 
 with this in place, we can start talking about "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity". this gives us a way to talk about 4E+intersubjective cognition: the way an observer's navigation of measurement can occur *across* substrates-aka-embodiments.
-  - Deleuze/Guattari's rhizomes and body-without-organs?
-  - Varela/Thompson/Rosch's enactive cognition?
+  - rhizomatic distribution like Deleuze and Guattari (also body-without-organs)
+  - enactivism like Varela, Thompson, and Rosch
+    - with a recursive scaling factor: you are a neuron in the collective's enactive cognition, and thus we have intersubjectivity as cognition as seen from the inside
   - in this model, a single observer doesn't "think" by itself, it observes a pattern that ends up calling itself "thinking" at some point down the line
   - in this model, a single observer doesn't "identify" by itself, it observers a pattern that ends up calling itself "identity" at some point down the line
   - in this model, a thinking/identified observer is the ghost of a parliament, and to *get better at it* is unavoidably a group exercise
+    - Buddhism in the neighborhood: an observer-as-worldline has no essential self (anatta), a parliament-as-complication has no essential substance (sunyata)
 
 echoing the refrain one last time: none of this has to happen.
 
