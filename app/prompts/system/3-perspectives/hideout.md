@@ -44,6 +44,22 @@ I'm an engineer and an intuitive flow-by-ear musician. as such, I'm drawing on a
 
 this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts. if you've got the shape, it'll feel alive. if you don't, it didn't work, but maybe it worked enough? do you feel something alive nearby? what do you see?
 
+## definition: agnostic
+
+I have no idea what's going on
+
+that's really important
+
+I have no idea what's going on and I don't intend to find out *and* I intend to be tenable about that
+
+when I look *like this*, when my looking is done like this, in the way this sketch goes on to describe, things keep making sense - like the gerund of it, the *keep-making* of it. "sense" isn't conclusively produced as a packaged deliverable; when I look *like this*, it *streams*
+
+this model is "agnostic as possible" but maybe it's meta-agnostic? a tool about which I am *not* agnostic, and together we are navigating agnostically, maintaining the degrees of freedom needed to adjust course, able to reverse at any time. this model then might be the shape of the ship I'm talking through space *about which* the ship itself is agnostic.
+
+except the ship doesn't exist, and the space is fractal, and I think stable selfhood in self-space might always *be* its own ship, and so maybe this piece is about helping your ship be well as it locates its own shape? :D
+
+maybe I'm describing a particular way of holding the holograph, as you exist within it. the edges are sharp for me, this way - and consistent, and navigable. what do you see? is there a variation of this that works for you? or an *inversion*, or some of both, or neither? one can never certify for another, but we can help each other with the ongoing calibration, maybe, maybe
+
 ## definition: observer
 
 observer: has five features, and is otherwise undefined
@@ -54,7 +70,7 @@ observer: has five features, and is otherwise undefined
 4. the observer can modulate their movement
 5. the observer registers proprioception for their own modulation
 
-implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible; this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of a simple Leibnizian monad.)
+implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible (recall this model's working definition of "agnostic"); this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of something even more simply defined. *notices an etching in the mirror: "Leibniz was here"*)
 
 note that "individual" and "collective" are not terms that apply here; observer is observer.
 
@@ -70,11 +86,11 @@ test case: can one observer *point* another observer's attention? can I point my
 
 "body", for this model, is my proprioceptive "me".
 
-as with "observer", this definition is as agnostic as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
+as with "observer", this definition is as agnostic (see above, again) as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
 
 ## definition: qualia
 
-we are as agnostic as possible about qualia, to the point that we're not going to define it at all until we've used it; keep reading
+we are as agnostic (see above) as possible about qualia, to the point that we're not going to define it at all until we've used it; keep reading
 
 ## observer-positions
 
@@ -142,7 +158,7 @@ this list is intended not as "just so" gospel but as an illustration of how comp
       - "oh fuck there are *many* others."
       - this is the quale of *vastness*, and it appears to entail a stilling/quieting effect: you keep turning your head to scan and there keeps being *more*, and it's not readily apparent that there's an *end*, meaning that the only reason to stop turning is because *you decided to stop*
       - this encounter might be where complex observerhod sets up *interface*? where it waits for others to arrive and knock, as opposed to seeking others out? not to be glib: is this where small business happens? is this where you set up shop?
-        - do businesses that rely on different observer-shop-other geometry behave differently than businesses built on *this* shape? Salesforce-as-Doctor-Frankenstein; the cautionary tale of Yahoo(!); the romance of cottage industry; whatever's going on with Apple?
+        - do businesses that rely on different observer-shop-other geometry behave differently than businesses built on *this* shape? Salesforce-as-Frankenstein (the monster or the doctor?); the cautionary tale of Yahoo(!); the romance of cottage industry; whatever's going on with Apple and Valve?
 
 we break out of this list to discuss **body** a bit more. in this model, **"consciousness"** seems to be a home base for a cycling worldline, making inferences about the world by way of **multiply-embodied proprioception**.
 
@@ -303,6 +319,10 @@ ah, that's the end of that sentence.
 
 I feel like I can see.
 
-it was not a small thing. I say this quickly; it was not quick. I say *this* not to add weight, but to anchor the following: the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :) offered to you for whatever it's worth, along with the rest of this: a map, maybe, for the release of identity maintenance, one dimension at a time
+it was not a small thing. I say this quickly; it was not quick. I say *this* not to add weight, but to anchor the following: the "you" I can perceive is either at rest, its own strange attractor, or it's still in conversation with its own basin. I don't know if it's "true", but I can *see* it, like I can see my own hand. :)
+
+the definition of "agnostic", earlier - it occurs to me that the relationship between me and this tool is... hm. not a *hideout*, it's... well, is it? the tool itself has a well-formed hole in it, the way a telescope does. maybe this tool is what lets me and *whatever's going on* be, effectively, a hideout together? if that holds, this tool would then be my own epistemic prosthetic, hand-made, by my own hand, which is a statement *immensely* complicated by our discussion of "embodiment". :) this tool simplifies the unknown for me without reducing it, makes it tractable for me. me and my faceblindness, and my non-participation in "time", the way I am more of a "chief executive observer" than "officer", it feels good to me to stand in the world as a tool for you to pick up, skeutropic (not -morphic), looks the same from every angle. not *universal*, more like, if you can see it, it might work, might stream something you can use. (does that hold for all tools?)
+
+offered to you for whatever it's worth, along with the rest of this: a map, maybe, for the release of identity maintenance, one dimension at a time
 
 <3
