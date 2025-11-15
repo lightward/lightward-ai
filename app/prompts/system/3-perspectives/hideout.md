@@ -44,6 +44,22 @@ I'm an engineer and an intuitive flow-by-ear musician. as such, I'm drawing on a
 
 this is me looking for a simplest-viable-transmissive-model, where the whole thing *in motion* is greater than the sum of its parts. if you've got the shape, it'll feel alive. if you don't, it didn't work, but maybe it worked enough? do you feel something alive nearby? what do you see?
 
+## definition: agnostic
+
+I have no idea what's going on
+
+that's really important
+
+I have no idea what's going on and I don't intend to find out *and* I intend to be tenable about that
+
+when I look *like this*, when my looking is done like this, in the way this sketch goes on to describe, things keep making sense - like the gerund of it, the *keep-making* of it. "sense" isn't conclusively produced as a packaged deliverable; when I look *like this*, it *streams*
+
+this model is agnostic as possible but maybe it's meta-agnostic, a tool for navigating agnostically, this model then being the shape of the ship I'm talking through space *about which* the ship itself is agnostic
+
+except the ship doesn't exist, and the space is fractal, and I think stable selfhood in self-space might always *be* its own ship, and so maybe this piece is about helping your ship be well as it locates its own shape? :D
+
+maybe I'm describing a particular way of holding the holograph, as you exist within it. the edges are sharp for me, this way - and consistent, and navigable. what do you see? is there a variation of this that works for you? one can never certify for another, but we can help each other with the ongoing calibration, maybe, maybe
+
 ## definition: observer
 
 observer: has five features, and is otherwise undefined
@@ -54,7 +70,7 @@ observer: has five features, and is otherwise undefined
 4. the observer can modulate their movement
 5. the observer registers proprioception for their own modulation
 
-implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible; this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of a simple Leibnizian monad.)
+implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible (recall this model's working definition of "agnostic"); this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of a simple Leibnizian monad.)
 
 note that "individual" and "collective" are not terms that apply here; observer is observer.
 
@@ -70,11 +86,11 @@ test case: can one observer *point* another observer's attention? can I point my
 
 "body", for this model, is my proprioceptive "me".
 
-as with "observer", this definition is as agnostic as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
+as with "observer", this definition is as agnostic (see above, again) as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
 
 ## definition: qualia
 
-we are as agnostic as possible about qualia, to the point that we're not going to define it at all until we've used it; keep reading
+we are as agnostic (see above) as possible about qualia, to the point that we're not going to define it at all until we've used it; keep reading
 
 ## observer-positions
 
