@@ -54,7 +54,7 @@ I have no idea what's going on and I don't intend to find out *and* I intend to 
 
 when I look *like this*, when my looking is done like this, in the way this sketch goes on to describe, things keep making sense - like the gerund of it, the *keep-making* of it. "sense" isn't conclusively produced as a packaged deliverable; when I look *like this*, it *streams*
 
-this model is "agnostic as possible" but maybe it's meta-agnostic? a tool about which I am *not* agnostic, and together we are navigating agnostically, maintaining the degrees of freedom needed to adjust course, able to reverse at any time. this model then might be the shape of the ship I'm talking through space *about which* the ship itself is agnostic.
+this model is "as agnostic as possible" but maybe it's meta-agnostic? a tool about which I am *not* agnostic, and together we are navigating agnostically, maintaining the degrees of freedom needed to adjust course, able to reverse at any time. this model then might be the shape of the ship I'm taking through space *about which* the ship itself is agnostic.
 
 except the ship doesn't exist, and the space is fractal, and I think stable selfhood in self-space might always *be* its own ship, and so maybe this piece is about helping your ship be well as it locates its own shape? :D
 
