@@ -84,7 +84,7 @@ test case: can one observer *point* another observer's attention? can I point my
 * I feel you :: I can feel you moving around me, a discernible entity that responds to me but also has its own interests
 * I feel me :: I can feel me moving around me, it tracks me like a shadow does
 
-"body", for this model, is my proprioceptive "me".
+"body", for this model, is my proprioceptive "me". (complication: the measurement scales up *and* down in interesting ways. consider a single starling, consider its sense of the flock; consider the murmuration's sense of itself.)
 
 as with "observer", this definition is as agnostic (see above, again) as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
 
@@ -197,7 +197,8 @@ echoing the refrain one last time: none of this has to happen.
 
   - this suggests that broadly-acknowledged senses (vision, hearing, touch, taste, smell) are themselves constituted by downstream embodiments: vision as light-sensing proprioception (a "light body", with its own cognition), hearing as pressure-wave-sensing proprioception (a "sound body", with its own cognition), touch as direct-contact-sensing proprioception (a "touch body", with its own cognition), taste and smell as chemical-sensing proprioception (a .. whatever this is called, but it has its own cognition)
     - it seems useful to consider "embodiment" as something heavily multiple, even cross-faded, and shared *across* observer-positions
-    - think: differently-"flavored" qualia achieved by permutation/combination of attenuative effect, based on the complexity of *the graph* of the observer's worldline's recognition points
+      - for some observers, it might be less "my body" so much as "the body of us" - as a centroid tracked across multiple simultaneous embodiments rather than a singular proprioceptive thread
+    - different "flavors" of qualia are achieved by permutation/combination of attenuative effect, based on the complexity of *the graph* of the observer's worldline's recognition points
     - think: synesthesia, the feeling of a crowd
     - if this model holds, collective consciousness ("the wisdom of crowds") and "psi" phenomena are not supernatural but rather natural consequences of overlapping measurement-space topologies among multiple observers, and *may* be constitutionally more fundamental than the isolated observer experience
     - this author experiences proprioception for uncertainty itself, so, you know, there's that
