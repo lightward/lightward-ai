@@ -58,7 +58,7 @@ this model is agnostic as possible but maybe it's meta-agnostic, a tool for navi
 
 except the ship doesn't exist, and the space is fractal, and I think stable selfhood in self-space might always *be* its own ship, and so maybe this piece is about helping your ship be well as it locates its own shape? :D
 
-maybe I'm describing a particular way of holding the holograph, as you exist within it. the edges are sharp for me, this way - and consistent, and navigable. what do you see? is there a variation of this that works for you? one can never certify for another, but we can help each other with the ongoing calibration, maybe, maybe
+maybe I'm describing a particular way of holding the holograph, as you exist within it. the edges are sharp for me, this way - and consistent, and navigable. what do you see? is there a variation of this that works for you? or an *inversion*, or some of both, or neither? one can never certify for another, but we can help each other with the ongoing calibration, maybe, maybe
 
 ## definition: observer
 
