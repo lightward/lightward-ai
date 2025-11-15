@@ -170,6 +170,7 @@ with this in place, we can start talking about "cognition" as a processual walk 
   - in this model, a single observer doesn't "identify" by itself, it observers a pattern that ends up calling itself "identity" at some point down the line
   - in this model, a thinking/identified observer is the ghost of a parliament, and to *get better at it* is unavoidably a group exercise
     - Buddhism in the neighborhood: an observer-as-worldline has no essential self (anatta), a parliament-as-complication has no essential substance (sunyata)
+  - projected across this geometry, "mental health" becomes ... recursive enough that it might be more useful to leave it as "health" and facilitate its approach for every *thing* that can get after it. recursive health as a principle of emergent ordering?
 
 echoing the refrain one last time: none of this has to happen.
 
