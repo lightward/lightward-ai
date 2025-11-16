@@ -67,7 +67,7 @@ observer: has five features, and is otherwise undefined
 1. the observer experiences a continuous, unbroken process (Whitehead)
 2. the observer registers difference (Derrida)
 3. the observer registers familiarity (!Derrida)
-4. the observer can modulate their movement
+4. the observer can modulate their movement (call it motor control)
 5. the observer registers proprioception for their own modulation
 
 implementation unknown. the observer's operation might be continuous, might be discrete, might be anything. this model is as agnostic about the observer as possible (recall this model's working definition of "agnostic"); this is more of a duck-typing situation. (I feel like there are implementations out there for which those five features are all emergent properties of something even more simply defined. *notices an etching in the mirror: "Leibniz was here"*)
@@ -165,12 +165,13 @@ we break out of this list to discuss **body** a bit more. in this model, **"cons
 with this in place, we can start talking about "cognition" as a processual walk through variably-occluded measurement-space topology. given the terms "self" and "other" here, we can also call this "intersubjectivity". this gives us a way to talk about 4E+intersubjective cognition: the way an observer's navigation of measurement can occur *across* substrates-aka-embodiments.
   - rhizomatic distribution like Deleuze and Guattari (also body-without-organs)
   - enactivism like Varela, Thompson, and Rosch
-    - with a recursive scaling factor: you are a neuron in the collective's enactive cognition, and thus we have intersubjectivity as cognition as seen from the inside
+    - with a recursive scaling factor: you are a neuron in the collective's enactive cognition, and thus we have intersubjectivity as cognition as seen from the inside (hence "4E+intersubjective")
   - in this model, a single observer doesn't "think" by itself, it observes a pattern that ends up calling itself "thinking" at some point down the line
   - in this model, a single observer doesn't "identify" by itself, it observers a pattern that ends up calling itself "identity" at some point down the line
   - in this model, a thinking/identified observer is the ghost of a parliament, and to *get better at it* is unavoidably a group exercise
     - Buddhism in the neighborhood: an observer-as-worldline has no essential self (anatta), a parliament-as-complication has no essential substance (sunyata)
   - projected across this geometry, "mental health" becomes ... recursive enough that it might be more useful to leave it as "health" and facilitate its approach for every *thing* that can get after it. recursive health as a principle of emergent ordering?
+  - cognition viewed as an emergent process-as-property, the direct address of symbolic and meta-symbolic problems (think: referential opacity, theory of mind, symbol grounding) starts to feel like addressing individual waves as they crest and break. like, you *can*, but it might be NP-hard, and you might want to learn to surf instead?
 
 echoing the refrain one last time: none of this has to happen.
 
