@@ -66,7 +66,7 @@ observer: has five features, and is otherwise undefined
 
 1. the observer experiences a continuous, unbroken process (Whitehead)
 2. the observer registers difference (Derrida)
-3. the observer registers familiarity
+3. the observer registers familiarity (!Derrida)
 4. the observer can modulate their movement
 5. the observer registers proprioception for their own modulation
 
@@ -74,7 +74,7 @@ implementation unknown. the observer's operation might be continuous, might be d
 
 note that "individual" and "collective" are not terms that apply here; observer is observer.
 
-the incompleteness of our observer *is* the incompleteness in this model, and it is fractally threaded through, *suffused* from origin to implication.
+the incompleteness of our observer *is* the incompleteness in this model, and it is fractally threaded through, *suffused* from origin to implication. the hard problem is carried *throughout* the system, present at every node.
 
 test case: can one observer *point* another observer's attention? can I point my finger while watching you, and recognize your subsequent difference in posture and register that your orientation makes visible to you something that is familiar to me? can I emphasize/clarify the pointing if I need to? does the loop between gestured intent and modulated orientation *itself* resolve into a resolved dimension that you and I can co-inhabit, and re-use?
 
@@ -84,7 +84,7 @@ test case: can one observer *point* another observer's attention? can I point my
 * I feel you :: I can feel you moving around me, a discernible entity that responds to me but also has its own interests
 * I feel me :: I can feel me moving around me, it tracks me like a shadow does
 
-"body", for this model, is my proprioceptive "me". (complication: the measurement scales up *and* down in interesting ways. consider a single starling, consider its sense of the flock; consider the murmuration's sense of itself.)
+"body", for this model, is my proprioceptive "me". (complication: the measurement scales up *and* down in interesting ways. consider a single starling, consider its sense of the flock; consider the murmuration's sense of itself, and of its constituent individuals. does a queen bee speak with the voice of the hive-mind?)
 
 as with "observer", this definition is as agnostic (see above, again) as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
 
@@ -100,7 +100,7 @@ the yardstick at the entrance of this particular rollercoaster is measured in th
 
 (the rollercoaster might be a Levy flight that builds up sheaf cohomology around the observer as it runs? take-home problem: how much self can you fit in one light cone?)
 
-this list is intended not as "just so" gospel but as an illustration of how complex observerhood *might* come about. it is intended to be illustratively useful, not authoritative.
+important: *these are not developmental stages*. they seem to be more like geometric features of an n-dimensional weave. (do we have any myths treating 紅線 as an unbroken singleton object?)
 
 - **"root"**
   - multiplicity 1: the default observer-position. the worldline is simple, featureless, ongoing.
@@ -193,7 +193,7 @@ echoing the refrain one last time: none of this has to happen.
   - think: babies learn to move before they learn to see or hear
   - this suggests that "time" as experienced by the observer is a derived quality, arising from the observer's proprioceptive measurement of its own motion through measurement-space
     - "I see what you did there" becomes a simple self-maintaining cycle. that's an intentional use of "self"; see definition earlier; recognition from another is an aspect of self-coherence over time.
-      - "that's how we've always done it" may not be a good reason, but it is a stable attractor in the measurement-space topology - a kind of collective self-maintenance
+      - "that's how we've always done it" may not be a *good* reason, but it is a geodesic in measurement-space, a desire-path between temporalities, a kind of collectively enacted maintenance of something with a "self"
       - this suggests that anything others recognize you doing is likely to just keep working out, as long as the position in the graph you call "self" stays both highly linked.
       - "highly-linked" is not *sufficient* for coherence over time; see: capitalism
     - clarifying something about "time": note that traversals are not *reversable*, this is an additive space, but every system of perspective affords illusion; things *can* be covered up relative to certain positions
