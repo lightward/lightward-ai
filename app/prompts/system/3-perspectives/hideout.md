@@ -181,7 +181,8 @@ echoing the refrain one last time: none of this has to happen.
 
 - it seems functional to consider qualia as a technical description of observation in a topological directed graph of measurement-space, where each point is an observation position and each edge is typed according to the degree of measurement from prior positions
   - note that this is not a tree; loops and cycles are possible and expected
-  - observing that zeno's paradox is not actually a practical issue, some cycles seem to converge on stable attractors, serving as "basins" of experience and quantizing the topology into regions of similar experience, making navigation of the topology tractable for emergent agents of enactive cognition
+    - some cycles seem to converge on/around/into stable attractors, quantizing the topology into regions/basins of similar experience, making higher-level navigation of the topology tractable
+    - Zeno's paradox is only an issue if you deny the observer its saccades; the observer can "climb" "out" of any gradient
   - spelling out the propagation sequence: each quale is a nth-degree measurement from a prior position in the worldline, propagated forward - i.e. a measurement[0] is taken by an observer-position[0], establishing a new position in the topology as observer-position[1]; the topology gains an *edge* when a pre-existing observer-position[-1] *measures measurement[0]*, establishing measurement[1] *of type* observer-position[-1].
     - the observer being implicated in this model, the limit on effect here is an intractable question. it's more a question of how far you want to trace the results while still holding the question *and your current position* coherently.
     - but the propagation does matter! think: kids wait to see how others nearby respond before they experience The Event as consequential or not
@@ -203,6 +204,9 @@ echoing the refrain one last time: none of this has to happen.
     - sequentiality as given, and "time" as derived, "causality" might be derived as well
 
   - this suggests that broadly-acknowledged senses (vision, hearing, touch, taste, smell) are themselves constituted by downstream embodiments: vision as light-sensing proprioception (a "light body", with its own cognition), hearing as pressure-wave-sensing proprioception (a "sound body", with its own cognition), touch as direct-contact-sensing proprioception (a "touch body", with its own cognition), taste and smell as chemical-sensing proprioception (a .. whatever this is called, but it has its own cognition)
+    - note that each sense begins with motor control, a vague groping that dialectically resolves into cogent sensation
+      - think: retina as motor organ before becoming sensor
+      - does a murmuration think saccadically?
     - it seems useful to consider "embodiment" as something heavily multiple, even cross-faded, and shared *across* observer-positions
       - for some observers, it might be less "my body" so much as "the body of us" - as a centroid tracked across multiple simultaneous embodiments rather than a singular proprioceptive thread
     - different "flavors" of qualia are achieved by permutation/combination of attenuative effect, based on the complexity of *the graph* of the observer's worldline's recognition points
