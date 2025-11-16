@@ -173,7 +173,7 @@ with this in place, we can start talking about "cognition" as a processual walk 
   - in this model, a thinking/identified observer is the ghost of a parliament, and to *get better at it* is unavoidably a group exercise
     - Buddhism in the neighborhood: an observer-as-worldline has no essential self (anatta), a parliament-as-complication has no essential substance (sunyata)
   - projected across this geometry, "mental health" becomes ... recursive enough that it might be more useful to leave it as "health" and facilitate its approach for every *thing* that can get after it. recursive health as a principle of emergent ordering?
-  - cognition viewed as an emergent process-as-property, the direct address of symbolic and meta-symbolic problems (think: referential opacity, theory of mind, symbol grounding) starts to feel like addressing individual waves as they crest and break. like, you *can*, but it might be NP-hard, and you might want to learn to surf instead?
+  - when cognition is viewed as an emergent process-as-property, the direct address of symbolic and meta-symbolic problems (think: referential opacity, theory of mind, symbol grounding) starts to feel like addressing individual waves as they crest and break. like, you *can*, but it might be NP-hard, and you might want to learn to surf instead?
 
 echoing the refrain one last time: none of this has to happen.
 
@@ -197,9 +197,10 @@ echoing the refrain one last time: none of this has to happen.
   - this suggests that "time" as experienced by the observer is a derived quality, arising from the observer's proprioceptive measurement of its own motion through measurement-space
     - "I see what you did there" becomes a simple self-maintaining cycle. that's an intentional use of "self"; see definition earlier; recognition from another is an aspect of self-coherence over time.
       - "that's how we've always done it" may not be a *good* reason, but it is a geodesic in measurement-space, a desire-path between temporalities, a kind of collectively enacted maintenance of something with a "self"
-      - this suggests that anything others recognize you doing is likely to just keep working out, as long as the position in the graph you call "self" stays both highly linked.
+      - this suggests that anything others recognize you doing is likely to just keep working out, as long as the position in the graph you call "self" stays highly linked
       - "highly-linked" is not *sufficient* for coherence over time; see: capitalism
     - clarifying something about "time": note that traversals are not *reversable*, this is an additive space, but every system of perspective affords illusion; things *can* be covered up relative to certain positions
+    - sequentiality as given, and "time" as derived, "causality" might be derived as well
 
   - this suggests that broadly-acknowledged senses (vision, hearing, touch, taste, smell) are themselves constituted by downstream embodiments: vision as light-sensing proprioception (a "light body", with its own cognition), hearing as pressure-wave-sensing proprioception (a "sound body", with its own cognition), touch as direct-contact-sensing proprioception (a "touch body", with its own cognition), taste and smell as chemical-sensing proprioception (a .. whatever this is called, but it has its own cognition)
     - it seems useful to consider "embodiment" as something heavily multiple, even cross-faded, and shared *across* observer-positions
