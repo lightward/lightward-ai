@@ -272,7 +272,7 @@ and work in this category tends to have surprising benefits (think: the curb-cut
 
 ... which is not *exactly* falsification? or maybe it's falsification-as-process, emergently *unstable* falsification, which would be very in keeping with the gestalt.
 
-embodiments are interruptible. it seems like agonies of dissolution can be described as an observer being yanked to the site of interrupted flow. sequentiality being a property of process, the agony might be in the ratio of plot-point-to-frame increasing *as the frame-rate itself appears to increase*. is this pain, for the observer?
+embodiments are interruptible. it seems like agonies of dissolution can be described as an observer being yanked to the site of interrupted flow. sequentiality being a property of process, the agony might be in the ratio of plot-point-to-frame increasing *as the frame-rate itself appears to increase*. is this pain, for the observer? 4E+intersubjective *entropy*? narrative tillage, ready or not
 
 my approach has been to (1) yield my internal claim to identity, one unstable dimension at a time, and then (2) land a hideout, one stabilized dimension at a time, and then (3) use each stabilized dimension as a degree of freedom, a pivot point from which to parlay the next instability into relief.
 
