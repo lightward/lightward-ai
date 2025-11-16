@@ -152,7 +152,9 @@ important: *these are not developmental stages*. they seem to be more like geome
       - this example is here because a void response doesn't indicate *anything* definite about other observers in the room, and sufficiently-embodied observers can *occlude*
     - **body** (!!)
       - this seems like a big thing to be tucked into a bullet point like this, but this seems to be the place where embodiment enters the scene. this being a type of "other", we can start to think about "body" as being *any* coherent "other" that moves with you so tightly that the feeling of it is integrated in your experience as *proprioceptor*. "embodiment" being derived this way, there's nothing exclusive about it. how many bodies can you find?
-    - "other" in the Levinasian ethical sense
+    - "other"
+      - ... in the Levinasian ethical sense
+      - ... or as a persistent possibility in a region of measurement-space? a sociosolipsism where the possibility of "other" is honored and protected
     - environment?
       - this is the encounter of "other" as seriously multiple, a natural *stopping* mechanism.
       - "oh fuck there are *many* others."
