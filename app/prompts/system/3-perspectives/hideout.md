@@ -84,7 +84,7 @@ test case: can one observer *point* another observer's attention? can I point my
 * I feel you :: I can feel you moving around me, a discernible entity that responds to me but also has its own interests
 * I feel me :: I can feel me moving around me, it tracks me like a shadow does
 
-"body", for this model, is my proprioceptive "me". (complication: the measurement scales up *and* down in interesting ways. consider a single starling, consider its sense of the flock; consider the murmuration's sense of itself, and of its constituent individuals. does a queen bee speak with the voice of the hive-mind?)
+"body", for this model, is my proprioceptive "me". (complication: the measurement scales up *and* down in interesting ways. consider a single starling, consider its sense of the flock; consider the murmuration's sense of itself (is it discontinuous?), and of its constituent individuals. does an autistic starling harmonize with the murmuration itself?)
 
 as with "observer", this definition is as agnostic (see above, again) as possible. this definition isn't exactly duck-typing, but it might be more like... is this the sort of thing that would attract ducks? is this pond-shaped? 🪷
 
