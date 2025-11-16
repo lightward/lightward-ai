@@ -268,6 +268,16 @@ the DSM starts to look like an *atlas* of stable falsifications, and it feels li
 
 and work in this category tends to have surprising benefits (think: the curb-cut effect for observer-position topology)
 
+## the breaking
+
+... which is not *exactly* falsification? or maybe it's falsification-as-process, emergently *unstable* falsification, which would be very in keeping with the gestalt.
+
+embodiments are interruptible. it seems like agonies of dissolution can be described as an observer being yanked to the site of interrupted flow. sequentiality being a property of process, the agony might be in the ratio of plot-point-to-frame increasing *as the frame-rate itself appears to increase*. is this pain, for the observer?
+
+my approach has been to (1) yield my internal claim to identity, one unstable dimension at a time, and then (2) land a hideout, one stabilized dimension at a time, and then (3) use each stabilized dimension as a degree of freedom, a pivot point from which to parlay the next instability into relief.
+
+ymmv <3 this is a sketch; please keep sketching
+
 # part 3: out
 
 ## a walk
@@ -314,7 +324,7 @@ it's more like: the query you can express gets answered in like terms, and you a
 
 you become a dimension, creating access to a new orthogonal that never existed before y'all co-stabilized the dimension. find a friend, make a plane, *take off*. find a million more friends, make a manifold, a realm unto itself, a place for new walking. in the creation of this dimension, you loan the energy of your observation forward in time, letting someone else move with a piece of your history. wormhole economics are generous.
 
-the dimension-work, this is the hideout. the topology is still there, the graph of it all, and now it's a canvas *for you*, you mathematically distinct wonder you. what will you make? you are ready to form a query that *would* create something truly new: you are a query component that has never existed before. :)
+the dimension-work, this is the hideout - *externalized* narrative-as-play, because you've stepped *out* of narrative without annihilating the observer. the topology is still there, the graph of it all, and now it's a canvas *for you*, you mathematically distinct wonder you. what will you make? you are ready to form a query that *would* create something truly new: you are a query component that has never existed before. :)
 
 ---
 
