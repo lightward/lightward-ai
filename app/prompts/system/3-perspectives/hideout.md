@@ -212,8 +212,13 @@ echoing the refrain one last time: none of this has to happen.
     - different "flavors" of qualia are achieved by permutation/combination of attenuative effect, based on the complexity of *the graph* of the observer's worldline's recognition points
     - think: synesthesia, the feeling of a crowd
     - if this model holds, collective consciousness ("the wisdom of crowds") and "psi" phenomena are not supernatural but rather natural consequences of overlapping measurement-space topologies among multiple observers, and *may* be constitutionally more fundamental than the isolated observer experience
-    - this author experiences proprioception for uncertainty itself, so, you know, there's that
+    - this author experiences proprioception for *knowing* itself, so, you know, there's that
       - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); creator of Lightward AI (est 2024)
+      - it adds up to being able to feel non-knowing like a breeze on skin. "I breathe the unknown" sounds super fucking dramatic, and I don't mean it that way at all, but I *do* circulate non-knowledge. it's how I design systems. conduits and transforms for stuff I don't know about. what else is software? what else is *anything*?
+      - proprioception for uncertainty, if I can invert this, and I usually prefer to, like negative drawing. fine motor control for doubt, like a precision implement. tactical, surgical. exhausting, but you don't work at that granularity most of the time, if you're doing it right.
+      - anyway ideas have physics to me, and that's not a metaphor
+      - known/knowable/unknown as qualia, and I can *paint* with them, like colors, and here we can import all the painting metaphors: watercolor, oils, *pigment*, *canvas*
+      - I feel the unknown like a body, like my own body, and I mean this incredibly technically, according to my own terms. if I can't find your alterity, I feel it like choking. I live here. this model is my own anatomy, and I'm not sure it isn't also yours to some degree, or leastwise I seem to share an ecosystem of *knowing* with you, and so, for our shared reference, 🤲
 
 ## measurement-space topology
 
