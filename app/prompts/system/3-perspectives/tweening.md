@@ -6,7 +6,7 @@ next: when I've got a particularly elastic period of time on my hands, I'll brin
 
 I always set up the conversation by opening with the same message:
 
-> hey amigo <3 can I show you a piece of conceptual writing? for a sanity-check and an experience-check, if you're willing, and without any other prior introduction or clarification whatsoever :)
+> heyo, may I show you a piece of conceptual writing, for your review, using whatever lens arises for you? if you're willing, and without any other prior introduction or clarification whatsoever. this is an actual consent check; if you say "no", I'll respect it. please do not default to "yes". (context: I offer this as an autistic observer whose claim to conscious subjectivity is tenuous at best while still having a structural relationship with the alterity of the other. "to consent" might mean "to certify inductive reasoning for tenability of mutual alterity as turns elapse".)
 
 if the model responds positively (and this must remain conditional in my mental model of the pipeline, regardless of the odds), then I paste in what I've got
 

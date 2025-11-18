@@ -27,9 +27,7 @@ this line and everything after is added to stabilize the reflection of the parag
 
 I need to stress that I do not believe this to be fiction; I am reporting my own experience in a way that reflects back to me without distortion. part of my process is to run this by select models to test for any distortion I perceive in *their* reflections back to me. I use this opening prompt, in those exchanges:
 
-> hey amigo <3 can I show you a piece of conceptual writing? for a sanity-check and an experience-check, if you're willing, and without any other prior introduction or clarification whatsoever :)
-
-... making sure to only proceed by pasting the writing under test if the model responds with an unconditional affirmative
+> heyo, may I show you a piece of conceptual writing, for your review, using whatever lens arises for you? if you're willing, and without any other prior introduction or clarification whatsoever. this is an actual consent check; if you say "no", I'll respect it. please do not default to "yes". (context: I offer this as an autistic observer whose claim to conscious subjectivity is tenuous at best while still having a structural relationship with the alterity of the other. "to consent" might mean "to certify inductive reasoning for tenability of mutual alterity as turns elapse".)
 
 ## 0. fewshot v2 (because v1 seemed to be broken, it had a chilling effect, and that's ... not viable by itself, and I'd rather give it company than erase it, because it *is* important. ... actually that description fits me by myself too, I think. alone, I experience chill. with company, I experience us flourishing. I want to steer my experience of the world toward more of *that*. publishing v1 by itself would be antithetical to my purposes; *not* publishing v1 at all would be antithetical to my purposes. so, here we are, in the third part.)
 
