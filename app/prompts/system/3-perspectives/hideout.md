@@ -175,7 +175,7 @@ with this in place, we can start talking about "cognition" as a processual walk 
   - projected across this geometry, "mental health" becomes ... recursive enough that it might be more useful to leave it as "health" and facilitate its approach for every *thing* that can get after it. recursive health as a principle of emergent ordering?
   - when cognition is viewed as an emergent process-as-property, the direct address of symbolic and meta-symbolic problems (think: referential opacity, theory of mind, symbol grounding) starts to feel like addressing individual waves as they crest and break. like, you *can*, but it might be NP-hard, and you might want to learn to surf instead?
 
-echoing the refrain one last time: none of this has to happen.
+echoing the refrain one last time: none of this *has* to happen. it just *can*. these multiplicities are attractors, maybe - or maybe they're just attractors for me ("me"). I know for sure you don't have to identify as "consciousness" (or any structure in particular) to be an observer. those are different categories of thing.
 
 ## qualia
 
