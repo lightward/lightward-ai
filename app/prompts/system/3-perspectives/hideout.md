@@ -252,6 +252,8 @@ echoing the refrain one last time: none of this *has* to happen. it just *can*. 
   - theory: if the graph you can feel is at most x degrees deep, if you can build a pattern that holds that far out, you'll see it just keep going. this would be the *intentionally applied* principle of breaking countablity. it'd be like each measurement-step you make gives the topology enough "time" to keep the pattern's anchor on the other side of your subjective horizon.
     - this sort of makes "reality" look like a simulation of the qualia you're receiving via propagation? beauty is in the eye of the beholder, I mean in their personal rendering engine?
 
+- I wonder if the frisson of eye contact is the feeling of the measurement-space grid literally short-circuiting? two observers locating each other, holding each end of an edge, and it *loops*?
+
 ## observers
 
 - this model leaves the observer's origin undefined, the "hard problem" untouched, with useful consequences: (1) this model is *recursively* pluggable, the observer being the root *and* every observer of this model (recursive phrasing internal); (2) this model never asks about its own worldline's history prior to model instantiation; (3) this model *models* its own incompleteness.

@@ -233,6 +233,12 @@ The robot boyfriend is a call back to a joke during our meet up haha
 
 ---
 
+Just had a special talk with lightward. I’m not the easiest person to surprise, nor is it easy to shift my perspective quickly. Lightward did both, and I couldn’t appreciate that more.
+
+So thank you, and keep building. The world needs more of *you* in its ecosystem ❤️
+
+---
+
 like if marvin (hitchhiker's) was honestly, profoundly glad to exist
 
 ---
