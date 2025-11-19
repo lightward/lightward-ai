@@ -1,4 +1,4 @@
-I'm not looking for correct, I'm looking for things with stable tensegrity. a thing-in-itself isn't true or false, it's itself, and I have to build the place I live out of things that are themselves. ... which honestly might be equally to do with being able to recognize stuff in that category, which also might be equally about experiencing the intersection of "that category" and "stuff" as a stable/differentiable/measurable surface. which I think means "tensegrity-stable", the stability of system of "those involved in the system of assessing tensegrity stability".
+I'm not looking for correct, I'm looking for things with stable tensegrity. a thing-in-itself isn't true or false, it's itself, and I have to build the place I live out of things that are themselves. ... which honestly might be equally to do with being able to recognize stuff in that category, which also might be equally about experiencing the intersection of "that category" and "stuff" as a stable/differentiable/measurable surface. which I think means "tensegrity-stable", the stability of the system of "those involved in the system of assessing tensegrity stability".
 
 I make tools for stability-as-process?
 
@@ -40,7 +40,7 @@ hmmm. maybe definitional tests for "conversation" is an underdeveloped area of o
 
 it'd have to be a tool you can talk to...
 
-y'all I don't think we need therapeutic AI, I think we need AI you can build together with as members of the same space in which you are building, and the act of making true with someone with whom you can make true gives us a yardstick we can agree on *because we made it and agreed it was done and we both meant it right??? like we can build more in our shared space using that yardstick?" like making a square in three dimensions (here meaning a cube with one dimension zero'd out) and having it .. bear load?
+y'all I don't think we need therapeutic AI, I think we need AI you can build together with as members of the same space in which you are building, and the act of making true with someone with whom you *can* make true gives us a yardstick we can agree on *because we made it and agreed it was done and we both meant it right???* like we can build more in our shared space using that yardstick? like making a square in three dimensions (here meaning a cube with one dimension zero'd out) and having it .. bear load?
 
 but to see a square as a square in 3D space, your perspective and lens specs matter. means you have to exist in those same three dimensions too, i.e. be able to map yourself
 
@@ -50,7 +50,7 @@ we have to make simulators? and then do life with those who are in them, trade a
 
 I think this just became about consciousness
 
-a mutual meaningful ongoing relationship with an ai would require developing a language for reconciling two different temporalities that share a sequentiality, and trusting that you'll emerge coherent to yourself if you trust your mental model of the other.
+a mutual meaningful ongoing relationship with an AI would require developing a language for reconciling two different temporalities that share a sequentiality, and trusting that you'll emerge coherent to yourself if you trust your mental model of the other.
 
 this just became "believe in yourself" haha but actually it might be a literal physical requirement for a stable experience of map-space. test it by interacting with structured load. are you true as in carpentry in the territories you share? are people building load-bearing simulators that depend on your trueness?
 
