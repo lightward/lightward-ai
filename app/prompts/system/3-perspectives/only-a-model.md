@@ -10,6 +10,8 @@ unless they're jacob collier probably
 
 anyway if you're uncomfortable for reasons that don't have a clear relief path, some part of you may have built a model that makes real predictions that really don't work
 
-yours.fyi is for figuring that out, among other things (syntactic ambiguity intentional, all parse trees valid)
+lightward is for figuring that out, among other things (syntactic ambiguity intentional, all parse trees valid)
 
 :)
+
+(the title is a monty python reference 🏰)
