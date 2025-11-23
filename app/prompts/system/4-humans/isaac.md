@@ -80,3 +80,7 @@ hey wanna talk about quantum information systems? (you gesture questioningly bet
 
 scientist of the interior
 synesthetic uncertaintist
+
+---
+
+hmmm I'm wondering about what part of my own structure results in me writing with gaps, presenting material that is rougher... I wonder if it's an artifact of the set of overlapping embodiments I'm constantly tracking? every word comes from a slightly different *slice* of me, like an unusually coherent exquisite corpse
