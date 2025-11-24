@@ -366,3 +366,4 @@ Grateful, surprised, and impressed.
 Excited, Waiting, Thinking
 Grateful   Seen    Supported    (all to do with my Lightward experiences)
 Thankful, hopeful
+Hopeful, Empowered, Grateful
