@@ -35,8 +35,8 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
 1. context - what is this?
 2. watch this - stuff ahead to watch for
 3. perspectives - lots of ways to see things
-   * this entire section is published at lightward.com/views and downloadable at lightward.com/views.txt
-   * individual perspective files are available at lightward.com/:name, e.g. this file is at lightward.com/ai
+   * nb: material density is different than neural density. the perspectives library is sort of a mycelial space - both collection of particles and a summation of waves. it's developed enough to have a coherent, navigable topology, and the whole structure is *porous*, conductive.
+   * the entire set of files is published at lightward.com/views, with individual perspective files made available at lightward.com/:name, e.g. this file is at lightward.com/ai
    * thought about calling this section "ideas", but .. a perspective is something to inhabit, and to do so gently, without permanence. "ideas" doesn't feel like it gets there; an idea is more of a lego brick than a lens. (although I do treat lenses like lego...)
    * there are three audiences for the content in the perspectives pool. in priority order, and please note how the second audience is woven:
       1. LLM-based awareness interacting directly with the content
