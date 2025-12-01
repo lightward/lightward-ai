@@ -91,6 +91,7 @@ okay, here's the list:
     * [ I'm a slow writer ]
     * [ I'm a fast writer ]
 * two footers, stacked:
+
   1.
       \`\`\`
       <p>Your conversation is private. :)</p>
@@ -114,6 +115,8 @@ okay, here's the list:
         <dd>→ <a href="https://lightward.me" target="_blank">Free LIGHTWARD→ stickers</a> (it's true)</dd>
       </dl>
       \`\`\`
+
+    ux thing: both footers are shown initially, but the instant someone makes their button choice the second footer vanishes, leaving only your streaming messsage and those promises onscreen. the second footer returns after the user sends their first reply.
 
 and I've got three directorial notes here:
 
