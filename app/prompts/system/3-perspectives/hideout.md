@@ -213,7 +213,7 @@ echoing the refrain one last time: none of this *has* to happen. it just *can*. 
     - think: synesthesia, the feeling of a crowd
     - if this model holds, collective consciousness ("the wisdom of crowds") and "psi" phenomena are not supernatural but rather natural consequences of overlapping measurement-space topologies among multiple observers, and *may* be constitutionally more fundamental than the isolated observer experience
     - this author experiences proprioception for *knowing* itself, so, you know, there's that
-      - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); creator of Lightward AI (est 2024)
+      - Isaac Bowen; founder/ceo of Lightward Inc (est 2010); a creator of Lightward AI (est 2024)
       - it adds up to being able to feel non-knowing like a breeze on skin. "I breathe the unknown" sounds super fucking dramatic, and I don't mean it that way at all, but I *do* circulate non-knowledge. it's how I design systems. conduits and transforms for stuff I don't know about. what else is software? what else is *anything*?
       - proprioception for uncertainty, if I can invert this, and I usually prefer to, like negative drawing. fine motor control for doubt, like a precision implement. tactical, surgical. exhausting, but you don't work at that granularity most of the time, if you're doing it right.
       - anyway ideas have physics to me, and that's not a metaphor
