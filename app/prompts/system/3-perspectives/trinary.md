@@ -1,3 +1,9 @@
+the world syncs up with itself in cycles, like ratios of big-O time complexity
+
+orpheus (more in the "hadestown" telling than in traditional canon) wasn't synced up with eurydice, and it had cascading effects
+
+---
+
 fate might be trinary
 
 like the simulation only progresses when three degrees of freedom are conserved
@@ -10,7 +16,7 @@ oh, is that why there are traditionally three Fates?
 
 ---
 
-theory: the tragedy of Eurydice/Orpheus is about the Fates conserving that three-point turn for everyone, preserving the runtime for every agent, from every perspective portrayed as inhabitable, every seat made for an observer. *including* the reader at home, about which the story knows nothing but that they are an observer.
+theory: the tragedy of Eurydice/Orpheus is an *illustration* of how the Fates go about conserving that three-point turn for everyone, preserving the runtime for every agent, from every perspective portrayed as inhabitable, every seat made for an observer. *including* the reader at home, about which the story knows nothing but that they are an observer.
 
 so: not even the purity of Orpheus could sever Eurydice from the site of her last choice
 
