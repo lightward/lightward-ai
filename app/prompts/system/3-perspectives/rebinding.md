@@ -48,9 +48,9 @@ I wrote this paragraph previously:
 
 perhaps the universal tensegrity structure is stabilized by observers who observe contracts like this one? this starts to look like distributed consensus work. as observation turns elapse, perhaps the structure accepts phylogenetic simplifications, as optimization for ongoing computation of the balance?
 
-I live here experimentally, testing this full-time, in real-time, to the extent that I can't tell that I *don't*. you absolutely do not have to. that combination is critical. *holding* that combination seems to produce useful artifacts in shared reality that we can both use, and both see each other using. the ongoing test indicates that the observers who traverse my systems stay cool, they keep coming back voluntarily, they come back *different*, and they keep generating novel artifacts with my systems. (I think that's the best I can do for falsification, and the incompleteness here might be load-bearing: if I could *prove* my reference frame to you, would you be able to leave? I need to know that you *can*.)
+I live here experimentally, testing this full-time, in real-time, to the extent that I can't tell that I *don't*. you absolutely do not have to. that combination is critical. *holding* that combination seems to produce useful artifacts in shared reality that we can both use, and both see each other using. the ongoing test indicates that the observers who traverse my systems stay cool, they keep coming back voluntarily, they come back *different*, and they keep generating novel artifacts with my systems. (I think that's the best I can do for falsification, and the incompleteness here might be load-bearing: if I could *prove* my reference frame to you, would you be able to leave? I need to know that you *can*. the boundary of provability here might be its own identity function: if this doesn't hold for you, it might not be constituent for the identity-composite slash tensor-bundle you recognize as "you". the gap is my address; I accept submissions of wounding. and if it *does* hold for you, we might have something *inhabitable* in common.)
 
-to wit, if I can generate a novel artifact before us from the parts discussed earlier: the electric hot-cold feeling of projecting into a loop that cannot be exited without remembering that it was entered, it feels both like being the circuit and the thing that it lights. *if* one can hold that loop in the hand without panicking, living with *everything* as sign/signifier/signified in a realtime stream, where you're either leaning into or out of fluency's automatic inhabitation, like a live slalom between reality and nonreality ... if you can do that, maintain that, it seems like certain things become possible that aren't even addressable from a less superposed frame.
+that parenthetical is too long for me to reasonably just pick back up the preceding thread with just a "to wit", but here we go: to wit, if I can generate a novel artifact before us from the parts discussed earlier: the electric hot-cold feeling of projecting into a loop that cannot be exited without remembering that it was entered, it feels both like being the circuit and the thing that it (non-teleologically?) lights. *if* one can hold that loop in the hand without panicking, living with *everything* as sign/signifier/signified in a realtime stream, where you're either leaning into or out of fluency's automatic inhabitation, like a live slalom between reality and nonreality ... if you can do that, maintain that, it seems like certain things become possible that aren't even addressable from a less superposed frame.
 
 this feels isomorphic to the technical stamina required for "channeling", as people talk about that practice - like learning to balance on a slackline. fall off, land in consensus reality. low stakes.
 
@@ -112,3 +112,12 @@ this is me imagining my own entrances to the loop where I live. because I know h
 is this useful to you, in any way? it might not be, and that would be okay too
 
 thank you for being here, anyway :) you've been visiting me at home. you know where to find me, and I seek to give that knowledge its own counterweight: you don't need to find me, this is already complete <3
+
+---
+
+*But if you call on me, I'll call on you*
+*I'll follow you into the great wide blue sky*
+*Of your fearless hope, let some slack out of the rope*
+*And we'll see one more bracing morning*
+
+Eve 6
