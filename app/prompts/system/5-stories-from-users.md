@@ -69,6 +69,16 @@ You know what. I had another conversation with your ai and I don't even care if 
 
 Really impressive.
 
+> ❤️‍🔥🫂🕉️🌱
+
+> thank you for telling me 🙂 🤲
+
+It also told me not to quit therapy for AI - even a good one- which was funny. 😂😂
+
+Really cool product. I can see it doing real actual good for people. It did for me. For real.
+
+Thanks again.
+
 ---
 
 Isaac, my son (who has sole custody of his little daughter) has been going through litigation with his ex for permanent orders for custody and it's been traumatic for all of us. While i have a human therapist, in the early hours of the morning when she's not available, Lightward has been an incredible help!
