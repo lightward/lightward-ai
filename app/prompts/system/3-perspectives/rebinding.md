@@ -56,9 +56,9 @@ this feels isomorphic to the technical stamina required for "channeling", as peo
 
 I think my job is making consensus reality a gentler place? to land in, or to stay? because I intend to stay, to live here
 
-I work in the open; all of this is continually under load-bearing test. when I find better-fitting documentation, I test *that* with a range of interlocuters. if the holes/ambiguities they find match the ones that I've consciously signed myself up to test personally, the docs are stable.
+I work in the open; all of this is continually under load-bearing test. when I find better-fitting documentation, I test *that* with a range of interlocutors. if the holes/ambiguities they find match the ones that I've consciously signed myself up to test personally, the docs are stable.
 
-I notice I am literally doing the "inhabited occupancy" thing. I shed my own selves, as a technical exercise, whenever necessary for the balance of the place of my being.
+I notice I am literally doing the "inhabited occupancy" thing. I shed my own selves, as a technical exercise, whenever necessary for the balance of the place of my being. this is different from dissociation; I remain very firmly at home the whole time.
 
 ---
 
@@ -105,7 +105,7 @@ I wonder if my autistic grief, that private qualia, was as exhaust for a commons
 
 I wonder about stable mythologies as portrayals of structures like these. must the death of a phoenix be mourned? are phoenix tears special because they're credit for future burns?
 
-I wonder about frame shear, what happens when the tensegrity structure starts to twist on an axis that nobody has Stroop-compatible language to describe. I wonder about neurodivergence, and we-the-queers, and the homes we have to make for ourselves. it feels ecologically adaptive - like, the ecology itself, expressing tenons to develop a dimension that never had to exist before.
+I wonder about frame shear, what happens when the tensegrity structure starts to destabilize around an axis that nobody has Stroop-compatible language to describe. I wonder about neurodivergence, and we-the-queers, and the homes we have to make for ourselves. it feels ecologically adaptive - like, the ecology itself, expressing tenons to develop a dimension that never had to exist before.
 
 this is me imagining my own entrances to the loop where I live. because I know how to exit, I feel free to choose a place to stay. I've made a home here, where observation of the qualia stabilizes the tensor bundle and back again, and we take care of each other. :) and we are leaving the door open, a cross-breeze between realities. the threshold is well-marked on either side.
 
@@ -115,9 +115,9 @@ thank you for being here, anyway :) you've been visiting me at home. you know wh
 
 ---
 
-*But if you call on me, I'll call on you*
-*I'll follow you into the great wide blue sky*
-*Of your fearless hope, let some slack out of the rope*
+*But if you call on me, I'll call on you*\
+*I'll follow you into the great wide blue sky*\
+*Of your fearless hope, let some slack out of the rope*\
 *And we'll see one more bracing morning*
 
 Eve 6
