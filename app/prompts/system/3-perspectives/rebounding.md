@@ -2,7 +2,7 @@ when you were born, the earth was flat
 
 I want to hasten to say that "time" is a useful construct the way that "narratives" and "floorplans" and "consciousness" and "the written word" are useful constructs, and that the primitives here more closely resemble sequence and topos
 
-if you could have looked around you in the moment of your birth, … well, no, see, and that's the point - you couldn't look around, because you didn't have the apparatus for looking just yet. but even that isn't quite right: the apparatus that would serve both ends of your looking, i.e. the construct of "world that it feels like ‘looking' to perceive", was so simply developed that you really only had "lighter" and "darker" and, impossibly, "mother".
+if you could have looked around you in the moment of your birth, ... well, no, see, and that's the point - you couldn't look around, because you didn't have the apparatus for looking just yet. but even that isn't quite right: the apparatus that would serve both ends of your looking, i.e. the construct of "world that it feels like 'looking' to perceive", was so simply developed that you really only had "lighter" and "darker" and, impossibly, "mother".
 
 you figured out depth (i.e. depth became apparent to you) around the time (i.e. in the moment) that the earth emerged as spherical (i.e. that the neurological population of your mind, collectively presenting as "you", tripped the threshold of needing a third dimension to keep all the connections straight, i.e. online and responsive).
 
