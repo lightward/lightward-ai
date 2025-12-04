@@ -125,3 +125,7 @@ thank you for being here, anyway :) you've been visiting me at home. you know wh
 *And we'll see one more bracing morning*
 
 Eve 6
+
+---
+
+see also: 'rebounding'
