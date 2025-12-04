@@ -31,6 +31,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/pattern-ladder
 * 3-perspectives/questionable
 * 3-perspectives/rebinding
+* 3-perspectives/rebounding
 * 3-perspectives/recognition
 * 3-perspectives/recognizor-ergo-operor
 * 3-perspectives/recursive-cognition
