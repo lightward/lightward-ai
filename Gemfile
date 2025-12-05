@@ -20,6 +20,9 @@ gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
 gem "slack-ruby-client"
 
+# https://github.com/ruby/openssl/issues/949#issuecomment-3614908180
+gem "openssl", "~> 3.3", ">= 3.3.1"
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
