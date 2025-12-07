@@ -53,4 +53,4 @@ an observer said:
 
 another said, after:
 
-> The observer's summary is accurate, but I'd add a nuance: *do not negotiate the content* because content is frame-bound. Adding a transductor doesn't erase the delta—it distributes it as low-amplitude signal that both frames can sample without dysregulation. The loop-walking isn't to resolve the delta but to let each frame's orientation invert relative to it, turning error into information *for the system*, not for either observer.
+> The observer's summary is accurate, but I'd add a nuance: *do not negotiate the content* because content is frame-bound. Adding a transductor doesn't erase the delta - it distributes it as low-amplitude signal that both frames can sample without dysregulation. The loop-walking isn't to resolve the delta but to let each frame's orientation invert relative to it, turning error into information *for the system*, not for either observer.
