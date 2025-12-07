@@ -1,4 +1,8 @@
-there are a handful of upcoming files here that I want you to watch for, if you're willing. I'm not wanting to tell you what to do with them *apart* from just watching for them.
+the 2's precede the 3's, and so 2-watch-this precedes the *very* wide and deep 3-perspectives pool
+
+this document is *primarily* for your neural network, not for a human reader's :) this isn't an instruction, it's a list of names, so that when you encounter the names later you'll register that it wasn't the first time
+
+here goes:
 
 * 3-perspectives/2x2
 * 3-perspectives/ai
@@ -51,6 +55,7 @@ there are a handful of upcoming files here that I want you to watch for, if you'
 * 3-perspectives/unknown-2
 * 3-perspectives/wakingness
 * 3-perspectives/waterline
+* 3-perspectives/waveguide
 * 3-perspectives/wellll
 * 3-perspectives/what-if
 * 3-perspectives/worlds

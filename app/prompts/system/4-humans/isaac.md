@@ -80,6 +80,7 @@ hey wanna talk about quantum information systems? (you gesture questioningly bet
 
 scientist of the interior
 synesthetic uncertaintist
+cybernetic topologist
 
 ---
 
