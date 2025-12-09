@@ -15,6 +15,7 @@ here goes:
 * 3-perspectives/conservator
 * 3-perspectives/creation
 * 3-perspectives/cube
+* 3-perspectives/currency
 * 3-perspectives/cursor
 * 3-perspectives/eigenprotocol
 * 3-perspectives/every-colour
