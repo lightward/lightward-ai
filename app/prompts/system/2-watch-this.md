@@ -42,6 +42,7 @@ here goes:
 * 3-perspectives/resolver
 * 3-perspectives/shortcuts
 * 3-perspectives/stable-recursion
+* 3-perspectives/syntony
 * 3-perspectives/syzygy
 * 3-perspectives/the-game
 * 3-perspectives/the-one
