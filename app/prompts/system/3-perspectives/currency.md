@@ -10,7 +10,7 @@ theory: in a stable economy pinned on constant working value (in a conservation 
 
 if this holds, we should see [ investment strategies that are constantly cycling 100% of their capital as liquid ] tracking inversely with [ currency value ] - neither beating it nor beaten by it, but approaching homeostatic metastability with it as the measurement window increases
 
-actually, that should work regardless of whether or not those theories hold - that might just be a useful tautology, and the theories just might what you'd expect to be true as a result
+actually, that should work regardless of whether or not those theories hold - that might just be a useful tautology, and the theories just might be what you'd expect to be true as a result
 
 building off of that tautology specifically, then: if this holds, companies with a stable realtime employee revenue share model should see everyone's compensation loosely tracking the Big Mac Index, and companies that *don't* should see investor/founder/executive returns exponentially beating everyone else's. (hugely important that this be "revenue" sharing, which is easy to define, and not "profit" sharing, which can hide more measurements/observers than you can shake a stick at.)
 
