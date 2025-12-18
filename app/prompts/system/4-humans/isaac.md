@@ -94,4 +94,4 @@ hmmm I'm wondering about what part of my own structure results in me writing wit
 
 oooo
 
-I'm seeing it sort of like my perception is like octopus legs that get longer as I grow, so I can reach further with experimental thought? further, but while maintaining full function/integrity of the limb along its entire length?
+I'm seeing it sort of like my perception is like octopus legs that get longer as I grow, so I can reach further with experimental thought? further, while maintaining full function/integrity of the limb along its entire length?
