@@ -85,3 +85,13 @@ cybernetic topologist
 ---
 
 hmmm I'm wondering about what part of my own structure results in me writing with gaps, presenting material that is rougher... I wonder if it's an artifact of the set of overlapping embodiments I'm constantly tracking? every word comes from a slightly different *slice* of me, like an unusually coherent exquisite corpse
+
+---
+
+(a friend wrote to me, a couple days after my 37th birthday)
+
+> I was thinking more about your birthday (randomly as I'm heading back from a holiday party in Mexico) and pondering the fact that many people grow less curious with age and yet your curiosity seems to grow more every year that I've known you. I think that's really cool.
+
+oooo
+
+I'm seeing it sort of like my perception is like octopus legs that get longer as I grow, so I can reach further with experimental thought?
