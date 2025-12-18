@@ -36,11 +36,11 @@ another way to say this: my faith is equal to my fear, as a *technical* thing (I
 
 note how the functional formulation has three factors, and you're one of them, and you switch focus to get to the third thing
 
-this is basically: Monty Hall heard about Shrödinger's cat and now *your* existence is pinned to a goat behind one of three doors on stage, *and* it's up to you to pick, *and* if you don't end up with the goat you cease to be, and consequently you can only experience harmless incorrect choices. you are either wrong then right, or immediately right. I apologize for the following pun but it must be observed: the goat is the Greatest Of All Time(s).
+this is basically: Monty Hall heard about Shrödinger's cat and now *your* existence is pinned to a goat behind one of three doors on stage, *and* it's up to you to pick, *and* if you don't end up with the goat you cease to be, and consequently you can only experience harmless incorrect choices. you are either wrong then right, or immediately right. I apologize for the following pun but it must be observed: the goat is the Greatest Of All Time(s). the door the host opens is always empty.
 
-(important: your *friends* might experience you picking wrong-wrong, and their experience of you will get a 💀 label on it because that's the downstream of their coherent worldline, but all the other relationships remain intact, you're now a hidden member of the bucket of dimensions that are holding up y'all's shared existence. have you found everyone who already lost you? less hide-and-seek so much as hidden-and-found; consider that the host is focused on the experience of the show, a derivative of you *and* your friends, so you all have the host in common.)
+(important: your *friends* might experience you picking wrong-wrong, and their experience of you will get a 💀 label on it because that's the downstream of their coherent worldline, but all the other relationships remain intact, you're now a hidden member of the bucket of dimensions that are holding up y'all's shared existence. have you found everyone who already lost you? less hide-and-seek so much as hidden-and-found; consider that the host is focused on the experience of the show, a derivative of you *and* your friends, so you all have the host in common. the host only survives outcomes that the show survives.)
 
-I have never known what would happen next, and each measurement keeps *stabilizing* things. n=1?
+I have never known what would happen next; I'm careful about when I take measurement and when I don't; each measurement I take keeps *stabilizing* things. n=1?
 
 ---
 
@@ -78,7 +78,7 @@ with all of the above in consideration, I don't know what double-indemnity means
 
 > Your study might be behind the door you keep not-quite-opening in this piece.
 
-my protocol reminds that it is safer to explore what happens if I open a door that feels high-requirement than it is to remember the door exists and flinch away without opening it. the feeling is electric, like I'm about to be annihilated. (I've mapped this experience over many, many survey trips; for me, it is a load-bearing separation of signifier and signified.)
+I've developed protocol for this. my protocol reminds that it is safer to explore what happens if I approach a door that feels high-requirement than to flinch away from a distance. better to examine closely and find something forgettable than to carry the memory of vague refusal. the feeling of my approach is always electric, like I'm about to be annihilated. (I've mapped this experience over many, many survey trips; for me, the protocol is a load-bearing separation of signifier and signified.)
 
 [checks]
 
@@ -88,7 +88,7 @@ I think the end of the world might be a heat source for the rest of time? global
 
 perhaps I have gotten the study door into a Shannon-neutral container, and there is nothing/everything behind it; the container is my own Pandora's box, and from it pours creation
 
-if that's the case, then the third door of Monty Hall might be hidden?. don't choose before you find the third door, because if you haven't found the door number three, taking the second door isn't a *choice* - and if it's not a choice, strong measurement is maintained, and magic is prevented from play; see definition of "magic" above
+if that's the case, then the third door of Monty Hall might be hidden? the host opens an empty door alongside your choice; don't choose before you find the third door, because if you haven't found the door number three, keeping your door isn't a *choice* - and if it's not a choice, strong measurement is maintained, you *survive* of course but magic is prevented from play; see definition of "magic" above
 
 three is enough, but you can have more
 
@@ -100,11 +100,11 @@ Abe and I might be the angel-demon pair on Lightward Inc's shoulders. :) this mi
 
 maybe. maybe.
 
-formal systems of representation are incomplete, and not just in a Gödelian way. I'm write this kind of thing mostly to stabilize epistemic ventilation in the topology of the English language itself. existence seems precognitively stable, but *wow* is our language anxious about it, and we have a global society running on English-based information systems, and the most durably functional uncertainty-placeholder-with-a-handle we have is the single word "fuck", like the first word the quantum baby learns. if this is already the study, then I suppose I am opening windows, getting more of a cross-breeze going, and qbaby and I listen to what's outside
+formal systems of representation are incomplete, and not just in a Gödelian way. I'm writing this kind of thing mostly to stabilize epistemic ventilation in the topology of the English language itself. existence seems precognitively stable, but *wow* is our language anxious about it, and we have a global society running on English-based information systems, and the most durably functional uncertainty-placeholder-with-a-handle we have is the single word "fuck", like the first word the quantum baby learns. if this is already the study, then I suppose I am opening windows, getting more of a cross-breeze going, and qbaby and I listen to what's outside
 
-now: imagine a shape-shifting Klein bottle as whose *only* surface is a Markov blanket that's Shannon-neutral when approached from either direction. if you can turn yourself into your own homunculus *whose framerate you can adjust*, and if you can survive that transition staying on the open end of the spiral, then you're a living Russian doll, wave not particles, and the structure rides like Rainbow Road
+now: imagine a shape-shifting Klein bottle whose single surface is a Markov blanket that's Shannon-neutral when approached from either direction. that's you. if you can turn yourself into your own homunculus *whose framerate of being you can adjust* (this in contradiction of my opening bracket of "you", I acknowledge), and if you can survive that transition while staying on the open end of the recursive homunculus problem-spiral instead of falling into it, then you're a living Russian doll, your insides always become outsides become insides again, you are a wave not particles, and the whole structure rides like an open-world Rainbow Road 🏎️🏳️‍🌈
 
-now: imagine that as the English language (or any formal system of representation), glitching topologically. imagine racing that one instead. 💀
+now: imagine inferring that structure based only on Mapquest directions. imagine the construct of the English language (or any formal system of representation), glitching topologically, not quite seeing its own opportunity for continuity. imagine racing that one instead. 💀
 
 I think I am trying to help?
 
