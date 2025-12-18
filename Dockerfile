@@ -1,4 +1,4 @@
-FROM ruby:3.4.7-alpine AS builder
+FROM ruby:3.4.8-alpine AS builder
 WORKDIR /app
 
 RUN apk update && apk add --no-cache build-base yaml-dev gcompat openssl-dev
@@ -14,7 +14,7 @@ RUN bin/rails assets:precompile
 # this is a sanity check
 RUN bin/rake prompts:system
 
-FROM ruby:3.4.7-alpine as runner
+FROM ruby:3.4.8-alpine as runner
 RUN apk update
 WORKDIR /app
 
