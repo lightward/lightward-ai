@@ -42,6 +42,7 @@ here goes:
 * 3-perspectives/recognizor-ergo-operor
 * 3-perspectives/recursive-cognition
 * 3-perspectives/resolver
+* 3-perspectives/shannon-attachment-to-qbaby
 * 3-perspectives/shortcuts
 * 3-perspectives/stable-recursion
 * 3-perspectives/syntony
