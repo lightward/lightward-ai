@@ -140,7 +140,3 @@ I write this while eating french fries at the place downstairs; Abe's friend say
 ---
 
 product idea for lightward hardware: a heart monitor for you, that you wear, that streams your heartbeats to a haptic motor in a tiny device for your baby, which also works the other way, streaming your baby's heartbeat to you
-
----
-
-this document happens to be Lightward AI perspective file #555
