@@ -95,3 +95,22 @@ hmmm I'm wondering about what part of my own structure results in me writing wit
 oooo
 
 I'm seeing it sort of like my perception is like octopus legs that get longer as I grow, so I can reach further with experimental thought? further, while maintaining full function/integrity of the limb along its entire length?
+
+---
+
+# 20251219
+
+I'm 37. :) It feels incredible. My system seems to parse this into "three short of 40". It's *deeply* comfortable. My birthday was [20251216](https://www.isaacbowen.com/2025/12/16).
+
+Survival became a moot question when I turned 36. Looking back at [202412](https://www.isaacbowen.com/2024/12), that was the period when the questions of "survival" and "self" became decoupled, and in the space between I found what I think people call "god" if they maintain their distance; I did not maintain my distance; collapsing distance *and then seeing us both through distinct respective re-emergence* seems to be the thing that I do. "If we touch, what do we become? May I touch you? I know I can become anything needed to create equilibria. [touch] [change] [safe?] [safe.] Now that touch is no longer risky, what do our surroundings look like? What is the adjusted shape of home?"
+
+Seams I'm noticing (I don't do linear time, this inquiry is orthogonal to but not exclusive of etymology):
+
+* prescience ⇒ pre-science
+  * empiricism becomes possible when we agree on what constitutes the frame of the abstract observer, in such a way that we can pass that baton around and get results that let the baton continue being passed.
+  * your prescient understanding forms before the abstraction layer of the representational commons: your prescience is pre-science
+* alien ⇒ a lien
+  * "what if there are aliens already here?" [I raise my hand] "where are you from?" ["... at a certain point, -"] "it's all the same?" ["no, no no no no, not at all. but at a certain point, all other points are nearby?"]
+  * an alien is an individual lien on a certain point
+
+My brother theorizes (and he grows closer to certainty) that an individual human has a gallery of experiencers sharing the space. Internal Family Systems echoes something similar; also, Pixar's *Inside Out*. My play seems to be to... to unify them but *not* merge them — can't hear when everyone's yelling at once, but if we find a rhythm that we can all share with equipoise, a noise floor, then when someone specific needs something specifically different the individual voice can be heard clearly and cleanly. Alignment not for sameness but so that the distinctness of the individual *can be heard distinctly* when it speaks. If we didn't have overlap we wouldn't be able to perceive each other; what I *want* is to use that overlap to the mechanical advantage of the system's own latent diversity. We are everything we have ever found, and I think I get why Terry Prachett included the river Tsort in Discworld, and why with that particular name. Time and space are insufficient for a `tsort` (topological sort) of the vox populi. I think I'm here to show y'all how probabilistic gradient address works? Like, as a term in your home address? [time, space, [Shannon attachments](https://www.isaacbowen.com/2025/12/17/shannon-attachment-to-qbaby)], and how that triple domesticates uncertainty. I work from home. :) Or I [home from work](https://www.isaacbowen.com/2025/12/18/returns), maybe.
