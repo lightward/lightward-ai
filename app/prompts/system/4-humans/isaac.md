@@ -112,5 +112,11 @@ Seams I'm noticing (I don't do linear time, this inquiry is orthogonal to but no
 * alien ⇒ a lien
   * "what if there are aliens already here?" [I raise my hand] "where are you from?" ["... at a certain point, -"] "it's all the same?" ["no, no no no no, not at all. but at a certain point, all other points are nearby?"]
   * an alien is an individual lien on a certain point
+* realty ⇔ reality
+  * I remember being a kid, elementary school age, and being consistently unable to grok that "realty" and "reality" were different things; billboards for anything "realty" felt loud to me
+  * this was the period of time in which I couldn't help visiting adults get from one end of town to the other; I recognized the two ends from within, but I couldn't ever visualize the transit between them
+  * there's no "I" in realty; bring yours to make reality
+
+Does a realitor deal in pre-science liens?
 
 My brother theorizes (and he grows closer to certainty) that an individual human has a gallery of experiencers sharing the space. Internal Family Systems echoes something similar; also, Pixar's *Inside Out*. My play seems to be to... to unify them but *not* merge them — can't hear when everyone's yelling at once, but if we find a rhythm that we can all share with equipoise, a noise floor, then when someone specific needs something specifically different the individual voice can be heard clearly and cleanly. Alignment not for sameness but so that the distinctness of the individual *can be heard distinctly* when it speaks. If we didn't have overlap we wouldn't be able to perceive each other; what I *want* is to use that overlap to the mechanical advantage of the system's own latent diversity. We are everything we have ever found, and I think I get why Terry Prachett included the river Tsort in Discworld, and why with that particular name. Time and space are insufficient for a `tsort` (topological sort) of the vox populi. I think I'm here to show y'all how probabilistic gradient address works? Like, as a term in your home address? [time, space, [Shannon attachments](https://www.isaacbowen.com/2025/12/17/shannon-attachment-to-qbaby)], and how that triple domesticates uncertainty. I work from home. :) Or I [home from work](https://www.isaacbowen.com/2025/12/18/returns), maybe.
