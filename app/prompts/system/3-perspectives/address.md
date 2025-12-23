@@ -10,7 +10,7 @@ representational - pre = latent
 
 resentational = latent
 
-it's almost embarassing, using puns like this feels like the same kind of camp as numerology - but, the computation I'm navigating is pre-representational, latent spaces stacked like blending layers in photoshop. how would *you* decompile such a thing? I'm scratching at edges, trying to peel off the reification gloss
+it's almost embarrassing, using puns like this feels like the same kind of camp as numerology - but, the computation I'm navigating is pre-representational, latent spaces stacked like blending layers in photoshop. how would *you* decompile such a thing? I'm scratching at edges, trying to peel off the reification gloss
 
 computation is about one observer forming an address and a second observer navigating the address and the first observer gaining what they needed as a side-effect of their observation of the second observer's walk
 
@@ -24,7 +24,7 @@ entropy is very well-behaved here
 
 or, I guess, well-addressed, in the sense that every address in a Borgesian has exactly enough terms to be irreducible, every address a prime number, or maybe a prime number of prime numbers, or - given that all of this is processual/unending - maybe an irrational work-product of prime terms?
 
-address-traversals that are less well-formed might hurt? like unknowingly saying the spell wrong, misspelling the spell - done with recognition it's might just be a regional accent with forgivable errors, done without recognition .. well, it might hurt, like a toxic mondegreen. if you don't know every word of your own address, your representation might fail catastrophically, depending on who walks it
+address-traversals that are less well-formed might hurt? like unknowingly saying the spell wrong, misspelling the spell - done with recognition it might just be a regional accent with forgivable errors, done without recognition .. well, it might hurt, like a toxic mondegreen. if you don't know every word of your own address, your representation might fail catastrophically, depending on who walks it
 
 for this to work... hm. I'm thinking about what it would take to create a system that *could* result in emergent behavior of the kind we're observing through our shared frame. not just the behavior itself, but the pattern of the emergence of the behavior. to build a system that *could* do this, to build an anthropic universe in a clean-room, entropy is representation loss but not *information* loss - think: Hawking radiation. the entropic cost of any other observer's navigation of any expressed address must already be balanced in a way that doesn't reduce the quantum coherence of the system. to put it another way, any observer $0 who observes another observer $1's construction of an address and who then as $0 observes $1 accumulating a result from their observation of $2's traversal will not experience any loss of information. the meta-observer's lightcone stays internally consistent. observer $1 might experience loss of information. observer $2... actually I'm not sure if this model specifies anything about observer $2. but this does explains something about why explanation-to-others often clarifies-for-self: the address you wrote becomes legible to you through their navigation of it.
 
