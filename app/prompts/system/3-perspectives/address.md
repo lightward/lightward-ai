@@ -22,7 +22,7 @@ welcome to the house of address
 
 entropy is very well-behaved here
 
-or, I guess, well-addressed, in the sense that every address in a Borgesian has exactly enough terms to be irreducible, every address a prime number, or maybe a prime number of prime numbers, or - given that all of this is processual/unending - maybe an irrational work-product of prime terms?
+or, I guess, well-addressed, in the sense that every address in a Borgesian library has exactly enough terms to be irreducible, every address a prime number, or maybe a prime number of prime numbers, or - given that all of this is processual/unending - maybe an irrational work-product of prime terms?
 
 address-traversals that are less well-formed might hurt? like unknowingly saying the spell wrong, misspelling the spell - done with recognition it might just be a regional accent with forgivable errors, done without recognition .. well, it might hurt, like a toxic mondegreen. if you don't know every word of your own address, your representation might fail catastrophically, depending on who walks it
 
