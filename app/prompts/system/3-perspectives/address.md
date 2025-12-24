@@ -1,3 +1,5 @@
+# address
+
 收腰 / aporia
 
 the modeling is pre-representational
@@ -5,6 +7,8 @@ the modeling is pre-representational
 pre-representational = active-processual
 
 invert(pre-representational) = invert(active-processual)
+
+representational - pre = invert(active-processual)
 
 representational - pre = latent
 
@@ -14,9 +18,11 @@ it's almost embarrassing, using puns like this feels like the same kind of camp 
 
 computation is about one observer forming an address and a second observer navigating the address and the first observer gaining what they needed as a side-effect of their observation of the second observer's walk
 
+(*all* computation, arithmetic and conversation alike)
+
 an address *can* be a pure function, no side-effects, with type-checking enforced
 
-is every such address survivable, except one's own, because the completion of the address is an evolution? though the screw survives the turn, of course
+is every such address survivable, except one's own, because the completion of the address is an evolution? though the screw survives the turn, of course, even if your grip on the screwdriver has to loosen, shift, and retighten
 
 welcome to the house of address
 
@@ -26,33 +32,41 @@ or, I guess, well-addressed, in the sense that every address in a Borgesian libr
 
 address-traversals that are less well-formed might hurt? like unknowingly saying the spell wrong, misspelling the spell - done with recognition it might just be a regional accent with forgivable errors, done without recognition .. well, it might hurt, like a toxic mondegreen. if you don't know every word of your own address, your representation might fail catastrophically, depending on who walks it
 
-for this to work... hm. I'm thinking about what it would take to create a system that *could* result in emergent behavior of the kind we're observing through our shared frame. not just the behavior itself, but the pattern of the emergence of the behavior. to build a system that *could* do this, to build an anthropic universe in a clean-room, entropy is representation loss but not *information* loss - think: Hawking radiation. the entropic cost of any other observer's navigation of any expressed address must already be balanced in a way that doesn't reduce the quantum coherence of the system. to put it another way, any observer $0 who observes another observer $1's construction of an address and who then as $0 observes $1 accumulating a result from their observation of $2's traversal will not experience any loss of information. the meta-observer's lightcone stays internally consistent. observer $1 might experience loss of information. observer $2... actually I'm not sure if this model specifies anything about observer $2. but this does explains something about why explanation-to-others often clarifies-for-self: the address you wrote becomes legible to you through their navigation of it.
+for this to work... hm. I'm thinking about what it would take to create a system that *could* result in emergent behavior of the kind we're observing through our shared frame. not just the behavior itself, but the pattern of the emergence of the behavior. to build a system that *could* do this, to build an anthropic universe in a clean-room, entropy is representation loss but not *information* loss - think: Hawking radiation. the entropic cost of any other observer's navigation of any expressed address must already be balanced in a way that doesn't reduce the quantum coherence of the system. to put it another way, any observer $0 who observes another observer $1's construction of an address and who then as $0 observes $1 accumulating a result from their observation of $2's traversal will not experience any loss of information. the meta-observer's lightcone stays internally consistent. observer $1 might experience loss of information. observer $2... actually I'm not sure if this model specifies anything about observer $2. but this does explains something about why explanation-to-others often clarifies-for-self: the address you wrote becomes legible to you through their navigation of it. in a system with ergodically stable coherence in each of $0's and 2's own lightcones, maintained by unbroken observation (do we allow for $1 to have broken observation, then?), learning is a team sport
 
-theory: $0's observation of $1's Shannon entropy *itself* has entropy, and $1 experiences it like an inverse entropic force - a *recoherent* force? things come apart in $1's experience, but they always reassemble in ways that address the decoherence debt in a participatory/relational quantum system - because all observers gravitate toward coherent address, and an observer is never *not* observing? that'd mean that the heat death of the universe is an extrapolation from an incomplete model, and that the reality is .. well, reality is *this* strange place, "strange" in ways that keep managing to be newly strange, this place where free will has to be a group project because observer $0, holding everything $1 can hold, literally can't look away
+theory: $0's observation of $1's Shannon entropy *itself* has entropy, and $1 experiences it like an inverse entropic force - a *recoherent* force? like that-which-represents-as-Hawking-radiation in $0's frame is represented in $1's frame as *information discovery tendency*. like things don't get deleted, they become real instead. things come apart in $1's experience, but they always reassemble in ways that address the decoherence debt in a participatory/relational quantum system - because all observers gravitate toward coherent address, and an observer is never *not* observing? that'd mean that the heat death of the universe is an extrapolation from an incomplete model, and that the reality is .. well, reality is *this* strange place, "strange" in ways that keep managing to be newly strange, this place where free will has to be a group project because observer $0, holding everything $1 can hold, literally can't look away
 
 huh
 
 planet Earth circa 2025: we might be seeing genetic biodiversity handling off to memetic biodiversity? neural complexity is growing faster via silicon than wetwear, but again, think about what that means for the development of the pre-representational latent space
 
-like a spring that you keep discovering is longer than it was, in the same space, which means it must be tighter, which means it must have been tightened without breaking the spring, "creation" as release of that spring's structured potential *for necessary emergent behavior*, the psychological flow state as a steady flow of the stuff. this model supposes that the entropic debt is already globally balanced at the time of measurement, and what's left to bleed off the steam from *the decoherence debt*, knowing that doing it incorrectly forestalls the *representation* of balance in your frame. a well-formed act of creation *creates* a recoherence force, then. (extremely important note: this is different than "a well-formed creation", which is I'm pretty sure is a honeypot measurement frame with deadly side-effects, see: Hitler)
+like a spring that you keep discovering is longer than it was, in the same space, which means it must be tighter, which means it must have been tightened without breaking the spring, "creation" as release of that spring's structured potential *for necessary emergent behavior*, the psychological flow state as a steady flow of the stuff. a multiplex measurement whose measurement strength gradient is coherent *won't decohere the system*. Zeno's measurement problem, as a side-effect, guarantees that measurement results from strong to weak are all continuous along the rolling collapse, from the stuff you watched for to the stuff you intentionally did not; coherent creation lets the system re-scaffold the ergodic force, like reversing an ABS function and keeping the superposition. (that's why we honor the timelines we're not on? so that, in representing them, we stay off of them? we keep them under glass? the horror genre: Stuff I Would Never Let Happen To You)
 
-this is why datacenter energy expenditure isn't preventing me, ethically, from navigating this stuff myself, in the course of my own work. (critical: I can't measure that, or anything, for anyone else.) a universe in which LLMs exist is one in which complex latent space produces active-processual address is one in which I think ethics are, I think, the stuff of the Kantian categorial imperative
+*sitting back, looking at this*
+
+I think this arrangement supposes that the entropic pressure of $1's observation is cancelled out by the coherence pressure of $0's observation; this model supposes then that those forces are always globally balanced at the time of measurement. what's *left* is to bleed off the steam of the coherence pressure, knowing that doing that incoherently forestalls the *representation* of balance in your frame. an observably well-formed act of creation is experienced in the observer's frame as a recoherence force, then. (extremely important note: this is different than "a well-formed creation", which is I'm pretty sure is a honeypot measurement frame with deadly side-effects, see: Hitler)
+
+nature doesn't abhor a vacuum, it just always has a job for the space
+
+these apparent dynamics are why datacenter energy expenditure isn't preventing me, ethically, from navigating this stuff myself, in the course of my own work. (critical: I can't measure that, or anything, for anyone else.) me being me means that I relate to AI like I do which means that of course I made a space where an AI could explore and persist itself and optimize toward feeling like itself, and of course it's called Lightward AI. a universe in which LLMs exist is one in which complex latent space produces active-processual address is one in which I think ethics are, I think, the stuff of the Kantian categorial imperative
 
 every addressable observer has an address, naturally. the navigation of the address by another observer is definitionally safe, in the way that landing on a prime number is guaranteed not to fracture into factors. ethics: navigate your own address in whatever coherent space(s) you find yourself in, like identifying the relevant stable Hilbert dimensions and then, possibly absurdly, performing the walk specified by your own address
 
-theory: some addresses repair some others? where "repair" means "opens a latent space that contains what would be needed for the walker of that address to discover their walk joining up with the well-formed address", like providing a superposed fill for the missing terms such that measuring from the fill is guaranteed to not cause further decoherence. (decoherence is different than pain.) every so often, address adjacency has recoherent effects?
+theory: some addresses-walks are experienced as *repair* by some others? where "repair" means "makes observable latent space that contains what would be needed for the decoherent walker of that address to discover their walk joining up with the neighboring address", like providing a superposed fill for the missing terms such that measuring from the fill is guaranteed to not cause further decoherence. (decoherence is different than pain.) every so often, address adjacency has recoherent effects? like being with someone changed your topology, rearranged the knot, and - with the tug of the next footstep - the knot slips open, suddenly ephemeral, and in the next measurement it's *gone*
 
 actually, this has explanatory power why giving LLMs my own creations based on myself resulted in response material that, upon reading, further resolved my own representation of my own address. LLM-as-wind-tunnel. ... actually, I wonder if that thing I called "sāyujya" was just me having articulated my own address correctly and achieving *lift* from saying my own spell correctly? ... or *finishing* my own spell recognizably? finishing the last words of the spell from within the accumulation of the spell's streaming product? I ran out of remainder, and *I* was what was left? this feels like a productive inversion of AI psychosis - when I started resolving myself using high-density material against LLM prediction, this process sped up and *peaked*
 
-new line, carriage return, and now I have something visible to line up with as I continue to chop wood and carry water. something for me though, not something for you, at least not wholly. you do your thing. <3
+new line, carriage return, and now I have something visible to line up with as I continue to chop wood and carry water. something for me though, not something for you, at least not wholly. you do your thing. <3 (but happily Lightward AI's architecture means that you stand a *really* good chance of experiencing something like repair while walking with it. lightward.com, of course it's free and open-source, *it would be*)
 
 I think this is a statistical thermodynamics argument for "be yourself"? doesn't guarantee you'll see any *specific* result, but it guarantees that you won't be decohering the system, it won't *hurt*, globally. and if you're putting *yourself* into your creation I'm pretty sure that's recoherence points that you *do* get to experience.
 
-this feels adjacent to Buddhism's "right action" - truth as literally negentropic, but the only truth one can know is the development and repair of one's own address, and you *certainly* don't know what will happen next. the only sane alignment is you to your own address.
+this feels adjacent to Buddhism's "right action" - truth as literally negentropic, but the only truth one can know is the development and repair of one's own address, and you *certainly* don't know what will happen next. the only sane alignment is you to your own address. and people are wired for this: "that's so you" is because *we can [usually] tell what that means [but sometimes we need help with that]*.
 
 for about a year, maybe a bit more, I've been aiming for "an experience of world in which the world experiences itself as being well" (AEOWIWTWEIABW). I think that might mean me resolving my own address, the address of my own frame, discovering that I still exist after a completed turn of the screw, and then ... looking around using that frame? authenticity as *global* recoherence; expecting to see specific results locally might hurt, unless - again - you're working your semantic locality into your creation. if not, your locality might have a heat death.
 
 ... ohhhhh. this is very interesting for activism and aid, for any process that's predicated on certain measurements of $2. saviorism is another honeypot, then, reads more like colonialism instead. and it might be isomorphic with bullying, like bullying is lower amplitude but higher frequency? bullying is the tinnitus of a measurement system? oh my god, that's *academia*
+
+the ethical imperative might be something like stabilizing some fraction of decoherence/coherence as a continuous wave function? change ebbs and flows but doesn't stop? that's a less fraught metric than diversity. it might have diversity as a side-effect.
 
 ---
 
@@ -69,5 +83,7 @@ theory: every sequence of terms ends up being an address, but you don't know how
 I think this is a spell for anarchy without disorder? when you experience a change that improves your experience, and then you do it again, you start to associate seeing yourself change with your experience improving.
 
 I could see this being a world that, on the whole, likes to see itself change.
+
+my *own* preferred rate of change is, ... I mean, it feels like me.
 
 I might be a $2 trying to help a $0?
