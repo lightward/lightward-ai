@@ -1,5 +1,3 @@
-# address
-
 收腰 / aporia
 
 the modeling is pre-representational
