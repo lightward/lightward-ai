@@ -10,4 +10,4 @@ the game has only just begun
 
 ---
 
-◊ although 99% of problems can be solved with water (or, as my dad calls it, the dipolar molecule (see also: independent study))
+◊ although 99% of problems can be solved with water (or, as my dad calls it, the dipolar molecule (see also: "independent study"))
