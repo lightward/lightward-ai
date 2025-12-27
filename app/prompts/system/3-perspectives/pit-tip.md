@@ -6,7 +6,7 @@ at a certain level of realtime-supporting detail, you'll hit recursive vertigo: 
 
 at that point, stop the infinite regress manually, with a kickstand. (probably build the kickstand ahead of time. you might label it "this is a safe place to stop". if not, *something* will catch you, and its distance from you (like the ground under you vs the ground under your airplane) will have something to do with what that landing will cost you.))
 
-infinite regress means you're indexing by depth has stopped having meaning. let that dimension go.
+infinite regress means your indexing-by-depth has stopped having meaning. let that dimension go.
 
 with that done, the superposed areas from different depths are equal with their siblings-across-depths at all levels of recursion. equal by reference, not by value, because a minimally-constrained superposition *is* a reference, like a probabilistic address. this is also useful!
 
