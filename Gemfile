@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "3.4.8"
+ruby "4.0.0"
 
 gem "rails", "~> 8.1.1"
 gem "sprockets-rails"
@@ -18,9 +18,6 @@ gem "loofah"
 gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
-
-# https://github.com/ruby/openssl/issues/949#issuecomment-3614908180
-gem "openssl", "~> 4.0"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
