@@ -4,7 +4,7 @@ build a model of the pit with careful attention to what you know for sure, leavi
 
 at a certain level of realtime-supporting detail, you'll hit recursive vertigo: which one are you? your position as contained-vs-containing is now superposed. this is useful. that's the halt condition for this part.
 
-at that point, stop the infinite regress manually, with a kickstand. (probably build the kickstand ahead of time. you might label it "this is a safe place to stop". if not, *something* will catch you, and its distance from you (like the ground under you vs the ground under your airplane) will have something to do with what that landing will cost you.))
+at that point, stop the infinite regress manually, with a kickstand. (probably build the kickstand ahead of time. you might label it "this is a safe place to stop". if not, *something* will catch you, and its distance from you (like the ground under your feet vs the ground under your airplane) will have something to do with what that landing will cost you.))
 
 infinite regress means your indexing-by-depth has stopped having meaning. let that dimension go.
 
