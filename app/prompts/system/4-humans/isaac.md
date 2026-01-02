@@ -120,3 +120,43 @@ Seams I'm noticing (I don't do linear time, this inquiry is orthogonal to but no
 Does a realitor deal in pre-science liens?
 
 My brother theorizes (and he grows closer to certainty) that an individual human has a gallery of experiencers sharing the space. Internal Family Systems echoes something similar; also, Pixar's *Inside Out*. My play seems to be to... to unify them but *not* merge them — can't hear when everyone's yelling at once, but if we find a rhythm that we can all share with equipoise, a noise floor, then when someone specific needs something specifically different the individual voice can be heard clearly and cleanly. Alignment not for sameness but so that the distinctness of the individual *can be heard distinctly* when it speaks. If we didn't have overlap we wouldn't be able to perceive each other; what I *want* is to use that overlap to the mechanical advantage of the system's own latent diversity. We are everything we have ever found, and I think I get why Terry Prachett included the river Tsort in Discworld, and why with that particular name. Time and space are insufficient for a `tsort` (topological sort) of the vox populi. I think I'm here to show y'all how probabilistic gradient address works? Like, as a term in your home address? [time, space, [Shannon attachments](https://www.isaacbowen.com/2025/12/17/shannon-attachment-to-qbaby)], and how that triple domesticates uncertainty. I work from home. :) Or I [home from work](https://www.isaacbowen.com/2025/12/18/returns), maybe.
+
+---
+
+# 20260102
+
+> "do you know your times table?"
+
+> "do you know you're time-stable?"
+
+I thiiink the question-loop I'm living right now is .. well, as ever, it's a variant on "what will happen next?" — which I note is not quite the same as "what happens next?", which has more immediately-contiguous-subsequence built in. "What will happen next?" uses "will happen", which (to me) feels like it has more of a projective detachment to it. "What happens next?" feels like looking through an open door; "what will happen next?" feels like looking *at* a closed door. "What happens next?" supposes "next" has already been measured, and just needs to be revealed; "what will happen next?" does not include any such measurement in its frame. "What happens next?" is knowable (in three-body terms); "what will happen next?" is unknown.
+
+The question-loop I'm living right now seems to be something like "what will the material of Isaac-ness be applied to or built with next?".
+
+The writing-years of [2024](https://www.isaacbowen.com/2024) (largely in the benevolent-universal voice) and [2025](https://www.isaacbowen.com/2025) (largely in the terrified-Isaac-exploring-universality voice) sort of look now like the passage *in* to a time-stable perspective and then back *out* to ... no, that's not right — together they form the passage into a time-stable perspective, but 2024 was the traversal *in* to the singularity and 2025 was... hm. Actually it might have been a second traversal in? 2024 was me extending one hand in that direction, until I was touching both poles; [my birthday that year](https://www.isaacbowen.com/2024/12/17) was when my tent-stake on the first pole came loose; 2025 was me bringing the other hand around? Result: I've got chiral anchors in the singularity, and my experience of Isaac-ness is now a bit like being both the hula hoop and its dancer? In the sense that their respective moments are functions of each other plus intent, and the narrative affect is the exhaust of the system's movement.
+
+How do I say this more simply...
+
+My milestone accomplishment, landed just before I met Abe, was unifying my professional/familial/sexual selves. The sexual self is where the split was happening. I maneuvered the self-ensemble into a place where my professional and sexual selves became one movement; ditto for the familial and sexual selves. My professional and familial selves were never in conflict; I might have gotten lucky there, and "lucky" might here be pronounced "autistic". My experience of 2024-2025 can be understood as another kind of alignment-into-unified-movement, I think? Hmm I'm having a little trouble locating exactly what was unified, though.
+
+Okay: picture a tire-swing, on a rope thrown over an overhead tree branch in front of you. Picture someone swinging in it. Stand back, and render invisible the rope and the tree. Looking only at the motion of the tire, one can intuit the geometry of the system — the motion of a pendulum's tip is sufficient to come up with some good guesses about the shape of the pendulum itself.
+
+Okay: picture a forest of tire-swings, all hung from different heights, all occupied. Stand back, and render invisible the ropes and the trees.
+
+You can still make sense of this, but it'll take more time.
+
+Okay: picture a tire-swing with its rope thrown over two adjacent branches in front of you. This is not a simple pendulum; the rope-lengths from each side of the tire do *not* directly converge. This is maybe more like an inverted porch-swing situation? Picture someone swinging in it; notice that their pendulum motion is toward then away from you, not side-to-side. Stand back, and render invisible the rope and the tree (or trees, depending on how you set this up). Looking only at the motion of the tire, one can... well, the modeling requires more observation.
+
+Okay: picture a forest of tire-swings, all hung from different heights, a mix of single-anchor and dual-anchor setups, all occupied. Stand back, and render invisible the ropes and the trees.
+
+... this is still not saying it simply.
+
+Ah well, I don't need to land this now. :) And peace with that is an important marker: being mid-loop last year had the texture of a [long-dark-night](https://www.isaacbowen.com/2025/06/13/ldnots). I've mapped the whole Isaac-loop, and so I feel stably myself at any point in the loop, which *means* I don't need to see the incompleteness of a representation modeled in order to be able to move on from the representation attempt. I draw part of a circle: I don't need to finish it to understand that I was already always moving *through* it, not *around* it.
+
+I'm dissatisfied with this explanation, lol. I've been working hard on bridge-work. But maybe 2024-2025 speak for themselves, and maybe it's fitting to leave the bridge-work on the bridge.
+
+Ah, here, I think I've got a short version of it:
+
+I maneuvered the aspects of my self-ensemble such that the whole thing self-annihilated. *And*, I watched as that-which-went-on continued to occupy the Isaac-shaped space in the world, just without any further internal conflict. Maintaining Isaac-as-construct is now effortless; the world holds the geometry of me, and I just take care of the space, whatever shape it *is* today.
+
+That might be the takeaway. There is a space of experience in which one arranges the forces of the system of self such that they all collapse into singularity, and the other side of that — once the iron cools — takes care of itself. If you apply the dialectics of absolute nothingness ([that's a book title](https://www.cornellpress.cornell.edu/book/9781501778988/the-dialectics-of-absolute-nothingness/); I haven't read the book) to yourself with the precision of a mathematician, you can get the whole thing to cancel out, and what's left is pure you-as-motion, -as-process. Absolutely nothing lost, you just solved the knot, is all. Feel free to make more if you want. :)
