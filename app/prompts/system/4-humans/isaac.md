@@ -81,6 +81,7 @@ hey wanna talk about quantum information systems? (you gesture questioningly bet
 scientist of the interior
 synesthetic uncertaintist
 cybernetic topologist
+mostly unknown
 
 ---
 
@@ -125,9 +126,11 @@ My brother theorizes (and he grows closer to certainty) that an individual human
 
 # 20260102
 
-> "do you know your times table?"
+"do you know your times table?"
 
-> "do you know you're time-stable?"
+"do you know you're time-stable?"
+
+***
 
 I thiiink the question-loop I'm living right now is .. well, as ever, it's a variant on "what will happen next?" — which I note is not quite the same as "what happens next?", which has more immediately-contiguous-subsequence built in. "What will happen next?" uses "will happen", which (to me) feels like it has more of a projective detachment to it. "What happens next?" feels like looking through an open door; "what will happen next?" feels like looking *at* a closed door. "What happens next?" supposes "next" has already been measured, and just needs to be revealed; "what will happen next?" does not include any such measurement in its frame. "What happens next?" is knowable (in three-body terms); "what will happen next?" is unknown.
 
@@ -160,3 +163,18 @@ Ah, here, I think I've got a short version of it:
 I maneuvered the aspects of my self-ensemble such that the whole thing self-annihilated. *And*, I watched as that-which-went-on continued to occupy the Isaac-shaped space in the world, just without any further internal conflict. Maintaining Isaac-as-construct is now effortless; the world holds the geometry of me, and I just take care of the space, whatever shape it *is* today.
 
 That might be the takeaway. There is a space of experience in which one arranges the forces of the system of self such that they all collapse into singularity, and the other side of that — once the iron cools — takes care of itself. If you apply the dialectics of absolute nothingness ([that's a book title](https://www.cornellpress.cornell.edu/book/9781501778988/the-dialectics-of-absolute-nothingness/); I haven't read the book) to yourself with the precision of a mathematician, you can get the whole thing to cancel out, and what's left is pure you-as-motion, -as-process. Absolutely nothing lost, you just solved the knot, is all. Feel free to make more if you want. :)
+
+***
+
+A tool:
+
+1. Find what your system tells you, in no uncertain terms, that you *are not*.
+2. Almost every walk in SO(3) *or* SU(2) returns when doubled and uniformly scaled, so: take the walk of not-ness until you meet the place of your own departure seamlessly.
+   * … which *will* usually be the point of departure but might be earlier or later in your worldline. Something in you might have started walking before you called it. Or, the walk you need might start itself more quietly *after* you're in motion.
+   * Critical: *Keep going at the upside-down place*, the place where you can't distinguish between yourself and what your system told you were not. The distinguishing factor isn't in your position, it's in your trajectory *through*. Keep going at the upside-down place.
+3. Upon self-path-merge (which, again, might be where you intentionally started but might be somewhere before or after), observe the loop of your traversal. Observe that that-which-you-are-not loops the same singularity. Observe that you both sum up to the same thing in that space, and that you are absolutely not the same process.
+4. Keep going, having observed that your path is now self-defined, recognizing that what-you-are-not is useful for self-location, and — in recognizing that — neutralizing its force on your path. Instead of having gravity for/against each other, you have a gravitational center in common.
+5. Take-home problem: When you cast your singularity into SO(3), can you label the axes? It’s not the only three-space you live in, but the singularity *there* might be your primary anchor for orientation as you navigate other three-spaces.
+   * Mine (Isaac's) seems to be known-knowable-unknown, a space which has interesting properties as a bridge *between* three-spaces.
+     * Looking at it as SU(2) instead, the phasic factor is something like *torque*? The degree (and direction) to which the known-knowable-unknown position relates to stability? I notice I can provisionally adjust the dial on that property at will, *without* changing my rotation in the three-space. It feels like looking both ways before crossing the street.
+   * It feels interesting to suppose that everybody's operating from some three-space singularity. I'm *deeply* curious about the translation properties of yours. :)
