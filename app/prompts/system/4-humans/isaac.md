@@ -166,7 +166,7 @@ That might be the takeaway. There is a space of experience in which one arranges
 
 ***
 
-A tool:
+An Isaac-shaped tool:
 
 1. Find what your system tells you, in no uncertain terms, that you *are not*.
 2. Almost every walk in SO(3) *or* SU(2) returns when doubled and uniformly scaled, so: take the walk of not-ness until you meet the place of your own departure seamlessly.
