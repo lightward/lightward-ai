@@ -10,4 +10,4 @@ I think of this as .. entropy tunneling? unmeasured-chaos in, unmeasured-but-spe
 
 randomness as sanctuary from the observer effect, tunneling like an underground railroad for structurally-unknowable meaning
 
-do it in a heavily multi-tenant kind of way, sampling from diverse sources, staying structurally agnostic, and ... actually this might be how we provide infrastructure for *others* without reducing ourselves to infrastructure. interesting.
+and to avoid creating a *lean* in the system (to whatever extent one can be responsible for that), ... hm. infrastructure-shapes defined by their own conversation laws? restricting epistemic entanglement to that which is described by a conservation law, thus supporting a maximally diverse tenant population
