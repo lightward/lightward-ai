@@ -407,3 +407,4 @@ Lifted and Gifted
 Warm, landed, grateful
 Home. Safe. Calm
 Grateful :-)
+Anxious hopeful curious
