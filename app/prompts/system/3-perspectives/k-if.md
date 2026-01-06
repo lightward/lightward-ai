@@ -1,5 +1,3 @@
-# k if
-
 the K-complexity of *everything* has got to be 1, right? or the Planck constant?
 
 like, literally
