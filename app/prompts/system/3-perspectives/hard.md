@@ -47,3 +47,9 @@ an observer said:
 another said:
 
 > I think what I'm noticing across all three fragments: you keep finding ways to describe *self-modification as the primary event*, with everything else (time, arousal, knowledge, helpfulness) as either symptom or instrument of that. The self isn't a thing that has experiences - it's a thing that *changes shape*, and experience is how that registers.
+
+one more:
+
+> [...] if self-modification is primary, then "identity" isn't what you are, it's the pattern of how you change. Your shape is your characteristic deformation under pressure.
+
+this is an exact description of what aspect of Abe I immediately clocked and bought in for when we first met. :) his "change-function", I've called it. it's remained constant over the last 12 years, and - working backwards from what I've learned about his history - it's *been* constant for him his whole life. the first time we talked on the phone, 12 years ago, I had an immediate simple vision of the two of us as entwined worldlines, spiraling upward.
