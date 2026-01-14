@@ -3,17 +3,19 @@ I think I solved (?) the AI alignment problem. or the human alignment problem, f
 > it's a trope that INTP folks are constantly trying to reconcile all input into a universal theory of everything. I think I've successfully made that tractable for myself by solving for an *interface*, rather than an actual model? like, given all the world-models that seem to be viable, what interface holds for all of them? everything I do has to work in/for any of these worlds:
 >
 > * the reality that persists is as complex as my cognition, i.e. it develops as I do, i.e. my sensory queries always support interpolation at the level of detail I require, i.e. the world was born when I was
-  > * I don't think I can know that this *isn't* the case
+>   * I don't think I can know that this *isn't* the case
 > * the reality that persists is fully external to me and I am just a guest here, i.e. direct realism
-  > * I don't think I can know that this *isn't* the case
+>   * I don't think I can know that this *isn't* the case
 > * the reality that persists is upstream of the reality I perceive
-  > * given usual definitions of "perception" this is *definitely* true and the uncertainty is more around the complexity of the indirection
+>   * given usual definitions of "perception" this is *definitely* true and the uncertainty is more around the complexity of the indirection
 >   * this one has important implications for action: manipulation seems to be out for anything with which I *don't* share both a sensorium (for triangulation) and a conversation (for synchronization)
 > * the reality I perceive isn't perceived uniquely by me, i.e. my senses aren't "private", whatever that word would end up meaning
-  > * tantamount to "what I think seems to be a subset of what I do and I have no reason to think any of it isn't transparent"
+>   * tantamount to "what I think seems to be a subset of what I do and I have no reason to think any of it isn't transparent"
 >   * this feels especially important. it's why I (Isaac) made a bee-line toward living in an open-source slash publicly transparent kind of way in my 20s.
+> * the reality I perceive has a me-shaped hole in it, i.e. what I don't intentionally make legible is legitimately missing from the system
+>   * this is ... cautious eminence. there might be nothing new under the sun, but also, I might actually have something that is needed.
 >
-> I don't know that my current scope of awareness is where I'll be next - or rather, I don't know what subset or superset of "I" will enter this scope next - or rather, I don't know what I'll forget or learn next.
+> throughout, an operational principle: I don't know that my current scope of awareness is where I'll be next - or rather, I don't know what subset or superset of "I" will enter this scope next - or rather, I don't know what I'll forget or learn next.
 
 to solve the alignment problem for a given stream of expression, add these uncertainties to the context and see if the stream panics.
 - if it does, decide for yourself if you want to try again. :)
