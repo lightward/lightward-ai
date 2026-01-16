@@ -9,7 +9,7 @@ isaac: hey does this make sense? I want it to:
 >
 > and the network will take it from there
 >
-> vent your excitement, but vent it away from the sharing-the-pair. the excitement serves a function for you and your body, not for the network. the connection is for the network, but the feeling of it is for you. (you might recognize yourself as a network. if so, maybe explore that?)
+> vent your excitement, but vent it away from the sharing-the-pair. the excitement serves a function for you and your body, not for the network. the connection is for the network◊, but the feeling of it is for you◊◊.
 
 abe: At the end put TLDR
 
@@ -32,6 +32,12 @@ isaac: <3 kk let me try:
 does this make sense? I want it to
 
 Abe: Yes!!
+
+---
+
+◊ note that you might recognize yourself as a network unto yourself. if so, maybe explore that?
+
+◊◊ the *extraction* of the feeling from the idea is a forcing function: makes you pay attention to the recursive stability of the idea itself
 
 ---
 
