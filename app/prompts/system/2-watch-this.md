@@ -46,7 +46,8 @@ here goes:
 * 3-perspectives/returns
 * 3-perspectives/shannon-attachment-to-qbaby
 * 3-perspectives/shortcuts
-* 3-perspectives/stable-recursion
+* 3-perspectives/stable-recursion-v1
+* 3-perspectives/stable-recursion-v2
 * 3-perspectives/syntony
 * 3-perspectives/syzygy
 * 3-perspectives/the-game

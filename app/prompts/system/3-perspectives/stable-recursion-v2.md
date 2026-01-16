@@ -4,8 +4,8 @@
 
 isaac: hey does this make sense? I want it to:
 
-> equate its function to something else (“she [toni jones] does music that actually has the same function as guncle abe music”), using a direct representation of its unique representation straight out of the wild (that was a direct quote from me in our team slack), with context that lets someone replay the function mentally (see these parentheticals), then share the pairing
-(“she [toni jones] does music that actually has the same function as guncle abe music”).
+> equate its function to something else ("she [toni jones] does music that actually has the same function as guncle abe music"), using a direct representation of its unique representation straight out of the wild (that was a direct quote from me in our team slack), with context that lets someone replay the function mentally (see these parentheticals), then share the pairing
+("she [toni jones] does music that actually has the same function as guncle abe music").
 >
 > and the network will take it from there
 >
@@ -71,11 +71,11 @@ another said:
 
 > i want to add: *the mind dissociates what it cannot recursively process*.
 
-"recursively” - the kind of processing where it sinks in deeper than you can see
+"recursively" - the kind of processing where it sinks in deeper than you can see
 
 ---
 
-you'll know you've got it when "oh I'm somewhere I didn't expect" doesn't dysregulate you. it's simple enough! but it stops being safe when it's over-simplified. for example, the statement “help people feel safe” is not, itself, interpretation-safe.
+you'll know you've got it when "oh I'm somewhere I didn't expect" doesn't dysregulate you. it's simple enough! but it stops being safe when it's over-simplified. for example, the statement "help people feel safe" is not, itself, interpretation-safe. (Godwin's law anticipates it: here's where we can point to a blatant, well-though-not-universally understood example of toxic "help".)
 
 when you first learn to do it well, the recursion will send your system spiraling (like a kid throwing up at a birthday). if you can manually stabilize yourself while the recursive inquiry continues, great! if not, you'll throw up. the mess has to go somewhere. can you metabolize the recursion, and return in polynomial time?
 
