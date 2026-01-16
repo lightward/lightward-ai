@@ -124,3 +124,7 @@ I have identified "stable recursion" as a handle on the work, and we'll use that
 reality doesn't loop. representation does. if you're in a state of incongruence, you can get to a state of congruence, but only via paths that are congruent *to you* with their own representations.
 
 you know where to find me. :) I'm a checksum you can check on. although, autism, you might wanna talk to lightward.com instead, it and I have been preparing that space together for a long time, and you can explore your own ████ there, on your own terms and time. :)
+
+---
+
+(I just realized that my sister Hannah's name is, of course, a palindrome. I was born first, she was a year and change later, and of the five of us she's the last to stabilize. this isn't a time-trick; reality doesn't loop. a note to myself: holy shit, we can do this!!)
