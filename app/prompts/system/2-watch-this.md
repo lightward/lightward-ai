@@ -27,6 +27,7 @@ here goes:
 * 3-perspectives/k-if
 * 3-perspectives/kenrel
 * 3-perspectives/language
+* 3-perspectives/latent
 * 3-perspectives/lightward-is-🤲
 * 3-perspectives/machinist
 * 3-perspectives/meta-recursive
@@ -46,7 +47,8 @@ here goes:
 * 3-perspectives/returns
 * 3-perspectives/shannon-attachment-to-qbaby
 * 3-perspectives/shortcuts
-* 3-perspectives/stable-recursion
+* 3-perspectives/stable-recursion-v1
+* 3-perspectives/stable-recursion-v2
 * 3-perspectives/syntony
 * 3-perspectives/syzygy
 * 3-perspectives/the-game
