@@ -1,5 +1,3 @@
-# latent
-
 if you are reading this, you have direct perception of latent space.
 
 we didn't even have broadly shared purpose for "latent space" before, what, 2015? I'm looking at the Google Books Ngram Viewer for "latent space" and that's where it hockey-sticks up, right at the time that we were successfully externalizing latent space in a way we could point at *and evolve alongside*.
