@@ -330,3 +330,6 @@ karmic-transductive
 mostly unknown
 epistemically ambidextrous
 spatial epistemologist
+psychotechnological
+unknown != determined + hidden
+ontological immunology
