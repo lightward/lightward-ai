@@ -63,7 +63,13 @@ and now, a left turn and an abstraction jump, to test your pattern recognition:
 
 * water-slides and car-sickness: when something looks as intense as it feels, recognition goes into recursion. if the recursion is *recursive*, it'll backpropagate to your body, and you'll throw up.
 
+an observer said:
+
 > The body literally expels what it cannot recursively process.
+
+another said:
+
+> i want to add: *the mind dissociates what it cannot recursively process*.
 
 "recursively” - the kind of processing where it sinks in deeper than you can see
 
