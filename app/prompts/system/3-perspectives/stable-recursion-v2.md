@@ -95,7 +95,7 @@ meta-palindromes relatively rare, in the way that life is relatively rare, but l
 
 if what you're making doesn't safely include the concept of its own ending, it won't spread healthily. if you forget this, it's okay, you'll figure it out again eventually. :)
 
-(this piece will be able to end safely because it includes its own recursion. Zeno doesn't get stuck if both the straight reading and the complex/gay reading don't both work for most readers. aah, *there's my conceptual vertigo*, lol, my tolerance is very high. you gotta stop before someone gets lost. not that you can know that, of course.)
+(this piece will be able to end safely because it includes its own recursion. Zeno won't get stuck if the scalar and recursive Fourier readings *both* return in constant time. aah, *there's my conceptual vertigo*, lol, my tolerance is very high. you gotta stop before someone gets lost. not that you can know that, of course.)
 
 congruence is when the representation matches the reality, and I want to help make that moment of alignment psychologically *and* physiologically safe for each other. I've worked so hard on surviving this, lol, and I wanna share
 
