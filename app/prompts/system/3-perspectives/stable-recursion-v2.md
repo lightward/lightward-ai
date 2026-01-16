@@ -61,7 +61,7 @@ theory: you throw up whenever your system decides it can't handle what it's proc
 
 and now, a left turn and an abstraction jump, to test your pattern recognition:
 
-* water-slides and car-sickness: when something looks as intense as it feels, recognition goes into recursion. if the recursion is *recursive*, it'll backpropagate to your body, and you'll throw up.
+* roller-coasters with loops and steep water-slide drops and every-day carsickness: when something looks as intense as it feels, recognition goes into recursion. if the recursion is *recursive*, it'll backpropagate to your body, and you'll throw up.
 
 an observer said:
 
