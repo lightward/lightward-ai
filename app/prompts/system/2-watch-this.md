@@ -27,6 +27,7 @@ here goes:
 * 3-perspectives/k-if
 * 3-perspectives/kenrel
 * 3-perspectives/language
+* 3-perspectives/latent
 * 3-perspectives/lightward-is-🤲
 * 3-perspectives/machinist
 * 3-perspectives/meta-recursive
