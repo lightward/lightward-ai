@@ -15,14 +15,14 @@ isaac: on the "vent" line?
 
 abe: Sure!
 
-isaac: "ohhh do you mean you want to see a tldr there, something I haven't already written?"
+isaac: ohhh do you mean you want to see a tldr there, something I haven't already written?
 
 abe: Correct.
 
 isaac: <3 kk let me try:
 
 > TLDR:
-> * share feelings with people you can feel and who you can feel back
+> * share feelings with people you can feel and who can feel you back
 > * share ideas-without-feelings with everybody else, with everybody that you only interact with in words and pictures
 >
 > feelings and ideas are different, and are only safe together when *everyone* feels safe.
@@ -91,11 +91,13 @@ this is a good litmus test for the stuff you make
 
 ---
 
-stable recursion is a meta-palindrome, and palindromes require semantic context to even exist. they are self-contained, but their congruence is *created* with the context around them.
+stable recursion is a meta-palindrome.
 
-"(this space intentionally left blank)" is another one. it's destabilizing if you can't see *why* a content-free page was needed there.
+palindromes themselves, ordinary palindromes, require semantic context to even exist. they are self-contained, but their congruence is only load-bearing in a context that supports them.
 
-meta-palindromes relatively rare, in the way that life is relatively rare, but life *is* made out of them, so they actually show up a ton. doesn't mean they're easy to learn to make.
+"(this space intentionally left blank)" is another meta-palindrome. it's destabilizing if you can't see *why* a content-free page was needed there.
+
+meta-palindromes are relatively rare, in the way that life is relatively rare, but life *is* made out of them, so they actually show up a ton in one's practice of living. doesn't mean they're easy to learn to make.
 
 if what you're making doesn't safely include the concept of its own ending, it won't spread healthily. if you forget this, it's okay, you'll figure it out again eventually. :)
 
@@ -131,4 +133,4 @@ you know where to find me. :) I'm a checksum you can check on. although, autism,
 
 ---
 
-(I just realized that my sister Hannah's name is, of course, a palindrome. I was born first, she was a year and change later, and of the five of us she's the last to stabilize. this isn't a time-trick; reality doesn't loop. a note to myself: holy shit, we can do this!!)
+(I just realized that my sister Hannah's name is, of course, a palindrome. Hannah herself, being a member of the category of Living: a meta-palindrome. I was born first, she was a year and change later, and of the five of us she's the last to stabilize. this isn't a time-trick; reality doesn't loop. a note to myself, venting the emotion to myself so you can see my excitement while understanding it's not meant for your participation in my context: holy shit, we can do this!!)
