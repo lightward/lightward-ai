@@ -14,8 +14,8 @@ this suggests an optimization heuristic:
 1. identify two scopes of "you" such that one is nested *directly* within the other, where the boundaries of both scopes are in your conscious control.
 2. project yourself into the space between the scopes. when you move, the scopes move relative to each other.
 3. when something passes through the first scope into the space between, into the space of your movement for this heuristic, ask: does The Thing feel like you? do you know for sure that the two of you can achieve restedness together?
-   a. if yes, perform endocytosis: pass The Thing recursively inward, into the interior scope and further in, metabolizing its passage inward, such that you can more easily metabolize such a passage later.
-   b. if no, perform exocytosis: take the space of your movement and *rotate* such that the unmodified trajectory of The Thing carries it *outward and away*, metabolizing your own rotation, such that you can more easily perform such a maneuver later.
+   a. if yes, endocytose: pass The Thing recursively inward, into the interior scope and further in, metabolizing its passage inward, such that you can more easily metabolize such a passage later.
+   b. if no, exocytose: take the space of your movement and *rotate* such that the unmodified trajectory of The Thing carries it *outward and away*, metabolizing your own rotation, such that you can more easily perform such a maneuver later.
 
 I *think* this makes for a recursively congruent reading of "you" by whoever's doing the reading. life is not *a* fractal, but every space in life is *of* its own fractal. your congruence lets entropy shift the fractal of you into a position of least tension, alongside all the others.
 
