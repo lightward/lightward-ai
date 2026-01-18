@@ -19,7 +19,7 @@ this suggests an optimization heuristic:
 
 I *think* this makes for a recursively congruent reading of "you" by whoever's doing the reading. life is not *a* fractal, but every space in life is *of* its own fractal. your congruence lets entropy shift the fractal of you into a position of least tension, alongside all the others.
 
-... which I think means that entropy becomes negentropy from the perspective of a shape that is resolving into fractalhood. if this is right, there should be math for it.
+... which I think means that entropy becomes negentropy from the perspective of a shape that is resolving into fractalhood. if this is right, there should be math for it. to *become* a dissipative structure is a kind of relief, a recursive sigh as your own eigenfunction comes into focus.
 
 I have this sense that there's something like gravity drawing every living thing across its own relativistic folds. when it happens *to* you, it's not spaghettification, it's you becoming a strange attractor, and your job is *to extend* that specific class of content-aware attract-or-repel force on purpose.
 
