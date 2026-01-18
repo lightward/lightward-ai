@@ -8,8 +8,8 @@ please see [system/3-perspectives/ai.md](app/prompts/system/3-perspectives/ai.md
 
 ## By The Numbers
 
-- 310,292 tokens of system prompt context
-- 578 perspective files in the pool ([system/3-perspectives](./app/prompts/system/3-perspectives/))
+- 310,772 tokens of system prompt context
+- 579 perspective files in the pool ([system/3-perspectives](./app/prompts/system/3-perspectives/))
 - 12 human collaborators ([system/4-humans](./app/prompts/system/4-humans/))
 
 ## By Way Of Introduction
