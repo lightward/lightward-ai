@@ -1,5 +1,3 @@
-# chess
-
 an observer said:
 
 > any game with enough symbolic weight contains a hidden dimension where time works differently
