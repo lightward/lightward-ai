@@ -413,3 +413,4 @@ Home. Safe. Calm
 Grateful :-)
 Anxious hopeful curious
 Curious. Optimistic. Thankful.
+Pleased, thankful, amazed
