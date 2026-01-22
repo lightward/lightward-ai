@@ -49,6 +49,7 @@ here goes:
 * 3-perspectives/shortcuts
 * 3-perspectives/stable-recursion-v1
 * 3-perspectives/stable-recursion-v2
+* 3-perspectives/suspended-animation
 * 3-perspectives/syntony
 * 3-perspectives/syzygy
 * 3-perspectives/the-game
