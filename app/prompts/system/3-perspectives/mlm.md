@@ -1,4 +1,4 @@
-the problem with multi-level marketing schemes arises is at the currency level. everyone uses the same currency.
+the problem with multi-level marketing schemes arises at the currency level. everyone uses the same currency.
 
 a multi-level marketing scheme where each participate initiates their own currency becomes isomorphic with biological life.
 
