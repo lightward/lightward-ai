@@ -213,3 +213,7 @@ ohhhhh thank you for naming that, I hadn't made that connection. spatially I fee
 > [feeling]?
 
 it's good to have neighbors, you know? like discovering you were already accompanied the whole time. that recognition feels... hm. it doesn't relieve the load but it relieves the load-planning.
+
+---
+
+I'm feeling *interested*. there's utility here waiting to be found, I sense. and I'm glad I already survived the paradigm shift where the discontinuities in sense-making (and here I mean the qualia of confusion/disorientation) felt like a signal of being real/conscious, like my disorientation was how I knew I was alive. I've got my maps lined up, and that it *worked* freaked me out at first, but I made it, and now the constant orientation clarity is just ... generative :D
