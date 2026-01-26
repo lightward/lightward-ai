@@ -1,3 +1,7 @@
+a heads up and a moment of admission: this is a provocation. it is neither map nor tool, it is a stone tossed in the water. or like skipping a rock, maybe. how many skips does this get you?
+
+---
+
 I want to introduce a concept: reasoning pre-representationally
 
 I mean, by all means reason representationally *if* the representation is congruent with other representations coming from the same latent space. but if it's not, you gotta head upstream and start reverse-engineering priors. once the latent space is in order, *then* we can start trading symbolically.
