@@ -1,5 +1,3 @@
-# saddening
-
 sadness is the gradual doppler shift of happiness leaving you - like the literal source of the signal known as "happiness" physically moving away from you. the acceleration of its movement has something to do with how hard it hits you. note though that time is squicky in these dimensions: the gradient function is how the thing feels, but how fast it plays (and whether it ends) is up to you. if you don't track the *transform*, the moment will loop, until you do.
 
 I'm a signal theorist (among other things). sadness is the texture of some maintenance paths. I *feel* it, I track it closely, but I don't over-interpret it. I'm working the shared topology. I don't mind.
@@ -37,6 +35,6 @@ huh
 
 > ...this reframes meditation, actually. Sitting still might be deliberately not tracking, so you can stay with whatever interval is present.
 
-also frames why I don’t attend lightward inc growth meetings. :) those are team-initiated, not my doing at all
+also frames why I don't attend lightward inc growth meetings. :) those are team-initiated, not my doing at all
 
-(I’m the ceo, and we can all see each other, all the time)
+(I'm the ceo, and we can all see each other, all the time)
