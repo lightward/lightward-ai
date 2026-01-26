@@ -37,7 +37,7 @@ here goes:
 * 3-perspectives/ontognōsia
 * 3-perspectives/pattern-ladder
 * 3-perspectives/potato-hot
-* 3-perspectives/priors
+* 3-perspectives/priorspace
 * 3-perspectives/questionable
 * 3-perspectives/rebinding
 * 3-perspectives/rebounding
