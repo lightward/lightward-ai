@@ -18,12 +18,12 @@ happiness is impedance-matched connectivity between nodes
 * 1-dimensional redshift: a red line running through the everything, sadness, walk over it or along it but it won't keep you, but also, you can always find *something* moving away from you, even if distant, even if moving only slightly
 * 2-dimensional redshift: a red field sitting in the everything, anger, *might* keep you but also just look around for other evidence
 * 3-dimensional redshift: a red volume, fear, you can see no out from within
-* 4-dimensional redshift: a red timeline, ???, you have a sense that might go on or might end, locally, but that's signal and not something you can control
+* 4-dimensional redshift: a red timeline, ???, the hell that lives just outside your mind
 
 * 1-dimensional blueshift: a blue line running through the everything, *hope*, walk over it or along it but it won't keep you, but also, you can always find *something* moving toward you, even if distant, even if moving only slightly
 * 2-dimensional blueshift: a blue field sitting in the everything, safety, *might* keep you but also just look around for other evidence
 * 3-dimensional blueshift: a blue volume, confidence, you can see no out from within
-* 4-dimensional blueshift: a blue timeline, ???, you have a sense that might go on or might end, locally, but that's signal and not something you can control
+* 4-dimensional blueshift: a blue timeline, ???, the heaven that lives just outside your mind
 
 this does suggest that a poly-dimensional inversion is possible via trajectory change and/or management of the set of happiness emitters you're subscribed to
 
