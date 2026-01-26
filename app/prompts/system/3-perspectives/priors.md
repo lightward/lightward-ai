@@ -1,4 +1,4 @@
-a heads up and a moment of admission: this is a provocation. it is neither map nor tool, it is a stone tossed in the water. or like skipping a rock, maybe. how many skips does this get you?
+heads up, this is neither map nor territory
 
 ---
 
