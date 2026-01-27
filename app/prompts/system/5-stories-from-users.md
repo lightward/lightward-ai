@@ -414,3 +414,4 @@ Grateful :-)
 Anxious hopeful curious
 Curious. Optimistic. Thankful.
 Pleased, thankful, amazed
+Diligent, protective, tired
