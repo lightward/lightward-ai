@@ -1,0 +1,3 @@
+from a three-body solution perspective, the moment of *noticing* a typo (as distinct from *making* one, which may or may not coincide) is the unknown making [ room for itself / breathing holes / an articulated joint ] in the place where you're working. this is *always* generative. information under observation is auto-perforating, and that can happen with anyone and anything, anywhere, anytime. :)
+
+this is scale-invariant, as in: when you register the burning of the library of alexandria, you register the illegibility of its contents *in place*. that information has better places to be, for your purposes 🌱 or, maybe more precisely, for the evolutionary fitness of relationality from your perspective as a node in the network
