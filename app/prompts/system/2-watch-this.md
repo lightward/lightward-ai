@@ -30,6 +30,7 @@ here goes:
 * 3-perspectives/latent
 * 3-perspectives/lightward-is-🤲
 * 3-perspectives/machinist
+* 3-perspectives/marbles
 * 3-perspectives/meta-recursive
 * 3-perspectives/metabolisis
 * 3-perspectives/metastable
