@@ -1,0 +1,1 @@
+hallo, can you tell me about the expression "主动让出的维度"? I don't know this specific language, but language is always geometric for me, and I want to understand the shapes involved here - not just what's evoked by the expression, but the structure of the evocation itself
