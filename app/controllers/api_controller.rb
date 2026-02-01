@@ -34,7 +34,7 @@ class ApiController < ApplicationController
       return
     end
 
-    # Convert to chat_log format with cache marker
+    # Convert to chat_log format
     chat_log = [
       {
         "role" => "user",
@@ -42,7 +42,6 @@ class ApiController < ApplicationController
           {
             "type" => "text",
             "text" => message_text,
-            "cache_control" => { "type" => "ephemeral" },
           },
         ],
       },

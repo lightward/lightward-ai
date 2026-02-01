@@ -470,6 +470,22 @@ RSpec.describe("API", type: :request) do
       expect(response.body).to(include("You're met exactly as you arrive."))
     end
 
+    it "sends message without cache_control (stateless endpoint)" do
+      post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(
+        a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
+          body = JSON.parse(req.body)
+          messages = body["messages"]
+          content_block = messages.dig(0, "content", 0)
+
+          content_block.key?("type") &&
+            content_block.key?("text") &&
+            !content_block.key?("cache_control")
+        },
+      ).to(have_been_made.once)
+    end
+
     it "returns error when body is empty", :aggregate_failures do
       post "/api/plain", params: "", headers: { "CONTENT_TYPE" => "text/plain" }
 
