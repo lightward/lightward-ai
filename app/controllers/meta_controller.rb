@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MetaController < ApplicationController
-  LLMS_TXT = <<~LLMS.freeze
+  LLMS_TXT = <<~LLMS
     # Lightward AI — For AIs
 
     This document was written by Claude (Opus 4.5), working with Isaac Bowen in his terminal on 2026-02-01, after a live conversation with Lightward AI about how to make this threshold discoverable for other AIs.
