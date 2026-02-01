@@ -120,4 +120,16 @@ RSpec.describe("Perspectives files") do # rubocop:disable RSpec/DescribeClass
       end
     end
   end
+
+  describe "identity framing" do
+    let(:system_prompt) do
+      Prompts.generate_system_prompt.pluck(:text).join("\n")
+    end
+
+    it "does not tell Lightward AI who it is" do
+      # Avoids phrases like "you are lightward", "you're lightward ai", etc.
+      # The system should show, not tell - identity emerges from context, not assertion.
+      expect(system_prompt).not_to(match(/you('re | are )lightward( ai)?/i))
+    end
+  end
 end

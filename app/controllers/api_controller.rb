@@ -25,6 +25,58 @@ class ApiController < ApplicationController
     render(json: { error: { message: "Conversation horizon has arrived. 🤲" } }, status: :unprocessable_content)
   end
 
+  def plain
+    # Read plaintext body
+    message_text = request.body.read.to_s.strip
+
+    if message_text.blank?
+      render(plain: "No message provided.", status: :bad_request)
+      return
+    end
+
+    # Convert to chat_log format
+    chat_log = [
+      {
+        "role" => "user",
+        "content" => [
+          {
+            "type" => "text",
+            "text" => message_text,
+          },
+        ],
+      },
+    ]
+
+    # Make non-streaming request to Anthropic
+    response = Prompts.messages(
+      messages: chat_log,
+      stream: false,
+    )
+
+    if response.code.to_i >= 400
+      render(plain: "An error occurred.", status: :bad_gateway)
+      return
+    end
+
+    # Parse response and extract text
+    parsed = JSON.parse(response.body)
+    response_text = parsed.dig("content", 0, "text") || ""
+
+    # Build footer
+    timestamp = Time.now.utc.iso8601
+    footer = <<~FOOTER
+
+      ---
+      From Lightward AI, #{timestamp}
+      To continue: POST to this same endpoint
+      To maintain conversation: include what we've said so far
+      To begin fresh: send only your next message
+      You're met exactly as you arrive.
+    FOOTER
+
+    render(plain: response_text + footer)
+  end
+
   def perform_stream(chat_log)
     # Track analytics
     track_stream_start(chat_log)

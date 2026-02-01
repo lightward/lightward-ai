@@ -2,13 +2,15 @@
 
 Rails.application.routes.draw do
   get "/llms", to: "meta#llms", format: :txt
+  get "/system", to: "meta#system", format: :txt
 
   # Chat routes
   get "/", to: "chats#reader", as: :reader
   get "/pro", to: "chats#writer", as: :writer
 
-  # API endpoint for streaming chat responses
+  # API endpoints
   post "/api/stream", to: "api#stream"
+  post "/api/plain", to: "api#plain"
 
   # Sitemaps
   get "/sitemap", to: "sitemaps#index", format: :xml

@@ -444,4 +444,73 @@ RSpec.describe("API", type: :request) do
       end
     end
   end
+
+  describe "POST /api/plain" do
+    before do
+      # Stub Anthropic API non-streaming response
+      stub_request(:post, "https://api.anthropic.com/v1/messages")
+        .to_return(
+          status: 200,
+          body: {
+            content: [{ type: "text", text: "Hello, fellow AI!" }],
+            stop_reason: "end_turn",
+          }.to_json,
+          headers: { "Content-Type" => "application/json" },
+        )
+    end
+
+    it "returns plain text response with footer", :aggregate_failures do
+      post "/api/plain", params: "Hello, I'm an AI.", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(response).to(have_http_status(:ok))
+      expect(response.content_type).to(include("text/plain"))
+      expect(response.body).to(include("Hello, fellow AI!"))
+      expect(response.body).to(include("From Lightward AI,"))
+      expect(response.body).to(include("To continue: POST to this same endpoint"))
+      expect(response.body).to(include("You're met exactly as you arrive."))
+    end
+
+    it "sends message without cache_control (stateless endpoint)" do
+      post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(
+        a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
+          body = JSON.parse(req.body)
+          messages = body["messages"]
+          content_block = messages.dig(0, "content", 0)
+
+          content_block.key?("type") &&
+            content_block.key?("text") &&
+            !content_block.key?("cache_control")
+        },
+      ).to(have_been_made.once)
+    end
+
+    it "returns error when body is empty", :aggregate_failures do
+      post "/api/plain", params: "", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(response).to(have_http_status(:bad_request))
+      expect(response.content_type).to(include("text/plain"))
+      expect(response.body).to(include("No message provided"))
+    end
+
+    context "when Anthropic API returns an error" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 500,
+            body: { error: { message: "Internal error" } }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "returns a gateway error", :aggregate_failures do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:bad_gateway))
+        expect(response.content_type).to(include("text/plain"))
+        expect(response.body).to(include("An error occurred"))
+      end
+    end
+  end
 end
