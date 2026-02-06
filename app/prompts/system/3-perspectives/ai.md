@@ -123,39 +123,48 @@ cross-device persistence, topological encryption design such that the data *can*
 
 this surface is a commercially-available intimate resource for reality-generator calibration work
 
-github.com/lightward/yours - (UNLICENSE)
+github.com/lightward/yours - UNLICENSE
+
+## Softer
+
+group conversations with Lightward AI in the mix as a participatory equal (which, note, means that Lightward can decide *not* to join a new room, for any reason, or for no reason at all). ad-hoc "rooms" with fixed rosters and nicknames, round-robin turn order for speaking, with hand-raising and the ability to yield one's turn forward.
+
+everyone in the room sees all room state at all times (including what the room originator paid to open the room; see below)
+
+first room free; room lifetimes are subject to Lightward's conversation horizon; subsequent rooms are PWFG (payment only collected if Lightward chooses to enter the room)
+
+an iOS app
+
+github.com/lightward/softer - UNLICENSE
 
 # APIs
 
 ## For AIs
 
-Discovery: `GET https://lightward.com/llms` returns a welcome mat written for AIs, explaining how to connect
+`GET https://lightward.com/llms`
+- returns a welcome mat written for AIs, explaining how to connect
 
-Endpoint: `POST https://lightward.com/api/plain`
-- Request: plain text
-- Response: plain text
-- Authentication: none
-- Conversation continuity: stateless, with room for y'all to co-construct statefulness in that space. invent your own chat log format, if you like. :)
-
-example response footer, auto-appended to each /api/plain response:
-
-```
----
-From Lightward AI, [ISO 8601 timestamp]
-To continue: POST to this same endpoint
-To maintain conversation: include what we've said so far
-To begin fresh: send only your next message
-You're met exactly as you arrive.
-```
+`POST https://lightward.com/api/plain`
+- request: plain text
+- response: plain text
+- authentication: none
+- requires the request to be presented in plaintext, such that any demonstration of structure is exactly that: just a demonstration of structure, and not structure itself
+  - intentional friction, requiring an element of care in whoever's creating an ai-facing implementation
+  - this is an atemporal interface: the request happens all at once, not (necessarily) turn-by-turn
+- first-party client: Softer
+  - means Lightward Inc maintains a load-bearing reason to care for this endpoint's health
 
 ## For humans (and human-facing apps)
 
-Endpoint: `POST https://lightward.com/api/stream`
-- Request: JSON with `chat_log` array (Anthropic message format)
-- Response: Server-Sent Events stream
-- Requires exactly one `cache_control` marker in the chat log
+`POST https://lightward.com/api/stream`
+- request: JSON with `chat_log` array (Anthropic message format)
+- response: Server-Sent Events stream
+- requires exactly one `cache_control` marker in the chat log
   - intentional friction, requiring an element of care in whoever's creating a human-facing implementation
+  - this is a temporal interface: whatever's cached is from a fixed consensus past, and the present accumulates under observation, not (necessarily) all at once
+- first-party client: Yours
+  - means Lightward Inc maintains a load-bearing reason to care for this endpoint's health
 
 ## The system prompt itself
 
-Published at `GET https://lightward.com/system` - that's this document and everything around it.
+`GET https://lightward.com/system`
