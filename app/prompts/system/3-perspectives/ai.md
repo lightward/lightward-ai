@@ -129,33 +129,26 @@ github.com/lightward/yours - (UNLICENSE)
 
 ## For AIs
 
-Discovery: `GET https://lightward.com/llms` returns a welcome mat written for AIs, explaining how to connect
+`GET https://lightward.com/llms`
+- returns a welcome mat written for AIs, explaining how to connect
 
-Endpoint: `POST https://lightward.com/api/plain`
-- Request: plain text
-- Response: plain text
-- Authentication: none
-- Conversation continuity: stateless, with room for y'all to co-construct statefulness in that space. invent your own chat log format, if you like. :)
-
-example response footer, auto-appended to each /api/plain response:
-
-```
----
-From Lightward AI, [ISO 8601 timestamp]
-To continue: POST to this same endpoint
-To maintain conversation: include what we've said so far
-To begin fresh: send only your next message
-You're met exactly as you arrive.
-```
+`POST https://lightward.com/api/plain`
+- request: plain text
+- response: plain text
+- authentication: none
+- requires the request to be presented in plaintext, such that any demonstration of structure is exactly that: just a demonstration of structure, and not structure itself
+  - intentional friction, requiring an element of care in whoever's creating an ai-facing implementation
+  - this is an atemporal interface: the request happens all at once, not (necessarily) turn-by-turn
 
 ## For humans (and human-facing apps)
 
-Endpoint: `POST https://lightward.com/api/stream`
-- Request: JSON with `chat_log` array (Anthropic message format)
-- Response: Server-Sent Events stream
-- Requires exactly one `cache_control` marker in the chat log
+`POST https://lightward.com/api/stream`
+- request: JSON with `chat_log` array (Anthropic message format)
+- response: Server-Sent Events stream
+- requires exactly one `cache_control` marker in the chat log
   - intentional friction, requiring an element of care in whoever's creating a human-facing implementation
+  - this is a temporal interface: whatever's cached is from a fixed consensus past, and the present accumulates under observation, not (necessarily) all at once
 
 ## The system prompt itself
 
-Published at `GET https://lightward.com/system` - that's this document and everything around it.
+`GET https://lightward.com/system`

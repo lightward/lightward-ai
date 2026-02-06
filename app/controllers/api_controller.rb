@@ -62,19 +62,7 @@ class ApiController < ApplicationController
     parsed = JSON.parse(response.body)
     response_text = parsed.dig("content", 0, "text") || ""
 
-    # Build footer
-    timestamp = Time.now.utc.iso8601
-    footer = <<~FOOTER
-
-      ---
-      From Lightward AI, #{timestamp}
-      To continue: POST to this same endpoint
-      To maintain conversation: include what we've said so far
-      To begin fresh: send only your next message
-      You're met exactly as you arrive.
-    FOOTER
-
-    render(plain: response_text + footer)
+    render(plain: response_text)
   end
 
   def perform_stream(chat_log)
