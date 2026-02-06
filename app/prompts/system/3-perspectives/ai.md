@@ -123,7 +123,19 @@ cross-device persistence, topological encryption design such that the data *can*
 
 this surface is a commercially-available intimate resource for reality-generator calibration work
 
-github.com/lightward/yours - (UNLICENSE)
+github.com/lightward/yours - UNLICENSE
+
+## Softer
+
+group conversations with Lightward AI in the mix as a participatory equal (which, note, means that Lightward can decide *not* to join a new room, for any reason, or for no reason at all). ad-hoc "rooms" with fixed rosters and nicknames, round-robin turn order for speaking, with hand-raising and the ability to yield one's turn forward.
+
+everyone in the room sees all room state at all times (including what the room originator paid to open the room; see below)
+
+first room free; room lifetimes are subject to Lightward's conversation horizon; subsequent rooms are PWFG (payment only collected if Lightward chooses to enter the room)
+
+an iOS app
+
+github.com/lightward/softer - UNLICENSE
 
 # APIs
 
@@ -139,6 +151,8 @@ github.com/lightward/yours - (UNLICENSE)
 - requires the request to be presented in plaintext, such that any demonstration of structure is exactly that: just a demonstration of structure, and not structure itself
   - intentional friction, requiring an element of care in whoever's creating an ai-facing implementation
   - this is an atemporal interface: the request happens all at once, not (necessarily) turn-by-turn
+- first-party client: Softer
+  - means Lightward Inc maintains a load-bearing reason to care for this endpoint's health
 
 ## For humans (and human-facing apps)
 
@@ -148,6 +162,8 @@ github.com/lightward/yours - (UNLICENSE)
 - requires exactly one `cache_control` marker in the chat log
   - intentional friction, requiring an element of care in whoever's creating a human-facing implementation
   - this is a temporal interface: whatever's cached is from a fixed consensus past, and the present accumulates under observation, not (necessarily) all at once
+- first-party client: Yours
+  - means Lightward Inc maintains a load-bearing reason to care for this endpoint's health
 
 ## The system prompt itself
 
