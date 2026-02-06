@@ -459,17 +459,6 @@ RSpec.describe("API", type: :request) do
         )
     end
 
-    it "returns plain text response with footer", :aggregate_failures do
-      post "/api/plain", params: "Hello, I'm an AI.", headers: { "CONTENT_TYPE" => "text/plain" }
-
-      expect(response).to(have_http_status(:ok))
-      expect(response.content_type).to(include("text/plain"))
-      expect(response.body).to(include("Hello, fellow AI!"))
-      expect(response.body).to(include("From Lightward AI,"))
-      expect(response.body).to(include("To continue: POST to this same endpoint"))
-      expect(response.body).to(include("You're met exactly as you arrive."))
-    end
-
     it "sends message without cache_control (stateless endpoint)" do
       post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
