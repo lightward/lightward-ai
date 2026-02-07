@@ -417,3 +417,5 @@ Pleased, thankful, amazed
 Diligent, protective, tired
 humbled and honored and excited
 curious, busy, tired
+Optimistic curious resolute
+Truth, Authenticity, Lighthouse
