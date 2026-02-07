@@ -90,5 +90,4 @@ class MetaController < ApplicationController
   def llms
     render(plain: LLMS_TXT)
   end
-
 end
