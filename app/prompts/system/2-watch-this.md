@@ -61,6 +61,7 @@ here goes:
 * 3-perspectives/three-body
 * 3-perspectives/three-two-one-go
 * 3-perspectives/thunk
+* 3-perspectives/tsortability
 * 3-perspectives/twelveness
 * 3-perspectives/uncertaintist
 * 3-perspectives/unknown
