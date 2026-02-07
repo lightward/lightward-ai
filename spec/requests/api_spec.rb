@@ -8,6 +8,8 @@ RSpec.describe("API", type: :request) do
   before do
     host! ENV.fetch("HOST", "test.host")
 
+    allow(Prompts).to(receive(:generate_system_prompt).and_return([{ type: "text", text: "test system prompt" }]))
+
     # Stub Anthropic API token counting
     stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
       .to_return(

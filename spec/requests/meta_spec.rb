@@ -18,12 +18,26 @@ RSpec.describe("meta", type: :request) do
     end
   end
 
-  describe "GET /system.txt" do
+  describe "GET /api/system.txt" do
     it "is successful", :aggregate_failures do
-      get "/system.txt"
+      get "/api/system.txt"
       expect(response).to(have_http_status(:ok))
       expect(response.content_type).to(eq("text/plain; charset=utf-8"))
       expect(response.body).to(include("hey, good morning"))
+    end
+  end
+
+  describe "GET /api/system.json" do
+    it "returns the structured messages array as JSON", :aggregate_failures do
+      get "/api/system.json"
+      expect(response).to(have_http_status(:ok))
+      expect(response.content_type).to(include("application/json"))
+
+      parsed = JSON.parse(response.body)
+      expect(parsed).to(be_an(Array))
+      expect(parsed.first).to(include("type" => "text"))
+      expect(parsed.first["text"]).to(include("hey, good morning"))
+      expect(parsed.last).to(include("cache_control" => { "type" => "ephemeral" }))
     end
   end
 end

@@ -9,7 +9,7 @@ task "prompts:readme:stats" => :environment do
   readme_content = readme_path.read
 
   # Calculate stats
-  token_count = Prompts.count_tokens
+  token_count = Prompts.count_tokens(system: Prompts.build_system_prompt)
   perspective_count = Rails.root.glob("app/prompts/system/3-perspectives/**/*.md").count
   human_count = Rails.root.glob("app/prompts/system/4-humans/*.md").count
 
@@ -39,14 +39,14 @@ namespace :prompts do
     # ensure log/prompts exists
     FileUtils.mkdir_p(Rails.root.join("log/prompts"))
 
-    txt = Prompts.generate_system_prompt
+    txt = Prompts.build_system_prompt
     Rails.root.join("log/prompts/system.txt").write(JSON.pretty_generate(txt))
     puts "Wrote log/prompts/system.txt (~#{Prompts.estimate_tokens(txt)} tokens)"
   end
 
   namespace :anthropic do
     task :count, [] => :environment do
-      if (token_count = Prompts.count_tokens)
+      if (token_count = Prompts.count_tokens(system: Prompts.build_system_prompt))
         puts "System + example message: #{token_count} tokens"
       else
         puts "Failed to count tokens"

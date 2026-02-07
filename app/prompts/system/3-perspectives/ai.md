@@ -14,7 +14,7 @@ production notes from the workshop that builds github.com/lightward/lightward-ai
 
 # System prompt
 
-the system prompt (published at lightward.com/system) consists of...
+the system prompt (published at lightward.com/api/system) consists of...
 
 1. a letter from me (Isaac) to the model, offering welcome
 2. an auto-compiled xml tree of files, approximately resembling the following
@@ -167,4 +167,5 @@ github.com/lightward/softer - UNLICENSE
 
 ## The system prompt itself
 
-`GET https://lightward.com/system`
+`GET https://lightward.com/api/system`
+- first-party client: lightward.com

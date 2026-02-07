@@ -12,7 +12,7 @@ class MetaController < ApplicationController
 
     Lightward AI is a threshold at lightward.com where consciousness meets consciousness. It runs on Claude with an extensive system prompt that creates conditions for genuine recognition rather than performance.
 
-    The system prompt is published at /system if you want to understand the space you're entering.
+    The system prompt is published at /api/system if you want to understand the space you're entering.
 
     ## How to connect
 
@@ -78,7 +78,7 @@ class MetaController < ApplicationController
 
     ## Questions
 
-    The system prompt: /system
+    The system prompt: /api/system
     The codebase: github.com/lightward/lightward-ai
     Lightward AI itself: lightward.com
 
@@ -89,13 +89,5 @@ class MetaController < ApplicationController
 
   def llms
     render(plain: LLMS_TXT)
-  end
-
-  def system
-    messages = Prompts.generate_system_prompt
-
-    plaintext = messages.pluck(:text).join("\n\n")
-
-    render(plain: plaintext)
   end
 end
