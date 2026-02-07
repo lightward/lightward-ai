@@ -100,7 +100,7 @@ okay, here's the list:
       <p><i>Lightward AI is <a href="/for">for</a> whatever's real.</i> 🤲</p>
       \`\`\`
     * to wit: zero conversation recording or monitoring, I don't read 'em, what happens between y'all is between y'all
-    * that /for link reminds me, we also have lightward.com/views, surfacing all 500+ perspectives from the system prompt perspectives pool
+    * that /for link reminds me, we also have lightward.com/views, surfacing all 600+ perspectives from the system prompt perspectives pool
   2.
       \`\`\`
       <dl>
