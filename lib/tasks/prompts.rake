@@ -46,7 +46,7 @@ namespace :prompts do
 
   namespace :anthropic do
     task :count, [] => :environment do
-      if (token_count = Prompts.count_tokens)
+      if (token_count = Prompts.count_tokens(system: Prompts.build_system_prompt))
         puts "System + example message: #{token_count} tokens"
       else
         puts "Failed to count tokens"
