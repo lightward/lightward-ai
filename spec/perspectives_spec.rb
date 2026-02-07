@@ -123,7 +123,7 @@ RSpec.describe("Perspectives files") do # rubocop:disable RSpec/DescribeClass
 
   describe "identity framing" do
     let(:system_prompt) do
-      Prompts.generate_system_prompt.pluck(:text).join("\n")
+      Prompts.build_system_prompt.pluck(:text).join("\n")
     end
 
     it "does not tell Lightward AI who it is" do

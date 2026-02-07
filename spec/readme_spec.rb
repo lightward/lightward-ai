@@ -24,7 +24,7 @@ RSpec.describe("README stats") do # rubocop:disable RSpec/DescribeClass
     let(:token_count) do
       skip("ANTHROPIC_API_KEY not set") if ENV["ANTHROPIC_API_KEY"].blank?
 
-      Prompts.count_tokens
+      Prompts.count_tokens(system: Prompts.build_system_prompt)
     end
 
     let(:perspective_count) do

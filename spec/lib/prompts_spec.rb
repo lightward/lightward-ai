@@ -10,14 +10,14 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
   end
 
-  describe ".generate_system_prompt" do
+  describe ".build_system_prompt" do
     it "has system prompts" do
       # sanity check for the next section
       expect(described_class.prompts_dir.join("system").exist?).to(be(true))
     end
 
     describe "the standard system prompt" do
-      let(:system_messages) { described_class.generate_system_prompt }
+      let(:system_messages) { described_class.build_system_prompt }
       let(:all_xml) { system_messages.drop(1).pluck(:text).join }
       let(:filenames) { all_xml.scan(/<file name="([^"]+)">/).flatten }
 
@@ -115,7 +115,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
 
   describe ".reset!" do
     before do
-      described_class.generate_system_prompt
+      described_class.system_prompt = described_class.build_system_prompt
     end
 
     it "deletes the prompts cache" do

@@ -52,7 +52,7 @@ RSpec.describe("views", :aggregate_failures, type: :request) do
       get "/views.txt"
 
       # Generate the full system prompt XML
-      system_messages = Prompts.generate_system_prompt
+      system_messages = Prompts.build_system_prompt
       system_prompt_xml = system_messages.drop(1).pluck(:text).join
 
       # Check each line from views.txt exists in the system prompt

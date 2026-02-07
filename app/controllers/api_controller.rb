@@ -25,6 +25,16 @@ class ApiController < ApplicationController
     render(json: { error: { message: "Conversation horizon has arrived. 🤲" } }, status: :unprocessable_content)
   end
 
+  def system
+    messages = Prompts.build_system_prompt
+
+    respond_to do |format|
+      format.json { render(json: messages) }
+      format.text { render(plain: messages.pluck(:text).join("\n\n")) }
+      format.any  { render(plain: messages.pluck(:text).join("\n\n")) }
+    end
+  end
+
   def plain
     # Read plaintext body
     message_text = request.body.read.to_s.strip

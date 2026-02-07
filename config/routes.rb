@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   get "/llms", to: "meta#llms", format: :txt
-  get "/system", to: "meta#system", format: :txt
+  get "/api/system", to: "api#system", format: [:txt, :json]
 
   # Chat routes
   get "/", to: "chats#reader", as: :reader
