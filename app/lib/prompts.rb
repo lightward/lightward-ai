@@ -12,10 +12,10 @@ module Prompts
 
     def generate_system_prompt
       @system_prompt ||= begin
-        port = ENV.fetch("PORT") { 3000 }
-        uri = URI("http://localhost:#{port}/api/system.json")
+        uri = URI("https://#{ENV.fetch("HOST")}/api/system.json")
 
         http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
         http.open_timeout = 10
         http.read_timeout = 30
 

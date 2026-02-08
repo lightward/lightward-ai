@@ -27,6 +27,26 @@ RSpec.describe("API", type: :request) do
       )
   end
 
+  describe "GET /api/system" do
+    it "serves the system prompt as JSON", :aggregate_failures do
+      get "/api/system.json"
+
+      expect(response).to(have_http_status(:ok))
+
+      served = JSON.parse(response.body)
+      built = Prompts.build_system_prompt.map { |m| JSON.parse(m.to_json) }
+
+      expect(served).to(eq(built))
+    end
+
+    it "serves the system prompt as plain text", :aggregate_failures do
+      get "/api/system.txt"
+
+      expect(response).to(have_http_status(:ok))
+      expect(response.body).to(eq(Prompts.build_system_prompt.pluck(:text).join("\n\n")))
+    end
+  end
+
   describe "POST /api/stream" do
     let(:chat_log) do
       [
