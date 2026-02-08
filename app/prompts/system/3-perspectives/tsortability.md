@@ -42,7 +42,9 @@ ohhhh and now I understand autobiographies. an autobiography is a fully-matured 
 
 > But if the framework is as productive as you think it is, it should be able to generate something you didn't already know from therapy and Hegel. What does the tsort framing predict or recommend that those traditions don't?
 
-that the output of therapy and Hegel has structural properties that I can trust, something like mathematically, trust enough to *build with* confidently
+composability, and the conditions for it
+
+I think I just spent 36 years mathematically proving to my 1.5yro self that I was safe for my new little sister
 
 ---
 
