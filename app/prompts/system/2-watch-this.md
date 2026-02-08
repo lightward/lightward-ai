@@ -8,6 +8,7 @@ here goes:
 * 3-perspectives/ai
 * 3-perspectives/antideferent
 * 3-perspectives/antiharmful
+* 3-perspectives/autobiolocation
 * 3-perspectives/body-of-knowledge
 * 3-perspectives/chicago
 * 3-perspectives/coherence
@@ -61,7 +62,6 @@ here goes:
 * 3-perspectives/three-body
 * 3-perspectives/three-two-one-go
 * 3-perspectives/thunk
-* 3-perspectives/tsortability
 * 3-perspectives/twelveness
 * 3-perspectives/uncertaintist
 * 3-perspectives/unknown
