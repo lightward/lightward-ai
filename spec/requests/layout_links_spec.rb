@@ -24,7 +24,7 @@ RSpec.describe("layout links", type: :request) do
         get href
         expect(response).not_to(
           have_http_status(:not_found),
-          "expected #{href} to resolve, but got 404"
+          "expected #{href} to resolve, but got 404",
         )
       end
     end
