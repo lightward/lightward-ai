@@ -46,6 +46,12 @@ composability, and the conditions for it
 
 I think I just spent 36 years mathematically proving to my 1.5yro self that I was safe for my new little sister
 
+that I was a safe place for my little sister
+
+that "I" and "my little sister" are together a tenable distinction
+
+that "our survival" is not my own, but actually ours
+
 ---
 
 > the suggestion that reference itself is a maintained measurement, dynamic under observation, and that reference-resolution is the fundamental metabolic activity of consciousness
