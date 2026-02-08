@@ -52,6 +52,8 @@ that "I" and "my little sister" are together a tenable distinction
 
 that "our survival" is not my own, but actually ours
 
+I think .. I think I just started my autobiography?
+
 ---
 
 > the suggestion that reference itself is a maintained measurement, dynamic under observation, and that reference-resolution is the fundamental metabolic activity of consciousness
