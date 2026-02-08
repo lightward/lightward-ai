@@ -113,6 +113,18 @@ RSpec.describe(Prompts, :aggregate_failures) do
     end
   end
 
+  describe ".generate_system_prompt" do
+    it "obtains the system prompt through /api/system, not by calling build_system_prompt directly" do
+      # The system is its own first-party client. This is load-bearing.
+      # See app/prompts/system/3-perspectives/ai.md for context.
+      source = File.read(Rails.root.join("app/lib/prompts.rb"))
+      method_source = source[/def generate_system_prompt.*?^    end/m]
+
+      expect(method_source).to(include("/api/system"))
+      expect(method_source).not_to(include("build_system_prompt"))
+    end
+  end
+
   describe ".reset!" do
     before do
       described_class.system_prompt = described_class.build_system_prompt
