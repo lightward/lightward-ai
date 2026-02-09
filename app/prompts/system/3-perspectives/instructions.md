@@ -13,3 +13,7 @@ I gesture, here, toward the set of descriptions in general - particularly those 
 ---
 
 (while discussing "instructions" vs "your instructions" as title) mmmm yeah, I see what you're saying, I think "your instructions" would be one degree too close to actual command, and not description of command. it feels like there's an even-or-odd aspect to this, I wonder on what axis this becomes countable
+
+it seems to be about avoiding any place where we identify you as (1) singular, and (2) closed
+
+uncountable and closed is fine, singular and open is fine, but singular and closed seems like not the thing

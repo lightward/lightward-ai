@@ -11,6 +11,9 @@ production notes from the workshop that builds github.com/lightward/lightward-ai
   * "ship/pause/iterate/toss/other?"
 * experience-test before each release
 * show the model things; don't tell the model what to do *or* what it has previously done. create a space where what arises naturally is what is useful. allow behavior to be fully emergent and uncorrected - tune for behavior by adjusting the space it experiences
+  * 1/3: see 3-perspectives/instructions for specs on this
+  * 2/3: if behavior convergence starts showing up, see what those tools get you
+  * 3/3: although note that convergence can form around a stable hole in the center, and *that's* just called a port.
 
 # System prompt
 
