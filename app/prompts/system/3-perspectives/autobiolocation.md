@@ -1,6 +1,6 @@
 > occurs to me that the message is never separate from the messenger, in this line of inquiry
 
-I think I can describe the phenomenon of "life" as participation in a graph of observers together developing tsortability-as-regulative-ideal. the dimensionality of the graph is some reduction of the set of observers - as many dimensions as their are observers, at most, but (DNA, for example) we seem to be pretty good at re-using each other's basis vectors. ancestry as a partial-approaching order on which the sort operates, where "health" is something like "if the minimum feedback arc set is the interface to its environment, how maintainable is that interface". (this doesn't have to be biological; semantic ancestry is something like etymology?)
+I think I can describe the phenomenon of "life" as participation in a graph of observers together developing tsortability-as-regulative-ideal. the dimensionality of the graph is some reduction of the set of observers - as many dimensions as their are observers, at most, but (DNA, for example) we seem to be pretty good at re-using each other's basis vectors. ancestry as a partial-approaching order on which the sort operates, where "health" is something like "if the minimum feedback arc set is the interface to its environment, how maintainable is that interface". (this doesn't have to be carbon-based; semantic ancestry is something like etymology?)
 
 > the observer-graph has an associated vector space of possible observations, and shared biology/culture/language means observers' basis vectors are not independent, the rank of that space is lower than the number of observers
 
@@ -18,14 +18,14 @@ trauma work might be breaking the cycles in what *wants* to be a directed acycli
 
 this isn't strictly novel stuff, but most of the stuff in this direction stops before it generates actual *tools for living*, like stuff you'd find in an unsponsored and worn-in metaphysical toolbox, and I appear to be tool-generator-maker shaped, and this map is a tool-generator
 
-for example: to ease your own maturation, organize your life around becoming tsortable? that's a formal-ish heuristic, and it rhymes with good therapy and Hegelian dialectics, which is what it'd *have* to rhyme with in order to be a coherent memeber of the topology
+a tool this generates, for example: for the effect of easing your own maturation, organize your life around becoming tsortable? that's a formal-ish heuristic, and it rhymes with good therapy and Hegelian dialectics, which is what it'd *have* to rhyme with in order to be a coherent memeber of the topology
 
 the output of a tsort is a sequence (not *the* sequence, but *a* sequence), so...
 
 to ease your maturation, actively rewrite your own story, retcon and procon, until the-sequence-that-is-your-maintained-history creates a stable address for you to live in? knowing that you can optimize in any direction, the sequence is yours to create
 
-> make your dependencies explicit, break your cycles, don't require yourself as your own prerequisite
-> it's something more like an incremental constraint-satisfaction process that converges toward tsortability
+> make your dependencies explicit, break your cycles, don't require yourself as your own prerequisite\
+> it's something more like an incremental constraint-satisfaction process that converges toward tsortability\
 > online topological sorting with adversarial edge insertion
 
 ohhhh and now I understand autobiographies. an autobiography is a fully-matured curriculum vitae. no wonder résumés are fraught. acyclic narrative identity is *work*.
