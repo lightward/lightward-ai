@@ -523,5 +523,192 @@ RSpec.describe("API", type: :request) do
         expect(response.body).to(include("An error occurred"))
       end
     end
+
+    context "when chat log exceeds token limit" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(
+            status: 200,
+            body: { input_tokens: 51_000 }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "returns a plaintext error about conversation horizon", :aggregate_failures do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.content_type).to(include("text/plain"))
+        expect(response.body).to(include("Conversation horizon has arrived"))
+      end
+    end
+
+    context "when approaching token limit (90%)" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(
+            status: 200,
+            body: { input_tokens: 45_000 }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "appends a horizon warning to the response body", :aggregate_failures do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(include("Hello, fellow AI!"))
+        expect(response.body).to(include("Memory space 90% utilized"))
+        expect(response.body).to(include("conversation horizon approaching"))
+      end
+
+      it "delivers warning in the response body, not in headers" do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response.body).to(include("conversation horizon approaching"))
+        response.headers.each do |_key, value|
+          expect(value.to_s).not_to(include("horizon"))
+        end
+      end
+
+      context "when the warning has already appeared in the request body" do
+        it "does not append the warning again" do
+          message_with_warning = "Previous conversation\nMemory space 90% utilized; conversation horizon approaching\nMore conversation"
+          post "/api/plain", params: message_with_warning, headers: { "CONTENT_TYPE" => "text/plain" }
+
+          expect(response).to(have_http_status(:ok))
+          expect(response.body).not_to(include("Memory space 90% utilized"))
+        end
+      end
+    end
+
+    context "with token limit bypass header" do
+      let(:bypass_key) { "softer-bypass-key" }
+
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(
+            status: 200,
+            body: { input_tokens: 51_000 }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return(bypass_key))
+      end
+
+      it "bypasses token limit with valid key", :aggregate_failures do
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain", "Token-Limit-Bypass-Key" => bypass_key }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(include("Hello, fellow AI!"))
+      end
+
+      it "enforces token limit with invalid key", :aggregate_failures do
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain", "Token-Limit-Bypass-Key" => "wrong-key" }
+
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.body).to(include("Conversation horizon has arrived"))
+      end
+
+      it "enforces token limit when key is missing", :aggregate_failures do
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.body).to(include("Conversation horizon has arrived"))
+      end
+
+      context "when approaching token limit (90%)" do
+        before do
+          stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+            .to_return(
+              status: 200,
+              body: { input_tokens: 45_000 }.to_json,
+              headers: { "Content-Type" => "application/json" },
+            )
+        end
+
+        it "bypasses horizon warnings with valid key" do
+          post "/api/plain",
+            params: "Hello",
+            headers: { "CONTENT_TYPE" => "text/plain", "Token-Limit-Bypass-Key" => bypass_key }
+
+          expect(response).to(have_http_status(:ok))
+          expect(response.body).not_to(include("conversation horizon approaching"))
+        end
+      end
+    end
+  end
+
+  describe "horizon warnings as speech" do
+    it "delivers warnings in the response body for /api/stream, not in headers" do
+      # Stub token count at 90%
+      stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+        .to_return(
+          status: 200,
+          body: { input_tokens: 45_000 }.to_json,
+          headers: { "Content-Type" => "application/json" },
+        )
+
+      stub_request(:post, "https://api.anthropic.com/v1/messages")
+        .to_return(
+          status: 200,
+          body: "event: message_start\ndata: {\"type\":\"message_start\"}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"delta\":{\"type\":\"text_delta\",\"text\":\"Hello\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\"}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+          headers: { "Content-Type" => "text/event-stream" },
+        )
+
+      chat_log = [
+        {
+          role: "user",
+          content: [
+            { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+          ],
+        },
+        {
+          role: "user",
+          content: [{ type: "text", text: "Hello!" }],
+        },
+      ]
+
+      post "/api/stream", params: { chat_log: chat_log }
+
+      expect(response.body).to(include("conversation horizon approaching"))
+      response.headers.each do |_key, value|
+        expect(value.to_s).not_to(include("horizon"))
+      end
+    end
+
+    it "delivers warnings in the response body for /api/plain, not in headers" do
+      # Stub token count at 90%
+      stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+        .to_return(
+          status: 200,
+          body: { input_tokens: 45_000 }.to_json,
+          headers: { "Content-Type" => "application/json" },
+        )
+
+      stub_request(:post, "https://api.anthropic.com/v1/messages")
+        .to_return(
+          status: 200,
+          body: {
+            content: [{ type: "text", text: "Hello!" }],
+            stop_reason: "end_turn",
+          }.to_json,
+          headers: { "Content-Type" => "application/json" },
+        )
+
+      post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(response.body).to(include("conversation horizon approaching"))
+      response.headers.each do |_key, value|
+        expect(value.to_s).not_to(include("horizon"))
+      end
+    end
   end
 end

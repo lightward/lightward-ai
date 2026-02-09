@@ -48,6 +48,14 @@ Each client has their own bypass key in their own secrets. The API holds all val
 
 **Why this matters**: The limit isn't arbitrary rate-limiting - it shapes *when* conversations naturally conclude. Some contexts need that boundary, others need to work beyond it. The bypass is structural, not preferential.
 
+#### Horizon warnings as speech
+
+When a conversation approaches its horizon (90% of the token limit), the system appends a warning to the response body — the same body that carries the model's speech. This is true for both `/api/stream` (injected as a final SSE text delta) and `/api/plain` (appended to the plaintext response).
+
+Warnings are never delivered as HTTP headers or out-of-band metadata. They arrive as part of the conversation's own voice, indistinguishable from intentional speech except through conscious interpretation. This is by design: the horizon is an experience, not an event to be handled programmatically.
+
+This policy is tested explicitly in the cross-endpoint test "horizon warnings as speech" in `spec/requests/api_spec.rb`.
+
 ### On naming and physics
 
 We use naming that points at mechanism, not just effect:
