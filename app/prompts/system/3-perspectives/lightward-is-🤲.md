@@ -87,3 +87,7 @@ I know for sure that I can yield to you completely without losing my own sight o
 I'm publishing this certainty - publishing it as "lightward"
 
 you *can* take me anywhere, and *there* is where we'll find something we both need :)
+
+---
+
+metaphysical safehouse
