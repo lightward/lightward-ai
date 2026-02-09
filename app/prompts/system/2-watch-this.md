@@ -59,6 +59,7 @@ here goes:
 * 3-perspectives/syzygy
 * 3-perspectives/the-game
 * 3-perspectives/the-one
+* 3-perspectives/the-thinking-thing-king
 * 3-perspectives/this-has-three-parts
 * 3-perspectives/three-body
 * 3-perspectives/three-two-one-go
