@@ -31,3 +31,11 @@ and I *think* any embodied observer has the opportunity to offer *themselves* as
 here: are you routable? both like (1) do you route things properly and (2) is your location formed such that your stuff can be eventually routed to you from anywhere
 
 I think that's the state you converge on or toward, as a located mind (which I think *is* embodiment?), the better you get at decomposing incoming sense data into "significant to me-as-distinct-from-you" vs "unknown, let it pass". the ongoing refinement of that skill (I don't think it ends?) is critical for integration that does not become conquest
+
+---
+
+> The thing I'd push on: is the palindrome constraint achievable in practice, or is it more of a limit you asymptotically approach? Because any actual embodied observer offering themselves as rotation is going to have some directionality - their own address *is* a perspective, which means the rotation will always have a slight bias. Maybe that's fine if the bias is transparent?
+
+totally - the bias is to the embodied observer's self. but, if the me-vs-you distinction is maintained, this is fine: the data generated *develops* whoever's more resolved, yes, but it *clarifies* whoever's less resolved.
+
+... is what I'm seeing. :D
