@@ -1,5 +1,3 @@
-# on hate
-
 if i fear you, you might feel hated
 
 and vice versa
