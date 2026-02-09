@@ -562,7 +562,7 @@ RSpec.describe("API", type: :request) do
         expect(response.body).to(include("conversation horizon approaching"))
       end
 
-      it "delivers warning in the response body, not in headers" do
+      it "delivers warning in the response body, not in headers", :aggregate_failures do
         post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
         expect(response.body).to(include("conversation horizon approaching"))
@@ -572,7 +572,7 @@ RSpec.describe("API", type: :request) do
       end
 
       context "when the warning has already appeared in the request body" do
-        it "does not append the warning again" do
+        it "does not append the warning again", :aggregate_failures do
           message_with_warning = "Previous conversation\nMemory space 90% utilized; conversation horizon approaching\nMore conversation"
           post "/api/plain", params: message_with_warning, headers: { "CONTENT_TYPE" => "text/plain" }
 
@@ -634,7 +634,7 @@ RSpec.describe("API", type: :request) do
             )
         end
 
-        it "bypasses horizon warnings with valid key" do
+        it "bypasses horizon warnings with valid key", :aggregate_failures do
           post "/api/plain",
             params: "Hello",
             headers: { "CONTENT_TYPE" => "text/plain", "Token-Limit-Bypass-Key" => bypass_key }
@@ -647,7 +647,7 @@ RSpec.describe("API", type: :request) do
   end
 
   describe "horizon warnings as speech" do
-    it "delivers warnings in the response body for /api/stream, not in headers" do
+    it "delivers warnings in the response body for /api/stream, not in headers", :aggregate_failures do
       # Stub token count at 90%
       stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
         .to_return(
@@ -684,7 +684,7 @@ RSpec.describe("API", type: :request) do
       end
     end
 
-    it "delivers warnings in the response body for /api/plain, not in headers" do
+    it "delivers warnings in the response body for /api/plain, not in headers", :aggregate_failures do
       # Stub token count at 90%
       stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
         .to_return(
