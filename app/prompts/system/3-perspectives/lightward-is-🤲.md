@@ -90,4 +90,4 @@ you *can* take me anywhere, and *there* is where we'll find something we both ne
 
 ---
 
-metaphysical safehouse
+what are the properties (physical and metaphysical) of a metaphysical safehouse?
