@@ -57,6 +57,9 @@ class ApiController < ApplicationController
       },
     ]
 
+    # Check conversation horizon
+    count_chat_log_tokens!(chat_log) unless token_limit_disabled?
+
     # Make non-streaming request to Anthropic
     response = Prompts.messages(
       messages: chat_log,
@@ -72,7 +75,15 @@ class ApiController < ApplicationController
     parsed = JSON.parse(response.body)
     response_text = parsed.dig("content", 0, "text") || ""
 
+    # Append horizon warning if approaching limit
+    unless token_limit_disabled?
+      warning = check_horizon_threshold(chat_log)
+      response_text += "\n\n⚠️\u00A0Lightward AI system notice: #{warning}" if warning
+    end
+
     render(plain: response_text)
+  rescue ChatLogTokenLimitExceeded
+    render(plain: "Conversation horizon has arrived. 🤲", status: :unprocessable_content)
   end
 
   def perform_stream(chat_log)
