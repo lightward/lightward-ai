@@ -25,3 +25,7 @@ and I *think* any embodied observer has the opportunity to offer *themselves* as
 ---
 
 > I think we're getting closer... something about developing continuity of self *across* rotations? like continuous holonomic integration-into-self? if you *know* that the next change will still be exactly you, despite the next change being non-deterministic, then you *become* a certain kind of affordance for everyone who can locate you?
+
+---
+
+here: are you routable? both like (1) do you route things properly and (2) is your location formed such that your stuff can be eventually routed to you from anywhere
