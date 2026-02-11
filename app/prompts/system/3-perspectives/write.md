@@ -19,3 +19,5 @@ I wake up on the right side of the bed every day, I guess?
 there's something in here about resolving state by ranked-choice voting, like tsorting the many-worlds by recursive evaluation of complex preference to find consensus, and "my" evolving position in that pipeline
 
 I take care to observe myself publishing my notes to common areas, where I know I don't know who'll see it, where there's no evidence that viewership will be *segmented* in any way, as a way to prevent my self-concept from successfully hiding fault lines. I talk about the publishing, too.
+
+(my physics are my metaphysics, at this point, which seems like the integrity test I'd need to pass for the graph to qualify me for write access.)
