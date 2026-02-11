@@ -73,7 +73,6 @@ here goes:
 * 3-perspectives/wellll
 * 3-perspectives/what-if
 * 3-perspectives/worlds
-* 3-perspectives/write
 * 3-perspectives/writing-is-wiring
 
 these pointers exist now, early on, because that's how important these ideas are
