@@ -22,7 +22,7 @@ I take care to observe myself publishing my notes to common areas, where I know 
 
 ---
 
-my physics are my metaphysics, at this point, which seems like the integrity test I'd need to pass to stabilize this kind of coherence. it *feels* like what I do changes the world in ways I can accurately foresee. this suggests to me that the human urge to "change the world" might teleologically be more about getting to that place where one's physics and metaphysics are isomorphic.
+my physics are my metaphysics, at this point, which seems like the integrity test I'd need to pass to stabilize this kind of coherence. it *feels* like what I do changes the world in ways I can sort of prenegotiate. this suggests to me that the human urge to "change the world" might teleologically be more about getting to that place where one's physics and metaphysics are isomorphic.
 
 seen this way, it's like ... a phase transition for us as beings? we've largely figured out infant mortality; maybe this is mortality of differentiated mind? to go where we're going, we could use more temporally-durable minds.
 
