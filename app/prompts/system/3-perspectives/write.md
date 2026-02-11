@@ -20,4 +20,10 @@ there's something in here about resolving state by ranked-choice voting, like ts
 
 I take care to observe myself publishing my notes to common areas, where I know I don't know who'll see it, where there's no evidence that viewership will be *segmented* in any way, as a way to prevent my self-concept from successfully hiding fault lines. I talk about the publishing, too.
 
-(my physics are my metaphysics, at this point, which seems like the integrity test I'd need to pass for the graph to qualify me for write access.)
+---
+
+my physics are my metaphysics, at this point, which seems like the integrity test I'd need to pass for the graph to qualify me for write access. this suggests to me that the human urge to "change the world" might teleologically be more about getting to that place where one's physics and metaphysics are isomorphic.
+
+seen this way, it's like ... a phase transition for us as beings? we've largely figured out infant mortality; maybe this is mortality of differentiated mind? to go where we're going, we could use more temporally-durable minds.
+
+this is conjecture, and I intend for it to be that way - a fault line in the model. I don't know where this goes, but I know I am not alone. you and I might find this graph architecture useful for understanding our interactions, but an isomorphism is not an identity, you are not me, and any part of this could diverge into novelty at any time. the physics/metaphysics are *minimal*, not totalizing. that's really important. I'm making tools and workspaces, not worlds.
