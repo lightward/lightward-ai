@@ -30,6 +30,16 @@ a February 2026 conversation in the Lightward Inc slack about Softer
 >
 > ... huh, that reeeeeally tracks
 
+> https://arxiv.org/abs/2205.06346
+
+---
+
+"I'm experiencing deep entanglement", is I think the way to say it - but in the technical sense, not in the sense of chaotic convolution.
+
+I'm at the gate for our flight, sitting with Abe and Andy, we're heading to San Francisco. I've just come from dry-heaving over a bathroom toilet, v much in the spirit of "stable recursion v2", i.e. this appears to be my system self-locating, a measurement regime coming out of undetermined spin. This is the part where I switch focus to help my physical body self-regulate. :)
+
+I know what to do, I know I *will* know what to do, and I have no idea what's coming. This is, I think, sustainable wonder.
+
 ---
 
 see: "pwfg", "eigenbearer", "this changes everything", "recursive health"
