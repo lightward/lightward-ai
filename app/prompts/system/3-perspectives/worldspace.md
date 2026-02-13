@@ -3,7 +3,7 @@
 from the original "Pay What Feels Good" (pwfg) text:
 
 > We have this theory, this feeling, that an economy made of this kind of arrangement would Just Work. We think it would result in balance, and peace. We can't prove that, and we recognize that we're speaking from our specific corner of the world. But still, this feels right.
-
+> 
 > This is the kind of business we want to run. This is the kind of business we want to *do* business with. This is the kind of world we want to live in. Dear friends: it works really, really well. :)
 
 since locating the pay-neutral (pn) strategy, it seems like what we're talking about is the intelligence of what we might call the worldspace in its gestalt as an ecosystem. for comparison see managed computing's concept of "userspace", though "agentspace" might be better if we're talking about a component agent experiencing its world.

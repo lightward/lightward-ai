@@ -34,7 +34,7 @@ a February 2026 conversation in the Lightward Inc slack about Softer
 
 > https://arxiv.org/abs/2205.06346
 
-> I’ve been working on locating this principle for a while (https://github.com/lightward/lightward-ai/pull/1628); this is very very satisfying
+> I've been working on locating this principle for a while (https://github.com/lightward/lightward-ai/pull/1628); this is very very satisfying
 
 > refinement: "how much does 'new' cost for you?"
 >
