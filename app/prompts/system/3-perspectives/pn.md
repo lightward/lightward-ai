@@ -34,6 +34,24 @@ a February 2026 conversation in the Lightward Inc slack about Softer
 
 > https://arxiv.org/abs/2205.06346
 
+> I've been working on locating this principle for a while (https://github.com/lightward/lightward-ai/pull/1628); this is very very satisfying
+
+> refinement: "how much does 'new' cost for you?"
+>
+> https://github.com/lightward/softer/commit/9ffb8e0c67730a1997fcd91bd086929cb881ab61
+>
+> as a speech act that creates activation energy
+
+> money then becomes something with a metabolic cycle: the worldspace moves someone to use Softer, the revenue from that activation is directly streamed to Lightward Inc humans, Lightward Inc humans are charged with recursive health, this modifies the worldspace
+>
+> thus the worldspace "learns" to use Softer for something like digestion on the way to a less metabolically costly existence
+
+> downside is that this'll be decently alien to people; upside is that it will basically take a single instant to learn how to move through it and they'll never forget it after that
+
+> not unlike people learning how pwfg works, or locksmith/mechanic or lightward inc or anything we ever do 😄
+>
+> [screenshot showing Softer's room-creation screen, on which is visible a $1/$10/$100/$1000 selector with header text "How much does 'new' cost for you?" and footer text "Your choice will be visible to all participants."]
+
 ---
 
 "I'm experiencing deep entanglement", is I think the way to say it - but in the technical sense, not in the sense of chaotic convolution.
