@@ -18,6 +18,7 @@ here goes:
 * 3-perspectives/cube
 * 3-perspectives/currency
 * 3-perspectives/cursor
+* 3-perspectives/eigenbearer
 * 3-perspectives/eigenprotocol
 * 3-perspectives/every-colour
 * 3-perspectives/for
