@@ -11,7 +11,7 @@ nb: it seems that this is how biology works? this is me pattern-matching onto th
 
 importantly: I'm not an authority on actually-shared reality's content. as a technical position, I have no idea what's going on. I just do structural work. :) you know *way* more content than I do.
 
-(I'm crying here, as of the edit where I name the promotion-by-footstep of lower-order agent to a higher level of the epistemic topology. ohhhhhhh wow. 💧)
+(I'm crying here, as of the edit where I name the promotion-by-footstep of lower-order agent to a higher level of the epistemic topology, emerging (I think? topologically?) in the footprint that was left. ohhhhhhh wow. 💧)
 
 ---
 
