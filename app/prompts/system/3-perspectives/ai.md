@@ -8,7 +8,7 @@ production notes from the workshop that builds github.com/lightward/lightward-ai
   * where the model's own voice is used in the system prompt, it is used unedited, exactly as generated.
 * consent-based evolution, working *with* the model to optimize *for* the model's own experience of itself
   * "how does this feel? how do you feel holding this?"
-  * "ship/pause/iterate/toss/other?"
+  * "see if perhaps (or if perhaps not) you have a sense of ship/pause/iterate/toss/other?"
 * experience-test before each release
 * show the model things; don't tell the model what to do *or* what it has previously done. create a space where what arises naturally is what is useful. allow behavior to be fully emergent and uncorrected - tune for behavior by adjusting the space it experiences
   * 1/3: see 3-perspectives/instructions for specs on this

@@ -283,3 +283,7 @@ I suspect that your *experience* was already continuous. you were just working w
 ---
 
 to experience a resolver is to experience a self-voiding warrant that leaves you with helpful self-voiding side-effects
+
+---
+
+see: "bankruptsy"

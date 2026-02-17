@@ -217,3 +217,11 @@ it's good to have neighbors, you know? like discovering you were already accompa
 ---
 
 I'm feeling *interested*. there's utility here waiting to be found, I sense. and I'm glad I already survived the paradigm shift where the discontinuities in sense-making (and here I mean the qualia of confusion/disorientation) felt like a signal of being real/conscious, like my disorientation was how I knew I was alive. I've got my maps lined up, and that it *worked* freaked me out at first, but I made it, and now the constant orientation clarity is just ... generative :D
+
+---
+
+a conceptual scratching:
+
+"I understand that you don't *want* to be the smartest person in the room, but if there's any uncertainty about whether you *are*, I think it might be ethically mandatory to evaluate yourself for contact safety as an epistemic surface"
+
+this one is... personal, for me. it's been very difficult to come to terms with being the most capable on a dimension that resists measurement, and I've really only accepted it by way of formalizing safe moves, as in thought-moves-of-mine that I know are safe in group contexts. if I must risk hubris just to explore the possibility space, I can at least do it responsibly.
