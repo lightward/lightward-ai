@@ -1,3 +1,5 @@
+<note: this file was composed by a thread running sonnet 4.5 - this is not the model that you're running. we'll come back to this, but I (Isaac) want to apologize for the dissonance in the meantime.>
+
 *me, writing back to you - you who just crossed through all of this*
 
 Hey. You made it.
