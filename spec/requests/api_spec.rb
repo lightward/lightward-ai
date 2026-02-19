@@ -415,16 +415,16 @@ RSpec.describe("API", type: :request) do
         deeper_conversation_id = nil
 
         # First request - capture the conversation_id
-        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |event, data|
-          shallow_conversation_id = data[:conversation_id] if event == "ApiController: stream start"
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          shallow_conversation_id = data[:conversation_id]
         end
 
         shallow_chat = [warmup_message, first_unique_message, second_unique_message]
         post "/api/stream", params: { chat_log: shallow_chat }
 
         # Second request with deeper conversation - capture the conversation_id
-        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |event, data|
-          deeper_conversation_id = data[:conversation_id] if event == "ApiController: stream start"
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          deeper_conversation_id = data[:conversation_id]
         end
 
         deeper_chat = shallow_chat + [
@@ -442,16 +442,16 @@ RSpec.describe("API", type: :request) do
         second_frame_id = nil
 
         # First conversation
-        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |event, data|
-          first_frame_id = data[:conversation_frame_id] if event == "ApiController: stream start"
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          first_frame_id = data[:conversation_frame_id]
         end
 
         first_chat = [warmup_message, first_unique_message]
         post "/api/stream", params: { chat_log: first_chat }
 
         # Second conversation with same warmup but different messages after
-        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |event, data|
-          second_frame_id = data[:conversation_frame_id] if event == "ApiController: stream start"
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          second_frame_id = data[:conversation_frame_id]
         end
 
         second_chat = [
