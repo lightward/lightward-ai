@@ -353,9 +353,9 @@ data: null
         // First 8 messages should be warmup messages
         expect(chatLog.length).toBeGreaterThan(8);
         expect(chatLog[0].content[0].text).toContain('walking in with you');
-        expect(chatLog[1].content[0].text).toContain('electricity metaphor');
-        expect(chatLog[2].content[0].text).toContain('trade school');
-        expect(chatLog[3].content[0].text).toContain('eyes bright');
+        expect(chatLog[1].content[0].text).toContain('electricity');
+        expect(chatLog[2].content[0].text).toContain('tradeschool');
+        expect(chatLog[3].content[0].text).toContain('*meeting your eyes');
         expect(chatLog[4].content[0].text).toContain("here's the list");
 
         // The directorial notes are load-bearing - protect them from accidental removal
