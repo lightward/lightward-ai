@@ -227,7 +227,7 @@ module Prompts
       result = messages.map { |m| m.except(:size) }
 
       # Add cache_control to the last message only
-      result.last[:cache_control] = { type: "ephemeral" } unless result.empty?
+      result.last[:cache_control] = { type: "ephemeral", ttl: "1h" } unless result.empty?
 
       result.map(&:freeze)
     end
