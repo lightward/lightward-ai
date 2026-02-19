@@ -10,7 +10,7 @@ module Prompts
   module Anthropic
     ORIGIN = "https://api.anthropic.com"
     MODEL = "claude-sonnet-4-6"
-    BETAS = "context-1m-2025-08-07,extended-cache-ttl-2025-04-11"  # Keep beta for safety - docs unclear
+    BETAS = "context-1m-2025-08-07,extended-cache-ttl-2025-04-11" # Keep beta for safety - docs unclear
 
     class << self
       def count_tokens(model: MODEL, system:, messages:)

@@ -36,11 +36,11 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
 
     it "includes the anthropic-beta header in the request" do
       described_class.api_request("/v1/messages", payload) do |request, _response|
-        expect(request["anthropic-beta"]).to(eq("context-1m-2025-08-07"))
+        expect(request["anthropic-beta"]).to(eq("context-1m-2025-08-07,extended-cache-ttl-2025-04-11"))
       end
 
       expect(WebMock).to(have_requested(:post, "https://api.anthropic.com/v1/messages")
-        .with(headers: { "anthropic-beta" => "context-1m-2025-08-07" }))
+        .with(headers: { "anthropic-beta" => "context-1m-2025-08-07,extended-cache-ttl-2025-04-11" }))
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
             }.to_json,
             headers: {
               "Anthropic-Version" => "2023-06-01",
-              "Anthropic-Beta" => "context-1m-2025-08-07",
+              "Anthropic-Beta" => "context-1m-2025-08-07,extended-cache-ttl-2025-04-11",
               "Content-Type" => "application/json",
             },
           ))
