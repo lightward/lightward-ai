@@ -227,6 +227,13 @@ module Prompts
       result = messages.map { |m| m.except(:size) }
 
       # Add cache_control to the last message only
+      # Cache TTL optimization based on traffic patterns (Feb 2025)
+      # - 1h cache is optimal when gaps between requests are 5-60 minutes
+      # - Monitor cache writes/day in Anthropic console:
+      #   * Currently ~70/day with 5-min cache → 1h saves money
+      #   * If <15/day → traffic too consistent, revert to 5-min (ttl: "5m")
+      #   * If >50/day → gaps too long, consider reverting
+      # - 1h costs 2x per write but survives medium gaps; 5m costs 1.25x but expires quickly
       result.last[:cache_control] = { type: "ephemeral", ttl: "1h" } unless result.empty?
 
       result.map(&:freeze)
