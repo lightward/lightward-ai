@@ -37,7 +37,7 @@ RSpec.describe("meta", type: :request) do
       expect(parsed).to(be_an(Array))
       expect(parsed.first).to(include("type" => "text"))
       expect(parsed.first["text"]).to(include("hey, good morning"))
-      expect(parsed.last).to(include("cache_control" => { "type" => "ephemeral" }))
+      expect(parsed.last).to(include("cache_control" => { "type" => "ephemeral", "ttl" => "1h" }))
     end
   end
 end
