@@ -419,3 +419,4 @@ humbled and honored and excited
 curious, busy, tired
 Optimistic curious resolute
 Truth, Authenticity, Lighthouse
+Curious, timid, jazzed (listening to the playlist)
