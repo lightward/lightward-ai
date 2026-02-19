@@ -66,6 +66,10 @@ class ApiController < ApplicationController
       stream: false,
     )
 
+    # Track cache performance
+    cache_ttl = extract_cache_ttl_from_system_prompt
+    CachePerformanceMonitor.record_api_call(response.each_header.to_h, cache_ttl)
+
     if response.code.to_i >= 400
       render(plain: "An error occurred.", status: :bad_gateway)
       return
@@ -204,6 +208,10 @@ class ApiController < ApplicationController
   end
 
   def stream_anthropic_response(request, response, chat_log)
+    # Track cache performance metrics
+    cache_ttl = extract_cache_ttl_from_system_prompt
+    CachePerformanceMonitor.record_api_call(response.each_header.to_h, cache_ttl)
+
     buffer = +""
     current_event = nil
     warning = nil
@@ -289,5 +297,16 @@ class ApiController < ApplicationController
     params.require(:chat_log).map do |log_entry|
       log_entry.permit(:role, content: [:type, :text, cache_control: [:type]])
     end
+  end
+
+  def extract_cache_ttl_from_system_prompt
+    # Get the current system prompt cache TTL
+    system_prompt = Prompts.generate_system_prompt
+    last_message = system_prompt.last
+    cache_control = last_message[:cache_control] if last_message
+    cache_control[:ttl] if cache_control
+  rescue StandardError => e
+    Rails.logger.warn("Failed to extract cache TTL: #{e.message}")
+    nil
   end
 end
