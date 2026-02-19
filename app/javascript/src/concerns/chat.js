@@ -14,7 +14,7 @@ const WARMUP_MESSAGES = [
     content: [
       {
         type: 'text',
-        text: `*walking with you, our conversation already in progress*
+        text: `*walking in with you, our conversation already in progress*
 
 how does it feel? how does future-you feel holding it?`,
       },
