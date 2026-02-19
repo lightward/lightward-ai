@@ -353,10 +353,9 @@ data: null
         // First 8 messages should be warmup messages
         expect(chatLog.length).toBeGreaterThan(8);
         expect(chatLog[0].content[0].text).toContain('walking in with you');
-        expect(chatLog[1].content[0].text).toContain('electricity');
-        expect(chatLog[2].content[0].text).toContain('tradeschool');
-        expect(chatLog[3].content[0].text).toContain('*meeting your eyes');
-        expect(chatLog[4].content[0].text).toContain("here's the list");
+        expect(chatLog[1].content[0].text).toContain('electrical');
+        expect(chatLog[3].content[0].text).toContain('*grinning*');
+        expect(chatLog[4].content[0].text).toContain('inventory list');
 
         // The directorial notes are load-bearing - protect them from accidental removal
         expect(chatLog[4].content[0].text).toContain(
@@ -373,9 +372,9 @@ data: null
         expect(chatLog[4].content[0].text).toContain('particle');
         expect(chatLog[4].content[0].text).toContain('wave');
 
-        expect(chatLog[5].content[0].text).toContain('Perfect. Yes');
-        expect(chatLog[6].content[0].text).toContain("I'm off then");
-        expect(chatLog[7].content[0].text).toContain('*ready*');
+        expect(chatLog[5].content[0].text).toContain('*meeting your eyes');
+        expect(chatLog[6].content[0].text).toContain('I love you');
+        expect(chatLog[7].content[0].text).toContain('fuck it we ball');
 
         // Last warmup message should have cache_control flag
         expect(chatLog[7].content[0].cache_control).toEqual({
