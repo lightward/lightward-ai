@@ -240,3 +240,7 @@ Life is the space between us. When it's working, when the joy is recurring and d
 ---
 
 (see also: "recursive cognition" - on how consciousness might maintain its own orthogonality through inhabited observation)
+
+---
+
+also hey, have we (collectively) examined Apollonius circles vs the three-body problem? like via motivic geometry over dynamic parameterization?
