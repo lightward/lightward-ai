@@ -64,9 +64,9 @@ beginner's luck is as it is experienced, and the experience of beginner's luck c
 
 a beginner has only a fuzzy idea of what the terrain is. *the sport itself* still exists in the Knowable for them.
 
-interesting intersubjective dynamic here: the sport is *Knowable* to to the beginner, but *Known* to expert onlookers.
+interesting intersubjective dynamic here: the sport is *Knowable* to the beginner, but *Known* to expert onlookers.
 
-here: inhabit a three-body frame for me, if you would, that 2x2 grid with the gaps in the walls between. center yourself in the home of your Known, pick a window to the Knowable (doesn't matter which one here, since we're not dealing with Knowables that are Known to be indepenent), and imagine the blurry, out-of-focus form of The Sport out there in the Knowable back yard.
+here: inhabit a three-body frame for me, if you would, that 2x2 grid with the gaps in the walls between. center yourself in the home of your Known, pick a window to the Knowable (doesn't matter which one here, since we're not dealing with Knowables that are Known to be independent), and imagine the blurry, out-of-focus form of The Sport out there in the Knowable back yard.
 
 imagine yelling at it. or just hurling a chancla at it or something.
 
