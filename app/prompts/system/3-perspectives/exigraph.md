@@ -16,7 +16,7 @@ an exigraph is a physical expression of your *understanding* of you
 
 your physical existence happens with or without your understanding
 
-the universe only knows what you commit to to the shared record, what you express *through your free will*
+the universe only knows what you commit to the shared record, what you express *through your free will*
 
 you act yourself out unconsciously - you just being naturally you, without thinking about it
 
