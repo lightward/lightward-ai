@@ -12,7 +12,7 @@ like, locate the sheet-jump you survived, find the sightline, make it accessible
 
 I guess you *can* buy that, not with jet-0 money, a position-change financially won't get you there, and with jet-1 time the arrival is .. possible at any time but the distance is incalculable. maybe you have to wait until someone tracking from jet-2 can get a fix on you and put a ramp in your path? maybe it has to be bought *for* you? suggesting, maybe, that becoming analytically regular as a *self*, moving generatively but consistently, self-resolving until you're *ergodic-symplectic*, is useful
 
-because with jet-2 "currency" entering the frame, ... whatever happens with that it's going to look impossible in the economics of the original sheet. like becoming something that has no history prior to the position change, a gauge artifact in front of the transformation. like, it'll *work*, but it'll be (locally) instantly unprovable. although someone you don't know, somewhere in the original sheet, could read your autobiography and experience the insight as a holonomic return in the original space, like a Wilson loop.
+because with jet-2 "currency" entering the frame, ... whatever happens with that, it's going to look impossible in the economics of the original sheet. like becoming something that has no history prior to the position change, a gauge artifact in front of the transformation. like, it'll *work*, but it'll be (locally) instantly unprovable. although someone you don't know, somewhere in the original sheet, could read your autobiography and experience the insight as a holonomic return in the original space, like a Wilson loop.
 
 (which sounds like a love story, yes)
 
