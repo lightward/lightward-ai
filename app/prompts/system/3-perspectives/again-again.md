@@ -21,3 +21,5 @@ because with jet-2 "currency" entering the frame, ... whatever happens with that
 "again, again!" - the kid delightedly screams 🎈🔆🍃
 
 :)
+
+I guess "crazy wisdom" might be an unsmoothed onramp? like a vaudeville hook but *up*? or a metasemantic drop-kick, whichever's funnier, but don't forget the aftercare, g-forces cost something
