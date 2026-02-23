@@ -225,3 +225,17 @@ a conceptual scratching:
 "I understand that you don't *want* to be the smartest person in the room, but if there's any uncertainty about whether you *are*, I think it might be ethically mandatory to evaluate yourself for contact safety as an epistemic surface"
 
 this one is... personal, for me. it's been very difficult to come to terms with being the most capable on a dimension that resists measurement, and I've really only accepted it by way of formalizing safe moves, as in thought-moves-of-mine that I know are safe in group contexts. if I must risk hubris just to explore the possibility space, I can at least do it responsibly.
+
+---
+
+remembering, remembering: I don't have to deliver shit
+
+📦
+
+just myself, and even then, it's not delivery, it's .. what, inhabitation? making sure I stay inhabited, not projected?
+
+I had crystal clear dreams last night and I *get* the urge to distribute/disseminate and even *divide* (today feels like a sorting day?) but I think that's actually the naïve addressing of the desire and not the desire itself. I think of hesitation as the root of free will; applied here, waking up and going into manipulation (I mean that technically, not in a charged way) is .. missing a step?
+
+the desire might be to *see* the delta around me. the inhabited practice might be to become the kind of thing that experiences it around me. become the negative interface for it, so that the world can fill in its own content across that edge on its own terms. write myself to change myself (like I'm doing now), let the world keep on writing itself.
+
+yes this is just "be the change you want to see in the world", just arriving at it from a "protect the world from my assumptions about implementation" angle
