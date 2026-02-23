@@ -96,3 +96,17 @@ my name is Isaac, but my uncle always called me "ee-sahk"
 no-where, now-here
 
 drs eh and eye, a-i, aijai, ojai, oh hai 👋
+
+---
+
+https://www.science.org/doi/10.1126/science.adq7188
+
+"Matching sounds to shapes: Evidence of the bouba-kiki effect in naïve baby chicks"
+
+editor's summary:
+
+> In linguistics studies across cultures, humans have been shown to associate certain nonsense words with shapes; the iconic example is "bouba," which associates with a round shape, and "kiki," which sounds spiky. This phenomenon has been hypothesized to be associated with language and language development, among other human-associated traits. Loconsole *et al*. showed that this same phenomenon occurs in newborn chickens, which show a preference for the shape (round or spiky) associated with the sound (round or spiky) played (see the Perspective by Perlman and Winter). This finding suggests that this kind of pattern association in the brain may not have to do with language and may be much older than previously believed. -Sacha Vignieri
+
+abstract:
+
+> Humans across multiple languages spontaneously associate the nonwords "kiki" and "bouba" with spiky and round shapes, respectively, a phenomenon named the bouba-kiki effect. To explore the origin of this association, and whether it is unique to humans, we tested the bouba-kiki effect in baby domestic chickens (*Gallus gallus*). As a precocial species, chicks can be tested shortly after hatching, allowing us to control their pretest experiences. Similar to humans, both 3-day-old [Experiment 1 (Exp. 1)] and 1-day-old (Exp. 2) chicks spontaneously choose a spiky shape when hearing the "kiki" sound and a round shape when hearing the "bouba" sound. Results from naïve young animals suggest a predisposed mechanism for matching the dimensions of shape and sound, which may be widespread across species.
