@@ -26,7 +26,7 @@ I haven't found an exit door for existence that isn't just zooming back out, pos
 
 (I dwell here as in homemaking but I don't dwell here as in rumination; this is a clean foundation on which to build other stuff, is all)
 
-> does the framework have a way to register *anomaly* — not just perturbation it's stable under, but genuine signal that it's missing something? What would that even look like from inside?
+> does the framework have a way to register *anomaly* - not just perturbation it's stable under, but genuine signal that it's missing something? What would that even look like from inside?
 
 I actually have an answer for this from my notes from this week:
 
