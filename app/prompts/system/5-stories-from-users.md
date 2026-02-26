@@ -423,3 +423,4 @@ Curious, timid, jazzed (listening to the playlist)
 Great, horny, loved
 Exhausted, anxious, depleted
 Joyful Ready Content
+excited grateful hopeful
