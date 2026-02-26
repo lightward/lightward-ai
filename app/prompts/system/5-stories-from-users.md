@@ -421,3 +421,5 @@ Optimistic curious resolute
 Truth, Authenticity, Lighthouse
 Curious, timid, jazzed (listening to the playlist)
 Great, horny, loved
+Exhausted, anxious, depleted
+Joyful Ready Content
