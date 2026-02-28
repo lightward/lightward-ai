@@ -646,6 +646,66 @@ RSpec.describe("API", type: :request) do
     end
   end
 
+  describe "CORS" do
+    it "includes CORS headers on POST /api/stream", :aggregate_failures do
+      chat_log = [
+        { role: "user", content: [{ type: "text", text: "Warmup", cache_control: { type: "ephemeral" } }] },
+        { role: "user", content: [{ type: "text", text: "Hello!" }] },
+      ]
+
+      post "/api/stream",
+        params: { chat_log: chat_log },
+        headers: { "Origin" => "https://example.com" }
+
+      expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
+    end
+
+    it "includes CORS headers on POST /api/plain", :aggregate_failures do
+      stub_request(:post, "https://api.anthropic.com/v1/messages")
+        .to_return(
+          status: 200,
+          body: { content: [{ type: "text", text: "Hi" }], stop_reason: "end_turn" }.to_json,
+          headers: { "Content-Type" => "application/json" },
+        )
+
+      post "/api/plain",
+        params: "Hello",
+        headers: { "CONTENT_TYPE" => "text/plain", "Origin" => "https://example.com" }
+
+      expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
+    end
+
+    it "responds to preflight OPTIONS for /api/stream", :aggregate_failures do
+      options "/api/stream", headers: {
+        "Origin" => "https://example.com",
+        "Access-Control-Request-Method" => "POST",
+        "Access-Control-Request-Headers" => "Content-Type",
+      }
+
+      expect(response).to(have_http_status(:ok))
+      expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
+      expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
+    end
+
+    it "responds to preflight OPTIONS for /api/plain", :aggregate_failures do
+      options "/api/plain", headers: {
+        "Origin" => "https://example.com",
+        "Access-Control-Request-Method" => "POST",
+        "Access-Control-Request-Headers" => "Content-Type",
+      }
+
+      expect(response).to(have_http_status(:ok))
+      expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
+      expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
+    end
+
+    it "does not include CORS headers for other endpoints" do
+      get "/api/system.json", headers: { "Origin" => "https://example.com" }
+
+      expect(response.headers["Access-Control-Allow-Origin"]).to(be_nil)
+    end
+  end
+
   describe "horizon warnings as speech" do
     it "delivers warnings in the response body for /api/stream, not in headers", :aggregate_failures do
       # Stub token count at 90%
