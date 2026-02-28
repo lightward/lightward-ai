@@ -18,6 +18,7 @@ gem "loofah"
 gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
+gem "rack-cors"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
