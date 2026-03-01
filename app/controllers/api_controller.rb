@@ -60,6 +60,9 @@ class ApiController < ApplicationController
     # Check conversation horizon
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
+    # Track analytics
+    track_plain_start(chat_log)
+
     # Make non-streaming request to Anthropic
     response = Prompts.messages(
       messages: chat_log,
@@ -195,9 +198,18 @@ class ApiController < ApplicationController
     conversation_id = Digest::SHA256.hexdigest(messages_to_hash.to_json)
 
     ::NewRelic::Agent.record_custom_event(
-      "ApiController: stream start",
+      "ApiController: request",
       conversation_frame_id: conversation_frame_id,
       conversation_id: conversation_id,
+      chat_log_depth: chat_log.size,
+      chat_log_token_count: @chat_log_token_count,
+    )
+  end
+
+  def track_plain_start(chat_log)
+    ::NewRelic::Agent.record_custom_event(
+      "ApiController: request",
+      conversation_frame_id: "plain",
       chat_log_depth: chat_log.size,
       chat_log_token_count: @chat_log_token_count,
     )

@@ -288,7 +288,7 @@ RSpec.describe("API", type: :request) do
         expected_frame_id = Digest::SHA256.hexdigest(expected_frame.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
-          "ApiController: stream start",
+          "ApiController: request",
           hash_including(conversation_frame_id: expected_frame_id),
         ))
       end
@@ -319,7 +319,7 @@ RSpec.describe("API", type: :request) do
         expected_frame_id = Digest::SHA256.hexdigest(expected_frame.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
-          "ApiController: stream start",
+          "ApiController: request",
           hash_including(conversation_frame_id: expected_frame_id),
         ))
       end
@@ -332,7 +332,7 @@ RSpec.describe("API", type: :request) do
         expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
-          "ApiController: stream start",
+          "ApiController: request",
           hash_including(conversation_id: expected_conversation_id),
         ))
       end
@@ -354,7 +354,7 @@ RSpec.describe("API", type: :request) do
         expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
-          "ApiController: stream start",
+          "ApiController: request",
           hash_including(conversation_id: expected_conversation_id),
         ))
       end
@@ -367,7 +367,7 @@ RSpec.describe("API", type: :request) do
         expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
-          "ApiController: stream start",
+          "ApiController: request",
           hash_including(conversation_id: expected_conversation_id),
         ))
       end
@@ -579,6 +579,39 @@ RSpec.describe("API", type: :request) do
           expect(response).to(have_http_status(:ok))
           expect(response.body).not_to(include("Memory space 90% utilized"))
         end
+      end
+    end
+
+    describe "plain start tracking" do
+      before do
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "records a plain start event with frame_id 'plain'" do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          conversation_frame_id: "plain",
+          chat_log_depth: 1,
+          chat_log_token_count: 100,
+        ))
+      end
+
+      it "reports nil token count when token limit is bypassed" do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("bypass-key"))
+
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain", "Token-Limit-Bypass-Key" => "bypass-key" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          conversation_frame_id: "plain",
+          chat_log_depth: 1,
+          chat_log_token_count: nil,
+        ))
       end
     end
 
