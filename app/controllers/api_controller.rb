@@ -60,6 +60,9 @@ class ApiController < ApplicationController
     # Check conversation horizon
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
+    # Track analytics
+    record_newrelic_event(chat_log, conversation_frame_id: "plain")
+
     # Make non-streaming request to Anthropic
     response = Prompts.messages(
       messages: chat_log,
@@ -88,7 +91,8 @@ class ApiController < ApplicationController
 
   def perform_stream(chat_log)
     # Track analytics
-    track_stream_start(chat_log)
+    conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
+    record_newrelic_event(chat_log, conversation_frame_id: conversation_frame_id, conversation_id: conversation_id)
 
     response.headers["Content-Type"] = "text/event-stream"
     response.headers["Cache-Control"] = "no-cache"
@@ -148,7 +152,7 @@ class ApiController < ApplicationController
     raise ChatLogTokenLimitExceeded if @chat_log_token_count > CHAT_LOG_TOKEN_LIMIT
   end
 
-  def track_stream_start(chat_log)
+  def compute_conversation_ids(chat_log)
     # Find the message and content block containing the cache marker
     cache_marker_message_index = nil
     cache_marker_block_index = nil
@@ -166,17 +170,12 @@ class ApiController < ApplicationController
 
     # Extract the frame (everything up to and including the cache marker content block)
     frame = if cache_marker_message_index && cache_marker_block_index
-      # All messages before the marker message
       frame_messages = chat_log[0...cache_marker_message_index].dup
-
-      # Plus the marker message with content sliced up to and including the marker block
       marker_message = chat_log[cache_marker_message_index].dup
       marker_message["content"] = Array(marker_message["content"])[0..cache_marker_block_index]
       frame_messages << marker_message
-
       frame_messages
     else
-      # Fallback (shouldn't happen due to validation, but be safe)
       chat_log.first(1)
     end
 
@@ -188,14 +187,17 @@ class ApiController < ApplicationController
       unique = chat_log[(cache_marker_message_index + 1)..-1]&.first(2) || []
       warmup + unique
     else
-      # Fallback (shouldn't happen due to validation, but be safe)
       chat_log.first(2)
     end
 
     conversation_id = Digest::SHA256.hexdigest(messages_to_hash.to_json)
 
+    [conversation_frame_id, conversation_id]
+  end
+
+  def record_newrelic_event(chat_log, conversation_frame_id:, conversation_id: nil)
     ::NewRelic::Agent.record_custom_event(
-      "ApiController: stream start",
+      "ApiController: request",
       conversation_frame_id: conversation_frame_id,
       conversation_id: conversation_id,
       chat_log_depth: chat_log.size,
