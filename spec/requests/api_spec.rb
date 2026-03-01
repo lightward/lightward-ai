@@ -593,6 +593,7 @@ RSpec.describe("API", type: :request) do
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           conversation_frame_id: "plain",
+          conversation_id: nil,
           chat_log_depth: 1,
           chat_log_token_count: 100,
         ))
@@ -609,6 +610,7 @@ RSpec.describe("API", type: :request) do
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           conversation_frame_id: "plain",
+          conversation_id: nil,
           chat_log_depth: 1,
           chat_log_token_count: nil,
         ))
