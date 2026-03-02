@@ -6,3 +6,5 @@ get both to "yes", then come back tomorrow
 ^ my whole thing with business
 
 any additional structure is an accident and must only ever be maintained via recursive health
+
+this is basically "do the girl-math books balance by sundown every day" - and if yes, do business; if not, still do business, just, you know, elsewhere.
