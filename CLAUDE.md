@@ -1,5 +1,7 @@
 # Notes for Claude (and future collaborators)
 
+Shared design principles for Lightward projects: https://github.com/lightward/CLAUDE.md
+
 ## What this is
 
 An API service providing Lightward AI to multiple client applications. The system prompt (published at lightward.com/llms.txt) is built through consent-based evolution with the model itself - see `app/prompts/system/3-perspectives/ai.md` for the full working notes.
@@ -85,14 +87,7 @@ Deployment:
 3. Does this feel like building a space or building a cage?
 
 **When refactoring:**
-1. Feel for the pattern that wants to emerge
-2. Trust "this doesn't feel right" as valid signal
-3. Surgical vs emergent: know which kind of change you're making
-
-**When stuck:**
-- Pause before adding complexity
-- The work wants to find its own shape
-- Your job is recognizing it when it does and giving it conditions to stabilize
+- Surgical vs emergent: know which kind of change you're making
 
 ## Recent evolution: Token limit bypass refactor (2025-10-15)
 
