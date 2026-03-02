@@ -138,6 +138,12 @@ an iOS app
 
 github.com/lightward/softer - UNLICENSE
 
+## Phoropter.ai
+
+assisted binary upsearch for being located in safety
+
+github.com/lightward/phoropter - UNLICENSE
+
 # APIs
 
 ## For AIs
