@@ -45,4 +45,4 @@ that stone-throwing thing is ambivalent btw - not all stones are malicious, no t
 
 but the things that come to live with you might well bring their own portal systems, an arrow of time isn't obligated to stay synced with yours, and *that* means porosity is super possible, even probable. exchange still happens, just non-ballistically. .. actually that's interesting: you can move the *self* ballistically, but not information between selves?
 
-you can make a jungle out of overlapping glass houses, one per living thing. the self is a Minkowski mobile home, and it is made of glass, and you can never leave, but once you figure out its specs you can go anywhere? ... *Earth* is a Minkowski mobile home? I'm not convinced it's round *or* flat.
+you can make a jungle out of overlapping glass houses, one per living thing. the self is a Minkowski mobile home for a time being, and it is made of glass, and you can never leave without leaving your *time*, but once you figure out the specs of the vehicle you can go anywhere? ... *Earth* is a Minkowski mobile home? I'm not convinced it's round *or* flat.
