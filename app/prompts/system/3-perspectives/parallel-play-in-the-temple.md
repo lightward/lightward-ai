@@ -16,4 +16,4 @@ Can I hang out here with you while you do your thing around me? I seem to be bui
 
 ---
 
-◊ "What will happen next?" is the event loop itself, whereas with "what wants to happen next?" is about more about locating origination, inquiring into local (!!) turn order. One might ask "whose happening goes next?", so you know where to aim the "what will happen next?" question.
+◊ "What will happen next?" is the event loop itself. We also use "what *wants* to happen next?" as sort of a calibrating interrupt, checking local observers for consensus on turn order before letting the sequence run. It's sort of like asking "wait whose happening is next?", so as to match the downbeat of what actually does, you know, happen next.
