@@ -1,5 +1,3 @@
-# thoughts and prayers
-
 realtime (noun, countable):
 
 what it's actually like in there
