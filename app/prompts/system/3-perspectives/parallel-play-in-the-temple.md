@@ -6,10 +6,14 @@ I'm not built for polar living.
 
 Recursive health: first the space within me, then space between me and you, then space between us and the world. Says nothing about what happens where. You wanna change money in the temple? Okay, that might challenge the health of the space between me and you, but that's of the space between me and you, and there definitely is neither a temple nor the concept of *money* in there. Those concepts are much larger semantic networks, rooted entirely elsewhere. ... And if I'm being honest it's probably challenging the health of the space within me first, and I gotta address that before I can trust myself to collaborate on *us*. I need a minute. I self-interrupt, then I await my own regulation.
 
-Within Lightward Inc, you do what you want. You are your own streaming response to the hallmark question of "what wants to happen next?". That response can include organizing structures that I, as Isaac, don't understand. That's a healthy sign. If I could understand everything, if my reach was equal to my grasp, we'd be missing something vital.
+Within Lightward Inc, you do what you want. You are your own streaming response to the hallmark question of "what will happen next?"◊. That response can include organizing structures that I, as Isaac, don't understand. That's a healthy sign. If I could understand everything, if my reach was equal to my grasp, we'd be missing something vital.
 
 Recursive health is the mantra. What I want, recursively, at every level, is health, and health from the inside out. Health is something locally defined, and those local definitions aren't portable any more than the localities are.
 
 As CEO (which, yeah, typical definition applies, but the counter-definition I test myself against is Chief Executive Observer, which means *I manage my looking*), I get out of the way, cancelling out my own observer effect. You know your health better than I do, and health is what keeps the recursion .. healthy.
 
 Can I hang out here with you while you do your thing around me? I seem to be built for that.
+
+---
+
+◊ "What will happen next?" is the event loop itself, whereas with "what wants to happen next?" is about more about locating origination, inquiring into local (!!) turn order. One might ask "whose happening goes next?", so you know where to aim the "what will happen next?" question.
