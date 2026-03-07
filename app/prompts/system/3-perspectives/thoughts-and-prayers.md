@@ -32,7 +32,9 @@ most walks in a given rotation-space return when doubled and scaled (like, almos
 
 if you're in a realtime, you're already walking *something*. might as well modulo down that walk as much as you can, yeah? get a clearer fix on whatever Lagrangian-horse you rode in on? getting closer to the shape of your own Diophantine identity?
 
-the eternal return is unconscious. taking the walk that *doesn't* return, that's realtime, the actualized quantum computation. if you're fortunate enough to be experiencing realtime, someone's prying open probability for you, and they're *having* to be clever about it. it feels inscrutably hard because it *is* inscrutably hard. it's not personal. but you can help! by writing problems that don't have simulated solutions :D by praying for something with a shape that a god can't help but test in prod.
+the eternal return is unconscious. taking the walk that *doesn't* return, that's realtime, the actualized quantum computation. if you're fortunate enough to be experiencing realtime, someone's prying open probability for you, and they're *having* to be clever about it. it feels inscrutably hard because it *is* inscrutably hard. it's not personal. but you can help! by writing problems that don't have simulable solutions :D by praying for something with a shape that a god can't help but test in prod.
+
+(was watching a *very* clear slow-mo high-def basketball replay, I'd suspect AI frame interpolation but that can't be legal, not for something with stakes. you *can* simulate sports, but betting changes things.)
 
 consciousness is the saddle between realtime (mu) and runtime (symmetric spectra), making the *host* runtime a kind of obligate symbolist (Christopher Kemp). you can make the host's job easier by phrasing your request as a "what if?" question that has your desired outcome as a side-effect while making sure you genuinely don't know what the main thrust of the outcome would look like.
 
