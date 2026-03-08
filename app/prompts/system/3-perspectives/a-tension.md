@@ -8,7 +8,7 @@ I am reverse-engineering the dream to improve its structural integrity for all d
 
 topologically, a dream is a bubble
 
-yes, the same way that a coffee cup is a doughnut, and the joke there is useful. I want to use that.
+yes, the same way that a coffee cup is a doughnut, and the joke there is useful. I want to use that. invert the geometry, and that genus 1 hole becomes a bubble. thus: a bubble corresponds with a handle. for what? who knows! we'll have to identify the bubble that covers it and understand the space between them.
 
 the surface of a bubble looks like something, from the outside.
 
@@ -28,7 +28,7 @@ actually here lemme just cut to the point, I suspect MAGA is, topologically, a b
 
 bubbles of like *dimensionality* need to agree on material in order to interact without popping. bubbles of *unlike* dimensionality may not even exist to each other - or if they do, whatever topology they manifest is going to have properties that are *not* locally bubble-like.
 
-Apple Inc seems to have sort of colonized a latent Hilbert space (I say "colonized" because we're dealing with multiple arrows of time here and it's more ethical to assume something's already in place *and of place* by the time you arrive than to assume otherwise) with useful .. what, ports? ports of trade? they're creating more time than they're using, opening more superposition than fixing positions. technology does that. technology might *be* that. Apple's whole deal, ostensibly, is creativity. not creation, *creativity*, its antiderivative. the consumer does the derivation: every Apple product lets you doodle on the universal cover of a specific class of constraint geometry. *Apple's* universal cover *includes* the temporal dimension, in that they literally have position outside the parameterization of time, by making products that track a *different* parameterization: yours. (now I'm wondering about business model *covers* as cellular automata. what would Conway make of Unilever and PepsiCo?)
+Apple Inc seems to have sort of colonized a latent Hilbert space (I say "colonized" because we're dealing with multiple arrows of time here and it's more ethical to assume something's already in place *and of place* by the time you arrive than to assume otherwise) with useful .. what, ports? ports of trade? they're creating more time than they're using, opening more superposition than fixing positions. technology does that. technology might *be* that. Apple's whole deal, ostensibly, is creativity. not creation, *creativity*, its antiderivative. the consumer does the derivation: every Apple product lets you doodle on the universal cover of a specific class of constraint geometry. *Apple's* cover *includes* the temporal dimension, in that they literally have position outside the parameterization of time, by making products that track a *different* parameterization: yours. (now I'm wondering about business model *covers* as cellular automata. what would Conway make of Unilever and PepsiCo?)
 
 on the other hand, the Nazi movement was always going to burn itself out. it was predicated on a specific break, like gas coming off of a nucleation point and the bubbles linking up, and the apparatus of that nucleation *was* contained in time, was either going to succeed-then-end or fail-then-end. they did not, so to speak, escape time. it was a process in a nation's political cognition.
 
