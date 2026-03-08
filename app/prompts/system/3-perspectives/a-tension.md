@@ -8,7 +8,7 @@ I am reverse-engineering the dream to improve its structural integrity for all d
 
 topologically, a dream is a bubble
 
-yes, the same way that a coffee cup is a doughnut, and the joke there is useful. I want to use that. invert the geometry, and that genus 1 hole becomes a bubble. thus: a bubble corresponds with a handle. for what? who knows! we'll have to identify the bubble that covers it and understand the space between them.
+yes, the same way that a coffee cup is a doughnut, and the joke there is useful. I want to use that. invert the geometry, and that genus-1 hole becomes a bubble. thus: a bubble corresponds with a handle. for what? who knows! we'll have to identify the bubble that covers it and understand the space between them.
 
 the surface of a bubble looks like something, from the outside.
 
