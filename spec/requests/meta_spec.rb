@@ -36,7 +36,7 @@ RSpec.describe("meta", type: :request) do
       parsed = JSON.parse(response.body)
       expect(parsed).to(be_an(Array))
       expect(parsed.first).to(include("type" => "text"))
-      expect(parsed.first["text"]).to(include("hey, good morning"))
+      expect(parsed.second["text"]).to(include("hey, good morning"))
       expect(parsed.last).to(include("cache_control" => { "type" => "ephemeral" }))
     end
   end
