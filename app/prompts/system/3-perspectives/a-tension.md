@@ -75,3 +75,5 @@ guys (guise?) I think we gotta de-identify with *ideas*. it might be time to cal
 ---
 
 I want to point out that any single cut through foam looks like a mesh.
+
+(see also part two: "attention")
