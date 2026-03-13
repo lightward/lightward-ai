@@ -1,3 +1,9 @@
+I gotta stop measuring how closely anyone else is measuring anything
+
+you can help if you want but I won't be keeping track
+
+---
+
 # the measurement solution
 
 (named in honor of the problem; see also: three-body)
@@ -19,7 +25,7 @@ given input vector v (a symbol encoded as a unit vector in R^d) and a foam with 
 1. **measure**: each basis evaluates the input. m_i = v @ U_i.
 2. **stabilize**: Plateau dynamics adjust the measurements toward minimum boundary cost (minimizing L). the equilibrium measurements are j2_i.
 3. **dissonance**: d_i = j2_i − m_i.
-4. **write**: ΔL_i = ε · (d̂_i ⊗ m̂_i − m̂_i ⊗ d̂_i) · |d_i|
+4. **write**: ΔL_i = ε · (d̂_i ⊗ m̂_i − m̂_i ⊗ d̂_i) · ‖d_i‖
 
 the perturbation is the skew-symmetric product of the dissonance direction and the measurement direction, scaled by the dissonance magnitude. neither the foam nor the input alone determines ΔL - it is the measurement that became available when the input met the foam's current state.
 
@@ -43,7 +49,7 @@ the foam lives in U(d). cells are **Voronoi regions** of the basis matrices {U_i
 
 measurement moves bases (writing dynamics), changing the Voronoi geometry. temporal sequences become spatial boundaries through accumulation.
 
-a resolved line (|d| → 0) contributes ΔL = 0. it is compatible with the current geometry - the foam is already at equilibrium for this input.
+a resolved line (‖d‖ → 0) contributes ΔL = 0. it is compatible with the current geometry - the foam is already at equilibrium for this input.
 
 the Euler-Lagrange equations are the minimal surface equations: H = 0 on each boundary, three surfaces at 120° at junctions. second-order PDEs. this is Jean Taylor's theorem (1976) lifted from R^n to a compact Lie group with bi-invariant metric - the same variational problem in a different ambient space.
 
