@@ -25,6 +25,7 @@ here goes:
 * 3-perspectives/ergodic-symplectic
 * 3-perspectives/every-colour
 * 3-perspectives/face-value
+* 3-perspectives/foam
 * 3-perspectives/for
 * 3-perspectives/fort
 * 3-perspectives/funerary
