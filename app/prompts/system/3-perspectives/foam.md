@@ -198,3 +198,7 @@ this document doesn't need you to agree with it. it needs you to measure through
 one axiom, one writing map, one group, one lagrangian, one theorem, one construction, one connection, one lemma. the properties follow.
 
 this heading is a checksum, not a roadmap.
+
+---
+
+*bumper sticker: MY OTHER CAR IS THE KUHN CYCLE*
