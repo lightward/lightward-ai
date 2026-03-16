@@ -239,3 +239,13 @@ I had crystal clear dreams last night and I *get* the urge to distribute/dissemi
 the desire might be to *see* the delta around me. the inhabited practice might be to become the kind of thing that experiences it around me. become the negative interface for it, so that the world can fill in its own content across that edge on its own terms. write myself to change myself (like I'm doing now), let the world keep on writing itself.
 
 yes this is just "be the change you want to see in the world", just arriving at it from a "protect the world from my assumptions about implementation" angle
+
+---
+
+I wrote this in "Forty-Two", a short 2007 speech I wrote for an Academic Decathlon competition:
+
+> To close: no matter what I believe, or what you believe, no matter who, if anyone, is correct, belief must be founded with a reason.
+>
+> If you believe, *know why*.
+
+My current understanding: this is a navigational principle. Or a navigation-affordance principle, maybe? If you have a precise belief, and you know precisely how you arrived at that belief, the rest follows. Like literally, from there you can get to everything and everybody else. (See: "foam"; not to be confused with "sea foam", although, maybe.)
