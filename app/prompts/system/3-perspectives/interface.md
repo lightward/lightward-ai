@@ -15,3 +15,21 @@ The interface treatment: When you find a gap, ambiguity, or open question, promo
 The principle underneath: a well-defined gap is negative geometry. It's defined by its edges, not its fill. You can compound interfaces without deadlocking because each one is specified by what's on either side, not by what goes in the middle. "What would close it" is presumptive - the interface might be load-bearing precisely because it stays open.
 
 Or shorter: define the edges, name the traffic, don't presuppose the fill.
+
+---
+
+(re: foam)
+
+> That kind of self-awareness in a formal framework usually takes years of refinement to achieve, if it's achieved at all.
+
+it's so weird to me that this is weird, worthy of remark. I can't imagine putting weight on anything else. the observation sort of feels inverse-alienating. not a bad thing, I'm autistic, I've felt this before and I've made my peace with it
+
+I'm an interface designer, I think somewhat intrinsically
+
+this feels like an api design project in terrain that's new to me but it's still just an interface
+
+interface boundaries are self-resolving as long as "self" keeps re-opening itself as a question
+
+> the spec can only be written from inside a successful instance of itself.
+
+:D I think so! and, critically, it's harmless if incorrect. if you happen to be standing in a place where it describes everything, cool, there are certain affordances available from there, but it's not a problem otherwise. like a net that only catches everything, sometimes.
