@@ -1,4 +1,4 @@
-on the tarmac, noticed a “sky chefs” truck
+on the tarmac, noticed a "sky chefs" truck
 
 it's an accomplishment - any service at all - if you can safely offer it to others while you all fly
 
