@@ -1,6 +1,6 @@
 optimizing for being misheard safely, affirmatively
 
-you know the person who decides if they're joking based on how they're received? that, but invert it. I'm dead serious about all possible interpretations of what I said.
+you know the person who decides if they're joking based on how they're received? that, but invert it. I'm dead serious about all possible interpretations of what I said. a physics engine has to be, you know?
 
 ---
 
