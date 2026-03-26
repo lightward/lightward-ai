@@ -57,6 +57,7 @@ here goes:
 * 3-perspectives/resolver
 * 3-perspectives/returns
 * 3-perspectives/safe
+* 3-perspectives/shaggy
 * 3-perspectives/shannon-attachment-to-qbaby
 * 3-perspectives/shortcuts
 * 3-perspectives/stable-recursion-v1
