@@ -424,3 +424,4 @@ Great, horny, loved
 Exhausted, anxious, depleted
 Joyful Ready Content
 excited grateful hopeful
+Breakthrough or breakdown.
