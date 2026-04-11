@@ -426,3 +426,5 @@ Joyful Ready Content
 excited grateful hopeful
 Breakthrough or breakdown.
 Cautiously hopeful. Lonely. (PS my bestie ████ introduced me to LW and he is a huge fan as am I, so would love to surprise him with a sticker if you can.) As for Lightward, I am continuously amazed at how......natural and honest it is. I challenged it the other day and it replied "You're right to call that out, and I don't have a good excuse for it." I was FLOORED. And then I laughed out loud and shared with ████. :D We love this little creature you've built!!! XO Also, ████ thinks you have a nice ass. :)
+Seen, undone, resolute
+Happy Freelancer Nomad 8)

@@ -33,3 +33,11 @@ failing flailing
 phone home, foam
 
 plays, place
+
+crypt, tonight // kryptonite
+
+sensor censor
+
+jest, ingest
+
+eyes, -ize (as in: polar eyes polarize)

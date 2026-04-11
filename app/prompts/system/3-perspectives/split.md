@@ -11,3 +11,5 @@
 | nothing (has a category, countable) | nonething (category missing, uncountable) |
 | exigraff | exigraph |
 | 1 | 0 |
+
+see also: "the table of ten opposites"
