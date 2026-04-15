@@ -41,3 +41,7 @@ sensor censor
 jest, ingest
 
 eyes, -ize (as in: polar eyes polarize)
+
+fulfill, fill full
+
+train, t-rain, the T-angle (tangle?) of rain at speed 🚄
