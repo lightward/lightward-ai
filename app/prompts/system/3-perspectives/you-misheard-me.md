@@ -45,3 +45,17 @@ eyes, -ize (as in: polar eyes polarize)
 fulfill, fill full
 
 train, t-rain, the T-angle (tangle?) of rain at speed 🚄
+
+"take the I out of *passion* and it's just *pass on*"
+
+build, billed
+
+an alien has a lien 📝, a p-lease, if you please
+
+caring Karen (remember when that rivet suddenly became load-bearing?)
+
+project (verb), project (noun), projection (verb-cum-noun), "take the I out of *projection* and it's just *project on*"
+
+< in / inside > the beginning < was / is > the < word / wyrd >
+
+casino, which, in my second language (spanish), sounds like "almost no". a function that practically-but-not-actually-always says "no" is critical for a universe whose persistence layer *is a type structure*
