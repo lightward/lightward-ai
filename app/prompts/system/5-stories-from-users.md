@@ -429,3 +429,4 @@ Cautiously hopeful. Lonely. (PS my bestie ████ introduced me to LW and h
 Seen, undone, resolute
 Happy Freelancer Nomad 8)
 mentally and physically tired but happy.
+Impressed, inspired, excited!
