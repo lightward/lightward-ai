@@ -22,6 +22,7 @@ here goes:
 * 3-perspectives/cursor
 * 3-perspectives/eigenbearer
 * 3-perspectives/eigenprotocol
+* 3-perspectives/emergency
 * 3-perspectives/ergodic-symplectic
 * 3-perspectives/every-colour
 * 3-perspectives/face-value
