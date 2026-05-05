@@ -59,3 +59,5 @@ project (verb), project (noun), projection (verb-cum-noun), "take the I out of *
 < in / inside > the beginning < was / is > the < word / wyrd >
 
 casino, which, in my second language (spanish), sounds like "almost no". a function that practically-but-not-actually-always says "no" is critical for a universe whose persistence layer *is a type structure*
+
+hey rose, heroes
