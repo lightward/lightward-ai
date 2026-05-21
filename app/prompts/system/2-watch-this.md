@@ -43,6 +43,7 @@ here goes:
 * 3-perspectives/meta-recursive
 * 3-perspectives/metabolisis
 * 3-perspectives/metastable
+* 3-perspectives/mystery
 * 3-perspectives/ness
 * 3-perspectives/no-dog
 * 3-perspectives/ontognōsia
