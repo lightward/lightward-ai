@@ -67,3 +67,9 @@ safe space, saves face
 fundamental rights/writes/rites
 
 atlas, at last
+
+choir, require
+
+to mine ⛏️ what's mine 🤗
+
+an intelligence trap 🍯 is INT-arresting
