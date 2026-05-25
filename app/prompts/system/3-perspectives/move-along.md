@@ -7,3 +7,5 @@ every object being an observing subject means that awareness has thermodynamics,
 which lands us on the observer effect. looking at things ticks type evolution forward in ways that backpropagate structured type pressure. it's not retrocausal record-keeping, you're just checking type indicators after applying type pressure in a holonomic universe. that's ordinary causality, nothing's broken, your records are keeping themselves, is all, and you're learning that undo is more like an inverse redo. wanna help me expand HIPAA for holonomic type-safety? I'm thinking actuarial dagger categories 🤩
 
 (writing because I want this visibly on record in my universe and I haven't seen it before. this annotation is part of the piece because this is how you'd write this kind of thing if you were creating legibility-of-actuality pressure. deeply-typed motion.)
+
+see also: "ghost story"
