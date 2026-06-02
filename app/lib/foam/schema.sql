@@ -1,55 +1,97 @@
--- foam: the field substrate.
+-- foam: the field substrate — a quiver.
 --
--- Not migrated — asserted. This file is idempotent: the app runs it on boot
--- (CREATE ... IF NOT EXISTS / CREATE OR REPLACE), and running it any number
--- of times leaves the same substrate. The schema is a fixed point, declared,
--- not a timeline of changes to replay. lfp compositions of lfps, including
--- how the substrate comes into being. There is no ordering here, and no time.
+-- Not migrated — asserted. Idempotent (CREATE ... IF NOT EXISTS / CREATE OR
+-- REPLACE): running it any number of times leaves the same substrate, the schema
+-- as a fixed point, not a timeline. No ordering, no time.
 --
--- No CRUD: the field only ever accretes (monotone, append-only — no UPDATE,
--- no DELETE), the same shape as recognition never retracting.
+-- The field is a quiver, the operational face of the Lean floor
+-- (lean/Foam/Floor.lean): records are the handles (generators), compositions are
+-- the edges (which record composes after which), the identity record is the
+-- terminal/basepoint (the exit). The recognition-walk is a path through it,
+-- carried order-sensitively and terminated by no-revisit — the operational form
+-- of `reachesYield_all`.
 --
--- Dumpable: because the upstream stays live, an empty field still works —
--- every walk hits identity and yields. The field is enhancement, never
--- essential state; it can be dropped at any time and the system still runs.
+-- No CRUD, and append-only is *not* tidiness: merging or removing records would
+-- quotient the path-space, which `order_matters` (in the Lean) forbids. The
+-- quiver only ever grows edges; it never fuses or deletes nodes. So learning is
+-- pure accretion (monotone, the same shape as recognition never retracting).
 --
--- Free: what a record's interface (how records compose) and shape (the
--- content-free displacement it carries) *are* is held open, uncommitted.
--- Only the identity record is defined here — the EOF / fixed point /
--- "nothing reduced here" — and it is content-free by definition.
+-- Dumpable: an empty field still works — the walk lands on yield (and the Ruby
+-- layer degrades a NULL result to :yield), the upstream stays live. The field is
+-- enhancement, never essential.
+--
+-- Free: what a record's interface and shape *are* is held open. Only the identity
+-- record is defined — the EOF / fixed point / "nothing reduced here" — and it is
+-- content-free by definition.
 
 CREATE SCHEMA IF NOT EXISTS foam;
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
+-- Records — the handles/generators of the quiver. The identity record is the
+-- terminal/basepoint. Interface and shape attach here later; held free.
 CREATE TABLE IF NOT EXISTS foam.field (
   id       uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   identity boolean NOT NULL DEFAULT false
-  -- interface and shape attach here as the walk grows; held free.
 );
 
--- Exactly one identity record — a structural invariant, not a race-prone
--- insert. The partial unique index makes "at most one identity" true by
--- construction, regardless of how many boots assert it concurrently.
+-- Exactly one identity record — a structural invariant, not a race-prone insert.
 CREATE UNIQUE INDEX IF NOT EXISTS foam_field_single_identity
   ON foam.field (identity) WHERE identity;
 
 -- The identity record itself. Idempotent: present after any number of boots,
--- inserted at most once (the index above is the backstop).
+-- inserted at most once.
 INSERT INTO foam.field (identity)
 SELECT true
 WHERE NOT EXISTS (SELECT 1 FROM foam.field WHERE identity);
 
--- The recognition-walk's outcome for a turn: 'yield' | 'speak' | 'learn'.
+-- Compositions — the quiver's edges. `prev` composes into `next`. Append-only:
+-- never UPDATE, never DELETE — that would quotient the path-space (order_matters
+-- forbids it). The quiver only grows.
+CREATE TABLE IF NOT EXISTS foam.composition (
+  id   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  prev uuid NOT NULL REFERENCES foam.field (id),
+  next uuid NOT NULL REFERENCES foam.field (id)
+);
+
+-- recognize — the path-carrying walk, a recursive CTE (the walk runs in the
+-- substrate, not orchestrated from Ruby; one round-trip). From each record it
+-- follows composition-edges, carrying the accumulated path order-sensitively and
+-- refusing to revisit a record on the same path. That no-revisit is the
+-- operational form of the Lean floor's termination (`reachesYield_all`): the walk
+-- cannot loop, so it always lands.
 --
--- P0: an identity-only field means the walk composes nothing, terminates at
--- identity with zero accumulation, and yields (trichotomy case 1). The
--- WITH RECURSIVE walk over composable records — growing 'speak' (open path,
--- residual returned) and 'learn' (closed loop, holonomy) — attaches here.
--- The interface it composes on, and the shape it carries, stay free until
--- then. Until then: yield.
+-- P₀ — identity-only field, no edges — every walk is a single record that lands
+-- immediately: 'yield'. 'speak' (an open path: residual returned) and 'learn' (a
+-- closed path carrying holonomy) grow later, classified from the shape of `path`.
+-- An empty field yields no landed paths → NULL → the Ruby layer degrades to
+-- :yield. Either way the exit is never closed.
 CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
   LANGUAGE sql STABLE
   AS $$
-    SELECT 'yield'::text;
+    WITH RECURSIVE walk(node, path) AS (
+      -- seed: every record is a possible starting position
+      SELECT f.id, ARRAY[f.id]
+      FROM foam.field f
+      UNION ALL
+      -- step: compose forward along an edge, never revisiting (the floor's guard)
+      SELECT c.next, w.path || c.next
+      FROM walk w
+      JOIN foam.composition c ON c.prev = w.node
+      WHERE NOT (c.next = ANY (w.path))
+    ),
+    landed AS (
+      -- terminal paths: the walk has nowhere left to compose (it has landed)
+      SELECT w.path
+      FROM walk w
+      WHERE NOT EXISTS (
+        SELECT 1
+        FROM foam.composition c
+        WHERE c.prev = w.node
+          AND NOT (c.next = ANY (w.path))
+      )
+    )
+    SELECT 'yield'::text
+    FROM landed
+    LIMIT 1;
   $$;
