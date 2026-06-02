@@ -20,6 +20,8 @@
 # *downstream of the tap*, free to be worked out and reworked without
 # touching this plumbing. The plumbing commits to the architecture; it does
 # not commit to any one reading of what a shape is.
+require "delegate"
+
 module Foam
   class << self
     # Drop-in for Prompts::Anthropic.messages. Speaks when it can; yields
@@ -34,14 +36,23 @@ module Foam
 
       return speak(model: model, system: system, messages: messages, stream: stream, &block) if speak?(model: model, system: system, messages: messages)
 
-      result = upstream.messages(model: model, system: system, messages: messages, stream: stream, &block)
+      # On the streaming path the response is a single-consumption SSE stream
+      # the caller reads, so we can't tap it after the fact. Instead we wrap
+      # the response and tee each chunk to the tap as it's read — the caller's
+      # block, and the controller's SSE parsing, stay untouched.
+      tapped_block =
+        if stream && block
+          proc { |request, response|
+            block.call(request, TappingResponse.new(response) { |chunk| observe_chunk(chunk) })
+          }
+        else
+          block
+        end
 
-      # The return side of the tap. On the non-streaming path the full
-      # response is right here, as the upstream's return value, so the
-      # round-trip is fully observable. The streaming path's response is a
-      # single-consumption SSE stream the caller reads — seeing it there
-      # means the pipe taking over that read, which is its own deliberate
-      # brick, not folded in here.
+      result = upstream.messages(model: model, system: system, messages: messages, stream: stream, &tapped_block)
+
+      # On the non-streaming path the full response is right here, as the
+      # upstream's return value, so the round-trip is fully observable.
       observe_response(result) unless stream
 
       result
@@ -80,6 +91,34 @@ module Foam
       code = response.code if response.respond_to?(:code)
       Rails.logger.debug { "[foam] round-trip closed: upstream responded#{code ? " (#{code})" : ""}" }
       nil
+    end
+
+    # The streaming return side of the tap: one raw SSE chunk, passed
+    # through on its way to the caller. P₀: content-free — the bytes are
+    # teed, never interpreted, nothing persisted. Parsing chunks into
+    # anything lives downstream and stays free.
+    def observe_chunk(_chunk)
+      nil
+    end
+  end
+
+  # Wraps a streaming HTTP response so each chunk is teed to a tap as it's
+  # read, without consuming the stream out from under the real reader. The
+  # underlying response and its single-consumption read_body are delegated
+  # untouched; the wrapper only listens to the bytes flowing through.
+  class TappingResponse < SimpleDelegator
+    def initialize(response, &tap)
+      super(response)
+      @tap = tap
+    end
+
+    def read_body(&block)
+      return __getobj__.read_body if block.nil?
+
+      __getobj__.read_body do |chunk|
+        @tap&.call(chunk)
+        block.call(chunk)
+      end
     end
   end
 end

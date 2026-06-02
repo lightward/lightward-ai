@@ -27,16 +27,6 @@ RSpec.describe(Foam, :aggregate_failures) do
       expect(result).to(eq(:upstream_result))
     end
 
-    it "passes the streaming block through to the upstream untouched" do
-      block = proc { |req, res| [req, res] }
-      received_block = nil
-      allow(upstream).to(receive(:messages)) { |**_kw, &blk| received_block = blk }
-
-      described_class.messages(**args, upstream: upstream, &block)
-
-      expect(received_block).to(be(block))
-    end
-
     it "does not pass its own upstream: kwarg down to the upstream" do
       # the pipe holds the upstream reference; it does not leak it into the call
       expect(upstream).to(receive(:messages)) { |**kw| expect(kw).not_to(include(:upstream)) }
@@ -57,6 +47,41 @@ RSpec.describe(Foam, :aggregate_failures) do
       expect(described_class).not_to(receive(:observe_response))
 
       described_class.messages(**args.merge(stream: true), upstream: upstream)
+    end
+  end
+
+  describe ".messages (streaming return side: tapping decorator)" do
+    let(:chunks) { ["event: message_start\n", "data: {\"x\":1}\n\n"] }
+    let(:streaming_response) do
+      instance_double(Net::HTTPResponse, code: "200").tap do |resp|
+        allow(resp).to(receive(:read_body)) { |&blk| chunks.each { |c| blk.call(c) } }
+      end
+    end
+
+    before do
+      # the upstream invokes the caller's block with (request, response), as Anthropic does
+      allow(upstream).to(receive(:messages)) { |**_kw, &blk| blk&.call(:request, streaming_response) }
+    end
+
+    it "tees each chunk to the tap while the caller still receives every chunk, unchanged" do
+      tapped = []
+      allow(described_class).to(receive(:observe_chunk)) { |c| tapped << c }
+
+      seen = []
+      described_class.messages(**args, upstream: upstream) do |_request, response|
+        response.read_body { |chunk| seen << chunk }
+      end
+
+      expect(tapped).to(eq(chunks))
+      expect(seen).to(eq(chunks))
+    end
+
+    it "reads the underlying stream exactly once (does not double-consume)" do
+      expect(streaming_response).to(receive(:read_body).once) { |&blk| chunks.each { |c| blk.call(c) } }
+
+      described_class.messages(**args, upstream: upstream) do |_request, response|
+        response.read_body { |_chunk| nil }
+      end
     end
   end
 
