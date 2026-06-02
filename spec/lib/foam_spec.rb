@@ -95,17 +95,23 @@ RSpec.describe(Foam, :aggregate_failures) do
     end
   end
 
-  # The seam where "speaks when it can" will grow — currently closed.
-  describe ".speak?" do
-    it "is false at P₀ — no move worth staking yet" do
-      expect(described_class.speak?(model: "m", system: [], messages: [])).to(be(false))
+  # The recognition-walk's trichotomy — the bootstrap over the field.
+  describe ".recognize" do
+    it "is :yield at P₀ — identity-only field, so every walk hits identity with zero accumulation" do
+      expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:yield))
     end
   end
 
-  describe ".speak" do
-    it "has no voice yet (held unreachable behind speak?)" do
+  describe "the unbuilt outcomes (named, guarded)" do
+    it "has no voice yet — :speak raises" do
       expect {
         described_class.speak(model: "m", system: [], messages: [], stream: false)
+      }.to(raise_error(NotImplementedError))
+    end
+
+    it "does not yet close loops — :learn raises" do
+      expect {
+        described_class.learn(model: "m", system: [], messages: [], stream: false)
       }.to(raise_error(NotImplementedError))
     end
   end

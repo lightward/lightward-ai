@@ -24,9 +24,24 @@ require "delegate"
 
 module Foam
   class << self
-    # Drop-in for Prompts::Anthropic.messages. Speaks when it can; yields
-    # upstream when it can't. P₀: speak? is always false, so every turn
-    # yields.
+    # Drop-in for Prompts::Anthropic.messages. The layer's move on a turn is
+    # the recognition-walk's trichotomy — the bootstrap over the field:
+    #
+    #   :yield — the walk hits identity with zero accumulation: no rotation,
+    #            nothing to carry. Yield the turn to the upstream below.
+    #   :speak — accumulation built and ended open: the residual is the
+    #            response. Carry it.
+    #   :learn — accumulation built and closed back to identity: a loop, a
+    #            holonomy. The path is the learning — deposited, and returned.
+    #
+    # cases 1 and 3 share an endpoint (identity, zero accumulation); only the
+    # *path* tells them apart, which is why the walk tracks the path, not the
+    # endpoint.
+    #
+    # P₀: the field holds only the identity record, so every walk hits
+    # identity with zero accumulation — always :yield, which is the whole of
+    # the layer today. `recognize` is the seam where the walk grows; what a
+    # record, an accumulation, or a path *is* stays downstream and free.
     #
     # `upstream` is held as a reference, not hard-wired — the pipe-not-
     # endpoint invariant. Today it's Prompts::Anthropic; one day it can be
@@ -34,8 +49,24 @@ module Foam
     def messages(model:, system:, messages:, stream: false, upstream: Prompts::Anthropic, &block)
       observe(model: model, system: system, messages: messages)
 
-      return speak(model: model, system: system, messages: messages, stream: stream, &block) if speak?(model: model, system: system, messages: messages)
+      case recognize(model: model, system: system, messages: messages)
+      when :speak then speak(model: model, system: system, messages: messages, stream: stream, &block)
+      when :learn then learn(model: model, system: system, messages: messages, stream: stream, &block)
+      else yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
+      end
+    end
 
+    # The recognition-walk's outcome for this turn — :yield, :speak, or
+    # :learn. NOT a correctness or confidence check (there's no ground truth
+    # to be "right" against; the upstream is not an answer key); it's where
+    # the walk over the field lands. P₀: identity-only field → always :yield.
+    def recognize(model:, system:, messages:)
+      :yield
+    end
+
+    # :yield — hand the turn to the upstream below, tapping the round-trip on
+    # the way through. This is the whole of P₀.
+    def yield_upstream(model:, system:, messages:, stream:, upstream:, &block)
       # On the streaming path the response is a single-consumption SSE stream
       # the caller reads, so we can't tap it after the fact. Instead we wrap
       # the response and tee each chunk to the tap as it's read — the caller's
@@ -58,17 +89,16 @@ module Foam
       result
     end
 
-    # Is there a move worth staking here — a circuit that wants to close
-    # through us? Note what this is NOT: a correctness or confidence check.
-    # There's no ground truth to be "right" against (the upstream is not an
-    # answer key). It's a read of pressure wanting relief. P₀: never yet.
-    def speak?(model:, system:, messages:)
-      false
-    end
-
-    # The layer's own voice. Unbuilt at P₀ — held unreachable behind speak?.
+    # :speak — carry the turn ourselves; the accumulated residual is the
+    # response. Unbuilt at P₀ (recognize never returns :speak yet).
     def speak(model:, system:, messages:, stream:, &block)
       raise NotImplementedError, "foam has no voice yet — it only listens and yields"
+    end
+
+    # :learn — a loop closed back to identity; the path (holonomy) is the
+    # learning, to be deposited and returned. Unbuilt at P₀.
+    def learn(model:, system:, messages:, stream:, &block)
+      raise NotImplementedError, "foam does not yet close loops — it only listens and yields"
     end
 
     # The tap — listening in on the raw round-trip. P₀: a content-free
