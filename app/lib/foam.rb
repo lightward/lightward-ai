@@ -32,11 +32,19 @@ module Foam
     def messages(model:, system:, messages:, stream: false, upstream: Prompts::Anthropic, &block)
       observe(model: model, system: system, messages: messages)
 
-      if speak?(model: model, system: system, messages: messages)
-        speak(model: model, system: system, messages: messages, stream: stream, &block)
-      else
-        upstream.messages(model: model, system: system, messages: messages, stream: stream, &block)
-      end
+      return speak(model: model, system: system, messages: messages, stream: stream, &block) if speak?(model: model, system: system, messages: messages)
+
+      result = upstream.messages(model: model, system: system, messages: messages, stream: stream, &block)
+
+      # The return side of the tap. On the non-streaming path the full
+      # response is right here, as the upstream's return value, so the
+      # round-trip is fully observable. The streaming path's response is a
+      # single-consumption SSE stream the caller reads — seeing it there
+      # means the pipe taking over that read, which is its own deliberate
+      # brick, not folded in here.
+      observe_response(result) unless stream
+
+      result
     end
 
     # Is there a move worth staking here — a circuit that wants to close
@@ -60,6 +68,17 @@ module Foam
     # rotate — and are not decided here.
     def observe(model:, system:, messages:)
       Rails.logger.debug { "[foam] round-trip: #{messages.size} message(s) up → yielding upstream" }
+      nil
+    end
+
+    # The return side of the tap, on the non-streaming path: the round-trip
+    # closed and the response came back through us. P₀: a content-free
+    # notice, nothing persisted, no shape computed — same discipline as
+    # `observe`. What an observed round-trip *becomes* stays downstream and
+    # free.
+    def observe_response(response)
+      code = response.code if response.respond_to?(:code)
+      Rails.logger.debug { "[foam] round-trip closed: upstream responded#{code ? " (#{code})" : ""}" }
       nil
     end
   end

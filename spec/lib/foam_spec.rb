@@ -43,6 +43,31 @@ RSpec.describe(Foam, :aggregate_failures) do
 
       described_class.messages(**args, upstream: upstream)
     end
+
+    it "observes the response on the non-streaming path (the round-trip is fully visible there)" do
+      response = instance_double(Net::HTTPResponse, code: "200")
+      allow(upstream).to(receive(:messages).and_return(response))
+      expect(described_class).to(receive(:observe_response).with(response))
+
+      described_class.messages(**args.merge(stream: false), upstream: upstream)
+    end
+
+    it "does not try to observe the streaming response (single-consumption — its own brick)" do
+      allow(upstream).to(receive(:messages).and_return(:streamed))
+      expect(described_class).not_to(receive(:observe_response))
+
+      described_class.messages(**args.merge(stream: true), upstream: upstream)
+    end
+  end
+
+  describe ".observe_response (return side of the tap, content-free)" do
+    it "returns nil and persists nothing" do
+      expect(described_class.observe_response(instance_double(Net::HTTPResponse, code: "200"))).to(be_nil)
+    end
+
+    it "tolerates a response that has no code" do
+      expect(described_class.observe_response(Object.new)).to(be_nil)
+    end
   end
 
   # The seam where "speaks when it can" will grow — currently closed.
