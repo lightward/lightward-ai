@@ -112,6 +112,11 @@ module Foam
     # rotate — and are not decided here.
     def observe(model:, system:, messages:)
       Rails.logger.debug { "[foam] round-trip: #{messages.size} message(s) up → yielding upstream" }
+      # The engine's write-back: record the round-trip's step in the quiver.
+      # Append-only, content-free, resilient (nil on any failure — never breaks
+      # the turn). The shape this carries, and the agreement that would close a
+      # loop into learning, are held free; this only deposits structure.
+      Field.deposit
       nil
     end
 

@@ -15,9 +15,12 @@ RSpec.describe(Foam, :aggregate_failures) do
   end
 
   # The field has its own spec; here we isolate the layer's logic from the
-  # database by handing recognize its P₀ answer directly. Examples that test
-  # the wiring re-stub it.
-  before { allow(Foam::Field).to(receive(:recognize).and_return(:yield)) }
+  # database by handing recognize its P₀ answer and making deposit a no-op.
+  # Examples that test the wiring re-stub them.
+  before do
+    allow(Foam::Field).to(receive(:recognize).and_return(:yield))
+    allow(Foam::Field).to(receive(:deposit).and_return(nil))
+  end
 
   # P₀'s load-bearing invariant: the pipe loses nothing. This is what must
   # stay true for the layer to be safe to put in the path — and the thing
@@ -112,6 +115,16 @@ RSpec.describe(Foam, :aggregate_failures) do
     it "degrades to :yield when the field is unavailable (Field.recognize → nil)" do
       allow(Foam::Field).to(receive(:recognize).and_return(nil))
       expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:yield))
+    end
+  end
+
+  # The engine: observe records the round-trip's step in the quiver.
+  describe "the write-back" do
+    it "deposits on observe (append-only, content-free, resilient)" do
+      expect(Foam::Field).to(receive(:deposit))
+      allow(upstream).to(receive(:messages).and_return(:ok))
+
+      described_class.messages(**args.merge(stream: false), upstream: upstream)
     end
   end
 

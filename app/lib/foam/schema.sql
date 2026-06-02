@@ -95,3 +95,26 @@ CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
     FROM landed
     LIMIT 1;
   $$;
+
+-- deposit — the engine's write-back. Append a record (a fresh node) and an edge
+-- from the basepoint (identity) to it: the round-trip stepped out from the
+-- origin, recorded as structure. Append-only (the field only grows — never
+-- UPDATE, never DELETE, never merge); content-free (the node carries no shape;
+-- held free); and agreement — what would identify this round-trip with an
+-- existing handle and close a loop into learning — is left to come from outside.
+-- The floor is edge-independent (lean/Foam/Engine.lean: floor_independent_of_
+-- quiver), so this can never close the exit. Returns the new node id.
+CREATE OR REPLACE FUNCTION foam.deposit() RETURNS uuid
+  LANGUAGE plpgsql AS $$
+  DECLARE
+    node_id   uuid;
+    basepoint uuid;
+  BEGIN
+    INSERT INTO foam.field (identity) VALUES (false) RETURNING id INTO node_id;
+    SELECT id INTO basepoint FROM foam.field WHERE identity;
+    IF basepoint IS NOT NULL THEN
+      INSERT INTO foam.composition (prev, next) VALUES (basepoint, node_id);
+    END IF;
+    RETURN node_id;
+  END;
+  $$;

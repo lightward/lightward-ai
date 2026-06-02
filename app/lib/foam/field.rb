@@ -44,6 +44,16 @@ module Foam
         outcome&.to_sym
       end
 
+      # The engine's write-back: append a round-trip's step to the quiver. Calls
+      # foam.deposit() (a fresh node + an edge from the basepoint). Append-only,
+      # content-free; agreement is left to come from outside. Resilient: any
+      # failure degrades to nil and the request is untouched. Returns the new
+      # node id, or nil. The floor is edge-independent (lean/Foam/Engine.lean),
+      # so this can never close the exit.
+      def deposit
+        with_connection { |conn| conn.exec("SELECT foam.deposit()").getvalue(0, 0) }
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!
@@ -76,7 +86,13 @@ module Foam
       end
 
       def database_url
-        ENV.fetch("FOAM_DATABASE_URL", "postgres:///foam?connect_timeout=2")
+        ENV.fetch("FOAM_DATABASE_URL") do
+          # In test the field is opt-in (its own spec sets the URL explicitly);
+          # default to unreachable so the rest of the suite never touches a real
+          # database — every Field op simply degrades, exactly as in production
+          # before the field is provisioned.
+          Rails.env.test? ? "postgres://127.0.0.1:1/foam?connect_timeout=1" : "postgres:///foam?connect_timeout=2"
+        end
       end
 
       def pool_size
