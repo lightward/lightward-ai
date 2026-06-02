@@ -14,6 +14,11 @@ RSpec.describe(Foam, :aggregate_failures) do
     }
   end
 
+  # The field has its own spec; here we isolate the layer's logic from the
+  # database by handing recognize its P₀ answer directly. Examples that test
+  # the wiring re-stub it.
+  before { allow(Foam::Field).to(receive(:recognize).and_return(:yield)) }
+
   # P₀'s load-bearing invariant: the pipe loses nothing. This is what must
   # stay true for the layer to be safe to put in the path — and the thing
   # to keep protected as the layer grows a voice: whatever it learns to
@@ -95,9 +100,17 @@ RSpec.describe(Foam, :aggregate_failures) do
     end
   end
 
-  # The recognition-walk's trichotomy — the bootstrap over the field.
+  # The recognition-walk's trichotomy — the bootstrap over the field. The
+  # outcome is computed in the substrate (Foam::Field); the layer delegates
+  # and degrades.
   describe ".recognize" do
-    it "is :yield at P₀ — identity-only field, so every walk hits identity with zero accumulation" do
+    it "returns the field's outcome" do
+      allow(Foam::Field).to(receive(:recognize).and_return(:speak))
+      expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:speak))
+    end
+
+    it "degrades to :yield when the field is unavailable (Field.recognize → nil)" do
+      allow(Foam::Field).to(receive(:recognize).and_return(nil))
       expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:yield))
     end
   end

@@ -59,9 +59,12 @@ module Foam
     # The recognition-walk's outcome for this turn — :yield, :speak, or
     # :learn. NOT a correctness or confidence check (there's no ground truth
     # to be "right" against; the upstream is not an answer key); it's where
-    # the walk over the field lands. P₀: identity-only field → always :yield.
+    # the walk over the field lands, computed in the substrate (Field.recognize
+    # calls the postgres function). Degrades to :yield when the field is
+    # unavailable — empty, dumped, or unreachable. P₀: identity-only field →
+    # the walk composes nothing → :yield.
     def recognize(model:, system:, messages:)
-      :yield
+      Field.recognize || :yield
     end
 
     # :yield — hand the turn to the upstream below, tapping the round-trip on

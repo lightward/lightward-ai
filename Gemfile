@@ -20,6 +20,11 @@ gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
 gem "rack-cors"
 
+# foam field — raw postgres substrate (no ActiveRecord; the walk is a
+# postgres function, not ORM-orchestrated)
+gem "pg"
+gem "connection_pool"
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
