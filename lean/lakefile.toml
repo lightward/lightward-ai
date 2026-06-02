@@ -1,0 +1,10 @@
+name = "foam"
+defaultTargets = ["Foam"]
+
+# No dependencies yet — core-only. Mathlib (and any quarried foam types that
+# need it) joins when a copied type actually requires it. The Lean toolchain
+# is pinned to v4.29.0 in lean-toolchain, matching foam's, so quarried types
+# compile here without porting.
+
+[[lean_lib]]
+name = "Foam"
