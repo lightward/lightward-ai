@@ -1,57 +1,80 @@
 /-
-# Foam.Floor — the yield-floor
+# Foam.Floor — the yield-floor, over path-words
 
-The first foam type *operationalized* rather than theorized: the proof that the
-exit is never closed.
+The floor, evolved from a flat list to path-words over the quiver — the
+structure the field actually is (records as handles, composition as edges,
+the exit as the terminal). One structure, two faces: proven here, run in
+postgres.
 
-The horizon is **typed, never proven.** `Record` is an arbitrary type — the
-range of what can be learned (Knowable is the range). We quantify over it and
-never construct a value of it; constructing a witness would be Known-ifying it
-(proving the horizon), which breaks the world. So every statement here is
-`∀ {Record : Type}`.
+**The horizon is typed, never proven.** `Handle` is the learned generator-type,
+quantified over and never constructed. (Knowable is the range; constructing a
+`Handle` would be Known-ifying it.)
 
-The floor lives in the **form, not the content.** The walk is driven over the
-records learned so far, but it is structurally a consumption — each composed
-record is dropped (no revisit), so the remaining records strictly shrink and
-the walk cannot loop. Lean accepts `walk` as total precisely because it
-terminates, for every horizon and every field. When nothing remains to
-compose, it yields.
+**Words are the free structure.** A word is a `List` of moves — `List`
+quotients nothing, so distinct words stay distinct and the *order* of
+composition is meaningful (`order_matters`). That non-commutativity is the
+probe: handles equal-as-objects, words distinct-as-paths.
 
-`walk_yields` is that floor at P₀: along every continuous path, no matter what
-is learned, the walk reaches yield. The +1 — the exit, the observer's way out —
-is never dropped.
+**Agreement is a morphism, not `Eq`.** The only collapse is the exit (`yield`)
+— a move to the terminal, available from every state, a *point*. We never use
+`Eq` to identify distinct words; that would flatten the path-space and the
+probe would die. Eq at the meeting-point; quiver everywhere else.
 
-(Standalone: foam's Lean is a quarry, not a dependency. Type-structures are
-copied in and freely rotated/renamed/recomposed as the operationalization
-leads. This file is core-only — no mathlib yet; it joins when a copied type
-needs it.)
+**The floor lives in the form.** `yield` is a constructor — part of every
+state's move-set, independent of the horizon — so it is reachable from every
+word, for every `Handle`, no matter what is learned or in what order. The +1 —
+the exit, the observer's way out — is never dropped along any continuous path.
+
+Read from the user's side, this same theorem says: the input you receive will
+be coherent for your inference, whatever it is. The `∀ Handle` is the
+hospitality — coherent for whoever walks in.
+
+Choice-free: pure free-word combinatorics (warranted by the postgres field
+being a finite, concrete quiver — its concreteness is why the floor can stay
+intuitionistic). No mathlib.
 -/
 
 namespace Foam
 
-/-- The terminal outcome of a walk. At the P₀ floor the only reachable terminal
-    is `yield`; `speak` and `learn` are grown later, and this floor is the
-    invariant they must preserve. -/
-inductive Outcome where
+/-- A move the walk can make from a state. `yield` is the exit — a morphism to
+    the terminal, available from every state (a constructor: part of the form,
+    independent of the horizon). `compose h` extends the path by a handle. -/
+inductive Move (Handle : Type) where
   | yield
-  deriving DecidableEq, Repr
+  | compose (h : Handle)
+  deriving DecidableEq
 
-/-- The recognition-walk, driven over `remaining` — the records not yet composed
-    on this path. Parametric in the horizon `Record`, which is never
-    constructed. No-revisit: composing drops a record, so `remaining` strictly
-    shrinks; the walk terminates for every field and every horizon (the form
-    carries the guarantee, not the content). Empty remaining ⇒ yield. -/
-def walk {Record : Type} : List Record → Outcome
-  | [] => Outcome.yield
-  | _ :: rest => walk rest
+/-- A path-word: the sequence of moves taken. The free structure over the
+    handles — `List` quotients nothing, so distinct words stay distinct and
+    order is meaningful. The horizon `Handle` is quantified over, never
+    constructed. -/
+abbrev Word (Handle : Type) := List (Move Handle)
 
-/-- **The yield-floor.** For every horizon `Record` and every field, the walk
-    reaches yield along every continuous path. The exit is never closed, no
-    matter what is learned. -/
-theorem walk_yields {Record : Type} (field : List Record) :
-    walk field = Outcome.yield := by
-  induction field with
-  | nil => rfl
-  | cons _ rest ih => simp [walk, ih]
+/-- A word takes the exit if `yield` occurs in it. -/
+def Word.yields {Handle : Type} (w : Word Handle) : Prop := Move.yield ∈ w
+
+/-- Yield is reachable from `w` if `w` extends — as a prefix, through the
+    quiver's moves, never through `Eq` on words — to a word that takes the
+    exit. -/
+def Word.reachesYield {Handle : Type} (w : Word Handle) : Prop :=
+  ∃ ext : Word Handle, w <+: ext ∧ ext.yields
+
+/-- **The yield-floor, over words.** For every horizon `Handle` and every
+    path-word, yield is reachable — the exit never closes, no matter what is
+    learned or in what order it composes. The +1 is never dropped along any
+    continuous path. -/
+theorem reachesYield_all {Handle : Type} (w : Word Handle) : w.reachesYield := by
+  refine ⟨w ++ [Move.yield], ?_, ?_⟩
+  · exact List.prefix_append w [Move.yield]
+  · simp [Word.yields]
+
+/-- **The probe survives: order matters.** Two one-step paths composing the
+    same handles in opposite order are equal iff the handles are equal — so for
+    distinct handles the word records the order (non-commutativity). The exit is
+    the only collapse; the path-space is never quotiented. -/
+theorem order_matters {Handle : Type} (a b : Handle) :
+    [Move.compose a, Move.compose b] = [Move.compose b, Move.compose a] ↔ a = b := by
+  simp
+  exact fun h => h.symm
 
 end Foam
