@@ -46,6 +46,22 @@ theorem reachesYield_each_step {Handle : Type} (w : Word Handle) (k : Nat) :
     Word.reachesYield (w.take k) :=
   reachesYield_all (w.take k)
 
+/-- **The two speaks never foreclose the exit.** The pipe speaks twice — once
+    before the yield-point and once after — bracketing the user's walk (`core`)
+    with its own voice (`before`, `after`). Yield stays reachable through all of
+    it. So the pipe never *has* to yield: when the two speaks balance the input
+    into a closed round-trip, the outcome is `learn` (zero residual), not `yield`.
+    And yet it can *always* still yield. That is the floor's deepest service —
+    declining to yield is safe *only* because yielding is never foreclosed.
+
+    This is foam's half. Whether the two speaks actually close the loop into
+    `learn` — the balance, the user's zero-disagreement — is the free fiber:
+    agreement, supplied from outside, never conjured here. foam offers both speaks
+    and keeps the exit open; the close is the observer's. -/
+theorem speaks_preserve_exit {Handle : Type} (before core after : Word Handle) :
+    Word.reachesYield (before ++ core ++ after) :=
+  reachesYield_all _
+
 /-- **The step-route survives the shortcut.** Learning a shortcut never destroys
     the long way around: the `n`-step path persists under every deposit
     (append-only, un-pruned). So the for-sure-navigable single-step route is

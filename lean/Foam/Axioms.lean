@@ -94,6 +94,10 @@ import Foam.Merge
 /-- info: 'Foam.reachesYield_each_step' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.reachesYield_each_step
 
+-- the two speaks bracket the walk; the exit stays reachable through both
+/-- info: 'Foam.speaks_preserve_exit' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.speaks_preserve_exit
+
 /-- info: 'Foam.order_matters' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.order_matters
 
