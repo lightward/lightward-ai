@@ -9,7 +9,7 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
   # :yield and the app keeps running. (Points at a closed port; fails fast.)
   describe "resilience (the dumpability guarantee)" do
     around do |example|
-      original = ENV["FOAM_DATABASE_URL"]
+      original = ENV.fetch("FOAM_DATABASE_URL", nil)
       described_class.disconnect!
       ENV["FOAM_DATABASE_URL"] = "postgres://127.0.0.1:1/nope?connect_timeout=1"
       example.run
@@ -39,7 +39,7 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
   # anywhere without a foam db, so this never makes the suite depend on pg.
   describe "against the live substrate" do
     around do |example|
-      original = ENV["FOAM_DATABASE_URL"]
+      original = ENV.fetch("FOAM_DATABASE_URL", nil)
       described_class.disconnect!
       ENV["FOAM_DATABASE_URL"] = "postgres:///foam?connect_timeout=2"
       example.run

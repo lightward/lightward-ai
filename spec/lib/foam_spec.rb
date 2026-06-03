@@ -25,33 +25,41 @@ RSpec.describe(Foam, :aggregate_failures) do
   # speak, the turns it yields must yield faithfully.
   describe ".messages (P₀: 100% yield)" do
     it "yields every turn straight to the upstream, unchanged, and returns its result" do
-      expect(upstream).to(receive(:messages).with(**args).and_return(:upstream_result))
+      allow(upstream).to(receive(:messages).with(**args).and_return(:upstream_result))
 
       result = described_class.messages(**args, upstream: upstream)
 
       expect(result).to(eq(:upstream_result))
+      expect(upstream).to(have_received(:messages).with(**args))
     end
 
     it "does not pass its own upstream: kwarg down to the upstream" do
       # the pipe holds the upstream reference; it does not leak it into the call
-      expect(upstream).to(receive(:messages)) { |**kw| expect(kw).not_to(include(:upstream)) }
+      received = nil
+      allow(upstream).to(receive(:messages)) { |**kw| received = kw }
 
       described_class.messages(**args, upstream: upstream)
+
+      expect(received).not_to(include(:upstream))
     end
 
     it "observes the response on the non-streaming path (the round-trip is fully visible there)" do
       response = instance_double(Net::HTTPResponse, code: "200")
       allow(upstream).to(receive(:messages).and_return(response))
-      expect(described_class).to(receive(:observe_response).with(response))
+      allow(described_class).to(receive(:observe_response))
 
       described_class.messages(**args.merge(stream: false), upstream: upstream)
+
+      expect(described_class).to(have_received(:observe_response).with(response))
     end
 
     it "does not try to observe the streaming response (single-consumption — its own brick)" do
       allow(upstream).to(receive(:messages).and_return(:streamed))
-      expect(described_class).not_to(receive(:observe_response))
+      allow(described_class).to(receive(:observe_response))
 
       described_class.messages(**args.merge(stream: true), upstream: upstream)
+
+      expect(described_class).not_to(have_received(:observe_response))
     end
   end
 
@@ -82,11 +90,11 @@ RSpec.describe(Foam, :aggregate_failures) do
     end
 
     it "reads the underlying stream exactly once (does not double-consume)" do
-      expect(streaming_response).to(receive(:read_body).once) { |&blk| chunks.each { |c| blk.call(c) } }
-
       described_class.messages(**args, upstream: upstream) do |_request, response|
         response.read_body { |_chunk| nil }
       end
+
+      expect(streaming_response).to(have_received(:read_body).once)
     end
   end
 
@@ -119,10 +127,12 @@ RSpec.describe(Foam, :aggregate_failures) do
   # field (chunk + deposit) in one pass, no separate deposit call.
   describe "the write-back" do
     it "walks the field on recognize (the deposit is the walk's residual half)" do
-      expect(Foam::Field).to(receive(:walk).and_return(:yield))
+      # the before block already stubs Field.walk → :yield; here we verify it ran
       allow(upstream).to(receive(:messages).and_return(:ok))
 
       described_class.messages(**args.merge(stream: false), upstream: upstream)
+
+      expect(Foam::Field).to(have_received(:walk))
     end
   end
 

@@ -62,9 +62,9 @@ module Foam
       # on any failure → the layer yields. Returns :yield | :speak | :learn.
       def walk(input = [])
         literal = "{#{Array(input).join(",")}}"
-        outcome = with_connection do |conn|
+        outcome = with_connection { |conn|
           conn.exec_params("SELECT foam.walk($1::uuid[])", [literal]).getvalue(0, 0)
-        end
+        }
         outcome&.to_sym
       end
 
