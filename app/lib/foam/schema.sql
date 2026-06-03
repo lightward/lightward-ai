@@ -74,7 +74,12 @@ CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
       SELECT f.id, ARRAY[f.id]
       FROM foam.field f
       UNION ALL
-      -- step: compose forward along an edge, never revisiting (the floor's guard)
+      -- step: compose forward along an edge, never revisiting. This no-revisit
+      -- guard is the floor's termination (reachesYield_all) AND, when agreement
+      -- has deposited a closing edge (a round-trip), it is the operational form of
+      -- lean/Foam/Merge.lean: foam builds the circle but declines to traverse its
+      -- closure — it never closes the round-trip into a point. The merge is the
+      -- observer's to license; the walk lands on yield and leaves it open.
       SELECT c.next, w.path || c.next
       FROM walk w
       JOIN foam.composition c ON c.prev = w.node

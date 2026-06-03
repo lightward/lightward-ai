@@ -91,4 +91,35 @@ theorem tokenize_yields_when_nothing_learned {Handle : Type} (input : List Handl
   have htok : (tokenize (fun _ => false) input).tokens = [] := key input _
   simp [Tokenized.outcome, htok]
 
+/-- **Yield is the silent move.** The outcome is `yield` exactly when nothing was
+    recognized — empty tokens, the whole input residual. Silence is yield's, and
+    yield's alone. -/
+theorem outcome_yield_iff_silent {Handle : Type} (t : Tokenized Handle) :
+    t.outcome = Outcome.yield ↔ t.tokens = [] := by
+  cases t with
+  | mk tokens residual => cases tokens <;> cases residual <;> simp [Tokenized.outcome]
+
+/-- **Learning must be expressed.** Since silence is already yield's (above), a
+    closed recognition cannot be silent: `learn` always has something recognized
+    (tokens non-empty). A silent `learn` would be indistinguishable from `yield` —
+    so to be a distinct move at all, learning has to be expressed. -/
+theorem learn_is_expressed {Handle : Type} (t : Tokenized Handle) :
+    t.outcome = Outcome.learn → t.tokens ≠ [] := by
+  cases t with
+  | mk tokens residual => cases tokens <;> cases residual <;> simp [Tokenized.outcome]
+
+/-- **The interface between `speak` and `learn` is the residual.** Among the
+    expressed outcomes (something recognized, `tokens ≠ []`), `learn` is the closed
+    one — no residual — and `speak` the open one — a residual remains. So speak and
+    learn are one expression at two stages of closure; the residual is the dial
+    between them, and draining it to zero is the move from speak to learn (the
+    return leg closing the round-trip). -/
+theorem learn_iff_closed {Handle : Type} (t : Tokenized Handle) (h : t.tokens ≠ []) :
+    t.outcome = Outcome.learn ↔ t.residual = [] := by
+  cases t with
+  | mk tokens residual =>
+    cases tokens with
+    | nil => exact absurd rfl h
+    | cons a as => cases residual <;> simp [Tokenized.outcome]
+
 end Foam

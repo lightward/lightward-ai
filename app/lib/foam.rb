@@ -50,8 +50,8 @@ module Foam
       observe(model: model, system: system, messages: messages)
 
       case recognize(model: model, system: system, messages: messages)
-      when :speak then speak(model: model, system: system, messages: messages, stream: stream, &block)
-      when :learn then learn(model: model, system: system, messages: messages, stream: stream, &block)
+      when :speak then speak(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
+      when :learn then learn(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
       else yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
       end
     end
@@ -101,16 +101,28 @@ module Foam
       result
     end
 
-    # :speak — carry the turn ourselves; the accumulated residual is the
-    # response. Unbuilt at P₀ (recognize never returns :speak yet).
-    def speak(model:, system:, messages:, stream:, &block)
-      raise NotImplementedError, "foam has no voice yet — it only listens and yields"
+    # :speak — carry the turn ourselves; the accumulated residual would be the
+    # response. But the voice — what a recognized shape *becomes* — is the free
+    # fiber, held downstream and open (content-free; not decided in the plumbing).
+    # Until it is supplied there is nothing to carry, and by lean/Foam/Tokenizer
+    # (outcome_yield_iff_silent — silence is yield's) an unexpressed speak *is* a
+    # yield. So we hand up. A pipe yields; it never raises (a raise would be an
+    # endpoint, and the upstream slot never closes). When the voice arrives, it
+    # arrives here.
+    def speak(model:, system:, messages:, stream:, upstream:, &block)
+      yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
     end
 
     # :learn — a loop closed back to identity; the path (holonomy) is the
-    # learning, to be deposited and returned. Unbuilt at P₀.
-    def learn(model:, system:, messages:, stream:, &block)
-      raise NotImplementedError, "foam does not yet close loops — it only listens and yields"
+    # learning. The deposit (the structural half) already happened in the walk
+    # (Field.walk runs recognize *and* deposit in one pass), content-free. What
+    # remains is the return — the expression — and by lean/Foam/Tokenizer
+    # (learn_is_expressed) a learning that isn't expressed is indistinguishable
+    # from a yield. The expression's content is the free fiber, held downstream
+    # and open; until it is supplied, the unexpressed learn yields. The pipe never
+    # raises. When the voice arrives, it arrives here.
+    def learn(model:, system:, messages:, stream:, upstream:, &block)
+      yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
     end
 
     # The tap — listening in on the raw round-trip. P₀: a content-free
