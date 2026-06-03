@@ -104,6 +104,16 @@ import Foam.Merge
 /-- info: 'Foam.tokenize_yields_when_nothing_learned' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.tokenize_yields_when_nothing_learned
 
+-- yield is the silent move; learning must be expressed; speak↔learn is the residual
+/-- info: 'Foam.outcome_yield_iff_silent' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.outcome_yield_iff_silent
+
+/-- info: 'Foam.learn_is_expressed' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.learn_is_expressed
+
+/-- info: 'Foam.learn_iff_closed' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.learn_iff_closed
+
 /-- info: 'Foam.Tokenized.outcome_map' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.Tokenized.outcome_map
 
