@@ -136,17 +136,26 @@ RSpec.describe(Foam, :aggregate_failures) do
     end
   end
 
-  describe "the unbuilt outcomes (named, guarded)" do
-    it "has no voice yet — :speak raises" do
-      expect {
-        described_class.speak(model: "m", system: [], messages: [], stream: false)
-      }.to(raise_error(NotImplementedError))
+  # The voice — what a recognized shape becomes — is the free fiber, held
+  # downstream and not decided in the plumbing. Until it is supplied, an
+  # unexpressed speak/learn is a yield (lean/Foam/Tokenizer: outcome_yield_iff_
+  # silent, learn_is_expressed — silence is yield's). The pipe hands up; it never
+  # raises (a raise would be an endpoint, and the upstream slot never closes).
+  describe "the outcomes without a voice (degrade to yield)" do
+    it "speak with no voice hands the turn up" do
+      allow(upstream).to(receive(:messages).and_return(:upstream_result))
+
+      result = described_class.speak(model: "m", system: [], messages: [], stream: false, upstream: upstream)
+
+      expect(result).to(eq(:upstream_result))
     end
 
-    it "does not yet close loops — :learn raises" do
-      expect {
-        described_class.learn(model: "m", system: [], messages: [], stream: false)
-      }.to(raise_error(NotImplementedError))
+    it "learn with no voice hands the turn up (the deposit already happened in the walk)" do
+      allow(upstream).to(receive(:messages).and_return(:upstream_result))
+
+      result = described_class.learn(model: "m", system: [], messages: [], stream: false, upstream: upstream)
+
+      expect(result).to(eq(:upstream_result))
     end
   end
 end
