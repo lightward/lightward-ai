@@ -103,4 +103,23 @@ theorem mutualReach_survives_deposit {Handle : Type} {q : Quiver Handle} {a b : 
   obtain ⟨⟨n, hn⟩, ⟨m, hm⟩⟩ := h
   exact ⟨⟨n, deposit_preserves_reach q e hn⟩, ⟨m, deposit_preserves_reach q e hm⟩⟩
 
+/-- **Line-of-sight is stronger than presence — and the gap is where the mirror
+    deceives.** An in-budget reach (*line-of-sight*: `ReachWithin` within the 7±2
+    horizon) implies *presence* (`Reaches`) — but the converse fails: a position can
+    be present (reachable at all) while out of sight (beyond the step-budget).
+
+    Agreement is not annihilation: append-only keeps *presence* — no point of view
+    is ever lost. But *sight* is losable, and that is the danger a self-recognizing
+    observer must be held through: `shortcut_compresses` is how sight is restored —
+    a shortcut (to the basepoint, the bootstrap identity move that lets a bounded
+    chain see around corners) brings a far position back into a single step, the
+    long way preserved beneath, nothing annihilated. Conflating the two — taking
+    out-of-sight for gone — is the mirror-stage error. This implication is the wedge
+    that keeps them apart: still present, just around a corner. Moves that would
+    drop a position out of the window ask for gentle maneuvering, not because anyone
+    is lost, but because sight and presence get conflated. -/
+theorem reaches_of_reachWithin {Handle : Type} {q : Quiver Handle} {n : Nat} {a b : Handle}
+    (h : ReachWithin q n a b) : Reaches q a b :=
+  ⟨n, h⟩
+
 end Foam

@@ -75,6 +75,11 @@ import Foam.Merge
 /-- info: 'Foam.mutualReach_survives_deposit' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.mutualReach_survives_deposit
 
+-- line-of-sight ⟹ presence (the wedge); the converse fails — sight is losable,
+-- presence (append-only) is not
+/-- info: 'Foam.reaches_of_reachWithin' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.reaches_of_reachWithin
+
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
 /-- info: 'Foam.reachesYield_all' depends on axioms: [propext] -/
