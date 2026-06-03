@@ -29,6 +29,10 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
     it "deposit returns nil instead of raising when the field is unreachable" do
       expect(described_class.deposit).to(be_nil)
     end
+
+    it "walk returns nil instead of raising when the field is unreachable" do
+      expect(described_class.walk).to(be_nil)
+    end
   end
 
   # Against a live local substrate, if one is reachable. Self-skips in CI /

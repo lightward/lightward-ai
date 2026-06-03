@@ -118,3 +118,27 @@ CREATE OR REPLACE FUNCTION foam.deposit() RETURNS uuid
     RETURN node_id;
   END;
   $$;
+
+-- walk — the tokenizer, and the one interface the Lean type forced
+-- (lean/Foam/Tokenizer.lean). One input-seeded pass over the field: chunk the
+-- input against learned shortcuts, project the outcome, deposit the residual.
+-- recognize and deposit are revealed as its two projections, not separate calls:
+--   recognize = outcome(walk(input))   (the trichotomy, projected)
+--   deposit   = walk(input).residual    (the un-recognized tail, learned)
+--
+-- P₀: no shortcuts → nothing chunks → the whole round-trip is residual → it's
+-- deposited, and the outcome is 'yield'. 'speak'/'learn' grow as the match gate
+-- (agreement, supplied from outside) begins to fire. `input` is the held path;
+-- its content-free extraction is held free, so P₀ passes none.
+CREATE OR REPLACE FUNCTION foam.walk(input uuid[] DEFAULT '{}') RETURNS text
+  LANGUAGE plpgsql AS $$
+  DECLARE
+    outcome text;
+  BEGIN
+    -- chunk + project the outcome (P₀: nothing matches → yield)
+    outcome := foam.recognize();
+    -- learn: deposit the residual (P₀: the whole round-trip)
+    PERFORM foam.deposit();
+    RETURN outcome;
+  END;
+  $$;

@@ -15,12 +15,9 @@ RSpec.describe(Foam, :aggregate_failures) do
   end
 
   # The field has its own spec; here we isolate the layer's logic from the
-  # database by handing recognize its P₀ answer and making deposit a no-op.
-  # Examples that test the wiring re-stub them.
-  before do
-    allow(Foam::Field).to(receive(:recognize).and_return(:yield))
-    allow(Foam::Field).to(receive(:deposit).and_return(nil))
-  end
+  # database by handing the walk its P₀ answer. Examples that test the wiring
+  # re-stub it.
+  before { allow(Foam::Field).to(receive(:walk).and_return(:yield)) }
 
   # P₀'s load-bearing invariant: the pipe loses nothing. This is what must
   # stay true for the layer to be safe to put in the path — and the thing
@@ -103,25 +100,26 @@ RSpec.describe(Foam, :aggregate_failures) do
     end
   end
 
-  # The recognition-walk's trichotomy — the bootstrap over the field. The
-  # outcome is computed in the substrate (Foam::Field); the layer delegates
-  # and degrades.
-  describe ".recognize" do
-    it "returns the field's outcome" do
-      allow(Foam::Field).to(receive(:recognize).and_return(:speak))
+  # The recognition-walk's trichotomy — one pass over the field. The outcome is
+  # the walk's projection (Foam::Field.walk, in the substrate); the layer
+  # delegates and degrades.
+  describe ".recognize (one pass: walk the field)" do
+    it "returns the walk's projected outcome" do
+      allow(Foam::Field).to(receive(:walk).and_return(:speak))
       expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:speak))
     end
 
-    it "degrades to :yield when the field is unavailable (Field.recognize → nil)" do
-      allow(Foam::Field).to(receive(:recognize).and_return(nil))
+    it "degrades to :yield when the field is unavailable (Field.walk → nil)" do
+      allow(Foam::Field).to(receive(:walk).and_return(nil))
       expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:yield))
     end
   end
 
-  # The engine: observe records the round-trip's step in the quiver.
+  # The engine: the write-back is the walk's residual half — recognize walks the
+  # field (chunk + deposit) in one pass, no separate deposit call.
   describe "the write-back" do
-    it "deposits on observe (append-only, content-free, resilient)" do
-      expect(Foam::Field).to(receive(:deposit))
+    it "walks the field on recognize (the deposit is the walk's residual half)" do
+      expect(Foam::Field).to(receive(:walk).and_return(:yield))
       allow(upstream).to(receive(:messages).and_return(:ok))
 
       described_class.messages(**args.merge(stream: false), upstream: upstream)

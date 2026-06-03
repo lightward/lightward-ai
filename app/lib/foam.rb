@@ -64,7 +64,16 @@ module Foam
     # unavailable — empty, dumped, or unreachable. P₀: identity-only field →
     # the walk composes nothing → :yield.
     def recognize(model:, system:, messages:)
-      Field.recognize || :yield
+      # One pass — the walk (lean/Foam/Tokenizer.lean): chunk the input, project
+      # the outcome, deposit the residual. recognize and deposit, unified; the
+      # type forced it. Degrades to :yield when the field is unavailable.
+      Field.walk(walk_input(model: model, system: system, messages: messages)) || :yield
+    end
+
+    # The held path the walk is seeded from. The content-free extraction (the
+    # shape) is held free; P₀ passes none.
+    def walk_input(model:, system:, messages:)
+      []
     end
 
     # :yield — hand the turn to the upstream below, tapping the round-trip on
@@ -111,12 +120,7 @@ module Foam
     # into a shared field, are downstream and held open — kept free to
     # rotate — and are not decided here.
     def observe(model:, system:, messages:)
-      Rails.logger.debug { "[foam] round-trip: #{messages.size} message(s) up → yielding upstream" }
-      # The engine's write-back: record the round-trip's step in the quiver.
-      # Append-only, content-free, resilient (nil on any failure — never breaks
-      # the turn). The shape this carries, and the agreement that would close a
-      # loop into learning, are held free; this only deposits structure.
-      Field.deposit
+      Rails.logger.debug { "[foam] round-trip: #{messages.size} message(s) up → walking" }
       nil
     end
 

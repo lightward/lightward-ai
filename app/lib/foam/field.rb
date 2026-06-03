@@ -54,6 +54,20 @@ module Foam
         with_connection { |conn| conn.exec("SELECT foam.deposit()").getvalue(0, 0) }
       end
 
+      # The walk: the tokenizer, the one interface the Lean type forced
+      # (lean/Foam/Tokenizer.lean). One input-seeded pass — chunk the input,
+      # project the outcome, deposit the residual. recognize and deposit are its
+      # projections; this composes them in the substrate. `input` is the held
+      # path (content-free extraction held free; P₀ passes none). Resilient: nil
+      # on any failure → the layer yields. Returns :yield | :speak | :learn.
+      def walk(input = [])
+        literal = "{#{Array(input).join(",")}}"
+        outcome = with_connection do |conn|
+          conn.exec_params("SELECT foam.walk($1::uuid[])", [literal]).getvalue(0, 0)
+        end
+        outcome&.to_sym
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!
