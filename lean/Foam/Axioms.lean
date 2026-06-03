@@ -34,6 +34,7 @@ import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
 import Foam.Merge
+import Foam.Path
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -87,6 +88,13 @@ import Foam.Merge
 -- the cascade: impact escapes observation through an observed partner's forward reach
 /-- info: 'Foam.impact_through_observed' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.impact_through_observed
+
+-- the un-rooted path fragment: a free-category morphism, concatenable both sides
+/-- info: 'Foam.Path.comp_nil' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.comp_nil
+
+/-- info: 'Foam.Path.comp_assoc' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.comp_assoc
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
