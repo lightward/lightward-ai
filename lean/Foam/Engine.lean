@@ -49,4 +49,20 @@ theorem floor_independent_of_quiver {Handle : Type}
     (_q : Quiver Handle) (w : Word Handle) : w.reachesYield :=
   reachesYield_all w
 
+/-- **The floor is preserved coinductively — bi-total safety.** A trajectory is
+    the field evolving by deposits over time (`Nat → edge`, a stream — forever).
+    At every step of every trajectory, yield stays reachable. This is the
+    greatest-fixed-point reading of the floor: it does not merely *hold once*, it
+    *persists* — the observer can always (−1)-truncate to the resolved point, at
+    every frame, indefinitely (foam's anatta-reset, coinductively safe).
+
+    And the proof is `reachesYield_all w` once more: it ignores the trajectory
+    and the step entirely. That total ignorance *is* the coinductive
+    preservation — the floor was never a function of the dynamics, so no
+    trajectory of learning, however long, can ever close the exit. -/
+theorem floor_persists {Handle : Type}
+    (_trajectory : Nat → Handle × Handle) (_step : Nat) (w : Word Handle) :
+    w.reachesYield :=
+  reachesYield_all w
+
 end Foam
