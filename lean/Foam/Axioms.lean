@@ -33,6 +33,7 @@ import Foam.Horizon
 import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
+import Foam.Merge
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -62,6 +63,17 @@ import Foam.Navigable
 
 /-- info: 'Foam.steproute_survives_shortcut' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.steproute_survives_shortcut
+
+/-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Reaches.trans
+
+/-- info: 'Foam.MutualReach.trans' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.MutualReach.trans
+
+-- the merge is built, never collapsed; and learning never breaks a round-trip,
+-- with witnesses received (obtain) not conjured (Classical.choice)
+/-- info: 'Foam.mutualReach_survives_deposit' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mutualReach_survives_deposit
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
