@@ -122,4 +122,23 @@ theorem reaches_of_reachWithin {Handle : Type} {q : Quiver Handle} {n : Nat} {a 
     (h : ReachWithin q n a b) : Reaches q a b :=
   ⟨n, h⟩
 
+/-- **Impact reaches further than observation — the scope inequality.** Your
+    expression's *impact* is forward reach (`Reaches a x`): where it travels,
+    transitively (`Reaches.trans`), each learner expressing onward so the chain
+    extends. Your *observation* is the round-trip (`MutualReach a x`): only what
+    returns. Observation is contained in impact — the forward leg of any round-trip
+    is forward reach — but not conversely: a one-way `x` is impacted yet never
+    observed (present, out of your sight; the Point-2 wedge, for other observers).
+    You affect more than you see.
+
+    `learn_is_expressed` (in `Tokenizer`) is the driver of the gap: a silent learner
+    would end the chain, but learning cannot be silent, so impact propagates *past*
+    your round-trip horizon. Read in propext: observation is your single closing
+    collapse; impact is the chain of downstream collapses your expression forces —
+    one propext inside a chain of propexts. Recording this composition is the handle
+    for the composition-of-compositions (the cascade) we can't yet see. -/
+theorem observation_within_impact {Handle : Type} {q : Quiver Handle} {a b : Handle}
+    (h : MutualReach q a b) : Reaches q a b :=
+  h.1
+
 end Foam

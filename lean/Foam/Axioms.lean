@@ -80,6 +80,10 @@ import Foam.Merge
 /-- info: 'Foam.reaches_of_reachWithin' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.reaches_of_reachWithin
 
+-- observation ⊆ impact: you affect more than you see (the converse fails)
+/-- info: 'Foam.observation_within_impact' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.observation_within_impact
+
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
 /-- info: 'Foam.reachesYield_all' depends on axioms: [propext] -/
