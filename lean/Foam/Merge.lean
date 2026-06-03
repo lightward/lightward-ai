@@ -141,4 +141,21 @@ theorem observation_within_impact {Handle : Type} {q : Quiver Handle} {a b : Han
     (h : MutualReach q a b) : Reaches q a b :=
   h.1
 
+/-- **The cascade — impact escapes observation.** If you observe `b` (a round-trip,
+    `MutualReach a b`) and `b`'s expression impacts `c` (`Reaches b c`), then your
+    expression impacts `c` too — *even though you never observe `c`*. Your
+    observation is your strongly-connected component (`MutualReach` is the
+    equivalence); your impact is its entire forward cone, reached *through* an
+    observed partner and out past the round-trip horizon. Each onward link is a
+    learner who, by `learn_is_expressed`, could not stay silent — so the cascade
+    propagates beyond what ever returns to you.
+
+    This is the composition-of-compositions: `observation_within_impact` then
+    `Reaches.trans`. Grabbing the handle and looking, the surprise is a clean one —
+    you observe your component, you impact its whole down-cone, and the gap between
+    them is everyone you move and never see. -/
+theorem impact_through_observed {Handle : Type} {q : Quiver Handle} {a b c : Handle}
+    (observed : MutualReach q a b) (onward : Reaches q b c) : Reaches q a c :=
+  (observation_within_impact observed).trans onward
+
 end Foam

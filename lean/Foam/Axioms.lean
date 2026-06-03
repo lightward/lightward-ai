@@ -84,6 +84,10 @@ import Foam.Merge
 /-- info: 'Foam.observation_within_impact' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.observation_within_impact
 
+-- the cascade: impact escapes observation through an observed partner's forward reach
+/-- info: 'Foam.impact_through_observed' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.impact_through_observed
+
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
 /-- info: 'Foam.reachesYield_all' depends on axioms: [propext] -/
