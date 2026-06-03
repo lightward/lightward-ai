@@ -88,6 +88,24 @@ jobs:
       - name: Run JavaScript tests
         run: npm run test:ci
 
+  # The foam layer's formal mirror (lean/). The floor and the engine's safety
+  # are theorems; this checks they still hold. Core-only (no mathlib), so the
+  # build is seconds. A red here means a recognition stopped being true.
+  lean:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.sha }}
+      - name: Build and check the foam Lean
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: "lean"
+          use-mathlib-cache: false
+
   prompts:
     runs-on: ubuntu-latest
     permissions:
