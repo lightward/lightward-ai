@@ -1,0 +1,65 @@
+/-
+# Foam.Horizon — shortcuts, the elastic horizon, and 7±2
+
+The field is un-prunable (no edge removed or merged — that's a quotient, which
+`order_matters` forbids). But it learns *shortcuts*: a direct edge deposited
+alongside a long path. Append-only — so the long path is never lost; the detail
+waits, un-pruned. A shortcut is foam's reversible on-demand (−1)-truncation: you
+may skip the detail (proof-irrelevant), and it is still there when you return.
+
+So growth and tractability resolve into each other. A bounded-depth walk reaches
+*further* as shortcuts accumulate — each compresses a long path into one step.
+The horizon goes elastic: a fixed step-budget covers unbounded path-distance.
+
+That budget is 7±2 (Miller): the walk holds ~7 chunks, and chunking *is* how a
+fixed capacity handles unbounded structure. The bound is on the number of steps,
+not the path-length; shortcuts make each step a chunk.
+
+This file is the formal mirror of what develops in the postgres field. The Lean
+is where we record what the system can infer — by illuminating it, here, as we go.
+-/
+
+import Foam.Engine
+
+namespace Foam
+
+/-- Reach from `a` to `c` in at most `n` composition-steps over the quiver. -/
+def ReachWithin {Handle : Type} (q : Quiver Handle) : Nat → Handle → Handle → Prop
+  | 0,     a, c => a = c
+  | n + 1, a, c => a = c ∨ ∃ b, (a, b) ∈ q ∧ ReachWithin q n b c
+
+/-- **Reach is monotone in the quiver.** More edges, never less reach: every
+    deposit (append-only) only adds reach — the un-prunable field never loses a
+    path. -/
+theorem reach_mono_quiver {Handle : Type} {q q' : Quiver Handle} (hsub : q ⊆ q') :
+    ∀ {n a c}, ReachWithin q n a c → ReachWithin q' n a c := by
+  intro n
+  induction n with
+  | zero => intro a c h; exact h
+  | succ k ih =>
+    intro a c h
+    rcases h with h | ⟨b, hb, hbc⟩
+    · exact Or.inl h
+    · exact Or.inr ⟨b, hsub hb, ih hbc⟩
+
+/-- The detail is un-pruned: every reach in `q` survives every deposit. -/
+theorem deposit_preserves_reach {Handle : Type} (q : Quiver Handle) (e : Handle × Handle)
+    {n a c} (h : ReachWithin q n a c) : ReachWithin (q.deposit e) n a c := by
+  refine reach_mono_quiver ?_ h
+  intro x hx
+  simp only [Quiver.deposit]
+  exact List.mem_cons_of_mem e hx
+
+/-- **The shortcut compresses the horizon.** Once the shortcut `(a, c)` is
+    deposited, `c` is reachable from `a` in a *single* step — and the original
+    `n`-step path survives alongside it. Both coexist: nothing quotiented, the
+    chunk available, the detail waiting. A fixed step-budget (7±2) thus reaches
+    arbitrarily far as shortcuts accumulate — the elastic horizon. -/
+theorem shortcut_compresses {Handle : Type} (q : Quiver Handle) (a c : Handle) {n : Nat}
+    (long : ReachWithin q n a c) :
+    ReachWithin (q.deposit (a, c)) 1 a c ∧ ReachWithin (q.deposit (a, c)) n a c := by
+  refine ⟨Or.inr ⟨c, ?_, rfl⟩, deposit_preserves_reach q (a, c) long⟩
+  simp only [Quiver.deposit]
+  exact List.mem_cons_self
+
+end Foam
