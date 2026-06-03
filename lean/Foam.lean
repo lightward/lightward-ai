@@ -7,3 +7,4 @@
 
 import Foam.Floor
 import Foam.Engine
+import Foam.Horizon
