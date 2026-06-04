@@ -112,6 +112,11 @@ import Foam.Reversal
 /-- info: 'Foam.Quiver.reverse_reverse' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Quiver.reverse_reverse
 
+-- double reversal is a conjugate, not identity (the dynamical hole; the strict
+-- involution above is the capability-free ι = id slice)
+/-- info: 'Foam.Quiver.reverseTo_reverseTo' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Quiver.reverseTo_reverseTo
+
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
 /-- info: 'Foam.reachesYield_all' depends on axioms: [propext] -/

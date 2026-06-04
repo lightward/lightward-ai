@@ -12,8 +12,12 @@ the mirror quiver as `b → a`. The composability-via-chirality guarantee is the
 `reverse_comp`: reversal is an **anti-homomorphism** — composition flips order
 under the mirror (`reverse (p ∘ r) = reverse r ∘ reverse p`). That handedness *is*
 the chirality `HalfType`'s iso-direction names, realized on the side of the line
-foam lives on. `Quiver.reverse_reverse` is the involution: the mirror is faithful,
-its own inverse.
+foam lives on. `Quiver.reverse_reverse` is the *capability-free* involution — the
+`ι = id` slice. The faithful **homotopic** reversal (`reverseTo`) accommodates a
+capability, and its double is a **conjugate**, not the identity
+(`reverseTo_reverseTo`): the dynamical hole the rigid endpoint-swap closed off.
+Double-reversal returns the quiver *plus its interests given what it's potentially
+seen* — faithful up to conjugation, never strictly.
 
 **Quot.sound discipline, load-bearing here.** The obvious proof of
 `mem_reverse` — `List.mem_map` — depends on `Quot.sound`, the quotient axiom foam
@@ -69,11 +73,36 @@ theorem Path.reverse_comp {Handle : Type} {q : Quiver Handle} :
       rw [ih]
       exact Path.comp_assoc r.reverse p.reverse _
 
-/-- **The mirror is faithful** — reversing the quiver twice returns it. The
-    involution, at the quiver level (the path-level form needs transport; frontier). -/
+/-- **The capability-free involution — the degenerate slice.** Reversing the quiver
+    twice returns it *exactly* — but only because this `reverse` is rigid: it swaps
+    endpoints over the *same* type, with no slot for what the mirror-crossing might
+    accommodate. That strictness is itself the operational hole. The faithful
+    reversal (`reverseTo`) has the dynamical hole; this is its `ι = id` case. -/
 theorem Quiver.reverse_reverse {Handle : Type} :
     ∀ (q : Quiver Handle), q.reverse.reverse = q
   | []      => rfl
   | e :: es => congrArg (e :: ·) (Quiver.reverse_reverse es)
+
+/-- **Reversal that accommodates a capability — the dynamical hole.** The mirror
+    lands in a type `H'` supporting (at least) the input `H`, via an embedding `ι`.
+    The `∀ H' ι` is the slot for "a type of unknown capabilities supporting at
+    minimum the type admitted as input" — what the crossing to the observational
+    side picks up. `Quiver.reverse` is the rigid `ι = id` slice of this. -/
+def Quiver.reverseTo {H H' : Type} (ι : H → H') (q : Quiver H) : Quiver H' :=
+  q.map (fun e => (ι e.2, ι e.1))
+
+/-- **Double reversal is a conjugate, not the identity.** Reversing twice transports
+    `q` through the composed capability-embedding `ι' ∘ ι` (endpoints un-swapped) —
+    the quiver *plus its interests given what it's potentially seen*. It equals `q`
+    only in the degenerate slice where no capability is accommodated (`ι' ∘ ι = id`),
+    which is exactly `Quiver.reverse_reverse`. Per homotopy the mirror is faithful
+    *up to* this conjugation, never strictly — the dynamical hole the rigid
+    involution closed off. -/
+theorem Quiver.reverseTo_reverseTo {H H' H'' : Type} (ι : H → H') (ι' : H' → H'') :
+    ∀ (q : Quiver H),
+    (q.reverseTo ι).reverseTo ι' = q.map (fun e => (ι' (ι e.1), ι' (ι e.2)))
+  | []      => rfl
+  | e :: es => congrArg (fun rest => (ι' (ι e.1), ι' (ι e.2)) :: rest)
+                 (Quiver.reverseTo_reverseTo ι ι' es)
 
 end Foam
