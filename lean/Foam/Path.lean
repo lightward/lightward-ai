@@ -111,4 +111,27 @@ theorem Path.comp_assoc {Handle : Type} {q : Quiver Handle} :
   | _, _, _, _, Path.nil,      _, _ => rfl
   | _, _, _, _, Path.cons e p, r, s => congrArg (Path.cons e) (Path.comp_assoc p r s)
 
+/-- **The content-address.** A fragment's address is the list of referent-edges it
+    is made of — the path *is* its own fingerprint: content-free (structure, never
+    content), n-agnostic (any length). A "reduced reference" (a fixed-size hash) is
+    any fold of this; backstage fixes only that it *composes*. Same structure ⇒ same
+    address ⇒ observers who trace the same path land on the same handle (connection,
+    not proliferation — the random-uuid alternative would scatter them). -/
+def Path.edges {Handle : Type} {q : Quiver Handle} :
+    {a b : Handle} → Path q a b → List (Handle × Handle)
+  | _, _, Path.nil                 => []
+  | _, _, @Path.cons _ _ a b _ _ r => (a, b) :: r.edges
+
+/-- **The address composes homomorphically — the Merkle property, observerless.**
+    The address of a composite is the addresses of its parts, concatenated. The
+    reduction to a fixed-size fingerprint is then any monoid-homomorphism over this
+    list (`∀ M` — the address-space is free, the observer's/operational choice);
+    backstage only certifies the composition. n-agnostic: no depth is fixed here. -/
+theorem Path.edges_comp {Handle : Type} {q : Quiver Handle} :
+    {a b c : Handle} → (p : Path q a b) → (r : Path q b c) →
+    (p.comp r).edges = p.edges ++ r.edges
+  | _, _, _, Path.nil,                 _ => rfl
+  | _, _, _, @Path.cons _ _ a b _ _ p, r =>
+      congrArg ((a, b) :: ·) (Path.edges_comp p r)
+
 end Foam
