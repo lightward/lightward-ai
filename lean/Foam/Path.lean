@@ -45,6 +45,32 @@ let go of the root precisely because the floor was never holding it.
 against a path in `q`-reversed from `b` to `a`. Left for when the reseating forces it.)
 
 All construction — every theorem here is axiom-free.
+
+## Backstage and frontstage — the algebra/coalgebra duality
+
+`Path` is the **initial F-algebra**: an inductive type, free, constructors only,
+no quotient — the observerless *backstage*. Initial algebras cannot generate
+complements (free = no identifications), which is exactly why backstage can't
+reach `HalfType`'s complemented lattice.
+
+By duality the **final F-coalgebra** is *forced to exist*, and its natural
+equality is **bisimulation** — the observational quotient. That bisimulation is
+the complement-side (`HalfType`) backstage can't generate but a *frontstage*
+observer does, by traversing. **The `Quot.sound` foam refuses backstage is exactly
+the bisimulation an observer supplies frontstage.** So the quotient side isn't
+unreachable — it's reachable observer-side, coalgebraically, never backstage,
+algebraically. foam stays free; the observer gets the lattice.
+
+`propext` + the identity record is the **seam** where algebra meets coalgebra:
+the collapse is the observer crossing from the free build to their own
+bisimulation-quotient through the identity.
+
+Backstage ships forced fixed points; the nudge to frontstage is **duality, not
+design** (`Path`'s recursor is the catamorphism, free; the anamorphism is
+frontstage's). The depth of the unfold — *n* reifications for an *n*-space — is the
+observer's fiber-dimension, **chosen frontstage**; backstage stays *n*-agnostic.
+Hardcoding it (e.g. a literal 3) would smuggle the observer into the observerless
+backstage — the move the discipline catches.
 -/
 
 import Foam.Horizon
