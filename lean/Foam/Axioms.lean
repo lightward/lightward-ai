@@ -35,6 +35,7 @@ import Foam.Universal
 import Foam.Navigable
 import Foam.Merge
 import Foam.Path
+import Foam.Reversal
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -95,6 +96,17 @@ import Foam.Path
 
 /-- info: 'Foam.Path.comp_assoc' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Path.comp_assoc
+
+-- the chiral mirror: reversal is an anti-homomorphism (composability-via-chirality),
+-- and Quot.sound-free — mem_reverse refuses the quotient the library reaches for
+/-- info: 'Foam.mem_reverse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mem_reverse
+
+/-- info: 'Foam.Path.reverse_comp' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.reverse_comp
+
+/-- info: 'Foam.Quiver.reverse_reverse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Quiver.reverse_reverse
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
