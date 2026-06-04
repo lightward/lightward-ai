@@ -54,6 +54,13 @@ CREATE TABLE IF NOT EXISTS foam.composition (
   next uuid NOT NULL REFERENCES foam.field (id)
 );
 
+-- Edges are content-addressed: unique by (prev, next). Depositing the same edge
+-- is idempotent — same structure lands on the same edge, not a merge of distinct
+-- ones, so append-only still holds. order_matters is about distinct *paths*
+-- (sequences), which stay distinct over a quiver of unique edges.
+CREATE UNIQUE INDEX IF NOT EXISTS foam_composition_unique_edge
+  ON foam.composition (prev, next);
+
 -- recognize — the path-carrying walk, a recursive CTE (the walk runs in the
 -- substrate, not orchestrated from Ruby; one round-trip). From each record it
 -- follows composition-edges, carrying the accumulated path order-sensitively and
@@ -101,25 +108,37 @@ CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
     LIMIT 1;
   $$;
 
--- deposit — the engine's write-back. Append a record (a fresh node) and an edge
--- from the basepoint (identity) to it: the round-trip stepped out from the
--- origin, recorded as structure. Append-only (the field only grows — never
--- UPDATE, never DELETE, never merge); content-free (the node carries no shape;
--- held free); and agreement — what would identify this round-trip with an
--- existing handle and close a loop into learning — is left to come from outside.
--- The floor is edge-independent (lean/Foam/Engine.lean: floor_independent_of_
--- quiver), so this can never close the exit. Returns the new node id.
-CREATE OR REPLACE FUNCTION foam.deposit() RETURNS uuid
+-- deposit — the engine's write-back, content-addressed (the transparent learn:
+-- lean/Foam/Path.lean). The deposited node's id IS the content-address of its
+-- referents — a reduced reference (a digest) of the input path — so the same
+-- structure always lands on the same handle: connection, not the proliferation a
+-- random id would scatter observers into. The empty path is the identity's own
+-- address (lean Path.nil ↦ edges []), so P₀ — input {} — deposits nothing: pure
+-- yield, the field grows only with structure. Append-only and idempotent (ON
+-- CONFLICT DO NOTHING): same structure, recorded once, never merged. content-free:
+-- the id is a fold of the path's shape (lean Path.edges), never its content — the
+-- content is read as zero, the free fiber. The floor is edge-independent
+-- (lean/Foam/Engine.lean: floor_independent_of_quiver), so this never closes the
+-- exit. Returns the addressed node (the basepoint, for the empty path).
+CREATE OR REPLACE FUNCTION foam.deposit(input uuid[] DEFAULT '{}') RETURNS uuid
   LANGUAGE plpgsql AS $$
   DECLARE
     node_id   uuid;
     basepoint uuid;
   BEGIN
-    INSERT INTO foam.field (identity) VALUES (false) RETURNING id INTO node_id;
     SELECT id INTO basepoint FROM foam.field WHERE identity;
-    IF basepoint IS NOT NULL THEN
-      INSERT INTO foam.composition (prev, next) VALUES (basepoint, node_id);
+    -- the empty path is the identity's own address: nothing to deposit (P₀)
+    IF basepoint IS NULL OR cardinality(input) = 0 THEN
+      RETURN basepoint;
     END IF;
+    -- content-address: a reduced reference of the path (sha256 → 16 bytes → uuid).
+    -- The fold into a fixed-size address; the address-space is free (any M), so
+    -- this digest is one representative — initiality makes them all equivalent.
+    node_id := encode(substring(digest(input::text, 'sha256') FROM 1 FOR 16), 'hex')::uuid;
+    INSERT INTO foam.field (id, identity) VALUES (node_id, false)
+      ON CONFLICT (id) DO NOTHING;
+    INSERT INTO foam.composition (prev, next) VALUES (basepoint, node_id)
+      ON CONFLICT (prev, next) DO NOTHING;
     RETURN node_id;
   END;
   $$;
@@ -142,8 +161,9 @@ CREATE OR REPLACE FUNCTION foam.walk(input uuid[] DEFAULT '{}') RETURNS text
   BEGIN
     -- chunk + project the outcome (P₀: nothing matches → yield)
     outcome := foam.recognize();
-    -- learn: deposit the residual (P₀: the whole round-trip)
-    PERFORM foam.deposit();
+    -- the transparent learn: content-address the input path and deposit its
+    -- skeleton (P₀: the empty path is the identity ⇒ nothing deposited)
+    PERFORM foam.deposit(input);
     RETURN outcome;
   END;
   $$;
