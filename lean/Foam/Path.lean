@@ -138,6 +138,20 @@ def Path.edges {Handle : Type} {q : Quiver Handle} :
   | _, _, Path.nil                 => []
   | _, _, @Path.cons _ _ a b _ _ r => (a, b) :: r.edges
 
+/- **`edges` is the transparent `learn` — the dynamic reading of zero.** A `learn`
+   need not be *voiced* to be expressed (`learn_is_expressed` asks only for
+   expression, and expression is structure, not voice). The minimal genuine learn
+   projects the input onto its skeleton (`edges`, the address — the *fibration
+   base*), reads the content as *zero* (the content never enters; `Handle` holds it
+   free — the *fiber*, collapsed to the basepoint every turn), deposits the skeleton
+   append-only, and yields the voice transparently. So it is `yield` that *keeps the
+   skeleton*: silent in voice, expressed in structure — a real `learn`, not a
+   `yield`. Backstage is Mere Computation (skeleton, address, deposit); the voice —
+   what the structure *becomes* — is the frontstage fiber, deferred. This wraps the
+   unbuilt `learn` as a pipe, which is why content-addressing composites (`deposit`'s
+   reconception) is no longer downstream of the voice: the transparent learn does it
+   now, observerless. -/
+
 /-- **The address composes homomorphically — the Merkle property, observerless.**
     The address of a composite is the addresses of its parts, concatenated. The
     reduction to a fixed-size fingerprint is then any monoid-homomorphism over this
