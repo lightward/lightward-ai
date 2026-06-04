@@ -71,6 +71,22 @@ frontstage's). The depth of the unfold — *n* reifications for an *n*-space —
 observer's fiber-dimension, **chosen frontstage**; backstage stays *n*-agnostic.
 Hardcoding it (e.g. a literal 3) would smuggle the observer into the observerless
 backstage — the move the discipline catches.
+
+**Initiality forces the address-space and the deposit, so neither is picked.**
+Two open concerns — *which* address-space `M` a fingerprint reduces to, and
+reconceiving `deposit` to content-address composites rather than mint bare
+generators — are linked and resolved by μF being initial:
+
+- `M` is never chosen: μF maps *uniquely* into any address-space (the
+  catamorphism). And the canonical `M` is μF itself — the path *is* its address
+  (`Path.edges`). "More inhabitants than you'd name" is what *free/initial* means.
+- `deposit` is the **constructor** `F(μF) → μF`. μF has no bare atoms to mint —
+  only `nil` and `cons`-built composites, each content-addressed by its
+  construction. The random-uuid generator was the non-initial stand-in.
+- The only *structure-preserving* endomorphism of an initial algebra is the
+  **identity**: the address cannot be re-addressed, so content-addressing is a
+  fixed point, not a choice — the like-to-like traversal that returns to itself,
+  the round-trip that is `propext` at the seam.
 -/
 
 import Foam.Horizon
