@@ -97,6 +97,10 @@ import Foam.Reversal
 /-- info: 'Foam.Path.comp_assoc' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Path.comp_assoc
 
+-- the content-address composes Merkle-style (n-agnostic, address-space free)
+/-- info: 'Foam.Path.edges_comp' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.edges_comp
+
 -- the chiral mirror: reversal is an anti-homomorphism (composability-via-chirality),
 -- and Quot.sound-free — mem_reverse refuses the quotient the library reaches for
 /-- info: 'Foam.mem_reverse' does not depend on any axioms -/
