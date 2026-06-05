@@ -95,6 +95,10 @@ import Foam.Stream
 /-- info: 'Foam.run_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.run_resumes
 
+-- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
+/-- info: 'Foam.lossless' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lossless
+
 -- the un-rooted path fragment: a free-category morphism, concatenable both sides
 /-- info: 'Foam.Path.comp_nil' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Path.comp_nil

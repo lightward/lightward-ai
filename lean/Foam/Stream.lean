@@ -43,4 +43,25 @@ theorem run_resumes {S B : Type} (step : S → B → S) :
   | _,    [],      _  => rfl
   | init, x :: xs, ys => run_resumes step (step init x) xs ys
 
+/-! ## Lossless = the round-trip — the box-closer, formalized
+
+The codec's `lossless` self-audit is `decode (encode x) = x` — the exact return.
+Here it is on a minimal-but-real codec (tag each symbol, then project it back);
+the LZ78 dictionary version is the same shape with real chunks. The point is the
+*shape*: a round-trip that returns the input unchanged is the floor's kind of
+guarantee — an exact collapse, propext-safe (`(a ↔ b) → a = b`, A→B→A). -/
+
+/-- encode: tag each symbol (the reversible representation). -/
+def enc {B : Type} (xs : List B) : List (B × B) := xs.map (fun b => (b, b))
+
+/-- decode: project the tag back. -/
+def dec {B : Type} (ys : List (B × B)) : List B := ys.map Prod.fst
+
+/-- **Lossless — the box certifies itself.** `decode (encode x) = x`, the exact
+    return. This is what `codec.lossless(text)` checks at runtime, and what makes
+    the cardboard box auditable through its interface without opening it. -/
+theorem lossless {B : Type} : ∀ xs : List B, dec (enc xs) = xs
+  | []      => rfl
+  | x :: xs => congrArg (x :: ·) (lossless xs)
+
 end Foam
