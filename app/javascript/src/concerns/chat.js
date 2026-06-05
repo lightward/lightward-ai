@@ -707,7 +707,10 @@ export class ChatSession {
     fetch('/api/stream', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_log: chatLogWithWarmup }),
+      body: JSON.stringify({
+        chat_log: chatLogWithWarmup,
+        usage_client: this.context.key,
+      }),
     })
       .then((response) => {
         if (!response.ok) {

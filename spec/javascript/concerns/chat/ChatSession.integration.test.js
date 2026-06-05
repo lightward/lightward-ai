@@ -350,6 +350,8 @@ data: null
         const requestBody = JSON.parse(fetchCall[1].body);
         const chatLog = requestBody.chat_log;
 
+        expect(requestBody.usage_client).toBe('test');
+
         // First 8 messages should be warmup messages
         expect(chatLog.length).toBeGreaterThan(8);
         expect(chatLog[0].content[0].text).toContain('walking in with you');

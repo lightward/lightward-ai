@@ -7,6 +7,22 @@ class ApiController < ApplicationController
   class InvalidCacheMarkerCount < StandardError; end
 
   CHAT_LOG_TOKEN_LIMIT = 50_000
+  FIRST_PARTY_USAGE_CLIENTS = {
+    "reader" => "lightward_reader",
+    "writer" => "lightward_writer",
+  }.freeze
+  ANTHROPIC_USAGE_TOKEN_KEYS = %w[
+    input_tokens
+    output_tokens
+    cache_creation_input_tokens
+    cache_read_input_tokens
+  ].freeze
+  ANTHROPIC_PRICING_USD_PER_MILLION = {
+    "input_tokens" => 3.0,
+    "cache_creation_input_tokens" => 3.75,
+    "cache_read_input_tokens" => 0.30,
+    "output_tokens" => 15.0,
+  }.freeze
 
   skip_before_action :verify_host!
 
@@ -60,9 +76,6 @@ class ApiController < ApplicationController
     # Check conversation horizon
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
-    # Track analytics
-    record_newrelic_event(chat_log, conversation_frame_id: "plain")
-
     # Make non-streaming request to Anthropic
     response = Prompts.messages(
       messages: chat_log,
@@ -70,6 +83,7 @@ class ApiController < ApplicationController
     )
 
     if response.code.to_i >= 400
+      record_newrelic_event(chat_log, conversation_frame_id: "plain")
       render(plain: "An error occurred.", status: :bad_gateway)
       return
     end
@@ -77,6 +91,7 @@ class ApiController < ApplicationController
     # Parse response and extract text
     parsed = JSON.parse(response.body)
     response_text = parsed.dig("content", 0, "text") || ""
+    record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: parsed["usage"])
 
     # Append horizon warning if approaching limit
     unless token_limit_disabled?
@@ -90,9 +105,8 @@ class ApiController < ApplicationController
   end
 
   def perform_stream(chat_log)
-    # Track analytics
     conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
-    record_newrelic_event(chat_log, conversation_frame_id: conversation_frame_id, conversation_id: conversation_id)
+    anthropic_usage = {}
 
     response.headers["Content-Type"] = "text/event-stream"
     response.headers["Cache-Control"] = "no-cache"
@@ -106,7 +120,7 @@ class ApiController < ApplicationController
       if response.code.to_i >= 400
         send_sse_event("error", { error: { message: response.body } })
       else
-        stream_anthropic_response(request, response, chat_log)
+        stream_anthropic_response(request, response, chat_log, anthropic_usage)
       end
     end
   rescue IOError
@@ -116,6 +130,12 @@ class ApiController < ApplicationController
     Rails.logger.error("API stream error: #{error.message}\n#{error.backtrace.join("\n")}")
     send_sse_event("error", { error: { message: "An unexpected error occurred" } })
   ensure
+    record_newrelic_event(
+      chat_log,
+      conversation_frame_id: conversation_frame_id,
+      conversation_id: conversation_id,
+      anthropic_usage: anthropic_usage,
+    ) if conversation_frame_id
     send_sse_event("end", nil)
     response.stream.close
   end
@@ -123,11 +143,72 @@ class ApiController < ApplicationController
   private
 
   def token_limit_disabled?
-    return false if request.headers["Token-Limit-Bypass-Key"].blank?
+    token_limit_bypassed?
+  end
+
+  def token_limit_bypassed?
+    return @token_limit_bypassed if defined?(@token_limit_bypassed)
+
+    @token_limit_bypassed = named_bypass_client.present? || legacy_bypass_key_valid?
+  end
+
+  def bypass_key
+    request.headers["Token-Limit-Bypass-Key"].to_s.strip.presence
+  end
+
+  def named_bypass_client
+    return @named_bypass_client if defined?(@named_bypass_client)
+
+    key = bypass_key
+    @named_bypass_client = if key.blank?
+      nil
+    else
+      named_bypass_client_keys.find { |_client, client_key|
+        secure_token_match?(key, client_key)
+      }&.first
+    end
+  end
+
+  def named_bypass_client_keys
+    ENV["TOKEN_LIMIT_BYPASS_CLIENT_KEYS"].to_s.split(",").filter_map do |entry|
+      client, key = entry.split(":", 2).map { |part| part.to_s.strip }
+      next if client.blank? || key.blank?
+
+      [normalize_usage_client(client), key]
+    end
+  end
+
+  def legacy_bypass_key_valid?
+    key = bypass_key
+    return false if key.blank?
     return false if ENV["TOKEN_LIMIT_BYPASS_KEYS"].blank?
 
-    valid_keys = ENV["TOKEN_LIMIT_BYPASS_KEYS"].split(",").map(&:strip)
-    valid_keys.include?(request.headers["Token-Limit-Bypass-Key"])
+    ENV["TOKEN_LIMIT_BYPASS_KEYS"].split(",").map(&:strip).any? { |valid_key|
+      secure_token_match?(key, valid_key)
+    }
+  end
+
+  def secure_token_match?(candidate, expected)
+    return false if candidate.blank? || expected.blank?
+    return false unless candidate.bytesize == expected.bytesize
+
+    ActiveSupport::SecurityUtils.secure_compare(candidate, expected)
+  end
+
+  def usage_client
+    if named_bypass_client.present?
+      named_bypass_client
+    elsif legacy_bypass_key_valid?
+      "external_bypass"
+    elsif (first_party_usage_client = FIRST_PARTY_USAGE_CLIENTS[params[:usage_client].to_s])
+      first_party_usage_client
+    else
+      "#{action_name}_unknown"
+    end
+  end
+
+  def normalize_usage_client(client)
+    client.to_s.strip.downcase.gsub(/[^a-z0-9]+/, "_").gsub(/\A_|_\z/, "")
   end
 
   def validate_cache_markers!(chat_log)
@@ -195,17 +276,73 @@ class ApiController < ApplicationController
     [conversation_frame_id, conversation_id]
   end
 
-  def record_newrelic_event(chat_log, conversation_frame_id:, conversation_id: nil)
+  def record_newrelic_event(chat_log, conversation_frame_id:, conversation_id: nil, anthropic_usage: nil)
+    normalized_usage = normalize_anthropic_usage(anthropic_usage)
+
     ::NewRelic::Agent.record_custom_event(
       "ApiController: request",
       conversation_frame_id: conversation_frame_id,
       conversation_id: conversation_id,
+      usage_client: usage_client,
+      usage_conversation_id: usage_conversation_id(conversation_id),
+      usage_subject_id: usage_subject_id,
+      token_limit_bypassed: token_limit_bypassed?,
+      anthropic_model: Prompts::Anthropic::MODEL,
       chat_log_depth: chat_log.size,
       chat_log_token_count: @chat_log_token_count,
+      input_tokens: normalized_usage["input_tokens"],
+      output_tokens: normalized_usage["output_tokens"],
+      cache_creation_input_tokens: normalized_usage["cache_creation_input_tokens"],
+      cache_read_input_tokens: normalized_usage["cache_read_input_tokens"],
+      estimated_cost_usd: estimated_cost_usd(normalized_usage),
     )
   end
 
-  def stream_anthropic_response(request, response, chat_log)
+  def usage_conversation_id(conversation_id)
+    hmac_header(request.headers["X-LAI-Conversation-Key"]) || conversation_id
+  end
+
+  def usage_subject_id
+    hmac_header(request.headers["X-LAI-Subject-Key"])
+  end
+
+  def hmac_header(value)
+    value = value.to_s
+    return if value.blank?
+
+    secret = usage_telemetry_hmac_secret
+    return if secret.blank?
+
+    OpenSSL::HMAC.hexdigest("SHA256", secret, value)
+  end
+
+  def usage_telemetry_hmac_secret
+    ENV["USAGE_TELEMETRY_HMAC_SECRET"].presence ||
+      (Rails.application.secret_key_base unless Rails.env.production?)
+  end
+
+  def normalize_anthropic_usage(anthropic_usage)
+    usage = {}
+    anthropic_usage ||= {}
+
+    ANTHROPIC_USAGE_TOKEN_KEYS.each do |key|
+      usage[key] = anthropic_usage[key] if anthropic_usage.key?(key)
+    end
+
+    usage
+  end
+
+  def estimated_cost_usd(anthropic_usage)
+    return if anthropic_usage.values.all?(&:nil?)
+
+    cost = ANTHROPIC_PRICING_USD_PER_MILLION.sum { |key, usd_per_million|
+      anthropic_usage[key].to_i * usd_per_million / 1_000_000.0
+    }
+
+    cost.round(8)
+  end
+
+  def stream_anthropic_response(request, response, chat_log, anthropic_usage)
     buffer = +""
     current_event = nil
     warning = nil
@@ -222,6 +359,7 @@ class ApiController < ApplicationController
         elsif line.start_with?("data:")
           json_data = line[5..-1]
           event_data = JSON.parse(json_data)
+          capture_anthropic_usage!(anthropic_usage, current_event, event_data)
 
           # Handle horizon warnings (unless token limit disabled)
           warning = handle_horizon_warning(current_event, warning, chat_log) unless token_limit_disabled?
@@ -232,7 +370,22 @@ class ApiController < ApplicationController
     end
 
     # Process any remaining buffer
-    process_remaining_buffer(buffer, current_event)
+    process_remaining_buffer(buffer, current_event, anthropic_usage)
+  end
+
+  def capture_anthropic_usage!(anthropic_usage, current_event, event_data)
+    usage = case current_event
+    when "message_start"
+      event_data.dig("message", "usage")
+    when "message_delta"
+      event_data["usage"]
+    end
+
+    return unless usage.is_a?(Hash)
+
+    ANTHROPIC_USAGE_TOKEN_KEYS.each do |key|
+      anthropic_usage[key] = usage[key] if usage.key?(key)
+    end
   end
 
   def handle_horizon_warning(current_event, warning, chat_log)
@@ -271,7 +424,7 @@ class ApiController < ApplicationController
     })
   end
 
-  def process_remaining_buffer(buffer, current_event)
+  def process_remaining_buffer(buffer, current_event, anthropic_usage)
     return if buffer.strip.empty?
 
     line = buffer.strip
@@ -279,6 +432,7 @@ class ApiController < ApplicationController
 
     json_data = line[5..-1]
     event_data = JSON.parse(json_data)
+    capture_anthropic_usage!(anthropic_usage, current_event, event_data)
     send_sse_event(current_event || "message", event_data)
   end
 
