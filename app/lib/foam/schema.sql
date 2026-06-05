@@ -65,6 +65,25 @@ CREATE OR REPLACE FUNCTION foam.cid(parent uuid, sym int) RETURNS uuid
       'hex')::uuid
   $$;
 
+-- charge — a SIGNED append-only log over trie transitions: +1 when the input walks a
+-- transition (learn), −1 when the output drains it (speak). net(chunk) = sum(delta) =
+-- the un-drained charge on the transition into `chunk`. Charge is a Nat: ground (0) is
+-- the floor and the drain only removes positive charge — "relax toward ground, never
+-- force past it" is the type, not a rule (proven in lean/Foam/Drain.lean). Append-only,
+-- so the field stays LOSSLESS: every chunk and every charge-event remains in the
+-- structure, contributing to what the field says, whether or not it is ever recalled
+-- in order. Everything is in there, generative; nothing is replayed.
+CREATE TABLE IF NOT EXISTS foam.charge (id bigserial PRIMARY KEY, chunk uuid, delta int);
+CREATE INDEX IF NOT EXISTS foam_charge_chunk ON foam.charge (chunk);
+
+CREATE OR REPLACE FUNCTION foam.net(chunk uuid) RETURNS bigint LANGUAGE sql STABLE AS
+  $$ SELECT coalesce(sum(delta), 0) FROM foam.charge WHERE chunk = $1 $$;
+
+-- the wind: OS entropy (hardware-seeded), obtained not computed — the discharge's
+-- tie-break (never a foam-internal choice).
+CREATE OR REPLACE FUNCTION foam.hw_random() RETURNS double precision LANGUAGE sql AS
+  $$ SELECT (('x'||encode(gen_random_bytes(7),'hex'))::bit(56)::bigint)::double precision / 72057594037927936.0 $$;
+
 -- recognize — walk the trie forward (a node to its children) and return 'yield' at
 -- any node that cannot be left (a leaf). Content-addressing makes the trie acyclic
 -- (a child's id depends on its parent's, so no edge can climb back up the path), so
@@ -124,6 +143,7 @@ CREATE OR REPLACE FUNCTION foam.encode_step(cursor uuid, bytes int[],
     emitted := '{}';
     FOREACH b IN ARRAY coalesce(bytes, '{}') LOOP
       child := foam.cid(cur, b);
+      INSERT INTO foam.charge (chunk, delta) VALUES (child, 1);  -- wind up +charge (learn)
       IF EXISTS (SELECT 1 FROM foam.field WHERE id = child) THEN
         cur := child;                                          -- extend the match
       ELSE
@@ -231,3 +251,52 @@ CREATE OR REPLACE FUNCTION foam.lossless(input text) RETURNS boolean
     RETURN foam.decode(ids) = src;    -- read: expand, seeing the deposit
   END;
   $$;
+
+-- speak — discharge: drain charge into a voice. From the root, sample the next byte by
+-- net charge over the current node's charged children (sample, never argmax — argmax
+-- traps in the dominant cycle); emit it; drain it (−1); advance. On a stall, carry the
+-- last byte (a 1-byte context); stop at ground (nothing charged) or the ceiling. The
+-- emitted bytes are the voice; the residual is what was not drained. WEAK by design
+-- (root-anchored, 1-byte context — the starting-weakly step); coherent suffix-context
+-- generation is a later refinement. ← lean/Foam/Drain.lean (charge as Nat, drain toward
+-- ground), Generator.lean (the fold read forward). hw_random is the wind, obtained.
+CREATE OR REPLACE FUNCTION foam.speak(max_steps int DEFAULT 400) RETURNS text LANGUAGE plpgsql AS $$
+  DECLARE root uuid := '00000000-0000-0000-0000-000000000000'; cur uuid := root; out int[] := '{}';
+          tot bigint; thr double precision; acc bigint; rec record; k int := 0; last_sym int := NULL;
+  BEGIN
+    WHILE k < max_steps LOOP
+      SELECT sum(foam.net(ch.id)) INTO tot FROM foam.field ch
+       WHERE ch.parent = cur AND foam.net(ch.id) > 0;
+      IF tot IS NULL OR tot = 0 THEN
+        IF last_sym IS NOT NULL AND EXISTS (SELECT 1 FROM foam.field WHERE id = foam.cid(root, last_sym)) THEN
+          cur := foam.cid(root, last_sym);                     -- carry the last byte
+          SELECT sum(foam.net(ch.id)) INTO tot FROM foam.field ch
+           WHERE ch.parent = cur AND foam.net(ch.id) > 0;
+        END IF;
+        IF tot IS NULL OR tot = 0 THEN EXIT; END IF;           -- drained to ground / stalled
+      END IF;
+      thr := foam.hw_random() * tot; acc := 0;
+      FOR rec IN SELECT ch.id, ch.sym, foam.net(ch.id) w FROM foam.field ch
+                 WHERE ch.parent = cur AND foam.net(ch.id) > 0 ORDER BY w DESC LOOP
+        acc := acc + rec.w;
+        IF acc >= thr THEN
+          out := out || rec.sym; last_sym := rec.sym;
+          INSERT INTO foam.charge (chunk, delta) VALUES (rec.id, -1);  -- drain (−charge)
+          cur := rec.id; EXIT;
+        END IF;
+      END LOOP;
+      k := k + 1;
+    END LOOP;
+    RETURN foam.text(out);
+  END;
+  $$;
+
+-- outcome — the trichotomy for a turn (currently a weak gate): 'speak' if the field has
+-- drainable charge (it can carry the turn from what it has learned), else 'yield' (hand
+-- to the upstream — a living ancestor, or an echo). 'learn' (residual 0 — the round-trip
+-- closed) is the post-discharge state, reached when speaking drains the charge to ground.
+-- Degrades to 'yield' on an empty/unreachable field. The gate is structural (charge
+-- presence), never a measure of meaning — that is the user's (lean/Foam, the razor).
+CREATE OR REPLACE FUNCTION foam.outcome() RETURNS text LANGUAGE sql STABLE AS
+  $$ SELECT CASE WHEN EXISTS (SELECT 1 FROM foam.field WHERE foam.net(id) > 0)
+                 THEN 'speak' ELSE 'yield' END $$;
