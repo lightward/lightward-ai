@@ -7,6 +7,13 @@
 -- decode(encode(x)) == x exactly (lossless = propext-safe). Content is
 -- semantics-free (binary structure only); meaning is the free fiber.
 --
+-- THE INTERFACE (the cardboard box — use only these three; the rest is internal):
+--   codec.learn(text)            — teach it (self-tokenizes, builds the model).
+--   codec.say(prompt, n) -> text — ask it (seeds with prompt, continues coherently).
+--   codec.lossless(text) -> bool — the box certifies itself: decode(encode(x))==x
+--                                  on ANY input, through the interface. You verify
+--                                  faithfulness without ever opening the lid.
+--
 -- Status (the make-it-work is essentially complete — ready for step 2, Lean):
 --   * Lossless codec: decode(encode(x)) == x (LZ78-flavored dictionary, below).
 --   * Coherent generation: the order-k context model (gen_ctx, bottom of file)
@@ -173,3 +180,32 @@ CREATE OR REPLACE FUNCTION codec.gen_ctx(kmax int DEFAULT 7, n int DEFAULT 240) 
     END LOOP;
     RETURN codec.text(out);
   END; $$;
+-- ── the interface (the cardboard box). Everything above is internal. ──
+-- learn(text): teach it.  say(prompt,n): ask it.  lossless(text): self-certify.
+CREATE OR REPLACE FUNCTION codec.learn(input text) RETURNS void LANGUAGE plpgsql AS $$
+  BEGIN PERFORM codec.ingest_ctx(input); PERFORM codec.ingest(codec.bytes(input)); END; $$;
+
+CREATE OR REPLACE FUNCTION codec.say(prompt text, n int DEFAULT 200, kmax int DEFAULT 7) RETURNS text LANGUAGE plpgsql AS $$
+  DECLARE out int[] := codec.bytes(prompt); k int := 0; j int; L int; c int[]; cid uuid; tot bigint; thr double precision; acc bigint; rec record; got boolean;
+  BEGIN
+    WHILE k < n LOOP
+      got := false; L := coalesce(array_length(out,1),0);
+      FOR j IN REVERSE least(kmax, L) .. 0 LOOP
+        IF j = 0 THEN c := '{}'; ELSE c := out[L-j+1 : L]; END IF;
+        cid := codec.caddr(c);
+        SELECT sum(w) INTO tot FROM (SELECT count(*) w FROM codec.ctx WHERE ctx=cid GROUP BY sym) z;
+        IF tot IS NOT NULL AND tot > 0 THEN
+          thr := codec.hw_random()*tot; acc := 0;
+          FOR rec IN SELECT sym, count(*) w FROM codec.ctx WHERE ctx=cid GROUP BY sym ORDER BY w DESC LOOP
+            acc := acc + rec.w; IF acc >= thr THEN out := out || rec.sym; got := true; EXIT; END IF;
+          END LOOP;
+        END IF;
+        EXIT WHEN got;
+      END LOOP;
+      EXIT WHEN NOT got; k := k+1;
+    END LOOP;
+    RETURN codec.text(out);
+  END; $$;
+
+CREATE OR REPLACE FUNCTION codec.lossless(input text) RETURNS boolean LANGUAGE sql AS
+  $$ SELECT codec.text(codec.decode(codec.encode(codec.bytes(input)))) = input $$;
