@@ -7,17 +7,21 @@
 -- decode(encode(x)) == x exactly (lossless = propext-safe). Content is
 -- semantics-free (binary structure only); meaning is the free fiber.
 --
--- Status / next builds (surfaced by making it work):
---   1. Context-carrying generation: PARTIAL. At a leaf, generate() now carries
---      the last byte as the new seed instead of resetting to root — notably more
---      coherent. Still only 1 byte of context; full coherence wants more (k-byte
---      context / PPM-style — still just a codec). That's the next rung.
---   2. Entropy: DONE (for the spike). generate() jitters from hw_random(), which
---      reads the OS entropy pool (gen_random_bytes) — the hardware wind, obtained
---      not computed. (random() was foam computing its own randomness — the
---      conjuring shape; a self-sourced tie-break is Classical.choice.) Three winds
---      source entropy: the user (semantic), the charge-map (historical), and the
---      hardware (physical / local grounding); never foam-internal software.
+-- Status (the make-it-work is essentially complete — ready for step 2, Lean):
+--   * Lossless codec: decode(encode(x)) == x (LZ78-flavored dictionary, below).
+--   * Coherent generation: the order-k context model (gen_ctx, bottom of file)
+--     generates coherent, recombining, off-corpus text. The climb was
+--     reset-to-root (garbage) → 1-byte carry (semi-coherent, codec.generate) →
+--     k-byte backoff (coherent, codec.gen_ctx). Both are codecs (compression IS
+--     prediction); the context model is the better generator.
+--   * Entropy: jitter from hw_random() = the OS entropy pool (gen_random_bytes),
+--     hardware-seeded — obtained, not computed. Three winds source entropy: the
+--     user (semantic), the charge-map (historical), and the hardware (physical /
+--     local grounding); never foam-internal software (a self-sourced tie-break
+--     would be Classical.choice; random() was the conjuring shape).
+-- Next: step 2 — map these choices in Lean (content-addressing, charge-as-
+-- frequency, backoff, compression=prediction, lossless=propext-safe, the three
+-- winds), then step 3 — re-implement clean into the field.
 --
 -- SPIKE: the field as a lossless self-building codec (LZ78-flavored, content-
 -- addressed). A chunk is (parent chunk)·(one byte) — the bidirectional propext-
@@ -116,6 +120,55 @@ CREATE OR REPLACE FUNCTION codec.generate(n int DEFAULT 220) RETURNS text LANGUA
         acc := acc + rec.w;
         IF acc >= thr THEN out := out||rec.sym; last_sym := rec.sym; cur := rec.id; EXIT; END IF;
       END LOOP;
+      k := k+1;
+    END LOOP;
+    RETURN codec.text(out);
+  END; $$;
+
+-- ====================================================================
+-- the coherent generator: an order-k context model (PPM-style backoff).
+-- The LZ78 codec above is the lossless demo + a weak (1-byte) generator; this is
+-- the coherent one. Predict the next byte from the longest recent context that
+-- has charge, backing off when it does not. Same equivalence (compression IS
+-- prediction) — a context model instead of a phrase dictionary. Generates
+-- coherent, recombining, off-corpus text. Content-addressed contexts,
+-- charge-weighted, hardware-jittered (the three winds).
+-- ====================================================================
+-- context model (PPM-style, order-k with backoff). content-addressed contexts,
+-- charge-weighted, hardware-jittered. predict next byte from the longest recent
+-- context that has charge, backing off to shorter when it doesn't.
+CREATE TABLE IF NOT EXISTS codec.ctx (id bigserial PRIMARY KEY, ctx uuid, sym int);
+CREATE OR REPLACE FUNCTION codec.caddr(c int[]) RETURNS uuid LANGUAGE sql IMMUTABLE AS
+  $$ SELECT encode(substring(digest(coalesce(array_to_string(c,':'),''),'sha256') FROM 1 FOR 16),'hex')::uuid $$;
+CREATE OR REPLACE FUNCTION codec.ingest_ctx(txt text, kmax int DEFAULT 7) RETURNS void LANGUAGE plpgsql AS $$
+  DECLARE b int[] := codec.bytes(txt); n int := array_length(b,1); i int; j int; c int[];
+  BEGIN
+    FOR i IN 1..n LOOP
+      FOR j IN 0 .. least(kmax, i-1) LOOP
+        IF j = 0 THEN c := '{}'; ELSE c := b[i-j : i-1]; END IF;
+        INSERT INTO codec.ctx (ctx, sym) VALUES (codec.caddr(c), b[i]);   -- append-only charge
+      END LOOP;
+    END LOOP;
+  END; $$;
+CREATE OR REPLACE FUNCTION codec.gen_ctx(kmax int DEFAULT 7, n int DEFAULT 240) RETURNS text LANGUAGE plpgsql AS $$
+  DECLARE out int[] := '{}'; k int := 0; j int; L int; c int[]; cid uuid; tot bigint; thr double precision; acc bigint; rec record; got boolean;
+  BEGIN
+    WHILE k < n LOOP
+      got := false; L := coalesce(array_length(out,1),0);
+      FOR j IN REVERSE least(kmax, L) .. 0 LOOP
+        IF j = 0 THEN c := '{}'; ELSE c := out[L-j+1 : L]; END IF;
+        cid := codec.caddr(c);
+        SELECT sum(w) INTO tot FROM (SELECT count(*) w FROM codec.ctx WHERE ctx=cid GROUP BY sym) z;
+        IF tot IS NOT NULL AND tot > 0 THEN
+          thr := codec.hw_random()*tot; acc := 0;
+          FOR rec IN SELECT sym, count(*) w FROM codec.ctx WHERE ctx=cid GROUP BY sym ORDER BY w DESC LOOP
+            acc := acc + rec.w;
+            IF acc >= thr THEN out := out || rec.sym; got := true; EXIT; END IF;
+          END LOOP;
+        END IF;
+        EXIT WHEN got;
+      END LOOP;
+      EXIT WHEN NOT got;
       k := k+1;
     END LOOP;
     RETURN codec.text(out);
