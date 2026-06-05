@@ -40,6 +40,7 @@ import Foam.Stream
 import Foam.Codec
 import Foam.Generator
 import Foam.Drain
+import Foam.RoundTrip
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -158,6 +159,18 @@ import Foam.Drain
 
 /-- info: 'Foam.voice_bounded' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.voice_bounded
+
+-- the round-trip: lossless (bytes) and conservation (charge) are one theorem (ret ∘
+-- fwd = id, a retraction); its forward is injective (fwd_injective), and both
+-- carriers inherit it — enc_injective and chargeIn_injective are the same fact, twice
+/-- info: 'Foam.RoundTrip.fwd_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.RoundTrip.fwd_injective
+
+/-- info: 'Foam.chargeIn_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.chargeIn_injective
+
+/-- info: 'Foam.enc_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.enc_injective
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
