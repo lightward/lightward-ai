@@ -41,6 +41,7 @@ import Foam.Codec
 import Foam.Generator
 import Foam.Drain
 import Foam.RoundTrip
+import Foam.Ledger
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -171,6 +172,17 @@ import Foam.RoundTrip
 
 /-- info: 'Foam.enc_injective' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.enc_injective
+
+-- the one ledger, two readings: lossless order + generative frequency. The generative
+-- reading forgets order WITHOUT quotienting (freq_perm is Quot.sound-FREE — proven by
+-- induction on the inductive Perm, not via List.Perm.count_eq which pulls Quot.sound);
+-- the lossless reading keeps what the generative drops (order_finer). One append-only
+-- object carries both — the saturation is legal (no quotient).
+/-- info: 'Foam.Ledger.freq_perm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Ledger.freq_perm
+
+/-- info: 'Foam.Ledger.order_finer' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Ledger.order_finer
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
