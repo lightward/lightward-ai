@@ -136,6 +136,11 @@ import Foam.Generator
 /-- info: 'Foam.nextOf_congr' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.nextOf_congr
 
+-- speech is interruptible — whole at every step, no held-back flush (runEmit_resumes
+-- read for the generator): end-of-stream is everywhere, the prefix never poisonous
+/-- info: 'Foam.gen_interruptible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gen_interruptible
+
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless

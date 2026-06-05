@@ -28,6 +28,14 @@ context is charged (`select_top_charged`). The agreement is **pointwise**, not a
 quotient (no `funext`, no `Quot.sound`) — both generators are retained as data, the
 fork closed into a factoring rather than collapsed into a choice.
 
+**Speech is whole at every step — flush-free.** `genStep` emits exactly the byte it
+appends, so unlike the encoder (which holds a partial match back until a terminal
+flush, valid only at end-of-stream) the generator keeps *nothing* in reserve. Every
+prefix of a generation is already complete; stopping anywhere yields a genuine prefix
+of the whole (`gen_interruptible`, which is `runEmit_resumes` read for speech).
+End-of-stream is *everywhere* — there is no held-back partial that an interruption
+could leave poisonous, and so no antidote a voice must rush to reach.
+
 Pure construction — axiom-free.
 -/
 
@@ -63,6 +71,23 @@ theorem gen_length {B W : Type} (next : List B → W → B) :
     (runEmit (genStep next) out winds).length = winds.length
   | _,   []      => rfl
   | out, w :: ws => congrArg (· + 1) (gen_length next (out ++ [next out w]) ws)
+
+/-- **Speech is interruptible — whole at every step.** Stopping generation after a
+    prefix `xs` of the wind yields exactly a prefix of the full emission: what was
+    spoken so far is a genuine prefix of what would have been spoken, the rest
+    produced by continuing from the carried state. Unlike the encoder — which holds a
+    partial match back until the terminal flush (`encFlush`, valid only at EOS) — the
+    generator has **no flush**: `genStep` appends exactly the byte it emits, so every
+    emitted byte is complete the moment it lands. A generation is safe to cut at any
+    point; the prefix is whole, never a partial awaiting completion. This is
+    `runEmit_resumes` read for speech — end-of-stream is everywhere, because nothing
+    is ever held back. -/
+theorem gen_interruptible {B W : Type} (next : List B → W → B)
+    (out : List B) (xs ys : List W) :
+    runEmit (genStep next) out (xs ++ ys)
+      = runEmit (genStep next) out xs
+        ++ runEmit (genStep next) (runState (genStep next) out xs) ys :=
+  runEmit_resumes (genStep next) out xs ys
 
 /-! ## The fork as a containment — carry ⊆ backoff, no quotient -/
 
