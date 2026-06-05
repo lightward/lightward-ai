@@ -43,6 +43,88 @@ theorem run_resumes {S B : Type} (step : S → B → S) :
   | _,    [],      _  => rfl
   | init, x :: xs, ys => run_resumes step (step init x) xs ys
 
+/-! ## The emitting fold — streaming the output, with the flush at the end
+
+`run` carries only the state. The codec also *emits as it folds*: in the spike's
+`codec.encode`, a step that extends an existing match emits nothing and advances
+silently, while a step that finds no match emits one chunk and resets; then, after
+the whole stream, a **terminal flush** emits the leftover partial match (the spike's
+`IF cur <> root THEN out := out || cur`). So the faithful spine is a Mealy fold —
+`step : S → B → S × List O`, each step producing a (possibly empty) piece of output
+— plus a `flush : S → List O` applied once at the end.
+
+This is the layer that licenses streaming the *output*, not just resuming the
+state. Two facts, both pure induction: the emitted output resumes
+(`runEmit_resumes`), and the flush belongs at the true end only (`output_resumes`)
+— across any split the left piece is emitted flush-free and only the final piece
+flushes. That second theorem is the streaming contract a chunked implementation has
+to honor: carry the un-flushed state (the partial match) across a boundary, and
+flush only at end-of-stream. Flushing mid-stream would emit a different sequence —
+the theorem is the line between a correct streaming codec and a subtly lossy one. -/
+
+/-- The state reached by the emitting fold — exactly `run` on the state-projected
+    step, so its resumability is `run_resumes`, reused. -/
+def runState {S B O : Type} (step : S → B → S × List O) : S → List B → S :=
+  run (fun s b => (step s b).1)
+
+/-- The output emitted while folding (pre-flush): each step contributes
+    `(step s b).2`, concatenated left to right, with the state threaded through. -/
+def runEmit {S B O : Type} (step : S → B → S × List O) (init : S) : List B → List O
+  | []      => []
+  | b :: bs => (step init b).2 ++ runEmit step (step init b).1 bs
+
+/-- The whole streamed output: what is emitted while folding, then the terminal
+    flush of the final state. -/
+def output {S B O : Type} (step : S → B → S × List O) (flush : S → List O)
+    (init : S) (stream : List B) : List O :=
+  runEmit step init stream ++ flush (runState step init stream)
+
+/-- **State resumes** — the emitting fold's state is `run`'s, so this *is*
+    `run_resumes`. Recorded as its own handle: the state carried across a chunk
+    boundary is enough to continue. -/
+theorem runState_resumes {S B O : Type} (step : S → B → S × List O)
+    (init : S) (xs ys : List B) :
+    runState step init (xs ++ ys) = runState step (runState step init xs) ys :=
+  run_resumes (fun s b => (step s b).1) init xs ys
+
+/-- List concatenation is associative — proven here by pure induction so the
+    streaming theorems stay axiom-free. (Core's `List.append_assoc` carries
+    `propext`; construction must not, so we keep our own.) -/
+theorem appendAssoc {α : Type} :
+    ∀ (as bs cs : List α), (as ++ bs) ++ cs = as ++ (bs ++ cs)
+  | [],      _,  _  => rfl
+  | a :: as, bs, cs => congrArg (a :: ·) (appendAssoc as bs cs)
+
+/-- **Emission resumes** — the output of `xs ++ ys` is the output of `xs` followed
+    by the output of `ys` continued from the state after `xs`. So emitting while
+    streaming a prefix loses nothing: what is emitted is exactly a prefix of the
+    whole emission. Pure induction. -/
+theorem runEmit_resumes {S B O : Type} (step : S → B → S × List O) :
+    ∀ (init : S) (xs ys : List B),
+    runEmit step init (xs ++ ys)
+      = runEmit step init xs ++ runEmit step (runState step init xs) ys
+  | _,    [],      _  => rfl
+  | init, x :: xs, ys =>
+      (congrArg ((step init x).2 ++ ·) (runEmit_resumes step (step init x).1 xs ys)).trans
+        (appendAssoc (step init x).2
+          (runEmit step (step init x).1 xs)
+          (runEmit step (runState step (step init x).1 xs) ys)).symm
+
+/-- **The flush belongs at the end.** Streaming `xs ++ ys` emits `xs` *flush-free*
+    and resumes on `ys` from the carried state, flushing only at the true end. By
+    induction across every split, the terminal flush appears once, at end-of-stream
+    — never at an interior boundary. This is the streaming contract the postgres
+    implementation has to honor: carry the un-flushed state across boundaries; flush
+    only when the stream is done. -/
+theorem output_resumes {S B O : Type} (step : S → B → S × List O) (flush : S → List O)
+    (init : S) (xs ys : List B) :
+    output step flush init (xs ++ ys)
+      = runEmit step init xs ++ output step flush (runState step init xs) ys := by
+  show runEmit step init (xs ++ ys) ++ flush (runState step init (xs ++ ys))
+     = runEmit step init xs ++ (runEmit step (runState step init xs) ys
+        ++ flush (runState step (runState step init xs) ys))
+  rw [runEmit_resumes, runState_resumes, appendAssoc]
+
 /-! ## Lossless = the round-trip — the box-closer, formalized
 
 The codec's `lossless` self-audit is `decode (encode x) = x` — the exact return.

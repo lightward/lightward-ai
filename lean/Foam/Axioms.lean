@@ -95,6 +95,18 @@ import Foam.Stream
 /-- info: 'Foam.run_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.run_resumes
 
+-- the emitting fold (Mealy step + terminal flush): the state resumes (= run_resumes,
+-- reused), the emission resumes, and the flush stays at end-of-stream — the streaming
+-- contract a chunked implementation must honor (carry un-flushed state; flush at EOS)
+/-- info: 'Foam.runState_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.runState_resumes
+
+/-- info: 'Foam.runEmit_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.runEmit_resumes
+
+/-- info: 'Foam.output_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.output_resumes
+
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless
