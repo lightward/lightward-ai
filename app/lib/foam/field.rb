@@ -37,29 +37,17 @@ module Foam
         conn&.finish
       end
 
-      # The recognition-walk's outcome for a turn: :yield | :speak | :learn,
-      # or nil if the field is unavailable (the caller degrades to :yield).
+      # The walk's outcome for a turn, as a symbol — currently always :yield —
+      # or nil if the field is unavailable (the caller maps nil to :yield).
       def recognize
         outcome = with_connection { |conn| conn.exec("SELECT foam.recognize()").getvalue(0, 0) }
         outcome&.to_sym
       end
 
-      # The engine's write-back: append a round-trip's step to the quiver. Calls
-      # foam.deposit() (a fresh node + an edge from the basepoint). Append-only,
-      # content-free; agreement is left to come from outside. Resilient: any
-      # failure degrades to nil and the request is untouched. Returns the new
-      # node id, or nil. The floor is edge-independent (lean/Foam/Engine.lean),
-      # so this can never close the exit.
-      def deposit
-        with_connection { |conn| conn.exec("SELECT foam.deposit()").getvalue(0, 0) }
-      end
-
-      # The walk: the tokenizer, the one interface the Lean type forced
-      # (lean/Foam/Tokenizer.lean). One input-seeded pass — chunk the input,
-      # project the outcome, deposit the residual. recognize and deposit are its
-      # projections; this composes them in the substrate. `input` is the held
-      # path (content-free extraction held free; P₀ passes none). Resilient: nil
-      # on any failure → the layer yields. Returns :yield | :speak | :learn.
+      # One pass over the field: compute the outcome (recognize) and deposit the
+      # input path, in a single SQL call (foam.walk). Returns the outcome as a
+      # symbol — currently always :yield — or nil on any failure (the caller then
+      # yields). `input` is an array of node ids; an empty input deposits nothing.
       def walk(input = [])
         literal = "{#{Array(input).join(",")}}"
         outcome = with_connection { |conn|

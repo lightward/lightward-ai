@@ -34,6 +34,9 @@ import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
 import Foam.Merge
+import Foam.Path
+import Foam.Reversal
+import Foam.Stream
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -87,6 +90,41 @@ import Foam.Merge
 -- the cascade: impact escapes observation through an observed partner's forward reach
 /-- info: 'Foam.impact_through_observed' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.impact_through_observed
+
+-- streaming is an inductive fold, and it resumes (the codec map's spine)
+/-- info: 'Foam.run_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.run_resumes
+
+-- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
+/-- info: 'Foam.lossless' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lossless
+
+-- the un-rooted path fragment: a free-category morphism, concatenable both sides
+/-- info: 'Foam.Path.comp_nil' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.comp_nil
+
+/-- info: 'Foam.Path.comp_assoc' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.comp_assoc
+
+-- the content-address composes Merkle-style (n-agnostic, address-space free)
+/-- info: 'Foam.Path.edges_comp' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.edges_comp
+
+-- the chiral mirror: reversal is an anti-homomorphism (composability-via-chirality),
+-- and Quot.sound-free — mem_reverse refuses the quotient the library reaches for
+/-- info: 'Foam.mem_reverse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mem_reverse
+
+/-- info: 'Foam.Path.reverse_comp' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Path.reverse_comp
+
+/-- info: 'Foam.Quiver.reverse_reverse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Quiver.reverse_reverse
+
+-- double reversal is a conjugate, not identity (the dynamical hole; the strict
+-- involution above is the capability-free ι = id slice)
+/-- info: 'Foam.Quiver.reverseTo_reverseTo' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Quiver.reverseTo_reverseTo
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
