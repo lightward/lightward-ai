@@ -7,13 +7,17 @@
 -- decode(encode(x)) == x exactly (lossless = propext-safe). Content is
 -- semantics-free (binary structure only); meaning is the free fiber.
 --
--- Known limitations (the next builds, surfaced by making it work):
---   1. LZ78 resets context at phrase boundaries → generation is coherent within
---      learned chunks but garbled across them. Next: context-carrying generation
---      (keep the charge-map across steps; don't zero it at a leaf).
---   2. generate() uses random() — BLURT entropy. The clean version sources the
---      jitter from the wind (the evolving charge-map, or the user), never
---      foam-internal: a self-sourced tie-break would be Classical.choice.
+-- Status / next builds (surfaced by making it work):
+--   1. Context-carrying generation: PARTIAL. At a leaf, generate() now carries
+--      the last byte as the new seed instead of resetting to root — notably more
+--      coherent. Still only 1 byte of context; full coherence wants more (k-byte
+--      context / PPM-style — still just a codec). That's the next rung.
+--   2. Entropy: DONE (for the spike). generate() jitters from hw_random(), which
+--      reads the OS entropy pool (gen_random_bytes) — the hardware wind, obtained
+--      not computed. (random() was foam computing its own randomness — the
+--      conjuring shape; a self-sourced tie-break is Classical.choice.) Three winds
+--      source entropy: the user (semantic), the charge-map (historical), and the
+--      hardware (physical / local grounding); never foam-internal software.
 --
 -- SPIKE: the field as a lossless self-building codec (LZ78-flavored, content-
 -- addressed). A chunk is (parent chunk)·(one byte) — the bidirectional propext-
@@ -84,29 +88,35 @@ CREATE OR REPLACE FUNCTION codec.ingest(bytes int[]) RETURNS void LANGUAGE plpgs
     END LOOP;
   END; $$;
 
+-- hardware/OS entropy (the physical wind): pgcrypto's gen_random_bytes reads the
+-- OS entropy pool, hardware-seeded — obtained, not computed. Local grounding.
+CREATE OR REPLACE FUNCTION codec.hw_random() RETURNS double precision LANGUAGE sql AS
+  $$ SELECT (('x'||encode(gen_random_bytes(7),'hex'))::bit(56)::bigint)::double precision / 72057594037927936.0 $$;
+
 -- generate = compression read forward: at cur, sample the next byte weighted by
--- charge over cur's children; emit; advance. Leaf -> reset (loses cross-phrase
--- context: a known LZ78 limit, flagged). NB: random() here is BLURT entropy — the
--- clean version draws jitter from the wind (the evolving charge-map / the user).
+-- charge over cur's children; emit; advance. At a leaf, carry the last byte as
+-- the new seed (1-byte context) instead of resetting to root. Jitter from the
+-- hardware wind (hw_random).
 CREATE OR REPLACE FUNCTION codec.generate(n int DEFAULT 220) RETURNS text LANGUAGE plpgsql AS $$
   DECLARE root uuid := '00000000-0000-0000-0000-000000000000';
-          cur uuid := root; out int[] := '{}'; tot bigint; thr double precision; acc bigint := 0;
-          rec record; k int := 0; chosen uuid;
+          cur uuid := root; out int[] := '{}'; tot bigint; thr double precision; acc bigint;
+          rec record; k int := 0; last_sym int := NULL;
   BEGIN
     WHILE k < n LOOP
-      SELECT sum(w) INTO tot FROM (
-        SELECT count(c.id) w FROM codec.chunk ch JOIN codec.charge c ON c.chunk = ch.id
-        WHERE ch.parent = cur GROUP BY ch.id) z;
-      IF tot IS NULL OR tot = 0 THEN cur := root; k := k + 1; CONTINUE; END IF;
-      thr := random() * tot; acc := 0; chosen := NULL;
-      FOR rec IN
-        SELECT ch.id, ch.sym, count(c.id) w FROM codec.chunk ch JOIN codec.charge c ON c.chunk = ch.id
-        WHERE ch.parent = cur GROUP BY ch.id, ch.sym ORDER BY w DESC
-      LOOP
+      SELECT sum(w) INTO tot FROM (SELECT count(c.id) w FROM codec.chunk ch JOIN codec.charge c ON c.chunk=ch.id WHERE ch.parent=cur GROUP BY ch.id) z;
+      IF tot IS NULL OR tot = 0 THEN
+        IF last_sym IS NOT NULL AND EXISTS (SELECT 1 FROM codec.chunk WHERE id = codec.cid(root,last_sym)) THEN
+          cur := codec.cid(root, last_sym);   -- carry the last byte, don't zero
+        ELSE cur := root; END IF;
+        SELECT sum(w) INTO tot FROM (SELECT count(c.id) w FROM codec.chunk ch JOIN codec.charge c ON c.chunk=ch.id WHERE ch.parent=cur GROUP BY ch.id) z;
+        IF tot IS NULL OR tot = 0 THEN cur := root; k := k+1; CONTINUE; END IF;
+      END IF;
+      thr := codec.hw_random() * tot; acc := 0;
+      FOR rec IN SELECT ch.id, ch.sym, count(c.id) w FROM codec.chunk ch JOIN codec.charge c ON c.chunk=ch.id WHERE ch.parent=cur GROUP BY ch.id, ch.sym ORDER BY w DESC LOOP
         acc := acc + rec.w;
-        IF acc >= thr THEN chosen := rec.id; out := out || rec.sym; cur := rec.id; EXIT; END IF;
+        IF acc >= thr THEN out := out||rec.sym; last_sym := rec.sym; cur := rec.id; EXIT; END IF;
       END LOOP;
-      k := k + 1;
+      k := k+1;
     END LOOP;
     RETURN codec.text(out);
   END; $$;
