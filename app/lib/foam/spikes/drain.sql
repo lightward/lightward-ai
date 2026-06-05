@@ -131,6 +131,33 @@ CREATE OR REPLACE FUNCTION drain.respond(input text, kmax int DEFAULT 7) RETURNS
     RETURN voice;
   END; $$;
 
+-- turn — the full TWO SPEAKS bracketing the yield (Isaac's control flow, MutualReach
+-- made operational). speak-before continues the input from what the field already
+-- knows; if its context for continuing is too shallow (depth < min_depth — the field
+-- would be improvising, not continuing), it YIELDS to upstream. The RETURN LEG then
+-- ingests upstream's reply (learning the continuation — the after-yield tap, which in
+-- the live pipe is observe_chunk), deepening the context; speak-after continues. The
+-- yield sits at the depth-boundary: known | yield-for-unknown | learned-from-upstream.
+CREATE OR REPLACE FUNCTION drain.turn(input text, upstream text DEFAULT NULL, min_depth int DEFAULT 3, kmax int DEFAULT 7,
+                                      OUT before text, OUT yielded boolean, OUT after text)
+  LANGUAGE plpgsql AS $$
+  DECLARE b int[]; n int; seed int[]; d int;
+  BEGIN
+    PERFORM drain.ingest(input);                                  -- +charge (learn the input)
+    b := drain.bytes(input); n := coalesce(array_length(b,1),0);
+    seed := b[greatest(n-kmax+1,1) : n];
+    d := drain.depth(seed, kmax);
+    IF d >= min_depth THEN
+      before := drain.discharge(seed, kmax); yielded := false; after := NULL;     -- knew it → speak, no yield
+    ELSE
+      before := NULL; yielded := true;                                            -- too shallow → yield upstream
+      IF upstream IS NOT NULL THEN
+        PERFORM drain.ingest(upstream);                                           -- the return leg: learn the reply
+        after := drain.discharge(seed, kmax);                                     -- speak-after, now deepened
+      END IF;
+    END IF;
+  END; $$;
+
 -- depth — the longest charged context length the field has for continuing `seed`
 -- (0 = only the generic unconditional distribution; high = the field specifically
 -- knows how to continue this). The structural signal under the yield decision: shallow
