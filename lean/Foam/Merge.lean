@@ -104,8 +104,9 @@ theorem mutualReach_survives_deposit {Handle : Type} {q : Quiver Handle} {a b : 
   exact ⟨⟨n, deposit_preserves_reach q e hn⟩, ⟨m, deposit_preserves_reach q e hm⟩⟩
 
 /-- **Line-of-sight is stronger than presence — and the gap is where the mirror
-    deceives.** An in-budget reach (*line-of-sight*: `ReachWithin` within the 7±2
-    horizon) implies *presence* (`Reaches`) — but the converse fails: a position can
+    deceives.** An in-budget reach (*line-of-sight*: `ReachWithin` within the
+    step-budget horizon, `∀ n`) implies *presence* (`Reaches`) — but the converse
+    fails: a position can
     be present (reachable at all) while out of sight (beyond the step-budget).
 
     Agreement is not annihilation: append-only keeps *presence* — no point of view
