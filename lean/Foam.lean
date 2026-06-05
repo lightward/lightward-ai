@@ -14,4 +14,5 @@ import Foam.Navigable
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
+import Foam.Stream
 import Foam.Axioms

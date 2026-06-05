@@ -36,6 +36,7 @@ import Foam.Navigable
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
+import Foam.Stream
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -89,6 +90,10 @@ import Foam.Reversal
 -- the cascade: impact escapes observation through an observed partner's forward reach
 /-- info: 'Foam.impact_through_observed' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.impact_through_observed
+
+-- streaming is an inductive fold, and it resumes (the codec map's spine)
+/-- info: 'Foam.run_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.run_resumes
 
 -- the un-rooted path fragment: a free-category morphism, concatenable both sides
 /-- info: 'Foam.Path.comp_nil' does not depend on any axioms -/
