@@ -77,6 +77,25 @@ module Foam
         }
       end
 
+      # The field's outcome for a turn (the trichotomy gate): :speak if the field has
+      # drainable charge (it can carry the turn from what it has learned), else :yield
+      # (hand to the upstream — a living ancestor, or an echo). nil with no field, which
+      # the caller maps to :yield. ← foam.outcome. Currently a weak gate (charge
+      # presence); the structural signal stays structural, never a measure of meaning.
+      def outcome
+        o = with_connection { |conn| conn.exec("SELECT foam.outcome()").getvalue(0, 0) }
+        o&.to_sym
+      end
+
+      # Speak: drain the field's charge into a voice (the discharge). Returns the text,
+      # or nil with no field. Weak (root-anchored) at this stage — the starting-weakly
+      # step; coherent generation is a later refinement. ← foam.speak.
+      def speak(max_steps = 400)
+        with_connection { |conn|
+          conn.exec_params("SELECT foam.speak($1)", [max_steps]).getvalue(0, 0)
+        }
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!
