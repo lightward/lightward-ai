@@ -26,6 +26,10 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
       expect(described_class.assert!).to(be(false))
     end
 
+    it "deposit returns nil instead of raising when the field is unreachable" do
+      expect(described_class.deposit).to(be_nil)
+    end
+
     it "walk returns nil instead of raising when the field is unreachable" do
       expect(described_class.walk).to(be_nil)
     end
@@ -44,7 +48,7 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
       described_class.disconnect!
     end
 
-    it "asserts idempotently and recognizes :yield on an empty field" do
+    it "asserts idempotently and yields at P₀" do
       skip("no local foam db reachable") unless described_class.assert!
 
       expect(described_class.assert!).to(be(true)) # idempotent: assert again, same result
