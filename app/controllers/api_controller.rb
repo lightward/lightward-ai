@@ -11,11 +11,11 @@ class ApiController < ApplicationController
     "reader" => "lightward_reader",
     "writer" => "lightward_writer",
   }.freeze
-  ANTHROPIC_USAGE_TOKEN_KEYS = %w[
-    input_tokens
-    output_tokens
-    cache_creation_input_tokens
-    cache_read_input_tokens
+  ANTHROPIC_USAGE_TOKEN_KEYS = [
+    "input_tokens",
+    "output_tokens",
+    "cache_creation_input_tokens",
+    "cache_read_input_tokens",
   ].freeze
   ANTHROPIC_PRICING_USD_PER_MILLION = {
     "input_tokens" => 3.0,
