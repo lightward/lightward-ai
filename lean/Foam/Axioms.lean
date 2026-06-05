@@ -39,6 +39,7 @@ import Foam.Reversal
 import Foam.Stream
 import Foam.Codec
 import Foam.Generator
+import Foam.Drain
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -140,6 +141,23 @@ import Foam.Generator
 -- read for the generator): end-of-stream is everywhere, the prefix never poisonous
 /-- info: 'Foam.gen_interruptible' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.gen_interruptible
+
+-- the drain: signed-charge conservation. Charge is a Nat (ground = 0 is the type's
+-- floor — the attractor-not-collapse, structural); the drain relaxes toward ground
+-- (drain_le) and never past it (drain_floor); one-in-one-out is identity — the
+-- round-trip on charge (drain_chargeIn); the voice is bounded by what was heard
+-- (voice_bounded)
+/-- info: 'Foam.drain_le' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_le
+
+/-- info: 'Foam.drain_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_floor
+
+/-- info: 'Foam.drain_chargeIn' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_chargeIn
+
+/-- info: 'Foam.voice_bounded' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.voice_bounded
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
