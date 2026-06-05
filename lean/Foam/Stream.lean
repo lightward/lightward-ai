@@ -135,9 +135,11 @@ theorem output_resumes {S B O : Type} (step : S → B → S × List O) (flush : 
 
 The codec's `lossless` self-audit is `decode (encode x) = x` — the exact return.
 Here it is on a minimal-but-real codec (tag each symbol, then project it back);
-the LZ78 dictionary version is the same shape with real chunks. The point is the
-*shape*: a round-trip that returns the input unchanged is the floor's kind of
-guarantee — an exact collapse, propext-safe (`(a ↔ b) → a = b`, A→B→A). -/
+the LZ78 dictionary version is the same shape with real chunks — now realized in
+`Foam.Codec` (`lossless_codec`). The point is the *shape*: a round-trip that returns
+the input unchanged is *construction, not collapse* — it returns the input exactly
+without truncating, so it lands below `propext` (axiom-free, like `lossless_codec`);
+the exit and the outcome collapse, the round-trip does not. -/
 
 /-- encode: tag each symbol (the reversible representation). -/
 def enc {B : Type} (xs : List B) : List (B × B) := xs.map (fun b => (b, b))
