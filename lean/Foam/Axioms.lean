@@ -37,6 +37,7 @@ import Foam.Merge
 import Foam.Path
 import Foam.Reversal
 import Foam.Stream
+import Foam.Codec
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -106,6 +107,15 @@ import Foam.Stream
 
 /-- info: 'Foam.output_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.output_resumes
+
+-- lossless on the real LZ78 codec: the encoder's segmentation/reset/flush
+-- reconcatenate to the input (encode_covers), so decode ∘ encode = id
+-- (lossless_codec) — independent of the dictionary, the floor's exact-return shape
+/-- info: 'Foam.encode_covers' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.encode_covers
+
+/-- info: 'Foam.lossless_codec' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lossless_codec
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
