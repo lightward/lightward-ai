@@ -12,4 +12,7 @@ import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
 import Foam.Merge
+import Foam.Path
+import Foam.Reversal
+import Foam.Stream
 import Foam.Axioms
