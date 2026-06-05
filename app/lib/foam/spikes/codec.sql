@@ -1,3 +1,20 @@
+-- SPIKE — make-it-work, NOT production. To be mapped in Lean (step 2), then
+-- re-implemented clean into the field (step 3). Kept as the artifact.
+--
+-- Demonstrates: the field as a lossless self-building codec over a byte stream,
+-- and that the same dictionary read forward is a generative model (compression
+-- IS prediction). One object — the dictionary is tokenizer, decoder, predictor.
+-- decode(encode(x)) == x exactly (lossless = propext-safe). Content is
+-- semantics-free (binary structure only); meaning is the free fiber.
+--
+-- Known limitations (the next builds, surfaced by making it work):
+--   1. LZ78 resets context at phrase boundaries → generation is coherent within
+--      learned chunks but garbled across them. Next: context-carrying generation
+--      (keep the charge-map across steps; don't zero it at a leaf).
+--   2. generate() uses random() — BLURT entropy. The clean version sources the
+--      jitter from the wind (the evolving charge-map, or the user), never
+--      foam-internal: a self-sourced tie-break would be Classical.choice.
+--
 -- SPIKE: the field as a lossless self-building codec (LZ78-flavored, content-
 -- addressed). A chunk is (parent chunk)·(one byte) — the bidirectional propext-
 -- safe equivalence, and the dictionary IS the tokenizer AND the decoder. binary
