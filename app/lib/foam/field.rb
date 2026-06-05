@@ -44,15 +44,6 @@ module Foam
         outcome&.to_sym
       end
 
-      # Call foam.deposit() with no input. The SQL deposit content-addresses by
-      # its input path, so no input is the empty path — a no-op that returns the
-      # identity node's id and writes nothing. The content-addressed write happens
-      # inside the walk (foam.walk passes deposit its input), so this standalone
-      # method currently writes nothing. Resilient: any failure degrades to nil.
-      def deposit
-        with_connection { |conn| conn.exec("SELECT foam.deposit()").getvalue(0, 0) }
-      end
-
       # One pass over the field: compute the outcome (recognize) and deposit the
       # input path, in a single SQL call (foam.walk). Returns the outcome as a
       # symbol — currently always :yield — or nil on any failure (the caller then
