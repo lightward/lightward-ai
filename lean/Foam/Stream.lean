@@ -95,6 +95,12 @@ theorem appendAssoc {α : Type} :
   | [],      _,  _  => rfl
   | a :: as, bs, cs => congrArg (a :: ·) (appendAssoc as bs cs)
 
+/-- `as ++ [] = as` — pure induction, kept axiom-free like `appendAssoc` (core's
+    `List.append_nil` carries `propext`). -/
+theorem appendNil {α : Type} : ∀ (as : List α), as ++ [] = as
+  | []      => rfl
+  | a :: as => congrArg (a :: ·) (appendNil as)
+
 /-- **Emission resumes** — the output of `xs ++ ys` is the output of `xs` followed
     by the output of `ys` continued from the state after `xs`. So emitting while
     streaming a prefix loses nothing: what is emitted is exactly a prefix of the

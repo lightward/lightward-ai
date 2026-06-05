@@ -47,11 +47,6 @@ theorem joinB_append {B : Type} :
       (congrArg (s ++ ·) (joinB_append xs ys)).trans
         (appendAssoc s (joinB xs) (joinB ys)).symm
 
-/-- `as ++ [] = as` — pure induction (kept axiom-free, like `appendAssoc`). -/
-theorem appendNil {α : Type} : ∀ (as : List α), as ++ [] = as
-  | []      => rfl
-  | a :: as => congrArg (a :: ·) (appendNil as)
-
 section Codec
 variable {B D : Type} (knows : D → List B → Bool) (learn : D → List B → D)
 

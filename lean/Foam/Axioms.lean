@@ -38,6 +38,7 @@ import Foam.Path
 import Foam.Reversal
 import Foam.Stream
 import Foam.Codec
+import Foam.Generator
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -116,6 +117,24 @@ import Foam.Codec
 
 /-- info: 'Foam.lossless_codec' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless_codec
+
+-- compression IS prediction: the generator is the emitting fold over the wind.
+-- gen_grows — prediction grows what it emits (the covering invariant, read forward).
+-- gen_length — the wind is the clock: n draws → n bytes (the unfold, finitized).
+/-- info: 'Foam.gen_grows' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gen_grows
+
+/-- info: 'Foam.gen_length' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gen_length
+
+-- the fork held open: carry and backoff are one genStep at two selections that
+-- coincide where the top context is charged (select_top_charged), pointwise
+-- (nextOf_congr) — a containment, not a quotient (no funext, no Quot.sound)
+/-- info: 'Foam.select_top_charged' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.select_top_charged
+
+/-- info: 'Foam.nextOf_congr' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.nextOf_congr
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
