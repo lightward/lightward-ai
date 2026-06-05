@@ -56,6 +56,27 @@ module Foam
         outcome&.to_sym
       end
 
+      # Grow the dictionary from a chunk of the streaming voice: one streaming pass
+      # of the codec's emitting fold (foam.encode_step), resuming from `cursor` (the
+      # partial match carried across chunks; nil starts at the root). It deposits new
+      # chunks append-only and returns the new cursor to carry to the next chunk.
+      # Learning is the deposit; the emitted id-stream is not kept, so the field
+      # grows its model (the dictionary) without storing the transcript. Resilient:
+      # with no field it returns nil, and the caller carries nil — resetting to root
+      # on the next chunk, still lossless, just re-segmented. `bytes` is an array of
+      # 0–255 ints. ← app/lib/foam/schema.sql foam.encode_step ← lean/Foam/Stream.lean.
+      def encode_step(cursor, bytes)
+        bytes = Array(bytes)
+        return cursor if bytes.empty?
+
+        with_connection { |conn|
+          conn.exec_params(
+            "SELECT next_cursor FROM foam.encode_step($1, $2::int[])",
+            [cursor, "{#{bytes.join(",")}}"],
+          ).getvalue(0, 0)
+        }
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!

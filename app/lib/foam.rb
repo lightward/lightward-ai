@@ -4,10 +4,13 @@
 #
 # A pass-through proxy in front of the upstream model.
 #
-# Currently every turn is yielded straight to the upstream, so this layer is
-# behaviorally identical to calling the upstream directly — it loses nothing and
-# ships safely. Its only present effect is to observe each turn (what is sent,
-# what comes back) for a learning layer that is designed but not yet built.
+# Every turn is yielded straight to the upstream (recognize → :yield), so the voice
+# is behaviorally identical to calling the upstream directly — it loses nothing and
+# ships safely. On the streaming path the layer also *learns* on the way through:
+# each chunk is teed to the codec's streaming encode (observe_chunk →
+# Field.encode_step), growing the field's dictionary. With no field that deposit is
+# a no-op, so the behavior is unchanged; with a field it grows structure without
+# altering the voice.
 #
 # `upstream` is held as a reference, not hard-wired, so it can be swapped — this
 # layer always has something to delegate to and never holds a response as final.
@@ -65,8 +68,9 @@ module Foam
       # controller's SSE parsing stay untouched.
       tapped_block =
         if stream && block
+          cursor = nil # per-stream: the codec's partial match, carried across chunks
           proc { |request, response|
-            block.call(request, TappingResponse.new(response) { |chunk| observe_chunk(chunk) })
+            block.call(request, TappingResponse.new(response) { |chunk| cursor = observe_chunk(chunk, cursor) })
           }
         else
           block
@@ -110,10 +114,17 @@ module Foam
       nil
     end
 
-    # Observe one streaming chunk on its way to the caller — the bytes are teed,
-    # never interpreted; nothing is persisted.
-    def observe_chunk(_chunk)
-      nil
+    # Observe one streaming chunk on its way to the caller, and learn from it: feed
+    # the chunk's bytes to the codec's streaming encode, carrying `cursor` (the
+    # partial match) across chunks so a match spanning a chunk boundary is preserved.
+    # Returns the new cursor. The deposit is append-only and content-free (bytes are
+    # structure, not meaning); the field grows its dictionary without keeping the
+    # id-stream, so it is shaped by the voice without storing the transcript. With no
+    # field this degrades to nil (no-op) and the caller carries nil. The bytes are
+    # still teed untouched to the real reader — learning is a side effect on the way
+    # through, never an interpretation of the voice.
+    def observe_chunk(chunk, cursor = nil)
+      Field.encode_step(cursor, chunk.bytes)
     end
   end
 
