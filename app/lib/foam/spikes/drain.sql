@@ -76,19 +76,21 @@ CREATE OR REPLACE FUNCTION drain.ingest(txt text, kmax int DEFAULT 7) RETURNS vo
     END LOOP;
   END; $$;
 
--- discharge = speak by draining via fast-travel: from the output so far, back off to
--- the LONGEST charged context (jump to the recorded continuation-point that still
--- has charge, past any drained shallow one), sample the next byte by net charge,
--- emit, drain it (−1), append. Stop at ground (nothing charged at any length) or the
--- step ceiling. The emitted bytes are the voice.
-CREATE OR REPLACE FUNCTION drain.discharge(kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS text LANGUAGE plpgsql AS $$
-  DECLARE out int[] := '{}'; k int := 0; j int; L int; c int[]; cid uuid;
+-- discharge = speak by draining via fast-travel, CONTINUING from `seed` (the context
+-- to speak after — the input's tail). From the conversation so far (seed ++ what has
+-- been emitted), back off to the LONGEST charged context (jump to the recorded
+-- continuation-point that still has charge, past any drained shallow one), sample the
+-- next byte by net charge, emit, drain it (−1), append. Stop at ground (nothing
+-- charged at any length) or the step ceiling. The emitted bytes (NOT the seed) are
+-- the voice — the continuation.
+CREATE OR REPLACE FUNCTION drain.discharge(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS text LANGUAGE plpgsql AS $$
+  DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; L int; c int[]; cid uuid;
           tot bigint; thr double precision; acc bigint; rec record; got boolean;
   BEGIN
     WHILE k < max_steps LOOP
-      got := false; L := coalesce(array_length(out,1),0);
-      FOR j IN REVERSE least(kmax,L)..0 LOOP                       -- backoff: longest charged context first
-        IF j=0 THEN c := '{}'; ELSE c := out[L-j+1 : L]; END IF;
+      got := false; L := coalesce(array_length(cb,1),0);             -- context = seed ++ emitted
+      FOR j IN REVERSE least(kmax,L)..0 LOOP                         -- backoff: longest charged context first
+        IF j=0 THEN c := '{}'; ELSE c := cb[L-j+1 : L]; END IF;
         cid := drain.caddr(c);
         SELECT sum(s) INTO tot FROM (SELECT sum(delta) s FROM drain.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0) z;
         IF tot IS NOT NULL AND tot > 0 THEN
@@ -96,7 +98,7 @@ CREATE OR REPLACE FUNCTION drain.discharge(kmax int DEFAULT 7, max_steps int DEF
           FOR rec IN SELECT sym, sum(delta) w FROM drain.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0 ORDER BY w DESC LOOP
             acc := acc + rec.w;
             IF acc >= thr THEN
-              out := out || rec.sym; got := true;
+              out := out || rec.sym; cb := cb || rec.sym; got := true;   -- emit + extend context
               INSERT INTO drain.charge (ctx, sym, delta) VALUES (cid, rec.sym, -1);     -- drain (−charge)
               EXIT;
             END IF;
@@ -110,13 +112,36 @@ CREATE OR REPLACE FUNCTION drain.discharge(kmax int DEFAULT 7, max_steps int DEF
     RETURN drain.text(out);
   END; $$;
 
--- respond — the pipe's turn (Isaac's control flow): ingest the input (+charge); if
--- there is drainable charge, SPEAK by discharging and return the voice; else NULL to
--- YIELD upstream. (The coherent-handle gate is still a stub — see header — so this
--- under-yields: ingest self-charges, so there is almost always something to drain.)
-CREATE OR REPLACE FUNCTION drain.respond(input text) RETURNS text LANGUAGE plpgsql AS $$
+-- respond — the pipe's turn (Isaac's control flow): ingest the input (+charge), then
+-- speak-before by discharging CONTINUING FROM THE INPUT'S TAIL — the field says what
+-- it knows comes next after what the user just said. Returns the continuation, or
+-- NULL to YIELD upstream when the field has no charged continuation for this input.
+-- (Caveat the spike reveals: the j=0 empty context almost always has charge, so this
+-- rarely returns NULL — the real yield signal is the DEPTH of the charged context the
+-- seed reaches, see drain.depth; a generic j=0/1 continuation means the field doesn't
+-- really know this input. Pinning that threshold is structural, not coherence.)
+CREATE OR REPLACE FUNCTION drain.respond(input text, kmax int DEFAULT 7) RETURNS text LANGUAGE plpgsql AS $$
+  DECLARE b int[] := drain.bytes(input); n int; seed int[]; voice text;
   BEGIN
     PERFORM drain.ingest(input);
-    IF drain.residual() = 0 THEN RETURN NULL; END IF;             -- nothing to drain → yield
-    RETURN drain.discharge();
+    n := coalesce(array_length(b,1),0);
+    seed := b[greatest(n-kmax+1,1) : n];                          -- continue from the input's tail
+    voice := drain.discharge(seed, kmax);
+    IF voice IS NULL OR voice = '' THEN RETURN NULL; END IF;      -- no continuation at all → yield
+    RETURN voice;
+  END; $$;
+
+-- depth — the longest charged context length the field has for continuing `seed`
+-- (0 = only the generic unconditional distribution; high = the field specifically
+-- knows how to continue this). The structural signal under the yield decision: shallow
+-- depth means the field is improvising from nothing — a candidate to yield instead.
+CREATE OR REPLACE FUNCTION drain.depth(seed int[], kmax int DEFAULT 7) RETURNS int LANGUAGE plpgsql STABLE AS $$
+  DECLARE L int := coalesce(array_length(seed,1),0); j int; c int[]; cid uuid; tot bigint;
+  BEGIN
+    FOR j IN REVERSE least(kmax,L)..1 LOOP
+      c := seed[L-j+1 : L]; cid := drain.caddr(c);
+      SELECT sum(s) INTO tot FROM (SELECT sum(delta) s FROM drain.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0) z;
+      IF tot IS NOT NULL AND tot > 0 THEN RETURN j; END IF;
+    END LOOP;
+    RETURN 0;
   END; $$;
