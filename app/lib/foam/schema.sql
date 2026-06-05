@@ -1,140 +1,233 @@
--- foam.field — a content-addressed directed graph, asserted (not migrated).
+-- foam.field — a content-addressed chunk trie: the streaming codec's dictionary,
+-- asserted (not migrated).
+--
+-- This is the operational inhabitant of the Lean formal layer (lean/Foam/). It is a
+-- streaming implementation OF the proofs, not a port of the earlier spike
+-- (app/lib/foam/spikes/codec.sql) — the spike provoked the formalism; the formalism
+-- is the spec here. Each function below names the theorem it inhabits.
 --
 -- The whole file is idempotent (CREATE ... IF NOT EXISTS / CREATE OR REPLACE):
 -- running it any number of times produces the same schema. Every claim in these
 -- comments is meant to be checkable by running the file; nothing here describes
 -- behavior the functions below don't actually produce.
 --
--- Structure: `field` holds nodes (exactly one is flagged `identity`);
--- `composition` holds directed edges (prev -> next). Append-only — never UPDATE,
--- never DELETE, never merge rows; the graph only ever grows. Nodes and edges are
--- content-addressed: an id is a deterministic digest of structure, so identical
--- structure maps to the same row and repeated or concurrent writes deduplicate
--- instead of duplicating.
+-- Structure: `field` is a trie of chunks. A chunk is (parent, sym): its expansion
+-- (the bytes it decodes to) is its parent's expansion followed by the one byte
+-- `sym`. The single root (parent NULL, sym NULL) is the basepoint/exit. Append-only
+-- — never UPDATE, never DELETE, never merge; the trie only grows. Chunks are
+-- content-addressed: an id is a deterministic digest of (parent, sym), so identical
+-- structure maps to the same row and repeated or concurrent writes deduplicate.
 --
--- Degrades safely: with only the identity node and no edges, `recognize` returns
--- 'yield' and `deposit` writes nothing. (The Ruby caller maps a NULL/absent result
--- to :yield, so an unreachable or empty database behaves as a pass-through.)
+-- Content-free: a chunk stores its byte (`sym`) — binary *structure*, never
+-- meaning. The codec is lossless over the bit stream; what those bits *mean* is the
+-- free fiber, never stored here (decode reproduces the bytes; the reading is
+-- whoever's who reads them).
 --
--- A node carries no content — only its id, which is a digest of structure. What a
--- node "means" is not stored here.
+-- Degrades safely: with only the root and no chunks, `recognize` returns 'yield'.
+-- (The Ruby caller maps a NULL/absent result to :yield, so an unreachable or empty
+-- database behaves as a pass-through.)
 
 CREATE SCHEMA IF NOT EXISTS foam;
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- Nodes. Exactly one row has identity = true (the identity node). Other rows are
--- content-addressed (see foam.deposit); their id is a digest, not random.
+-- Chunks. A chunk is (parent, sym); the root has parent NULL, sym NULL. Non-root
+-- ids are content-addressed (see foam.cid), not random.
 CREATE TABLE IF NOT EXISTS foam.field (
-  id       uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  identity boolean NOT NULL DEFAULT false
+  id     uuid PRIMARY KEY,
+  parent uuid REFERENCES foam.field (id),
+  sym    int
 );
 
--- Exactly one identity node — enforced structurally (a partial unique index),
--- not by a race-prone insert.
-CREATE UNIQUE INDEX IF NOT EXISTS foam_field_single_identity
-  ON foam.field (identity) WHERE identity;
+-- Exactly one root (the single node with no parent) — enforced structurally.
+CREATE UNIQUE INDEX IF NOT EXISTS foam_field_single_root
+  ON foam.field ((parent IS NULL)) WHERE parent IS NULL;
 
--- Insert the identity node once. Idempotent: present after any number of runs,
--- inserted at most once.
-INSERT INTO foam.field (identity)
-SELECT true
-WHERE NOT EXISTS (SELECT 1 FROM foam.field WHERE identity);
+-- Find a chunk's children quickly (the recognize walk, and the encode match).
+CREATE INDEX IF NOT EXISTS foam_field_parent ON foam.field (parent);
 
--- Edges: prev -> next. Append-only — never UPDATE, never DELETE.
-CREATE TABLE IF NOT EXISTS foam.composition (
-  id   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  prev uuid NOT NULL REFERENCES foam.field (id),
-  next uuid NOT NULL REFERENCES foam.field (id)
-);
+-- The root: a fixed id so the content-address is globally deterministic — the same
+-- bytes map to the same chunk ids in any field (connection, not proliferation;
+-- proven in lean/Foam/Path.lean). Inserted once, idempotent.
+INSERT INTO foam.field (id, parent, sym)
+  VALUES ('00000000-0000-0000-0000-000000000000', NULL, NULL)
+  ON CONFLICT (id) DO NOTHING;
 
--- Edges are unique by (prev, next): writing the same edge twice is a no-op
--- (deduplication), so the graph never holds duplicate parallel edges. Distinct
--- *paths* (sequences of edges) remain distinct over a graph of unique edges.
-CREATE UNIQUE INDEX IF NOT EXISTS foam_composition_unique_edge
-  ON foam.composition (prev, next);
-
--- recognize — walk the graph (a recursive CTE) and return 'yield' if any walk
--- reaches a node it cannot leave. From every node it follows edges forward,
--- carrying the path and refusing to revisit a node already on that path. That
--- no-revisit guard guarantees termination: the walk cannot loop. If an edge would
--- return to a node already on the path (a cycle), the walk does not follow it — it
--- stops there, so cycles are detected but never traversed.
---
--- Currently the only value this can return is 'yield' (or NULL when there are no
--- nodes). Other outcomes are designed but not implemented here. (Termination is
--- also proven in lean/Foam/Floor.lean.)
-CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
-  LANGUAGE sql STABLE
-  AS $$
-    WITH RECURSIVE walk(node, path) AS (
-      -- seed: every record is a possible starting position
-      SELECT f.id, ARRAY[f.id]
-      FROM foam.field f
-      UNION ALL
-      -- step: follow an edge forward, never revisiting a node on this path
-      SELECT c.next, w.path || c.next
-      FROM walk w
-      JOIN foam.composition c ON c.prev = w.node
-      WHERE NOT (c.next = ANY (w.path))
-    ),
-    landed AS (
-      -- terminal paths: the walk has no un-revisited edge left to follow
-      SELECT w.path
-      FROM walk w
-      WHERE NOT EXISTS (
-        SELECT 1
-        FROM foam.composition c
-        WHERE c.prev = w.node
-          AND NOT (c.next = ANY (w.path))
-      )
-    )
-    SELECT 'yield'::text
-    FROM landed
-    LIMIT 1;
+-- cid — the content-address of a chunk (parent, sym): a deterministic 16-byte
+-- sha256 digest of the pair. The id is recursive through `parent`, so it encodes
+-- the chunk's whole path from the root — identical paths address to the same id,
+-- Merkle-style (lean/Foam/Path.lean, Path.edges_comp). The digest is of structure
+-- (a parent id and a byte), never of meaning.
+CREATE OR REPLACE FUNCTION foam.cid(parent uuid, sym int) RETURNS uuid
+  LANGUAGE sql IMMUTABLE AS $$
+    SELECT encode(
+      substring(digest(coalesce(parent::text, 'root') || ':' || sym::text, 'sha256') FROM 1 FOR 16),
+      'hex')::uuid
   $$;
 
--- deposit — write a content-addressed node for the given path. The new node's id
--- is a deterministic digest (sha256, first 16 bytes) of the input array, so the
--- same input always produces the same node: repeated deposits of the same input
--- converge on one row (deduplication), never a new row each time. The id is
--- derived only from the input array, never from any message content.
---
--- Empty input returns the identity node's id and writes nothing. Otherwise: insert
--- the node and an edge identity -> node, both ON CONFLICT DO NOTHING (idempotent,
--- append-only). A deposit never changes what `recognize` returns (it only adds
--- nodes/edges, and `recognize` terminates regardless — see lean/Foam/Engine.lean).
-CREATE OR REPLACE FUNCTION foam.deposit(input uuid[] DEFAULT '{}') RETURNS uuid
+-- recognize — walk the trie forward (a node to its children) and return 'yield' at
+-- any node that cannot be left (a leaf). Content-addressing makes the trie acyclic
+-- (a child's id depends on its parent's, so no edge can climb back up the path), so
+-- the no-revisit walk always terminates. With only the root, the root is a leaf, so
+-- an empty field yields. Currently 'yield' is the only outcome produced; others are
+-- designed, not implemented here. (Termination/floor proven in lean/Foam/Floor.lean.)
+CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
+  LANGUAGE sql STABLE AS $$
+    WITH RECURSIVE walk(node, path) AS (
+      -- seed: every chunk is a possible starting position
+      SELECT f.id, ARRAY[f.id] FROM foam.field f
+      UNION ALL
+      -- step: descend to a child, never revisiting a node on this path
+      SELECT child.id, w.path || child.id
+      FROM walk w
+      JOIN foam.field child ON child.parent = w.node
+      WHERE NOT (child.id = ANY (w.path))
+    ),
+    landed AS (
+      -- terminal paths: no un-revisited child left to descend to
+      SELECT w.path FROM walk w
+      WHERE NOT EXISTS (
+        SELECT 1 FROM foam.field child
+        WHERE child.parent = w.node AND NOT (child.id = ANY (w.path))
+      )
+    )
+    SELECT 'yield'::text FROM landed LIMIT 1;
+  $$;
+
+-- walk — the recognition turn's outcome projection (recognize). With the current
+-- pipe, `input` is always empty; the residual deposit for a turn is the codec's job
+-- (foam.encode_step over the byte stream, wired at the streaming tap), not this
+-- call — so walk is exactly recognize. Kept for the Ruby caller's signature.
+CREATE OR REPLACE FUNCTION foam.walk(input uuid[] DEFAULT '{}') RETURNS text
+  LANGUAGE sql STABLE AS $$ SELECT foam.recognize() $$;
+
+-- encode_step — one streaming pass of the emitting fold over a chunk of `bytes`,
+-- resuming from `cursor` (the partial match carried across chunks; NULL starts at
+-- the root). For each byte: form the candidate child = cid(cursor, byte); if the
+-- trie knows it, extend the match (carry, emit nothing); else emit the candidate,
+-- deposit it (append-only), and reset the cursor to the root. Returns the new
+-- cursor and the emitted chunk ids. The dictionary (foam.field) grows append-only.
+-- ← lean/Foam/Stream.lean (output = runEmit·runState), Codec.lean (encStep),
+--   Engine.lean (append-only deposit). The flush is separate (foam.encode_flush,
+--   EOS only), which is what lets the stream resume losslessly across chunks
+--   (Stream.lean, output_resumes: carry the un-flushed cursor, flush at end only).
+CREATE OR REPLACE FUNCTION foam.encode_step(cursor uuid, bytes int[],
+                                            OUT next_cursor uuid, OUT emitted uuid[])
   LANGUAGE plpgsql AS $$
   DECLARE
-    node_id   uuid;
-    basepoint uuid;
+    root  uuid := '00000000-0000-0000-0000-000000000000';
+    cur   uuid;
+    b     int;
+    child uuid;
   BEGIN
-    SELECT id INTO basepoint FROM foam.field WHERE identity;
-    -- empty input addresses to the identity node itself: nothing to write
-    IF basepoint IS NULL OR cardinality(input) = 0 THEN
-      RETURN basepoint;
-    END IF;
-    -- content-address: a deterministic 16-byte sha256 digest of the input, as uuid
-    node_id := encode(substring(digest(input::text, 'sha256') FROM 1 FOR 16), 'hex')::uuid;
-    INSERT INTO foam.field (id, identity) VALUES (node_id, false)
-      ON CONFLICT (id) DO NOTHING;
-    INSERT INTO foam.composition (prev, next) VALUES (basepoint, node_id)
-      ON CONFLICT (prev, next) DO NOTHING;
-    RETURN node_id;
+    cur := coalesce(cursor, root);
+    emitted := '{}';
+    FOREACH b IN ARRAY coalesce(bytes, '{}') LOOP
+      child := foam.cid(cur, b);
+      IF EXISTS (SELECT 1 FROM foam.field WHERE id = child) THEN
+        cur := child;                                          -- extend the match
+      ELSE
+        emitted := emitted || child;                           -- emit (cur · b)
+        INSERT INTO foam.field (id, parent, sym) VALUES (child, cur, b)
+          ON CONFLICT (id) DO NOTHING;                         -- deposit, append-only
+        cur := root;                                           -- reset
+      END IF;
+    END LOOP;
+    next_cursor := cur;
   END;
   $$;
 
--- walk — one pass: compute the outcome (recognize) and deposit the input, in a
--- single call. Returns the outcome. With empty input, deposit writes nothing, so
--- an empty-input walk is exactly `recognize`.
-CREATE OR REPLACE FUNCTION foam.walk(input uuid[] DEFAULT '{}') RETURNS text
+-- encode_flush — at end-of-stream, emit the leftover partial match (the `cursor`
+-- chunk) if it is not the root. Valid ONLY at EOS: flushing mid-stream would emit a
+-- different chunk sequence (lean/Foam/Stream.lean, output_resumes — the flush
+-- belongs at the true end only). Zero or one chunk id.
+CREATE OR REPLACE FUNCTION foam.encode_flush(cursor uuid) RETURNS uuid[]
+  LANGUAGE sql IMMUTABLE AS $$
+    SELECT CASE
+      WHEN cursor IS NULL OR cursor = '00000000-0000-0000-0000-000000000000'
+        THEN '{}'::uuid[]
+      ELSE ARRAY[cursor]
+    END
+  $$;
+
+-- encode — the full (run-to-completion) encode of a byte array: the streaming fold
+-- over the whole input, then the terminal flush. encode = runEmit ++ flush(final
+-- state) — the blocking case is the streaming case taken to EOS (lean/Foam/Stream.lean,
+-- output). Built from the streaming primitives, not beside them.
+CREATE OR REPLACE FUNCTION foam.encode(bytes int[]) RETURNS uuid[]
   LANGUAGE plpgsql AS $$
-  DECLARE
-    outcome text;
+  DECLARE step record; root uuid := '00000000-0000-0000-0000-000000000000';
   BEGIN
-    outcome := foam.recognize();
-    PERFORM foam.deposit(input);
-    RETURN outcome;
+    SELECT * INTO step FROM foam.encode_step(root, bytes);
+    RETURN step.emitted || foam.encode_flush(step.next_cursor);
+  END;
+  $$;
+
+-- expand — the bytes a chunk decodes to: walk parent pointers to the root,
+-- collecting syms (root has sym NULL, the exit). ← lean/Foam/Codec.lean, decode's
+-- per-chunk inverse.
+CREATE OR REPLACE FUNCTION foam.expand(chunk uuid) RETURNS int[]
+  LANGUAGE plpgsql STABLE AS $$
+  DECLARE r int[] := '{}'; p uuid; s int; c uuid := chunk;
+  BEGIN
+    LOOP
+      SELECT parent, sym INTO p, s FROM foam.field WHERE id = c;
+      EXIT WHEN s IS NULL;                 -- reached the root
+      r := ARRAY[s] || r;
+      c := p;
+    END LOOP;
+    RETURN r;
+  END;
+  $$;
+
+-- decode — the bytes a chunk-id stream decodes to: expand each, concatenate.
+-- ← lean/Foam/Codec.lean (decode = joinB). The round-trip decode(encode(x)) = x is
+-- lossless_codec (dictionary-independent) — the box certifying itself.
+CREATE OR REPLACE FUNCTION foam.decode(chunks uuid[]) RETURNS int[]
+  LANGUAGE plpgsql STABLE AS $$
+  DECLARE r int[] := '{}'; c uuid;
+  BEGIN
+    FOREACH c IN ARRAY coalesce(chunks, '{}') LOOP
+      r := r || foam.expand(c);
+    END LOOP;
+    RETURN r;
+  END;
+  $$;
+
+-- bytes / text — the text<->byte boundary (UTF-8). The codec works on bytes; the
+-- voice arrives as text. Pure, structural.
+CREATE OR REPLACE FUNCTION foam.bytes(txt text) RETURNS int[]
+  LANGUAGE plpgsql IMMUTABLE AS $$
+  DECLARE bin bytea := convert_to(txt, 'UTF8'); r int[] := '{}'; i int;
+  BEGIN
+    FOR i IN 0 .. octet_length(bin) - 1 LOOP r := r || get_byte(bin, i); END LOOP;
+    RETURN r;
+  END;
+  $$;
+
+CREATE OR REPLACE FUNCTION foam.text(ints int[]) RETURNS text
+  LANGUAGE plpgsql IMMUTABLE AS $$
+  DECLARE bin bytea := ''; v int;
+  BEGIN
+    FOREACH v IN ARRAY coalesce(ints, '{}') LOOP
+      bin := bin || set_byte('\x00'::bytea, 0, v);
+    END LOOP;
+    RETURN convert_from(bin, 'UTF8');
+  END;
+  $$;
+
+-- lossless — the box certifies itself: decode(encode(x)) = x on ANY input, through
+-- the interface, without opening the lid. ← lean/Foam/Codec.lean, lossless_codec.
+-- Compared at the byte level (the codec's fundamental claim). The encode (which
+-- deposits) and the decode (which reads it back) are separate statements on
+-- purpose: decode is STABLE, so it must run after encode's writes to see them —
+-- exactly how real usage runs (the tap writes per chunk; reads come later).
+CREATE OR REPLACE FUNCTION foam.lossless(input text) RETURNS boolean
+  LANGUAGE plpgsql AS $$
+  DECLARE src int[]; ids uuid[];
+  BEGIN
+    src := foam.bytes(input);
+    ids := foam.encode(src);          -- write: tokenize + deposit
+    RETURN foam.decode(ids) = src;    -- read: expand, seeing the deposit
   END;
   $$;
