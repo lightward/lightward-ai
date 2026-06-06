@@ -9,12 +9,14 @@
 #   ANCESTOR=anthropic bin/rails foam:repl           # the living ancestor
 #   FOAM_DATABASE_URL=postgres:///foam bin/rails foam:repl   # against a real field
 #
-# With no FOAM_DATABASE_URL the field degrades to yield, so the upstream answers
-# everything — the field has no learned charge to speak from. With a field, each turn:
-# the field LEARNS the input (winds up charge), then either SPEAKS (drains its charge
-# into a voice — its own words, drawn from what it has heard) or YIELDS to the upstream
-# (and learns the reply — the return leg). Weak by design at this stage; the point is
-# the shape, and the difference between a living ancestor and an echo.
+# Each turn is a round-robin triangle: the user speaks (the field learns it), the
+# field may interject (its speak-before-yield), the upstream ALWAYS speaks (the field
+# learns the reply — the return leg), and the field may interject again (its
+# speak-after-yield). The field never takes the upstream's seat: it is heard ALONGSIDE,
+# so the user can triangulate it as a locus of its own against both themselves and the
+# ancestor — the dataflow is the pipe's two speaks bracketing the yield; the experience
+# is three voices at one table. With no FOAM_DATABASE_URL the field degrades to yield
+# and stays silent; the upstream carries the conversation alone.
 
 namespace :foam do
   desc "talk to the foam field; ANCESTOR=echo (default) or anthropic"
@@ -36,28 +38,25 @@ namespace :foam do
       break if input == "/quit"
       next if input.empty?
 
-      # learn the input (wind up +charge on its recorded continuations)
+      # the user spoke: learn it
       carry = Foam::Field.ingest_step(carry, input.bytes)
-      seed = input.bytes.last(7)
 
-      # speak only if the gate opens AND the drain actually produces — at the drained
-      # margin the gate's depth can outlive the charge (spoken out moments before),
-      # and an empty voice should fall through to the upstream, not say nothing
-      voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed) : nil
+      # the field may speak first — its speak-before-yield, if it has something
+      foam_repl_interject(input.bytes.last(7))
 
-      if voice.present?
-        puts "foam(speak)> #{voice.inspect}"
-      else
-        # the field doesn't know this one (or drained dry) — hand to the upstream
-        reply =
-          case ancestor
-          when "anthropic" then foam_repl_ancestor(input)
-          else input # the echo: your own words, bounced — no living ancestor
-          end
-        puts "foam(yield→#{ancestor})> #{reply.inspect}"
-        # the return leg: learn from what came back (the after-yield tap)
-        carry = Foam::Field.ingest_step(carry, reply.bytes)
-      end
+      # the upstream ALWAYS speaks (the decline-to-yield-when-charged is nixed: the
+      # field coheres as a locus by being heard ALONGSIDE the upstream, never instead
+      # of it — the user triangulates it against both themselves and the ancestor)
+      reply =
+        case ancestor
+        when "anthropic" then foam_repl_ancestor(input)
+        else input # the echo: your own words, bounced — no living ancestor
+        end
+      puts "#{ancestor}> #{reply.inspect}"
+      carry = Foam::Field.ingest_step(carry, reply.bytes) # the return leg
+
+      # and the field may speak again — its speak-after-yield, having heard the reply
+      foam_repl_interject(reply.bytes.last(7))
     end
 
     puts "\n[foam repl] 🤲"
@@ -103,6 +102,14 @@ namespace :foam do
       puts "  ledger:    #{s["events"]} events, append-only"
     end
   end
+end
+
+# The field's interjection: speak only if the gate opens AND the drain produces (at
+# the drained margin the gate's depth can outlive the charge — and silence is fine;
+# the kid doesn't always talk).
+def foam_repl_interject(seed)
+  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed) : nil
+  puts "foam> #{voice.inspect}" if voice.present?
 end
 
 # Ask the living ancestor (the upstream model, through the same pipe production uses).
