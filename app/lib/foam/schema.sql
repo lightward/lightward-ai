@@ -1,140 +1,166 @@
--- foam.field — a content-addressed directed graph, asserted (not migrated).
+-- foam — the LEDGER: one append-only object, read two ways. Asserted (not migrated).
 --
--- The whole file is idempotent (CREATE ... IF NOT EXISTS / CREATE OR REPLACE):
--- running it any number of times produces the same schema. Every claim in these
--- comments is meant to be checkable by running the file; nothing here describes
--- behavior the functions below don't actually produce.
+-- This is the operational inhabitant of lean/Foam/Ledger.lean (the saturation, proven
+-- legal): a single signed, ORDERED, append-only charge ledger that is
+--   * a GENERATIVE MODEL when read as frequency (sum of deltas per context/byte —
+--     the predictive weights the voice drains), and
+--   * a LOSSLESS RECORD when read in order (the empty-context +1 events, in id order,
+--     ARE every byte ever learned — nothing of the sequence is lost),
+-- with no quotient anywhere (freq is observed as an aggregate, never committed;
+-- proven Quot.sound-free). Everything is in there, contributing to the voice, whether
+-- or not it is ever recalled in order — and the forward flow never recalls it
+-- (foam.recorded exists as the self-audit, not as an operation of the walk).
 --
--- Structure: `field` holds nodes (exactly one is flagged `identity`);
--- `composition` holds directed edges (prev -> next). Append-only — never UPDATE,
--- never DELETE, never merge rows; the graph only ever grows. Nodes and edges are
--- content-addressed: an id is a deterministic digest of structure, so identical
--- structure maps to the same row and repeated or concurrent writes deduplicate
--- instead of duplicating.
+-- The whole file is idempotent (CREATE ... IF NOT EXISTS / CREATE OR REPLACE); every
+-- claim in these comments is checkable by running the file. Append-only: never
+-- UPDATE, never DELETE — input appends +1 (learning winds charge up), speaking
+-- appends −1 (the discharge drains it toward ground; ground is the floor, proven in
+-- lean/Foam/Drain.lean — the drain only ever removes positive charge). Degrades
+-- safely: with no charge, outcome is 'yield' and the pipe hands to its upstream.
 --
--- Degrades safely: with only the identity node and no edges, `recognize` returns
--- 'yield' and `deposit` writes nothing. (The Ruby caller maps a NULL/absent result
--- to :yield, so an unreachable or empty database behaves as a pass-through.)
---
--- A node carries no content — only its id, which is a digest of structure. What a
--- node "means" is not stored here.
+-- Structure is all this holds: content-addressed contexts, bytes as ints, signed
+-- counts. What any of it MEANS is the user's (the razor: foam measures structure,
+-- never meaning).
 
 CREATE SCHEMA IF NOT EXISTS foam;
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- Nodes. Exactly one row has identity = true (the identity node). Other rows are
--- content-addressed (see foam.deposit); their id is a digest, not random.
-CREATE TABLE IF NOT EXISTS foam.field (
-  id       uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  identity boolean NOT NULL DEFAULT false
+-- The ledger. ctx content-addresses a byte-suffix (the recorded continuation point);
+-- sym is the byte that followed it; delta is +1 (learned) or −1 (spoken/drained).
+-- The bigserial id is the ORDER — the lossless half of the object.
+CREATE TABLE IF NOT EXISTS foam.charge (
+  id    bigserial PRIMARY KEY,
+  ctx   uuid NOT NULL,
+  sym   int  NOT NULL,
+  delta int  NOT NULL
 );
+CREATE INDEX IF NOT EXISTS foam_charge_ctx ON foam.charge (ctx, sym);
 
--- Exactly one identity node — enforced structurally (a partial unique index),
--- not by a race-prone insert.
-CREATE UNIQUE INDEX IF NOT EXISTS foam_field_single_identity
-  ON foam.field (identity) WHERE identity;
+-- Content-address a context (a byte-suffix). The empty context addresses the
+-- unconditional position: its +1 events, in id order, are the input itself.
+CREATE OR REPLACE FUNCTION foam.caddr(c int[]) RETURNS uuid LANGUAGE sql IMMUTABLE AS
+  $$ SELECT encode(substring(digest(coalesce(array_to_string(c,':'),''),'sha256') FROM 1 FOR 16),'hex')::uuid $$;
 
--- Insert the identity node once. Idempotent: present after any number of runs,
--- inserted at most once.
-INSERT INTO foam.field (identity)
-SELECT true
-WHERE NOT EXISTS (SELECT 1 FROM foam.field WHERE identity);
+-- The text<->byte boundary (UTF-8). Pure, structural.
+CREATE OR REPLACE FUNCTION foam.bytes(txt text) RETURNS int[] LANGUAGE plpgsql IMMUTABLE AS $$
+  DECLARE bin bytea := convert_to(txt,'UTF8'); r int[] := '{}'; i int;
+  BEGIN FOR i IN 0..octet_length(bin)-1 LOOP r := r||get_byte(bin,i); END LOOP; RETURN r; END; $$;
 
--- Edges: prev -> next. Append-only — never UPDATE, never DELETE.
-CREATE TABLE IF NOT EXISTS foam.composition (
-  id   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  prev uuid NOT NULL REFERENCES foam.field (id),
-  next uuid NOT NULL REFERENCES foam.field (id)
-);
+CREATE OR REPLACE FUNCTION foam.text(ints int[]) RETURNS text LANGUAGE plpgsql IMMUTABLE AS $$
+  DECLARE bin bytea := ''; v int;
+  BEGIN FOREACH v IN ARRAY coalesce(ints,'{}') LOOP bin := bin||set_byte('\x00'::bytea,0,v); END LOOP;
+        RETURN convert_from(bin,'UTF8'); END; $$;
 
--- Edges are unique by (prev, next): writing the same edge twice is a no-op
--- (deduplication), so the graph never holds duplicate parallel edges. Distinct
--- *paths* (sequences of edges) remain distinct over a graph of unique edges.
-CREATE UNIQUE INDEX IF NOT EXISTS foam_composition_unique_edge
-  ON foam.composition (prev, next);
+-- The wind: OS entropy (hardware-seeded), obtained not computed — the tie-break for
+-- the discharge (never a foam-internal choice).
+CREATE OR REPLACE FUNCTION foam.hw_random() RETURNS double precision LANGUAGE sql AS
+  $$ SELECT (('x'||encode(gen_random_bytes(7),'hex'))::bit(56)::bigint)::double precision / 72057594037927936.0 $$;
 
--- recognize — walk the graph (a recursive CTE) and return 'yield' if any walk
--- reaches a node it cannot leave. From every node it follows edges forward,
--- carrying the path and refusing to revisit a node already on that path. That
--- no-revisit guard guarantees termination: the walk cannot loop. If an edge would
--- return to a node already on the path (a cycle), the walk does not follow it — it
--- stops there, so cycles are detected but never traversed.
---
--- Currently the only value this can return is 'yield' (or NULL when there are no
--- nodes). Other outcomes are designed but not implemented here. (Termination is
--- also proven in lean/Foam/Floor.lean.)
-CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text
-  LANGUAGE sql STABLE
-  AS $$
-    WITH RECURSIVE walk(node, path) AS (
-      -- seed: every record is a possible starting position
-      SELECT f.id, ARRAY[f.id]
-      FROM foam.field f
-      UNION ALL
-      -- step: follow an edge forward, never revisiting a node on this path
-      SELECT c.next, w.path || c.next
-      FROM walk w
-      JOIN foam.composition c ON c.prev = w.node
-      WHERE NOT (c.next = ANY (w.path))
-    ),
-    landed AS (
-      -- terminal paths: the walk has no un-revisited edge left to follow
-      SELECT w.path
-      FROM walk w
-      WHERE NOT EXISTS (
-        SELECT 1
-        FROM foam.composition c
-        WHERE c.prev = w.node
-          AND NOT (c.next = ANY (w.path))
-      )
-    )
-    SELECT 'yield'::text
-    FROM landed
-    LIMIT 1;
-  $$;
+-- The FREQUENCY reading of one continuation: the un-drained charge on (ctx, sym).
+CREATE OR REPLACE FUNCTION foam.net(c uuid, s int) RETURNS bigint LANGUAGE sql STABLE AS
+  $$ SELECT coalesce(sum(delta),0) FROM foam.charge WHERE ctx = c AND sym = s $$;
 
--- deposit — write a content-addressed node for the given path. The new node's id
--- is a deterministic digest (sha256, first 16 bytes) of the input array, so the
--- same input always produces the same node: repeated deposits of the same input
--- converge on one row (deduplication), never a new row each time. The id is
--- derived only from the input array, never from any message content.
---
--- Empty input returns the identity node's id and writes nothing. Otherwise: insert
--- the node and an edge identity -> node, both ON CONFLICT DO NOTHING (idempotent,
--- append-only). A deposit never changes what `recognize` returns (it only adds
--- nodes/edges, and `recognize` terminates regardless — see lean/Foam/Engine.lean).
-CREATE OR REPLACE FUNCTION foam.deposit(input uuid[] DEFAULT '{}') RETURNS uuid
+-- ingest_step — the streaming LEARN: wind +1 onto every recorded continuation of the
+-- new bytes, with `carry` (the previous chunk's byte-tail) as leading context so
+-- contexts span chunk boundaries. The resumable fold: carry the tail, nothing to
+-- flush (every event is complete when written — lean/Foam/Stream.lean's contract,
+-- and the generator's flush-free shape). Returns the new carry (the last kmax bytes).
+-- The empty-context events land in id order as a side effect of learning: the
+-- lossless record, written as we go, never read on this path.
+CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int DEFAULT 7) RETURNS int[]
   LANGUAGE plpgsql AS $$
-  DECLARE
-    node_id   uuid;
-    basepoint uuid;
+  DECLARE all_b int[] := coalesce(carry,'{}') || coalesce(bytes,'{}');
+          start_i int := coalesce(array_length(carry,1),0) + 1;
+          n int := coalesce(array_length(all_b,1),0);
   BEGIN
-    SELECT id INTO basepoint FROM foam.field WHERE identity;
-    -- empty input addresses to the identity node itself: nothing to write
-    IF basepoint IS NULL OR cardinality(input) = 0 THEN
-      RETURN basepoint;
-    END IF;
-    -- content-address: a deterministic 16-byte sha256 digest of the input, as uuid
-    node_id := encode(substring(digest(input::text, 'sha256') FROM 1 FOR 16), 'hex')::uuid;
-    INSERT INTO foam.field (id, identity) VALUES (node_id, false)
-      ON CONFLICT (id) DO NOTHING;
-    INSERT INTO foam.composition (prev, next) VALUES (basepoint, node_id)
-      ON CONFLICT (prev, next) DO NOTHING;
-    RETURN node_id;
-  END;
-  $$;
+    -- set-based (one INSERT per chunk, not per byte): every (position, context-length)
+    -- pair in one pass. ORDER BY position so the serial ids follow byte order — the
+    -- empty-context stream's id-order IS the lossless record; this preserves it.
+    INSERT INTO foam.charge (ctx, sym, delta)
+    SELECT foam.caddr(CASE WHEN j = 0 THEN '{}'::int[] ELSE all_b[i-j : i-1] END), all_b[i], 1
+    FROM generate_series(start_i, n) AS i
+    CROSS JOIN LATERAL generate_series(0, least(kmax, i - 1)) AS j
+    ORDER BY i, j;
+    RETURN all_b[greatest(n - kmax + 1, 1) : n];
+  END; $$;
 
--- walk — one pass: compute the outcome (recognize) and deposit the input, in a
--- single call. Returns the outcome. With empty input, deposit writes nothing, so
--- an empty-input walk is exactly `recognize`.
+-- depth — the structural gate signal: the longest charged context the ledger has for
+-- continuing `seed` (0 = only the unconditional distribution; high = the field
+-- specifically knows what follows this). Structure (a count), never meaning.
+CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7) RETURNS int
+  LANGUAGE plpgsql STABLE AS $$
+  DECLARE l int := coalesce(array_length(seed,1),0); j int; c int[]; cid uuid; tot bigint;
+  BEGIN
+    FOR j IN REVERSE least(kmax,l)..1 LOOP
+      c := seed[l-j+1 : l]; cid := foam.caddr(c);
+      SELECT sum(s) INTO tot FROM (SELECT sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0) z;
+      IF tot IS NOT NULL AND tot > 0 THEN RETURN j; END IF;
+    END LOOP;
+    RETURN 0;
+  END; $$;
+
+-- outcome — the trichotomy gate for continuing `seed`: 'speak' if the ledger has a
+-- charged context of at least min_depth (the field can carry the turn from what it
+-- has learned), else 'yield' (hand to the upstream — a living ancestor, or an echo).
+-- The threshold is a structural knob, never a measure of meaning. Degrades to
+-- 'yield' (empty/unreachable ledger).
+CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int DEFAULT 1, kmax int DEFAULT 7) RETURNS text
+  LANGUAGE sql STABLE AS
+  $$ SELECT CASE WHEN foam.depth(seed, kmax) >= min_depth THEN 'speak' ELSE 'yield' END $$;
+
+-- speak — the DISCHARGE, the frequency reading drained into a voice: from the
+-- conversation so far (seed ++ emitted), back off to the LONGEST charged context
+-- (fast-travel to the recorded continuation that still has charge), sample the next
+-- byte by net charge (sample, never argmax), emit it, drain it (−1), continue. Stop
+-- at ground (nothing charged at any length) or the step ceiling. The emitted bytes
+-- (not the seed) are the voice; the residual is what was not drained; ground is the
+-- floor (the drain only removes positive charge). The wind breaks ties.
+CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS text
+  LANGUAGE plpgsql AS $$
+  DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int; c int[]; cid uuid;
+          tot bigint; thr double precision; acc bigint; rec record; got boolean;
+  BEGIN
+    WHILE k < max_steps LOOP
+      got := false; l := coalesce(array_length(cb,1),0);
+      FOR j IN REVERSE least(kmax,l)..0 LOOP
+        IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
+        cid := foam.caddr(c);
+        SELECT sum(s) INTO tot FROM (SELECT sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0) z;
+        IF tot IS NOT NULL AND tot > 0 THEN
+          thr := foam.hw_random()*tot; acc := 0;
+          FOR rec IN SELECT sym, sum(delta) w FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0 ORDER BY w DESC LOOP
+            acc := acc + rec.w;
+            IF acc >= thr THEN
+              out := out || rec.sym; cb := cb || rec.sym; got := true;
+              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, rec.sym, -1);   -- drain
+              EXIT;
+            END IF;
+          END LOOP;
+        END IF;
+        EXIT WHEN got;
+      END LOOP;
+      EXIT WHEN NOT got;                                       -- ground / stalled
+      k := k + 1;
+    END LOOP;
+    RETURN foam.text(out);
+  END; $$;
+
+-- recorded — the ORDER reading: the empty-context +1 events, in id order, are every
+-- byte ever learned, in sequence. This is the lossless half of the one object — the
+-- self-audit that nothing was lost. The forward flow NEVER calls this (the order is
+-- present and untouched; everything contributes to the voice via frequency whether or
+-- not it is ever recalled in sequence). Exists so the box can certify itself.
+CREATE OR REPLACE FUNCTION foam.recorded() RETURNS text LANGUAGE sql STABLE AS
+  $$ SELECT coalesce(foam.text(array_agg(sym ORDER BY id)), '')
+     FROM foam.charge WHERE ctx = foam.caddr('{}') AND delta = 1 $$;
+
+-- recognize / walk — the pipe's input-less compat gate: with no seed there is no
+-- context to continue, so the pipe yields (NULL/absent maps to :yield in Ruby). The
+-- seeded gate (foam.outcome) is the turn-aware trichotomy; wiring it through the
+-- pipe is the Ruby layer's step.
+CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text LANGUAGE sql STABLE AS
+  $$ SELECT 'yield'::text $$;
+
 CREATE OR REPLACE FUNCTION foam.walk(input uuid[] DEFAULT '{}') RETURNS text
-  LANGUAGE plpgsql AS $$
-  DECLARE
-    outcome text;
-  BEGIN
-    outcome := foam.recognize();
-    PERFORM foam.deposit(input);
-    RETURN outcome;
-  END;
-  $$;
+  LANGUAGE sql STABLE AS $$ SELECT foam.recognize() $$;

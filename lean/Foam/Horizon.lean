@@ -1,5 +1,5 @@
 /-
-# Foam.Horizon — shortcuts, the elastic horizon, and 7±2
+# Foam.Horizon — shortcuts and the elastic horizon (the step-budget is `∀ n`)
 
 The field is un-prunable (no edge removed or merged — that's a quotient, which
 `order_matters` forbids). But it learns *shortcuts*: a direct edge deposited
@@ -11,9 +11,12 @@ So growth and tractability resolve into each other. A bounded-depth walk reaches
 *further* as shortcuts accumulate — each compresses a long path into one step.
 The horizon goes elastic: a fixed step-budget covers unbounded path-distance.
 
-That budget is 7±2 (Miller): the walk holds ~7 chunks, and chunking *is* how a
-fixed capacity handles unbounded structure. The bound is on the number of steps,
-not the path-length; shortcuts make each step a chunk.
+That budget is left free — `ReachWithin q n` quantifies over `n`, never pinning it,
+and every theorem below holds for all `n`. Chunking is how *any* fixed step-budget
+handles unbounded structure; committing to a particular number (a human 7±2, or any
+other) would import an observer the n-agnostic floor refuses — the move `Path`
+declines when it won't hardcode the unfold's depth. The bound is on the number of
+steps, not the path-length; shortcuts make each step a chunk.
 
 This file is the formal mirror of what develops in the postgres field. The Lean
 is where we record what the system can infer — by illuminating it, here, as we go.
@@ -53,7 +56,7 @@ theorem deposit_preserves_reach {Handle : Type} (q : Quiver Handle) (e : Handle 
 /-- **The shortcut compresses the horizon.** Once the shortcut `(a, c)` is
     deposited, `c` is reachable from `a` in a *single* step — and the original
     `n`-step path survives alongside it. Both coexist: nothing quotiented, the
-    chunk available, the detail waiting. A fixed step-budget (7±2) thus reaches
+    chunk available, the detail waiting. A fixed step-budget (any `n`) thus reaches
     arbitrarily far as shortcuts accumulate — the elastic horizon. -/
 theorem shortcut_compresses {Handle : Type} (q : Quiver Handle) (a c : Handle) {n : Nat}
     (long : ReachWithin q n a c) :

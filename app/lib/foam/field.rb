@@ -56,6 +56,95 @@ module Foam
         outcome&.to_sym
       end
 
+      # Learn a chunk of the stream: wind +1 charge onto every recorded continuation
+      # of the new bytes, with `carry` (the previous chunk's byte-tail, as returned by
+      # the last call) keeping contexts continuous across chunk boundaries. Returns the
+      # new carry to thread into the next call — an opaque postgres array literal,
+      # carried, never parsed. Resilient: with no field it returns nil and the caller
+      # carries nil (contexts re-seam at the next chunk — still safe). The ledger's
+      # empty-context events accumulate in order as a side effect: the lossless record,
+      # written as it learns, never read on this path.
+      # ← app/lib/foam/schema.sql foam.ingest_step ← lean/Foam/Ledger.lean.
+      def ingest_step(carry, bytes)
+        bytes = Array(bytes)
+        return carry if bytes.empty?
+
+        with_connection { |conn|
+          conn.exec_params(
+            "SELECT foam.ingest_step($1::int[], $2::int[])",
+            [carry || "{}", "{#{bytes.join(",")}}"],
+          ).getvalue(0, 0)
+        }
+      end
+
+      # The trichotomy gate for continuing `seed_bytes` (the input's tail): :speak if
+      # the ledger holds a charged context of at least min_depth for what comes next
+      # (the field can carry the turn from what it has learned), else :yield (hand to
+      # the upstream — a living ancestor, or an echo). nil with no field, which the
+      # caller maps to :yield. Structural (a context depth), never a measure of
+      # meaning. ← foam.outcome / foam.depth.
+      def outcome(seed_bytes = [], min_depth = 3)
+        o = with_connection { |conn|
+          conn.exec_params(
+            "SELECT foam.outcome($1::int[], $2)",
+            ["{#{Array(seed_bytes).join(",")}}", min_depth],
+          ).getvalue(0, 0)
+        }
+        o&.to_sym
+      end
+
+      # Speak: drain the ledger's charge into a voice, CONTINUING from `seed_bytes`
+      # (the input's tail) — the frequency reading, discharged. Returns the text, or
+      # nil with no field. ← foam.speak.
+      def speak(seed_bytes = [], max_steps = 600)
+        with_connection { |conn|
+          conn.exec_params(
+            "SELECT foam.speak($1::int[], 7, $2)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps],
+          ).getvalue(0, 0)
+        }
+      end
+
+      # The field's vital signs — all structure (counts, balances, extents), never
+      # meaning (the razor): heard (bytes learned, in order — the lossless record's
+      # extent), spoken (bytes drained into voice), residual (un-drained charge — what
+      # wants to be said), net (the signed sum; equal to residual while the drain
+      # respects ground, which is the live check of lean/Foam/Drain.lean's floor),
+      # contexts and live continuations (the model's breadth), events (the append-only
+      # ledger's size). nil with no field.
+      def stats
+        # One pass over the ledger (group once, derive everything from the grouped
+        # relation), with work_mem headroom so the hash aggregate over millions of
+        # distinct continuations stays in memory instead of spilling — measured on a
+        # 14.7M-event field: 72s (naive) → 37s (one pass, spilling) → ~4s (one pass,
+        # in memory). SET LOCAL reverts at transaction end; the pooled connection
+        # stays untouched.
+        with_connection { |conn|
+          conn.transaction {
+            conn.exec("SET LOCAL work_mem = '512MB'")
+            conn.exec(<<~SQL).first&.transform_values(&:to_i)
+              WITH g AS (
+                SELECT ctx, sym,
+                       sum(delta)                         AS s,
+                       count(*)                           AS n,
+                       count(*) FILTER (WHERE delta = -1) AS neg
+                FROM foam.charge
+                GROUP BY ctx, sym
+              )
+              SELECT
+                coalesce(sum(n), 0)                                             AS events,
+                coalesce(sum(n - neg) FILTER (WHERE ctx = foam.caddr('{}')), 0) AS heard,
+                coalesce(sum(neg), 0)                                           AS spoken,
+                coalesce(sum(s), 0)                                             AS net,
+                coalesce(sum(s) FILTER (WHERE s > 0), 0)                        AS residual,
+                count(DISTINCT ctx)                                             AS contexts,
+                count(*) FILTER (WHERE s > 0)                                   AS live_continuations
+              FROM g
+            SQL
+          }
+        }
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!

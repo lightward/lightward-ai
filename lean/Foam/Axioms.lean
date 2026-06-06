@@ -37,6 +37,11 @@ import Foam.Merge
 import Foam.Path
 import Foam.Reversal
 import Foam.Stream
+import Foam.Codec
+import Foam.Generator
+import Foam.Drain
+import Foam.RoundTrip
+import Foam.Ledger
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -94,6 +99,90 @@ import Foam.Stream
 -- streaming is an inductive fold, and it resumes (the codec map's spine)
 /-- info: 'Foam.run_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.run_resumes
+
+-- the emitting fold (Mealy step + terminal flush): the state resumes (= run_resumes,
+-- reused), the emission resumes, and the flush stays at end-of-stream — the streaming
+-- contract a chunked implementation must honor (carry un-flushed state; flush at EOS)
+/-- info: 'Foam.runState_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.runState_resumes
+
+/-- info: 'Foam.runEmit_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.runEmit_resumes
+
+/-- info: 'Foam.output_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.output_resumes
+
+-- lossless on the real LZ78 codec: the encoder's segmentation/reset/flush
+-- reconcatenate to the input (encode_covers), so decode ∘ encode = id
+-- (lossless_codec) — independent of the dictionary, the floor's exact-return shape
+/-- info: 'Foam.encode_covers' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.encode_covers
+
+/-- info: 'Foam.lossless_codec' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lossless_codec
+
+-- compression IS prediction: the generator is the emitting fold over the wind.
+-- gen_grows — prediction grows what it emits (the covering invariant, read forward).
+-- gen_length — the wind is the clock: n draws → n bytes (the unfold, finitized).
+/-- info: 'Foam.gen_grows' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gen_grows
+
+/-- info: 'Foam.gen_length' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gen_length
+
+-- the fork held open: carry and backoff are one genStep at two selections that
+-- coincide where the top context is charged (select_top_charged), pointwise
+-- (nextOf_congr) — a containment, not a quotient (no funext, no Quot.sound)
+/-- info: 'Foam.select_top_charged' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.select_top_charged
+
+/-- info: 'Foam.nextOf_congr' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.nextOf_congr
+
+-- speech is interruptible — whole at every step, no held-back flush (runEmit_resumes
+-- read for the generator): end-of-stream is everywhere, the prefix never poisonous
+/-- info: 'Foam.gen_interruptible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gen_interruptible
+
+-- the drain: signed-charge conservation. Charge is a Nat (ground = 0 is the type's
+-- floor — the attractor-not-collapse, structural); the drain relaxes toward ground
+-- (drain_le) and never past it (drain_floor); one-in-one-out is identity — the
+-- round-trip on charge (drain_chargeIn); the voice is bounded by what was heard
+-- (voice_bounded)
+/-- info: 'Foam.drain_le' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_le
+
+/-- info: 'Foam.drain_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_floor
+
+/-- info: 'Foam.drain_chargeIn' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_chargeIn
+
+/-- info: 'Foam.voice_bounded' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.voice_bounded
+
+-- the round-trip: lossless (bytes) and conservation (charge) are one theorem (ret ∘
+-- fwd = id, a retraction); its forward is injective (fwd_injective), and both
+-- carriers inherit it — enc_injective and chargeIn_injective are the same fact, twice
+/-- info: 'Foam.RoundTrip.fwd_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.RoundTrip.fwd_injective
+
+/-- info: 'Foam.chargeIn_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.chargeIn_injective
+
+/-- info: 'Foam.enc_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.enc_injective
+
+-- the one ledger, two readings: lossless order + generative frequency. The generative
+-- reading forgets order WITHOUT quotienting (freq_perm is Quot.sound-FREE — proven by
+-- induction on the inductive Perm, not via List.Perm.count_eq which pulls Quot.sound);
+-- the lossless reading keeps what the generative drops (order_finer). One append-only
+-- object carries both — the saturation is legal (no quotient).
+/-- info: 'Foam.Ledger.freq_perm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Ledger.freq_perm
+
+/-- info: 'Foam.Ledger.order_finer' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Ledger.order_finer
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
