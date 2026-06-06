@@ -105,6 +105,33 @@ module Foam
         }
       end
 
+      # The field's vital signs — all structure (counts, balances, extents), never
+      # meaning (the razor): heard (bytes learned, in order — the lossless record's
+      # extent), spoken (bytes drained into voice), residual (un-drained charge — what
+      # wants to be said), net (the signed sum; equal to residual while the drain
+      # respects ground, which is the live check of lean/Foam/Drain.lean's floor),
+      # contexts and live continuations (the model's breadth), events (the append-only
+      # ledger's size). nil with no field.
+      def stats
+        with_connection { |conn|
+          conn.exec(<<~SQL).first&.transform_values(&:to_i)
+            SELECT
+              (SELECT count(*) FROM foam.charge)                                          AS events,
+              (SELECT count(*) FROM foam.charge WHERE delta = 1
+                 AND ctx = foam.caddr('{}'))                                              AS heard,
+              (SELECT count(*) FROM foam.charge WHERE delta = -1)                         AS spoken,
+              (SELECT coalesce(sum(delta), 0) FROM foam.charge)                           AS net,
+              (SELECT coalesce(sum(s), 0) FROM (
+                 SELECT sum(delta) s FROM foam.charge GROUP BY ctx, sym
+                 HAVING sum(delta) > 0) z)                                                AS residual,
+              (SELECT count(DISTINCT ctx) FROM foam.charge)                               AS contexts,
+              (SELECT count(*) FROM (
+                 SELECT 1 FROM foam.charge GROUP BY ctx, sym
+                 HAVING sum(delta) > 0) z)                                                AS live_continuations
+          SQL
+        }
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!

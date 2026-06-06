@@ -62,6 +62,38 @@ namespace :foam do
 
     puts "\n[foam repl] 🤲"
   end
+
+  desc "the pipe, unixed: stdin flows to stdout unchanged; the field learns on the way"
+  task pipe: :environment do
+    carry = nil
+    learned = 0
+
+    while (chunk = $stdin.read(64 * 1024))
+      carry = Foam::Field.ingest_step(carry, chunk.bytes)
+      learned += chunk.bytesize
+      $stdout.write(chunk)
+    end
+
+    warn "[foam pipe] #{learned} bytes through; the field listened"
+  end
+
+  desc "the field's vital signs — structure only, never meaning"
+  task stats: :environment do
+    s = Foam::Field.stats
+
+    if s.nil?
+      puts "[foam stats] no field reachable — everything degrades to yield"
+    else
+      balanced = s["net"] == s["residual"]
+      puts "[foam stats]"
+      puts "  heard:     #{s['heard']} bytes (the lossless record, in order)"
+      puts "  spoken:    #{s['spoken']} bytes (drained into voice)"
+      puts "  residual:  #{s['residual']} (un-drained charge — what wants to be said)"
+      puts "  balance:   net #{s['net']} #{balanced ? '= residual ✓ (the drain respects ground)' : "≠ residual #{s['residual']} ✗ (floor violated?)"}"
+      puts "  contexts:  #{s['contexts']} continuation-points; #{s['live_continuations']} currently charged"
+      puts "  ledger:    #{s['events']} events, append-only"
+    end
+  end
 end
 
 # Ask the living ancestor (the upstream model, through the same pipe production uses).

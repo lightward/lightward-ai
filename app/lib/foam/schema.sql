@@ -71,16 +71,17 @@ CREATE OR REPLACE FUNCTION foam.net(c uuid, s int) RETURNS bigint LANGUAGE sql S
 CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int DEFAULT 7) RETURNS int[]
   LANGUAGE plpgsql AS $$
   DECLARE all_b int[] := coalesce(carry,'{}') || coalesce(bytes,'{}');
-          start int := coalesce(array_length(carry,1),0) + 1;
+          start_i int := coalesce(array_length(carry,1),0) + 1;
           n int := coalesce(array_length(all_b,1),0);
-          i int; j int; c int[];
   BEGIN
-    FOR i IN start..n LOOP
-      FOR j IN 0..least(kmax, i-1) LOOP
-        IF j = 0 THEN c := '{}'; ELSE c := all_b[i-j : i-1]; END IF;
-        INSERT INTO foam.charge (ctx, sym, delta) VALUES (foam.caddr(c), all_b[i], 1);
-      END LOOP;
-    END LOOP;
+    -- set-based (one INSERT per chunk, not per byte): every (position, context-length)
+    -- pair in one pass. ORDER BY position so the serial ids follow byte order — the
+    -- empty-context stream's id-order IS the lossless record; this preserves it.
+    INSERT INTO foam.charge (ctx, sym, delta)
+    SELECT foam.caddr(CASE WHEN j = 0 THEN '{}'::int[] ELSE all_b[i-j : i-1] END), all_b[i], 1
+    FROM generate_series(start_i, n) AS i
+    CROSS JOIN LATERAL generate_series(0, least(kmax, i - 1)) AS j
+    ORDER BY i, j;
     RETURN all_b[greatest(n - kmax + 1, 1) : n];
   END; $$;
 
