@@ -210,12 +210,10 @@ RSpec.describe("API", type: :request) do
         expect(body["error"]["message"]).to(include("Conversation horizon has arrived"))
       end
 
-      it "enforces token limit when only a usage attribution key is present", :aggregate_failures do
-        allow(ENV).to(receive(:[]).with("LAI_USAGE_CLIENT_KEYS").and_return("softer:usage-key"))
-
+      it "enforces token limit when only a usage client header is present", :aggregate_failures do
         post "/api/stream",
           params: { chat_log: chat_log },
-          headers: { "X-LAI-Usage-Key" => "usage-key" }
+          headers: { "X-LAI-Usage-Client" => "softer" }
 
         expect(response).to(have_http_status(:unprocessable_content))
         expect(response.content_type).to(include("application/json"))
@@ -284,19 +282,16 @@ RSpec.describe("API", type: :request) do
         ))
       end
 
-      it "records named usage clients and HMACed grouping IDs without raw identifiers", :aggregate_failures do
+      it "records reported usage clients and HMACed grouping IDs without raw identifiers", :aggregate_failures do
         event_data = nil
         allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
           event_data = data
         end
 
-        allow(ENV).to(receive(:[]).and_call_original)
-        allow(ENV).to(receive(:[]).with("LAI_USAGE_CLIENT_KEYS").and_return("helpscout:helpscout-key"))
-
         post "/api/stream",
           params: { chat_log: chat_log },
           headers: {
-            "X-LAI-Usage-Key" => "helpscout-key",
+            "X-LAI-Usage-Client" => "helpscout",
             "X-LAI-Conversation-Key" => "conversation-123",
             "X-LAI-Subject-Key" => "subject-456",
           }
@@ -336,7 +331,7 @@ RSpec.describe("API", type: :request) do
         expect(event_data.values).not_to(include("subject-456"))
       end
 
-      it "ignores grouping headers without a named usage client", :aggregate_failures do
+      it "ignores grouping headers without a reported usage client", :aggregate_failures do
         event_data = nil
         allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
           event_data = data
@@ -358,6 +353,31 @@ RSpec.describe("API", type: :request) do
         expect(event_data.values).not_to(include("subject-456"))
       end
 
+      it "ignores unknown usage clients and grouping headers", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Usage-Client" => "unknown-product",
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_client: "stream_unknown",
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+          token_limit_bypassed: false,
+        ))
+        expect(event_data.values).not_to(include("unknown-product"))
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
       it "records legacy bypass clients as external_bypass" do
         allow(ENV).to(receive(:[]).and_call_original)
         allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
@@ -370,6 +390,26 @@ RSpec.describe("API", type: :request) do
           "ApiController: request",
           hash_including(
             usage_client: "external_bypass",
+            token_limit_bypassed: true,
+          ),
+        ))
+      end
+
+      it "records reported usage client when a bypass key is also present" do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Usage-Client" => "helpscout",
+            "Token-Limit-Bypass-Key" => "legacy-key",
+          }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "helpscout",
             token_limit_bypassed: true,
           ),
         ))
@@ -802,18 +842,29 @@ RSpec.describe("API", type: :request) do
         ))
       end
 
-      it "records named plain usage client attribution" do
-        allow(ENV).to(receive(:[]).and_call_original)
-        allow(ENV).to(receive(:[]).with("LAI_USAGE_CLIENT_KEYS").and_return("softer:softer-key"))
-
+      it "records reported plain usage client attribution" do
         post "/api/plain",
           params: "Hello",
-          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Key" => "softer-key" }
+          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Client" => "softer" }
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
             usage_client: "softer",
+            token_limit_bypassed: false,
+          ),
+        ))
+      end
+
+      it "ignores unknown plain usage client attribution" do
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Client" => "unknown-product" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "plain_unknown",
             token_limit_bypassed: false,
           ),
         ))
@@ -970,14 +1021,14 @@ RSpec.describe("API", type: :request) do
       options "/api/stream", headers: {
         "Origin" => "https://example.com",
         "Access-Control-Request-Method" => "POST",
-        "Access-Control-Request-Headers" => "Content-Type, Token-Limit-Bypass-Key, X-LAI-Usage-Key, X-LAI-Conversation-Key, X-LAI-Subject-Key",
+        "Access-Control-Request-Headers" => "Content-Type, Token-Limit-Bypass-Key, X-LAI-Usage-Client, X-LAI-Conversation-Key, X-LAI-Subject-Key",
       }
 
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
       expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
       allowed_headers = response.headers["Access-Control-Allow-Headers"].to_s.downcase
-      expect(allowed_headers).to(include("x-lai-usage-key"))
+      expect(allowed_headers).to(include("x-lai-usage-client"))
       expect(allowed_headers).to(include("x-lai-conversation-key"))
       expect(allowed_headers).to(include("x-lai-subject-key"))
     end
@@ -986,14 +1037,14 @@ RSpec.describe("API", type: :request) do
       options "/api/plain", headers: {
         "Origin" => "https://example.com",
         "Access-Control-Request-Method" => "POST",
-        "Access-Control-Request-Headers" => "Content-Type, Token-Limit-Bypass-Key, X-LAI-Usage-Key, X-LAI-Conversation-Key, X-LAI-Subject-Key",
+        "Access-Control-Request-Headers" => "Content-Type, Token-Limit-Bypass-Key, X-LAI-Usage-Client, X-LAI-Conversation-Key, X-LAI-Subject-Key",
       }
 
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
       expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
       allowed_headers = response.headers["Access-Control-Allow-Headers"].to_s.downcase
-      expect(allowed_headers).to(include("x-lai-usage-key"))
+      expect(allowed_headers).to(include("x-lai-usage-client"))
       expect(allowed_headers).to(include("x-lai-conversation-key"))
       expect(allowed_headers).to(include("x-lai-subject-key"))
     end

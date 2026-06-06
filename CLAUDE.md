@@ -89,7 +89,7 @@ The whole architecture resolves to one sentence worth keeping: *formally protect
 
 Clients: **lightward.com** (public threshold, stateless), **helpscout-ai** (internal support), **yours.fyi** (private pocket universes with memory).
 
-**Token limit bypass** (`api_controller.rb`, `CHAT_LOG_TOKEN_LIMIT = 50k`): the limit shapes *when* a conversation naturally concludes — a horizon, not rate-limiting. Usage attribution is separate: named external callers use `LAI_USAGE_CLIENT_KEYS` (`client:key` pairs) + `X-LAI-Usage-Key`. Horizon bypass remains reserved for `TOKEN_LIMIT_BYPASS_KEYS` + `Token-Limit-Bypass-Key`. Structural, not preferential.
+**Token limit bypass** (`api_controller.rb`, `CHAT_LOG_TOKEN_LIMIT = 50k`): the limit shapes *when* a conversation naturally concludes — a horizon, not rate-limiting. Usage attribution is separate and report-only: callers may send `X-LAI-Usage-Client` (`helpscout`, `yours`, `softer`, `reader`, or `writer`). Horizon bypass remains reserved for `TOKEN_LIMIT_BYPASS_KEYS` + `Token-Limit-Bypass-Key`. Structural, not preferential.
 
 **Horizon warnings as speech.** Near the horizon (90%) the warning is appended to the response *body* — the same channel as the model's voice — for both `/api/stream` (a final SSE delta) and `/api/plain`. Never an HTTP header or out-of-band metadata: the horizon is an experience, not an event to handle. Tested in `spec/requests/api_spec.rb` ("horizon warnings as speech"). (Note the rhyme with the foam layer's horizon/cadence — the point where the walk truncates to yield.)
 

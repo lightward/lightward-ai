@@ -11,6 +11,11 @@ class ApiController < ApplicationController
     "reader" => "lightward_reader",
     "writer" => "lightward_writer",
   }.freeze
+  REPORTED_USAGE_CLIENTS = FIRST_PARTY_USAGE_CLIENTS.merge(
+    "helpscout" => "helpscout",
+    "yours" => "yours",
+    "softer" => "softer",
+  ).freeze
   ANTHROPIC_USAGE_TOKEN_KEYS = [
     "input_tokens",
     "output_tokens",
@@ -161,30 +166,11 @@ class ApiController < ApplicationController
     request.headers["Token-Limit-Bypass-Key"].to_s.strip.presence
   end
 
-  def usage_key
-    request.headers["X-LAI-Usage-Key"].to_s.strip.presence
-  end
+  def reported_usage_client
+    return @reported_usage_client if defined?(@reported_usage_client)
 
-  def named_usage_client
-    return @named_usage_client if defined?(@named_usage_client)
-
-    key = usage_key
-    @named_usage_client = if key.blank?
-      nil
-    else
-      usage_client_keys.find { |_client, client_key|
-        secure_token_match?(key, client_key)
-      }&.first
-    end
-  end
-
-  def usage_client_keys
-    ENV["LAI_USAGE_CLIENT_KEYS"].to_s.split(",").filter_map do |entry|
-      client, key = entry.split(":", 2).map { |part| part.to_s.strip }
-      next if client.blank? || key.blank?
-
-      [normalize_usage_client(client), key]
-    end
+    requested_client = request.headers["X-LAI-Usage-Client"].presence || params[:usage_client]
+    @reported_usage_client = REPORTED_USAGE_CLIENTS[normalize_usage_client(requested_client)]
   end
 
   def bypass_key_valid?
@@ -205,12 +191,10 @@ class ApiController < ApplicationController
   end
 
   def usage_client
-    if named_usage_client.present?
-      named_usage_client
+    if reported_usage_client.present?
+      reported_usage_client
     elsif bypass_key_valid?
       "external_bypass"
-    elsif (first_party_usage_client = FIRST_PARTY_USAGE_CLIENTS[params[:usage_client].to_s])
-      first_party_usage_client
     else
       "#{action_name}_unknown"
     end
@@ -316,7 +300,7 @@ class ApiController < ApplicationController
   end
 
   def hmac_header(value, field)
-    client = named_usage_client
+    client = reported_usage_client
     return if client.blank?
 
     value = value.to_s
