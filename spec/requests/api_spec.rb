@@ -378,7 +378,7 @@ RSpec.describe("API", type: :request) do
         expect(event_data.values).not_to(include("subject-456"))
       end
 
-      it "records legacy bypass clients as external_bypass" do
+      it "records bypass state without using the bypass key for client attribution" do
         allow(ENV).to(receive(:[]).and_call_original)
         allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
 
@@ -389,7 +389,7 @@ RSpec.describe("API", type: :request) do
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
-            usage_client: "external_bypass",
+            usage_client: "stream_unknown",
             token_limit_bypassed: true,
           ),
         ))
@@ -836,7 +836,7 @@ RSpec.describe("API", type: :request) do
             conversation_id: nil,
             chat_log_depth: 1,
             chat_log_token_count: nil,
-            usage_client: "external_bypass",
+            usage_client: "plain_unknown",
             token_limit_bypassed: true,
           ),
         ))

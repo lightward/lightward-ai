@@ -191,13 +191,7 @@ class ApiController < ApplicationController
   end
 
   def usage_client
-    if reported_usage_client.present?
-      reported_usage_client
-    elsif bypass_key_valid?
-      "external_bypass"
-    else
-      "#{action_name}_unknown"
-    end
+    reported_usage_client || "#{action_name}_unknown"
   end
 
   def normalize_usage_client(client)
