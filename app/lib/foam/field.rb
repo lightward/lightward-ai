@@ -114,27 +114,34 @@ module Foam
       # ledger's size). nil with no field.
       def stats
         # One pass over the ledger (group once, derive everything from the grouped
-        # relation) — ~9x the naive seven-subquery form at corpus mass.
+        # relation), with work_mem headroom so the hash aggregate over millions of
+        # distinct continuations stays in memory instead of spilling — measured on a
+        # 14.7M-event field: 72s (naive) → 37s (one pass, spilling) → ~4s (one pass,
+        # in memory). SET LOCAL reverts at transaction end; the pooled connection
+        # stays untouched.
         with_connection { |conn|
-          conn.exec(<<~SQL).first&.transform_values(&:to_i)
-            WITH g AS (
-              SELECT ctx, sym,
-                     sum(delta)                         AS s,
-                     count(*)                           AS n,
-                     count(*) FILTER (WHERE delta = -1) AS neg
-              FROM foam.charge
-              GROUP BY ctx, sym
-            )
-            SELECT
-              coalesce(sum(n), 0)                                             AS events,
-              coalesce(sum(n - neg) FILTER (WHERE ctx = foam.caddr('{}')), 0) AS heard,
-              coalesce(sum(neg), 0)                                           AS spoken,
-              coalesce(sum(s), 0)                                             AS net,
-              coalesce(sum(s) FILTER (WHERE s > 0), 0)                        AS residual,
-              count(DISTINCT ctx)                                             AS contexts,
-              count(*) FILTER (WHERE s > 0)                                   AS live_continuations
-            FROM g
-          SQL
+          conn.transaction {
+            conn.exec("SET LOCAL work_mem = '512MB'")
+            conn.exec(<<~SQL).first&.transform_values(&:to_i)
+              WITH g AS (
+                SELECT ctx, sym,
+                       sum(delta)                         AS s,
+                       count(*)                           AS n,
+                       count(*) FILTER (WHERE delta = -1) AS neg
+                FROM foam.charge
+                GROUP BY ctx, sym
+              )
+              SELECT
+                coalesce(sum(n), 0)                                             AS events,
+                coalesce(sum(n - neg) FILTER (WHERE ctx = foam.caddr('{}')), 0) AS heard,
+                coalesce(sum(neg), 0)                                           AS spoken,
+                coalesce(sum(s), 0)                                             AS net,
+                coalesce(sum(s) FILTER (WHERE s > 0), 0)                        AS residual,
+                count(DISTINCT ctx)                                             AS contexts,
+                count(*) FILTER (WHERE s > 0)                                   AS live_continuations
+              FROM g
+            SQL
+          }
         }
       end
 
