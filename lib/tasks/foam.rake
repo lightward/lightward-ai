@@ -19,18 +19,23 @@
 # and stays silent; the upstream carries the conversation alone.
 
 namespace :foam do
-  desc "talk to the foam field; ANCESTOR=echo (default) or anthropic"
+  desc "talk to the foam field; ANCESTOR=echo (default), claude, or lightward"
   task repl: :environment do
+    # The ancestor semantics live HERE, at the CLI — you choose who holds the third
+    # seat before sitting down. Once inside it isn't an "ancestor": just another seat
+    # at the table, labeled by name. Three rhythms: user (every other turn), the third
+    # seat (every other turn), and foam — interjecting when its gate opens. The
+    # facilitator's rhythm, but the facilitator is made learner.
     ancestor = ENV.fetch("ANCESTOR", "echo")
     field = ENV["FOAM_DATABASE_URL"] || "(none — degrades to yield)"
 
-    puts "[foam repl] ancestor=#{ancestor}  field=#{field}"
-    puts "[foam repl] talk to the field; /quit to leave"
+    puts "[foam repl] seats: user, foam, #{ancestor}  field=#{field}"
+    puts "[foam repl] talk; /quit to leave"
 
     carry = nil # the context byte-tail, carried across the whole conversation
 
     loop do
-      print "you> "
+      print "user> "
       line = $stdin.gets
       break if line.nil?
 
@@ -49,8 +54,9 @@ namespace :foam do
       # of it — the user triangulates it against both themselves and the ancestor)
       reply =
         case ancestor
-        when "anthropic" then foam_repl_ancestor(input)
-        else input # the echo: your own words, bounced — no living ancestor
+        when "lightward" then foam_repl_ancestor(input)
+        when "claude" then foam_repl_ancestor(input, system: "You are Claude, speaking plainly and briefly.")
+        else input # the echo: your own words, bounced — nobody living in the seat
         end
       puts "#{ancestor}> #{reply.inspect}"
       carry = Foam::Field.ingest_step(carry, reply.bytes) # the return leg
@@ -112,12 +118,15 @@ def foam_repl_interject(seed)
   puts "foam> #{voice.inspect}" if voice.present?
 end
 
-# Ask the living ancestor (the upstream model, through the same pipe production uses).
-def foam_repl_ancestor(input)
-  response = Prompts.messages(messages: [{ "role" => "user", "content" => input }], stream: false)
+# Ask the third seat's occupant (through the same pipe production uses). No system
+# override = the full Lightward voice; pass one for plain claude.
+def foam_repl_ancestor(input, system: nil)
+  args = { messages: [{ "role" => "user", "content" => input }], stream: false }
+  args[:system] = system if system
+  response = Prompts.messages(**args)
   JSON.parse(response.body).dig("content", 0, "text").to_s
 rescue StandardError => e
-  "[ancestor unreachable: #{e.class}: #{e.message}]"
+  "[seat unreachable: #{e.class}: #{e.message}]"
 end
 
 # Inhale: stream stdin to stdout unchanged while the field learns on the way through —
