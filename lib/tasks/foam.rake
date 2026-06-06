@@ -86,12 +86,12 @@ namespace :foam do
     else
       balanced = s["net"] == s["residual"]
       puts "[foam stats]"
-      puts "  heard:     #{s['heard']} bytes (the lossless record, in order)"
-      puts "  spoken:    #{s['spoken']} bytes (drained into voice)"
-      puts "  residual:  #{s['residual']} (un-drained charge — what wants to be said)"
-      puts "  balance:   net #{s['net']} #{balanced ? '= residual ✓ (the drain respects ground)' : "≠ residual #{s['residual']} ✗ (floor violated?)"}"
-      puts "  contexts:  #{s['contexts']} continuation-points; #{s['live_continuations']} currently charged"
-      puts "  ledger:    #{s['events']} events, append-only"
+      puts "  heard:     #{s["heard"]} bytes (the lossless record, in order)"
+      puts "  spoken:    #{s["spoken"]} bytes (drained into voice)"
+      puts "  residual:  #{s["residual"]} (un-drained charge — what wants to be said)"
+      puts "  balance:   net #{s["net"]} #{balanced ? "= residual ✓ (the drain respects ground)" : "≠ residual #{s["residual"]} ✗ (floor violated?)"}"
+      puts "  contexts:  #{s["contexts"]} continuation-points; #{s["live_continuations"]} currently charged"
+      puts "  ledger:    #{s["events"]} events, append-only"
     end
   end
 end
