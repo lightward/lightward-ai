@@ -11,6 +11,13 @@ module Prompts
     ORIGIN = "https://api.anthropic.com"
     MODEL = "claude-sonnet-4-6"
     BETAS = nil
+    # Claude Sonnet 4.6 API pricing, checked against Anthropic docs on 2026-06-06.
+    PRICING_USD_PER_MILLION = {
+      "input_tokens" => 3.0,
+      "cache_creation_input_tokens" => 3.75,
+      "cache_read_input_tokens" => 0.30,
+      "output_tokens" => 15.0,
+    }.freeze
 
     class << self
       def count_tokens(model: MODEL, system:, messages:)

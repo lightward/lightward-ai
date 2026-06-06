@@ -17,12 +17,6 @@ class ApiController < ApplicationController
     "cache_creation_input_tokens",
     "cache_read_input_tokens",
   ].freeze
-  ANTHROPIC_PRICING_USD_PER_MILLION = {
-    "input_tokens" => 3.0,
-    "cache_creation_input_tokens" => 3.75,
-    "cache_read_input_tokens" => 0.30,
-    "output_tokens" => 15.0,
-  }.freeze
   TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
 
   skip_before_action :verify_host!
@@ -342,7 +336,7 @@ class ApiController < ApplicationController
   def estimated_cost_usd(anthropic_usage)
     return if anthropic_usage.values.all?(&:nil?)
 
-    cost = ANTHROPIC_PRICING_USD_PER_MILLION.sum { |key, usd_per_million|
+    cost = Prompts::Anthropic::PRICING_USD_PER_MILLION.sum { |key, usd_per_million|
       anthropic_usage[key].to_i * usd_per_million / 1_000_000.0
     }
 
