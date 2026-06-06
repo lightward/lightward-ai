@@ -68,9 +68,9 @@ module Foam
       # controller's SSE parsing stay untouched.
       tapped_block =
         if stream && block
-          cursor = nil # per-stream: the codec's partial match, carried across chunks
+          carry = nil # per-stream: the context byte-tail, carried across chunks
           proc { |request, response|
-            block.call(request, TappingResponse.new(response) { |chunk| cursor = observe_chunk(chunk, cursor) })
+            block.call(request, TappingResponse.new(response) { |chunk| carry = observe_chunk(chunk, carry) })
           }
         else
           block
@@ -114,17 +114,15 @@ module Foam
       nil
     end
 
-    # Observe one streaming chunk on its way to the caller, and learn from it: feed
-    # the chunk's bytes to the codec's streaming encode, carrying `cursor` (the
-    # partial match) across chunks so a match spanning a chunk boundary is preserved.
-    # Returns the new cursor. The deposit is append-only and content-free (bytes are
-    # structure, not meaning); the field grows its dictionary without keeping the
-    # id-stream, so it is shaped by the voice without storing the transcript. With no
-    # field this degrades to nil (no-op) and the caller carries nil. The bytes are
-    # still teed untouched to the real reader — learning is a side effect on the way
-    # through, never an interpretation of the voice.
-    def observe_chunk(chunk, cursor = nil)
-      Field.encode_step(cursor, chunk.bytes)
+    # Observe one streaming chunk on its way to the caller, and learn from it: wind
+    # charge onto the ledger's recorded continuations, carrying `carry` (the context
+    # byte-tail) across chunks so contexts span the seam. Returns the new carry. The
+    # ledger is append-only and structural (bytes, counts, content-addresses — never
+    # meaning); with no field this degrades to nil (no-op) and the caller carries nil.
+    # The bytes are still teed untouched to the real reader — learning is a side
+    # effect on the way through, never an interpretation of the voice.
+    def observe_chunk(chunk, carry = nil)
+      Field.ingest_step(carry, chunk.bytes)
     end
   end
 

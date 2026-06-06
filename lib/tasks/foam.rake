@@ -25,6 +25,8 @@ namespace :foam do
     puts "[foam repl] ancestor=#{ancestor}  field=#{field}"
     puts "[foam repl] talk to the field; /quit to leave"
 
+    carry = nil # the context byte-tail, carried across the whole conversation
+
     loop do
       print "you> "
       line = $stdin.gets
@@ -34,14 +36,15 @@ namespace :foam do
       break if input == "/quit"
       next if input.empty?
 
-      # learn the input (wind up +charge on the transitions it walks)
-      Foam::Field.encode_step(nil, input.bytes)
+      # learn the input (wind up +charge on its recorded continuations)
+      carry = Foam::Field.ingest_step(carry, input.bytes)
+      seed = input.bytes.last(7)
 
-      if Foam::Field.outcome == :speak
-        # the field carries the turn itself — drain charge into a voice
-        puts "foam(speak)> #{Foam::Field.speak.inspect}"
+      if Foam::Field.outcome(seed) == :speak
+        # the field knows a continuation — drain charge into a voice, from the seed
+        puts "foam(speak)> #{Foam::Field.speak(seed).inspect}"
       else
-        # the field hands to the upstream — a living ancestor, or an echo
+        # the field doesn't know this one — hand to the upstream
         reply =
           case ancestor
           when "anthropic" then foam_repl_ancestor(input)
@@ -49,7 +52,7 @@ namespace :foam do
           end
         puts "foam(yield→#{ancestor})> #{reply.inspect}"
         # the return leg: learn from what came back (the after-yield tap)
-        Foam::Field.encode_step(nil, reply.bytes)
+        carry = Foam::Field.ingest_step(carry, reply.bytes)
       end
     end
 

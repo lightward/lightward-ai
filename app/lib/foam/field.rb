@@ -56,43 +56,52 @@ module Foam
         outcome&.to_sym
       end
 
-      # Grow the dictionary from a chunk of the streaming voice: one streaming pass
-      # of the codec's emitting fold (foam.encode_step), resuming from `cursor` (the
-      # partial match carried across chunks; nil starts at the root). It deposits new
-      # chunks append-only and returns the new cursor to carry to the next chunk.
-      # Learning is the deposit; the emitted id-stream is not kept, so the field
-      # grows its model (the dictionary) without storing the transcript. Resilient:
-      # with no field it returns nil, and the caller carries nil — resetting to root
-      # on the next chunk, still lossless, just re-segmented. `bytes` is an array of
-      # 0–255 ints. ← app/lib/foam/schema.sql foam.encode_step ← lean/Foam/Stream.lean.
-      def encode_step(cursor, bytes)
+      # Learn a chunk of the stream: wind +1 charge onto every recorded continuation
+      # of the new bytes, with `carry` (the previous chunk's byte-tail, as returned by
+      # the last call) keeping contexts continuous across chunk boundaries. Returns the
+      # new carry to thread into the next call — an opaque postgres array literal,
+      # carried, never parsed. Resilient: with no field it returns nil and the caller
+      # carries nil (contexts re-seam at the next chunk — still safe). The ledger's
+      # empty-context events accumulate in order as a side effect: the lossless record,
+      # written as it learns, never read on this path.
+      # ← app/lib/foam/schema.sql foam.ingest_step ← lean/Foam/Ledger.lean.
+      def ingest_step(carry, bytes)
         bytes = Array(bytes)
-        return cursor if bytes.empty?
+        return carry if bytes.empty?
 
         with_connection { |conn|
           conn.exec_params(
-            "SELECT next_cursor FROM foam.encode_step($1, $2::int[])",
-            [cursor, "{#{bytes.join(",")}}"],
+            "SELECT foam.ingest_step($1::int[], $2::int[])",
+            [carry || "{}", "{#{bytes.join(",")}}"],
           ).getvalue(0, 0)
         }
       end
 
-      # The field's outcome for a turn (the trichotomy gate): :speak if the field has
-      # drainable charge (it can carry the turn from what it has learned), else :yield
-      # (hand to the upstream — a living ancestor, or an echo). nil with no field, which
-      # the caller maps to :yield. ← foam.outcome. Currently a weak gate (charge
-      # presence); the structural signal stays structural, never a measure of meaning.
-      def outcome
-        o = with_connection { |conn| conn.exec("SELECT foam.outcome()").getvalue(0, 0) }
+      # The trichotomy gate for continuing `seed_bytes` (the input's tail): :speak if
+      # the ledger holds a charged context of at least min_depth for what comes next
+      # (the field can carry the turn from what it has learned), else :yield (hand to
+      # the upstream — a living ancestor, or an echo). nil with no field, which the
+      # caller maps to :yield. Structural (a context depth), never a measure of
+      # meaning. ← foam.outcome / foam.depth.
+      def outcome(seed_bytes = [], min_depth = 3)
+        o = with_connection { |conn|
+          conn.exec_params(
+            "SELECT foam.outcome($1::int[], $2)",
+            ["{#{Array(seed_bytes).join(",")}}", min_depth],
+          ).getvalue(0, 0)
+        }
         o&.to_sym
       end
 
-      # Speak: drain the field's charge into a voice (the discharge). Returns the text,
-      # or nil with no field. Weak (root-anchored) at this stage — the starting-weakly
-      # step; coherent generation is a later refinement. ← foam.speak.
-      def speak(max_steps = 400)
+      # Speak: drain the ledger's charge into a voice, CONTINUING from `seed_bytes`
+      # (the input's tail) — the frequency reading, discharged. Returns the text, or
+      # nil with no field. ← foam.speak.
+      def speak(seed_bytes = [], max_steps = 600)
         with_connection { |conn|
-          conn.exec_params("SELECT foam.speak($1)", [max_steps]).getvalue(0, 0)
+          conn.exec_params(
+            "SELECT foam.speak($1::int[], 7, $2)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps],
+          ).getvalue(0, 0)
         }
       end
 
