@@ -154,28 +154,32 @@ class ApiController < ApplicationController
   def token_limit_bypassed?
     return @token_limit_bypassed if defined?(@token_limit_bypassed)
 
-    @token_limit_bypassed = named_bypass_client.present? || legacy_bypass_key_valid?
+    @token_limit_bypassed = bypass_key_valid?
   end
 
   def bypass_key
     request.headers["Token-Limit-Bypass-Key"].to_s.strip.presence
   end
 
-  def named_bypass_client
-    return @named_bypass_client if defined?(@named_bypass_client)
+  def usage_key
+    request.headers["X-LAI-Usage-Key"].to_s.strip.presence
+  end
 
-    key = bypass_key
-    @named_bypass_client = if key.blank?
+  def named_usage_client
+    return @named_usage_client if defined?(@named_usage_client)
+
+    key = usage_key
+    @named_usage_client = if key.blank?
       nil
     else
-      named_bypass_client_keys.find { |_client, client_key|
+      usage_client_keys.find { |_client, client_key|
         secure_token_match?(key, client_key)
       }&.first
     end
   end
 
-  def named_bypass_client_keys
-    ENV["TOKEN_LIMIT_BYPASS_CLIENT_KEYS"].to_s.split(",").filter_map do |entry|
+  def usage_client_keys
+    ENV["LAI_USAGE_CLIENT_KEYS"].to_s.split(",").filter_map do |entry|
       client, key = entry.split(":", 2).map { |part| part.to_s.strip }
       next if client.blank? || key.blank?
 
@@ -183,7 +187,7 @@ class ApiController < ApplicationController
     end
   end
 
-  def legacy_bypass_key_valid?
+  def bypass_key_valid?
     key = bypass_key
     return false if key.blank?
     return false if ENV["TOKEN_LIMIT_BYPASS_KEYS"].blank?
@@ -201,9 +205,9 @@ class ApiController < ApplicationController
   end
 
   def usage_client
-    if named_bypass_client.present?
-      named_bypass_client
-    elsif legacy_bypass_key_valid?
+    if named_usage_client.present?
+      named_usage_client
+    elsif bypass_key_valid?
       "external_bypass"
     elsif (first_party_usage_client = FIRST_PARTY_USAGE_CLIENTS[params[:usage_client].to_s])
       first_party_usage_client
@@ -312,7 +316,7 @@ class ApiController < ApplicationController
   end
 
   def hmac_header(value, field)
-    client = named_bypass_client
+    client = named_usage_client
     return if client.blank?
 
     value = value.to_s
