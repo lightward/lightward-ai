@@ -13,6 +13,8 @@ class ApiController < ApplicationController
   }.freeze
   REPORTED_USAGE_CLIENTS = FIRST_PARTY_USAGE_CLIENTS.merge(
     "helpscout" => "helpscout",
+    "helpscout_locksmith" => "helpscout_locksmith",
+    "helpscout_mechanic" => "helpscout_mechanic",
     "yours" => "yours",
     "softer" => "softer",
   ).freeze

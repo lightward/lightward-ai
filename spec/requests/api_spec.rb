@@ -291,7 +291,7 @@ RSpec.describe("API", type: :request) do
         post "/api/stream",
           params: { chat_log: chat_log },
           headers: {
-            "X-LAI-Usage-Client" => "helpscout",
+            "X-LAI-Usage-Client" => "helpscout_mechanic",
             "X-LAI-Conversation-Key" => "conversation-123",
             "X-LAI-Subject-Key" => "subject-456",
           }
@@ -301,7 +301,7 @@ RSpec.describe("API", type: :request) do
           Rails.application.secret_key_base,
           [
             ApiController::TELEMETRY_HMAC_NAMESPACE,
-            "helpscout",
+            "helpscout_mechanic",
             "conversation",
             "conversation-123",
           ].join(":"),
@@ -311,7 +311,7 @@ RSpec.describe("API", type: :request) do
           Rails.application.secret_key_base,
           [
             ApiController::TELEMETRY_HMAC_NAMESPACE,
-            "helpscout",
+            "helpscout_mechanic",
             "subject",
             "subject-456",
           ].join(":"),
@@ -320,7 +320,7 @@ RSpec.describe("API", type: :request) do
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
-            usage_client: "helpscout",
+            usage_client: "helpscout_mechanic",
             usage_conversation_id: expected_conversation_id,
             usage_subject_id: expected_subject_id,
             token_limit_bypassed: false,
