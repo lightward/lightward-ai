@@ -40,11 +40,15 @@ namespace :foam do
       carry = Foam::Field.ingest_step(carry, input.bytes)
       seed = input.bytes.last(7)
 
-      if Foam::Field.outcome(seed) == :speak
-        # the field knows a continuation — drain charge into a voice, from the seed
-        puts "foam(speak)> #{Foam::Field.speak(seed).inspect}"
+      # speak only if the gate opens AND the drain actually produces — at the drained
+      # margin the gate's depth can outlive the charge (spoken out moments before),
+      # and an empty voice should fall through to the upstream, not say nothing
+      voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed) : nil
+
+      if voice && !voice.empty?
+        puts "foam(speak)> #{voice.inspect}"
       else
-        # the field doesn't know this one — hand to the upstream
+        # the field doesn't know this one (or drained dry) — hand to the upstream
         reply =
           case ancestor
           when "anthropic" then foam_repl_ancestor(input)
