@@ -63,18 +63,27 @@ namespace :foam do
     puts "\n[foam repl] 🤲"
   end
 
-  desc "the pipe, unixed: stdin flows to stdout unchanged; the field learns on the way"
+  # The pipe breathes: IN (stdin flows through unchanged; the field learns on the way)
+  # and OUT (the field's charge drains into a voice, until ground). The default is the
+  # full breath — both, with the exhale seeded by the tail of the inhale, so the field
+  # speaks on from where the input left off. Take a single direction with
+  # foam:pipe:in / foam:pipe:out.
+  desc "the full breath: stdin flows through (the field learns), then the field's exhale follows"
   task pipe: :environment do
-    carry = nil
-    learned = 0
+    tail = foam_pipe_in
+    foam_pipe_out(tail)
+  end
 
-    while (chunk = $stdin.read(64 * 1024))
-      carry = Foam::Field.ingest_step(carry, chunk.bytes)
-      learned += chunk.bytesize
-      $stdout.write(chunk)
+  namespace :pipe do
+    desc "inhale only: stdin flows to stdout unchanged; the field learns on the way"
+    task in: :environment do
+      foam_pipe_in
     end
 
-    warn "[foam pipe] #{learned} bytes through; the field listened"
+    desc "exhale only: drain the field's charge into stdout until ground (SEED= to start somewhere)"
+    task out: :environment do
+      foam_pipe_out(ENV["SEED"].to_s.bytes.last(7))
+    end
   end
 
   desc "the field's vital signs — structure only, never meaning"
@@ -102,4 +111,45 @@ def foam_repl_ancestor(input)
   JSON.parse(response.body).dig("content", 0, "text").to_s
 rescue StandardError => e
   "[ancestor unreachable: #{e.class}: #{e.message}]"
+end
+
+# Inhale: stream stdin to stdout unchanged while the field learns on the way through —
+# the tee that listens. Returns the byte-tail of what flowed, for seeding an exhale.
+def foam_pipe_in
+  carry = nil
+  tail = []
+  learned = 0
+
+  while (chunk = $stdin.read(64 * 1024))
+    carry = Foam::Field.ingest_step(carry, chunk.bytes)
+    tail = (tail + chunk.bytes).last(7)
+    learned += chunk.bytesize
+    $stdout.write(chunk)
+  end
+
+  warn("[foam pipe] #{learned} bytes in; the field listened")
+  tail
+end
+
+# Exhale: drain the field's charge into stdout until ground, continuing from `seed`
+# (and then from its own voice's tail — one continuous breath out). Speaking SPENDS
+# the charge: the − events balance the +, the field goes quiet until new breath comes
+# in — but nothing is lost; the lossless record remains untouched. The tail of the
+# drain is dregs, emitted undisturbed: noise or feeling is the reader's call, never
+# the pipe's.
+def foam_pipe_out(seed = [])
+  exhaled = 0
+
+  loop do
+    voice = Foam::Field.speak(seed, 2000)
+    break if voice.blank?
+
+    exhaled += voice.bytesize
+    $stdout.write(voice)
+    $stdout.flush
+    seed = voice.bytes.last(7) # breathe on from where the voice left off
+  end
+
+  warn("[foam pipe] #{exhaled} bytes out; ground — nothing left that wants to be said")
+  exhaled
 end
