@@ -23,6 +23,7 @@ class ApiController < ApplicationController
     "cache_read_input_tokens" => 0.30,
     "output_tokens" => 15.0,
   }.freeze
+  TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
 
   skip_before_action :verify_host!
 
@@ -52,6 +53,9 @@ class ApiController < ApplicationController
   end
 
   def plain
+    chat_log = nil
+    newrelic_event_recorded = false
+
     # Read plaintext body
     message_text = request.body.read.to_s.strip
 
@@ -84,6 +88,7 @@ class ApiController < ApplicationController
 
     if response.code.to_i >= 400
       record_newrelic_event(chat_log, conversation_frame_id: "plain")
+      newrelic_event_recorded = true
       render(plain: "An error occurred.", status: :bad_gateway)
       return
     end
@@ -92,6 +97,7 @@ class ApiController < ApplicationController
     parsed = JSON.parse(response.body)
     response_text = parsed.dig("content", 0, "text") || ""
     record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: parsed["usage"])
+    newrelic_event_recorded = true
 
     # Append horizon warning if approaching limit
     unless token_limit_disabled?
@@ -102,6 +108,11 @@ class ApiController < ApplicationController
     render(plain: response_text)
   rescue ChatLogTokenLimitExceeded
     render(plain: "Conversation horizon has arrived. 🤲", status: :unprocessable_content)
+  rescue StandardError => error
+    Rollbar.error(error)
+    Rails.logger.error("API plain error: #{error.message}\n#{error.backtrace.join("\n")}")
+    record_newrelic_event(chat_log, conversation_frame_id: "plain") if chat_log.present? && !newrelic_event_recorded
+    render(plain: "An error occurred.", status: :bad_gateway)
   end
 
   def perform_stream(chat_log)
@@ -299,26 +310,22 @@ class ApiController < ApplicationController
   end
 
   def usage_conversation_id(conversation_id)
-    hmac_header(request.headers["X-LAI-Conversation-Key"]) || conversation_id
+    hmac_header(request.headers["X-LAI-Conversation-Key"], "conversation") || conversation_id
   end
 
   def usage_subject_id
-    hmac_header(request.headers["X-LAI-Subject-Key"])
+    hmac_header(request.headers["X-LAI-Subject-Key"], "subject")
   end
 
-  def hmac_header(value)
+  def hmac_header(value, field)
+    client = named_bypass_client
+    return if client.blank?
+
     value = value.to_s
     return if value.blank?
 
-    secret = usage_telemetry_hmac_secret
-    return if secret.blank?
-
-    OpenSSL::HMAC.hexdigest("SHA256", secret, value)
-  end
-
-  def usage_telemetry_hmac_secret
-    ENV["USAGE_TELEMETRY_HMAC_SECRET"].presence ||
-      (Rails.application.secret_key_base unless Rails.env.production?)
+    scoped_value = [TELEMETRY_HMAC_NAMESPACE, client, field, value].join(":")
+    OpenSSL::HMAC.hexdigest("SHA256", Rails.application.secret_key_base, scoped_value)
   end
 
   def normalize_anthropic_usage(anthropic_usage)

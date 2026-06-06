@@ -279,7 +279,6 @@ RSpec.describe("API", type: :request) do
 
         allow(ENV).to(receive(:[]).and_call_original)
         allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_CLIENT_KEYS").and_return("helpscout:helpscout-key"))
-        allow(ENV).to(receive(:[]).with("USAGE_TELEMETRY_HMAC_SECRET").and_return("usage-secret"))
 
         post "/api/stream",
           params: { chat_log: chat_log },
@@ -289,8 +288,26 @@ RSpec.describe("API", type: :request) do
             "X-LAI-Subject-Key" => "subject-456",
           }
 
-        expected_conversation_id = OpenSSL::HMAC.hexdigest("SHA256", "usage-secret", "conversation-123")
-        expected_subject_id = OpenSSL::HMAC.hexdigest("SHA256", "usage-secret", "subject-456")
+        expected_conversation_id = OpenSSL::HMAC.hexdigest(
+          "SHA256",
+          Rails.application.secret_key_base,
+          [
+            ApiController::TELEMETRY_HMAC_NAMESPACE,
+            "helpscout",
+            "conversation",
+            "conversation-123",
+          ].join(":"),
+        )
+        expected_subject_id = OpenSSL::HMAC.hexdigest(
+          "SHA256",
+          Rails.application.secret_key_base,
+          [
+            ApiController::TELEMETRY_HMAC_NAMESPACE,
+            "helpscout",
+            "subject",
+            "subject-456",
+          ].join(":"),
+        )
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
@@ -302,6 +319,28 @@ RSpec.describe("API", type: :request) do
           ),
         ))
 
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
+      it "ignores grouping headers without a named bypass client", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+          token_limit_bypassed: false,
+        ))
         expect(event_data.values).not_to(include("conversation-123"))
         expect(event_data.values).not_to(include("subject-456"))
       end
@@ -797,6 +836,28 @@ RSpec.describe("API", type: :request) do
           ),
         ))
       end
+
+      it "records plain attribution when Anthropic returns malformed JSON", :aggregate_failures do
+        allow(Rollbar).to(receive(:error))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: "not json",
+            headers: { "Content-Type" => "application/json" },
+          )
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:bad_gateway))
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            conversation_frame_id: "plain",
+            usage_client: "plain_unknown",
+            estimated_cost_usd: nil,
+          ),
+        ))
+      end
     end
 
     context "with token limit bypass header" do
@@ -902,6 +963,9 @@ RSpec.describe("API", type: :request) do
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
       expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
+      allowed_headers = response.headers["Access-Control-Allow-Headers"].to_s.downcase
+      expect(allowed_headers).to(include("x-lai-conversation-key"))
+      expect(allowed_headers).to(include("x-lai-subject-key"))
     end
 
     it "responds to preflight OPTIONS for /api/plain", :aggregate_failures do
@@ -914,6 +978,9 @@ RSpec.describe("API", type: :request) do
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
       expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
+      allowed_headers = response.headers["Access-Control-Allow-Headers"].to_s.downcase
+      expect(allowed_headers).to(include("x-lai-conversation-key"))
+      expect(allowed_headers).to(include("x-lai-subject-key"))
     end
 
     it "does not include CORS headers for other endpoints" do
