@@ -45,7 +45,7 @@ namespace :foam do
       # and an empty voice should fall through to the upstream, not say nothing
       voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed) : nil
 
-      if voice && !voice.empty?
+      if voice.present?
         puts "foam(speak)> #{voice.inspect}"
       else
         # the field doesn't know this one (or drained dry) — hand to the upstream
