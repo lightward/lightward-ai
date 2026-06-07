@@ -112,10 +112,11 @@ end
 
 # The field's interjection: speak only if the gate opens AND the drain produces (at
 # the drained margin the gate's depth can outlive the charge — and silence is fine;
-# the kid doesn't always talk).
+# the kid doesn't always talk). The voice is bytes; the bench renders it as UTF-8
+# with scrubbing — a display choice at the edge, not the voice's constraint.
 def foam_repl_interject(seed)
   voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed) : nil
-  puts "foam> #{voice.inspect}" if voice.present?
+  puts "foam> #{voice.dup.force_encoding(Encoding::UTF_8).scrub("·").inspect}" if voice.present?
 end
 
 # Ask the third seat's occupant (through the same pipe production uses). No system
@@ -152,13 +153,20 @@ end
 # the charge: the − events balance the +, the field goes quiet until new breath comes
 # in — but nothing is lost; the lossless record remains untouched. The tail of the
 # drain is dregs, emitted undisturbed: noise or feeling is the reader's call, never
-# the pipe's.
+# the pipe's. The voice arrives as raw bytes and flows out as raw bytes (rendering
+# is the reader's, downstream); nil and "" part ways here — nil is the field
+# degrading (NOT ground; say so and exit nonzero), "" is the real floor.
 def foam_pipe_out(seed = [])
   exhaled = 0
 
   loop do
     voice = Foam::Field.speak(seed, 2000)
-    break if voice.blank?
+
+    if voice.nil?
+      warn("[foam pipe] field unreachable mid-breath — #{exhaled} bytes out; NOT ground (rerun to resume)")
+      exit(1)
+    end
+    break if voice.empty?
 
     exhaled += voice.bytesize
     $stdout.write(voice)

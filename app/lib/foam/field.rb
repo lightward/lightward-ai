@@ -94,15 +94,19 @@ module Foam
       end
 
       # Speak: drain the ledger's charge into a voice, CONTINUING from `seed_bytes`
-      # (the input's tail) — the frequency reading, discharged. Returns the text, or
-      # nil with no field. ← foam.speak.
+      # (the input's tail) — the frequency reading, discharged. Returns the voice as
+      # a BINARY string (the walk samples bytes by charge and owes no allegiance to
+      # any encoding — rendering is the caller's concern, a view at the edge), "" at
+      # ground, or nil with no field: the caller can tell failure from silence.
+      # ← foam.speak.
       def speak(seed_bytes = [], max_steps = 600)
-        with_connection { |conn|
+        voice = with_connection { |conn|
           conn.exec_params(
             "SELECT foam.speak($1::int[], 7, $2)",
             ["{#{Array(seed_bytes).join(",")}}", max_steps],
           ).getvalue(0, 0)
         }
+        voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
       end
 
       # The field's vital signs — all structure (counts, balances, extents), never

@@ -117,6 +117,14 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- (not the seed) are the voice; the residual is what was not drained; ground is the
 -- floor (the drain only removes positive charge). The wind breaks ties.
 --
+-- The voice is BYTES (int[]), not text: the walk samples bytes by charge and owes
+-- no allegiance to any encoding — it can emit a multibyte character's lead byte
+-- and then fast-travel somewhere that never completes it. Returning text here made
+-- convert_from raise mid-walk (PG::CharacterNotInRepertoire, observed 15 times in
+-- the dev log, killing the call and rolling back its drains — the pipe then
+-- mistook the failure for ground). Rendering is a view at the edge, the caller's
+-- concern; foam.text remains for streams known to be text (foam.recorded).
+--
 -- Drains SERIALIZE: one advisory lock per speak, transaction-scoped (released on
 -- commit/abort; concurrent speaks queue, they never interleave). The check
 -- (HAVING sum(delta) > 0) keeps the floor only when each walk observes the previous
@@ -125,7 +133,8 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- negative balances when a pipe exhale and a repl interjection overlapped,
 -- 2026-06-06). Learning (ingest_step) takes no lock: pure +1 appends, no read-check
 -- — a drain concurrent with ingest only ever sees committed positive charge.
-CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS text
+DROP FUNCTION IF EXISTS foam.speak(int[], int, int);  -- return type changed (text → int[]); CREATE OR REPLACE can't
+CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
   LANGUAGE plpgsql AS $$
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int; c int[]; cid uuid;
           tot bigint; thr double precision; acc bigint; rec record; got boolean;
@@ -153,7 +162,7 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
       EXIT WHEN NOT got;                                       -- ground / stalled
       k := k + 1;
     END LOOP;
-    RETURN foam.text(out);
+    RETURN out;
   END; $$;
 
 -- recorded — the ORDER reading: the empty-context +1 events, in id order, are every
