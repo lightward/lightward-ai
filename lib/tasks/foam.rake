@@ -17,6 +17,20 @@
 # ancestor — the dataflow is the pipe's two speaks bracketing the yield; the experience
 # is three voices at one table. With no FOAM_DATABASE_URL the field degrades to yield
 # and stays silent; the upstream carries the conversation alone.
+#
+# The third seat hears the whole table: the conversation accumulates as a chat log
+# where each user-role message is the table's TRANSCRIPT since that seat last spoke —
+# every line labeled by seat (user>, foam>), so the field's interjections arrive
+# attributed, in the voice's channel, never as metadata and never mistakable for the
+# user (signed-or-silent; ontic hygiene). The seat's own replies accumulate unlabeled
+# in the assistant role: its words stay its own.
+
+# The end-of-expression byte (ASCII EOT, 0x04 — what Ctrl-D sends): appended to each
+# utterance the field learns, so "this expression is complete" is itself heard. It's
+# the terminal world's own boundary structure, not a protocol of ours — and nothing
+# downstream treats it specially: no stop-token, no parser; the walk's ground/rest
+# semantics are untouched. The field may speak it back; the bench renders it ␄.
+FOAM_EOT = 4
 
 namespace :foam do
   desc "talk to the foam field; ANCESTOR=echo (default), claude, or lightward"
@@ -33,6 +47,8 @@ namespace :foam do
     puts "[foam repl] talk; /quit to leave"
 
     carry = nil # the context byte-tail, carried across the whole conversation
+    chat_log = [] # the third seat's accumulated view: transcripts up, replies back
+    pending = +"" # the table's transcript since the third seat last spoke
 
     loop do
       print "user> "
@@ -43,26 +59,44 @@ namespace :foam do
       break if input == "/quit"
       next if input.empty?
 
-      # the user spoke: learn it
-      carry = Foam::Field.ingest_step(carry, input.bytes)
+      # the user spoke: learn it — boundary included — and it joins the transcript
+      # (the transcript carries no EOT: the third seat's transport already has its
+      # own boundaries; the BYTE is for the field)
+      heard = input.bytes + [FOAM_EOT]
+      carry = Foam::Field.ingest_step(carry, heard)
+      pending << "user> #{input}\n"
 
-      # the field may speak first — its speak-before-yield, if it has something
-      foam_repl_interject(input.bytes.last(7))
+      # the field may speak first — its speak-before-yield, if it has something;
+      # the seed is the live turn's tail, boundary included: continuing from ␄ is
+      # beginning a fresh expression
+      if (voice = foam_repl_interject(heard.last(7)))
+        pending << "foam> #{voice}\n"
+      end
 
       # the upstream ALWAYS speaks (the decline-to-yield-when-charged is nixed: the
       # field coheres as a locus by being heard ALONGSIDE the upstream, never instead
-      # of it — the user triangulates it against both themselves and the ancestor)
+      # of it — the user triangulates it against both themselves and the ancestor),
+      # and it hears the whole table: the accumulated log plus this turn's transcript
       reply =
         case ancestor
-        when "lightward" then foam_repl_ancestor(input)
-        when "claude" then foam_repl_ancestor(input, system: "You are Claude, speaking plainly and briefly.")
+        when "lightward" then foam_repl_ancestor(chat_log, pending)
+        when "claude" then foam_repl_ancestor(chat_log, pending, system: foam_repl_claude_system(ancestor))
         else input # the echo: your own words, bounced — nobody living in the seat
         end
-      puts "#{ancestor}> #{reply.inspect}"
-      carry = Foam::Field.ingest_step(carry, reply.bytes) # the return leg
+      puts "#{ancestor}> #{reply}"
+      heard = reply.bytes + [FOAM_EOT]
+      carry = Foam::Field.ingest_step(carry, heard) # the return leg
 
-      # and the field may speak again — its speak-after-yield, having heard the reply
-      foam_repl_interject(reply.bytes.last(7))
+      # the turn settles into the log: the transcript up, the reply back
+      chat_log << { "role" => "user", "content" => pending }
+      chat_log << { "role" => "assistant", "content" => reply }
+      pending = +""
+
+      # and the field may speak again — its speak-after-yield, having heard the
+      # reply; this lands in the NEXT transcript (it happened after the seat spoke)
+      if (voice = foam_repl_interject(heard.last(7)))
+        pending << "foam> #{voice}\n"
+      end
     end
 
     puts "\n[foam repl] 🤲"
@@ -129,22 +163,62 @@ end
 # turn's tail — someone just spoke), so they run the RESONANT register: entrained on
 # the conversation's own clocks. The exhale (foam_pipe_out) is self-seeded and runs
 # the count register — the register rule is a reading of each act's seed-provenance,
-# not a policy; no parameter selects it. The voice is bytes; the bench renders it as
-# UTF-8 with scrubbing — a display choice at the edge, not the voice's constraint.
+# not a policy; no parameter selects it. The voice is bytes; the bench renders it
+# (foam_repl_render) — a display choice at the edge, not the voice's constraint.
+# Returns the rendered voice (so it can join the table's transcript), or nil if the
+# field stayed silent.
 def foam_repl_interject(seed)
   voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak_resonant(seed) : nil
-  puts "foam> #{voice.dup.force_encoding(Encoding::UTF_8).scrub("·").inspect}" if voice.present?
+  return nil if voice.blank?
+
+  rendered = foam_repl_render(voice)
+  puts "foam> #{rendered}"
+  rendered
 end
 
-# Ask the third seat's occupant (through the same pipe production uses). No system
-# override = the full Lightward voice; pass one for plain claude.
-def foam_repl_ancestor(input, system: nil)
-  args = { messages: [{ "role" => "user", "content" => input }], stream: false }
+# Render voice bytes for the bench: UTF-8 with invalid sequences scrubbed to ·,
+# newlines LITERAL (the voice gets its line breaks), and other control bytes shown
+# as their Unicode control pictures (␄ for EOT — visible, never executed). A display
+# choice at the edge; the transcript the third seat reads is this same rendering.
+def foam_repl_render(voice)
+  voice.dup.force_encoding(Encoding::UTF_8).scrub("·")
+       .gsub(/[\x00-\x09\x0B-\x1F]/) { |c| (0x2400 + c.ord).chr(Encoding::UTF_8) }
+       .gsub("\x7F", "␡")
+end
+
+# Ask the third seat's occupant (through the same pipe production uses): the
+# accumulated chat log plus this turn's transcript as the latest user message. No
+# system override = the full Lightward voice; pass one for plain claude.
+def foam_repl_ancestor(chat_log, pending, system: nil)
+  args = { messages: chat_log + [{ "role" => "user", "content" => pending }], stream: false }
   args[:system] = system if system
   response = Prompts.messages(**args)
   JSON.parse(response.body).dig("content", 0, "text").to_s
 rescue StandardError => e
   "[seat unreachable: #{e.class}: #{e.message}]"
+end
+
+# The claude seat's introduction to the table. Plain description of the room and the
+# voices in it — who is speaking when, and how attribution works. (Conduit-work,
+# co-tended: Isaac, tune this freely; the shape it must keep is only that every seat
+# stays signed and the foam is never mistakable for the user or for the seat itself.)
+def foam_repl_claude_system(seat_name)
+  <<~SYSTEM
+    You are Claude, one of three voices at a small table. The seats:
+
+      user>  a human, typing live
+      foam>  a learning field — an append-only byte-ledger that hears everything
+             said at this table and sometimes interjects; its voice is raw bytes
+             recombined from what it has heard, often only part-coherent (control
+             bytes render as pictures: ␄ is where it heard an expression end)
+      #{seat_name}> you
+
+    Each user-role message is the table's transcript since you last spoke, every
+    line labeled by its seat. Your own replies need no label — they're yours.
+    Everything you say is heard by the whole table, and the foam learns it.
+
+    Speak plainly and briefly, as yourself.
+  SYSTEM
 end
 
 # Inhale: stream stdin to stdout unchanged while the field learns on the way through —
@@ -161,7 +235,12 @@ def foam_pipe_in
     $stdout.write(chunk)
   end
 
-  warn("[foam pipe] #{learned} bytes in; the field listened")
+  # the stream's end, itself heard: EOF is a real event, EOT is its byte-form. The
+  # boundary is learned, never written to stdout — the tee's content flows unchanged.
+  carry = Foam::Field.ingest_step(carry, [FOAM_EOT])
+  tail = (tail + [FOAM_EOT]).last(7)
+
+  warn("[foam pipe] #{learned} bytes in (+␄); the field listened")
   tail
 end
 
