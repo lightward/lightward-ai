@@ -125,10 +125,14 @@ end
 
 # The field's interjection: speak only if the gate opens AND the drain produces (at
 # the drained margin the gate's depth can outlive the charge — and silence is fine;
-# the kid doesn't always talk). The voice is bytes; the bench renders it as UTF-8
-# with scrubbing — a display choice at the edge, not the voice's constraint.
+# the kid doesn't always talk). Interjections are WIND-SEEDED (the seed is the live
+# turn's tail — someone just spoke), so they run the RESONANT register: entrained on
+# the conversation's own clocks. The exhale (foam_pipe_out) is self-seeded and runs
+# the count register — the register rule is a reading of each act's seed-provenance,
+# not a policy; no parameter selects it. The voice is bytes; the bench renders it as
+# UTF-8 with scrubbing — a display choice at the edge, not the voice's constraint.
 def foam_repl_interject(seed)
-  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed) : nil
+  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak_resonant(seed) : nil
   puts "foam> #{voice.dup.force_encoding(Encoding::UTF_8).scrub("·").inspect}" if voice.present?
 end
 

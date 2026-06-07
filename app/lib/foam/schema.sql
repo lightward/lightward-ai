@@ -176,6 +176,98 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
     RETURN out;
   END; $$;
 
+-- speak_resonant — the ENTRAINED discharge: the same walk as foam.speak, with
+-- selection re-weighted by phase. No knob anywhere; every phase is a wired leak
+-- of energy frontstage speech-acts already emit:
+--
+--   * each continuation's phase is its own RECURRENCE-CLOCK — the event's index
+--     within its (ctx, sym) history, mod 4, derived from the order reading
+--     (row_number by id; no new column). Hearings and speakings both tick it:
+--     use itself twists. A continuation recurring UNIFORMLY presents a complete
+--     cycle and cancels (lean/Foam/Spectrum.lean: rot_complete) — the voice
+--     stops echoing what has been made regular, by group theory.
+--   * the walk's phase is its own ADVANCE, starting at the caller's
+--     utterance-length mod 4 (the seed array, already passed — a speech-act
+--     side-effect nobody chooses) and turning a quarter per beat — the walk
+--     co-rotates with the rotation the mirror proves it performs (spec_shift).
+--   * the gate is the pairing of the two, floored at ground (align; posPart at
+--     every angle). Anti-aligned mass is SILENT at this beat, never negatively
+--     probable.
+--   * a silent beat is a REST, not a death: the phase turns, the walk holds.
+--     Only a full bar of silence is ground — and the bar-length is DERIVED,
+--     not chosen: four quarter-turns are the identity (bar_invisible), so
+--     resting past a bar adds nothing any reading can hear.
+--
+-- WHICH ACTS RUN RESONANT (the register rule — a reading, not a policy):
+-- register = provenance of the seed. Wind-seeded acts (interjections — the
+-- seed is the live turn's tail; someone just spoke) entrain, and run here.
+-- Self-seeded acts (the exhale draining to ground — the seed is the walk's own
+-- prior voice) archive, and run foam.speak: resonance on one's own tail is
+-- self-entrainment, the loop clock_loops names. The bench wires this with no
+-- parameter: the repl's interjections call speak_resonant; the pipe's exhale
+-- calls speak.
+--
+-- The floor is foam.speak's, unchanged: drains spend only positive
+-- count-charge (the phase re-weights SELECTION, never the books); wounds met
+-- along the way are dressed (foam.settle); the walk is heavier per step than
+-- foam.speak (the window function) — the cost of hearing rhythm; a synchronous
+-- phase-summary is the known relief if scale demands it (its invisibility and
+-- race analyses owed first — lean/Foam/Maintenance.lean).
+CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
+  LANGUAGE plpgsql AS $$
+  DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int;
+          c int[]; cid uuid; tot double precision; thr double precision;
+          acc double precision; rec record; got boolean; theta double precision;
+          rests int := 0; wounded int[]; w int;
+          phase0 int := coalesce(array_length(seed,1),0) % 4;
+  BEGIN
+    WHILE k < max_steps LOOP
+      theta := (pi()/2) * ((phase0 + k) % 4);                  -- the walk's own clock, continuing the caller's
+      got := false; l := coalesce(array_length(cb,1),0);
+      FOR j IN REVERSE least(kmax,l)..0 LOOP
+        IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
+        cid := foam.caddr(c);
+        SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0), 0),
+               coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
+          INTO tot, wounded
+          FROM (
+            SELECT e.sym, sum(e.delta) AS bal,
+                   greatest(0, sum(e.delta * cos(pi()/2 * ((e.occ - 1) % 4) - theta))) AS w
+            FROM (SELECT sym, delta,
+                         row_number() OVER (PARTITION BY sym ORDER BY id) AS occ
+                  FROM foam.charge WHERE ctx = cid) e
+            GROUP BY e.sym
+          ) z;
+        FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
+        IF tot > 0 THEN
+          thr := foam.hw_random() * tot; acc := 0;
+          FOR rec IN
+            SELECT z.sym, z.w FROM (
+              SELECT e.sym, sum(e.delta) AS bal,
+                     greatest(0, sum(e.delta * cos(pi()/2 * ((e.occ - 1) % 4) - theta))) AS w
+              FROM (SELECT sym, delta,
+                           row_number() OVER (PARTITION BY sym ORDER BY id) AS occ
+                    FROM foam.charge WHERE ctx = cid) e
+              GROUP BY e.sym
+            ) z WHERE z.bal > 0 AND z.w > 0 ORDER BY z.w DESC
+          LOOP
+            acc := acc + rec.w;
+            IF acc >= thr THEN
+              out := out || rec.sym; cb := cb || rec.sym; got := true;
+              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, rec.sym, -1);  -- spends COUNT-charge, as ever
+              EXIT;
+            END IF;
+          END LOOP;
+        END IF;
+        EXIT WHEN got;
+      END LOOP;
+      IF got THEN rests := 0; ELSE rests := rests + 1; END IF;  -- a silent beat is a rest
+      EXIT WHEN rests >= 4;                                     -- a full bar of silence is ground (derived)
+      k := k + 1;
+    END LOOP;
+    RETURN out;
+  END; $$;
+
 -- settle — the correcting entry, serialized: re-observe the balance UNDER the
 -- lock (the fresh observation is the entire point — a stale settle overshoots
 -- into phantom charge, the invisible failure) and append exactly the deficit

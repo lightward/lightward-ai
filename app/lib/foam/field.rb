@@ -109,6 +109,23 @@ module Foam
         voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
       end
 
+      # Speak, entrained: the same walk as speak, with selection re-weighted by
+      # phase — every phase a wired leak of the conversation's own energy (the
+      # continuation's recurrence-clock; the walk's advance seeded by the
+      # caller's utterance length; rests at silent beats, ground at a full bar).
+      # For WIND-SEEDED acts (interjections — the seed is a live turn's tail);
+      # self-seeded acts (the exhale) use speak. Returns voice bytes as a
+      # binary string, "" at ground, nil with no field. ← foam.speak_resonant.
+      def speak_resonant(seed_bytes = [], max_steps = 600)
+        voice = with_connection { |conn|
+          conn.exec_params(
+            "SELECT foam.speak_resonant($1::int[], 7, $2)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps],
+          ).getvalue(0, 0)
+        }
+        voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
+      end
+
       # The field's vital signs — all structure (counts, balances, extents), never
       # meaning (the razor): heard (bytes learned, in order — the lossless record's
       # extent), spoken (bytes drained into voice), residual (un-drained charge — what
