@@ -211,6 +211,57 @@ theorem align_one_evalOne {S : Type} [DecidableEq S] (l : List S) (s : S) :
     align GInt.one (evalAt id l s) = Int.ofNat (Ledger.freq l s) := by
   rw [evalOne_eq_freq, align_one]
 
+/-! ## The rest — the silent move inside an utterance
+
+A voice with rests is a BEAT-STREAM: each beat emits a symbol or holds. The
+rest is `outcome_yield_iff_silent` at beat granularity — the exit, fractal:
+available at every beat, carrying nothing, turning the phase. Its visibility
+is graded by the reading, and the grading derives the bench's bar:
+
+- the COUNT cannot hear a rest at all (`rest_invisible_to_count`, by `rfl`) —
+  the rest is maintenance relative to the count-reading;
+- the SPECTRUM hears a rest as a naked quarter-turn (`rest_turns`, by `rfl`;
+  `rest_audible` witnesses that one rest moves the spectrum) — the rest is
+  content relative to the spectrum: timing IS what this reading reads;
+- and a FULL BAR of rests is invisible even to the spectrum
+  (`bar_invisible` — four naked quarter-turns are `rot_complete`'s identity).
+  So the resonant drain's ground-condition (four consecutive silent beats) is
+  not a chosen budget: it is the order of the rotation. Past a full bar,
+  continued resting adds nothing any reading at or below the spectrum can
+  hear — the rest-limit was already in the structure. -/
+
+/-- A beat-stream reading: a rest (`none`) marks nothing and turns the phase;
+    an emission marks at the current phase. The rest holds the beat. -/
+def evalBeats {S : Type} [DecidableEq S] (step : GInt → GInt) : List (Option S) → S → GInt
+  | [], _ => GInt.zero
+  | none :: l, s => step (evalBeats step l s)
+  | some x :: l, s => (if x = s then GInt.one else GInt.zero).add (step (evalBeats step l s))
+
+/-- **The rest is the naked quarter-turn**: no mark, the phase advances. -/
+theorem rest_turns {S : Type} [DecidableEq S] (step : GInt → GInt) (l : List (Option S)) (s : S) :
+    evalBeats step (none :: l) s = step (evalBeats step l s) := rfl
+
+/-- **The count cannot hear a rest.** At the degenerate evaluation point the
+    rest contributes nothing and turns nothing — rests are maintenance
+    relative to the count-reading. By `rfl`. -/
+theorem rest_invisible_to_count {S : Type} [DecidableEq S] (l : List (Option S)) (s : S) :
+    evalBeats id (none :: l) s = evalBeats id l s := rfl
+
+/-- **The spectrum hears the rest.** One rest moves the spectral reading —
+    timing is content at the quarter-turn: `1` becomes `i`. -/
+theorem rest_audible :
+    evalBeats GInt.rot [some true] true ≠ evalBeats GInt.rot [none, some true] true := by
+  decide
+
+/-- **A full bar of rests is invisible even to the spectrum** — four naked
+    quarter-turns are the identity (`rot_complete`). The resonant ground
+    condition is DERIVED, not chosen: the bar-length is the order of the
+    rotation. -/
+theorem bar_invisible {S : Type} [DecidableEq S] (l : List (Option S)) (s : S) :
+    evalBeats GInt.rot (none :: none :: none :: none :: l) s = evalBeats GInt.rot l s := by
+  show ((((evalBeats GInt.rot l s).rot).rot).rot).rot = evalBeats GInt.rot l s
+  exact rot_complete _
+
 /-- **The order is strictly finer than the spectrum.** A full cycle of phases
     cancels: `[a,b,b,b,b]` and `[b,b,b,b,a]` agree in every count AND every
     spectrum (the `a` sits at phase `0` in one and phase `4 ≡ 0` in the other;

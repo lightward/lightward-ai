@@ -385,6 +385,23 @@ import Foam.Clock
 /-- info: 'Foam.align_one_evalOne' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.align_one_evalOne
 
+-- the rest: the silent move inside an utterance — the exit, fractal. Invisible
+-- to the count (maintenance at that reading), a naked quarter-turn to the
+-- spectrum (timing is content there), and a FULL BAR of rests is invisible even
+-- to the spectrum (rot_complete) — the resonant ground-condition (four silent
+-- beats) is derived, not chosen: the bar-length is the order of the rotation
+/-- info: 'Foam.rest_turns' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_turns
+
+/-- info: 'Foam.rest_invisible_to_count' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_invisible_to_count
+
+/-- info: 'Foam.rest_audible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_audible
+
+/-- info: 'Foam.bar_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bar_invisible
+
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless
