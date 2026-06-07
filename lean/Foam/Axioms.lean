@@ -62,6 +62,7 @@ import Foam.Maintenance
 import Foam.Arrow
 import Foam.Clock
 import Foam.Summary
+import Foam.Noether
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -314,6 +315,49 @@ import Foam.Summary
 
 /-- info: 'Foam.margin_wound_is_note' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.margin_wound_is_note
+
+-- every reading is the invariant of a symmetry (the tower as subgroup-tower;
+-- freq_perm re-read as the count's Noether statement); the third character of
+-- ℤ/4 becomes the ALTERNATING reading, strictly between count and spectrum —
+-- the refined tower order ⊋ spectrum ⊋ alt ⊋ count, all inclusions witnessed;
+-- the bar-law graded (each station's invisible bar is the order of its
+-- character: 1, 2, 4); and the dial's conserved modulus — no station reads
+-- it, it reads no station: each conserves what the other cannot see
+/-- info: 'Foam.negate_eq_rot_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.negate_eq_rot_rot
+
+/-- info: 'Foam.negate_negate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.negate_negate
+
+/-- info: 'Foam.alt_shift' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_shift
+
+/-- info: 'Foam.alt_finer_than_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_finer_than_freq
+
+/-- info: 'Foam.spec_finer_than_alt' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_finer_than_alt
+
+/-- info: 'Foam.rest_audible_to_alt' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_audible_to_alt
+
+/-- info: 'Foam.pair_of_rests_invisible_to_alt' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pair_of_rests_invisible_to_alt
+
+/-- info: 'Foam.alt_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_resumes
+
+/-- info: 'Foam.normSq_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_rot
+
+/-- info: 'Foam.normSq_negate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_negate
+
+/-- info: 'Foam.station_blind_to_norm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.station_blind_to_norm
+
+/-- info: 'Foam.norm_blind_to_station' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.norm_blind_to_station
 
 -- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
 -- step of any initial algebra is invertible — disassembly total, the inverse
