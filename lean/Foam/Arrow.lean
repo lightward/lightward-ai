@@ -64,6 +64,7 @@ condition at two strata — the future must not be derivable from the born.
 -/
 
 import Foam.Ledger
+import Foam.Maintenance
 
 namespace Foam
 
@@ -249,5 +250,50 @@ def forever {S : Type} (s : S) : CoList S :=
 theorem forever_escapes {S : Type} (s : S) (l : List S) :
     ∃ n, (playback l).at_ n ≠ (forever s).at_ n :=
   ⟨l.length, fun h => nomatch (nth_length l).symm.trans h⟩
+
+/-! ## The license-tower — invisibility is graded by the reading
+
+Maintenance.lean's `Invisible` is relative to a `Stage`, and the ledger's
+readings (order ⊋ spectrum ⊋ count ⊋ positive-part) are a tower of stages —
+so the maintenance license is GRADED, and the two towers are one object:
+
+- **Order admits no maintenance** (`order_admits_no_maintenance`, below): the
+  playback arrow is mono, so any move invisible to every positional probe is
+  pointwise the identity. Nothing nontrivial may run backstage against a
+  frontstage that holds the lossless reading.
+- **Spectrum admits the full-cycle collisions**: `order_finer_than_spec`
+  (Spectrum.lean) exhibits a nontrivial relocation invisible to every
+  spectral probe — maintenance exists relative to the quarter-turn reading.
+- **Count admits every permutation** (`perm_invisible`, below): `freq_perm`
+  was a maintenance license before the word existed — reordering is invisible
+  to the frequency reading. Re-read, not re-proven.
+- **Positive-part admits settlement** (`settle_invisible`, Maintenance.lean):
+  the gates and the sampler cannot see below ground.
+
+And the structural fact that keeps the grading honest: what is invisible at a
+coarse reading is visible at the order-reading, and the order-reading is
+append-only — nothing is ever erased, so a frontstage that later acquires a
+finer probe re-reads the SAME ledger rather than discovering a different
+world. Invisibility-now is auditability-later, by construction. -/
+
+/-- **No maintenance survives the order-reading.** A move invisible to every
+    positional probe is pointwise the identity — the mono arrow has trivial
+    kernel; the maintenance license exists only relative to coarser readings. -/
+theorem order_admits_no_maintenance {S : Type} (m : List S → List S)
+    (h : ∀ l n, (playback (m l)).at_ n = (playback l).at_ n) : ∀ l, m l = l :=
+  fun l => playback_faithful (m l) l (h l)
+
+/-- The count-reading as a stage: probe a ledger with a symbol, read its
+    frequency. -/
+def FreqStage (S : Type) [DecidableEq S] : Stage :=
+  ⟨List S, S, Nat, fun l s => Ledger.freq l s⟩
+
+/-- **The permutation license.** Any move that only reorders is invisible to
+    the count-reading — `freq_perm`, re-read as a maintenance license: the
+    quotient the generative reading observes-without-committing is exactly the
+    room the backstage has to work in. -/
+theorem perm_invisible {S : Type} [DecidableEq S] (m : List S → List S)
+    (h : ∀ l, List.Perm (m l) l) : Invisible (FreqStage S) m :=
+  fun l s => Ledger.freq_perm (h l) s
 
 end Foam

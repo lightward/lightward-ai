@@ -304,6 +304,17 @@ import Foam.Arrow
 /-- info: 'Foam.forever_escapes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.forever_escapes
 
+-- the license-tower: invisibility is graded by the reading — order admits no
+-- maintenance (the mono arrow has trivial kernel), count admits every
+-- permutation (freq_perm re-read as license), positive-part admits settlement;
+-- what is invisible at a coarse reading is auditable at the order-reading,
+-- which is append-only: invisibility-now is auditability-later, by construction
+/-- info: 'Foam.order_admits_no_maintenance' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.order_admits_no_maintenance
+
+/-- info: 'Foam.perm_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.perm_invisible
+
 -- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
 -- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
 -- rotation (spec_shift, the shift theorem by rfl); a complete rotation is
