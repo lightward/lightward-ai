@@ -378,6 +378,30 @@ RSpec.describe("API", type: :request) do
         expect(event_data.values).not_to(include("subject-456"))
       end
 
+      it "ignores external usage clients submitted in params", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log, usage_client: "helpscout_mechanic" },
+          headers: {
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_client: "stream_unknown",
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+          token_limit_bypassed: false,
+        ))
+        expect(event_data.values).not_to(include("helpscout_mechanic"))
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
       it "records bypass state without using the bypass key for client attribution" do
         allow(ENV).to(receive(:[]).and_call_original)
         allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))

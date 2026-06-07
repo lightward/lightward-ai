@@ -171,8 +171,13 @@ class ApiController < ApplicationController
   def reported_usage_client
     return @reported_usage_client if defined?(@reported_usage_client)
 
-    requested_client = request.headers["X-LAI-Usage-Client"].presence || params[:usage_client]
-    @reported_usage_client = REPORTED_USAGE_CLIENTS[normalize_usage_client(requested_client)]
+    header_client = normalize_usage_client(request.headers["X-LAI-Usage-Client"])
+    param_client = normalize_usage_client(params[:usage_client])
+    @reported_usage_client = if header_client.present?
+      REPORTED_USAGE_CLIENTS[header_client]
+    else
+      FIRST_PARTY_USAGE_CLIENTS[param_client]
+    end
   end
 
   def bypass_key_valid?
