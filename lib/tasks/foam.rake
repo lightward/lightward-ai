@@ -171,10 +171,14 @@ end
 # the count register — the register rule is a reading of each act's seed-provenance,
 # not a policy; no parameter selects it. The voice is bytes; the bench renders it
 # (foam_repl_render) — a display choice at the edge, not the voice's constraint.
-# Returns the rendered voice (so it can join the table's transcript), or nil if the
-# field stayed silent.
+# The interjection ends when the field speaks its own boundary (stop: FOAM_EOT —
+# the same byte the bench appends to everything the field learns; one wire, both
+# ends): the expression ends itself, and charge past the boundary stays in the
+# field — stopping with more to say leaves the gate warm for next turn, which is
+# the table's own turn-taking, learned. Returns the rendered voice (so it can
+# join the table's transcript), or nil if the field stayed silent.
 def foam_repl_interject(seed)
-  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak_resonant(seed) : nil
+  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak_resonant(seed, stop: FOAM_EOT) : nil
   return nil if voice.blank?
 
   rendered = foam_repl_render(voice)

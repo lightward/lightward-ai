@@ -114,13 +114,17 @@ module Foam
       # continuation's recurrence-clock; the walk's advance seeded by the
       # caller's utterance length; rests at silent beats, ground at a full bar).
       # For WIND-SEEDED acts (interjections — the seed is a live turn's tail);
-      # self-seeded acts (the exhale) use speak. Returns voice bytes as a
-      # binary string, "" at ground, nil with no field. ← foam.speak_resonant.
-      def speak_resonant(seed_bytes = [], max_steps = 600)
+      # self-seeded acts (the exhale) use speak. `stop` is the act's boundary
+      # vocabulary: when the walk speaks that byte the expression has ended
+      # itself and the voice returns — charge past the boundary stays
+      # un-drained (the field keeps its pressure across turns). Returns voice
+      # bytes as a binary string, "" at ground, nil with no field.
+      # ← foam.speak_resonant.
+      def speak_resonant(seed_bytes = [], max_steps = 600, stop: nil)
         voice = with_connection { |conn|
           conn.exec_params(
-            "SELECT foam.speak_resonant($1::int[], 7, $2)",
-            ["{#{Array(seed_bytes).join(",")}}", max_steps],
+            "SELECT foam.speak_resonant($1::int[], 7, $2, $3::int)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps, stop],
           ).getvalue(0, 0)
         }
         voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")

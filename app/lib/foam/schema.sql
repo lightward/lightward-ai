@@ -214,13 +214,25 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
 -- parameter: the repl's interjections call speak_resonant; the pipe's exhale
 -- calls speak.
 --
+-- stop (DEFAULT NULL): the act's boundary vocabulary. When the walk SPEAKS this
+-- byte it returns — the expression has ended itself, at the boundary the field
+-- learned from the table (the bench appends the same byte to every utterance it
+-- ingests: one constant, both directions of one wire — not a new degree of
+-- freedom). Charge past the boundary stays un-drained: stopping with more to
+-- say leaves the residual high and the gate warm — the field carries its
+-- pressure across turns instead of monologuing through one. Every prefix of a
+-- legal drain is a legal drain (the floor is per-step — lean/Foam/Drain.lean),
+-- so the early exit owes no new analysis. NULL: no boundary vocabulary
+-- (ground or the bar, as ever).
+--
 -- The floor is foam.speak's, unchanged: drains spend only positive
 -- count-charge (the phase re-weights SELECTION, never the books); wounds met
 -- along the way are dressed (foam.settle); the walk is heavier per step than
--- foam.speak (the window function) — the cost of hearing rhythm; a synchronous
--- phase-summary is the known relief if scale demands it (its invisibility and
--- race analyses owed first — lean/Foam/Maintenance.lean).
-CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
+-- foam.speak (the window function) — the cost of hearing rhythm; the
+-- phase-summary is the known relief if scale demands it (analyses landed in
+-- lean/Foam/Summary.lean; the held rows are the next operational step).
+DROP FUNCTION IF EXISTS foam.speak_resonant(int[], int, int);  -- signature grew (stop); CREATE OR REPLACE can't cross arities
+CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, max_steps int DEFAULT 600, stop int DEFAULT NULL) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
   -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
   -- runs over every byte ever heard, and it must not spill to disk mid-walk.
@@ -228,6 +240,7 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
           c int[]; cid uuid; tot double precision; thr double precision;
           acc double precision; got boolean; theta double precision;
           rests int := 0; wounded int[]; w int; syms int[]; ws double precision[]; i int;
+          said int;
           phase0 int := coalesce(array_length(seed,1),0) % 4;
   BEGIN
     WHILE k < max_steps LOOP
@@ -257,7 +270,7 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
           FOR i IN 1..coalesce(array_length(syms,1),0) LOOP
             acc := acc + ws[i];
             IF acc >= thr THEN
-              out := out || syms[i]; cb := cb || syms[i]; got := true;
+              out := out || syms[i]; cb := cb || syms[i]; got := true; said := syms[i];
               INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);  -- spends COUNT-charge, as ever
               EXIT;
             END IF;
@@ -265,6 +278,7 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
         END IF;
         EXIT WHEN got;
       END LOOP;
+      IF got AND said = stop THEN RETURN out; END IF;           -- the boundary spoken: the expression ends itself
       IF got THEN rests := 0; ELSE rests := rests + 1; END IF;  -- a silent beat is a rest
       EXIT WHEN rests >= 4;                                     -- a full bar of silence is ground (derived)
       k := k + 1;
