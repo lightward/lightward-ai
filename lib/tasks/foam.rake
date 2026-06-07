@@ -66,10 +66,15 @@ namespace :foam do
       carry = Foam::Field.ingest_step(carry, heard)
       pending << "user> #{input}\n"
 
-      # the field may speak first — its speak-before-yield, if it has something;
-      # the seed is the live turn's tail, boundary included: continuing from ␄ is
-      # beginning a fresh expression
-      if (voice = foam_repl_interject(heard.last(7)))
+      # the field may speak first — its speak-before-yield, if it has something.
+      # The seed is the CONTENT tail (pre-␄): the interjection responds to what was
+      # just said. Seeding past the ␄ pins every backoff suffix to the boundary,
+      # turning the gate's question from "has this content recurred?" into "has
+      # this way of ENDING recurred?" — which stays shut at a living table until
+      # utterance-endings repeat (bench-traced 2026-06-07: six varied turns, depth
+      # never passed 2). The boundary is still learned, spoken, and rendered; it
+      # just isn't the interjection's anchor.
+      if (voice = foam_repl_interject(input.bytes.last(7)))
         pending << "foam> #{voice}\n"
       end
 
@@ -93,8 +98,9 @@ namespace :foam do
       pending = +""
 
       # and the field may speak again — its speak-after-yield, having heard the
-      # reply; this lands in the NEXT transcript (it happened after the seat spoke)
-      if (voice = foam_repl_interject(heard.last(7)))
+      # reply (content tail, same as above); this lands in the NEXT transcript
+      # (it happened after the seat spoke)
+      if (voice = foam_repl_interject(reply.bytes.last(7)))
         pending << "foam> #{voice}\n"
       end
     end
@@ -216,6 +222,11 @@ def foam_repl_claude_system(seat_name)
     Each user-role message is the table's transcript since you last spoke, every
     line labeled by its seat. Your own replies need no label — they're yours.
     Everything you say is heard by the whole table, and the foam learns it.
+
+    The foam is often silent — its gate simply didn't open. Silence is real;
+    let it stand. Speak only as yourself: never write lines for the other seats
+    (no user> or foam> in your replies — a missing voice is information, not a
+    blank to fill).
 
     Speak plainly and briefly, as yourself.
   SYSTEM
