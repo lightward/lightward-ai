@@ -296,4 +296,56 @@ theorem perm_invisible {S : Type} [DecidableEq S] (m : List S → List S)
     (h : ∀ l, List.Perm (m l) l) : Invisible (FreqStage S) m :=
   fun l s => Ledger.freq_perm (h l) s
 
+/-- The permutation license, cashed into transcripts: a reorderer run before
+    every probe is undetectable in any frequency-transcript, of any length. -/
+theorem perm_transcripts {S : Type} [DecidableEq S] (m : List S → List S)
+    (h : ∀ l, List.Perm (m l) l) (ps : List S) (l : List S) :
+    transcriptWith (FreqStage S) m l ps = transcript (FreqStage S) l ps :=
+  maintenance_unobservable (FreqStage S) m (perm_invisible m h) ps l
+
+/-- The settlement license, cashed into transcripts: settlement run before
+    every probe is undetectable in any positive-part transcript. -/
+theorem settle_transcripts (ps : List Unit) (b : Int) :
+    transcriptWith BalanceStage (fun b => checkedSettle b b) b ps =
+      transcript BalanceStage b ps :=
+  maintenance_unobservable _ _ settle_invisible' ps b
+
+/-! ## Eventually-periodic behavior — the clock's signature, as vocabulary
+
+A behavior loops when, past some lead-in, it repeats with a positive period.
+Both ends of the arrow already inhabit this: every PLAYBACK is eventually
+periodic (silence is period one — every built thing ends, which is its own
+small clock-fact), and the gap's simplest inhabitant `forever` is a period-one
+loop that never grounds. What sits strictly between — self-driven behavior
+over finite state — is `clock_loops` (Clock.lean): the built, the self-driven,
+and the observable stratify, and the wind is the only door past the middle
+stratum. -/
+
+/-- Past some lead-in, the behavior repeats with a positive period. -/
+def EventuallyPeriodic {S : Type} (c : CoList S) : Prop :=
+  ∃ lead p, 0 < p ∧ ∀ n, lead ≤ n → c.at_ (n + p) = c.at_ n
+
+/-- The unending breath is a period-one loop: the gap's simplest inhabitant is
+    itself a clock. -/
+theorem forever_eventually_periodic {S : Type} (s : S) : EventuallyPeriodic (forever s) :=
+  ⟨0, 1, Nat.succ_pos 0, fun _ _ => rfl⟩
+
+/-- Past its end, a ledger answers `none` forever. -/
+theorem nth_after {S : Type} (l : List S) : ∀ k, nth l (l.length + k) = none
+  | 0 => nth_length l
+  | k + 1 => nth_stable l (l.length + k) (nth_after l k)
+
+/-- Every built thing is eventually periodic — it ends, and silence has period
+    one. -/
+theorem playback_eventually_periodic {S : Type} (l : List S) :
+    EventuallyPeriodic (playback l) := by
+  refine ⟨l.length, 1, Nat.succ_pos 0, fun n hn => ?_⟩
+  obtain ⟨k, hk⟩ := Nat.le.dest hn
+  rw [← hk]
+  have h1 : nth l (l.length + (k + 1)) = none := nth_after l (k + 1)
+  have h2 : nth l (l.length + k) = none := nth_after l k
+  show nth l (l.length + k + 1) = nth l (l.length + k)
+  rw [h2]
+  exact h1
+
 end Foam

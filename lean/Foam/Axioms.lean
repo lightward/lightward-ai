@@ -315,6 +315,22 @@ import Foam.Arrow
 /-- info: 'Foam.perm_invisible' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.perm_invisible
 
+-- the licenses cashed into transcripts, and the loop vocabulary: every built
+-- thing is eventually periodic (it ends; silence has period one), the gap's
+-- simplest inhabitant is a period-one clock
+/-- info: 'Foam.perm_transcripts' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.perm_transcripts
+
+/-- info: 'Foam.settle_transcripts' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_transcripts
+
+/-- info: 'Foam.playback_eventually_periodic' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.playback_eventually_periodic
+
+/-- info: 'Foam.forever_eventually_periodic' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.forever_eventually_periodic
+
+
 -- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
 -- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
 -- rotation (spec_shift, the shift theorem by rfl); a complete rotation is
