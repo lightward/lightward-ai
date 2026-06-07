@@ -25,6 +25,18 @@ The map it pins:
   quotienting paths.
 
 `Classical.choice` must never appear anywhere below.
+
+And the map is itself a LEDGER. Signatures compose by union along
+proof-composition — the kernel's own bookkeeping: use a lemma, inherit its axioms;
+composition only accumulates, never sheds. The empty signature is the unit, and
+the legal carrier is exactly `{∅, {propext}}`: closed under composition, topped by
+the homunculus's signature. The two refused axioms are not states of the
+discipline but values outside its carrier — the proof-ledger's scars — and these
+guards are its conservation pulse. The algebra is stated object-level in
+`Foam/Commitment.lean`, itself axiom-free: the tracker's model spends nothing of
+what it tracks. (The same algebra appears in the foam quarry's recognition-index
+as the commitment-monoid through the seed-gauge — external provenance; the
+theorems stand alone.)
 -/
 
 import Foam.Floor
@@ -43,6 +55,7 @@ import Foam.Drain
 import Foam.RoundTrip
 import Foam.Ledger
 import Foam.Scar
+import Foam.Commitment
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -252,6 +265,27 @@ import Foam.Scar
 -- involution above is the capability-free ι = id slice)
 /-- info: 'Foam.Quiver.reverseTo_reverseTo' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Quiver.reverseTo_reverseTo
+
+-- the commitment-monoid, object-level: composition only accumulates (the
+-- proof-ledger's append-only); the legal carrier is closed (chaining propext
+-- stays legal — homunculus-protection IS commitment-tracking); illegality
+-- absorbs (one conjured observer poisons the chain — why this map pins EVERY
+-- theorem); the observer's signature tops the legal carrier. The model is
+-- axiom-free: the tracker spends nothing of what it tracks.
+/-- info: 'Foam.join_indelible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.join_indelible
+
+/-- info: 'Foam.legal_join' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.legal_join
+
+/-- info: 'Foam.illegal_absorbs' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.illegal_absorbs
+
+/-- info: 'Foam.legal_le_observer' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.legal_le_observer
+
+/-- info: 'Foam.join_assoc' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.join_assoc
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
