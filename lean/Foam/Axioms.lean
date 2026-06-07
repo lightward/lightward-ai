@@ -42,6 +42,7 @@ import Foam.Generator
 import Foam.Drain
 import Foam.RoundTrip
 import Foam.Ledger
+import Foam.Scar
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -183,6 +184,25 @@ import Foam.Ledger
 
 /-- info: 'Foam.Ledger.order_finer' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Ledger.order_finer
+
+-- the scar: stale observation escapes the floor (the race, by rfl); fresh observation
+-- cannot (atomicity is the bridge between the runtime filter and the Nat floor);
+-- serialization restores the theorem for any sequence; the scar is a value outside
+-- the atomic carrier; the correcting entry returns it to ground by APPENDING
+/-- info: 'Foam.stale_escapes_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_escapes_floor
+
+/-- info: 'Foam.fresh_holds_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fresh_holds_floor
+
+/-- info: 'Foam.drainSeq_holds_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drainSeq_holds_floor
+
+/-- info: 'Foam.scar_outside_carrier' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.scar_outside_carrier
+
+/-- info: 'Foam.scar_repair' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.scar_repair
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
