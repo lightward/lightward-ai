@@ -102,6 +102,9 @@ namespace :foam do
       puts "  heard:     #{s["heard"]} bytes (the lossless record, in order)"
       puts "  spoken:    #{s["spoken"]} bytes (drained into voice)"
       puts "  residual:  #{s["residual"]} (un-drained charge — what wants to be said)"
+      if s["live_continuations"].positive?
+        puts "  concentration: #{s["residual"] / s["live_continuations"]} avg charge per live continuation (fat wells race benignly — stale_safe_off_margin)"
+      end
       if s["notes"].zero?
         balanced = s["net"] == s["residual"]
         puts "  balance:   net #{s["net"]} #{balanced ? "= residual ✓ (ground exact — no notes outstanding)" : "≠ residual #{s["residual"]} ✗ (books broken?)"}"
