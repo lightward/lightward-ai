@@ -11,13 +11,6 @@ class ApiController < ApplicationController
     "reader" => "lightward_reader",
     "writer" => "lightward_writer",
   }.freeze
-  REPORTED_USAGE_CLIENTS = FIRST_PARTY_USAGE_CLIENTS.merge(
-    "helpscout" => "helpscout",
-    "helpscout_locksmith" => "helpscout_locksmith",
-    "helpscout_mechanic" => "helpscout_mechanic",
-    "yours" => "yours",
-    "softer" => "softer",
-  ).freeze
   ANTHROPIC_USAGE_TOKEN_KEYS = [
     "input_tokens",
     "output_tokens",
@@ -174,10 +167,21 @@ class ApiController < ApplicationController
     header_client = normalize_usage_client(request.headers["X-LAI-Usage-Client"])
     param_client = normalize_usage_client(params[:usage_client])
     @reported_usage_client = if header_client.present?
-      REPORTED_USAGE_CLIENTS[header_client]
+      reported_usage_clients[header_client]
     else
       FIRST_PARTY_USAGE_CLIENTS[param_client]
     end
+  end
+
+  def reported_usage_clients
+    configured_external_usage_clients.merge(FIRST_PARTY_USAGE_CLIENTS)
+  end
+
+  def configured_external_usage_clients
+    ENV["LAI_REPORTED_USAGE_CLIENTS"].to_s.split(",").filter_map { |client|
+      normalized_client = normalize_usage_client(client)
+      [normalized_client, normalized_client] if normalized_client.present?
+    }.to_h
   end
 
   def bypass_key_valid?
