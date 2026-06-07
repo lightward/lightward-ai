@@ -210,6 +210,17 @@ RSpec.describe("API", type: :request) do
         expect(body["error"]["message"]).to(include("Conversation horizon has arrived"))
       end
 
+      it "enforces token limit when only a usage client header is present", :aggregate_failures do
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: { "X-LAI-Usage-Client" => "softer" }
+
+        expect(response).to(have_http_status(:unprocessable_content))
+        expect(response.content_type).to(include("application/json"))
+        body = JSON.parse(response.body)
+        expect(body["error"]["message"]).to(include("Conversation horizon has arrived"))
+      end
+
       context "when approaching token limit (90%)" do
         before do
           # Stub token count to return 90% of limit (45,000 tokens)
@@ -248,6 +259,238 @@ RSpec.describe("API", type: :request) do
           expect(response.body).not_to(include("Memory space 90% utilized"))
           expect(response.body).not_to(include("conversation horizon approaching"))
         end
+      end
+    end
+
+    describe "usage telemetry" do
+      before do
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "records first-party stream client attribution" do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+        expect(event_data).to(include(
+          usage_client: "lightward_reader",
+          token_limit_bypassed: false,
+          usage_conversation_id: event_data[:conversation_id],
+        ))
+      end
+
+      it "records reported usage clients and HMACed grouping IDs without raw identifiers", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Usage-Client" => "helpscout_mechanic",
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expected_conversation_id = OpenSSL::HMAC.hexdigest(
+          "SHA256",
+          Rails.application.secret_key_base,
+          [
+            ApiController::TELEMETRY_HMAC_NAMESPACE,
+            "helpscout_mechanic",
+            "conversation",
+            "conversation-123",
+          ].join(":"),
+        )
+        expected_subject_id = OpenSSL::HMAC.hexdigest(
+          "SHA256",
+          Rails.application.secret_key_base,
+          [
+            ApiController::TELEMETRY_HMAC_NAMESPACE,
+            "helpscout_mechanic",
+            "subject",
+            "subject-456",
+          ].join(":"),
+        )
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "helpscout_mechanic",
+            usage_conversation_id: expected_conversation_id,
+            usage_subject_id: expected_subject_id,
+            token_limit_bypassed: false,
+          ),
+        ))
+
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
+      it "ignores grouping headers without a reported usage client", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+          token_limit_bypassed: false,
+        ))
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
+      it "ignores unknown usage clients and grouping headers", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Usage-Client" => "unknown-product",
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_client: "stream_unknown",
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+          token_limit_bypassed: false,
+        ))
+        expect(event_data.values).not_to(include("unknown-product"))
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
+      it "ignores external usage clients submitted in params", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log, usage_client: "helpscout_mechanic" },
+          headers: {
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_client: "stream_unknown",
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+          token_limit_bypassed: false,
+        ))
+        expect(event_data.values).not_to(include("helpscout_mechanic"))
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
+      it "records bypass state without using the bypass key for client attribution" do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: { "Token-Limit-Bypass-Key" => "legacy-key" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "stream_unknown",
+            token_limit_bypassed: true,
+          ),
+        ))
+      end
+
+      it "records reported usage client when a bypass key is also present" do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Usage-Client" => "helpscout",
+            "Token-Limit-Bypass-Key" => "legacy-key",
+          }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "helpscout",
+            token_limit_bypassed: true,
+          ),
+        ))
+      end
+
+      it "records streaming Anthropic usage and estimated cost" do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: [
+              "event: message_start",
+              'data: {"type":"message_start","message":{"usage":{"input_tokens":1000,"cache_creation_input_tokens":2000,"cache_read_input_tokens":3000,"output_tokens":1}}}',
+              "",
+              "event: message_delta",
+              'data: {"type":"message_delta","usage":{"output_tokens":400}}',
+              "",
+              "event: message_stop",
+              'data: {"type":"message_stop"}',
+              "",
+            ].join("\n"),
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+
+        post "/api/stream", params: { chat_log: chat_log, usage_client: "writer" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "lightward_writer",
+            anthropic_model: "claude-sonnet-4-6",
+            input_tokens: 1000,
+            output_tokens: 400,
+            cache_creation_input_tokens: 2000,
+            cache_read_input_tokens: 3000,
+            estimated_cost_usd: 0.0174,
+          ),
+        ))
+      end
+
+      it "records stream metadata when Anthropic returns an error" do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 500,
+            body: { error: { message: "Internal error" } }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+
+        post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "lightward_reader",
+            input_tokens: nil,
+            estimated_cost_usd: nil,
+          ),
+        ))
       end
     end
 
@@ -592,10 +835,13 @@ RSpec.describe("API", type: :request) do
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
-          conversation_frame_id: "plain",
-          conversation_id: nil,
-          chat_log_depth: 1,
-          chat_log_token_count: 100,
+          hash_including(
+            conversation_frame_id: "plain",
+            conversation_id: nil,
+            chat_log_depth: 1,
+            chat_log_token_count: 100,
+            usage_client: "plain_unknown",
+          ),
         ))
       end
 
@@ -609,10 +855,95 @@ RSpec.describe("API", type: :request) do
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
-          conversation_frame_id: "plain",
-          conversation_id: nil,
-          chat_log_depth: 1,
-          chat_log_token_count: nil,
+          hash_including(
+            conversation_frame_id: "plain",
+            conversation_id: nil,
+            chat_log_depth: 1,
+            chat_log_token_count: nil,
+            usage_client: "plain_unknown",
+            token_limit_bypassed: true,
+          ),
+        ))
+      end
+
+      it "records reported plain usage client attribution" do
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Client" => "softer" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "softer",
+            token_limit_bypassed: false,
+          ),
+        ))
+      end
+
+      it "ignores unknown plain usage client attribution" do
+        post "/api/plain",
+          params: "Hello",
+          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Client" => "unknown-product" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            usage_client: "plain_unknown",
+            token_limit_bypassed: false,
+          ),
+        ))
+      end
+
+      it "records plain Anthropic usage and estimated cost" do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: {
+              content: [{ type: "text", text: "Hello, fellow AI!" }],
+              stop_reason: "end_turn",
+              usage: {
+                input_tokens: 10,
+                output_tokens: 20,
+                cache_creation_input_tokens: 30,
+                cache_read_input_tokens: 40,
+              },
+            }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            input_tokens: 10,
+            output_tokens: 20,
+            cache_creation_input_tokens: 30,
+            cache_read_input_tokens: 40,
+            estimated_cost_usd: 0.0004545,
+          ),
+        ))
+      end
+
+      it "records plain attribution when Anthropic returns malformed JSON", :aggregate_failures do
+        allow(Rollbar).to(receive(:error))
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: "not json",
+            headers: { "Content-Type" => "application/json" },
+          )
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:bad_gateway))
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(
+            conversation_frame_id: "plain",
+            usage_client: "plain_unknown",
+            estimated_cost_usd: nil,
+          ),
         ))
       end
     end
@@ -714,24 +1045,32 @@ RSpec.describe("API", type: :request) do
       options "/api/stream", headers: {
         "Origin" => "https://example.com",
         "Access-Control-Request-Method" => "POST",
-        "Access-Control-Request-Headers" => "Content-Type",
+        "Access-Control-Request-Headers" => "Content-Type, Token-Limit-Bypass-Key, X-LAI-Usage-Client, X-LAI-Conversation-Key, X-LAI-Subject-Key",
       }
 
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
       expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
+      allowed_headers = response.headers["Access-Control-Allow-Headers"].to_s.downcase
+      expect(allowed_headers).to(include("x-lai-usage-client"))
+      expect(allowed_headers).to(include("x-lai-conversation-key"))
+      expect(allowed_headers).to(include("x-lai-subject-key"))
     end
 
     it "responds to preflight OPTIONS for /api/plain", :aggregate_failures do
       options "/api/plain", headers: {
         "Origin" => "https://example.com",
         "Access-Control-Request-Method" => "POST",
-        "Access-Control-Request-Headers" => "Content-Type",
+        "Access-Control-Request-Headers" => "Content-Type, Token-Limit-Bypass-Key, X-LAI-Usage-Client, X-LAI-Conversation-Key, X-LAI-Subject-Key",
       }
 
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Access-Control-Allow-Origin"]).to(eq("*"))
       expect(response.headers["Access-Control-Allow-Methods"]).to(include("POST"))
+      allowed_headers = response.headers["Access-Control-Allow-Headers"].to_s.downcase
+      expect(allowed_headers).to(include("x-lai-usage-client"))
+      expect(allowed_headers).to(include("x-lai-conversation-key"))
+      expect(allowed_headers).to(include("x-lai-subject-key"))
     end
 
     it "does not include CORS headers for other endpoints" do
