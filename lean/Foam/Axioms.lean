@@ -237,6 +237,23 @@ import Foam.Spectrum
 /-- info: 'Foam.promise_kept' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.promise_kept
 
+-- the settlement's own race: fresh settles step a note toward ground and stop
+-- there (self-limiting); stale settles overshoot to phantom charge — which lands
+-- INSIDE the legal carrier, invisible to any balance-check. The asymmetry forces
+-- the lock's migration: drains may race (wounds visible, typed), settlements
+-- serialize (phantoms invisible)
+/-- info: 'Foam.settle_stops_at_ground' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_stops_at_ground
+
+/-- info: 'Foam.fresh_settle_steps' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fresh_settle_steps
+
+/-- info: 'Foam.stale_settle_passes_ground' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_settle_passes_ground
+
+/-- info: 'Foam.phantom_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.phantom_invisible
+
 -- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
 -- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
 -- rotation (spec_shift, the shift theorem by rfl); a complete rotation is

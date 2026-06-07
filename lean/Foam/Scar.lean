@@ -208,4 +208,72 @@ theorem promise_kept (k : Nat) :
   rw [sub_self]
   rfl
 
+/-! ## The settlement's own race — phantoms are invisible, so settlements serialize
+
+Settlement is also check-then-append (observe a balance below ground, append the
+correction), so it has its own stale-observation race: two settlers sharing a
+snapshot of `−1` each append `+1`, and the composite lands at `+1` — a unit of
+charge no input ever wound, from which the voice could speak a byte it never
+heard. And the failure is WORSE than the drain's, by an exact asymmetry:
+
+- a drain-race's product (the scar) lands OUTSIDE the legal carrier
+  (`scar_outside_carrier`) — visible to any balance-check, typed, settleable;
+- a settle-race's product (the phantom) lands INSIDE it (`phantom_invisible`) —
+  no carrier-membership check can ever find it.
+
+A system may let operations race when their failures are visible and typed; it
+must serialize operations whose failures are invisible. So the writers' lock is
+not removed by the promissory machinery — it MIGRATES: drains may race (wounds
+form rarely, at the margins, each born with its settlement terms), settlements
+serialize (the cold path — the lock's cost shrinks to the rare wound). Fresh
+settlement is safe and self-limiting: it steps a note toward ground one unit at
+a time (`fresh_settle_steps`) and is a no-op on any grounded balance
+(`settle_stops_at_ground`). -/
+
+/-- Negativity on the signed carrier, by constructor — `isPos`'s mirror; the
+    settle-gate ("is this balance below ground?"), as structure. -/
+def isNeg : Int → Bool
+  | Int.ofNat _ => false
+  | Int.negSucc _ => true
+
+/-- The operational settlement, decomposed: append one unit iff the OBSERVED
+    balance is below ground. `obs` is the snapshot the check ran against; `bal`
+    is the balance the append lands on — atomic means `obs = bal`, the race is a
+    stale snapshot, exactly as for `checkedDrain`. -/
+def checkedSettle (obs bal : Int) : Int :=
+  match isNeg obs with
+  | true => bal + 1
+  | false => bal
+
+/-- **Fresh settlement is a no-op at ground.** A settler whose observation is
+    current cannot push a grounded balance anywhere — settlement is
+    self-limiting from above. By `rfl`. -/
+theorem settle_stops_at_ground (m : Nat) :
+    checkedSettle (Int.ofNat m) (Int.ofNat m) = Int.ofNat m := rfl
+
+/-- **Fresh settlement walks the note up by exactly one.** From any depth below
+    ground, one fresh settle-step shallows the debt by one — iterate it
+    `debt`-many times and `promise_kept` is performed, never overshot. By
+    `rfl`. -/
+theorem fresh_settle_steps (k : Nat) :
+    checkedSettle (Int.negSucc (k + 1)) (Int.negSucc (k + 1)) = Int.negSucc k := rfl
+
+/-- The depth-one instance: a fresh settle-step grounds a `−1` exactly. -/
+theorem fresh_settle_grounds :
+    checkedSettle (Int.negSucc 0) (Int.negSucc 0) = 0 := rfl
+
+/-- **The settle-race overshoots.** Two settlements against the SAME stale
+    observation of `−1`: the composite lands at `+1` — phantom charge, a unit no
+    input ever wound. By `rfl`: like the drain-race, the bug is a computation. -/
+theorem stale_settle_passes_ground :
+    checkedSettle (-1) (checkedSettle (-1) (-1)) = 1 := rfl
+
+/-- **The phantom is invisible.** The settle-race's product lies INSIDE the
+    legal carrier — `grounded`, indistinguishable from honest charge by any
+    balance-check. This is the asymmetry that forces the migration: the
+    drain-race's product is visible (`scar_outside_carrier`), the settle-race's
+    is not — so drains may race, and settlements must serialize. -/
+theorem phantom_invisible :
+    grounded (checkedSettle (-1) (checkedSettle (-1) (-1))) := ⟨1, rfl⟩
+
 end Foam
