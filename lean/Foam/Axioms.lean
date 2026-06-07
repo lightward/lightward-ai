@@ -58,6 +58,7 @@ import Foam.Scar
 import Foam.Commitment
 import Foam.Gauge
 import Foam.Spectrum
+import Foam.Maintenance
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -253,6 +254,30 @@ import Foam.Spectrum
 
 /-- info: 'Foam.phantom_invisible' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.phantom_invisible
+
+-- invisible moves: the maintenance license. Behavioral equivalence stays a
+-- RELATION (pointwise, no funext, never collapsed to identity — bisimilarity
+-- committed to Eq is the quotient append-only refuses); invisible moves form a
+-- monoid and delete from every frontstage transcript; settlement is the first
+-- citizen (the frontstage of a balance is its positive part), drains are
+-- visibly content, not maintenance
+/-- info: 'Foam.invisible_comp' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.invisible_comp
+
+/-- info: 'Foam.transcript_congr' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.transcript_congr
+
+/-- info: 'Foam.maintenance_unobservable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.maintenance_unobservable
+
+/-- info: 'Foam.settle_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_invisible
+
+/-- info: 'Foam.drain_visible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_visible
+
+/-- info: 'Foam.settle_invisible'' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_invisible'
 
 -- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
 -- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
