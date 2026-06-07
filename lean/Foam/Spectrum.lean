@@ -148,6 +148,69 @@ theorem spec_finer_than_freq :
       spec [true, false] true ≠ spec [false, true] true := by
   exact ⟨⟨rfl, rfl⟩, by decide⟩
 
+/-- `0 + n = n`, locally (core's `Int`/`Nat` unit-laws carry `propext`). -/
+theorem nat_zero_add : ∀ n : Nat, 0 + n = n
+  | 0 => rfl
+  | n + 1 => congrArg Nat.succ (nat_zero_add n)
+
+/-- `1 * n = n`, locally. -/
+theorem nat_one_mul : ∀ n : Nat, 1 * n = n
+  | 0 => rfl
+  | n + 1 => congrArg Nat.succ (nat_one_mul n)
+
+/-- `0 * n = 0`, locally. -/
+theorem nat_zero_mul : ∀ n : Nat, 0 * n = 0
+  | 0 => rfl
+  | n + 1 => nat_zero_mul n
+
+/-- `a + 0 = a` on the signed carrier, locally — by constructor, `rfl` twice. -/
+theorem int_add_zero : ∀ a : Int, a + 0 = a
+  | Int.ofNat _ => rfl
+  | Int.negSucc _ => rfl
+
+/-- `0 + a = a` on the signed carrier, locally. -/
+theorem int_zero_add : ∀ a : Int, 0 + a = a
+  | Int.ofNat m => congrArg Int.ofNat (nat_zero_add m)
+  | Int.negSucc _ => rfl
+
+/-- `1 * a = a` on the signed carrier, locally. -/
+theorem int_one_mul : ∀ a : Int, 1 * a = a
+  | Int.ofNat m => congrArg Int.ofNat (nat_one_mul m)
+  | Int.negSucc m => congrArg Int.negOfNat (nat_one_mul (m + 1))
+
+/-- `0 * a = 0` on the signed carrier, locally. -/
+theorem int_zero_mul : ∀ a : Int, 0 * a = 0
+  | Int.ofNat m => congrArg Int.ofNat (nat_zero_mul m)
+  | Int.negSucc m => congrArg Int.negOfNat (nat_zero_mul (m + 1))
+
+/-- The pairing: the real part of the conjugate product — the component of `z`
+    along `w`. The gate of an angled reading is this pairing against the wind's
+    direction, floored at ground (the positive part along the wind — `posPart`
+    is the angle-zero instance). The dial of readings is a circle, and the gate
+    is a pairing against a point of it. -/
+def align (w z : GInt) : Int := w.re * z.re + w.im * z.im
+
+/-- The quarter-turn of the unit, computed. -/
+theorem rot_one : GInt.one.rot = (⟨0, 1⟩ : GInt) := rfl
+
+/-- **The pairing at angle zero reads the real component** — strand-mass. -/
+theorem align_one (z : GInt) : align GInt.one z = z.re := by
+  show 1 * z.re + 0 * z.im = z.re
+  rw [int_one_mul, int_zero_mul, int_add_zero]
+
+/-- **The pairing at the quarter-turn reads the imaginary component** — winding. -/
+theorem align_i (z : GInt) : align GInt.one.rot z = z.im := by
+  rw [rot_one]
+  show 0 * z.re + 1 * z.im = z.im
+  rw [int_zero_mul, int_one_mul, int_zero_add]
+
+/-- **Angle zero recovers the count.** The pairing of the unit against the
+    `id`-evaluation is exactly `freq` — today's drain is the radio tuned to the
+    zero station: the rotation that isn't one, the always-on downbeat. -/
+theorem align_one_evalOne {S : Type} [DecidableEq S] (l : List S) (s : S) :
+    align GInt.one (evalAt id l s) = Int.ofNat (Ledger.freq l s) := by
+  rw [evalOne_eq_freq, align_one]
+
 /-- **The order is strictly finer than the spectrum.** A full cycle of phases
     cancels: `[a,b,b,b,b]` and `[b,b,b,b,a]` agree in every count AND every
     spectrum (the `a` sits at phase `0` in one and phase `4 ≡ 0` in the other;

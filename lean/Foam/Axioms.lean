@@ -371,6 +371,20 @@ import Foam.Clock
 /-- info: 'Foam.order_finer_than_spec' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.order_finer_than_spec
 
+-- the gate is a pairing: align (the component of the charge along the wind's
+-- direction) reads strand-mass at angle zero (align_one — and recovers freq:
+-- today's drain is the zero station) and winding at the quarter-turn (align_i);
+-- the dial of readings is a circle, the wind a point of it, the gate the
+-- pairing floored at ground
+/-- info: 'Foam.align_one' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_one
+
+/-- info: 'Foam.align_i' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_i
+
+/-- info: 'Foam.align_one_evalOne' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_one_evalOne
+
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless
