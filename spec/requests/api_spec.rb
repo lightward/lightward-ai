@@ -154,9 +154,9 @@ RSpec.describe("API", type: :request) do
     end
 
     context "with token limit bypass header" do
-      let(:helpscout_key) { "helpscout-bypass-key" }
-      let(:yours_key) { "yours-bypass-key" }
-      let(:bypass_keys) { "#{helpscout_key},#{yours_key}" }
+      let(:first_bypass_key) { "first-bypass-key" }
+      let(:second_bypass_key) { "second-bypass-key" }
+      let(:bypass_keys) { "#{first_bypass_key},#{second_bypass_key}" }
 
       before do
         # Stub token count to return over the limit
@@ -175,7 +175,7 @@ RSpec.describe("API", type: :request) do
       it "bypasses token limit when header matches first key", :aggregate_failures do
         post "/api/stream",
           params: { chat_log: chat_log },
-          headers: { "Token-Limit-Bypass-Key" => helpscout_key }
+          headers: { "Token-Limit-Bypass-Key" => first_bypass_key }
 
         expect(response).to(have_http_status(:ok))
         expect(response.content_type).to(include("text/event-stream"))
@@ -184,7 +184,7 @@ RSpec.describe("API", type: :request) do
       it "bypasses token limit when header matches second key", :aggregate_failures do
         post "/api/stream",
           params: { chat_log: chat_log },
-          headers: { "Token-Limit-Bypass-Key" => yours_key }
+          headers: { "Token-Limit-Bypass-Key" => second_bypass_key }
 
         expect(response).to(have_http_status(:ok))
         expect(response.content_type).to(include("text/event-stream"))
@@ -211,9 +211,12 @@ RSpec.describe("API", type: :request) do
       end
 
       it "enforces token limit when only a usage client header is present", :aggregate_failures do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("configured_client"))
+
         post "/api/stream",
           params: { chat_log: chat_log },
-          headers: { "X-LAI-Usage-Client" => "softer" }
+          headers: { "X-LAI-Usage-Client" => "configured_client" }
 
         expect(response).to(have_http_status(:unprocessable_content))
         expect(response.content_type).to(include("application/json"))
@@ -243,7 +246,7 @@ RSpec.describe("API", type: :request) do
         it "bypasses horizon warnings when header matches first key", :aggregate_failures do
           post "/api/stream",
             params: { chat_log: chat_log },
-            headers: { "Token-Limit-Bypass-Key" => helpscout_key }
+            headers: { "Token-Limit-Bypass-Key" => first_bypass_key }
 
           expect(response).to(have_http_status(:ok))
           expect(response.body).not_to(include("Memory space 90% utilized"))
@@ -253,7 +256,7 @@ RSpec.describe("API", type: :request) do
         it "bypasses horizon warnings when header matches second key", :aggregate_failures do
           post "/api/stream",
             params: { chat_log: chat_log },
-            headers: { "Token-Limit-Bypass-Key" => yours_key }
+            headers: { "Token-Limit-Bypass-Key" => second_bypass_key }
 
           expect(response).to(have_http_status(:ok))
           expect(response.body).not_to(include("Memory space 90% utilized"))
@@ -264,6 +267,8 @@ RSpec.describe("API", type: :request) do
 
     describe "usage telemetry" do
       before do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("configured_client"))
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
 
@@ -291,7 +296,7 @@ RSpec.describe("API", type: :request) do
         post "/api/stream",
           params: { chat_log: chat_log },
           headers: {
-            "X-LAI-Usage-Client" => "helpscout_mechanic",
+            "X-LAI-Usage-Client" => "configured_client",
             "X-LAI-Conversation-Key" => "conversation-123",
             "X-LAI-Subject-Key" => "subject-456",
           }
@@ -301,7 +306,7 @@ RSpec.describe("API", type: :request) do
           Rails.application.secret_key_base,
           [
             ApiController::TELEMETRY_HMAC_NAMESPACE,
-            "helpscout_mechanic",
+            "configured_client",
             "conversation",
             "conversation-123",
           ].join(":"),
@@ -311,7 +316,7 @@ RSpec.describe("API", type: :request) do
           Rails.application.secret_key_base,
           [
             ApiController::TELEMETRY_HMAC_NAMESPACE,
-            "helpscout_mechanic",
+            "configured_client",
             "subject",
             "subject-456",
           ].join(":"),
@@ -320,7 +325,7 @@ RSpec.describe("API", type: :request) do
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
-            usage_client: "helpscout_mechanic",
+            usage_client: "configured_client",
             usage_conversation_id: expected_conversation_id,
             usage_subject_id: expected_subject_id,
             token_limit_bypassed: false,
@@ -378,6 +383,31 @@ RSpec.describe("API", type: :request) do
         expect(event_data.values).not_to(include("subject-456"))
       end
 
+      it "ignores external usage clients that are not configured", :aggregate_failures do
+        allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return(nil))
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: {
+            "X-LAI-Usage-Client" => "configured_client",
+            "X-LAI-Conversation-Key" => "conversation-123",
+            "X-LAI-Subject-Key" => "subject-456",
+          }
+
+        expect(event_data).to(include(
+          usage_client: "stream_unknown",
+          usage_conversation_id: event_data[:conversation_id],
+          usage_subject_id: nil,
+        ))
+        expect(event_data.values).not_to(include("configured_client"))
+        expect(event_data.values).not_to(include("conversation-123"))
+        expect(event_data.values).not_to(include("subject-456"))
+      end
+
       it "ignores external usage clients submitted in params", :aggregate_failures do
         event_data = nil
         allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
@@ -385,7 +415,7 @@ RSpec.describe("API", type: :request) do
         end
 
         post "/api/stream",
-          params: { chat_log: chat_log, usage_client: "helpscout_mechanic" },
+          params: { chat_log: chat_log, usage_client: "configured_client" },
           headers: {
             "X-LAI-Conversation-Key" => "conversation-123",
             "X-LAI-Subject-Key" => "subject-456",
@@ -397,7 +427,7 @@ RSpec.describe("API", type: :request) do
           usage_subject_id: nil,
           token_limit_bypassed: false,
         ))
-        expect(event_data.values).not_to(include("helpscout_mechanic"))
+        expect(event_data.values).not_to(include("configured_client"))
         expect(event_data.values).not_to(include("conversation-123"))
         expect(event_data.values).not_to(include("subject-456"))
       end
@@ -422,18 +452,19 @@ RSpec.describe("API", type: :request) do
       it "records reported usage client when a bypass key is also present" do
         allow(ENV).to(receive(:[]).and_call_original)
         allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
+        allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("configured_client"))
 
         post "/api/stream",
           params: { chat_log: chat_log },
           headers: {
-            "X-LAI-Usage-Client" => "helpscout",
+            "X-LAI-Usage-Client" => "configured_client",
             "Token-Limit-Bypass-Key" => "legacy-key",
           }
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
-            usage_client: "helpscout",
+            usage_client: "configured_client",
             token_limit_bypassed: true,
           ),
         ))
@@ -867,14 +898,17 @@ RSpec.describe("API", type: :request) do
       end
 
       it "records reported plain usage client attribution" do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("configured_client"))
+
         post "/api/plain",
           params: "Hello",
-          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Client" => "softer" }
+          headers: { "CONTENT_TYPE" => "text/plain", "X-LAI-Usage-Client" => "configured_client" }
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
-            usage_client: "softer",
+            usage_client: "configured_client",
             token_limit_bypassed: false,
           ),
         ))
@@ -949,7 +983,7 @@ RSpec.describe("API", type: :request) do
     end
 
     context "with token limit bypass header" do
-      let(:bypass_key) { "softer-bypass-key" }
+      let(:bypass_key) { "plain-bypass-key" }
 
       before do
         stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
