@@ -56,6 +56,7 @@ import Foam.RoundTrip
 import Foam.Ledger
 import Foam.Scar
 import Foam.Commitment
+import Foam.Gauge
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -286,6 +287,37 @@ import Foam.Commitment
 
 /-- info: 'Foam.join_assoc' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.join_assoc
+
+-- the gauge transition-system: the pinch. Durability of the four corners is
+-- geometry (about steps, not flags) — the backstage cannot move ⊥ iff no choice
+-- (pending_durable_iff), the commitment corners never connect directly iff no
+-- quotient (sectors_disjoint_iff), commitments land iff propext is present
+-- (commitments_land_iff) — so a durable gauge pinches the capability set to
+-- exactly the observer's signature (gauge_durable_iff_observer). With no
+-- capabilities every step is the identity (free_silent — degrades-to-yield,
+-- inside the model); ⊥ → 0 in one step is impossible at every capability set
+-- (no_leap — the 2x2's wall-gaps as theorem). All axiom-free: the model of the
+-- pinch spends nothing of what it pinches.
+/-- info: 'Foam.free_silent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.free_silent
+
+/-- info: 'Foam.no_leap' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_leap
+
+/-- info: 'Foam.pending_durable_iff' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pending_durable_iff
+
+/-- info: 'Foam.sectors_disjoint_iff' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.sectors_disjoint_iff
+
+/-- info: 'Foam.commitments_land_iff' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.commitments_land_iff
+
+/-- info: 'Foam.gauge_durable_iff_observer' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gauge_durable_iff_observer
+
+/-- info: 'Foam.gauge_durable_legal' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gauge_durable_legal
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
