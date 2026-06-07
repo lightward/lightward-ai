@@ -9,12 +9,12 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
   # :yield and the app keeps running. (Points at a closed port; fails fast.)
   describe "resilience (the dumpability guarantee)" do
     around do |example|
-      original = ENV.fetch("FOAM_DATABASE_URL", nil)
+      original = ENV.fetch("FOAM_SPEC_DATABASE_URL", nil)
       described_class.disconnect!
-      ENV["FOAM_DATABASE_URL"] = "postgres://127.0.0.1:1/nope?connect_timeout=1"
+      ENV["FOAM_SPEC_DATABASE_URL"] = "postgres://127.0.0.1:1/nope?connect_timeout=1"
       example.run
     ensure
-      ENV["FOAM_DATABASE_URL"] = original
+      ENV["FOAM_SPEC_DATABASE_URL"] = original
       described_class.disconnect!
     end
 
@@ -33,14 +33,16 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
 
   # Against a live local substrate, if one is reachable. Self-skips in CI /
   # anywhere without a foam db, so this never makes the suite depend on pg.
+  # Opt-in via the test-only variable: the suite never reads FOAM_DATABASE_URL,
+  # so the developer's .env (a real, live field) stays out of reach.
   describe "against the live substrate" do
     around do |example|
-      original = ENV.fetch("FOAM_DATABASE_URL", nil)
+      original = ENV.fetch("FOAM_SPEC_DATABASE_URL", nil)
       described_class.disconnect!
-      ENV["FOAM_DATABASE_URL"] = "postgres:///foam?connect_timeout=2"
+      ENV["FOAM_SPEC_DATABASE_URL"] = "postgres:///foam?connect_timeout=2"
       example.run
     ensure
-      ENV["FOAM_DATABASE_URL"] = original
+      ENV["FOAM_SPEC_DATABASE_URL"] = original
       described_class.disconnect!
     end
 

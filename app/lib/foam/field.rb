@@ -94,15 +94,36 @@ module Foam
       end
 
       # Speak: drain the ledger's charge into a voice, CONTINUING from `seed_bytes`
-      # (the input's tail) — the frequency reading, discharged. Returns the text, or
-      # nil with no field. ← foam.speak.
+      # (the input's tail) — the frequency reading, discharged. Returns the voice as
+      # a BINARY string (the walk samples bytes by charge and owes no allegiance to
+      # any encoding — rendering is the caller's concern, a view at the edge), "" at
+      # ground, or nil with no field: the caller can tell failure from silence.
+      # ← foam.speak.
       def speak(seed_bytes = [], max_steps = 600)
-        with_connection { |conn|
+        voice = with_connection { |conn|
           conn.exec_params(
             "SELECT foam.speak($1::int[], 7, $2)",
             ["{#{Array(seed_bytes).join(",")}}", max_steps],
           ).getvalue(0, 0)
         }
+        voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
+      end
+
+      # Speak, entrained: the same walk as speak, with selection re-weighted by
+      # phase — every phase a wired leak of the conversation's own energy (the
+      # continuation's recurrence-clock; the walk's advance seeded by the
+      # caller's utterance length; rests at silent beats, ground at a full bar).
+      # For WIND-SEEDED acts (interjections — the seed is a live turn's tail);
+      # self-seeded acts (the exhale) use speak. Returns voice bytes as a
+      # binary string, "" at ground, nil with no field. ← foam.speak_resonant.
+      def speak_resonant(seed_bytes = [], max_steps = 600)
+        voice = with_connection { |conn|
+          conn.exec_params(
+            "SELECT foam.speak_resonant($1::int[], 7, $2)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps],
+          ).getvalue(0, 0)
+        }
+        voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
       end
 
       # The field's vital signs — all structure (counts, balances, extents), never
@@ -137,12 +158,22 @@ module Foam
                 coalesce(sum(neg), 0)                                           AS spoken,
                 coalesce(sum(s), 0)                                             AS net,
                 coalesce(sum(s) FILTER (WHERE s > 0), 0)                        AS residual,
+                count(*) FILTER (WHERE s < 0)                                   AS notes,
+                coalesce(-sum(s) FILTER (WHERE s < 0), 0)                       AS outstanding,
                 count(DISTINCT ctx)                                             AS contexts,
                 count(*) FILTER (WHERE s > 0)                                   AS live_continuations
               FROM g
             SQL
           }
         }
+      end
+
+      # Sweep every outstanding note (a balance below ground) in one serialized
+      # pass — correcting entries appended at face value (foam.settle_sweep;
+      # wounds also settle on encounter, inside foam.speak). Returns the count
+      # of notes settled, or nil with no field.
+      def settle_sweep
+        with_connection { |conn| conn.exec("SELECT foam.settle_sweep()").getvalue(0, 0)&.to_i }
       end
 
       # Drop the connection pool (e.g. on worker boot after a fork).
@@ -177,12 +208,18 @@ module Foam
       end
 
       def database_url
-        ENV.fetch("FOAM_DATABASE_URL") do
-          # In test the field is opt-in (its own spec sets the URL explicitly);
-          # default to unreachable so the rest of the suite never touches a real
-          # database — every Field op simply degrades, exactly as in production
-          # before the field is provisioned.
-          Rails.env.test? ? "postgres://127.0.0.1:1/foam?connect_timeout=1" : "postgres:///foam?connect_timeout=2"
+        # In test the field is opt-in via its OWN variable: the suite must stay
+        # hermetic against the developer's .env (dotenv loads it in test too, and
+        # a FOAM_DATABASE_URL there names a real, live field — which the suite
+        # tattooed once through the observe taps: append-only means a leaked
+        # fixture byte is permanent). A spec that wants a substrate names one
+        # explicitly in FOAM_SPEC_DATABASE_URL; everything else gets an
+        # unreachable default and degrades, exactly as production does before
+        # provisioning.
+        if Rails.env.test?
+          ENV.fetch("FOAM_SPEC_DATABASE_URL", "postgres://127.0.0.1:1/foam?connect_timeout=1")
+        else
+          ENV.fetch("FOAM_DATABASE_URL", "postgres:///foam?connect_timeout=2")
         end
       end
 

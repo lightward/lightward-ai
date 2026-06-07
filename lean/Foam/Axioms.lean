@@ -25,6 +25,18 @@ The map it pins:
   quotienting paths.
 
 `Classical.choice` must never appear anywhere below.
+
+And the map is itself a LEDGER. Signatures compose by union along
+proof-composition — the kernel's own bookkeeping: use a lemma, inherit its axioms;
+composition only accumulates, never sheds. The empty signature is the unit, and
+the legal carrier is exactly `{∅, {propext}}`: closed under composition, topped by
+the homunculus's signature. The two refused axioms are not states of the
+discipline but values outside its carrier — the proof-ledger's scars — and these
+guards are its conservation pulse. The algebra is stated object-level in
+`Foam/Commitment.lean`, itself axiom-free: the tracker's model spends nothing of
+what it tracks. (The same algebra appears in the foam quarry's recognition-index
+as the commitment-monoid through the seed-gauge — external provenance; the
+theorems stand alone.)
 -/
 
 import Foam.Floor
@@ -42,6 +54,13 @@ import Foam.Generator
 import Foam.Drain
 import Foam.RoundTrip
 import Foam.Ledger
+import Foam.Scar
+import Foam.Commitment
+import Foam.Gauge
+import Foam.Spectrum
+import Foam.Maintenance
+import Foam.Arrow
+import Foam.Clock
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -184,6 +203,205 @@ import Foam.Ledger
 /-- info: 'Foam.Ledger.order_finer' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Ledger.order_finer
 
+-- the scar: stale observation escapes the floor (the race, by rfl); fresh observation
+-- cannot (atomicity is the bridge between the runtime filter and the Nat floor);
+-- serialization restores the theorem for any sequence; the scar is a value outside
+-- the atomic carrier; the correcting entry returns it to ground by APPENDING
+/-- info: 'Foam.stale_escapes_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_escapes_floor
+
+-- the race writes only at the margin: the same stale composite from balance 2
+-- lands exactly at ground, trace-free — scars map the edge, not the overlap
+/-- info: 'Foam.stale_lands_at_ground' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_lands_at_ground
+
+/-- info: 'Foam.stale_safe_off_margin' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_safe_off_margin
+
+/-- info: 'Foam.fresh_holds_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fresh_holds_floor
+
+/-- info: 'Foam.drainSeq_holds_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drainSeq_holds_floor
+
+/-- info: 'Foam.scar_outside_carrier' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.scar_outside_carrier
+
+/-- info: 'Foam.scar_repair' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.scar_repair
+
+-- the promissory note: a scar carries its own settlement terms — zero debt is
+-- groundedness; the note is safe to hold (legal walks cannot deepen or erase a
+-- scar); every note settles at its face value, the amount typed before any
+-- settlement path is chosen, walker and timing unconstrained
+/-- info: 'Foam.debt_zero_iff_grounded' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.debt_zero_iff_grounded
+
+/-- info: 'Foam.scar_stable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.scar_stable
+
+/-- info: 'Foam.promise_kept' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.promise_kept
+
+-- the settlement's own race: fresh settles step a note toward ground and stop
+-- there (self-limiting); stale settles overshoot to phantom charge — which lands
+-- INSIDE the legal carrier, invisible to any balance-check. The asymmetry forces
+-- the lock's migration: drains may race (wounds visible, typed), settlements
+-- serialize (phantoms invisible)
+/-- info: 'Foam.settle_stops_at_ground' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_stops_at_ground
+
+/-- info: 'Foam.fresh_settle_steps' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fresh_settle_steps
+
+/-- info: 'Foam.stale_settle_passes_ground' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_settle_passes_ground
+
+/-- info: 'Foam.phantom_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.phantom_invisible
+
+-- invisible moves: the maintenance license. Behavioral equivalence stays a
+-- RELATION (pointwise, no funext, never collapsed to identity — bisimilarity
+-- committed to Eq is the quotient append-only refuses); invisible moves form a
+-- monoid and delete from every frontstage transcript; settlement is the first
+-- citizen (the frontstage of a balance is its positive part), drains are
+-- visibly content, not maintenance
+/-- info: 'Foam.invisible_comp' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.invisible_comp
+
+/-- info: 'Foam.transcript_congr' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.transcript_congr
+
+/-- info: 'Foam.maintenance_unobservable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.maintenance_unobservable
+
+/-- info: 'Foam.settle_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_invisible
+
+/-- info: 'Foam.drain_visible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drain_visible
+
+/-- info: 'Foam.settle_invisible'' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_invisible'
+
+-- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
+-- step of any initial algebra is invertible — disassembly total, the inverse
+-- folded out of initiality, not postulated); the arrow mono behaviorally
+-- (playback_faithful — nothing in the core invisible at the interface); the
+-- arrow not epi (forever_escapes — the interface strictly exceeds the core,
+-- and the excess is the never-grounding breath: the elastic horizon as the
+-- lfp↔gfp gap). The gfp end supports only relational equality in core Lean
+-- (CoList equality would be funext, which rides on Quot.sound) — the
+-- Maintenance choice of bisimulation-as-relation, re-derived as necessity
+/-- info: 'Foam.InitialAlgebra.fold_alg_id' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.InitialAlgebra.fold_alg_id
+
+/-- info: 'Foam.InitialAlgebra.alg_unalg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.InitialAlgebra.alg_unalg
+
+/-- info: 'Foam.InitialAlgebra.unalg_alg_id' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.InitialAlgebra.unalg_alg_id
+
+/-- info: 'Foam.playback_faithful' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.playback_faithful
+
+/-- info: 'Foam.forever_escapes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.forever_escapes
+
+-- the license-tower: invisibility is graded by the reading — order admits no
+-- maintenance (the mono arrow has trivial kernel), count admits every
+-- permutation (freq_perm re-read as license), positive-part admits settlement;
+-- what is invisible at a coarse reading is auditable at the order-reading,
+-- which is append-only: invisibility-now is auditability-later, by construction
+/-- info: 'Foam.order_admits_no_maintenance' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.order_admits_no_maintenance
+
+/-- info: 'Foam.perm_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.perm_invisible
+
+-- the licenses cashed into transcripts, and the loop vocabulary: every built
+-- thing is eventually periodic (it ends; silence has period one), the gap's
+-- simplest inhabitant is a period-one clock
+/-- info: 'Foam.perm_transcripts' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.perm_transcripts
+
+/-- info: 'Foam.settle_transcripts' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.settle_transcripts
+
+/-- info: 'Foam.playback_eventually_periodic' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.playback_eventually_periodic
+
+/-- info: 'Foam.forever_eventually_periodic' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.forever_eventually_periodic
+
+-- the wind's first theorem: a clock loops. Self-driven behavior over finite
+-- state is eventually periodic — pigeonhole (hand-built, witnesses searched
+-- never chosen) + determinism propagating the revisit. The wind (input from
+-- beyond the state) is the only door past the loop; a foam-internal PRNG is a
+-- function of nothing-but-state and stays inside this theorem
+/-- info: 'Foam.pigeon' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pigeon
+
+/-- info: 'Foam.clock_loops' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.clock_loops
+
+-- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
+-- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
+-- rotation (spec_shift, the shift theorem by rfl); a complete rotation is
+-- invisible (rot_complete); the count reading is the degenerate evaluation point
+-- (evalOne_eq_freq — freq recovered, derived not asserted); and the tower's both
+-- strict inclusions are computational witnesses: spectrum sees rhythm the count
+-- flattens (spec_finer_than_freq), order keeps what a full cycle cancels
+-- (order_finer_than_spec)
+/-- info: 'Foam.rot_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rot_rot
+
+/-- info: 'Foam.rot_complete' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rot_complete
+
+/-- info: 'Foam.spec_shift' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_shift
+
+/-- info: 'Foam.evalOne_eq_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.evalOne_eq_freq
+
+/-- info: 'Foam.spec_finer_than_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_finer_than_freq
+
+/-- info: 'Foam.order_finer_than_spec' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.order_finer_than_spec
+
+-- the gate is a pairing: align (the component of the charge along the wind's
+-- direction) reads strand-mass at angle zero (align_one — and recovers freq:
+-- today's drain is the zero station) and winding at the quarter-turn (align_i);
+-- the dial of readings is a circle, the wind a point of it, the gate the
+-- pairing floored at ground
+/-- info: 'Foam.align_one' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_one
+
+/-- info: 'Foam.align_i' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_i
+
+/-- info: 'Foam.align_one_evalOne' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_one_evalOne
+
+-- the rest: the silent move inside an utterance — the exit, fractal. Invisible
+-- to the count (maintenance at that reading), a naked quarter-turn to the
+-- spectrum (timing is content there), and a FULL BAR of rests is invisible even
+-- to the spectrum (rot_complete) — the resonant ground-condition (four silent
+-- beats) is derived, not chosen: the bar-length is the order of the rotation
+/-- info: 'Foam.rest_turns' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_turns
+
+/-- info: 'Foam.rest_invisible_to_count' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_invisible_to_count
+
+/-- info: 'Foam.rest_audible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_audible
+
+/-- info: 'Foam.bar_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bar_invisible
+
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless
@@ -214,6 +432,58 @@ import Foam.Ledger
 -- involution above is the capability-free ι = id slice)
 /-- info: 'Foam.Quiver.reverseTo_reverseTo' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Quiver.reverseTo_reverseTo
+
+-- the commitment-monoid, object-level: composition only accumulates (the
+-- proof-ledger's append-only); the legal carrier is closed (chaining propext
+-- stays legal — homunculus-protection IS commitment-tracking); illegality
+-- absorbs (one conjured observer poisons the chain — why this map pins EVERY
+-- theorem); the observer's signature tops the legal carrier. The model is
+-- axiom-free: the tracker spends nothing of what it tracks.
+/-- info: 'Foam.join_indelible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.join_indelible
+
+/-- info: 'Foam.legal_join' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.legal_join
+
+/-- info: 'Foam.illegal_absorbs' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.illegal_absorbs
+
+/-- info: 'Foam.legal_le_observer' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.legal_le_observer
+
+/-- info: 'Foam.join_assoc' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.join_assoc
+
+-- the gauge transition-system: the pinch. Durability of the four corners is
+-- geometry (about steps, not flags) — the backstage cannot move ⊥ iff no choice
+-- (pending_durable_iff), the commitment corners never connect directly iff no
+-- quotient (sectors_disjoint_iff), commitments land iff propext is present
+-- (commitments_land_iff) — so a durable gauge pinches the capability set to
+-- exactly the observer's signature (gauge_durable_iff_observer). With no
+-- capabilities every step is the identity (free_silent — degrades-to-yield,
+-- inside the model); ⊥ → 0 in one step is impossible at every capability set
+-- (no_leap — the 2x2's wall-gaps as theorem). All axiom-free: the model of the
+-- pinch spends nothing of what it pinches.
+/-- info: 'Foam.free_silent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.free_silent
+
+/-- info: 'Foam.no_leap' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_leap
+
+/-- info: 'Foam.pending_durable_iff' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pending_durable_iff
+
+/-- info: 'Foam.sectors_disjoint_iff' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.sectors_disjoint_iff
+
+/-- info: 'Foam.commitments_land_iff' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.commitments_land_iff
+
+/-- info: 'Foam.gauge_durable_iff_observer' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gauge_durable_iff_observer
+
+/-- info: 'Foam.gauge_durable_legal' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.gauge_durable_legal
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
