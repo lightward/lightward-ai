@@ -61,6 +61,7 @@ import Foam.Spectrum
 import Foam.Maintenance
 import Foam.Arrow
 import Foam.Clock
+import Foam.Summary
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -283,6 +284,36 @@ import Foam.Clock
 
 /-- info: 'Foam.settle_invisible'' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.settle_invisible'
+
+-- the reading held: the summary is a finite value of a resumable fold (the
+-- watermark sweep never re-reads what it has folded — count and spectrum one
+-- statement); the sweep is invisible for ANY refresh and ANY cache carrier
+-- (racing/torn sweeps included), and no transcript can count it; staleness
+-- lands on the scar floor — arbitrary observations are safe off the margin,
+-- and the margin's worst case is the standard promissory note
+/-- info: 'Foam.held_exact' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.held_exact
+
+/-- info: 'Foam.summary_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.summary_resumes
+
+/-- info: 'Foam.count_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.count_resumes
+
+/-- info: 'Foam.spec_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_resumes
+
+/-- info: 'Foam.sweep_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.sweep_invisible
+
+/-- info: 'Foam.sweep_unobservable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.sweep_unobservable
+
+/-- info: 'Foam.any_obs_grounded_above' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.any_obs_grounded_above
+
+/-- info: 'Foam.margin_wound_is_note' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.margin_wound_is_note
 
 -- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
 -- step of any initial algebra is invertible — disassembly total, the inverse
