@@ -60,6 +60,7 @@ import Foam.Gauge
 import Foam.Spectrum
 import Foam.Maintenance
 import Foam.Arrow
+import Foam.Clock
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -330,6 +331,16 @@ import Foam.Arrow
 /-- info: 'Foam.forever_eventually_periodic' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.forever_eventually_periodic
 
+-- the wind's first theorem: a clock loops. Self-driven behavior over finite
+-- state is eventually periodic — pigeonhole (hand-built, witnesses searched
+-- never chosen) + determinism propagating the revisit. The wind (input from
+-- beyond the state) is the only door past the loop; a foam-internal PRNG is a
+-- function of nothing-but-state and stays inside this theorem
+/-- info: 'Foam.pigeon' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pigeon
+
+/-- info: 'Foam.clock_loops' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.clock_loops
 
 -- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
 -- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
