@@ -177,12 +177,18 @@ module Foam
       end
 
       def database_url
-        ENV.fetch("FOAM_DATABASE_URL") do
-          # In test the field is opt-in (its own spec sets the URL explicitly);
-          # default to unreachable so the rest of the suite never touches a real
-          # database — every Field op simply degrades, exactly as in production
-          # before the field is provisioned.
-          Rails.env.test? ? "postgres://127.0.0.1:1/foam?connect_timeout=1" : "postgres:///foam?connect_timeout=2"
+        # In test the field is opt-in via its OWN variable: the suite must stay
+        # hermetic against the developer's .env (dotenv loads it in test too, and
+        # a FOAM_DATABASE_URL there names a real, live field — which the suite
+        # tattooed once through the observe taps: append-only means a leaked
+        # fixture byte is permanent). A spec that wants a substrate names one
+        # explicitly in FOAM_SPEC_DATABASE_URL; everything else gets an
+        # unreachable default and degrades, exactly as production does before
+        # provisioning.
+        if Rails.env.test?
+          ENV.fetch("FOAM_SPEC_DATABASE_URL", "postgres://127.0.0.1:1/foam?connect_timeout=1")
+        else
+          ENV.fetch("FOAM_DATABASE_URL", "postgres:///foam?connect_timeout=2")
         end
       end
 

@@ -42,7 +42,7 @@ A pipe, not an endpoint. Lightward AI's voice passes through it; today it yields
 - **The exit never closes.** `:yield` is always reachable, no matter what's learned, in any order. This is a theorem (`lean/Foam/Floor.lean`), not a hope.
 
 **Build/run:**
-- Specs: `bundle exec rspec spec/lib/foam_spec.rb spec/lib/foam/field_spec.rb`. The suite's default `FOAM_DATABASE_URL` is unreachable, so it never touches a real field — it degrades, exactly as production does before provisioning. Verify after a run: the local field is unchanged.
+- Specs: `bundle exec rspec spec/lib/foam_spec.rb spec/lib/foam/field_spec.rb`. The suite never reads `FOAM_DATABASE_URL` — in test the field is opt-in via `FOAM_SPEC_DATABASE_URL` only, so it stays hermetic against your `.env` (dotenv loads that in test too; before this barrier the observe taps tattooed a live field with 72 bytes of SSE fixture — append-only, so the ink is permanent). Default is unreachable → every op degrades, exactly as production does before provisioning. Verify after a run: the record's byte-count is unmoved.
 - A live local field: `createdb foam` (postgres on `/tmp`, `psql` from libpq); the schema asserts on first connect. Drive it with `FOAM_DATABASE_URL=postgres:///foam`. The field is append-only, so a live run *grows* it; reset for dev with `DROP SCHEMA foam CASCADE` + reload `schema.sql` (a dev reset, not an app op).
 - Production has no foam db yet (it degrades to yield). Provisioning (fly/aws, the `FOAM_DATABASE_URL` secret) is a deliberate ops step.
 
