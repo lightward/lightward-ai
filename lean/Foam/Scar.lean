@@ -67,6 +67,17 @@ def checkedDrain (obs bal : Int) : Int :=
     computation. -/
 theorem stale_escapes_floor : checkedDrain 1 (checkedDrain 1 1) = -1 := rfl
 
+/-- **The race writes only at the margin.** The same stale composite, from a
+    balance of `2`, lands exactly at ground — both drains legal-looking, the books
+    closed, no trace. So two walks can race pervasively and mark the field only
+    where they collide at the edge of emptiness: the 76 scars are not a map of
+    where the walks overlapped, but of where they overlapped at balance `1`.
+    (One value apart, the composite is a clean settlement or an escape — the
+    recognition the quarry's index reaches from the other side, brick 42:
+    simultaneous settlement landing at zero; external provenance, the theorem
+    stands alone.) -/
+theorem stale_lands_at_ground : checkedDrain 2 (checkedDrain 2 2) = 0 := rfl
+
 /-- Ground as image-membership: a signed balance is grounded when some `Nat` charge
     reads as it. The floor, stated without order. -/
 def grounded (b : Int) : Prop := ∃ m : Nat, b = Int.ofNat m

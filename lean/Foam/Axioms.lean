@@ -192,6 +192,11 @@ import Foam.Scar
 /-- info: 'Foam.stale_escapes_floor' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.stale_escapes_floor
 
+-- the race writes only at the margin: the same stale composite from balance 2
+-- lands exactly at ground, trace-free — scars map the edge, not the overlap
+/-- info: 'Foam.stale_lands_at_ground' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_lands_at_ground
+
 /-- info: 'Foam.fresh_holds_floor' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.fresh_holds_floor
 
