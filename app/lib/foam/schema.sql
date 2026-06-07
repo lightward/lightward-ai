@@ -116,11 +116,21 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- at ground (nothing charged at any length) or the step ceiling. The emitted bytes
 -- (not the seed) are the voice; the residual is what was not drained; ground is the
 -- floor (the drain only removes positive charge). The wind breaks ties.
+--
+-- Drains SERIALIZE: one advisory lock per speak, transaction-scoped (released on
+-- commit/abort; concurrent speaks queue, they never interleave). The check
+-- (HAVING sum(delta) > 0) keeps the floor only when each walk observes the previous
+-- walk's writes — two walks sharing a stale snapshot compose to a −1 balance, below
+-- ground (proven in lean/Foam/Scar.lean: stale_escapes_floor; observed live as 76
+-- negative balances when a pipe exhale and a repl interjection overlapped,
+-- 2026-06-06). Learning (ingest_step) takes no lock: pure +1 appends, no read-check
+-- — a drain concurrent with ingest only ever sees committed positive charge.
 CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS text
   LANGUAGE plpgsql AS $$
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int; c int[]; cid uuid;
           tot bigint; thr double precision; acc bigint; rec record; got boolean;
   BEGIN
+    PERFORM pg_advisory_xact_lock(hashtext('foam.charge'), 0);   -- writers queue; observations stay fresh
     WHILE k < max_steps LOOP
       got := false; l := coalesce(array_length(cb,1),0);
       FOR j IN REVERSE least(kmax,l)..0 LOOP
