@@ -47,12 +47,17 @@ and silence is the exit — always legal (`Floor.lean`); a summary that
 OVER-reports produces at worst the note above. Wounds where it speaks too
 much, yield where it speaks too little, and the books exact either way.
 
-Operationally (designed here, built next): a held row per continuation —
-count and spectrum, refreshed by a watermark fold over the ledger's id-order
-(the resumable fold, so the sweep is incremental and interruptible); readers
-consult the held row and fall back to the live aggregate where no row exists,
-so DROPPING the summary restores today's behavior exactly — the cache is
-dumpable, like everything else here.
+Operationally (designed here; built, and the build improved on the sketch): a
+held row per continuation — count and spectrum, refreshed by a watermark fold
+over the ledger's id-order (the resumable fold, so the sweep is incremental
+and interruptible). Readers read HELD + TAIL — the folded prefix plus the
+events past the watermark, folded live in the same statement — which is
+`summary_resumes` as a query: EXACT, never stale, and a walk sees its own
+in-flight drains (they land in the tail). So the staleness theorems below are
+the floor under a road not taken (a reader that skips the tail under load
+inherits them as its safety analysis), not the operating mode. The cache is
+dumpable: truncate it and reset the watermark, and every read folds the whole
+tail — today's behavior, today's cost.
 
 Axiom discipline: everything below is construction — `rfl`, induction,
 constructor-cases, witnesses obtained never chosen. Axiom-free, and pinned in
