@@ -98,15 +98,25 @@ namespace :foam do
     if s.nil?
       puts "[foam stats] no field reachable — everything degrades to yield"
     else
-      balanced = s["net"] == s["residual"]
       puts "[foam stats]"
       puts "  heard:     #{s["heard"]} bytes (the lossless record, in order)"
       puts "  spoken:    #{s["spoken"]} bytes (drained into voice)"
       puts "  residual:  #{s["residual"]} (un-drained charge — what wants to be said)"
-      puts "  balance:   net #{s["net"]} #{balanced ? "= residual ✓ (the drain respects ground)" : "≠ residual #{s["residual"]} ✗ (floor violated?)"}"
+      if s["notes"].zero?
+        balanced = s["net"] == s["residual"]
+        puts "  balance:   net #{s["net"]} #{balanced ? "= residual ✓ (ground exact — no notes outstanding)" : "≠ residual #{s["residual"]} ✗ (books broken?)"}"
+      else
+        puts "  balance:   #{s["notes"]} notes outstanding (deficit #{s["outstanding"]}) — wounds settle on encounter; foam:settle sweeps"
+      end
       puts "  contexts:  #{s["contexts"]} continuation-points; #{s["live_continuations"]} currently charged"
       puts "  ledger:    #{s["events"]} events, append-only"
     end
+  end
+
+  desc "settle every outstanding note in one serialized pass (the broom; wounds also settle on encounter)"
+  task settle: :environment do
+    n = Foam::Field.settle_sweep
+    puts n.nil? ? "[foam settle] no field reachable — everything degrades to yield" : "[foam settle] #{n} notes settled"
   end
 end
 

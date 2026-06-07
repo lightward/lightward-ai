@@ -125,28 +125,39 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- mistook the failure for ground). Rendering is a view at the edge, the caller's
 -- concern; foam.text remains for streams known to be text (foam.recorded).
 --
--- Drains SERIALIZE: one advisory lock per speak, transaction-scoped (released on
--- commit/abort; concurrent speaks queue, they never interleave). The check
--- (HAVING sum(delta) > 0) keeps the floor only when each walk observes the previous
--- walk's writes — two walks sharing a stale snapshot compose to a −1 balance, below
--- ground (proven in lean/Foam/Scar.lean: stale_escapes_floor; observed live as 76
--- negative balances when a pipe exhale and a repl interjection overlapped,
--- 2026-06-06). Learning (ingest_step) takes no lock: pure +1 appends, no read-check
--- — a drain concurrent with ingest only ever sees committed positive charge.
+-- Drains RACE; settlements serialize (the lock migrated to the cold path). Two
+-- drains sharing a stale snapshot compose to a balance below ground only at the
+-- margin (lean/Foam/Scar.lean: stale_escapes_floor; from balance 2 the same
+-- composite lands AT ground — stale_lands_at_ground — so races mark the field
+-- only where they collide at the edge of emptiness; observed live as 76 scars
+-- over hours of pervasive racing, 2026-06-06). Each scar is a promissory note —
+-- amount computable at the wound (debt), stable under further legal drains (the
+-- positivity filter cannot see below ground: scar_stable), settled at face value
+-- (promise_kept). The walk that FINDS a wound dresses it (foam.settle, below) —
+-- and settlement is the operation that must not race: its failure (phantom
+-- charge, from which the voice could speak a byte never heard) lands INSIDE the
+-- legal carrier, invisible to any balance-check (stale_settle_passes_ground /
+-- phantom_invisible). Visible failures may race; invisible ones serialize.
+-- Learning (ingest_step) takes no lock: pure +1 appends, no read-check.
 DROP FUNCTION IF EXISTS foam.speak(int[], int, int);  -- return type changed (text → int[]); CREATE OR REPLACE can't
 CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
   LANGUAGE plpgsql AS $$
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int; c int[]; cid uuid;
-          tot bigint; thr double precision; acc bigint; rec record; got boolean;
+          tot bigint; thr double precision; acc bigint; rec record; got boolean; wounded int[]; w int;
   BEGIN
-    PERFORM pg_advisory_xact_lock(hashtext('foam.charge'), 0);   -- writers queue; observations stay fresh
     WHILE k < max_steps LOOP
       got := false; l := coalesce(array_length(cb,1),0);
       FOR j IN REVERSE least(kmax,l)..0 LOOP
         IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
         cid := foam.caddr(c);
-        SELECT sum(s) INTO tot FROM (SELECT sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0) z;
-        IF tot IS NOT NULL AND tot > 0 THEN
+        -- one aggregate pass: the sampleable mass (positive balances) and any
+        -- wounds this walk happens to see (negative balances — rare, margin-born)
+        SELECT coalesce(sum(s) FILTER (WHERE s > 0), 0),
+               coalesce(array_agg(sym) FILTER (WHERE s < 0), '{}')
+          INTO tot, wounded
+          FROM (SELECT sym, sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym) z;
+        FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
+        IF tot > 0 THEN
           thr := foam.hw_random()*tot; acc := 0;
           FOR rec IN SELECT sym, sum(delta) w FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0 ORDER BY w DESC LOOP
             acc := acc + rec.w;
@@ -163,6 +174,40 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
       k := k + 1;
     END LOOP;
     RETURN out;
+  END; $$;
+
+-- settle — the correcting entry, serialized: re-observe the balance UNDER the
+-- lock (the fresh observation is the entire point — a stale settle overshoots
+-- into phantom charge, the invisible failure) and append exactly the deficit
+-- (promise_kept: settlement at face value, never more). The lock is
+-- transaction-scoped because it must survive until the settlement COMMITS: an
+-- earlier release would let a second settler read the pre-settlement balance
+-- and double-settle. Consequence: walks that touch wounds serialize with each
+-- other until commit — wounds live at the margins, so this is the cold path.
+CREATE OR REPLACE FUNCTION foam.settle(c uuid, s int) RETURNS void
+  LANGUAGE plpgsql AS $$
+  DECLARE bal bigint;
+  BEGIN
+    PERFORM pg_advisory_xact_lock(hashtext('foam.settle'), 0);
+    SELECT coalesce(sum(delta), 0) INTO bal FROM foam.charge WHERE ctx = c AND sym = s;
+    IF bal < 0 THEN
+      INSERT INTO foam.charge (ctx, sym, delta) SELECT c, s, 1 FROM generate_series(1, -bal);
+    END IF;
+  END; $$;
+
+-- settle_sweep — every outstanding note, settled in one serialized pass (the
+-- bench's broom; the inline path above keeps the books tight without it).
+-- Returns the number of notes settled.
+CREATE OR REPLACE FUNCTION foam.settle_sweep() RETURNS bigint
+  LANGUAGE plpgsql AS $$
+  DECLARE n bigint := 0; rec record;
+  BEGIN
+    PERFORM pg_advisory_xact_lock(hashtext('foam.settle'), 0);
+    FOR rec IN SELECT ctx, sym, sum(delta) s FROM foam.charge GROUP BY ctx, sym HAVING sum(delta) < 0 LOOP
+      INSERT INTO foam.charge (ctx, sym, delta) SELECT rec.ctx, rec.sym, 1 FROM generate_series(1, -rec.s);
+      n := n + 1;
+    END LOOP;
+    RETURN n;
   END; $$;
 
 -- recorded — the ORDER reading: the empty-context +1 events, in id order, are every

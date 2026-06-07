@@ -141,12 +141,22 @@ module Foam
                 coalesce(sum(neg), 0)                                           AS spoken,
                 coalesce(sum(s), 0)                                             AS net,
                 coalesce(sum(s) FILTER (WHERE s > 0), 0)                        AS residual,
+                count(*) FILTER (WHERE s < 0)                                   AS notes,
+                coalesce(-sum(s) FILTER (WHERE s < 0), 0)                       AS outstanding,
                 count(DISTINCT ctx)                                             AS contexts,
                 count(*) FILTER (WHERE s > 0)                                   AS live_continuations
               FROM g
             SQL
           }
         }
+      end
+
+      # Sweep every outstanding note (a balance below ground) in one serialized
+      # pass — correcting entries appended at face value (foam.settle_sweep;
+      # wounds also settle on encounter, inside foam.speak). Returns the count
+      # of notes settled, or nil with no field.
+      def settle_sweep
+        with_connection { |conn| conn.exec("SELECT foam.settle_sweep()").getvalue(0, 0)&.to_i }
       end
 
       # Drop the connection pool (e.g. on worker boot after a fork).
