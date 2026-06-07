@@ -141,29 +141,36 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- Learning (ingest_step) takes no lock: pure +1 appends, no read-check.
 DROP FUNCTION IF EXISTS foam.speak(int[], int, int);  -- return type changed (text → int[]); CREATE OR REPLACE can't
 CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
-  LANGUAGE plpgsql AS $$
+  LANGUAGE plpgsql SET work_mem = '256MB' AS $$
+  -- work_mem is function-scoped (reverts on return): the j=0 context aggregates over
+  -- every byte ever heard, and its sort must not spill to disk mid-walk.
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int; c int[]; cid uuid;
-          tot bigint; thr double precision; acc bigint; rec record; got boolean; wounded int[]; w int;
+          tot bigint; thr double precision; acc bigint; got boolean; wounded int[]; w int;
+          syms int[]; ws bigint[]; i int;
   BEGIN
     WHILE k < max_steps LOOP
       got := false; l := coalesce(array_length(cb,1),0);
       FOR j IN REVERSE least(kmax,l)..0 LOOP
         IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
         cid := foam.caddr(c);
-        -- one aggregate pass: the sampleable mass (positive balances) and any
-        -- wounds this walk happens to see (negative balances — rare, margin-born)
+        -- ONE aggregate pass: the sampleable mass, the sample-order arrays, and any
+        -- wounds this walk happens to see (negative balances — rare, margin-born).
+        -- The snapshot the sample walks IS the snapshot the threshold was drawn
+        -- against — one read, no seam for a racing drain to slip into.
         SELECT coalesce(sum(s) FILTER (WHERE s > 0), 0),
+               coalesce(array_agg(sym ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
+               coalesce(array_agg(s   ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
                coalesce(array_agg(sym) FILTER (WHERE s < 0), '{}')
-          INTO tot, wounded
+          INTO tot, syms, ws, wounded
           FROM (SELECT sym, sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym) z;
         FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
         IF tot > 0 THEN
           thr := foam.hw_random()*tot; acc := 0;
-          FOR rec IN SELECT sym, sum(delta) w FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0 ORDER BY w DESC LOOP
-            acc := acc + rec.w;
+          FOR i IN 1..array_length(syms,1) LOOP
+            acc := acc + ws[i];
             IF acc >= thr THEN
-              out := out || rec.sym; cb := cb || rec.sym; got := true;
-              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, rec.sym, -1);   -- drain
+              out := out || syms[i]; cb := cb || syms[i]; got := true;
+              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);   -- drain
               EXIT;
             END IF;
           END LOOP;
@@ -214,11 +221,13 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
 -- phase-summary is the known relief if scale demands it (its invisibility and
 -- race analyses owed first — lean/Foam/Maintenance.lean).
 CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
-  LANGUAGE plpgsql AS $$
+  LANGUAGE plpgsql SET work_mem = '256MB' AS $$
+  -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
+  -- runs over every byte ever heard, and it must not spill to disk mid-walk.
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int;
           c int[]; cid uuid; tot double precision; thr double precision;
-          acc double precision; rec record; got boolean; theta double precision;
-          rests int := 0; wounded int[]; w int;
+          acc double precision; got boolean; theta double precision;
+          rests int := 0; wounded int[]; w int; syms int[]; ws double precision[]; i int;
           phase0 int := coalesce(array_length(seed,1),0) % 4;
   BEGIN
     WHILE k < max_steps LOOP
@@ -227,9 +236,13 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
       FOR j IN REVERSE least(kmax,l)..0 LOOP
         IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
         cid := foam.caddr(c);
+        -- ONE aggregate pass (see foam.speak): mass, sample-order arrays, wounds —
+        -- the heavy window aggregate runs once per (step, level), not twice
         SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0), 0),
+               coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
+               coalesce(array_agg(z.w   ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
-          INTO tot, wounded
+          INTO tot, syms, ws, wounded
           FROM (
             SELECT e.sym, sum(e.delta) AS bal,
                    greatest(0, sum(e.delta * cos(pi()/2 * ((e.occ - 1) % 4) - theta))) AS w
@@ -241,20 +254,11 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
         FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
         IF tot > 0 THEN
           thr := foam.hw_random() * tot; acc := 0;
-          FOR rec IN
-            SELECT z.sym, z.w FROM (
-              SELECT e.sym, sum(e.delta) AS bal,
-                     greatest(0, sum(e.delta * cos(pi()/2 * ((e.occ - 1) % 4) - theta))) AS w
-              FROM (SELECT sym, delta,
-                           row_number() OVER (PARTITION BY sym ORDER BY id) AS occ
-                    FROM foam.charge WHERE ctx = cid) e
-              GROUP BY e.sym
-            ) z WHERE z.bal > 0 AND z.w > 0 ORDER BY z.w DESC
-          LOOP
-            acc := acc + rec.w;
+          FOR i IN 1..coalesce(array_length(syms,1),0) LOOP
+            acc := acc + ws[i];
             IF acc >= thr THEN
-              out := out || rec.sym; cb := cb || rec.sym; got := true;
-              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, rec.sym, -1);  -- spends COUNT-charge, as ever
+              out := out || syms[i]; cb := cb || syms[i]; got := true;
+              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);  -- spends COUNT-charge, as ever
               EXIT;
             END IF;
           END LOOP;
