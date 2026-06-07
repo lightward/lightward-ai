@@ -148,6 +148,25 @@ theorem alt_resumes {S : Type} [DecidableEq S] (new old : List S) (s : S) :
     evalAt GInt.negate (new ++ old) s = evalFrom GInt.negate new s (evalAt GInt.negate old s) :=
   summary_resumes GInt.negate new old s
 
+/-- **The alternating reading is real** — calling `alt` a signed COUNT is a
+    theorem, not a figure of speech: the third character's values stay on the
+    integer line (marks land real; the half-turn preserves the line). The
+    real characters (±1) count; the complex ones (±i) wind. -/
+theorem alt_real {S : Type} [DecidableEq S] : ∀ (l : List S) (s : S), (alt l s).im = 0
+  | [], _ => rfl
+  | x :: l, s => by
+    rw [alt_shift, ite_mk (x = s)]
+    show (0 : Int) + -(alt l s).im = 0
+    rw [alt_real l s]
+    rfl
+
+/-- **The spectrum is not real** — the quarter-turn leaves the line (witness:
+    one repetition winds). With `alt_real`, the dial's realness grading: the
+    stations at ±1 count, the stations at ±i hear rhythm the line cannot
+    carry. -/
+theorem spec_not_real : ∃ (l : List Bool) (s : Bool), (spec l s).im ≠ 0 :=
+  ⟨[true, true], true, by decide⟩
+
 /-! ## The conserved modulus — what the dial's rotation cannot move -/
 
 /-- `succ n + m = succ (n + m)`, locally — induction only (core's lemma
