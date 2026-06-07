@@ -215,6 +215,9 @@ import Foam.Clock
 /-- info: 'Foam.stale_lands_at_ground' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.stale_lands_at_ground
 
+/-- info: 'Foam.stale_safe_off_margin' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stale_safe_off_margin
+
 /-- info: 'Foam.fresh_holds_floor' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.fresh_holds_floor
 

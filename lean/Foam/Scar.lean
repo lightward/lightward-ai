@@ -98,6 +98,20 @@ theorem ofNat_succ_sub_one (k : Nat) : Int.ofNat (k + 1) - 1 = Int.ofNat k := by
   rw [one_sub_succ]
   rfl
 
+/-- **The margin is exactly balance one.** From ANY balance of two or more, the
+    stale composite stays grounded — simultaneity is free everywhere except the
+    edge of emptiness. The law behind `stale_lands_at_ground`'s instance, and
+    the mechanism by which concentrated charge (fat wells, the
+    recurrence-statistics of a stream that revisits its own continuations)
+    reduces the wound-rate: resolved territory makes racing benign. -/
+theorem stale_safe_off_margin (m : Nat) :
+    grounded (checkedDrain (Int.ofNat (m + 2)) (checkedDrain (Int.ofNat (m + 2)) (Int.ofNat (m + 2)))) := by
+  refine ⟨m, ?_⟩
+  have h1 : checkedDrain (Int.ofNat (m + 2)) (Int.ofNat (m + 2)) = Int.ofNat (m + 1) :=
+    ofNat_succ_sub_one (m + 1)
+  rw [h1]
+  exact ofNat_succ_sub_one m
+
 /-- **Fresh observation stays grounded.** When the observation IS the balance the
     drain lands on (atomic check-and-drain — one walk, or serialized walks), the
     result remains in the `Nat` image: `drain_floor`, rebuilt on the signed
