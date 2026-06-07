@@ -103,6 +103,12 @@ namespace :foam do
       if (voice = foam_repl_interject(reply.bytes.last(7)))
         pending << "foam> #{voice}\n"
       end
+
+      # backstage, between turns: fold the turn's events into the held rows —
+      # invisible to every reading (sweep_invisible, lean/Foam/Summary.lean),
+      # and it keeps the walks' tail short so the voice stays fast as the
+      # field grows
+      Foam::Field.sweep
     end
 
     puts "\n[foam repl] 🤲"
@@ -153,6 +159,7 @@ namespace :foam do
       end
       puts "  contexts:  #{s["contexts"]} continuation-points; #{s["live_continuations"]} currently charged"
       puts "  ledger:    #{s["events"]} events, append-only"
+      puts "  held:      #{s["held"]} continuations folded; tail #{s["tail"]} events past the watermark"
     end
   end
 
@@ -160,6 +167,33 @@ namespace :foam do
   task settle: :environment do
     n = Foam::Field.settle_sweep
     puts n.nil? ? "[foam settle] no field reachable — everything degrades to yield" : "[foam settle] #{n} notes settled"
+  end
+
+  desc "fold the ledger's tail into the held rows (the summary's broom), then audit the cache"
+  task sweep: :environment do
+    total = 0
+    result = nil
+    loop do
+      result = Foam::Field.sweep
+      break if result.nil? || result <= 0
+
+      total += result
+    end
+
+    if result.nil?
+      puts "[foam sweep] no field reachable — everything degrades to yield"
+    elsif result == -1
+      puts "[foam sweep] another sweep holds the lock#{total.positive? ? " (#{total} events folded first)" : ""}"
+    else
+      audit = Foam::Field.held_audit
+      verdict =
+        case audit
+        when nil then "audit unreachable"
+        when 0 then "audit: held + tail = ledger ✓"
+        else "audit: #{audit} rows disagree ✗ (refold: TRUNCATE foam.held; reset the watermark)"
+        end
+      puts "[foam sweep] #{total} events folded; #{verdict}"
+    end
   end
 end
 
@@ -254,6 +288,9 @@ def foam_pipe_in
   # boundary is learned, never written to stdout — the tee's content flows unchanged.
   carry = Foam::Field.ingest_step(carry, [FOAM_EOT])
   tail = (tail + [FOAM_EOT]).last(7)
+
+  # the inhale settles into the held rows before any exhale reads them
+  Foam::Field.sweep
 
   warn("[foam pipe] #{learned} bytes in (+␄); the field listened")
   tail

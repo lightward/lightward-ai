@@ -136,7 +136,9 @@ module Foam
       # wants to be said), net (the signed sum; equal to residual while the drain
       # respects ground, which is the live check of lean/Foam/Drain.lean's floor),
       # contexts and live continuations (the model's breadth), events (the append-only
-      # ledger's size). nil with no field.
+      # ledger's size), held (continuations folded into the summary) and tail (events
+      # past the watermark — the staleness gauge the sweep cadence answers to). The
+      # conservation check stays ledger-true, deliberately un-cached. nil with no field.
       def stats
         # One pass over the ledger (group once, derive everything from the grouped
         # relation), with work_mem headroom so the hash aggregate over millions of
@@ -165,7 +167,10 @@ module Foam
                 count(*) FILTER (WHERE s < 0)                                   AS notes,
                 coalesce(-sum(s) FILTER (WHERE s < 0), 0)                       AS outstanding,
                 count(DISTINCT ctx)                                             AS contexts,
-                count(*) FILTER (WHERE s > 0)                                   AS live_continuations
+                count(*) FILTER (WHERE s > 0)                                   AS live_continuations,
+                (SELECT count(*) FROM foam.held)                                AS held,
+                (SELECT count(*) FROM foam.charge c2
+                  WHERE c2.id > (SELECT watermark FROM foam.sweep))             AS tail
               FROM g
             SQL
           }
@@ -178,6 +183,35 @@ module Foam
       # of notes settled, or nil with no field.
       def settle_sweep
         with_connection { |conn| conn.exec("SELECT foam.settle_sweep()").getvalue(0, 0)&.to_i }
+      end
+
+      # Fold the ledger's unfolded tail into the held rows, one batched watermark
+      # step (foam.sweep_step ← lean/Foam/Summary.lean: summary_resumes — the fold
+      # never re-reads what it has folded). Fences first: a momentary EXCLUSIVE
+      # lock on the ledger waits out in-flight ingests, so every id at or below
+      # the fence is DECIDED and the watermark can never pass an event still in
+      # flight (a stranded event would go silent in the generative readings —
+      # safe, but everything contributes is the ledger's soul). The fence holds
+      # for one max(id) read; the fold runs unfenced. Returns events folded
+      # (0 = caught up, -1 = another sweep holds the lock), nil with no field.
+      def sweep(batch = 200_000)
+        hi = with_connection { |conn|
+          conn.transaction {
+            conn.exec("LOCK TABLE foam.charge IN EXCLUSIVE MODE")
+            conn.exec("SELECT max(id) FROM foam.charge").getvalue(0, 0)
+          }
+        }
+        with_connection { |conn|
+          conn.exec_params("SELECT foam.sweep_step($1::bigint, $2)", [hi, batch]).getvalue(0, 0)&.to_i
+        }
+      end
+
+      # The cache's self-audit: (held + tail) recomputed against the whole ledger,
+      # both registers, every continuation — 0 disagreeing rows is summary_resumes
+      # checked live. Costs a full ledger pass (the pulse costs what the body
+      # weighs). nil with no field.
+      def held_audit
+        with_connection { |conn| conn.exec("SELECT foam.held_audit()").getvalue(0, 0)&.to_i }
       end
 
       # Drop the connection pool (e.g. on worker boot after a fork).

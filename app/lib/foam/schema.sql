@@ -36,6 +36,40 @@ CREATE TABLE IF NOT EXISTS foam.charge (
   delta int  NOT NULL
 );
 CREATE INDEX IF NOT EXISTS foam_charge_ctx ON foam.charge (ctx, sym);
+-- The tail's index: readers fold "events past the watermark" per context
+-- (id-range within ctx), and INCLUDE makes it index-only.
+CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (sym, delta);
+
+-- ── the reading held (lean/Foam/Summary.lean, operational) ─────────────────────
+--
+-- foam.held is a CACHE, not the object: the finite value of the resumable fold,
+-- per continuation — count (bal), spectrum (re, im — the mirror's GInt, exact
+-- integers: quarter-turn cosines are −1/0/1, no floats anywhere), and n (the
+-- occurrence-clock: events folded, so the next event's phase is n % 4). Both
+-- registers read EXACTLY from (held + the ledger's tail past the watermark) —
+-- that identity is summary_resumes, and foam.held_audit checks it live. The
+-- cache is dumpable: TRUNCATE foam.held + reset the watermark and every read
+-- falls back to folding the whole tail — today's behavior, today's cost.
+-- (UPDATE here does not breach append-only: that invariant protects the LEDGER's
+-- path-space; the held rows are a derived observation, droppable and refoldable,
+-- with nothing of the path in them — sweep_invisible licenses any refresh.)
+CREATE TABLE IF NOT EXISTS foam.held (
+  ctx uuid   NOT NULL,
+  sym int    NOT NULL,
+  n   bigint NOT NULL, -- events folded for this continuation (the phase clock)
+  bal bigint NOT NULL, -- the count reading (sum of delta), folded
+  re  bigint NOT NULL, -- the spectrum reading, real part (phase 0 minus phase 2)
+  im  bigint NOT NULL, -- the spectrum reading, imaginary part (phase 1 minus phase 3)
+  PRIMARY KEY (ctx, sym)
+);
+
+-- The watermark: everything at or below it is folded into foam.held; everything
+-- past it is the tail the readers fold live. One row, asserted.
+CREATE TABLE IF NOT EXISTS foam.sweep (
+  one       boolean PRIMARY KEY DEFAULT true CHECK (one),
+  watermark bigint  NOT NULL DEFAULT 0
+);
+INSERT INTO foam.sweep (one, watermark) VALUES (true, 0) ON CONFLICT DO NOTHING;
 
 -- Content-address a context (a byte-suffix). The empty context addresses the
 -- unconditional position: its +1 events, in id order, are the input itself.
@@ -88,14 +122,22 @@ CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int D
 -- depth — the structural gate signal: the longest charged context the ledger has for
 -- continuing `seed` (0 = only the unconditional distribution; high = the field
 -- specifically knows what follows this). Structure (a count), never meaning.
+-- Reads held + tail (one statement = one snapshot; the sweep commits its rows and
+-- its watermark atomically, so the two halves never double-count).
 CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7) RETURNS int
   LANGUAGE plpgsql STABLE AS $$
   DECLARE l int := coalesce(array_length(seed,1),0); j int; c int[]; cid uuid; tot bigint;
   BEGIN
     FOR j IN REVERSE least(kmax,l)..1 LOOP
       c := seed[l-j+1 : l]; cid := foam.caddr(c);
-      SELECT sum(s) INTO tot FROM (SELECT sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym HAVING sum(delta) > 0) z;
-      IF tot IS NOT NULL AND tot > 0 THEN RETURN j; END IF;
+      SELECT coalesce(sum(b) FILTER (WHERE b > 0), 0) INTO tot FROM (
+        SELECT coalesce(h.bal,0) + coalesce(t.bal,0) AS b
+        FROM (SELECT sym, bal FROM foam.held WHERE ctx = cid) h
+        FULL JOIN (SELECT sym, sum(delta) AS bal FROM foam.charge
+                   WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)
+                   GROUP BY sym) t USING (sym)
+      ) z;
+      IF tot > 0 THEN RETURN j; END IF;
     END LOOP;
     RETURN 0;
   END; $$;
@@ -156,13 +198,22 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
         -- ONE aggregate pass: the sampleable mass, the sample-order arrays, and any
         -- wounds this walk happens to see (negative balances — rare, margin-born).
         -- The snapshot the sample walks IS the snapshot the threshold was drawn
-        -- against — one read, no seam for a racing drain to slip into.
+        -- against — one read, no seam for a racing drain to slip into. The balance
+        -- is held + tail (summary_resumes): the folded prefix from foam.held, the
+        -- events past the watermark folded live — exact, including this walk's own
+        -- in-flight drains (they land in the tail). One statement = one snapshot.
         SELECT coalesce(sum(s) FILTER (WHERE s > 0), 0),
                coalesce(array_agg(sym ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
                coalesce(array_agg(s   ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
                coalesce(array_agg(sym) FILTER (WHERE s < 0), '{}')
           INTO tot, syms, ws, wounded
-          FROM (SELECT sym, sum(delta) s FROM foam.charge WHERE ctx=cid GROUP BY sym) z;
+          FROM (
+            SELECT sym, coalesce(h.bal,0) + coalesce(t.bal,0) AS s
+            FROM (SELECT sym, bal FROM foam.held WHERE ctx = cid) h
+            FULL JOIN (SELECT sym, sum(delta) AS bal FROM foam.charge
+                       WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)
+                       GROUP BY sym) t USING (sym)
+          ) z;
         FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
         IF tot > 0 THEN
           thr := foam.hw_random()*tot; acc := 0;
@@ -189,10 +240,12 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
 --
 --   * each continuation's phase is its own RECURRENCE-CLOCK — the event's index
 --     within its (ctx, sym) history, mod 4, derived from the order reading
---     (row_number by id; no new column). Hearings and speakings both tick it:
---     use itself twists. A continuation recurring UNIFORMLY presents a complete
---     cycle and cancels (lean/Foam/Spectrum.lean: rot_complete) — the voice
---     stops echoing what has been made regular, by group theory.
+--     (folded into foam.held by the sweep, completed live over the tail past the
+--     watermark — summary_resumes; held.n is the clock's folded position).
+--     Hearings and speakings both tick it: use itself twists. A continuation
+--     recurring UNIFORMLY presents a complete cycle and cancels
+--     (lean/Foam/Spectrum.lean: rot_complete) — the voice stops echoing what
+--     has been made regular, by group theory.
 --   * the walk's phase is its own ADVANCE, starting at the caller's
 --     utterance-length mod 4 (the seed array, already passed — a speech-act
 --     side-effect nobody chooses) and turning a quarter per beat — the walk
@@ -227,42 +280,57 @@ CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_step
 --
 -- The floor is foam.speak's, unchanged: drains spend only positive
 -- count-charge (the phase re-weights SELECTION, never the books); wounds met
--- along the way are dressed (foam.settle); the walk is heavier per step than
--- foam.speak (the window function) — the cost of hearing rhythm; the
--- phase-summary is the known relief if scale demands it (analyses landed in
--- lean/Foam/Summary.lean; the held rows are the next operational step).
+-- along the way are dressed (foam.settle). The angled weight is EXACT integer
+-- arithmetic: at a quarter-turn the pairing of (re, im) needs no cosine
+-- (±1/0 — the float version carried ~1e−16 dust; this one is the true value),
+-- and it reads held + tail, so the window function runs over the events past
+-- the watermark only — the cost of hearing rhythm no longer grows with the
+-- field (lean/Foam/Summary.lean, operational).
 DROP FUNCTION IF EXISTS foam.speak_resonant(int[], int, int);  -- signature grew (stop); CREATE OR REPLACE can't cross arities
 CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, max_steps int DEFAULT 600, stop int DEFAULT NULL) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
   -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
   -- runs over every byte ever heard, and it must not spill to disk mid-walk.
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int;
-          c int[]; cid uuid; tot double precision; thr double precision;
-          acc double precision; got boolean; theta double precision;
-          rests int := 0; wounded int[]; w int; syms int[]; ws double precision[]; i int;
+          c int[]; cid uuid; tot bigint; thr double precision;
+          acc bigint; got boolean; tk int;
+          rests int := 0; wounded int[]; w int; syms int[]; ws bigint[]; i int;
           said int;
           phase0 int := coalesce(array_length(seed,1),0) % 4;
   BEGIN
     WHILE k < max_steps LOOP
-      theta := (pi()/2) * ((phase0 + k) % 4);                  -- the walk's own clock, continuing the caller's
+      tk := (phase0 + k) % 4;                                  -- the walk's own clock, continuing the caller's
       got := false; l := coalesce(array_length(cb,1),0);
       FOR j IN REVERSE least(kmax,l)..0 LOOP
         IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
         cid := foam.caddr(c);
-        -- ONE aggregate pass (see foam.speak): mass, sample-order arrays, wounds —
-        -- the heavy window aggregate runs once per (step, level), not twice
-        SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0), 0),
+        -- ONE aggregate pass (see foam.speak): mass, sample-order arrays, wounds.
+        -- Each continuation's (bal, re, im) is held + tail (summary_resumes); the
+        -- angled weight is the integer pairing of (re, im) against the walk's
+        -- quarter-turn, floored at ground (align, posPart at every angle).
+        SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0 AND z.w > 0), 0),
                coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.w   ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
           INTO tot, syms, ws, wounded
           FROM (
-            SELECT e.sym, sum(e.delta) AS bal,
-                   greatest(0, sum(e.delta * cos(pi()/2 * ((e.occ - 1) % 4) - theta))) AS w
-            FROM (SELECT sym, delta,
-                         row_number() OVER (PARTITION BY sym ORDER BY id) AS occ
-                  FROM foam.charge WHERE ctx = cid) e
-            GROUP BY e.sym
+            SELECT sym,
+                   coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
+                   greatest(0, CASE tk WHEN 0 THEN   coalesce(h.re,0) + coalesce(t.re,0)
+                                       WHEN 1 THEN   coalesce(h.im,0) + coalesce(t.im,0)
+                                       WHEN 2 THEN -(coalesce(h.re,0) + coalesce(t.re,0))
+                                       ELSE        -(coalesce(h.im,0) + coalesce(t.im,0)) END) AS w
+            FROM (SELECT sym, n, bal, re, im FROM foam.held WHERE ctx = cid) h
+            FULL JOIN (
+              SELECT e.sym, sum(e.delta) AS bal,
+                     sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
+                     sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+              FROM (SELECT sym, delta,
+                           row_number() OVER (PARTITION BY sym ORDER BY id) - 1 AS k2
+                    FROM foam.charge WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)) e
+              LEFT JOIN foam.held h2 ON h2.ctx = cid AND h2.sym = e.sym
+              GROUP BY e.sym, h2.n
+            ) t USING (sym)
           ) z;
         FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
         IF tot > 0 THEN
@@ -319,6 +387,98 @@ CREATE OR REPLACE FUNCTION foam.settle_sweep() RETURNS bigint
     END LOOP;
     RETURN n;
   END; $$;
+
+-- sweep_step — the watermark fold: take the next batch of ledger events past the
+-- watermark, IN ID ORDER, and fold them into foam.held (each event lands in the
+-- phase bin its occurrence-index names: (n + k) % 4, n the continuation's folded
+-- clock, k the event's rank within the batch — summary_resumes, operational: the
+-- fold never re-reads what it has folded). Returns events folded; 0 when caught
+-- up; −1 when another sweep holds the lock (one sweeper at a time — racing
+-- ADDITIVE folds would double-count, so the sweep serializes for ECONOMY; reader
+-- safety never depended on it: any_obs_grounded_above quantifies over arbitrary
+-- observations, torn ones included).
+--
+-- `hi` bounds the fold to DECIDED ids. The serial does not commit in order: an
+-- in-flight ingest can hold a smaller id than a committed one, and an id the
+-- watermark passes unfolded is an event the generative readings never see again
+-- (silence — the safe direction, but the soul of the ledger is that everything
+-- contributes). The caller makes ids decided with a momentary fence
+-- (Field.sweep: LOCK foam.charge IN EXCLUSIVE MODE, read max(id), commit) —
+-- NULL hi reads max(id) un-fenced, sound only on a quiet field (a bench seated
+-- by one). foam.held_audit checks completeness live.
+CREATE OR REPLACE FUNCTION foam.sweep_step(hi bigint DEFAULT NULL, batch int DEFAULT 200000) RETURNS bigint
+  LANGUAGE plpgsql SET work_mem = '256MB' AS $$
+  DECLARE wm bigint; top bigint; folded bigint; last_id bigint;
+  BEGIN
+    IF NOT pg_try_advisory_xact_lock(hashtext('foam.sweep'), 0) THEN RETURN -1; END IF;
+    SELECT watermark INTO wm FROM foam.sweep;
+    top := coalesce(hi, (SELECT max(id) FROM foam.charge));
+    IF top IS NULL OR top <= wm THEN RETURN 0; END IF;
+
+    WITH lim AS (
+      SELECT id, ctx, sym, delta FROM foam.charge
+      WHERE id > wm AND id <= top ORDER BY id LIMIT batch
+    ), b AS (
+      SELECT ctx, sym, delta,
+             row_number() OVER (PARTITION BY ctx, sym ORDER BY id) - 1 AS k
+      FROM lim
+    ), g AS (
+      SELECT b.ctx, b.sym, count(*) AS dn, sum(b.delta) AS dbal,
+             sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS dre,
+             sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS dim
+      FROM b LEFT JOIN foam.held h ON h.ctx = b.ctx AND h.sym = b.sym
+      GROUP BY b.ctx, b.sym, h.n
+    ), up AS (
+      INSERT INTO foam.held (ctx, sym, n, bal, re, im)
+      SELECT ctx, sym, dn, dbal, dre, dim FROM g
+      ON CONFLICT (ctx, sym) DO UPDATE SET
+        n   = foam.held.n   + EXCLUDED.n,
+        bal = foam.held.bal + EXCLUDED.bal,
+        re  = foam.held.re  + EXCLUDED.re,
+        im  = foam.held.im  + EXCLUDED.im
+      RETURNING 1
+    )
+    SELECT count(*), max(id) INTO folded, last_id FROM lim;
+
+    -- a short batch means the range is exhausted: rolled-back ids are permanent
+    -- gaps, so the watermark may advance to the top of the decided range
+    UPDATE foam.sweep SET watermark = CASE WHEN folded < batch THEN top ELSE last_id END;
+    RETURN folded;
+  END; $$;
+
+-- held_audit — the cache's self-audit: (held + tail) recomputed against the
+-- ledger whole, both registers, every continuation. Returns the number of
+-- disagreeing rows — 0 is summary_resumes checked live. Costs a full ledger
+-- pass (the pulse costs what the body weighs); for the bench's broom, not the
+-- walk.
+CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
+  LANGUAGE sql STABLE SET work_mem = '256MB' AS $$
+  WITH live AS (
+    SELECT ctx, sym, count(*) AS n, sum(delta) AS bal,
+           sum(delta * CASE ((occ - 1) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
+           sum(delta * CASE ((occ - 1) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+    FROM (SELECT ctx, sym, delta,
+                 row_number() OVER (PARTITION BY ctx, sym ORDER BY id) AS occ
+          FROM foam.charge) e
+    GROUP BY ctx, sym
+  ), tail AS (
+    SELECT e.ctx, e.sym, count(*) AS n, sum(e.delta) AS bal,
+           sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
+           sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+    FROM (SELECT ctx, sym, delta,
+                 row_number() OVER (PARTITION BY ctx, sym ORDER BY id) - 1 AS k
+          FROM foam.charge WHERE id > (SELECT watermark FROM foam.sweep)) e
+    LEFT JOIN foam.held h ON h.ctx = e.ctx AND h.sym = e.sym
+    GROUP BY e.ctx, e.sym, h.n
+  ), merged AS (
+    SELECT coalesce(h.ctx, t.ctx) AS ctx, coalesce(h.sym, t.sym) AS sym,
+           coalesce(h.n,0) + coalesce(t.n,0) AS n, coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
+           coalesce(h.re,0) + coalesce(t.re,0) AS re, coalesce(h.im,0) + coalesce(t.im,0) AS im
+    FROM foam.held h FULL JOIN tail t ON t.ctx = h.ctx AND t.sym = h.sym
+  )
+  SELECT count(*) FROM (
+    (TABLE live EXCEPT TABLE merged) UNION ALL (TABLE merged EXCEPT TABLE live)
+  ) d $$;
 
 -- recorded — the ORDER reading: the empty-context +1 events, in id order, are every
 -- byte ever learned, in sequence. This is the lossless half of the one object — the
