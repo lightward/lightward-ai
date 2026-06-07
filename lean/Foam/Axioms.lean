@@ -59,6 +59,7 @@ import Foam.Commitment
 import Foam.Gauge
 import Foam.Spectrum
 import Foam.Maintenance
+import Foam.Arrow
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -278,6 +279,30 @@ import Foam.Maintenance
 
 /-- info: 'Foam.settle_invisible'' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.settle_invisible'
+
+-- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
+-- step of any initial algebra is invertible — disassembly total, the inverse
+-- folded out of initiality, not postulated); the arrow mono behaviorally
+-- (playback_faithful — nothing in the core invisible at the interface); the
+-- arrow not epi (forever_escapes — the interface strictly exceeds the core,
+-- and the excess is the never-grounding breath: the elastic horizon as the
+-- lfp↔gfp gap). The gfp end supports only relational equality in core Lean
+-- (CoList equality would be funext, which rides on Quot.sound) — the
+-- Maintenance choice of bisimulation-as-relation, re-derived as necessity
+/-- info: 'Foam.InitialAlgebra.fold_alg_id' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.InitialAlgebra.fold_alg_id
+
+/-- info: 'Foam.InitialAlgebra.alg_unalg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.InitialAlgebra.alg_unalg
+
+/-- info: 'Foam.InitialAlgebra.unalg_alg_id' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.InitialAlgebra.unalg_alg_id
+
+/-- info: 'Foam.playback_faithful' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.playback_faithful
+
+/-- info: 'Foam.forever_escapes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.forever_escapes
 
 -- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
 -- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
