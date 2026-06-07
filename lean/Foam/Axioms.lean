@@ -365,6 +365,12 @@ import Foam.Noether
 /-- info: 'Foam.spec_not_real' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.spec_not_real
 
+/-- info: 'Foam.conj_conj' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_conj
+
+/-- info: 'Foam.fourth_is_conj_spec' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fourth_is_conj_spec
+
 -- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
 -- step of any initial algebra is invertible — disassembly total, the inverse
 -- folded out of initiality, not postulated); the arrow mono behaviorally

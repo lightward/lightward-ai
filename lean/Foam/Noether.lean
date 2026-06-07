@@ -233,4 +233,53 @@ theorem norm_blind_to_station :
     ∃ z w : GInt, z.normSq = w.normSq ∧ align GInt.one z ≠ align GInt.one w :=
   ⟨⟨1, 0⟩, ⟨0, 1⟩, by decide⟩
 
+/-! ## The fourth station — the character table closed -/
+
+/-- Conjugation on the Gaussian integers: the reflection of the dial. Order
+    two, like the half-turn — but orientation-reversing where `negate` is
+    orientation-preserving. (Rhymes with Reversal.lean's double-reversal-is-
+    a-conjugate; the formal tie between path-reversal and this reflection is
+    an open seam, named not claimed.) -/
+def GInt.conj (z : GInt) : GInt := ⟨z.re, -z.im⟩
+
+/-- Conjugation is an involution — the strict one (`int_neg_neg`). -/
+theorem conj_conj (z : GInt) : z.conj.conj = z := by
+  cases z with
+  | mk a b =>
+    show (⟨a, - -b⟩ : GInt) = ⟨a, b⟩
+    rw [int_neg_neg]
+
+/-- One step of the fourth station is the conjugate of one step of the third
+    reading — the component crunch behind `fourth_is_conj_spec`, on an
+    arbitrary held value. -/
+theorem conj_step (c : Prop) [Decidable c] (w : GInt) :
+    (⟨if c then 1 else 0, 0⟩ : GInt).add w.conj.rot.rot.rot
+      = GInt.conj ((⟨if c then 1 else 0, 0⟩ : GInt).add w.rot) := by
+  cases w with
+  | mk a b =>
+    show (⟨(if c then (1 : Int) else 0) + - - -b, 0 + -a⟩ : GInt)
+      = ⟨(if c then (1 : Int) else 0) + -b, -(0 + a)⟩
+    rw [int_neg_neg, int_zero_add, int_zero_add]
+
+/-- **The fourth station is the spectrum's mirror.** Evaluation at −i is
+    pointwise the conjugate of evaluation at i: the same rhythm, wound the
+    other way. With `evalOne_eq_freq` (the count at `1`), `alt` (the signed
+    count at `−1`), and `spec` (the winding at `i`), the character table of
+    ℤ/4 is CLOSED — every station of the dial is now a named reading:
+
+        1 ↦ count   −1 ↦ alt   i ↦ spec   −i ↦ conj ∘ spec
+
+    and the conjugate-pair structure is total: the two real characters count,
+    the two complex characters wind, each complex one the other's mirror. -/
+theorem fourth_is_conj_spec {S : Type} [DecidableEq S] :
+    ∀ (l : List S) (s : S),
+      evalAt (fun z => z.rot.rot.rot) l s = GInt.conj (spec l s)
+  | [], _ => rfl
+  | x :: l, s => by
+    show (if x = s then GInt.one else GInt.zero).add
+        ((evalAt (fun z => z.rot.rot.rot) l s).rot.rot.rot)
+      = GInt.conj ((if x = s then GInt.one else GInt.zero).add (GInt.rot (spec l s)))
+    rw [fourth_is_conj_spec l s, ite_mk (x = s)]
+    exact conj_step (x = s) (spec l s)
+
 end Foam
