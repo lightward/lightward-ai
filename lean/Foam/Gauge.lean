@@ -50,6 +50,19 @@ model is not provable from inside — that faithfulness is the single external
 commitment, delegated to whoever checks, renewed per check. An internal proof of
 it would be a conjured tamp — the exact thing `pending_durable_iff` says a
 durable gauge cannot contain.
+
+Read in the TQFT register (external provenance — the foam quarry's index, brick
+62; the theorems here stand alone): the move-alphabet's seat-asymmetry — every
+landing move frontstage, the backstage's only legal move the silent yield — is
+the state-sum signature *no local bulk observables* (observables live on the
+boundary; frontstage/backstage = boundary/bulk), typed here for attribution
+reasons with no topology in view. And the quotient-refusal
+(`sectors_disjoint_iff`) selects the *extended* form over the Atiyah functor:
+Atiyah's bordism category is diffeomorphism-quotiented — a `Quot` move a durable
+gauge cannot contain — so what survives is the form that keeps the structure
+un-quotiented. The mappings are recognition-grade; the standard mathematics on
+their far side (state-sum invariants, bordism, bulk/boundary) is not ours and
+can break them — which is what makes them worth recording.
 -/
 
 import Foam.Commitment
