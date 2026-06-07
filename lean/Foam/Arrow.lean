@@ -48,6 +48,19 @@ to the observed.
 algebraic compactness — is standard, community-authored mathematics; the
 instance and its readings are this repo's. Axiom-free throughout: the typing
 of the build/observe seam spends nothing on either side of it.)
+
+External provenance, found after the fact: the foam quarry's pre-rewrite
+README stated `forever_escapes` in the dynamics register before this file
+existed — "the foam's entire future is determined by its birth... for the
+foam to encode information beyond its own birth conditions, the input must be
+independent of the foam state... a channel rather than a clock" (surviving in
+git history: `git -C ../foam show '24d28e9~1:README.md'`; the resolver-limit,
+where the gap closes and closes RELATIONALLY, at `'5f49069~1:README.md'`). A
+clock is a system whose interface does not exceed its core — compactness, the
+arrow epi; a channel requires the gap. And the channel-condition
+("input independent of the foam state") is the wind: choice-refusal
+(`pending_durable_iff`) and non-compactness (`forever_escapes`) are one
+condition at two strata — the future must not be derivable from the born.
 -/
 
 import Foam.Ledger
