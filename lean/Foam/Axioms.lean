@@ -57,6 +57,7 @@ import Foam.Ledger
 import Foam.Scar
 import Foam.Commitment
 import Foam.Gauge
+import Foam.Spectrum
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -235,6 +236,32 @@ import Foam.Gauge
 
 /-- info: 'Foam.promise_kept' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.promise_kept
+
+-- the third reading: the ledger evaluated at the quarter-turn. The spectrum is a
+-- fold (observed, never committed — freq_perm's legality verbatim); recurrence is
+-- rotation (spec_shift, the shift theorem by rfl); a complete rotation is
+-- invisible (rot_complete); the count reading is the degenerate evaluation point
+-- (evalOne_eq_freq — freq recovered, derived not asserted); and the tower's both
+-- strict inclusions are computational witnesses: spectrum sees rhythm the count
+-- flattens (spec_finer_than_freq), order keeps what a full cycle cancels
+-- (order_finer_than_spec)
+/-- info: 'Foam.rot_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rot_rot
+
+/-- info: 'Foam.rot_complete' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rot_complete
+
+/-- info: 'Foam.spec_shift' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_shift
+
+/-- info: 'Foam.evalOne_eq_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.evalOne_eq_freq
+
+/-- info: 'Foam.spec_finer_than_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_finer_than_freq
+
+/-- info: 'Foam.order_finer_than_spec' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.order_finer_than_spec
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
