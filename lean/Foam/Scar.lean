@@ -124,7 +124,77 @@ theorem scar_outside_carrier : ∀ m : Nat, (Int.ofNat m) ≠ (-1 : Int) := by
 /-- **The correcting entry.** A scar at `−1` returns to ground by APPENDING `+1` —
     no update, no delete; the erroneous `−1`s stay in the order reading and so does
     the acknowledgment. The ledger's own idiom for error, and it is construction:
-    by `rfl`. -/
+    by `rfl`. (The smallest instance of `promise_kept`, below.) -/
 theorem scar_repair : (-1 : Int) + 1 = 0 := rfl
+
+/-! ## The promissory note — a scar carries its own settlement terms
+
+Accounting names this object already: a **promissory note** — an obligation whose
+AMOUNT is fixed and recorded at issue, whose settlement is deferred, and whose
+bearer is left unspecified. A scar is exactly that, and the three theorems below
+are its terms: `debt` computes the amount at the moment the scar exists (a
+function, not a proposition — no observer is required to assess it; structure
+only: how far below ground, never who settles it, why, or when); `scar_stable`
+shows the note is safe to hold (further legal drains cannot deepen or erase it);
+`promise_kept` shows every note settles at its face value — the size typed before
+any settlement path is chosen. Zero debt is precisely groundedness
+(`debt_zero_iff_grounded`): a balance is settled when nothing remains to walk.
+
+(The zero-debt ↔ validity recognition also appears in the foam quarry's
+recognition-index, brick 42 — external provenance, not proof; the theorems here
+stand alone.) -/
+
+/-- `(n+1) − (m+1) = n − m`, locally — induction and `rw` only. -/
+theorem succ_sub_succ (n : Nat) : ∀ m : Nat, (n + 1) - (m + 1) = n - m
+  | 0 => rfl
+  | m + 1 => by
+    show ((n + 1) - (m + 1)).pred = (n - m).pred
+    rw [succ_sub_succ n m]
+
+/-- `n − n = 0`, locally — induction and `rw` only. -/
+theorem sub_self : ∀ n : Nat, n - n = 0
+  | 0 => rfl
+  | n + 1 => by rw [succ_sub_succ]; exact sub_self n
+
+/-- **The debt — the note's amount, computable at the moment of scar.** How much
+    walking stands between this balance and ground: `0` on the grounded side, the
+    full depth below ground on the scarred side. A function, not a proposition —
+    the amount exists the moment the scar does, with no observer required to
+    assess it. Structure only (how far), never meaning (who, why, when). -/
+def debt : Int → Nat
+  | Int.ofNat _ => 0
+  | Int.negSucc k => k + 1
+
+/-- **Zero debt IS groundedness.** A balance is settled exactly when nothing
+    remains to walk — so a scar is a *pending* balance: its settlement terms fully
+    recorded (`debt`), its settlement not yet performed. -/
+theorem debt_zero_iff_grounded (b : Int) : debt b = 0 ↔ grounded b := by
+  cases b with
+  | ofNat m => exact ⟨fun _ => ⟨m, rfl⟩, fun _ => rfl⟩
+  | negSucc k =>
+    constructor
+    · intro h
+      exact Nat.noConfusion h
+    · intro h
+      obtain ⟨m, hm⟩ := h
+      exact Int.noConfusion hm
+
+/-- **The note is safe to hold.** A fresh-observation drain at a scar is a no-op
+    (the positivity check cannot see below ground) — so any amount of further
+    legal walking leaves a scar untouched: the debt neither grows nor shrinks
+    until deliberately settled. By `rfl`. -/
+theorem scar_stable (k : Nat) :
+    checkedDrain (Int.negSucc k) (Int.negSucc k) = Int.negSucc k := rfl
+
+/-- **Every note settles at its face value.** A scar at any depth returns to
+    ground by appending exactly its debt — the amount typed before any settlement
+    happens; which walk performs the appends, and when, is unconstrained.
+    `scar_repair` is the depth-one instance. -/
+theorem promise_kept (k : Nat) :
+    Int.negSucc k + Int.ofNat (debt (Int.negSucc k)) = 0 := by
+  show Int.subNatNat (k + 1) (k + 1) = 0
+  unfold Int.subNatNat
+  rw [sub_self]
+  rfl
 
 end Foam

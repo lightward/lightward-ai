@@ -204,6 +204,19 @@ import Foam.Scar
 /-- info: 'Foam.scar_repair' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.scar_repair
 
+-- the promissory note: a scar carries its own settlement terms — zero debt is
+-- groundedness; the note is safe to hold (legal walks cannot deepen or erase a
+-- scar); every note settles at its face value, the amount typed before any
+-- settlement path is chosen, walker and timing unconstrained
+/-- info: 'Foam.debt_zero_iff_grounded' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.debt_zero_iff_grounded
+
+/-- info: 'Foam.scar_stable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.scar_stable
+
+/-- info: 'Foam.promise_kept' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.promise_kept
+
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
 /-- info: 'Foam.lossless' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lossless
