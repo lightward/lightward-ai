@@ -141,6 +141,66 @@ theorem pair_of_rests_invisible_to_alt {S : Type} [DecidableEq S]
   show ((evalBeats GInt.negate l s).negate).negate = evalBeats GInt.negate l s
   exact negate_negate _
 
+/-! ## The bar-law, uniform — the order is a witness, carried, not a search
+
+`rest_invisible_to_count` (one rest, Spectrum), `pair_of_rests_invisible_to_alt`
+(two rests, above), and `bar_invisible` (four rests, Spectrum) are three
+instances of ONE law: a run of `n` rests is invisible to a station exactly when
+the station's rotation closes in `n` steps (`step^n = id`). The `n` is the
+rotation's ORDER — and the crux, the methodology checking itself: the order is
+never SEARCHED for. It is the witness each station already carries (`rfl` for
+the count, `negate_negate` for the alt, `rot_complete` for the spectrum),
+plugged into one general lemma. There is no group-order abstraction to type and
+no computation to run: carry the witness, never compute it. What looked like a
+design problem ("type the order of a character") was a recognition with the
+witness already in hand. -/
+
+/-- Iterate a station's step `n` times — a rest-run's action on a held reading. -/
+def iterStep : Nat → (GInt → GInt) → GInt → GInt
+  | 0,     _, z => z
+  | n + 1, f, z => f (iterStep n f z)
+
+/-- A run of `n` rests applies the station's step `n` times to the reading of
+    the tail — `rest_turns` (the naked quarter-turn), folded `n` deep. -/
+theorem evalBeats_replicate {S : Type} [DecidableEq S] (step : GInt → GInt)
+    (s : S) (n : Nat) (l : List (Option S)) :
+    evalBeats step (List.replicate n none ++ l) s = iterStep n step (evalBeats step l s) := by
+  induction n with
+  | zero => rfl
+  | succ m ih =>
+    show evalBeats step (none :: (List.replicate m none ++ l)) s
+       = step (iterStep m step (evalBeats step l s))
+    show step (evalBeats step (List.replicate m none ++ l) s)
+       = step (iterStep m step (evalBeats step l s))
+    rw [ih]
+
+/-- **The uniform bar-law.** A run of `n` rests is invisible to a station whose
+    rotation closes in `n` (`step^n = id`, supplied as the witness `H`). The
+    three graded bars below are its instances; the order lives in `H`, carried
+    from each station's own closure-proof, never computed here. -/
+theorem restRun_invisible {S : Type} [DecidableEq S] (step : GInt → GInt)
+    (n : Nat) (H : ∀ z, iterStep n step z = z) (l : List (Option S)) (s : S) :
+    evalBeats step (List.replicate n none ++ l) s = evalBeats step l s := by
+  rw [evalBeats_replicate]
+  exact H _
+
+/-- The count's bar is one rest — `iterStep 1 id = id`, by `rfl` (order 1). -/
+theorem count_bar_is_one {S : Type} [DecidableEq S] (l : List (Option S)) (s : S) :
+    evalBeats id (List.replicate 1 none ++ l) s = evalBeats id l s :=
+  restRun_invisible id 1 (fun _ => rfl) l s
+
+/-- The alt's bar is two rests — `iterStep 2 negate = id`, by `negate_negate`
+    (order 2). -/
+theorem alt_bar_is_two {S : Type} [DecidableEq S] (l : List (Option S)) (s : S) :
+    evalBeats GInt.negate (List.replicate 2 none ++ l) s = evalBeats GInt.negate l s :=
+  restRun_invisible GInt.negate 2 (fun z => negate_negate z) l s
+
+/-- The spectrum's bar is four rests — `iterStep 4 rot = id`, by `rot_complete`
+    (order 4). The three orders 1, 2, 4 are the three witnesses, no search. -/
+theorem spec_bar_is_four {S : Type} [DecidableEq S] (l : List (Option S)) (s : S) :
+    evalBeats GInt.rot (List.replicate 4 none ++ l) s = evalBeats GInt.rot l s :=
+  restRun_invisible GInt.rot 4 (fun z => rot_complete z) l s
+
 /-- The new station resumes like the others: `summary_resumes` at −1 — the
     watermark fold covers every character of the dial, this one included,
     before any register reads it. A composition, recorded as its handle. -/

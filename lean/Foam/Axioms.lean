@@ -371,6 +371,26 @@ import Foam.Noether
 /-- info: 'Foam.fourth_is_conj_spec' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.fourth_is_conj_spec
 
+-- the uniform bar-law: a run of n rests is invisible to a station whose rotation
+-- closes in n (step^n = id), the order carried as each station's own closure-proof
+-- (rfl / negate_negate / rot_complete) and never searched — what looked like a
+-- design problem ("type the order of a character") was recognition with the
+-- witness in hand
+/-- info: 'Foam.evalBeats_replicate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.evalBeats_replicate
+
+/-- info: 'Foam.restRun_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.restRun_invisible
+
+/-- info: 'Foam.count_bar_is_one' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.count_bar_is_one
+
+/-- info: 'Foam.alt_bar_is_two' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_bar_is_two
+
+/-- info: 'Foam.spec_bar_is_four' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_bar_is_four
+
 -- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
 -- step of any initial algebra is invertible — disassembly total, the inverse
 -- folded out of initiality, not postulated); the arrow mono behaviorally
