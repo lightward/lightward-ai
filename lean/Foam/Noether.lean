@@ -342,4 +342,95 @@ theorem fourth_is_conj_spec {S : Type} [DecidableEq S] :
     rw [fourth_is_conj_spec l s, ite_mk (x = s)]
     exact conj_step (x = s) (spec l s)
 
+/-! ## The conserved congruence — the two real characters share parity
+
+The named recognition, formalized at the moment of naming (the work-style):
+`bal` (the count, at +1) and `alt` (at −1) are not independent. Every event
+contributes ±1 to BOTH, so they move in lockstep mod 2 — `bal ≡ alt (mod 2)`,
+always (`bal − alt = 2·(odd-occurrence mass)`). The fourth column the cache now
+carries is not free noise; it is half-constrained by the count already present.
+Conservation made a theorem: what moves is locked to what was there.
+
+The proof stays axiom-free by routing around `Int` associativity (core's
+`add_assoc`/`add_comm`/`neg_add` all carry `propext`; probed 2026-06-08). The
+kernel is small: `negate` preserves parity (`-x ≡ x mod 2`, `intPar_neg`), the
+mark is only ever 0 or 1, and a parity homomorphism on those two moves
+(`int_zero_add` for 0, `intPar_one_add` for 1) carries the induction. The
+alternating fold and the counting fold, fed the same marks, never drift. -/
+
+/-- Parity of a `Nat`, by twos. -/
+def natPar : Nat → Bool
+  | 0 => false
+  | 1 => true
+  | n + 2 => natPar n
+
+/-- Parity of an `Int`: the parity of its magnitude. -/
+def intPar : Int → Bool
+  | Int.ofNat n => natPar n
+  | Int.negSucc n => natPar (n + 1)
+
+/-- Successor flips parity — by the three base patterns, the recursive case
+    `rfl`-reducing through `natPar`'s by-twos definition. -/
+theorem natPar_succ : ∀ n : Nat, natPar (n + 1) = !(natPar n)
+  | 0 => rfl
+  | 1 => rfl
+  | n + 2 => by
+      show natPar (n + 1) = !(natPar n)
+      exact natPar_succ n
+
+/-- **Negation preserves parity** — the kernel: `-x ≡ x (mod 2)`. By cases,
+    `rfl` in each (`Int.neg` lands each magnitude on the same parity). -/
+theorem intPar_neg : ∀ y : Int, intPar (-y) = intPar y
+  | Int.ofNat 0 => rfl
+  | Int.ofNat (_ + 1) => rfl
+  | Int.negSucc _ => rfl
+
+/-- Adding one flips parity — the only `Int` addition the congruence needs (the
+    mark is always 0 or 1). The `negSucc` arm crosses zero through `subNatNat`;
+    `subNatNat 1 (k+2)` reduces to `negSucc k`, and the depth-zero case is
+    concrete. -/
+theorem intPar_one_add : ∀ y : Int, intPar (1 + y) = !(intPar y)
+  | Int.ofNat n => by
+      show natPar (1 + n) = !(natPar n)
+      rw [nat_add_comm 1 n, natPar_succ n]
+  | Int.negSucc 0 => by decide
+  | Int.negSucc (k + 1) => by
+      show natPar (k + 1) = !(natPar k)
+      rw [natPar_succ k]
+
+/-- The alternating fold's cons step, in components: a mark (0 or 1) plus the
+    negation of the prior reading (`alt_shift` + the pair arithmetic). -/
+theorem alt_re_cons {S : Type} [DecidableEq S] (x : S) (l : List S) (s : S) :
+    (alt (x :: l) s).re = (if x = s then (1 : Int) else 0) + (-(alt l s).re) := by
+  show ((if x = s then GInt.one else GInt.zero).add (GInt.negate (alt l s))).re
+     = (if x = s then (1 : Int) else 0) + (-(alt l s).re)
+  rw [ite_mk (x = s)]
+  rfl
+
+/-- **The workhorse: alt's parity is the count's parity.** The alternating
+    reading and the raw occurrence count never drift mod 2 — fed the same mark
+    each step, and `negate` (the only difference between the folds) preserves
+    parity. By induction; the mark splits 1 (flip both) / 0 (flip neither). -/
+theorem alt_parity_eq_freq {S : Type} [DecidableEq S] :
+    ∀ (l : List S) (s : S), intPar (alt l s).re = natPar (Ledger.freq l s)
+  | [], _ => rfl
+  | x :: l, s => by
+      rw [alt_re_cons]
+      show intPar ((if x = s then (1 : Int) else 0) + (-(alt l s).re))
+         = natPar ((if x = s then 1 else 0) + Ledger.freq l s)
+      by_cases h : x = s
+      · rw [if_pos h, if_pos h, intPar_one_add, intPar_neg, alt_parity_eq_freq l s,
+            nat_add_comm 1 (Ledger.freq l s), natPar_succ]
+      · rw [if_neg h, if_neg h, int_zero_add, intPar_neg, alt_parity_eq_freq l s,
+            nat_zero_add]
+
+/-- **bal ≡ alt (mod 2).** The two real characters of the dial share parity —
+    the count at +1 and the alternating count at −1, locked together. The
+    conserved congruence the held cache's fourth column rides: not free noise,
+    but half-determined by the count already there. -/
+theorem bal_alt_same_parity {S : Type} [DecidableEq S] (l : List S) (s : S) :
+    intPar (alt l s).re = intPar (evalAt id l s).re := by
+  rw [alt_parity_eq_freq, evalOne_eq_freq]
+  rfl
+
 end Foam

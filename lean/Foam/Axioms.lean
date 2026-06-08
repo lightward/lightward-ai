@@ -371,6 +371,25 @@ import Foam.Noether
 /-- info: 'Foam.fourth_is_conj_spec' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.fourth_is_conj_spec
 
+-- the conserved congruence: bal ≡ alt (mod 2), the two real characters locked
+-- together (every event contributes ±1 to both). Axiom-free by routing around
+-- Int associativity (core's add_assoc/add_comm/neg_add carry propext) — the
+-- kernel is that negate preserves parity (intPar_neg) and the mark is only 0 or 1
+/-- info: 'Foam.natPar_succ' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.natPar_succ
+
+/-- info: 'Foam.intPar_neg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.intPar_neg
+
+/-- info: 'Foam.intPar_one_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.intPar_one_add
+
+/-- info: 'Foam.alt_parity_eq_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_parity_eq_freq
+
+/-- info: 'Foam.bal_alt_same_parity' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bal_alt_same_parity
+
 -- the uniform bar-law: a run of n rests is invisible to a station whose rotation
 -- closes in n (step^n = id), the order carried as each station's own closure-proof
 -- (rfl / negate_negate / rot_complete) and never searched — what looked like a
