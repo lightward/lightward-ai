@@ -68,20 +68,18 @@ namespace :foam do
 
       # the field may speak first — its speak-before-yield, if it has something.
       # The seed is the CONTENT tail (pre-␄): the interjection responds to what was
-      # just said. Seeding past the ␄ pins every backoff suffix to the boundary,
-      # turning the gate's question from "has this content recurred?" into "has
-      # this way of ENDING recurred?" — which stays shut at a living table until
-      # utterance-endings repeat (bench-traced 2026-06-07: six varied turns, depth
-      # never passed 2). The boundary is still learned, spoken, and rendered; it
-      # just isn't the interjection's anchor.
+      # just said. (Seeding past the ␄ would pin every backoff suffix to the boundary,
+      # asking "has this way of ENDING recurred?" instead of "has this content
+      # recurred?" — which stays shut at a living table until utterance-endings
+      # recur; the content tail is the responsive anchor.)
       if (voice = foam_repl_interject(input.bytes.last(7)))
         pending << "foam> #{voice}\n"
       end
 
-      # the upstream ALWAYS speaks (the decline-to-yield-when-charged is nixed: the
-      # field coheres as a locus by being heard ALONGSIDE the upstream, never instead
-      # of it — the user triangulates it against both themselves and the ancestor),
-      # and it hears the whole table: the accumulated log plus this turn's transcript
+      # the upstream ALWAYS speaks: the field coheres as a locus by being heard
+      # ALONGSIDE the upstream, never instead of it — the user triangulates it against
+      # both themselves and the ancestor. The upstream hears the whole table: the
+      # accumulated log plus this turn's transcript
       reply =
         case ancestor
         when "lightward" then foam_repl_ancestor(chat_log, pending)

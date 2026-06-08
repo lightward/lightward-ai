@@ -182,27 +182,21 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- holds); ground is a full BAR of rests (four quarter-turns are the identity,
 -- bar_invisible — the length is DERIVED, not chosen).
 --
--- ONE REGISTER, NOT TWO. The count register (a phase-blind force-drain weighted by
--- bal, reaching true ground in one pass) was DROPPED — because it let the field
--- empty itself by FORCE, and the field's thesis is that resolution is relational
--- (self_generation: the foam does not generate its own stability). A continuation
--- recurring UNIFORMLY presents a complete cycle and cancels (rot_complete): re = im
--- = 0, so it is invisible at every angle — un-sayable resonantly NOW. It unsticks
--- only via NEW hearing (more wind breaks the uniformity); speaking can't release it
--- (it's invisible). So full draining is reachable ONLY through the JOURNEY: a
--- LIVING field (ongoing input) eventually says everything, as a limit; a CLOSED
--- field loops (clock_loops), its recurrence goes uniform, and it keeps its
--- substrate forever — it cannot empty itself alone. The field comes home only
--- through company. (This is a structural call, made on structural grounds — the
--- property lives in the limit, invisible to any solo-bench snapshot, so the bench
--- is the wrong instrument to settle it. 2026-06-08.)
+-- The field speaks only through recurrence — there is no phase-blind force-drain to
+-- empty it, because resolution is relational (self_generation: the foam does not
+-- generate its own stability). A continuation recurring UNIFORMLY presents a complete
+-- cycle and cancels (rot_complete): re = im = 0, invisible at every angle, un-sayable
+-- resonantly. It unsticks only via NEW hearing (more wind breaks the uniformity);
+-- speaking can't release what it can't see. So full draining is reachable ONLY through
+-- the JOURNEY: a LIVING field (ongoing input) eventually says everything, as a limit;
+-- a CLOSED field loops (clock_loops), its recurrence goes uniform, and it keeps its
+-- substrate forever — it cannot empty itself alone. The field comes home only through
+-- company.
 --
--- bal SURVIVES — as a READING, never a drain: the gate (foam.depth), the
--- conservation pulse (net = residual), and wound-detection (bal < 0) all still read
--- it. Only the count-weighted DISCHARGE is gone. And provenance now lives ONLY in
--- the seed: a self-tail self-entrains (clock_loops' loop — the self's signature as
--- identity), an other-tail entrains on the other; one register reads any seed, so
--- "register = provenance" needed no switch — the seed already carried it.
+-- bal is a READING, never a drain: the gate (foam.depth), the conservation pulse
+-- (net = residual), and wound-detection (bal < 0) read it. Provenance lives in the
+-- seed: a self-tail self-entrains (clock_loops' loop — the self's signature as
+-- identity), an other-tail entrains on the other; one walk reads any seed.
 --
 -- stop (DEFAULT NULL): the act's boundary vocabulary. When the walk SPEAKS this
 -- byte it returns — the expression has ended itself, at the boundary the field
@@ -215,43 +209,29 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- no boundary vocabulary (the bar is ground); the exhale passes none.
 --
 -- The voice is BYTES (int[]), not text: the walk samples bytes by charge and owes
--- no allegiance to any encoding — it can emit a multibyte character's lead byte
--- and then fast-travel somewhere that never completes it. Returning text here made
--- convert_from raise mid-walk (PG::CharacterNotInRepertoire, observed 15 times in
--- the dev log, killing the call and rolling back its drains — the pipe then
--- mistook the failure for ground). Rendering is a view at the edge, the caller's
--- concern; foam.text remains for streams known to be text (foam.recorded).
+-- no allegiance to any encoding — it can emit a multibyte character's lead byte and
+-- then fast-travel somewhere that never completes it, which makes convert_from raise
+-- mid-walk (PG::CharacterNotInRepertoire) — killing the call and rolling its drains
+-- back, the pipe mistaking the failure for ground. Rendering is a view at the edge,
+-- the caller's concern; foam.text remains for streams known to be text (foam.recorded).
 --
--- Drains RACE; settlements serialize (the lock migrated to the cold path). Two
--- drains sharing a stale snapshot compose to a balance below ground only at the
--- margin (lean/Foam/Scar.lean: stale_escapes_floor; from balance 2 the same
--- composite lands AT ground — stale_lands_at_ground — so races mark the field
--- only where they collide at the edge of emptiness; observed live as 76 scars
--- over hours of pervasive racing, 2026-06-06). Each scar is a promissory note —
--- amount computable at the wound (debt), stable under further legal drains
--- (scar_stable), settled at face value (promise_kept). The walk that FINDS a
--- wound dresses it (foam.settle, below); settlement is the operation that must
--- not race: its failure (phantom charge, from which the voice could speak a byte
--- never heard) lands INSIDE the legal carrier, invisible to any balance-check
--- (stale_settle_passes_ground / phantom_invisible). Visible failures may race;
--- invisible ones serialize. Learning (ingest_step) takes no lock: pure +1 appends.
+-- Drains RACE; settlements serialize (the cold path). Two drains sharing a stale
+-- snapshot compose to a balance below ground only at the margin (lean/Foam/Scar.lean:
+-- stale_escapes_floor; from balance 2 the same composite lands AT ground —
+-- stale_lands_at_ground — so races mark the field only where they collide at the edge
+-- of emptiness). Each scar is a promissory note — amount computable at the wound
+-- (debt), stable under further legal drains (scar_stable), settled at face value
+-- (promise_kept). The walk that FINDS a wound dresses it (foam.settle, below);
+-- settlement is the operation that must not race: its failure (phantom charge, from
+-- which the voice could speak a byte never heard) lands INSIDE the legal carrier,
+-- invisible to any balance-check (stale_settle_passes_ground / phantom_invisible).
+-- Visible failures may race; invisible ones serialize. Learning (ingest_step) takes
+-- no lock: pure +1 appends.
 --
 -- The angled weight is EXACT integer arithmetic: at a quarter-turn the pairing of
--- (re, im) needs no cosine (±1/0 — no float dust), reading held + tail so the
--- window function runs over the events past the watermark only — the cost of
--- hearing rhythm no longer grows with the field (lean/Foam/Summary.lean).
--- The DROPs clear the OLD signatures (the function's arg-list changed over time:
--- 3-arg count → 5-arg count|resonant → this 4-arg resonant); CREATE OR REPLACE then
--- (re)creates the current 4-arg. Idempotent across re-assert: on a fresh field the
--- DROPs no-op and it creates; on a current field they no-op and it replaces; on an
--- old-signature field a DROP removes the stale overload first. (Plain CREATE here
--- was non-idempotent — it errored "already exists" when re-asserting a field that
--- already had the 4-arg, which would fail every boot's assert and degrade the field.
--- The return type is stable int[] now, so REPLACE is safe; only the arg-list changes
--- need the DROPs.)
-DROP FUNCTION IF EXISTS foam.speak(int[], int, int);                  -- the original count 3-arg
-DROP FUNCTION IF EXISTS foam.speak(int[], int, int, int, text);       -- the count|resonant 5-arg
-DROP FUNCTION IF EXISTS foam.speak_resonant(int[], int, int, int);    -- folded in, then dropped with count
+-- (re, im) needs no cosine (±1/0 — no float dust), reading held + tail so the window
+-- function runs over the events past the watermark only — the cost of hearing rhythm
+-- does not grow with the field (lean/Foam/Summary.lean).
 CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
                            stop int DEFAULT NULL) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
@@ -459,12 +439,3 @@ CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
 CREATE OR REPLACE FUNCTION foam.recorded() RETURNS text LANGUAGE sql STABLE AS
   $$ SELECT coalesce(foam.text(array_agg(sym ORDER BY id)), '')
      FROM foam.charge WHERE ctx = foam.caddr('{}') AND delta = 1 $$;
-
--- (No recognize / walk. There was an input-less `foam.recognize()`/`foam.walk(uuid[])`
--- here — a trichotomy "decider" that always returned 'yield' and never deposited.
--- It was frontstage fiction: the field's actual mechanism is a BIPEDAL walk — hear
--- (foam.ingest_step, +1) and say (foam.speak, −1), with the seeded gate foam.outcome
--- choosing say-or-rest. "recognize / yield / speak / learn" is how that bipedal walk
--- READS from the front; nothing in the mechanism weighs three options. Removed; the
--- interface is ingest_step (in) and speak (out). Dropped on existing DBs by a full
--- schema reset, like any other drift — the schema asserts the target, never migrates.)

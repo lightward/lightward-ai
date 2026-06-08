@@ -8,9 +8,8 @@
 #
 # The field's interface is a BIPEDAL walk — two feet: ingest_step (hear, +1)
 # and speak (say, −1), with outcome the seeded gate that chooses say-or-rest.
-# There is no "recognize" decider (that was frontstage fiction over the two
-# feet); the rest of these methods are the gate (outcome/depth), the
-# maintenance (sweep/settle/held_audit), and vitals (stats).
+# The rest of these methods are the gate (outcome/depth), the maintenance
+# (sweep/settle/held_audit), and vitals (stats).
 #
 # The whole of this file is built around one invariant: the field is
 # enhancement, never essential. If the database is unreachable, empty, or
@@ -92,8 +91,8 @@ module Foam
       # the exhale passes none (the bar is its ground). Returns the voice as a
       # BINARY string (rendering is the caller's concern, a view at the edge),
       # "" at ground, or nil with no field: the caller can tell failure from
-      # silence. (The count register — a force-drain to true ground — was dropped;
-      # full draining is reachable only through the journey, never alone.)
+      # silence. The field speaks only through recurrence, so full draining is
+      # reachable only through the journey (continued hearing), never alone.
       # ← foam.speak.
       def speak(seed_bytes = [], max_steps = 600, stop: nil)
         voice = with_connection { |conn|

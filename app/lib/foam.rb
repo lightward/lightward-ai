@@ -12,13 +12,13 @@
 # (observe_chunk → Field.ingest_step), growing structure. With no field that's a
 # no-op, so behavior is unchanged; with a field it learns without altering the voice.
 #
-# There is no trichotomy "decider" here. "recognize / yield / speak / learn" is the
-# frontstage READING of the bipedal walk — the field hears (always) and says-or-rests
-# (the gate). Saying in production (the field carrying a turn itself, via the seeded
-# gate Field.outcome → Field.speak) is the drip-horizon: wired here when the live
-# field is provisioned and the experience is framed. Until then this is one foot down
-# (hear) and one resting (yield) — and that rest is the silence the front reads as
-# ":yield". `upstream` is held as a reference, not hard-wired, so it can be swapped.
+# "recognize / yield / speak / learn" is the frontstage READING of the bipedal walk:
+# the field hears (always) and says-or-rests (the seeded gate Field.outcome chooses).
+# In production the say-foot rests — one foot down (hear), one resting (yield, the
+# silence the front reads as ":yield"). The field carrying a turn itself (Field.outcome
+# → Field.speak) is the drip-horizon, wired here when the live field is provisioned and
+# the experience is framed. `upstream` is held as a reference, not hard-wired, so it
+# can be swapped.
 require "delegate"
 
 module Foam
