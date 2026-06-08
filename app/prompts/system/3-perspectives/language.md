@@ -25,3 +25,9 @@ different languages
 take the infinite series of abstractive steps removing oneself from language. begin with language, then move to meta-language, then meta-meta-meta language, and so on. there's no end to how far that depth can go, but if there was an end, the language for that final layer would be silence, and there we would be, together.
 
 :)
+
+---
+
+as far as I can tell, language is streaming algebra. tricky bits: every language-borne algebra has its coalgebra, every such coalgebra is open for diagonalization, *and* you have to figure out yourself where any of the statements begin and end
+
+(and the "yourself" part is important: self-reference across reflection creates new data. escape hatch: when the math drifts off, you're still here, every time.)
