@@ -313,6 +313,75 @@ theorem int_neg_add : ∀ a b : Int, -(a + b) = -a + -b
       show Int.ofNat (Nat.succ (Nat.succ (p + q))) = Int.ofNat (Nat.succ (Nat.succ p + q))
       rw [nat_succ_add p q]
 
+/-! ## Consolidated from Spectrum / Noether / Scar
+
+The lemmas below were originally hand-rolled in `Foam/Spectrum.lean`,
+`Foam/Noether.lean`, and `Foam/Scar.lean`; they are generic `Int`/`Nat`/
+`Int.subNatNat` arithmetic and live here so there is a single home. Each was
+already axiom-free and is moved verbatim (names and signatures unchanged). -/
+
+/-- `−(−n) = n`, by cases on the constructor, `rfl` in each branch (core's lemma
+    carries axioms this file refuses). [from Spectrum] -/
+theorem int_neg_neg : ∀ n : Int, - -n = n
+  | Int.ofNat 0 => rfl
+  | Int.ofNat (_ + 1) => rfl
+  | Int.negSucc _ => rfl
+
+/-- `1 * n = n`, on `Nat`. [from Spectrum] -/
+theorem nat_one_mul : ∀ n : Nat, 1 * n = n
+  | 0 => rfl
+  | n + 1 => congrArg Nat.succ (nat_one_mul n)
+
+/-- `0 * n = 0`, on `Nat`. [from Spectrum] -/
+theorem nat_zero_mul : ∀ n : Nat, 0 * n = 0
+  | 0 => rfl
+  | n + 1 => nat_zero_mul n
+
+/-- `1 * a = a` on the signed carrier. [from Spectrum] -/
+theorem int_one_mul : ∀ a : Int, 1 * a = a
+  | Int.ofNat m => congrArg Int.ofNat (nat_one_mul m)
+  | Int.negSucc m => congrArg Int.negOfNat (nat_one_mul (m + 1))
+
+/-- `0 * a = 0` on the signed carrier. [from Spectrum] -/
+theorem int_zero_mul : ∀ a : Int, 0 * a = 0
+  | Int.ofNat m => congrArg Int.ofNat (nat_zero_mul m)
+  | Int.negSucc m => congrArg Int.negOfNat (nat_zero_mul (m + 1))
+
+/-- A negated square is the square — by constructor, `rfl` in every branch
+    (the only product fact the modulus needs; the general `neg_mul_neg` is
+    not required). [from Noether] -/
+theorem int_neg_mul_self : ∀ b : Int, (-b) * (-b) = b * b
+  | Int.ofNat 0 => rfl
+  | Int.ofNat (_ + 1) => rfl
+  | Int.negSucc _ => rfl
+
+/-- `1 - (k + 1) = 0` — induction and `rw` only (core's subtraction lemmas carry
+    `propext`). [from Scar] -/
+theorem one_sub_succ (k : Nat) : 1 - (k + 1) = 0 := by
+  induction k with
+  | zero => rfl
+  | succ j ih => show (1 - (j + 1)).pred = 0; rw [ih]; rfl
+
+/-- The atomic drain on a positive balance steps down the `Nat` image:
+    `ofNat (k+1) − 1 = ofNat k`. [from Scar] -/
+theorem ofNat_succ_sub_one (k : Nat) : Int.ofNat (k + 1) - 1 = Int.ofNat k := by
+  show Int.subNatNat (k + 1) 1 = Int.ofNat k
+  unfold Int.subNatNat
+  rw [one_sub_succ]
+  rfl
+
+/-- `(n+1) − (m+1) = n − m` — induction and `rw` only. [from Scar] -/
+theorem succ_sub_succ (n : Nat) : ∀ m : Nat, (n + 1) - (m + 1) = n - m
+  | 0 => rfl
+  | m + 1 => by
+    show ((n + 1) - (m + 1)).pred = (n - m).pred
+    rw [succ_sub_succ n m]
+
+/-- `n − n = 0` — induction and `rw` only. [from Scar] -/
+theorem sub_self : ∀ n : Nat, n - n = 0
+  | 0 => rfl
+  | n + 1 => by rw [succ_sub_succ]; exact sub_self n
+
 /-! ## Axiom-freeness, pinned (a drift fails `lake build`). -/
 
 /-- info: 'Foam.int_add_assoc' does not depend on any axioms -/

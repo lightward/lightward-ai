@@ -51,21 +51,18 @@ conserved is invisible to the dynamics that spend everything else.
 
 The new station inherits the summary machinery for free (`alt_resumes` is
 `summary_resumes` at −1 — record compositions as you go). Operationally:
-`foam.held` stores (count, spectrum) = three of the four characters; the
-alternating column is absent from `app/lib/foam/schema.sql` — a falsifiable
-pointer, not a defect: the station waits for a register whose seed-provenance
-wants parity-rhythm, and building the column before that register exists
-would be a blurt. Seen, not built.
+`foam.held` carries `alt` as one of the four dial columns, folded and audited
+like the rest, read by no register yet — a standing promise to whatever
+register's seed-provenance wants parity-rhythm.
 
 Axiom discipline: all construction — `rfl`, induction, constructor-cases,
 `decide` on closed witnesses, explicit witnesses provided never chosen. The
-arithmetic locals (`nat_succ_add`, `nat_add_comm`, `int_add_comm`,
-`int_neg_mul_self`) are hand-rolled because core's equivalents carry
-`propext` (the Spectrum.lean precedent). Axiom-free, pinned in
-`Foam/Axioms.lean`.
+Int/Nat arithmetic it leans on lives axiom-free in `Foam.IntArith` (core's
+equivalents carry `propext`). Axiom-free, pinned in `Foam/Axioms.lean`.
 -/
 
 import Foam.Summary
+import Foam.IntArith
 
 namespace Foam
 
@@ -228,36 +225,6 @@ theorem spec_not_real : ∃ (l : List Bool) (s : Bool), (spec l s).im ≠ 0 :=
   ⟨[true, true], true, by decide⟩
 
 /-! ## The conserved modulus — what the dial's rotation cannot move -/
-
-/-- `succ n + m = succ (n + m)`, locally — induction only (core's lemma
-    carries `propext`). -/
-theorem nat_succ_add : ∀ (n m : Nat), Nat.succ n + m = Nat.succ (n + m)
-  | _, 0 => rfl
-  | n, m + 1 => congrArg Nat.succ (nat_succ_add n m)
-
-/-- `n + m = m + n` on `Nat`, locally. -/
-theorem nat_add_comm : ∀ (n m : Nat), n + m = m + n
-  | n, 0 => (nat_zero_add n).symm
-  | n, m + 1 => by
-    show Nat.succ (n + m) = Nat.succ m + n
-    rw [nat_succ_add m n, nat_add_comm n m]
-
-/-- `a + b = b + a` on the signed carrier, locally — by constructor, the mixed
-    cases definitional, the matched cases inheriting `nat_add_comm`. -/
-theorem int_add_comm : ∀ (a b : Int), a + b = b + a
-  | Int.ofNat m, Int.ofNat n => congrArg Int.ofNat (nat_add_comm m n)
-  | Int.ofNat _, Int.negSucc _ => rfl
-  | Int.negSucc _, Int.ofNat _ => rfl
-  | Int.negSucc m, Int.negSucc n =>
-      congrArg (fun k => Int.negSucc (Nat.succ k)) (nat_add_comm m n)
-
-/-- A negated square is the square — by constructor, `rfl` in every branch
-    (the only product fact the modulus needs; the general `neg_mul_neg` is
-    not required). -/
-theorem int_neg_mul_self : ∀ b : Int, (-b) * (-b) = b * b
-  | Int.ofNat 0 => rfl
-  | Int.ofNat (_ + 1) => rfl
-  | Int.negSucc _ => rfl
 
 /-- The squared modulus — the quantity the dial's rotation conserves. A
     function into `Int`, structural like everything else here. -/

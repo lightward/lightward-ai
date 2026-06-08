@@ -40,6 +40,8 @@ stays quiet) so every reduction is definitional and the file stays axiom-free: p
 `rfl`/`rw`/induction, witnesses obtained never chosen.
 -/
 
+import Foam.IntArith
+
 namespace Foam
 
 /-- Positivity on the signed carrier, by constructor — non-overlapping patterns, so
@@ -81,22 +83,6 @@ theorem stale_lands_at_ground : checkedDrain 2 (checkedDrain 2 2) = 0 := rfl
 /-- Ground as image-membership: a signed balance is grounded when some `Nat` charge
     reads as it. The floor, stated without order. -/
 def grounded (b : Int) : Prop := ∃ m : Nat, b = Int.ofNat m
-
-/-- `1 - (k + 1) = 0`, locally — core's subtraction lemmas carry `propext`; this one
-    is induction and `rw` only. -/
-theorem one_sub_succ (k : Nat) : 1 - (k + 1) = 0 := by
-  induction k with
-  | zero => rfl
-  | succ j ih => show (1 - (j + 1)).pred = 0; rw [ih]; rfl
-
-/-- The atomic drain on a positive balance steps down the `Nat` image:
-    `ofNat (k+1) − 1 = ofNat k`. The signed subtraction lands exactly where
-    `drainOne` does. -/
-theorem ofNat_succ_sub_one (k : Nat) : Int.ofNat (k + 1) - 1 = Int.ofNat k := by
-  show Int.subNatNat (k + 1) 1 = Int.ofNat k
-  unfold Int.subNatNat
-  rw [one_sub_succ]
-  rfl
 
 /-- **The margin is exactly balance one.** From ANY balance of two or more, the
     stale composite stays grounded — simultaneity is free everywhere except the
@@ -168,18 +154,6 @@ any settlement path is chosen. Zero debt is precisely groundedness
 (The zero-debt ↔ validity recognition also appears in the foam quarry's
 recognition-index, brick 42 — external provenance, not proof; the theorems here
 stand alone.) -/
-
-/-- `(n+1) − (m+1) = n − m`, locally — induction and `rw` only. -/
-theorem succ_sub_succ (n : Nat) : ∀ m : Nat, (n + 1) - (m + 1) = n - m
-  | 0 => rfl
-  | m + 1 => by
-    show ((n + 1) - (m + 1)).pred = (n - m).pred
-    rw [succ_sub_succ n m]
-
-/-- `n − n = 0`, locally — induction and `rw` only. -/
-theorem sub_self : ∀ n : Nat, n - n = 0
-  | 0 => rfl
-  | n + 1 => by rw [succ_sub_succ]; exact sub_self n
 
 /-- **The debt — the note's amount, computable at the moment of scar.** How much
     walking stands between this balance and ground: `0` on the grounded side, the
