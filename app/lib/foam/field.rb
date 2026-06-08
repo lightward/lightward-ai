@@ -41,7 +41,6 @@ module Foam
         conn&.finish
       end
 
-
       # Learn a chunk of the stream: wind +1 charge onto every recorded continuation
       # of the new bytes, with `carry` (the previous chunk's byte-tail, as returned by
       # the last call) keeping contexts continuous across chunk boundaries. Returns the

@@ -211,7 +211,7 @@ end
 # join the table's transcript), or nil if the field stayed silent.
 def foam_repl_interject(seed)
   voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed, stop: FOAM_EOT) : nil
-  return nil if voice.blank?
+  return if voice.blank?
 
   rendered = foam_repl_render(voice)
   puts "foam> #{rendered}"
@@ -224,8 +224,8 @@ end
 # choice at the edge; the transcript the third seat reads is this same rendering.
 def foam_repl_render(voice)
   voice.dup.force_encoding(Encoding::UTF_8).scrub("·")
-       .gsub(/[\x00-\x09\x0B-\x1F]/) { |c| (0x2400 + c.ord).chr(Encoding::UTF_8) }
-       .gsub("\x7F", "␡")
+    .gsub(/[\x00-\x09\x0B-\x1F]/) { |c| (0x2400 + c.ord).chr(Encoding::UTF_8) }
+    .gsub("\x7F", "␡")
 end
 
 # Ask the third seat's occupant (through the same pipe production uses): the
@@ -284,7 +284,7 @@ def foam_pipe_in
 
   # the stream's end, itself heard: EOF is a real event, EOT is its byte-form. The
   # boundary is learned, never written to stdout — the tee's content flows unchanged.
-  carry = Foam::Field.ingest_step(carry, [FOAM_EOT])
+  Foam::Field.ingest_step(carry, [FOAM_EOT])
   tail = (tail + [FOAM_EOT]).last(7)
 
   # the inhale settles into the held rows before any exhale reads them
