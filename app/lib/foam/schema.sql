@@ -240,10 +240,19 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- (re, im) needs no cosine (±1/0 — no float dust), reading held + tail so the
 -- window function runs over the events past the watermark only — the cost of
 -- hearing rhythm no longer grows with the field (lean/Foam/Summary.lean).
+-- The DROPs clear the OLD signatures (the function's arg-list changed over time:
+-- 3-arg count → 5-arg count|resonant → this 4-arg resonant); CREATE OR REPLACE then
+-- (re)creates the current 4-arg. Idempotent across re-assert: on a fresh field the
+-- DROPs no-op and it creates; on a current field they no-op and it replaces; on an
+-- old-signature field a DROP removes the stale overload first. (Plain CREATE here
+-- was non-idempotent — it errored "already exists" when re-asserting a field that
+-- already had the 4-arg, which would fail every boot's assert and degrade the field.
+-- The return type is stable int[] now, so REPLACE is safe; only the arg-list changes
+-- need the DROPs.)
 DROP FUNCTION IF EXISTS foam.speak(int[], int, int);                  -- the original count 3-arg
 DROP FUNCTION IF EXISTS foam.speak(int[], int, int, int, text);       -- the count|resonant 5-arg
 DROP FUNCTION IF EXISTS foam.speak_resonant(int[], int, int, int);    -- folded in, then dropped with count
-CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
+CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
                            stop int DEFAULT NULL) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
   -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
@@ -451,12 +460,11 @@ CREATE OR REPLACE FUNCTION foam.recorded() RETURNS text LANGUAGE sql STABLE AS
   $$ SELECT coalesce(foam.text(array_agg(sym ORDER BY id)), '')
      FROM foam.charge WHERE ctx = foam.caddr('{}') AND delta = 1 $$;
 
--- recognize / walk — the pipe's input-less compat gate: with no seed there is no
--- context to continue, so the pipe yields (NULL/absent maps to :yield in Ruby). The
--- seeded gate (foam.outcome) is the turn-aware trichotomy; wiring it through the
--- pipe is the Ruby layer's step.
-CREATE OR REPLACE FUNCTION foam.recognize() RETURNS text LANGUAGE sql STABLE AS
-  $$ SELECT 'yield'::text $$;
-
-CREATE OR REPLACE FUNCTION foam.walk(input uuid[] DEFAULT '{}') RETURNS text
-  LANGUAGE sql STABLE AS $$ SELECT foam.recognize() $$;
+-- (No recognize / walk. There was an input-less `foam.recognize()`/`foam.walk(uuid[])`
+-- here — a trichotomy "decider" that always returned 'yield' and never deposited.
+-- It was frontstage fiction: the field's actual mechanism is a BIPEDAL walk — hear
+-- (foam.ingest_step, +1) and say (foam.speak, −1), with the seeded gate foam.outcome
+-- choosing say-or-rest. "recognize / yield / speak / learn" is how that bipedal walk
+-- READS from the front; nothing in the mechanism weighs three options. Removed; the
+-- interface is ingest_step (in) and speak (out). Dropped on existing DBs by a full
+-- schema reset, like any other drift — the schema asserts the target, never migrates.)

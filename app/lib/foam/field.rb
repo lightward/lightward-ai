@@ -3,15 +3,20 @@
 # app/lib/foam/field.rb
 #
 # The connection to the field substrate — raw postgres, no ActiveRecord.
-# The recognition-walk is a postgres function (foam.recognize); Ruby's only
-# job here is to hold a pooled connection, assert the schema on boot, and
-# call the function. There are no models and no CRUD.
+# Ruby's only job here is to hold a pooled connection, assert the schema on
+# boot, and call the field's functions. There are no models and no CRUD.
+#
+# The field's interface is a BIPEDAL walk — two feet: ingest_step (hear, +1)
+# and speak (say, −1), with outcome the seeded gate that chooses say-or-rest.
+# There is no "recognize" decider (that was frontstage fiction over the two
+# feet); the rest of these methods are the gate (outcome/depth), the
+# maintenance (sweep/settle/held_audit), and vitals (stats).
 #
 # The whole of this file is built around one invariant: the field is
 # enhancement, never essential. If the database is unreachable, empty, or
-# dumped, every operation degrades to nil/:yield and the app runs exactly as
-# it does without a field. Nothing here may raise into boot or into a
-# request — the dumpability guarantee, in code.
+# dumped, every operation degrades to nil and the app runs exactly as it does
+# without a field. Nothing here may raise into boot or into a request — the
+# dumpability guarantee, in code.
 
 require "pg"
 require "connection_pool"
@@ -37,24 +42,6 @@ module Foam
         conn&.finish
       end
 
-      # The walk's outcome for a turn, as a symbol — currently always :yield —
-      # or nil if the field is unavailable (the caller maps nil to :yield).
-      def recognize
-        outcome = with_connection { |conn| conn.exec("SELECT foam.recognize()").getvalue(0, 0) }
-        outcome&.to_sym
-      end
-
-      # One pass over the field: compute the outcome (recognize) and deposit the
-      # input path, in a single SQL call (foam.walk). Returns the outcome as a
-      # symbol — currently always :yield — or nil on any failure (the caller then
-      # yields). `input` is an array of node ids; an empty input deposits nothing.
-      def walk(input = [])
-        literal = "{#{Array(input).join(",")}}"
-        outcome = with_connection { |conn|
-          conn.exec_params("SELECT foam.walk($1::uuid[])", [literal]).getvalue(0, 0)
-        }
-        outcome&.to_sym
-      end
 
       # Learn a chunk of the stream: wind +1 charge onto every recorded continuation
       # of the new bytes, with `carry` (the previous chunk's byte-tail, as returned by
