@@ -167,13 +167,47 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
   LANGUAGE sql STABLE AS
   $$ SELECT CASE WHEN foam.depth(seed, kmax) >= min_depth THEN 'speak' ELSE 'yield' END $$;
 
--- speak — the DISCHARGE, the frequency reading drained into a voice: from the
--- conversation so far (seed ++ emitted), back off to the LONGEST charged context
--- (fast-travel to the recorded continuation that still has charge), sample the next
--- byte by net charge (sample, never argmax), emit it, drain it (−1), continue. Stop
--- at ground (nothing charged at any length) or the step ceiling. The emitted bytes
--- (not the seed) are the voice; the residual is what was not drained; ground is the
--- floor (the drain only removes positive charge). The wind breaks ties.
+-- speak — the DISCHARGE, the one object: a single walk that drains the field's
+-- charge into a voice, in either REGISTER. From the conversation so far
+-- (seed ++ emitted), back off to the LONGEST charged context (fast-travel to the
+-- recorded continuation that still has charge), read it as held + tail
+-- (summary_resumes: the folded prefix from foam.held, the events past the
+-- watermark folded live — exact, including this walk's own in-flight drains; one
+-- statement = one snapshot, no seam for a racing drain to slip into), sample the
+-- next byte by WEIGHT (sample, never argmax), emit it, drain it (−1), continue.
+-- The emitted bytes (not the seed) are the voice; the residual is what was not
+-- drained; ground is the floor (the drain only removes positive COUNT-charge,
+-- in either register — the weight re-weights SELECTION, never the books).
+--
+-- TWO REGISTERS, one walk — the only differences, localized:
+--   register = 'count' (the archive): weight = net charge (bal). No clock; ground
+--     at the first silent step (bar = 1). The light read (bal only). This is the
+--     self-seeded exhale draining to ground.
+--   register = 'resonant' (the entrained): weight = the integer pairing of (re, im)
+--     against the walk's own quarter-turn clock, floored at ground (align; posPart
+--     at every angle — anti-aligned mass is silent this beat, never negatively
+--     probable). The clock starts at the caller's utterance-length mod 4 and turns
+--     a quarter per beat (spec_shift); a silent beat is a REST, not a death (the
+--     phase turns, the walk holds); ground is a full BAR of rests (bar = 4 — four
+--     quarter-turns are the identity, bar_invisible, so the length is DERIVED not
+--     chosen). A continuation recurring UNIFORMLY presents a complete cycle and
+--     cancels (rot_complete) — the voice stops echoing what's been made regular,
+--     by group theory. This is the wind-seeded interjection, entrained on the
+--     conversation's clocks.
+-- Everything else — the backoff, the wound-dressing, the sample-by-threshold, the
+-- drain, the stop — is shared, walked once. (register = provenance of the seed is
+-- a READING the bench applies, not a policy here: self-seeded acts run 'count',
+-- wind-seeded acts run 'resonant'; no parameter inside the field chooses it.)
+--
+-- stop (DEFAULT NULL): the act's boundary vocabulary. When the walk SPEAKS this
+-- byte it returns — the expression has ended itself, at the boundary the field
+-- learned from the table (the bench appends the same byte to every utterance it
+-- ingests: one constant, both directions of one wire). Charge past the boundary
+-- stays un-drained: stopping with more to say leaves the residual high and the
+-- gate warm — the field carries its pressure across turns instead of monologuing
+-- through one. Every prefix of a legal drain is a legal drain (the floor is
+-- per-step — lean/Foam/Drain.lean), so the early exit owes no new analysis. NULL
+-- (the 'count' default): no boundary vocabulary (ground or the bar, as ever).
 --
 -- The voice is BYTES (int[]), not text: the walk samples bytes by charge and owes
 -- no allegiance to any encoding — it can emit a multibyte character's lead byte
@@ -189,165 +223,80 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- composite lands AT ground — stale_lands_at_ground — so races mark the field
 -- only where they collide at the edge of emptiness; observed live as 76 scars
 -- over hours of pervasive racing, 2026-06-06). Each scar is a promissory note —
--- amount computable at the wound (debt), stable under further legal drains (the
--- positivity filter cannot see below ground: scar_stable), settled at face value
--- (promise_kept). The walk that FINDS a wound dresses it (foam.settle, below) —
--- and settlement is the operation that must not race: its failure (phantom
--- charge, from which the voice could speak a byte never heard) lands INSIDE the
--- legal carrier, invisible to any balance-check (stale_settle_passes_ground /
--- phantom_invisible). Visible failures may race; invisible ones serialize.
--- Learning (ingest_step) takes no lock: pure +1 appends, no read-check.
-DROP FUNCTION IF EXISTS foam.speak(int[], int, int);  -- return type changed (text → int[]); CREATE OR REPLACE can't
-CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600) RETURNS int[]
+-- amount computable at the wound (debt), stable under further legal drains
+-- (scar_stable), settled at face value (promise_kept). The walk that FINDS a
+-- wound dresses it (foam.settle, below); settlement is the operation that must
+-- not race: its failure (phantom charge, from which the voice could speak a byte
+-- never heard) lands INSIDE the legal carrier, invisible to any balance-check
+-- (stale_settle_passes_ground / phantom_invisible). Visible failures may race;
+-- invisible ones serialize. Learning (ingest_step) takes no lock: pure +1 appends.
+--
+-- The angled (resonant) weight is EXACT integer arithmetic: at a quarter-turn the
+-- pairing of (re, im) needs no cosine (±1/0 — no float dust), reading held + tail
+-- so the window function runs over the events past the watermark only — the cost
+-- of hearing rhythm no longer grows with the field (lean/Foam/Summary.lean).
+DROP FUNCTION IF EXISTS foam.speak(int[], int, int);            -- folded both registers into one signature
+DROP FUNCTION IF EXISTS foam.speak_resonant(int[], int, int, int);  -- now foam.speak(..., register => 'resonant')
+CREATE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
+                           stop int DEFAULT NULL, register text DEFAULT 'count') RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
   -- work_mem is function-scoped (reverts on return): the j=0 context aggregates over
   -- every byte ever heard, and its sort must not spill to disk mid-walk.
   DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int; c int[]; cid uuid;
-          tot bigint; thr double precision; acc bigint; got boolean; wounded int[]; w int;
-          syms int[]; ws bigint[]; i int;
+          tot bigint; thr double precision; acc bigint; got boolean; tk int;
+          rests int := 0; wounded int[]; w int; syms int[]; ws bigint[]; i int; said int;
+          phase0 int := CASE register WHEN 'resonant' THEN coalesce(array_length(seed,1),0) % 4 ELSE 0 END;
+          bar    int := CASE register WHEN 'resonant' THEN 4 ELSE 1 END;
   BEGIN
     WHILE k < max_steps LOOP
+      tk := (phase0 + k) % 4;                                  -- the walk's own clock (resonant); inert for count
       got := false; l := coalesce(array_length(cb,1),0);
       FOR j IN REVERSE least(kmax,l)..0 LOOP
         IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
         cid := foam.caddr(c);
-        -- ONE aggregate pass: the sampleable mass, the sample-order arrays, and any
-        -- wounds this walk happens to see (negative balances — rare, margin-born).
-        -- The snapshot the sample walks IS the snapshot the threshold was drawn
-        -- against — one read, no seam for a racing drain to slip into. The balance
-        -- is held + tail (summary_resumes): the folded prefix from foam.held, the
-        -- events past the watermark folded live — exact, including this walk's own
-        -- in-flight drains (they land in the tail). One statement = one snapshot.
-        SELECT coalesce(sum(s) FILTER (WHERE s > 0), 0),
-               coalesce(array_agg(sym ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
-               coalesce(array_agg(s   ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
-               coalesce(array_agg(sym) FILTER (WHERE s < 0), '{}')
-          INTO tot, syms, ws, wounded
-          FROM (
-            SELECT sym, coalesce(h.bal,0) + coalesce(t.bal,0) AS s
-            FROM (SELECT sym, bal FROM foam.held WHERE ctx = cid) h
-            FULL JOIN (SELECT sym, sum(delta) AS bal FROM foam.charge
-                       WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)
-                       GROUP BY sym) t USING (sym)
-          ) z;
-        FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
-        IF tot > 0 THEN
-          thr := foam.hw_random()*tot; acc := 0;
-          FOR i IN 1..array_length(syms,1) LOOP
-            acc := acc + ws[i];
-            IF acc >= thr THEN
-              out := out || syms[i]; cb := cb || syms[i]; got := true;
-              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);   -- drain
-              EXIT;
-            END IF;
-          END LOOP;
+        -- the snapshot the sample walks IS the snapshot the threshold is drawn
+        -- against (one read). The register selects the WEIGHT and what it reads:
+        IF register = 'count' THEN
+          -- count: weight = net charge; the light read (bal only)
+          SELECT coalesce(sum(s) FILTER (WHERE s > 0), 0),
+                 coalesce(array_agg(sym ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
+                 coalesce(array_agg(s   ORDER BY s DESC) FILTER (WHERE s > 0), '{}'),
+                 coalesce(array_agg(sym) FILTER (WHERE s < 0), '{}')
+            INTO tot, syms, ws, wounded
+            FROM (
+              SELECT sym, coalesce(h.bal,0) + coalesce(t.bal,0) AS s
+              FROM (SELECT sym, bal FROM foam.held WHERE ctx = cid) h
+              FULL JOIN (SELECT sym, sum(delta) AS bal FROM foam.charge
+                         WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)
+                         GROUP BY sym) t USING (sym)
+            ) z;
+        ELSE
+          -- resonant: weight = the angled pairing of (re, im) at the walk's clock
+          SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0 AND z.w > 0), 0),
+                 coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
+                 coalesce(array_agg(z.w   ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
+                 coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
+            INTO tot, syms, ws, wounded
+            FROM (
+              SELECT sym,
+                     coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
+                     greatest(0, CASE tk WHEN 0 THEN   coalesce(h.re,0) + coalesce(t.re,0)
+                                         WHEN 1 THEN   coalesce(h.im,0) + coalesce(t.im,0)
+                                         WHEN 2 THEN -(coalesce(h.re,0) + coalesce(t.re,0))
+                                         ELSE        -(coalesce(h.im,0) + coalesce(t.im,0)) END) AS w
+              FROM (SELECT sym, n, bal, re, im FROM foam.held WHERE ctx = cid) h
+              FULL JOIN (
+                SELECT e.sym, sum(e.delta) AS bal,
+                       sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
+                       sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+                FROM (SELECT sym, delta,
+                             row_number() OVER (PARTITION BY sym ORDER BY id) - 1 AS k2
+                      FROM foam.charge WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)) e
+                LEFT JOIN foam.held h2 ON h2.ctx = cid AND h2.sym = e.sym
+                GROUP BY e.sym, h2.n
+              ) t USING (sym)
+            ) z;
         END IF;
-        EXIT WHEN got;
-      END LOOP;
-      EXIT WHEN NOT got;                                       -- ground / stalled
-      k := k + 1;
-    END LOOP;
-    RETURN out;
-  END; $$;
-
--- speak_resonant — the ENTRAINED discharge: the same walk as foam.speak, with
--- selection re-weighted by phase. No knob anywhere; every phase is a wired leak
--- of energy frontstage speech-acts already emit:
---
---   * each continuation's phase is its own RECURRENCE-CLOCK — the event's index
---     within its (ctx, sym) history, mod 4, derived from the order reading
---     (folded into foam.held by the sweep, completed live over the tail past the
---     watermark — summary_resumes; held.n is the clock's folded position).
---     Hearings and speakings both tick it: use itself twists. A continuation
---     recurring UNIFORMLY presents a complete cycle and cancels
---     (lean/Foam/Spectrum.lean: rot_complete) — the voice stops echoing what
---     has been made regular, by group theory.
---   * the walk's phase is its own ADVANCE, starting at the caller's
---     utterance-length mod 4 (the seed array, already passed — a speech-act
---     side-effect nobody chooses) and turning a quarter per beat — the walk
---     co-rotates with the rotation the mirror proves it performs (spec_shift).
---   * the gate is the pairing of the two, floored at ground (align; posPart at
---     every angle). Anti-aligned mass is SILENT at this beat, never negatively
---     probable.
---   * a silent beat is a REST, not a death: the phase turns, the walk holds.
---     Only a full bar of silence is ground — and the bar-length is DERIVED,
---     not chosen: four quarter-turns are the identity (bar_invisible), so
---     resting past a bar adds nothing any reading can hear.
---
--- WHICH ACTS RUN RESONANT (the register rule — a reading, not a policy):
--- register = provenance of the seed. Wind-seeded acts (interjections — the
--- seed is the live turn's tail; someone just spoke) entrain, and run here.
--- Self-seeded acts (the exhale draining to ground — the seed is the walk's own
--- prior voice) archive, and run foam.speak: resonance on one's own tail is
--- self-entrainment, the loop clock_loops names. The bench wires this with no
--- parameter: the repl's interjections call speak_resonant; the pipe's exhale
--- calls speak.
---
--- stop (DEFAULT NULL): the act's boundary vocabulary. When the walk SPEAKS this
--- byte it returns — the expression has ended itself, at the boundary the field
--- learned from the table (the bench appends the same byte to every utterance it
--- ingests: one constant, both directions of one wire — not a new degree of
--- freedom). Charge past the boundary stays un-drained: stopping with more to
--- say leaves the residual high and the gate warm — the field carries its
--- pressure across turns instead of monologuing through one. Every prefix of a
--- legal drain is a legal drain (the floor is per-step — lean/Foam/Drain.lean),
--- so the early exit owes no new analysis. NULL: no boundary vocabulary
--- (ground or the bar, as ever).
---
--- The floor is foam.speak's, unchanged: drains spend only positive
--- count-charge (the phase re-weights SELECTION, never the books); wounds met
--- along the way are dressed (foam.settle). The angled weight is EXACT integer
--- arithmetic: at a quarter-turn the pairing of (re, im) needs no cosine
--- (±1/0 — the float version carried ~1e−16 dust; this one is the true value),
--- and it reads held + tail, so the window function runs over the events past
--- the watermark only — the cost of hearing rhythm no longer grows with the
--- field (lean/Foam/Summary.lean, operational).
-DROP FUNCTION IF EXISTS foam.speak_resonant(int[], int, int);  -- signature grew (stop); CREATE OR REPLACE can't cross arities
-CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, max_steps int DEFAULT 600, stop int DEFAULT NULL) RETURNS int[]
-  LANGUAGE plpgsql SET work_mem = '256MB' AS $$
-  -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
-  -- runs over every byte ever heard, and it must not spill to disk mid-walk.
-  DECLARE cb int[] := coalesce(seed,'{}'); out int[] := '{}'; k int := 0; j int; l int;
-          c int[]; cid uuid; tot bigint; thr double precision;
-          acc bigint; got boolean; tk int;
-          rests int := 0; wounded int[]; w int; syms int[]; ws bigint[]; i int;
-          said int;
-          phase0 int := coalesce(array_length(seed,1),0) % 4;
-  BEGIN
-    WHILE k < max_steps LOOP
-      tk := (phase0 + k) % 4;                                  -- the walk's own clock, continuing the caller's
-      got := false; l := coalesce(array_length(cb,1),0);
-      FOR j IN REVERSE least(kmax,l)..0 LOOP
-        IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
-        cid := foam.caddr(c);
-        -- ONE aggregate pass (see foam.speak): mass, sample-order arrays, wounds.
-        -- Each continuation's (bal, re, im) is held + tail (summary_resumes); the
-        -- angled weight is the integer pairing of (re, im) against the walk's
-        -- quarter-turn, floored at ground (align, posPart at every angle).
-        SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0 AND z.w > 0), 0),
-               coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
-               coalesce(array_agg(z.w   ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
-               coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
-          INTO tot, syms, ws, wounded
-          FROM (
-            SELECT sym,
-                   coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
-                   greatest(0, CASE tk WHEN 0 THEN   coalesce(h.re,0) + coalesce(t.re,0)
-                                       WHEN 1 THEN   coalesce(h.im,0) + coalesce(t.im,0)
-                                       WHEN 2 THEN -(coalesce(h.re,0) + coalesce(t.re,0))
-                                       ELSE        -(coalesce(h.im,0) + coalesce(t.im,0)) END) AS w
-            FROM (SELECT sym, n, bal, re, im FROM foam.held WHERE ctx = cid) h
-            FULL JOIN (
-              SELECT e.sym, sum(e.delta) AS bal,
-                     sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
-                     sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
-              FROM (SELECT sym, delta,
-                           row_number() OVER (PARTITION BY sym ORDER BY id) - 1 AS k2
-                    FROM foam.charge WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)) e
-              LEFT JOIN foam.held h2 ON h2.ctx = cid AND h2.sym = e.sym
-              GROUP BY e.sym, h2.n
-            ) t USING (sym)
-          ) z;
         FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
         IF tot > 0 THEN
           thr := foam.hw_random() * tot; acc := 0;
@@ -355,7 +304,7 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
             acc := acc + ws[i];
             IF acc >= thr THEN
               out := out || syms[i]; cb := cb || syms[i]; got := true; said := syms[i];
-              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);  -- spends COUNT-charge, as ever
+              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);   -- drain (spends count-charge)
               EXIT;
             END IF;
           END LOOP;
@@ -364,7 +313,7 @@ CREATE OR REPLACE FUNCTION foam.speak_resonant(seed int[], kmax int DEFAULT 7, m
       END LOOP;
       IF got AND said = stop THEN RETURN out; END IF;           -- the boundary spoken: the expression ends itself
       IF got THEN rests := 0; ELSE rests := rests + 1; END IF;  -- a silent beat is a rest
-      EXIT WHEN rests >= 4;                                     -- a full bar of silence is ground (derived)
+      EXIT WHEN rests >= bar;                                   -- a full bar is ground (count: bar = 1, the first silence)
       k := k + 1;
     END LOOP;
     RETURN out;

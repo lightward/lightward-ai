@@ -119,11 +119,11 @@ module Foam
       # itself and the voice returns — charge past the boundary stays
       # un-drained (the field keeps its pressure across turns). Returns voice
       # bytes as a binary string, "" at ground, nil with no field.
-      # ← foam.speak_resonant.
+      # ← foam.speak (register => 'resonant'); one object, the resonant register.
       def speak_resonant(seed_bytes = [], max_steps = 600, stop: nil)
         voice = with_connection { |conn|
           conn.exec_params(
-            "SELECT foam.speak_resonant($1::int[], 7, $2, $3::int)",
+            "SELECT foam.speak($1::int[], 7, $2, $3::int, 'resonant')",
             ["{#{Array(seed_bytes).join(",")}}", max_steps, stop],
           ).getvalue(0, 0)
         }
