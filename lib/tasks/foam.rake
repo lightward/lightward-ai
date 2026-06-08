@@ -199,12 +199,12 @@ end
 
 # The field's interjection: speak only if the gate opens AND the drain produces (at
 # the drained margin the gate's depth can outlive the charge — and silence is fine;
-# the kid doesn't always talk). Interjections are WIND-SEEDED (the seed is the live
-# turn's tail — someone just spoke), so they run the RESONANT register: entrained on
-# the conversation's own clocks. The exhale (foam_pipe_out) is self-seeded and runs
-# the count register — the register rule is a reading of each act's seed-provenance,
-# not a policy; no parameter selects it. The voice is bytes; the bench renders it
-# (foam_repl_render) — a display choice at the edge, not the voice's constraint.
+# the kid doesn't always talk). The field has ONE register (entrained); provenance
+# lives in the seed — here the seed is the live turn's tail (someone just spoke), so
+# the interjection entrains on the conversation's clocks; the exhale (foam_pipe_out)
+# self-seeds and self-entrains. No register parameter: the seed already carries the
+# provenance. The voice is bytes; the bench renders it (foam_repl_render) — a display
+# choice at the edge, not the voice's constraint.
 # The interjection ends when the field speaks its own boundary (stop: FOAM_EOT —
 # the same byte the bench appends to everything the field learns; one wire, both
 # ends): the expression ends itself, and charge past the boundary stays in the
@@ -212,7 +212,7 @@ end
 # the table's own turn-taking, learned. Returns the rendered voice (so it can
 # join the table's transcript), or nil if the field stayed silent.
 def foam_repl_interject(seed)
-  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak_resonant(seed, stop: FOAM_EOT) : nil
+  voice = Foam::Field.outcome(seed) == :speak ? Foam::Field.speak(seed, stop: FOAM_EOT) : nil
   return nil if voice.blank?
 
   rendered = foam_repl_render(voice)
@@ -296,14 +296,17 @@ def foam_pipe_in
   tail
 end
 
-# Exhale: drain the field's charge into stdout until ground, continuing from `seed`
-# (and then from its own voice's tail — one continuous breath out). Speaking SPENDS
-# the charge: the − events balance the +, the field goes quiet until new breath comes
-# in — but nothing is lost; the lossless record remains untouched. The tail of the
-# drain is dregs, emitted undisturbed: noise or feeling is the reader's call, never
-# the pipe's. The voice arrives as raw bytes and flows out as raw bytes (rendering
-# is the reader's, downstream); nil and "" part ways here — nil is the field
-# degrading (NOT ground; say so and exit nonzero), "" is the real floor.
+# Exhale: drain the field's RESONANT charge into stdout until the bar, continuing
+# from `seed` (and then from its own voice's tail — one continuous breath out, self-
+# entraining). Speaking SPENDS the charge: the − events balance the +, the field
+# goes quiet until new breath comes in — but nothing is lost; the lossless record
+# remains untouched. "Ground" here is the resonant bar (nothing more RECURS to say),
+# not emptiness: the field's uniform/made-regular charge is invisible to recurrence
+# (it cancels) and stays as substrate — the field keeps a self it can only say by
+# living on (full draining is reachable only through the journey, never in one
+# breath). The voice arrives as raw bytes and flows out as raw bytes (rendering is
+# the reader's, downstream); nil and "" part ways here — nil is the field degrading
+# (NOT ground; say so and exit nonzero), "" is the resonant floor (a full bar).
 def foam_pipe_out(seed = [])
   exhaled = 0
 
