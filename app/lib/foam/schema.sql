@@ -111,10 +111,6 @@ CREATE OR REPLACE FUNCTION foam.text(ints int[]) RETURNS text LANGUAGE plpgsql I
 CREATE OR REPLACE FUNCTION foam.hw_random() RETURNS double precision LANGUAGE sql AS
   $$ SELECT (('x'||encode(gen_random_bytes(7),'hex'))::bit(56)::bigint)::double precision / 72057594037927936.0 $$;
 
--- The FREQUENCY reading of one continuation: the un-drained charge on (ctx, sym).
-CREATE OR REPLACE FUNCTION foam.net(c uuid, s int) RETURNS bigint LANGUAGE sql STABLE AS
-  $$ SELECT coalesce(sum(delta),0) FROM foam.charge WHERE ctx = c AND sym = s $$;
-
 -- ingest_step — the streaming LEARN: wind +1 onto every recorded continuation of the
 -- new bytes, with `carry` (the previous chunk's byte-tail) as leading context so
 -- contexts span chunk boundaries. The resumable fold: carry the tail, nothing to
