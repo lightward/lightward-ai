@@ -250,33 +250,51 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
         cid := foam.caddr(c);
         -- ONE aggregate pass: the angled mass, the sample-order arrays, and any
         -- wounds (bal < 0). The snapshot the sample walks IS the snapshot the
-        -- threshold is drawn against — one read. Each continuation's (bal, re, im)
-        -- is held + tail (summary_resumes); the weight is the integer pairing of
-        -- (re, im) at the walk's quarter-turn, floored at ground. bal gates the
-        -- drainable (bal > 0) — a reading, not the weight.
+        -- threshold is drawn against — one read. bal gates the drainable (bal > 0)
+        -- — a reading, not the weight.
+        --
+        -- The spectrum is STORED abs-framed (phase 0 = oldest occurrence) and READ
+        -- recency-framed (phase 0 = the most-recent occurrence — the present is the
+        -- downbeat). The conversion is recency = rot^(N−1)·conj(abs), where N is the
+        -- continuation's occurrence count (held + tail): proven exact in
+        -- lean/Foam/Chirality.lean (specR_bridge; rot(specR) = rot^N(conj spec), so
+        -- recency = rot^(N−1)·conj(abs) for N ≥ 1). (N+3) % 4 = (N−1) % 4 with N ≥ 1,
+        -- non-negative. The walk pairs the recency reading against its own
+        -- quarter-turn (tk), floored at ground (posPart at every angle).
         SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0 AND z.w > 0), 0),
                coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.w   ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
           INTO tot, syms, ws, wounded
           FROM (
-            SELECT sym,
-                   coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
-                   greatest(0, CASE tk WHEN 0 THEN   coalesce(h.re,0) + coalesce(t.re,0)
-                                       WHEN 1 THEN   coalesce(h.im,0) + coalesce(t.im,0)
-                                       WHEN 2 THEN -(coalesce(h.re,0) + coalesce(t.re,0))
-                                       ELSE        -(coalesce(h.im,0) + coalesce(t.im,0)) END) AS w
-            FROM (SELECT sym, n, bal, re, im FROM foam.held WHERE ctx = cid) h
-            FULL JOIN (
-              SELECT e.sym, sum(e.delta) AS bal,
-                     sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
-                     sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
-              FROM (SELECT sym, delta,
-                           row_number() OVER (PARTITION BY sym ORDER BY id) - 1 AS k2
-                    FROM foam.charge WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)) e
-              LEFT JOIN foam.held h2 ON h2.ctx = cid AND h2.sym = e.sym
-              GROUP BY e.sym, h2.n
-            ) t USING (sym)
+            -- pair the recency (rre, rim) against the walk's clock tk
+            SELECT sym, bal,
+                   greatest(0, CASE tk WHEN 0 THEN rre WHEN 1 THEN rim WHEN 2 THEN -rre ELSE -rim END) AS w
+            FROM (
+              -- recency = rot^((N−1)%4) · conj(abs):  conj(re,im) = (re,−im), then wind
+              SELECT sym, bal,
+                     CASE ((nn + 3) % 4) WHEN 0 THEN  re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END AS rre,
+                     CASE ((nn + 3) % 4) WHEN 0 THEN -im WHEN 1 THEN re WHEN 2 THEN  im ELSE -re END AS rim
+              FROM (
+                -- abs (re, im) and the occurrence count N, both held + tail
+                SELECT sym,
+                       coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
+                       coalesce(h.re,0)  + coalesce(t.re,0)  AS re,
+                       coalesce(h.im,0)  + coalesce(t.im,0)  AS im,
+                       coalesce(h.n,0)   + coalesce(t.tn,0)  AS nn
+                FROM (SELECT sym, n, bal, re, im FROM foam.held WHERE ctx = cid) h
+                FULL JOIN (
+                  SELECT e.sym, count(*) AS tn, sum(e.delta) AS bal,
+                         sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
+                         sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+                  FROM (SELECT sym, delta,
+                               row_number() OVER (PARTITION BY sym ORDER BY id) - 1 AS k2
+                        FROM foam.charge WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)) e
+                  LEFT JOIN foam.held h2 ON h2.ctx = cid AND h2.sym = e.sym
+                  GROUP BY e.sym, h2.n
+                ) t USING (sym)
+              ) absf
+            ) recf
           ) z;
         FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
         IF tot > 0 THEN
