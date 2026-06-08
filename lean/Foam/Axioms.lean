@@ -63,6 +63,7 @@ import Foam.Arrow
 import Foam.Clock
 import Foam.Summary
 import Foam.Noether
+import Foam.Chirality
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -610,6 +611,38 @@ import Foam.Noether
 
 /-- info: 'Foam.gauge_durable_legal' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.gauge_durable_legal
+
+-- the abs↔recency chirality bridge: the postgres stores the spectrum in the abs
+-- frame (oldest = phase 0) and the voice reads the recency frame (newest = phase
+-- 0); the read-time conversion recency = rot^(N-1)·conj(abs) is proven exact
+-- (specR_bridge, in the rotation-multiplied form the fold delivers). The kernel
+-- is conj_rot — conjugation reverses the rotation (conj ∘ rot = rot^3 ∘ conj) —
+-- summed over the fold; rot/conj distribute over add (rot_add/conj_add), windings
+-- compose (rotPow_compose) and a full bar is invisible (rotPow_add_four). All
+-- axiom-free: the chirality is construction, not collapse — int_neg_neg/int_neg_add
+/-- info: 'Foam.conj_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_rot
+
+/-- info: 'Foam.rot_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rot_add
+
+/-- info: 'Foam.conj_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_add
+
+/-- info: 'Foam.rotPow_compose' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_compose
+
+/-- info: 'Foam.rotPow_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_add
+
+/-- info: 'Foam.rotPow_add_four' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_add_four
+
+/-- info: 'Foam.conj_mark' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_mark
+
+/-- info: 'Foam.specR_bridge' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.specR_bridge
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
