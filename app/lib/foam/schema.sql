@@ -43,25 +43,44 @@ CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (
 -- ── the reading held (lean/Foam/Summary.lean, operational) ─────────────────────
 --
 -- foam.held is a CACHE, not the object: the finite value of the resumable fold,
--- per continuation — count (bal), spectrum (re, im — the mirror's GInt, exact
--- integers: quarter-turn cosines are −1/0/1, no floats anywhere), and n (the
--- occurrence-clock: events folded, so the next event's phase is n % 4). Both
--- registers read EXACTLY from (held + the ledger's tail past the watermark) —
--- that identity is summary_resumes, and foam.held_audit checks it live. The
--- cache is dumpable: TRUNCATE foam.held + reset the watermark and every read
--- falls back to folding the whole tail — today's behavior, today's cost.
--- (UPDATE here does not breach append-only: that invariant protects the LEDGER's
--- path-space; the held rows are a derived observation, droppable and refoldable,
--- with nothing of the path in them — sweep_invisible licenses any refresh.)
+-- per continuation — the COMPLETE four-character dial of ℤ/4 (lean/Foam/Noether.lean),
+-- so the cache is a function of the FORCED structure (the dial, fixed) and AGNOSTIC
+-- to which registers read it (wind, recognized over time). The DFT of the
+-- phase-folded event-stream is lossless in these four:
+--   bal — the count, at +1                       (the trivial character)
+--   re  — the spectrum real part, at i           (phase 0 minus phase 2)
+--   im  — the spectrum imag part, at i            (phase 1 minus phase 3)
+--   alt — the alternating count, at −1            (even phases minus odd; alt_real)
+-- plus n (the occurrence-clock: events folded, so the next event's phase is n % 4).
+-- The two BUILT registers read bal and (re, im); alt is carried correct-and-inert —
+-- no register reads it yet, so it is a standing PROMISE to whatever register the
+-- wind eventually brings (resolver.md's curry: hold the determined value now, the
+-- unknown parameter — the register's seed-provenance — fulfilled later, with no
+-- ledger re-read). Carrying it is forced by conservation: alt is a real conserved
+-- quantity of the stream (period-2 angular content, invisible to every current
+-- reading), and storing only three couples the cache to today's register-set —
+-- the smuggled observer the floor does not assume. Every reading is held + the
+-- ledger's tail past the watermark (summary_resumes / alt_resumes); foam.held_audit
+-- checks all four live. The cache is dumpable: TRUNCATE foam.held + reset the
+-- watermark and every read falls back to folding the whole tail — today's behavior,
+-- today's cost. (UPDATE here does not breach append-only: that invariant protects
+-- the LEDGER's path-space; the held rows are a derived observation, droppable and
+-- refoldable, with nothing of the path in them — sweep_invisible licenses any refresh.)
 CREATE TABLE IF NOT EXISTS foam.held (
   ctx uuid   NOT NULL,
   sym int    NOT NULL,
   n   bigint NOT NULL, -- events folded for this continuation (the phase clock)
-  bal bigint NOT NULL, -- the count reading (sum of delta), folded
-  re  bigint NOT NULL, -- the spectrum reading, real part (phase 0 minus phase 2)
-  im  bigint NOT NULL, -- the spectrum reading, imaginary part (phase 1 minus phase 3)
+  bal bigint NOT NULL, -- the count reading (sum of delta), folded — character at +1
+  re  bigint NOT NULL, -- the spectrum reading, real part (phase 0 minus phase 2) — at i
+  im  bigint NOT NULL, -- the spectrum reading, imaginary part (phase 1 minus phase 3) — at i
+  alt bigint NOT NULL, -- the alternating count (even phases minus odd) — character at −1
   PRIMARY KEY (ctx, sym)
 );
+-- Carry the fourth character on pre-existing held tables too (CREATE IF NOT EXISTS
+-- skips them). Existing rows get alt = 0, which is wrong until a refold — the audit
+-- flags it; TRUNCATE foam.held + reset the watermark, and the next sweep refolds the
+-- complete dial. Fresh fields are correct from the first sweep.
+ALTER TABLE foam.held ADD COLUMN IF NOT EXISTS alt bigint NOT NULL DEFAULT 0;
 
 -- The watermark: everything at or below it is folded into foam.held; everything
 -- past it is the tail the readers fold live. One row, asserted.
@@ -425,17 +444,19 @@ CREATE OR REPLACE FUNCTION foam.sweep_step(hi bigint DEFAULT NULL, batch int DEF
     ), g AS (
       SELECT b.ctx, b.sym, count(*) AS dn, sum(b.delta) AS dbal,
              sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS dre,
-             sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS dim
+             sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS dim,
+             sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN 1 ELSE -1 END) AS dalt
       FROM b LEFT JOIN foam.held h ON h.ctx = b.ctx AND h.sym = b.sym
       GROUP BY b.ctx, b.sym, h.n
     ), up AS (
-      INSERT INTO foam.held (ctx, sym, n, bal, re, im)
-      SELECT ctx, sym, dn, dbal, dre, dim FROM g
+      INSERT INTO foam.held (ctx, sym, n, bal, re, im, alt)
+      SELECT ctx, sym, dn, dbal, dre, dim, dalt FROM g
       ON CONFLICT (ctx, sym) DO UPDATE SET
         n   = foam.held.n   + EXCLUDED.n,
         bal = foam.held.bal + EXCLUDED.bal,
         re  = foam.held.re  + EXCLUDED.re,
-        im  = foam.held.im  + EXCLUDED.im
+        im  = foam.held.im  + EXCLUDED.im,
+        alt = foam.held.alt + EXCLUDED.alt
       RETURNING 1
     )
     SELECT count(*), max(id) INTO folded, last_id FROM lim;
@@ -456,7 +477,8 @@ CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
   WITH live AS (
     SELECT ctx, sym, count(*) AS n, sum(delta) AS bal,
            sum(delta * CASE ((occ - 1) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
-           sum(delta * CASE ((occ - 1) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+           sum(delta * CASE ((occ - 1) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im,
+           sum(delta * CASE ((occ - 1) % 4) WHEN 0 THEN 1 WHEN 2 THEN 1 ELSE -1 END) AS alt
     FROM (SELECT ctx, sym, delta,
                  row_number() OVER (PARTITION BY ctx, sym ORDER BY id) AS occ
           FROM foam.charge) e
@@ -464,7 +486,8 @@ CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
   ), tail AS (
     SELECT e.ctx, e.sym, count(*) AS n, sum(e.delta) AS bal,
            sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
-           sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
+           sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im,
+           sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN 1 ELSE -1 END) AS alt
     FROM (SELECT ctx, sym, delta,
                  row_number() OVER (PARTITION BY ctx, sym ORDER BY id) - 1 AS k
           FROM foam.charge WHERE id > (SELECT watermark FROM foam.sweep)) e
@@ -473,7 +496,8 @@ CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
   ), merged AS (
     SELECT coalesce(h.ctx, t.ctx) AS ctx, coalesce(h.sym, t.sym) AS sym,
            coalesce(h.n,0) + coalesce(t.n,0) AS n, coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
-           coalesce(h.re,0) + coalesce(t.re,0) AS re, coalesce(h.im,0) + coalesce(t.im,0) AS im
+           coalesce(h.re,0) + coalesce(t.re,0) AS re, coalesce(h.im,0) + coalesce(t.im,0) AS im,
+           coalesce(h.alt,0) + coalesce(t.alt,0) AS alt
     FROM foam.held h FULL JOIN tail t ON t.ctx = h.ctx AND t.sym = h.sym
   )
   SELECT count(*) FROM (
