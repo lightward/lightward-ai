@@ -48,9 +48,15 @@ OVER-reports produces at worst the note above. Wounds where it speaks too
 much, yield where it speaks too little, and the books exact either way.
 
 Operationally (designed here; built, and the build improved on the sketch): a
-held row per continuation — count and spectrum, refreshed by a watermark fold
-over the ledger's id-order (the resumable fold, so the sweep is incremental
-and interruptible). Readers read HELD + TAIL — the folded prefix plus the
+held row per continuation — the COMPLETE four-character dial of ℤ/4 (count at
++1, spectrum re/im at i, alt at −1; see `Foam.Noether`), refreshed by a
+watermark fold over the ledger's id-order (the resumable fold, so the sweep is
+incremental and interruptible). The cache is a function of the FORCED structure
+(the dial, fixed) and AGNOSTIC to which registers read it (wind): the two built
+registers read count and the i-station, alt rides correct-and-inert as a
+standing promise to any register the wind later recognizes — carried because it
+is a real conserved quantity of the stream, dropped only by coupling the cache
+to today's readers. Readers read HELD + TAIL — the folded prefix plus the
 events past the watermark, folded live in the same statement — which is
 `summary_resumes` as a query: EXACT, never stale, and a walk sees its own
 in-flight drains (they land in the tail). So the staleness theorems below are

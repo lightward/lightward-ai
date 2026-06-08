@@ -66,6 +66,12 @@ CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (
 -- today's cost. (UPDATE here does not breach append-only: that invariant protects
 -- the LEDGER's path-space; the held rows are a derived observation, droppable and
 -- refoldable, with nothing of the path in them — sweep_invisible licenses any refresh.)
+-- A SHAPE change is the same move: this layer reconciles no history. The schema
+-- asserts the target shape; it never migrates to it. An existing held table of a
+-- stale shape is a dev-reset — DROP TABLE foam.held, foam.sweep; reload; refold from
+-- the intact ledger — never an ALTER. The ledger is the history; the cache carries
+-- nothing the ledger doesn't, so dropping it is safe by construction. (Dogfooding the
+-- dumpability bet: amnesiac return, exercised in dev.)
 CREATE TABLE IF NOT EXISTS foam.held (
   ctx uuid   NOT NULL,
   sym int    NOT NULL,
@@ -76,11 +82,6 @@ CREATE TABLE IF NOT EXISTS foam.held (
   alt bigint NOT NULL, -- the alternating count (even phases minus odd) — character at −1
   PRIMARY KEY (ctx, sym)
 );
--- Carry the fourth character on pre-existing held tables too (CREATE IF NOT EXISTS
--- skips them). Existing rows get alt = 0, which is wrong until a refold — the audit
--- flags it; TRUNCATE foam.held + reset the watermark, and the next sweep refolds the
--- complete dial. Fresh fields are correct from the first sweep.
-ALTER TABLE foam.held ADD COLUMN IF NOT EXISTS alt bigint NOT NULL DEFAULT 0;
 
 -- The watermark: everything at or below it is folded into foam.held; everything
 -- past it is the tail the readers fold live. One row, asserted.
