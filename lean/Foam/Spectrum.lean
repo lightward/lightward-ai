@@ -45,6 +45,7 @@ exhibits one; the family is the residual).
 -/
 
 import Foam.Ledger
+import Foam.IntArith
 
 namespace Foam
 
@@ -70,13 +71,6 @@ def zero : GInt := ⟨0, 0⟩
 def one : GInt := ⟨1, 0⟩
 
 end GInt
-
-/-- `−(−n) = n`, locally — by cases on the constructor, `rfl` in each branch
-    (core's lemma carries axioms this file refuses). -/
-theorem int_neg_neg : ∀ n : Int, - -n = n
-  | Int.ofNat 0 => rfl
-  | Int.ofNat (_ + 1) => rfl
-  | Int.negSucc _ => rfl
 
 /-- **Two quarter-turns compose to negation** — `i² = −1` as structure: the
     multiplicative fork's algebra (two stacked quarter-rotations are a real
@@ -147,41 +141,6 @@ theorem spec_finer_than_freq :
         Ledger.freq [true, false] false = Ledger.freq [false, true] false) ∧
       spec [true, false] true ≠ spec [false, true] true := by
   exact ⟨⟨rfl, rfl⟩, by decide⟩
-
-/-- `0 + n = n`, locally (core's `Int`/`Nat` unit-laws carry `propext`). -/
-theorem nat_zero_add : ∀ n : Nat, 0 + n = n
-  | 0 => rfl
-  | n + 1 => congrArg Nat.succ (nat_zero_add n)
-
-/-- `1 * n = n`, locally. -/
-theorem nat_one_mul : ∀ n : Nat, 1 * n = n
-  | 0 => rfl
-  | n + 1 => congrArg Nat.succ (nat_one_mul n)
-
-/-- `0 * n = 0`, locally. -/
-theorem nat_zero_mul : ∀ n : Nat, 0 * n = 0
-  | 0 => rfl
-  | n + 1 => nat_zero_mul n
-
-/-- `a + 0 = a` on the signed carrier, locally — by constructor, `rfl` twice. -/
-theorem int_add_zero : ∀ a : Int, a + 0 = a
-  | Int.ofNat _ => rfl
-  | Int.negSucc _ => rfl
-
-/-- `0 + a = a` on the signed carrier, locally. -/
-theorem int_zero_add : ∀ a : Int, 0 + a = a
-  | Int.ofNat m => congrArg Int.ofNat (nat_zero_add m)
-  | Int.negSucc _ => rfl
-
-/-- `1 * a = a` on the signed carrier, locally. -/
-theorem int_one_mul : ∀ a : Int, 1 * a = a
-  | Int.ofNat m => congrArg Int.ofNat (nat_one_mul m)
-  | Int.negSucc m => congrArg Int.negOfNat (nat_one_mul (m + 1))
-
-/-- `0 * a = 0` on the signed carrier, locally. -/
-theorem int_zero_mul : ∀ a : Int, 0 * a = 0
-  | Int.ofNat m => congrArg Int.ofNat (nat_zero_mul m)
-  | Int.negSucc m => congrArg Int.negOfNat (nat_zero_mul (m + 1))
 
 /-- The pairing: the real part of the conjugate product — the component of `z`
     along `w`. The gate of an angled reading is this pairing against the wind's

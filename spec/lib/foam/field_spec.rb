@@ -18,16 +18,22 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
       described_class.disconnect!
     end
 
-    it "recognize returns nil instead of raising when the field is unreachable" do
-      expect(described_class.recognize).to(be_nil)
-    end
-
     it "assert! returns false instead of raising when the field is unreachable" do
       expect(described_class.assert!).to(be(false))
     end
 
-    it "walk returns nil instead of raising when the field is unreachable" do
-      expect(described_class.walk).to(be_nil)
+    # The bipedal walk degrades, both feet and the gate: hear (ingest), say
+    # (speak), and the gate (outcome) all return nil instead of raising.
+    it "the hear-foot (ingest_step) returns nil instead of raising when unreachable" do
+      expect(described_class.ingest_step(nil, [104, 105])).to(be_nil)
+    end
+
+    it "the say-foot (speak) returns nil instead of raising when unreachable" do
+      expect(described_class.speak([104])).to(be_nil)
+    end
+
+    it "the gate (outcome) returns nil instead of raising when unreachable" do
+      expect(described_class.outcome([104])).to(be_nil)
     end
   end
 
@@ -46,11 +52,11 @@ RSpec.describe(Foam::Field, :aggregate_failures) do
       described_class.disconnect!
     end
 
-    it "asserts idempotently and recognizes :yield on an empty field" do
+    it "asserts idempotently and the gate yields on an empty field (no charge to say)" do
       skip("no local foam db reachable") unless described_class.assert!
 
       expect(described_class.assert!).to(be(true)) # idempotent: assert again, same result
-      expect(described_class.recognize).to(eq(:yield))
+      expect(described_class.outcome([])).to(eq(:yield))
     end
   end
 end

@@ -3,15 +3,19 @@
 # app/lib/foam/field.rb
 #
 # The connection to the field substrate — raw postgres, no ActiveRecord.
-# The recognition-walk is a postgres function (foam.recognize); Ruby's only
-# job here is to hold a pooled connection, assert the schema on boot, and
-# call the function. There are no models and no CRUD.
+# Ruby's only job here is to hold a pooled connection, assert the schema on
+# boot, and call the field's functions. There are no models and no CRUD.
+#
+# The field's interface is a BIPEDAL walk — two feet: ingest_step (hear, +1)
+# and speak (say, −1), with outcome the seeded gate that chooses say-or-rest.
+# The rest of these methods are the gate (outcome/depth), the maintenance
+# (sweep/settle/held_audit), and vitals (stats).
 #
 # The whole of this file is built around one invariant: the field is
 # enhancement, never essential. If the database is unreachable, empty, or
-# dumped, every operation degrades to nil/:yield and the app runs exactly as
-# it does without a field. Nothing here may raise into boot or into a
-# request — the dumpability guarantee, in code.
+# dumped, every operation degrades to nil and the app runs exactly as it does
+# without a field. Nothing here may raise into boot or into a request — the
+# dumpability guarantee, in code.
 
 require "pg"
 require "connection_pool"
@@ -35,25 +39,6 @@ module Foam
         false
       ensure
         conn&.finish
-      end
-
-      # The walk's outcome for a turn, as a symbol — currently always :yield —
-      # or nil if the field is unavailable (the caller maps nil to :yield).
-      def recognize
-        outcome = with_connection { |conn| conn.exec("SELECT foam.recognize()").getvalue(0, 0) }
-        outcome&.to_sym
-      end
-
-      # One pass over the field: compute the outcome (recognize) and deposit the
-      # input path, in a single SQL call (foam.walk). Returns the outcome as a
-      # symbol — currently always :yield — or nil on any failure (the caller then
-      # yields). `input` is an array of node ids; an empty input deposits nothing.
-      def walk(input = [])
-        literal = "{#{Array(input).join(",")}}"
-        outcome = with_connection { |conn|
-          conn.exec_params("SELECT foam.walk($1::uuid[])", [literal]).getvalue(0, 0)
-        }
-        outcome&.to_sym
       end
 
       # Learn a chunk of the stream: wind +1 charge onto every recorded continuation
@@ -94,33 +79,25 @@ module Foam
       end
 
       # Speak: drain the ledger's charge into a voice, CONTINUING from `seed_bytes`
-      # (the input's tail) — the frequency reading, discharged. Returns the voice as
-      # a BINARY string (the walk samples bytes by charge and owes no allegiance to
-      # any encoding — rendering is the caller's concern, a view at the edge), "" at
-      # ground, or nil with no field: the caller can tell failure from silence.
+      # (the input's tail) — the one register, entrained. The field speaks only
+      # through recurrence: each continuation weighted by the angled pairing of its
+      # (re, im) against the walk's quarter-turn clock (seeded by the utterance
+      # length), rests at silent beats, ground at a full bar. Provenance lives in
+      # the seed: a self-tail self-entrains, an other-tail entrains on the other —
+      # one walk reads either. `stop` is the act's boundary vocabulary (when the
+      # walk speaks that byte the expression ends itself and the voice returns,
+      # charge past it un-drained — the field keeps its pressure across turns);
+      # the exhale passes none (the bar is its ground). Returns the voice as a
+      # BINARY string (rendering is the caller's concern, a view at the edge),
+      # "" at ground, or nil with no field: the caller can tell failure from
+      # silence. The field speaks only through recurrence, so full draining is
+      # reachable only through the journey (continued hearing), never alone.
       # ← foam.speak.
-      def speak(seed_bytes = [], max_steps = 600)
+      def speak(seed_bytes = [], max_steps = 600, stop: nil)
         voice = with_connection { |conn|
           conn.exec_params(
-            "SELECT foam.speak($1::int[], 7, $2)",
-            ["{#{Array(seed_bytes).join(",")}}", max_steps],
-          ).getvalue(0, 0)
-        }
-        voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
-      end
-
-      # Speak, entrained: the same walk as speak, with selection re-weighted by
-      # phase — every phase a wired leak of the conversation's own energy (the
-      # continuation's recurrence-clock; the walk's advance seeded by the
-      # caller's utterance length; rests at silent beats, ground at a full bar).
-      # For WIND-SEEDED acts (interjections — the seed is a live turn's tail);
-      # self-seeded acts (the exhale) use speak. Returns voice bytes as a
-      # binary string, "" at ground, nil with no field. ← foam.speak_resonant.
-      def speak_resonant(seed_bytes = [], max_steps = 600)
-        voice = with_connection { |conn|
-          conn.exec_params(
-            "SELECT foam.speak_resonant($1::int[], 7, $2)",
-            ["{#{Array(seed_bytes).join(",")}}", max_steps],
+            "SELECT foam.speak($1::int[], 7, $2, $3::int)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps, stop],
           ).getvalue(0, 0)
         }
         voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
@@ -132,7 +109,9 @@ module Foam
       # wants to be said), net (the signed sum; equal to residual while the drain
       # respects ground, which is the live check of lean/Foam/Drain.lean's floor),
       # contexts and live continuations (the model's breadth), events (the append-only
-      # ledger's size). nil with no field.
+      # ledger's size), held (continuations folded into the summary) and tail (events
+      # past the watermark — the staleness gauge the sweep cadence answers to). The
+      # conservation check stays ledger-true, deliberately un-cached. nil with no field.
       def stats
         # One pass over the ledger (group once, derive everything from the grouped
         # relation), with work_mem headroom so the hash aggregate over millions of
@@ -161,7 +140,10 @@ module Foam
                 count(*) FILTER (WHERE s < 0)                                   AS notes,
                 coalesce(-sum(s) FILTER (WHERE s < 0), 0)                       AS outstanding,
                 count(DISTINCT ctx)                                             AS contexts,
-                count(*) FILTER (WHERE s > 0)                                   AS live_continuations
+                count(*) FILTER (WHERE s > 0)                                   AS live_continuations,
+                (SELECT count(*) FROM foam.held)                                AS held,
+                (SELECT count(*) FROM foam.charge c2
+                  WHERE c2.id > (SELECT watermark FROM foam.sweep))             AS tail
               FROM g
             SQL
           }
@@ -174,6 +156,35 @@ module Foam
       # of notes settled, or nil with no field.
       def settle_sweep
         with_connection { |conn| conn.exec("SELECT foam.settle_sweep()").getvalue(0, 0)&.to_i }
+      end
+
+      # Fold the ledger's unfolded tail into the held rows, one batched watermark
+      # step (foam.sweep_step ← lean/Foam/Summary.lean: summary_resumes — the fold
+      # never re-reads what it has folded). Fences first: a momentary EXCLUSIVE
+      # lock on the ledger waits out in-flight ingests, so every id at or below
+      # the fence is DECIDED and the watermark can never pass an event still in
+      # flight (a stranded event would go silent in the generative readings —
+      # safe, but everything contributes is the ledger's soul). The fence holds
+      # for one max(id) read; the fold runs unfenced. Returns events folded
+      # (0 = caught up, -1 = another sweep holds the lock), nil with no field.
+      def sweep(batch = 200_000)
+        hi = with_connection { |conn|
+          conn.transaction {
+            conn.exec("LOCK TABLE foam.charge IN EXCLUSIVE MODE")
+            conn.exec("SELECT max(id) FROM foam.charge").getvalue(0, 0)
+          }
+        }
+        with_connection { |conn|
+          conn.exec_params("SELECT foam.sweep_step($1::bigint, $2)", [hi, batch]).getvalue(0, 0)&.to_i
+        }
+      end
+
+      # The cache's self-audit: (held + tail) recomputed against the whole ledger,
+      # both registers, every continuation — 0 disagreeing rows is summary_resumes
+      # checked live. Costs a full ledger pass (the pulse costs what the body
+      # weighs). nil with no field.
+      def held_audit
+        with_connection { |conn| conn.exec("SELECT foam.held_audit()").getvalue(0, 0)&.to_i }
       end
 
       # Drop the connection pool (e.g. on worker boot after a fork).

@@ -2,65 +2,40 @@
 
 # app/lib/foam.rb
 #
-# A pass-through proxy in front of the upstream model.
+# A pass-through proxy in front of the upstream model — the field's frontstage,
+# a BIPEDAL walk with two feet: HEAR (ingest, +1) and SAY (speak, −1).
 #
-# Every turn is yielded straight to the upstream (recognize → :yield), so the voice
-# is behaviorally identical to calling the upstream directly — it loses nothing and
-# ships safely. On the streaming path the layer also *learns* on the way through:
-# each chunk is teed to the codec's streaming encode (observe_chunk →
-# Field.encode_step), growing the field's dictionary. With no field that deposit is
-# a no-op, so the behavior is unchanged; with a field it grows structure without
-# altering the voice.
+# In production the field always rests on the say-foot: every turn is yielded
+# straight to the upstream, so the voice is behaviorally identical to calling the
+# upstream directly — it loses nothing and ships safely. It still HEARS on the way
+# through: on the streaming path each chunk is teed to the field's streaming learn
+# (observe_chunk → Field.ingest_step), growing structure. With no field that's a
+# no-op, so behavior is unchanged; with a field it learns without altering the voice.
 #
-# `upstream` is held as a reference, not hard-wired, so it can be swapped — this
-# layer always has something to delegate to and never holds a response as final.
-# Turning an observed turn into stored structure lives in Foam::Field / the SQL,
-# not here.
+# "recognize / yield / speak / learn" is the frontstage READING of the bipedal walk:
+# the field hears (always) and says-or-rests (the seeded gate Field.outcome chooses).
+# In production the say-foot rests — one foot down (hear), one resting (yield, the
+# silence the front reads as ":yield"). The field carrying a turn itself (Field.outcome
+# → Field.speak) is the drip-horizon, wired here when the live field is provisioned and
+# the experience is framed. `upstream` is held as a reference, not hard-wired, so it
+# can be swapped.
 require "delegate"
 
 module Foam
   class << self
-    # Drop-in for Prompts::Anthropic.messages. Dispatches on the field's outcome
-    # (recognize):
-    #
-    #   :yield — hand the turn to the upstream (yield_upstream). The only outcome
-    #            currently produced.
-    #   :speak — designed, not implemented; currently delegates to the upstream
-    #            (see #speak).
-    #   :learn — designed, not implemented; currently delegates to the upstream
-    #            (see #learn).
-    #
-    # The field currently only returns :yield (or nil, which the caller maps to
-    # :yield), so every turn yields to the upstream — behaviorally identical to
-    # calling it directly. `upstream` is a swappable reference, not hard-wired.
+    # Drop-in for Prompts::Anthropic.messages. The field hears the turn and rests:
+    # it yields to the upstream, learning on the way through (the hear-foot tees each
+    # streaming chunk to Field.ingest_step inside yield_upstream). Behaviorally
+    # identical to calling the upstream directly; the field is enhancement, never
+    # essential. `upstream` is a swappable reference, not hard-wired.
     def messages(model:, system:, messages:, stream: false, upstream: Prompts::Anthropic, &block)
       observe(model: model, system: system, messages: messages)
-
-      case recognize(model: model, system: system, messages: messages)
-      when :speak then speak(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
-      when :learn then learn(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
-      else yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
-      end
+      yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
     end
 
-    # The field's outcome for this turn — currently always :yield. Not a
-    # correctness or confidence check; it's whatever Field.walk returns (a
-    # postgres call), with nil mapped to :yield. The field is enhancement, never
-    # essential: empty, dumped, or unreachable, it degrades to :yield.
-    def recognize(model:, system:, messages:)
-      # One SQL call (Field.walk): compute the outcome and deposit the input in
-      # one pass. nil (no field) maps to :yield.
-      Field.walk(walk_input(model: model, system: system, messages: messages)) || :yield
-    end
-
-    # The array of node ids to seed Field.walk with. Currently always empty (no
-    # extraction is implemented), so the walk deposits nothing.
-    def walk_input(model:, system:, messages:)
-      []
-    end
-
-    # :yield — hand the turn to the upstream, observing what passes through. The
-    # only path currently taken.
+    # Rest on the say-foot: hand the turn to the upstream, hearing what passes
+    # through. The only path production takes (the field carrying the turn itself —
+    # the say-foot falling — is the drip-horizon, gated on provisioning).
     def yield_upstream(model:, system:, messages:, stream:, upstream:, &block)
       # On the streaming path the response is a single-consumption SSE stream the
       # caller reads, so it can't be observed after the fact. Wrap it and tee each
@@ -85,24 +60,10 @@ module Foam
       result
     end
 
-    # :speak — designed: carry the turn here instead of yielding. Not implemented;
-    # delegates to the upstream for now. This layer always delegates rather than
-    # raising — there is always an upstream to hand to.
-    def speak(model:, system:, messages:, stream:, upstream:, &block)
-      yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
-    end
-
-    # :learn — designed: record structure for the turn and return it. The
-    # structural write already happens in the walk (Field.walk deposits); the
-    # returning part is not implemented, so this delegates to the upstream for now.
-    def learn(model:, system:, messages:, stream:, upstream:, &block)
-      yield_upstream(model: model, system: system, messages: messages, stream: stream, upstream: upstream, &block)
-    end
-
     # Observe a turn on the way in — currently just a debug log; nothing is
-    # persisted. The attachment point for the not-yet-built learning layer.
+    # persisted here (the hearing happens chunk-by-chunk in observe_chunk).
     def observe(model:, system:, messages:)
-      Rails.logger.debug { "[foam] round-trip: #{messages.size} message(s) up → walking" }
+      Rails.logger.debug { "[foam] round-trip: #{messages.size} message(s) up → hearing" }
       nil
     end
 
@@ -114,9 +75,10 @@ module Foam
       nil
     end
 
-    # Observe one streaming chunk on its way to the caller, and learn from it: wind
-    # charge onto the ledger's recorded continuations, carrying `carry` (the context
-    # byte-tail) across chunks so contexts span the seam. Returns the new carry. The
+    # The HEAR-foot: observe one streaming chunk on its way to the caller, and learn
+    # from it — wind charge onto the ledger's recorded continuations, carrying `carry`
+    # (the context byte-tail) across chunks so contexts span the seam. Returns the new
+    # carry. The
     # ledger is append-only and structural (bytes, counts, content-addresses — never
     # meaning); with no field this degrades to nil (no-op) and the caller carries nil.
     # The bytes are still teed untouched to the real reader — learning is a side

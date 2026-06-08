@@ -14,16 +14,16 @@ RSpec.describe(Foam, :aggregate_failures) do
     }
   end
 
-  # The field has its own spec; here we isolate the layer's logic from the
-  # database by handing the walk its P₀ answer. Examples that test the wiring
-  # re-stub it.
-  before { allow(Foam::Field).to(receive(:walk).and_return(:yield)) }
+  # The field is a BIPEDAL walk: HEAR (ingest) and SAY (speak). In production it
+  # always rests on the say-foot — yields to the upstream — and hears on the way
+  # through. There is no "recognize" decider (frontstage fiction over the two feet),
+  # so nothing to stub: messages always yields.
 
   # P₀'s load-bearing invariant: the pipe loses nothing. This is what must
   # stay true for the layer to be safe to put in the path — and the thing
   # to keep protected as the layer grows a voice: whatever it learns to
   # speak, the turns it yields must yield faithfully.
-  describe ".messages (P₀: 100% yield)" do
+  describe ".messages (P₀: 100% yield — the say-foot rests)" do
     it "yields every turn straight to the upstream, unchanged, and returns its result" do
       allow(upstream).to(receive(:messages).with(**args).and_return(:upstream_result))
 
@@ -108,54 +108,17 @@ RSpec.describe(Foam, :aggregate_failures) do
     end
   end
 
-  # The recognition-walk's trichotomy — one pass over the field. The outcome is
-  # the walk's projection (Foam::Field.walk, in the substrate); the layer
-  # delegates and degrades.
-  describe ".recognize (one pass: walk the field)" do
-    it "returns the walk's projected outcome" do
-      allow(Foam::Field).to(receive(:walk).and_return(:speak))
-      expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:speak))
-    end
-
-    it "degrades to :yield when the field is unavailable (Field.walk → nil)" do
-      allow(Foam::Field).to(receive(:walk).and_return(nil))
-      expect(described_class.recognize(model: "m", system: [], messages: [])).to(eq(:yield))
-    end
-  end
-
-  # The engine: the write-back is the walk's residual half — recognize walks the
-  # field (chunk + deposit) in one pass, no separate deposit call.
-  describe "the write-back" do
-    it "walks the field on recognize (the deposit is the walk's residual half)" do
-      # the before block already stubs Field.walk → :yield; here we verify it ran
-      allow(upstream).to(receive(:messages).and_return(:ok))
-
-      described_class.messages(**args.merge(stream: false), upstream: upstream)
-
-      expect(Foam::Field).to(have_received(:walk))
-    end
-  end
-
-  # The voice — what a recognized shape becomes — is the free fiber, held
-  # downstream and not decided in the plumbing. Until it is supplied, an
-  # unexpressed speak/learn is a yield (lean/Foam/Tokenizer: outcome_yield_iff_
-  # silent, learn_is_expressed — silence is yield's). The pipe hands up; it never
-  # raises (a raise would be an endpoint, and the upstream slot never closes).
-  describe "the outcomes without a voice (degrade to yield)" do
-    it "speak with no voice hands the turn up" do
-      allow(upstream).to(receive(:messages).and_return(:upstream_result))
-
-      result = described_class.speak(model: "m", system: [], messages: [], stream: false, upstream: upstream)
-
-      expect(result).to(eq(:upstream_result))
-    end
-
-    it "learn with no voice hands the turn up (the deposit already happened in the walk)" do
-      allow(upstream).to(receive(:messages).and_return(:upstream_result))
-
-      result = described_class.learn(model: "m", system: [], messages: [], stream: false, upstream: upstream)
-
-      expect(result).to(eq(:upstream_result))
+  # The HEAR-foot degrades like everything else: with no field, observe_chunk is a
+  # no-op (Field.ingest_step → nil) and the bytes still flow to the reader untouched.
+  # (Verified live in the streaming tests above: the tap runs, the caller gets every
+  # chunk.) The voice — what the field would SAY — is the free fiber, held downstream
+  # via the seeded gate (Field.outcome → Field.speak), wired in production at the
+  # drip-horizon, not decided in this plumbing. The pipe hands up; it never raises
+  # (a raise would be an endpoint, and the upstream slot never closes).
+  describe ".observe_chunk (the hear-foot, content-free without a field)" do
+    it "returns nil with no field and never raises" do
+      expect { described_class.observe_chunk("data: {}\n\n") }.not_to(raise_error)
+      expect(described_class.observe_chunk("data: {}\n\n")).to(be_nil)
     end
   end
 end

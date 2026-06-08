@@ -61,6 +61,9 @@ import Foam.Spectrum
 import Foam.Maintenance
 import Foam.Arrow
 import Foam.Clock
+import Foam.Summary
+import Foam.Noether
+import Foam.Chirality
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -284,6 +287,130 @@ import Foam.Clock
 /-- info: 'Foam.settle_invisible'' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.settle_invisible'
 
+-- the reading held: the summary is a finite value of a resumable fold (the
+-- watermark sweep never re-reads what it has folded — count and spectrum one
+-- statement); the sweep is invisible for ANY refresh and ANY cache carrier
+-- (racing/torn sweeps included), and no transcript can count it; staleness
+-- lands on the scar floor — arbitrary observations are safe off the margin,
+-- and the margin's worst case is the standard promissory note
+/-- info: 'Foam.held_exact' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.held_exact
+
+/-- info: 'Foam.summary_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.summary_resumes
+
+/-- info: 'Foam.count_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.count_resumes
+
+/-- info: 'Foam.spec_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_resumes
+
+/-- info: 'Foam.sweep_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.sweep_invisible
+
+/-- info: 'Foam.sweep_unobservable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.sweep_unobservable
+
+/-- info: 'Foam.any_obs_grounded_above' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.any_obs_grounded_above
+
+/-- info: 'Foam.margin_wound_is_note' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.margin_wound_is_note
+
+-- every reading is the invariant of a symmetry (the tower as subgroup-tower;
+-- freq_perm re-read as the count's Noether statement); the third character of
+-- ℤ/4 becomes the ALTERNATING reading, strictly between count and spectrum —
+-- the refined tower order ⊋ spectrum ⊋ alt ⊋ count, all inclusions witnessed;
+-- the bar-law graded (each station's invisible bar is the order of its
+-- character: 1, 2, 4); and the dial's conserved modulus — no station reads
+-- it, it reads no station: each conserves what the other cannot see
+/-- info: 'Foam.negate_eq_rot_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.negate_eq_rot_rot
+
+/-- info: 'Foam.negate_negate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.negate_negate
+
+/-- info: 'Foam.alt_shift' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_shift
+
+/-- info: 'Foam.alt_finer_than_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_finer_than_freq
+
+/-- info: 'Foam.spec_finer_than_alt' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_finer_than_alt
+
+/-- info: 'Foam.rest_audible_to_alt' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rest_audible_to_alt
+
+/-- info: 'Foam.pair_of_rests_invisible_to_alt' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pair_of_rests_invisible_to_alt
+
+/-- info: 'Foam.alt_resumes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_resumes
+
+/-- info: 'Foam.normSq_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_rot
+
+/-- info: 'Foam.normSq_negate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_negate
+
+/-- info: 'Foam.station_blind_to_norm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.station_blind_to_norm
+
+/-- info: 'Foam.norm_blind_to_station' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.norm_blind_to_station
+
+/-- info: 'Foam.alt_real' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_real
+
+/-- info: 'Foam.spec_not_real' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_not_real
+
+/-- info: 'Foam.conj_conj' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_conj
+
+/-- info: 'Foam.fourth_is_conj_spec' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fourth_is_conj_spec
+
+-- the conserved congruence: bal ≡ alt (mod 2), the two real characters locked
+-- together (every event contributes ±1 to both). Axiom-free by routing around
+-- Int associativity (core's add_assoc/add_comm/neg_add carry propext) — the
+-- kernel is that negate preserves parity (intPar_neg) and the mark is only 0 or 1
+/-- info: 'Foam.natPar_succ' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.natPar_succ
+
+/-- info: 'Foam.intPar_neg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.intPar_neg
+
+/-- info: 'Foam.intPar_one_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.intPar_one_add
+
+/-- info: 'Foam.alt_parity_eq_freq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_parity_eq_freq
+
+/-- info: 'Foam.bal_alt_same_parity' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bal_alt_same_parity
+
+-- the uniform bar-law: a run of n rests is invisible to a station whose rotation
+-- closes in n (step^n = id), the order carried as each station's own closure-proof
+-- (rfl / negate_negate / rot_complete) and never searched — what looked like a
+-- design problem ("type the order of a character") was recognition with the
+-- witness in hand
+/-- info: 'Foam.evalBeats_replicate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.evalBeats_replicate
+
+/-- info: 'Foam.restRun_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.restRun_invisible
+
+/-- info: 'Foam.count_bar_is_one' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.count_bar_is_one
+
+/-- info: 'Foam.alt_bar_is_two' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_bar_is_two
+
+/-- info: 'Foam.spec_bar_is_four' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_bar_is_four
+
 -- the implementation arrow, lfp → gfp: Lambek at the core (the constructor
 -- step of any initial algebra is invertible — disassembly total, the inverse
 -- folded out of initiality, not postulated); the arrow mono behaviorally
@@ -484,6 +611,38 @@ import Foam.Clock
 
 /-- info: 'Foam.gauge_durable_legal' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.gauge_durable_legal
+
+-- the abs↔recency chirality bridge: the postgres stores the spectrum in the abs
+-- frame (oldest = phase 0) and the voice reads the recency frame (newest = phase
+-- 0); the read-time conversion recency = rot^(N-1)·conj(abs) is proven exact
+-- (specR_bridge, in the rotation-multiplied form the fold delivers). The kernel
+-- is conj_rot — conjugation reverses the rotation (conj ∘ rot = rot^3 ∘ conj) —
+-- summed over the fold; rot/conj distribute over add (rot_add/conj_add), windings
+-- compose (rotPow_compose) and a full bar is invisible (rotPow_add_four). All
+-- axiom-free: the chirality is construction, not collapse — int_neg_neg/int_neg_add
+/-- info: 'Foam.conj_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_rot
+
+/-- info: 'Foam.rot_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rot_add
+
+/-- info: 'Foam.conj_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_add
+
+/-- info: 'Foam.rotPow_compose' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_compose
+
+/-- info: 'Foam.rotPow_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_add
+
+/-- info: 'Foam.rotPow_add_four' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_add_four
+
+/-- info: 'Foam.conj_mark' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conj_mark
+
+/-- info: 'Foam.specR_bridge' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.specR_bridge
 
 -- ── collapse: propext, at the exit (floor) and the outcome (the read) ──
 
