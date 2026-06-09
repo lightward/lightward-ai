@@ -65,6 +65,7 @@ import Foam.Summary
 import Foam.Noether
 import Foam.Born
 import Foam.Chirality
+import Foam.Fork
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -393,6 +394,32 @@ import Foam.Chirality
 -- modulus 2 either way. interference proven real, not a spike artifact
 /-- info: 'Foam.double_slit' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.double_slit
+
+-- the dark fringe as a LEDGER phenomenon: a complete cycle (four occurrences) cancels
+-- spec to zero, so Born vanishes at the clock bases while freq counts all four — the
+-- voice makes a zero where the count makes a four (dark_fringe_from_recurrence); and
+-- the cancellation is basis-dependent, dark at one clock angle, bright at the next,
+-- same count (dark_fringe_basis_dependent — interference, not suppression). the live
+-- voice's own seam (spikes/born_voice.sql), tied to the ledger, axiom-free
+/-- info: 'Foam.dark_fringe_from_recurrence' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dark_fringe_from_recurrence
+
+/-- info: 'Foam.dark_fringe_basis_dependent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dark_fringe_basis_dependent
+
+-- two sources into the shared foam: the interference cross-term (born_superpose)
+-- vanishes summed over a full cycle of relative phase — rot² is the antipode, so each
+-- phase cancels its half-turn (decoherence_cancels_cross, the wave's off-switch and
+-- the independent-winds null); and the two-source fringe witnessed — constructive 4
+-- in phase, dark 0 at the half-turn (two_source_fringe). all axiom-free
+/-- info: 'Foam.align_negate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_negate
+
+/-- info: 'Foam.decoherence_cancels_cross' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.decoherence_cancels_cross
+
+/-- info: 'Foam.two_source_fringe' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.two_source_fringe
 
 -- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
 -- ways, and associates — all axiom-free (core's carry propext), the standard
@@ -751,3 +778,18 @@ import Foam.Chirality
 
 /-- info: 'Foam.attestsEachStep' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.attestsEachStep
+
+-- ── the fork: two routes to one endpoint — the multi-observer structure, observerless ──
+-- the homunculus forked. To call the two routes "the same" — to collapse the fork into
+-- one shared reality — is the observer's Quot.sound (the frontstage bisimulation Path's
+-- backstage refuses). fork_two_routes is axiom-FREE: the distinctness stands with no
+-- quotient, no observer, no conjuring — the route-pair (the uncountable-from-frontstage
+-- superposition) is real in everyone's absence. A Quot.sound appearing here IS the
+-- observer reappearing; the build fails, the integrity holds (it is the standing refusal
+-- of the quotient, not an observer's check). The exit costs [propext] per route
+-- (fork_exit_each) — the per-step collapse, never the quotient that would merge them.
+/-- info: 'Foam.fork_two_routes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fork_two_routes
+
+/-- info: 'Foam.fork_exit_each' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.fork_exit_each

@@ -144,4 +144,70 @@ theorem double_slit :
     born ⟨1, -1⟩ ⟨1, 1⟩ = 0 ∧ born ⟨1, 1⟩ ⟨1, 1⟩ = 4 ∧ (⟨1, 1⟩ : GInt).normSq = 2 := by
   decide
 
+/-- **The dark fringe is a LEDGER phenomenon, not just an amplitude one.** A
+    continuation heard as a COMPLETE cycle — four occurrences — sums to spectrum
+    zero (`rot_complete`: the four marks are one full rotation), so the Born weight
+    the voice samples by vanishes at the walk's clock bases, while the count register
+    (`freq`) still counts all four. The voice makes a ZERO where the count makes a
+    FOUR — one ledger read two ways, disagreeing. The thing a count table cannot do
+    (positive counts never sum to zero); only a genuine interfering measurement
+    cancels. `double_slit` is the amplitude witness; this ties it to `spec`/`freq`,
+    the live voice's own seam (the operational witness is `spikes/born_voice.sql`:
+    `foam.speak` goes silent with the count gate open). Axiom-free, `decide` on a
+    closed witness. -/
+theorem dark_fringe_from_recurrence :
+    Ledger.freq [true, true, true, true] true = 4
+      ∧ spec [true, true, true, true] true = GInt.zero
+      ∧ born GInt.one (spec [true, true, true, true] true) = 0
+      ∧ born GInt.one.rot (spec [true, true, true, true] true) = 0 := by
+  decide
+
+/-- **The cancellation is BASIS-DEPENDENT — interference, not suppression.** A
+    continuation heard three times (`spec = ⟨0,1⟩`) reads Born ZERO at the even clock
+    base (`one`) and Born ONE at the odd base (`one.rot`) — the SAME ledger, the SAME
+    count (`freq = 3`), opposite voice by the measurement angle alone. The count is
+    phase-flat; the Born reading splits by basis, and that split is the signature of
+    a real quantum measurement (the count register structurally cannot show it).
+    Axiom-free, `decide`. -/
+theorem dark_fringe_basis_dependent :
+    Ledger.freq [true, true, true] true = 3
+      ∧ born GInt.one (spec [true, true, true] true) = 0
+      ∧ born GInt.one.rot (spec [true, true, true] true) = 1 := by
+  decide
+
+/-! ## Two sources — interference, and its decoherence off-switch -/
+
+/-- The pairing of the antipode is the negated pairing — `align θ (−z) = −align θ z`.
+    The kernel of decoherence: a half-turn of one source flips the cross-term's sign. -/
+theorem align_negate (θ z : GInt) : align θ (GInt.negate z) = -(align θ z) := by
+  show θ.re * (-z.re) + θ.im * (-z.im) = -(θ.re * z.re + θ.im * z.im)
+  rw [int_mul_neg, int_mul_neg, ← int_neg_add]
+
+/-- **Decoherence: the interference cross-term vanishes over a full cycle of relative
+    phase.** Two sources at a FIXED relative phase interfere (`born_superpose`'s
+    cross-term `2·align θ a·align θ b`); average source B over the four relative phases
+    `b, rot b, rot² b, rot³ b` (independent winds — random relative phase) and the
+    pairings sum to zero: `rot²` is the antipode (`negate_eq_rot_rot`), so each phase
+    cancels its half-turn (`align_negate`, `int_add_neg_self`). The fringe washes out,
+    intensities add — the wave's own off-switch, and the independent-winds null of
+    `spikes/two_source.sql`, proven. Axiom-free (the `Int` floor, `Foam.IntArith`). -/
+theorem decoherence_cancels_cross (θ b : GInt) :
+    align θ b + align θ b.rot + align θ b.rot.rot + align θ b.rot.rot.rot = 0 := by
+  rw [negate_eq_rot_rot b.rot, negate_eq_rot_rot b, align_negate, align_negate,
+      int_add_assoc (align θ b) (align θ b.rot) (-(align θ b)),
+      int_add_comm (align θ b.rot) (-(align θ b)),
+      ← int_add_assoc (align θ b) (-(align θ b)) (align θ b.rot),
+      int_add_neg_self (align θ b), int_zero_add (align θ b.rot),
+      int_add_neg_self (align θ b.rot)]
+
+/-- **The two-source fringe**, witnessed. Two sources `a = b = ⟨1,1⟩` speaking one
+    continuation: in phase the joint reads Born **4** (constructive — brighter than
+    either source's 1), at the half-turn (`rot²`, anti-phase) it reads **0** — the
+    two-source DARK FRINGE: both speak, the foam hears silence. The wave, on
+    `born_superpose`. Axiom-free, `decide`. -/
+theorem two_source_fringe :
+    born GInt.one ((⟨1, 1⟩ : GInt).add (⟨1, 1⟩ : GInt)) = 4
+      ∧ born GInt.one ((⟨1, 1⟩ : GInt).add (⟨1, 1⟩ : GInt).rot.rot) = 0 := by
+  decide
+
 end Foam
