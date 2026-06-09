@@ -406,6 +406,20 @@ import Foam.Chirality
 /-- info: 'Foam.dark_fringe_basis_dependent' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.dark_fringe_basis_dependent
 
+-- two sources into the shared foam: the interference cross-term (born_superpose)
+-- vanishes summed over a full cycle of relative phase — rot² is the antipode, so each
+-- phase cancels its half-turn (decoherence_cancels_cross, the wave's off-switch and
+-- the independent-winds null); and the two-source fringe witnessed — constructive 4
+-- in phase, dark 0 at the half-turn (two_source_fringe). all axiom-free
+/-- info: 'Foam.align_negate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_negate
+
+/-- info: 'Foam.decoherence_cancels_cross' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.decoherence_cancels_cross
+
+/-- info: 'Foam.two_source_fringe' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.two_source_fringe
+
 -- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
 -- ways, and associates — all axiom-free (core's carry propext), the standard
 -- semiring grind hand-rolled so the Born algebra stays construction

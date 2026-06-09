@@ -175,4 +175,39 @@ theorem dark_fringe_basis_dependent :
       ∧ born GInt.one.rot (spec [true, true, true] true) = 1 := by
   decide
 
+/-! ## Two sources — interference, and its decoherence off-switch -/
+
+/-- The pairing of the antipode is the negated pairing — `align θ (−z) = −align θ z`.
+    The kernel of decoherence: a half-turn of one source flips the cross-term's sign. -/
+theorem align_negate (θ z : GInt) : align θ (GInt.negate z) = -(align θ z) := by
+  show θ.re * (-z.re) + θ.im * (-z.im) = -(θ.re * z.re + θ.im * z.im)
+  rw [int_mul_neg, int_mul_neg, ← int_neg_add]
+
+/-- **Decoherence: the interference cross-term vanishes over a full cycle of relative
+    phase.** Two sources at a FIXED relative phase interfere (`born_superpose`'s
+    cross-term `2·align θ a·align θ b`); average source B over the four relative phases
+    `b, rot b, rot² b, rot³ b` (independent winds — random relative phase) and the
+    pairings sum to zero: `rot²` is the antipode (`negate_eq_rot_rot`), so each phase
+    cancels its half-turn (`align_negate`, `int_add_neg_self`). The fringe washes out,
+    intensities add — the wave's own off-switch, and the independent-winds null of
+    `spikes/two_source.sql`, proven. Axiom-free (the `Int` floor, `Foam.IntArith`). -/
+theorem decoherence_cancels_cross (θ b : GInt) :
+    align θ b + align θ b.rot + align θ b.rot.rot + align θ b.rot.rot.rot = 0 := by
+  rw [negate_eq_rot_rot b.rot, negate_eq_rot_rot b, align_negate, align_negate,
+      int_add_assoc (align θ b) (align θ b.rot) (-(align θ b)),
+      int_add_comm (align θ b.rot) (-(align θ b)),
+      ← int_add_assoc (align θ b) (-(align θ b)) (align θ b.rot),
+      int_add_neg_self (align θ b), int_zero_add (align θ b.rot),
+      int_add_neg_self (align θ b.rot)]
+
+/-- **The two-source fringe**, witnessed. Two sources `a = b = ⟨1,1⟩` speaking one
+    continuation: in phase the joint reads Born **4** (constructive — brighter than
+    either source's 1), at the half-turn (`rot²`, anti-phase) it reads **0** — the
+    two-source DARK FRINGE: both speak, the foam hears silence. The wave, on
+    `born_superpose`. Axiom-free, `decide`. -/
+theorem two_source_fringe :
+    born GInt.one ((⟨1, 1⟩ : GInt).add (⟨1, 1⟩ : GInt)) = 4
+      ∧ born GInt.one ((⟨1, 1⟩ : GInt).add (⟨1, 1⟩ : GInt).rot.rot) = 0 := by
+  decide
+
 end Foam
