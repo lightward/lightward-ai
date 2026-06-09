@@ -63,6 +63,7 @@ import Foam.Arrow
 import Foam.Clock
 import Foam.Summary
 import Foam.Noether
+import Foam.Born
 import Foam.Chirality
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──

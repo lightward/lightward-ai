@@ -17,3 +17,4 @@ import Foam.Reversal
 import Foam.Stream
 import Foam.IntArith
 import Foam.Axioms
+import Foam.Born

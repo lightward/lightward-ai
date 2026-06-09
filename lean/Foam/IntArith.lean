@@ -781,6 +781,94 @@ theorem int_add_neg_self : ∀ a : Int, a + (-a) = 0
 theorem int_neg_add_self (a : Int) : (-a) + a = 0 := by
   rw [int_add_comm (-a) a]; exact int_add_neg_self a
 
+/-! ## Bilinear-form regroupings — for the Born algebra (Foam.Born)
+
+The four-term `add` regroups and the degree-4 monomial canonicalizers below were
+originally hand-rolled in `Foam/Noether.lean`; they are generic `Int` arithmetic
+(assoc/comm/distrib only) and live here so there is a single home. Each was
+already axiom-free and is moved verbatim (names and signatures unchanged). They
+stand on the `Int` ring floor above (`int_mul_comm`/`int_mul_add`/`int_add_mul`/
+`int_mul_assoc`) and are consumed by the Born theorems in `Foam.Born`. -/
+
+/-- `(p + q) + (r + s) = (p + r) + (q + s)` — the inner swap, from `int_add_assoc`
+    and `int_add_comm` only (the four-term regroup the bilinear forms need). -/
+theorem int_add_swap_inner (p q r s : Int) :
+    (p + q) + (r + s) = (p + r) + (q + s) := by
+  rw [int_add_assoc p q (r + s), ← int_add_assoc q r s, int_add_comm q r,
+      int_add_assoc r q s, ← int_add_assoc p r (q + s)]
+
+/-- `(p + q) + (r + s) = (p + s) + (q + r)` — the cross-swap (move the last term
+    up beside the first pair's head), assoc/comm only. The regroup the square's
+    expansion needs: `(X² + XY) + (XY + Y²) = (X² + Y²) + (XY + XY)`. -/
+theorem int_add_cross_swap (p q r s : Int) :
+    (p + q) + (r + s) = (p + s) + (q + r) := by
+  rw [int_add_assoc p q (r + s), int_add_comm r s, ← int_add_assoc q s r,
+      int_add_comm q s, int_add_assoc s q r, ← int_add_assoc p s (q + r)]
+
+/-- `2 * x = x + x` on `Int`, axiom-free (`2 = 1 + 1` definitionally, then
+    `int_add_mul` and `int_one_mul`). -/
+theorem int_two_mul (x : Int) : (2 : Int) * x = x + x := by
+  show (1 + 1 : Int) * x = x + x
+  rw [int_add_mul 1 1 x, int_one_mul]
+
+/-- The middle-factor interchange `(a·c)·(b·d) = (a·b)·(c·d)` — assoc/comm only.
+    The monomial canonicalizer the Lagrange identity needs (it makes every
+    degree-4 cross-term reduce to one common shape). -/
+theorem int_mul_interchange (a b c d : Int) :
+    (a * c) * (b * d) = (a * b) * (c * d) := by
+  rw [int_mul_assoc a c (b * d), ← int_mul_assoc c b d, int_mul_comm c b,
+      int_mul_assoc b c d, ← int_mul_assoc a b (c * d)]
+
+/-- `(x · x) = (a · a)` shape: a self-product interchanges to the squares.
+    `(a·c)·(a·c) = (a·a)·(c·c)` — `int_mul_interchange` at `b := a, d := c`. -/
+theorem int_sq_interchange (a c : Int) :
+    (a * c) * (a * c) = (a * a) * (c * c) :=
+  int_mul_interchange a a c c
+
+/-- The additive collection that finishes Lagrange: with the four surviving
+    squares `W = aa·cc`, `M = bb·cc`, `N = aa·dd`, `Z = bb·dd` and the common
+    cross-monomial `K = ab·cd`, the expanded LHS regroups (the two `+K` and two
+    `−K` cancel) to the factored RHS — assoc/comm and `int_add_neg_self` only. -/
+theorem int_parseval_collect (W K Z M N : Int) :
+    ((W + K) + (K + Z)) + ((M + (-K)) + ((-K) + N)) = (W + M) + (N + Z) := by
+  rw [int_add_cross_swap W K K Z]
+  rw [int_add_cross_swap M (-K) (-K) N]
+  rw [int_add_swap_inner (W + Z) (K + K) (M + N) ((-K) + (-K))]
+  rw [int_add_cross_swap K K (-K) (-K)]
+  rw [int_add_neg_self K, int_add_zero (0 : Int)]
+  rw [int_add_zero ((W + Z) + (M + N))]
+  rw [int_add_swap_inner W Z M N, int_add_comm Z N]
+
+/-- **Lagrange / Brahmagupta–Fibonacci, on `Int`** —
+    `(a·c + b·d)² + (−(b·c) + a·d)² = (a² + b²)·(c² + d²)`, axiom-free. The two
+    cross-blocks cancel because all four cross-products reduce to the common
+    monomial `(a·b)·(c·d)` (`int_mul_interchange`); the four surviving squares
+    land via `int_sq_interchange`; `int_parseval_collect` regroups and cancels. -/
+theorem int_lagrange (a b c d : Int) :
+    (a * c + b * d) * (a * c + b * d)
+      + (-(b * c) + a * d) * (-(b * c) + a * d)
+    = (a * a + b * b) * (c * c + d * d) := by
+  -- Expand the first square (P = a*c, Q = b*d), the second (R = -(b*c), S = a*d),
+  -- and the RHS product:
+  rw [int_mul_add (a * c + b * d) (a * c) (b * d),
+      int_add_mul (a * c) (b * d) (a * c), int_add_mul (a * c) (b * d) (b * d)]
+  rw [int_mul_add (-(b * c) + a * d) (-(b * c)) (a * d),
+      int_add_mul (-(b * c)) (a * d) (-(b * c)), int_add_mul (-(b * c)) (a * d) (a * d)]
+  rw [int_mul_add (a * a + b * b) (c * c) (d * d),
+      int_add_mul (a * a) (b * b) (c * c), int_add_mul (a * a) (b * b) (d * d)]
+  -- Canonicalize the four squares to (aa·cc), (bb·dd), (bb·cc), (aa·dd):
+  rw [int_sq_interchange a c, int_sq_interchange b d]
+  rw [int_neg_mul_neg (b * c) (b * c), int_sq_interchange b c, int_sq_interchange a d]
+  -- Pull signs out of the two negative cross-products:
+  rw [int_mul_neg (a * d) (b * c), int_neg_mul (b * c) (a * d)]
+  -- Canonicalize all four cross-products to the common monomial (a·b)·(c·d):
+  rw [int_mul_comm (b * d) (a * c), int_mul_interchange a b c d]
+  rw [int_mul_interchange a b d c, int_mul_comm d c]
+  rw [int_mul_comm (b * c) (a * d), int_mul_interchange a b d c, int_mul_comm d c]
+  -- Now collect and cancel.
+  exact int_parseval_collect (a * a * (c * c)) (a * b * (c * d)) (b * b * (d * d))
+        (b * b * (c * c)) (a * a * (d * d))
+
 /-! ## Axiom-freeness, pinned (a drift fails `lake build`). -/
 
 /-- info: 'Foam.int_add_assoc' does not depend on any axioms -/
