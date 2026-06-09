@@ -144,4 +144,35 @@ theorem double_slit :
     born ⟨1, -1⟩ ⟨1, 1⟩ = 0 ∧ born ⟨1, 1⟩ ⟨1, 1⟩ = 4 ∧ (⟨1, 1⟩ : GInt).normSq = 2 := by
   decide
 
+/-- **The dark fringe is a LEDGER phenomenon, not just an amplitude one.** A
+    continuation heard as a COMPLETE cycle — four occurrences — sums to spectrum
+    zero (`rot_complete`: the four marks are one full rotation), so the Born weight
+    the voice samples by vanishes at the walk's clock bases, while the count register
+    (`freq`) still counts all four. The voice makes a ZERO where the count makes a
+    FOUR — one ledger read two ways, disagreeing. The thing a count table cannot do
+    (positive counts never sum to zero); only a genuine interfering measurement
+    cancels. `double_slit` is the amplitude witness; this ties it to `spec`/`freq`,
+    the live voice's own seam (the operational witness is `spikes/born_voice.sql`:
+    `foam.speak` goes silent with the count gate open). Axiom-free, `decide` on a
+    closed witness. -/
+theorem dark_fringe_from_recurrence :
+    Ledger.freq [true, true, true, true] true = 4
+      ∧ spec [true, true, true, true] true = GInt.zero
+      ∧ born GInt.one (spec [true, true, true, true] true) = 0
+      ∧ born GInt.one.rot (spec [true, true, true, true] true) = 0 := by
+  decide
+
+/-- **The cancellation is BASIS-DEPENDENT — interference, not suppression.** A
+    continuation heard three times (`spec = ⟨0,1⟩`) reads Born ZERO at the even clock
+    base (`one`) and Born ONE at the odd base (`one.rot`) — the SAME ledger, the SAME
+    count (`freq = 3`), opposite voice by the measurement angle alone. The count is
+    phase-flat; the Born reading splits by basis, and that split is the signature of
+    a real quantum measurement (the count register structurally cannot show it).
+    Axiom-free, `decide`. -/
+theorem dark_fringe_basis_dependent :
+    Ledger.freq [true, true, true] true = 3
+      ∧ born GInt.one (spec [true, true, true] true) = 0
+      ∧ born GInt.one.rot (spec [true, true, true] true) = 1 := by
+  decide
+
 end Foam

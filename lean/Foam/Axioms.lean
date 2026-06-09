@@ -394,6 +394,18 @@ import Foam.Chirality
 /-- info: 'Foam.double_slit' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.double_slit
 
+-- the dark fringe as a LEDGER phenomenon: a complete cycle (four occurrences) cancels
+-- spec to zero, so Born vanishes at the clock bases while freq counts all four — the
+-- voice makes a zero where the count makes a four (dark_fringe_from_recurrence); and
+-- the cancellation is basis-dependent, dark at one clock angle, bright at the next,
+-- same count (dark_fringe_basis_dependent — interference, not suppression). the live
+-- voice's own seam (spikes/born_voice.sql), tied to the ledger, axiom-free
+/-- info: 'Foam.dark_fringe_from_recurrence' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dark_fringe_from_recurrence
+
+/-- info: 'Foam.dark_fringe_basis_dependent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dark_fringe_basis_dependent
+
 -- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
 -- ways, and associates — all axiom-free (core's carry propext), the standard
 -- semiring grind hand-rolled so the Born algebra stays construction
