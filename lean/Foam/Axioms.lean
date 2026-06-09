@@ -370,6 +370,23 @@ import Foam.Chirality
 /-- info: 'Foam.align_rot_invariant' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.align_rot_invariant
 
+-- the Born measurement: the quantum reading samples by |⟨θ|z⟩|² = (align θ z)²,
+-- gauge-invariant (the oracle squared) and non-negative (a probability, where the
+-- amplitude is signed) — the quantum law to the count register's classical one.
+-- Consistency (Parseval, basis-independence, the baby-Gleason) is the next step,
+-- pending the Int ring floor.
+/-- info: 'Foam.int_sq_image' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_sq_image
+
+/-- info: 'Foam.born_rot_invariant' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_rot_invariant
+
+/-- info: 'Foam.born_nonneg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_nonneg
+
+/-- info: 'Foam.amplitude_signed_born_not' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.amplitude_signed_born_not
+
 /-- info: 'Foam.alt_real' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_real
 

@@ -370,6 +370,15 @@ theorem int_neg_mul_neg : ∀ a b : Int, (-a) * (-b) = a * b
   | Int.negSucc _, Int.ofNat (_ + 1) => rfl
   | Int.negSucc _, Int.negSucc _ => rfl
 
+/-- **A square lands in the ℕ-image** — `a * a` is non-negative, by cases on the
+    sign (both `ofNat` and `negSucc` square to an `ofNat` product). The
+    image-membership form (cf. `Scar.grounded`), axiom-free. The Born weight's
+    non-negativity (`born_nonneg`, `Foam/Noether.lean`) — amplitudes are signed,
+    probabilities are not. -/
+theorem int_sq_image : ∀ a : Int, ∃ k : Nat, a * a = Int.ofNat k
+  | Int.ofNat m => ⟨m * m, rfl⟩
+  | Int.negSucc m => ⟨(m + 1) * (m + 1), rfl⟩
+
 /-- `1 - (k + 1) = 0` — induction and `rw` only (core's subtraction lemmas carry
     `propext`). [from Scar] -/
 theorem one_sub_succ (k : Nat) : 1 - (k + 1) = 0 := by

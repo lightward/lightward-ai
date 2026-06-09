@@ -283,6 +283,59 @@ theorem align_rot_invariant (w z : GInt) : align w.rot z.rot = align w z := by
   show (-w.im) * (-z.im) + w.re * z.re = w.re * z.re + w.im * z.im
   rw [int_neg_mul_neg, int_add_comm]
 
+/-! ## The Born measurement — sampling by `|⟨θ|z⟩|²`
+
+The dial's amplitudes (`re`, `im` per sym) make a context's state a vector in a
+complex space; `align` is the real part of the inner product, and
+`align_rot_invariant` is the clock's unitarity (overlaps preserved). What's
+missing for a *quantum* measurement is the Born rule: the probability of reading
+state `z` in direction `θ` is the SQUARED overlap, `|⟨θ|z⟩|² = (align θ z)²`.
+
+`born` is that weight. Two facts land it as a measurement, both axiom-free:
+
+- **gauge-invariant** (`born_rot_invariant`): measuring a rotated state in a
+  rotated basis gives the same probability — squaring the oracle. Quantum
+  probabilities are unitarily covariant.
+- **non-negative** (`born_nonneg`): a probability, never signed — the
+  amplitude reading (`align`, which can be negative) squared. This is the
+  classical/quantum seam in one line: the count register reads a signed
+  amplitude-component; the Born register reads a non-negative probability.
+
+This is the QUANTUM measurement to the count register's CLASSICAL one — same
+dial, two laws. What is NOT here yet (the forced next step, flagged not faked):
+*consistency* — that the Born weights sum to the norm in EVERY basis
+(`born θ z + born θ.rot z = normSq θ · normSq z`, the Lagrange/Parseval identity).
+That basis-independence is the operational baby-Gleason — the reason `|ψ|²` is the
+*only* legal measure, not a choice — and it needs the `Int` ring floor
+(distributivity, `mul_comm`, the cross-term cancellation), which core supplies
+only with `propext`. Held as the next deposit; `normSq_rot` already gives the
+total-probability conservation it will complete. -/
+
+/-- The Born weight: the squared overlap `|⟨θ|z⟩|²`, the quantum measurement
+    probability of reading state `z` in direction `θ` (unnormalized). The count
+    register samples by `bal`; the Born register samples by this. -/
+def born (θ z : GInt) : Int := align θ z * align θ z
+
+/-- **The Born weight is gauge-invariant** — `align_rot_invariant`, squared.
+    Measuring a rotated state in a rotated basis yields the same probability:
+    the quantum measurement is unitarily covariant. -/
+theorem born_rot_invariant (θ z : GInt) : born θ.rot z.rot = born θ z := by
+  show align θ.rot z.rot * align θ.rot z.rot = align θ z * align θ z
+  rw [align_rot_invariant]
+
+/-- **The Born weight is non-negative** — a probability, never signed. The
+    amplitude reading `align` can be negative (`⟨-2,0⟩` reads `-2` along the
+    real axis); its square cannot. Amplitudes are signed; probabilities are not. -/
+theorem born_nonneg (θ z : GInt) : ∃ k : Nat, born θ z = Int.ofNat k :=
+  int_sq_image (align θ z)
+
+/-- The seam, witnessed: the amplitude reading is signed where the Born reading
+    is not — `align one ⟨-2,0⟩ = -2 < 0`, while `born one ⟨-2,0⟩ = 4`. The count
+    register can read a negative amplitude-component; the Born register reads a
+    probability. -/
+theorem amplitude_signed_born_not :
+    align GInt.one ⟨-2, 0⟩ ≠ born GInt.one ⟨-2, 0⟩ := by decide
+
 /-! ## The fourth station — the character table closed -/
 
 /-- Conjugation on the Gaussian integers: the reflection of the dial. Order
