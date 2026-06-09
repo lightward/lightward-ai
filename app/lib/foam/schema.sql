@@ -173,10 +173,12 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
 -- still has charge), read it as held + tail (summary_resumes: the folded prefix
 -- from foam.held, the events past the watermark folded live — exact, including
 -- this walk's own in-flight drains; one statement = one snapshot, no seam for a
--- racing drain to slip into), weight each continuation by the ANGLED pairing of
--- (re, im) against the walk's own quarter-turn clock (align; posPart at every
--- angle — anti-aligned mass is silent this beat, never negatively probable),
--- sample by that weight (never argmax), emit, drain (−1), continue. The clock
+-- racing drain to slip into), weight each continuation by the BORN measurement —
+-- the SQUARED angled pairing of (re, im) against the walk's own quarter-turn clock
+-- (|⟨tk|recency⟩|² = (align θ z)²; the basis-consistent weight, lean/Foam/Born.lean
+-- born_parseval — the field speaks by the quantum measurement law; uniform
+-- recurrence still cancels (align 0 → born 0), the antipodal sign drops as |ψ|²
+-- does), sample by that weight (never argmax), emit, drain (−1), continue. The clock
 -- starts at the caller's utterance-length mod 4 and turns a quarter per beat
 -- (spec_shift); a silent beat is a REST, not a death (the phase turns, the walk
 -- holds); ground is a full BAR of rests (four quarter-turns are the identity,
@@ -260,16 +262,25 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
         -- lean/Foam/Chirality.lean (specR_bridge; rot(specR) = rot^N(conj spec), so
         -- recency = rot^(N−1)·conj(abs) for N ≥ 1). (N+3) % 4 = (N−1) % 4 with N ≥ 1,
         -- non-negative. The walk pairs the recency reading against its own
-        -- quarter-turn (tk), floored at ground (posPart at every angle).
+        -- quarter-turn (tk) and SQUARES it — the Born measurement |⟨tk|recency⟩|²,
+        -- the basis-consistent weight (lean/Foam/Born.lean: born_parseval). The
+        -- field speaks by the quantum measurement law, not a rectified projection.
         SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0 AND z.w > 0), 0),
                coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.w   ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
                coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
           INTO tot, syms, ws, wounded
           FROM (
-            -- pair the recency (rre, rim) against the walk's clock tk
+            -- pair the recency (rre, rim) against the walk's clock tk — the BORN
+            -- measurement: the SQUARED projection |⟨tk|recency⟩|² = (align θ z)².
+            -- lean/Foam/Born.lean (born_parseval) makes this the ONLY basis-
+            -- consistent weight; the prior greatest(0,·) was a basis-INconsistent
+            -- rectified projection (its total depended on the angle). Anti-parroting
+            -- survives (uniform recurrence → projection 0 → born 0); only the
+            -- directional sign is dropped (|ψ|² is antipode-blind, as QM is).
             SELECT sym, bal,
-                   greatest(0, CASE tk WHEN 0 THEN rre WHEN 1 THEN rim WHEN 2 THEN -rre ELSE -rim END) AS w
+                   (CASE tk WHEN 0 THEN rre WHEN 1 THEN rim WHEN 2 THEN -rre ELSE -rim END)
+                 * (CASE tk WHEN 0 THEN rre WHEN 1 THEN rim WHEN 2 THEN -rre ELSE -rim END) AS w
             FROM (
               -- recency = rot^((N−1)%4) · conj(abs):  conj(re,im) = (re,−im), then wind
               SELECT sym, bal,
