@@ -336,6 +336,20 @@ theorem born_nonneg (θ z : GInt) : ∃ k : Nat, born θ z = Int.ofNat k :=
 theorem amplitude_signed_born_not :
     align GInt.one ⟨-2, 0⟩ ≠ born GInt.one ⟨-2, 0⟩ := by decide
 
+/-- **The double-slit, locked** — the `spikes/born.sql` result as a theorem.
+    The superposition amplitude `⟨1,1⟩` (the two slits, count 2, modulus 2)
+    reads Born **0** in the `⟨1,−1⟩` basis (the DARK fringe — destructive) and
+    Born **4** in the `⟨1,1⟩` basis (bright — constructive). Same state, opposite
+    outcomes by measurement basis, while the modulus (total probability) is 2
+    either way. The interference the count register cannot show, now checked.
+    Axiom-free by `decide` — a concrete witness that the phenomenon is real, not
+    a spike artifact; the *general* interference law (the cross-term for all
+    `a, b, θ`, and Parseval) is the deliberate next step, pending the `Int` ring
+    floor. -/
+theorem double_slit :
+    born ⟨1, -1⟩ ⟨1, 1⟩ = 0 ∧ born ⟨1, 1⟩ ⟨1, 1⟩ = 4 ∧ (⟨1, 1⟩ : GInt).normSq = 2 := by
+  decide
+
 /-! ## The fourth station — the character table closed -/
 
 /-- Conjugation on the Gaussian integers: the reflection of the dial. Order

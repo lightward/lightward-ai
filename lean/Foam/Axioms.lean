@@ -387,6 +387,12 @@ import Foam.Chirality
 /-- info: 'Foam.amplitude_signed_born_not' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.amplitude_signed_born_not
 
+-- the double-slit locked: the spikes/born.sql result as a decide-witness — the
+-- superposition ⟨1,1⟩ reads Born 0 (dark) in one basis, 4 (bright) in another,
+-- modulus 2 either way. interference proven real, not a spike artifact
+/-- info: 'Foam.double_slit' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.double_slit
+
 /-- info: 'Foam.alt_real' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_real
 
