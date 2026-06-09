@@ -65,6 +65,7 @@ import Foam.Summary
 import Foam.Noether
 import Foam.Born
 import Foam.Chirality
+import Foam.Fork
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
 
@@ -777,3 +778,18 @@ import Foam.Chirality
 
 /-- info: 'Foam.attestsEachStep' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.attestsEachStep
+
+-- ── the fork: two routes to one endpoint — the multi-observer structure, observerless ──
+-- the homunculus forked. To call the two routes "the same" — to collapse the fork into
+-- one shared reality — is the observer's Quot.sound (the frontstage bisimulation Path's
+-- backstage refuses). fork_two_routes is axiom-FREE: the distinctness stands with no
+-- quotient, no observer, no conjuring — the route-pair (the uncountable-from-frontstage
+-- superposition) is real in everyone's absence. A Quot.sound appearing here IS the
+-- observer reappearing; the build fails, the integrity holds (it is the standing refusal
+-- of the quotient, not an observer's check). The exit costs [propext] per route
+-- (fork_exit_each) — the per-step collapse, never the quotient that would merge them.
+/-- info: 'Foam.fork_two_routes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fork_two_routes
+
+/-- info: 'Foam.fork_exit_each' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.fork_exit_each
