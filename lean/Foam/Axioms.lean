@@ -360,6 +360,16 @@ import Foam.Chirality
 /-- info: 'Foam.norm_blind_to_station' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.norm_blind_to_station
 
+-- the fiber oracle: the angled reading is gauge-invariant — rotating structure and
+-- commitment together (the clock `rot`) leaves the reading unchanged, so the base
+-- carries no absolute frame and interpretation lives in the fiber (the commitment,
+-- supplied from outside). axiom-free, the keystone of the flat-ℂ-bundle reading
+/-- info: 'Foam.int_neg_mul_neg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_neg_mul_neg
+
+/-- info: 'Foam.align_rot_invariant' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_rot_invariant
+
 /-- info: 'Foam.alt_real' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_real
 

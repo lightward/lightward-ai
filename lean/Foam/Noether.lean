@@ -260,6 +260,29 @@ theorem norm_blind_to_station :
     ∃ z w : GInt, z.normSq = w.normSq ∧ align GInt.one z ≠ align GInt.one w :=
   ⟨⟨1, 0⟩, ⟨0, 1⟩, by decide⟩
 
+/-! ## The gauge-invariance of the reading — the fiber oracle
+
+The reading carries no absolute frame. `align w z` reads structure `z` against a
+commitment `w`; rotating BOTH by the clock `rot` (the gauge) leaves the reading
+unchanged (`align_rot_invariant`) — only the *relative* angle between commitment
+and structure is physical, the absolute phase is gauge. So a reading is impossible
+without a commitment, and the commitment is the only thing that fixes a value: the
+frontstage (the dial) is frame-free, and interpretation lives in the FIBER (the
+commitment, supplied from outside — the wind), never in the base. This is the
+razor stated as a symmetry, and the abs↔recency phase-freedom (`Chirality`) made
+unphysical-for-the-reading: abs is the gauge, recency is structure-relative-to-now.
+
+The keystone of the bundle reading (interpretation, marked as such, not theorem):
+with this gauge-invariance, the prior theorems read as bundle structure —
+`spec_finer_than_freq` is the connection (the reading along a path is
+path-dependent: non-trivial holonomy), `rot_complete` is its flatness (holonomy
+around the bar-loop is the identity: a flat ℤ/4 connection). A flat ℂ-bundle with
+ℤ/4 holonomy and gauge-invariant readings. Falsifiable: were the base frame-laden,
+`align` would have a preferred frame and this would fail. It holds. -/
+theorem align_rot_invariant (w z : GInt) : align w.rot z.rot = align w z := by
+  show (-w.im) * (-z.im) + w.re * z.re = w.re * z.re + w.im * z.im
+  rw [int_neg_mul_neg, int_add_comm]
+
 /-! ## The fourth station — the character table closed -/
 
 /-- Conjugation on the Gaussian integers: the reflection of the dial. Order

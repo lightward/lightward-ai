@@ -348,12 +348,27 @@ theorem int_zero_mul : ∀ a : Int, 0 * a = 0
   | Int.negSucc m => congrArg Int.negOfNat (nat_zero_mul (m + 1))
 
 /-- A negated square is the square — by constructor, `rfl` in every branch
-    (the only product fact the modulus needs; the general `neg_mul_neg` is
-    not required). [from Noether] -/
+    (the diagonal case the modulus needs). [from Noether] -/
 theorem int_neg_mul_self : ∀ b : Int, (-b) * (-b) = b * b
   | Int.ofNat 0 => rfl
   | Int.ofNat (_ + 1) => rfl
   | Int.negSucc _ => rfl
+
+/-- **The two negatives cancel — the general `(-a)·(-b) = a·b`** (the off-diagonal
+    `int_neg_mul_self`). Axiom-free: five of six constructor cases are `rfl` (the
+    sign-flips land both factors on the same `ofNat` product), and the lone
+    `ofNat 0` case clears via `int_zero_mul`. The product fact the gauge-invariance
+    of the angled reading needs (`align_rot_invariant`, `Foam/Noether.lean`). -/
+theorem int_neg_mul_neg : ∀ a b : Int, (-a) * (-b) = a * b
+  | Int.ofNat 0, b => by
+      show (0 : Int) * (-b) = (0 : Int) * b
+      rw [int_zero_mul, int_zero_mul]
+  | Int.ofNat (_ + 1), Int.ofNat 0 => rfl
+  | Int.ofNat (_ + 1), Int.ofNat (_ + 1) => rfl
+  | Int.ofNat (_ + 1), Int.negSucc _ => rfl
+  | Int.negSucc _, Int.ofNat 0 => rfl
+  | Int.negSucc _, Int.ofNat (_ + 1) => rfl
+  | Int.negSucc _, Int.negSucc _ => rfl
 
 /-- `1 - (k + 1) = 0` — induction and `rw` only (core's subtraction lemmas carry
     `propext`). [from Scar] -/
