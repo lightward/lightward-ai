@@ -393,6 +393,34 @@ import Foam.Chirality
 /-- info: 'Foam.double_slit' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.double_slit
 
+-- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
+-- ways, and associates — all axiom-free (core's carry propext), the standard
+-- semiring grind hand-rolled so the Born algebra stays construction
+/-- info: 'Foam.int_mul_comm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_mul_comm
+
+/-- info: 'Foam.int_mul_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_mul_add
+
+/-- info: 'Foam.int_add_mul' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_add_mul
+
+/-- info: 'Foam.int_mul_assoc' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_mul_assoc
+
+-- the Born algebra generalized: align is linear in the state (align_add_right),
+-- the interference cross-term holds for all a,b,θ (born_superpose), and the total
+-- probability is basis-independent (born_parseval — the operational baby-Gleason,
+-- why |ψ|² is the only legal measure). the double-slit witness's law, proven.
+/-- info: 'Foam.align_add_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_add_right
+
+/-- info: 'Foam.born_superpose' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_superpose
+
+/-- info: 'Foam.born_parseval' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_parseval
+
 /-- info: 'Foam.alt_real' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_real
 

@@ -406,6 +406,381 @@ theorem sub_self : ∀ n : Nat, n - n = 0
   | 0 => rfl
   | n + 1 => by rw [succ_sub_succ]; exact sub_self n
 
+/-! ## The `Nat` semiring (multiplication) — for the `Int` ring floor
+
+`Nat.mul` recurses on the SECOND argument (`n * 0 = 0`, `n * (m+1) = n*m + n`),
+so the distributivity / commutativity lemmas are stated and inducted in that
+grain. Core's equivalents carry `propext`; these are pure construction. -/
+
+/-- `n * 0 = 0` (definitional). -/
+theorem nat_mul_zero (n : Nat) : n * 0 = 0 := rfl
+
+/-- `n * (m+1) = n * m + n` (definitional — the recursion equation). -/
+theorem nat_mul_succ (n m : Nat) : n * (m + 1) = n * m + n := rfl
+
+/-- `0 * n = 0`, recursing on `n`. -/
+theorem nat_zero_mul' : ∀ n : Nat, 0 * n = 0
+  | 0 => rfl
+  | n + 1 => by rw [nat_mul_succ, nat_zero_mul' n]
+
+/-- `(m+1) * n = m * n + n`, by induction on `n`. -/
+theorem nat_succ_mul : ∀ m n : Nat, (m + 1) * n = m * n + n
+  | _, 0 => rfl
+  | m, n + 1 => by
+      show (m + 1) * n + (m + 1) = m * (n + 1) + (n + 1)
+      rw [nat_succ_mul m n, nat_mul_succ m n]
+      -- (m*n + n) + (m+1) = (m*n + m) + (n+1)
+      rw [nat_add_assoc (m * n) n (m + 1), nat_add_assoc (m * n) m (n + 1)]
+      -- m*n + (n + (m+1)) = m*n + (m + (n+1))
+      apply congrArg (fun t => m * n + t)
+      show n + (m + 1) = m + (n + 1)
+      rw [← nat_add_assoc n m 1, ← nat_add_assoc m n 1, nat_add_comm n m]
+
+/-- `n * m = m * n`, by induction on `m`. -/
+theorem nat_mul_comm : ∀ n m : Nat, n * m = m * n
+  | n, 0 => (nat_zero_mul' n).symm
+  | n, m + 1 => by
+      rw [nat_mul_succ, nat_succ_mul, nat_mul_comm n m]
+
+/-- `a * (b + c) = a * b + a * c` (left distributivity), by induction on `c`. -/
+theorem nat_mul_add : ∀ a b c : Nat, a * (b + c) = a * b + a * c
+  | _, _, 0 => rfl
+  | a, b, c + 1 => by
+      show a * (b + c + 1) = a * b + a * (c + 1)
+      rw [nat_mul_succ a (b + c), nat_mul_add a b c, nat_mul_succ a c]
+      -- (a*b + a*c) + a = a*b + (a*c + a)
+      rw [nat_add_assoc (a * b) (a * c) a]
+
+/-- `(a + b) * c = a * c + b * c` (right distributivity), via `nat_mul_comm`. -/
+theorem nat_add_mul (a b c : Nat) : (a + b) * c = a * c + b * c := by
+  rw [nat_mul_comm (a + b) c, nat_mul_add c a b, nat_mul_comm c a, nat_mul_comm c b]
+
+/-- `a * b * c = a * (b * c)` (associativity), by induction on `c`. -/
+theorem nat_mul_assoc : ∀ a b c : Nat, a * b * c = a * (b * c)
+  | _, _, 0 => rfl
+  | a, b, c + 1 => by
+      show a * b * (c + 1) = a * (b * (c + 1))
+      rw [nat_mul_succ (a * b) c, nat_mul_assoc a b c, nat_mul_succ b c,
+          nat_mul_add a (b * c) b]
+
+/-- `(x + y) - y = x` — cancel the right summand. -/
+theorem nat_add_sub_cancel_left' (x y : Nat) : (x + y) - y = x := by
+  rw [nat_add_comm x y]
+  exact nat_add_sub_cancel_left y x
+
+/-- `n - (n + k) = 0` — the left summand is subsumed. -/
+theorem nat_sub_self_add : ∀ n k : Nat, n - (n + k) = 0
+  | 0, k => by rw [nat_zero_add]; exact nat_zero_sub k
+  | n + 1, k => by
+      show (n + 1) - ((n + 1) + k) = 0
+      rw [nat_succ_add n k, nat_succ_sub_succ]
+      exact nat_sub_self_add n k
+
+/-- `subNatNat n (n + k) = negOfNat k` — the difference of a subsumed pair. -/
+theorem subNatNat_self_add (n k : Nat) :
+    Int.subNatNat n (n + k) = Int.negOfNat k := by
+  cases k with
+  | zero =>
+    show Int.subNatNat n n = Int.negOfNat 0
+    rw [subNatNat_eq_zero (sub_self n)]
+    show Int.ofNat (n - n) = Int.ofNat 0
+    rw [sub_self]
+  | succ j =>
+    -- subNatNat n (n + succ j); n + succ j = succ (n + j)
+    have : n + Nat.succ j = Nat.succ (n + j) := rfl
+    rw [this, subNatNat_add_right n j]
+    rfl
+
+/-! ## The `Int` ring floor — multiplication is commutative, distributes,
+       and associates — axiom-free.
+
+`Int.mul` on constructors:
+- `ofNat m * ofNat n = ofNat (m*n)`
+- `ofNat m * negSucc n = negOfNat (m * (n+1))`
+- `negSucc m * ofNat n = negOfNat ((m+1) * n)`
+- `negSucc m * negSucc n = ofNat ((m+1)*(n+1))`
+
+`negOfNat 0 = ofNat 0`, `negOfNat (k+1) = negSucc k`. The hard case is left
+distributivity, where addition crosses `subNatNat` and multiplication crosses
+`negOfNat`; the helper lemmas below carry that interaction. -/
+
+/-- `negOfNat n * ofNat k = negOfNat (n * k)`. -/
+theorem negOfNat_mul_ofNat : ∀ n k : Nat,
+    Int.negOfNat n * Int.ofNat k = Int.negOfNat (n * k)
+  | 0, k => by
+      show Int.ofNat 0 * Int.ofNat k = Int.negOfNat (0 * k)
+      show Int.ofNat (0 * k) = Int.negOfNat (0 * k)
+      rw [nat_zero_mul']
+      rfl
+  | n + 1, k => by
+      show Int.negSucc n * Int.ofNat k = Int.negOfNat ((n + 1) * k)
+      rfl
+
+/-- `negOfNat n * negSucc k = ofNat (n * (k+1))`. -/
+theorem negOfNat_mul_negSucc : ∀ n k : Nat,
+    Int.negOfNat n * Int.negSucc k = Int.ofNat (n * (k + 1))
+  | 0, k => by
+      show Int.ofNat 0 * Int.negSucc k = Int.ofNat (0 * (k + 1))
+      show Int.negOfNat (0 * (k + 1)) = Int.ofNat (0 * (k + 1))
+      rw [nat_zero_mul']
+      rfl
+  | n + 1, k => by
+      show Int.negSucc n * Int.negSucc k = Int.ofNat ((n + 1) * (k + 1))
+      rfl
+
+/-- `negSucc m * negOfNat k = ofNat ((m+1) * k)`. -/
+theorem negSucc_mul_negOfNat : ∀ m k : Nat,
+    Int.negSucc m * Int.negOfNat k = Int.ofNat ((m + 1) * k)
+  | m, 0 => by
+      show Int.negSucc m * Int.ofNat 0 = Int.ofNat ((m + 1) * 0)
+      show Int.negOfNat ((m + 1) * 0) = Int.ofNat ((m + 1) * 0)
+      rw [nat_mul_zero]
+      rfl
+  | m, k + 1 => by
+      show Int.negSucc m * Int.negSucc k = Int.ofNat ((m + 1) * (k + 1))
+      rfl
+
+/-- **`a * b = b * a` on `Int`** — axiom-free, four constructor cases each via
+    `nat_mul_comm`. -/
+theorem int_mul_comm : ∀ a b : Int, a * b = b * a
+  | Int.ofNat m, Int.ofNat n => congrArg Int.ofNat (nat_mul_comm m n)
+  | Int.ofNat m, Int.negSucc n =>
+      congrArg Int.negOfNat (nat_mul_comm m (n + 1))
+  | Int.negSucc m, Int.ofNat n =>
+      congrArg Int.negOfNat (nat_mul_comm (m + 1) n)
+  | Int.negSucc m, Int.negSucc n =>
+      congrArg Int.ofNat (nat_mul_comm (m + 1) (n + 1))
+
+/-- `ofNat m * negOfNat k = negOfNat (m * k)` — the mirror of
+    `negOfNat_mul_ofNat`, via `int_mul_comm` and `nat_mul_comm`. -/
+theorem ofNat_mul_negOfNat (m k : Nat) :
+    Int.ofNat m * Int.negOfNat k = Int.negOfNat (m * k) := by
+  rw [int_mul_comm, negOfNat_mul_ofNat, nat_mul_comm k m]
+
+/-- `negOfNat (p + q) = negOfNat p + negOfNat q` (re-stated for this section;
+    proven as `negOfNat_add` above). -/
+theorem negOfNat_distrib (p q : Nat) :
+    Int.negOfNat (p + q) = Int.negOfNat p + Int.negOfNat q := negOfNat_add p q
+
+/-- Left distributivity, the all-`ofNat` slice: trivial via `nat_mul_add`. -/
+theorem mul_ofNat_add_ofNat (m b c : Nat) :
+    Int.ofNat m * (Int.ofNat b + Int.ofNat c)
+      = Int.ofNat m * Int.ofNat b + Int.ofNat m * Int.ofNat c := by
+  show Int.ofNat (m * (b + c)) = Int.ofNat (m * b + m * c)
+  rw [nat_mul_add]
+
+/-- `ofNat m * subNatNat b c = subNatNat (m*b) (m*c)` — multiplication pulls
+    through `subNatNat` (the difference scales). This is the crux helper for
+    left distributivity: `b + c` on `Int` becomes a `subNatNat` in the mixed-sign
+    cases, and the product must scale it. By cases on `c - b`. -/
+theorem ofNat_mul_subNatNat (m b c : Nat) :
+    Int.ofNat m * Int.subNatNat b c = Int.subNatNat (m * b) (m * c) := by
+  cases h : c - b with
+  | zero =>
+    rw [subNatNat_eq_zero h]
+    -- ofNat m * ofNat (b - c) = subNatNat (m*b) (m*c)
+    show Int.ofNat (m * (b - c)) = Int.subNatNat (m * b) (m * c)
+    -- since c ≤ b: (b-c)+c = b, so m*b = m*(b-c) + m*c
+    have hbc : (b - c) + c = b := nat_sub_add_cancel b c h
+    -- c + (b-c) = b
+    have hcb' : c + (b - c) = b := by rw [nat_add_comm c (b - c)]; exact hbc
+    -- m*b = m*c + m*(b-c)  (so m*c ≤ m*b)
+    have hmb : m * b = m * c + m * (b - c) := by
+      rw [← nat_mul_add m c (b - c), hcb']
+    have hzero : (m * c) - (m * b) = 0 := by
+      rw [hmb]; exact nat_sub_self_add (m * c) (m * (b - c))
+    have key : Int.subNatNat (m * b) (m * c) = Int.ofNat (m * (b - c)) := by
+      rw [subNatNat_eq_zero hzero]
+      -- ofNat ((m*b) - (m*c)) = ofNat (m*(b-c)); use m*b = m*c + m*(b-c)
+      apply congrArg Int.ofNat
+      -- (m*b) - (m*c) = m*(b-c)
+      rw [hmb, nat_add_comm (m * c) (m * (b - c))]
+      exact nat_add_sub_cancel_left' (m * (b - c)) (m * c)
+    rw [key]
+  | succ d =>
+    rw [subNatNat_eq_succ h]
+    -- ofNat m * negSucc d = subNatNat (m*b) (m*c)
+    show Int.negOfNat (m * (d + 1)) = Int.subNatNat (m * b) (m * c)
+    -- since b ≤ c (c - b = d+1): (c - b) + b = c, c = b + (d+1)
+    have hcb : (c - b) + b = c := nat_sub_add_cancel c b (nat_sub_cross c b d h)
+    have hc : c = b + (d + 1) := by
+      rw [← hcb, h, nat_add_comm (d + 1) b]
+    -- m*c = m*b + m*(d+1)
+    have hmc : m * c = m * b + m * (d + 1) := by
+      rw [hc, nat_mul_add m b (d + 1)]
+    have key : Int.subNatNat (m * b) (m * c) = Int.negOfNat (m * (d + 1)) := by
+      rw [hmc]
+      -- subNatNat (m*b) (m*b + m*(d+1)) = negOfNat (m*(d+1))
+      exact subNatNat_self_add (m * b) (m * (d + 1))
+    rw [key]
+
+/-- Left distributivity with a non-negative left factor: `ofNat m * (b+c) =
+    ofNat m * b + ofNat m * c`. The crux — addition crosses `subNatNat`,
+    multiplication crosses `negOfNat`, carried by `ofNat_mul_subNatNat`. -/
+theorem ofNat_mul_add : ∀ (m : Nat) (b c : Int),
+    Int.ofNat m * (b + c) = Int.ofNat m * b + Int.ofNat m * c
+  | m, Int.ofNat b, Int.ofNat c => mul_ofNat_add_ofNat m b c
+  | m, Int.ofNat b, Int.negSucc c => by
+      -- ofNat b + negSucc c = subNatNat b (c+1)
+      show Int.ofNat m * Int.subNatNat b (c + 1)
+         = Int.ofNat (m * b) + Int.negOfNat (m * (c + 1))
+      rw [ofNat_mul_subNatNat m b (c + 1)]
+      exact subNatNat_eq_add_neg (m * b) (m * (c + 1))
+  | m, Int.negSucc b, Int.ofNat c => by
+      -- negSucc b + ofNat c = subNatNat c (b+1)
+      show Int.ofNat m * Int.subNatNat c (b + 1)
+         = Int.negOfNat (m * (b + 1)) + Int.ofNat (m * c)
+      rw [ofNat_mul_subNatNat m c (b + 1)]
+      exact subNatNat_eq_neg_add (m * c) (m * (b + 1))
+  | m, Int.negSucc b, Int.negSucc c => by
+      -- negSucc b + negSucc c = negSucc (succ (b + c))
+      show Int.ofNat m * Int.negSucc (Nat.succ (b + c))
+         = Int.negOfNat (m * (b + 1)) + Int.negOfNat (m * (c + 1))
+      show Int.negOfNat (m * (Nat.succ (b + c) + 1))
+         = Int.negOfNat (m * (b + 1)) + Int.negOfNat (m * (c + 1))
+      rw [← negOfNat_add (m * (b + 1)) (m * (c + 1)), ← nat_mul_add m (b + 1) (c + 1)]
+      apply congrArg (fun t => Int.negOfNat (m * t))
+      -- succ(b+c) + 1 = (b+1) + (c+1)
+      show (b + c).succ + 1 = (b + 1) + (c + 1)
+      rw [nat_succ_add (b + c) 1]
+      show ((b + c) + 1).succ = (b + 1) + (c + 1)
+      rw [nat_add_assoc b 1 (c + 1)]
+      show ((b + c) + 1).succ = b + (1 + (c + 1))
+      rw [nat_add_comm 1 (c + 1)]
+      show ((b + c) + 1).succ = b + ((c + 1) + 1)
+      rw [← nat_add_assoc b (c + 1) 1]
+      show ((b + c) + 1).succ = ((b + (c + 1)) + 1)
+      rw [nat_add_assoc b c 1]
+
+/-- `negSucc m * x = -(ofNat (m+1) * x)` — the negative left factor is a sign
+    pulled out front. -/
+theorem negSucc_mul_eq_neg (m : Nat) : ∀ x : Int,
+    Int.negSucc m * x = -(Int.ofNat (m + 1) * x)
+  | Int.ofNat k => by
+      show Int.negOfNat ((m + 1) * k) = -(Int.ofNat ((m + 1) * k))
+      cases (m + 1) * k with
+      | zero => rfl
+      | succ j => rfl
+  | Int.negSucc k => by
+      show Int.ofNat ((m + 1) * (k + 1)) = -(Int.negOfNat ((m + 1) * (k + 1)))
+      cases (m + 1) * (k + 1) with
+      | zero => rfl
+      | succ j => rfl
+
+/-- **`a * (b + c) = a * b + a * c` on `Int`** — LEFT distributivity, axiom-free.
+    Non-negative left factor is `ofNat_mul_add`; negative pulls a sign out front
+    (`negSucc_mul_eq_neg`) and rides `int_neg_add`. -/
+theorem int_mul_add : ∀ a b c : Int, a * (b + c) = a * b + a * c
+  | Int.ofNat m, b, c => ofNat_mul_add m b c
+  | Int.negSucc m, b, c => by
+      rw [negSucc_mul_eq_neg m (b + c), negSucc_mul_eq_neg m b, negSucc_mul_eq_neg m c,
+          ofNat_mul_add (m + 1) b c,
+          int_neg_add (Int.ofNat (m + 1) * b) (Int.ofNat (m + 1) * c)]
+
+/-- **`(a + b) * c = a * c + b * c` on `Int`** — RIGHT distributivity, derived
+    from `int_mul_add` and `int_mul_comm`. -/
+theorem int_add_mul (a b c : Int) : (a + b) * c = a * c + b * c := by
+  rw [int_mul_comm (a + b) c, int_mul_add c a b, int_mul_comm c a, int_mul_comm c b]
+
+/-- **`a * b * c = a * (b * c)` on `Int`** — associativity, axiom-free, eight
+    constructor cases via `nat_mul_assoc` (with `negOfNat` carrying the signs). -/
+theorem int_mul_assoc : ∀ a b c : Int, a * b * c = a * (b * c)
+  | Int.ofNat a, Int.ofNat b, Int.ofNat c => by
+      show Int.ofNat (a * b * c) = Int.ofNat (a * (b * c))
+      rw [nat_mul_assoc]
+  | Int.ofNat a, Int.ofNat b, Int.negSucc c => by
+      -- lhs: ofNat(a*b) * negSucc c = negOfNat(a*b*(c+1))
+      -- rhs: ofNat a * (ofNat b * negSucc c) = ofNat a * negOfNat(b*(c+1)) = negOfNat(a*(b*(c+1)))
+      show Int.ofNat a * Int.ofNat b * Int.negSucc c
+         = Int.ofNat a * (Int.ofNat b * Int.negSucc c)
+      rw [show Int.ofNat b * Int.negSucc c = Int.negOfNat (b * (c + 1)) from rfl,
+          ofNat_mul_negOfNat]
+      show Int.negOfNat (a * b * (c + 1)) = Int.negOfNat (a * (b * (c + 1)))
+      rw [nat_mul_assoc]
+  | Int.ofNat a, Int.negSucc b, Int.ofNat c => by
+      show Int.negOfNat (a * (b + 1)) * Int.ofNat c
+         = Int.ofNat a * (Int.negSucc b * Int.ofNat c)
+      rw [show Int.negSucc b * Int.ofNat c = Int.negOfNat ((b + 1) * c) from rfl,
+          negOfNat_mul_ofNat, ofNat_mul_negOfNat, nat_mul_assoc]
+  | Int.ofNat a, Int.negSucc b, Int.negSucc c => by
+      show Int.negOfNat (a * (b + 1)) * Int.negSucc c
+         = Int.ofNat a * (Int.negSucc b * Int.negSucc c)
+      rw [negOfNat_mul_negSucc,
+          show Int.negSucc b * Int.negSucc c = Int.ofNat ((b + 1) * (c + 1)) from rfl]
+      show Int.ofNat (a * (b + 1) * (c + 1)) = Int.ofNat (a * ((b + 1) * (c + 1)))
+      rw [nat_mul_assoc]
+  | Int.negSucc a, Int.ofNat b, Int.ofNat c => by
+      show Int.negOfNat ((a + 1) * b) * Int.ofNat c
+         = Int.negSucc a * (Int.ofNat b * Int.ofNat c)
+      rw [negOfNat_mul_ofNat,
+          show Int.ofNat b * Int.ofNat c = Int.ofNat (b * c) from rfl]
+      show Int.negOfNat ((a + 1) * b * c) = Int.negOfNat ((a + 1) * (b * c))
+      rw [nat_mul_assoc]
+  | Int.negSucc a, Int.ofNat b, Int.negSucc c => by
+      show Int.negOfNat ((a + 1) * b) * Int.negSucc c
+         = Int.negSucc a * (Int.ofNat b * Int.negSucc c)
+      rw [negOfNat_mul_negSucc,
+          show Int.ofNat b * Int.negSucc c = Int.negOfNat (b * (c + 1)) from rfl,
+          negSucc_mul_negOfNat]
+      show Int.ofNat ((a + 1) * b * (c + 1)) = Int.ofNat ((a + 1) * (b * (c + 1)))
+      rw [nat_mul_assoc]
+  | Int.negSucc a, Int.negSucc b, Int.ofNat c => by
+      show Int.ofNat ((a + 1) * (b + 1)) * Int.ofNat c
+         = Int.negSucc a * (Int.negSucc b * Int.ofNat c)
+      rw [show Int.ofNat ((a + 1) * (b + 1)) * Int.ofNat c
+            = Int.ofNat ((a + 1) * (b + 1) * c) from rfl,
+          show Int.negSucc b * Int.ofNat c = Int.negOfNat ((b + 1) * c) from rfl,
+          negSucc_mul_negOfNat]
+      show Int.ofNat ((a + 1) * (b + 1) * c) = Int.ofNat ((a + 1) * ((b + 1) * c))
+      rw [nat_mul_assoc]
+  | Int.negSucc a, Int.negSucc b, Int.negSucc c => by
+      show Int.ofNat ((a + 1) * (b + 1)) * Int.negSucc c
+         = Int.negSucc a * (Int.negSucc b * Int.negSucc c)
+      rw [show Int.ofNat ((a + 1) * (b + 1)) * Int.negSucc c
+            = Int.negOfNat ((a + 1) * (b + 1) * (c + 1)) from rfl,
+          show Int.negSucc b * Int.negSucc c = Int.ofNat ((b + 1) * (c + 1)) from rfl,
+          show Int.negSucc a * Int.ofNat ((b + 1) * (c + 1))
+            = Int.negOfNat ((a + 1) * ((b + 1) * (c + 1))) from rfl]
+      rw [nat_mul_assoc]
+
+/-- **`(-a) * b = -(a * b)` on `Int`** — the sign pulls out of the left factor,
+    axiom-free (cases on `a`: zero is `int_zero_mul`, positive is
+    `negSucc_mul_eq_neg`, negative rides it through `int_neg_neg`). -/
+theorem int_neg_mul : ∀ a b : Int, (-a) * b = -(a * b)
+  | Int.ofNat 0, b => by
+      show (0 : Int) * b = -((0 : Int) * b)
+      rw [int_zero_mul]
+      rfl
+  | Int.ofNat (m + 1), b => negSucc_mul_eq_neg m b
+  | Int.negSucc m, b => by
+      show Int.ofNat (m + 1) * b = -(Int.negSucc m * b)
+      rw [negSucc_mul_eq_neg m b, int_neg_neg]
+
+/-- **`a * (-b) = -(a * b)` on `Int`** — the sign pulls out of the right factor,
+    via `int_mul_comm` and `int_neg_mul`. -/
+theorem int_mul_neg (a b : Int) : a * (-b) = -(a * b) := by
+  rw [int_mul_comm a (-b), int_neg_mul b a, int_mul_comm b a]
+
+/-- **`a + (-a) = 0` on `Int`** — the additive inverse, axiom-free (cases on `a`;
+    the mixed-sign cases collapse via `subNatNat (k+1) (k+1) = ofNat 0`,
+    `sub_self`). -/
+theorem int_add_neg_self : ∀ a : Int, a + (-a) = 0
+  | Int.ofNat 0 => rfl
+  | Int.ofNat (m + 1) => by
+      show Int.subNatNat (m + 1) (m + 1) = 0
+      rw [subNatNat_eq_zero (sub_self (m + 1))]
+      show Int.ofNat ((m + 1) - (m + 1)) = Int.ofNat 0
+      rw [sub_self]
+  | Int.negSucc m => by
+      show Int.subNatNat (m + 1) (m + 1) = 0
+      rw [subNatNat_eq_zero (sub_self (m + 1))]
+      show Int.ofNat ((m + 1) - (m + 1)) = Int.ofNat 0
+      rw [sub_self]
+
+/-- **`(-a) + a = 0` on `Int`** — the mirror, via `int_add_comm`. -/
+theorem int_neg_add_self (a : Int) : (-a) + a = 0 := by
+  rw [int_add_comm (-a) a]; exact int_add_neg_self a
+
 /-! ## Axiom-freeness, pinned (a drift fails `lake build`). -/
 
 /-- info: 'Foam.int_add_assoc' does not depend on any axioms -/

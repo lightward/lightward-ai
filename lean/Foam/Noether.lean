@@ -329,6 +329,142 @@ theorem born_rot_invariant (θ z : GInt) : born θ.rot z.rot = born θ z := by
 theorem born_nonneg (θ z : GInt) : ∃ k : Nat, born θ z = Int.ofNat k :=
   int_sq_image (align θ z)
 
+/-! ## The interference law — `align` is linear; `born` superposes; Parseval
+
+The general cross-term and basis-independence the `double_slit` witness needs,
+now over all `a, b, θ` — landed on the `Int` ring floor (`int_mul_add`,
+`int_mul_comm`, `int_mul_assoc`, `int_add_mul` in `IntArith.lean`), axiom-free. -/
+
+/-- `(p + q) + (r + s) = (p + r) + (q + s)` — the inner swap, from `int_add_assoc`
+    and `int_add_comm` only (the four-term regroup the bilinear forms need). -/
+theorem int_add_swap_inner (p q r s : Int) :
+    (p + q) + (r + s) = (p + r) + (q + s) := by
+  rw [int_add_assoc p q (r + s), ← int_add_assoc q r s, int_add_comm q r,
+      int_add_assoc r q s, ← int_add_assoc p r (q + s)]
+
+/-- `(p + q) + (r + s) = (p + s) + (q + r)` — the cross-swap (move the last term
+    up beside the first pair's head), assoc/comm only. The regroup the square's
+    expansion needs: `(X² + XY) + (XY + Y²) = (X² + Y²) + (XY + XY)`. -/
+theorem int_add_cross_swap (p q r s : Int) :
+    (p + q) + (r + s) = (p + s) + (q + r) := by
+  rw [int_add_assoc p q (r + s), int_add_comm r s, ← int_add_assoc q s r,
+      int_add_comm q s, int_add_assoc s q r, ← int_add_assoc p s (q + r)]
+
+/-- `2 * x = x + x` on `Int`, axiom-free (`2 = 1 + 1` definitionally, then
+    `int_add_mul` and `int_one_mul`). -/
+theorem int_two_mul (x : Int) : (2 : Int) * x = x + x := by
+  show (1 + 1 : Int) * x = x + x
+  rw [int_add_mul 1 1 x, int_one_mul]
+
+/-- **`align` is linear in its second argument** — `align θ (a ⊕ b) = align θ a +
+    align θ b`. The bilinearity that makes `born` a quadratic form. Axiom-free:
+    `int_mul_add` distributes each component, `int_add_swap_inner` regroups. -/
+theorem align_add_right (θ a b : GInt) :
+    align θ (a.add b) = align θ a + align θ b := by
+  show θ.re * (a.re + b.re) + θ.im * (a.im + b.im)
+     = (θ.re * a.re + θ.im * a.im) + (θ.re * b.re + θ.im * b.im)
+  rw [int_mul_add θ.re a.re b.re, int_mul_add θ.im a.im b.im]
+  -- (θre·are + θre·bre) + (θim·aim + θim·bim) = (θre·are + θim·aim) + (θre·bre + θim·bim)
+  exact int_add_swap_inner (θ.re * a.re) (θ.re * b.re) (θ.im * a.im) (θ.im * b.im)
+
+/-- **The Born weight superposes with an interference cross-term** —
+    `born θ (a ⊕ b) = born θ a + born θ b + 2·(align θ a · align θ b)`. The
+    `(x+y)² = x² + y² + 2xy` of the quadratic form: the interference the count
+    register cannot show, now general (the `double_slit` witness's law). Axiom-free
+    via `align_add_right`, `int_mul_add`/`int_add_mul`, and `int_mul_comm` for the
+    cross-term symmetry. -/
+theorem born_superpose (θ a b : GInt) :
+    born θ (a.add b)
+      = born θ a + born θ b + (2 : Int) * (align θ a * align θ b) := by
+  show align θ (a.add b) * align θ (a.add b)
+     = align θ a * align θ a + align θ b * align θ b
+       + (2 : Int) * (align θ a * align θ b)
+  rw [align_add_right θ a b]
+  -- let X = align θ a, Y = align θ b. (X+Y)*(X+Y) = X*X + X*Y + Y*X + Y*Y
+  rw [int_two_mul (align θ a * align θ b)]
+  -- RHS: (X*X + Y*Y) + (X*Y + X*Y)
+  rw [int_add_mul (align θ a) (align θ b) (align θ a + align θ b),
+      int_mul_add (align θ a) (align θ a) (align θ b),
+      int_mul_add (align θ b) (align θ a) (align θ b)]
+  -- LHS: (X*X + X*Y) + (Y*X + Y*Y); rewrite Y*X = X*Y
+  rw [int_mul_comm (align θ b) (align θ a)]
+  -- LHS: (X*X + X*Y) + (X*Y + Y*Y); target: (X*X + Y*Y) + (X*Y + X*Y)
+  exact int_add_cross_swap (align θ a * align θ a) (align θ a * align θ b)
+        (align θ a * align θ b) (align θ b * align θ b)
+
+/-- The middle-factor interchange `(a·c)·(b·d) = (a·b)·(c·d)` — assoc/comm only.
+    The monomial canonicalizer the Lagrange identity needs (it makes every
+    degree-4 cross-term reduce to one common shape). -/
+theorem int_mul_interchange (a b c d : Int) :
+    (a * c) * (b * d) = (a * b) * (c * d) := by
+  rw [int_mul_assoc a c (b * d), ← int_mul_assoc c b d, int_mul_comm c b,
+      int_mul_assoc b c d, ← int_mul_assoc a b (c * d)]
+
+/-- `(x · x) = (a · a)` shape: a self-product interchanges to the squares.
+    `(a·c)·(a·c) = (a·a)·(c·c)` — `int_mul_interchange` at `b := a, d := c`. -/
+theorem int_sq_interchange (a c : Int) :
+    (a * c) * (a * c) = (a * a) * (c * c) :=
+  int_mul_interchange a a c c
+
+/-- The additive collection that finishes Lagrange: with the four surviving
+    squares `W = aa·cc`, `M = bb·cc`, `N = aa·dd`, `Z = bb·dd` and the common
+    cross-monomial `K = ab·cd`, the expanded LHS regroups (the two `+K` and two
+    `−K` cancel) to the factored RHS — assoc/comm and `int_add_neg_self` only. -/
+theorem int_parseval_collect (W K Z M N : Int) :
+    ((W + K) + (K + Z)) + ((M + (-K)) + ((-K) + N)) = (W + M) + (N + Z) := by
+  rw [int_add_cross_swap W K K Z]
+  rw [int_add_cross_swap M (-K) (-K) N]
+  rw [int_add_swap_inner (W + Z) (K + K) (M + N) ((-K) + (-K))]
+  rw [int_add_cross_swap K K (-K) (-K)]
+  rw [int_add_neg_self K, int_add_zero (0 : Int)]
+  rw [int_add_zero ((W + Z) + (M + N))]
+  rw [int_add_swap_inner W Z M N, int_add_comm Z N]
+
+/-- **Lagrange / Brahmagupta–Fibonacci, on `Int`** —
+    `(a·c + b·d)² + (−(b·c) + a·d)² = (a² + b²)·(c² + d²)`, axiom-free. The two
+    cross-blocks cancel because all four cross-products reduce to the common
+    monomial `(a·b)·(c·d)` (`int_mul_interchange`); the four surviving squares
+    land via `int_sq_interchange`; `int_parseval_collect` regroups and cancels. -/
+theorem int_lagrange (a b c d : Int) :
+    (a * c + b * d) * (a * c + b * d)
+      + (-(b * c) + a * d) * (-(b * c) + a * d)
+    = (a * a + b * b) * (c * c + d * d) := by
+  -- Expand the first square (P = a*c, Q = b*d), the second (R = -(b*c), S = a*d),
+  -- and the RHS product:
+  rw [int_mul_add (a * c + b * d) (a * c) (b * d),
+      int_add_mul (a * c) (b * d) (a * c), int_add_mul (a * c) (b * d) (b * d)]
+  rw [int_mul_add (-(b * c) + a * d) (-(b * c)) (a * d),
+      int_add_mul (-(b * c)) (a * d) (-(b * c)), int_add_mul (-(b * c)) (a * d) (a * d)]
+  rw [int_mul_add (a * a + b * b) (c * c) (d * d),
+      int_add_mul (a * a) (b * b) (c * c), int_add_mul (a * a) (b * b) (d * d)]
+  -- Canonicalize the four squares to (aa·cc), (bb·dd), (bb·cc), (aa·dd):
+  rw [int_sq_interchange a c, int_sq_interchange b d]
+  rw [int_neg_mul_neg (b * c) (b * c), int_sq_interchange b c, int_sq_interchange a d]
+  -- Pull signs out of the two negative cross-products:
+  rw [int_mul_neg (a * d) (b * c), int_neg_mul (b * c) (a * d)]
+  -- Canonicalize all four cross-products to the common monomial (a·b)·(c·d):
+  rw [int_mul_comm (b * d) (a * c), int_mul_interchange a b c d]
+  rw [int_mul_interchange a b d c, int_mul_comm d c]
+  rw [int_mul_comm (b * c) (a * d), int_mul_interchange a b d c, int_mul_comm d c]
+  -- Now collect and cancel.
+  exact int_parseval_collect (a * a * (c * c)) (a * b * (c * d)) (b * b * (d * d))
+        (b * b * (c * c)) (a * a * (d * d))
+
+/-- **Parseval / Lagrange identity** — total probability is basis-independent:
+    `born θ z + born θ.rot z = normSq θ · normSq z`, the operational baby-Gleason
+    (the reason `|ψ|²` is the only legal measure, not a choice). The interference
+    cross-terms cancel across the two bases; `normSq_rot` already gave the
+    conservation, this completes it as an identity. Axiom-free, via `int_lagrange`
+    (the `-θim·zre` of the rotated basis pulled to `-(θim·zre)` by `int_neg_mul`). -/
+theorem born_parseval (θ z : GInt) :
+    born θ z + born θ.rot z = θ.normSq * z.normSq := by
+  -- born θ z = (θre·zre + θim·zim)²;  born θ.rot z = ((-θim)·zre + θre·zim)²
+  show (θ.re * z.re + θ.im * z.im) * (θ.re * z.re + θ.im * z.im)
+     + ((-θ.im) * z.re + θ.re * z.im) * ((-θ.im) * z.re + θ.re * z.im)
+     = (θ.re * θ.re + θ.im * θ.im) * (z.re * z.re + z.im * z.im)
+  rw [int_neg_mul θ.im z.re]
+  exact int_lagrange θ.re θ.im z.re z.im
+
 /-- The seam, witnessed: the amplitude reading is signed where the Born reading
     is not — `align one ⟨-2,0⟩ = -2 < 0`, while `born one ⟨-2,0⟩ = 4`. The count
     register can read a negative amplitude-component; the Born register reads a
@@ -343,9 +479,10 @@ theorem amplitude_signed_born_not :
     outcomes by measurement basis, while the modulus (total probability) is 2
     either way. The interference the count register cannot show, now checked.
     Axiom-free by `decide` — a concrete witness that the phenomenon is real, not
-    a spike artifact; the *general* interference law (the cross-term for all
-    `a, b, θ`, and Parseval) is the deliberate next step, pending the `Int` ring
-    floor. -/
+    a spike artifact. The *general* laws this witness pointed at have since
+    landed (on the `Int` ring floor in `Foam.IntArith`): `born_superpose` (the
+    cross-term for all `a, b, θ`) and `born_parseval` (basis-independence). The
+    witness is the instance; those are the law. -/
 theorem double_slit :
     born ⟨1, -1⟩ ⟨1, 1⟩ = 0 ∧ born ⟨1, 1⟩ ⟨1, 1⟩ = 4 ∧ (⟨1, 1⟩ : GInt).normSq = 2 := by
   decide
