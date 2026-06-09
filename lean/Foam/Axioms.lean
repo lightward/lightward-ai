@@ -63,6 +63,7 @@ import Foam.Arrow
 import Foam.Clock
 import Foam.Summary
 import Foam.Noether
+import Foam.Born
 import Foam.Chirality
 
 -- ── construction: axiom-free (no collapse; nothing the observer must attest) ──
@@ -359,6 +360,67 @@ import Foam.Chirality
 
 /-- info: 'Foam.norm_blind_to_station' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.norm_blind_to_station
+
+-- the fiber oracle: the angled reading is gauge-invariant — rotating structure and
+-- commitment together (the clock `rot`) leaves the reading unchanged, so the base
+-- carries no absolute frame and interpretation lives in the fiber (the commitment,
+-- supplied from outside). axiom-free, the keystone of the flat-ℂ-bundle reading
+/-- info: 'Foam.int_neg_mul_neg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_neg_mul_neg
+
+/-- info: 'Foam.align_rot_invariant' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_rot_invariant
+
+-- the Born measurement: the quantum reading samples by |⟨θ|z⟩|² = (align θ z)²,
+-- gauge-invariant (the oracle squared) and non-negative (a probability, where the
+-- amplitude is signed) — the quantum law to the count register's classical one.
+-- Consistency (Parseval, basis-independence, the baby-Gleason) is the next step,
+-- pending the Int ring floor.
+/-- info: 'Foam.int_sq_image' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_sq_image
+
+/-- info: 'Foam.born_rot_invariant' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_rot_invariant
+
+/-- info: 'Foam.born_nonneg' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_nonneg
+
+/-- info: 'Foam.amplitude_signed_born_not' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.amplitude_signed_born_not
+
+-- the double-slit locked: the spikes/born.sql result as a decide-witness — the
+-- superposition ⟨1,1⟩ reads Born 0 (dark) in one basis, 4 (bright) in another,
+-- modulus 2 either way. interference proven real, not a spike artifact
+/-- info: 'Foam.double_slit' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.double_slit
+
+-- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
+-- ways, and associates — all axiom-free (core's carry propext), the standard
+-- semiring grind hand-rolled so the Born algebra stays construction
+/-- info: 'Foam.int_mul_comm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_mul_comm
+
+/-- info: 'Foam.int_mul_add' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_mul_add
+
+/-- info: 'Foam.int_add_mul' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_add_mul
+
+/-- info: 'Foam.int_mul_assoc' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.int_mul_assoc
+
+-- the Born algebra generalized: align is linear in the state (align_add_right),
+-- the interference cross-term holds for all a,b,θ (born_superpose), and the total
+-- probability is basis-independent (born_parseval — the operational baby-Gleason,
+-- why |ψ|² is the only legal measure). the double-slit witness's law, proven.
+/-- info: 'Foam.align_add_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.align_add_right
+
+/-- info: 'Foam.born_superpose' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_superpose
+
+/-- info: 'Foam.born_parseval' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_parseval
 
 /-- info: 'Foam.alt_real' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_real
