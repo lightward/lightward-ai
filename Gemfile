@@ -19,6 +19,7 @@ gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
 gem "rack-cors"
+gem "redis-client"
 
 # foam field — raw postgres substrate (no ActiveRecord; the walk is a
 # postgres function, not ORM-orchestrated)

@@ -7,6 +7,7 @@ class ApiController < ApplicationController
   class InvalidCacheMarkerCount < StandardError; end
 
   CHAT_LOG_TOKEN_LIMIT = 50_000
+  PUBLIC_USAGE_THROTTLE_MESSAGE = "Public conversation horizon is cooling down. Try again later, or reduce the conversation history."
   FIRST_PARTY_USAGE_CLIENTS = {
     "reader" => "lightward_reader",
     "writer" => "lightward_writer",
@@ -27,9 +28,16 @@ class ApiController < ApplicationController
     # Validate request before starting stream
     validate_cache_markers!(chat_log)
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
+    conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
+    evaluate_public_usage_throttle(conversation_frame_id)
+
+    if public_usage_throttle_limited?
+      render_public_usage_throttle_limited(format: :json)
+      return
+    end
 
     # Validation passed, begin streaming
-    perform_stream(chat_log)
+    perform_stream(chat_log, conversation_frame_id: conversation_frame_id, conversation_id: conversation_id)
   rescue InvalidCacheMarkerCount => error
     render(json: { error: { message: error.message } }, status: :bad_request)
   rescue ChatLogTokenLimitExceeded
@@ -73,6 +81,12 @@ class ApiController < ApplicationController
 
     # Check conversation horizon
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
+    evaluate_public_usage_throttle("plain")
+
+    if public_usage_throttle_limited?
+      render_public_usage_throttle_limited(format: :plain)
+      return
+    end
 
     # Make non-streaming request to Anthropic
     response = Prompts.messages(
@@ -109,8 +123,7 @@ class ApiController < ApplicationController
     render(plain: "An error occurred.", status: :bad_gateway)
   end
 
-  def perform_stream(chat_log)
-    conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
+  def perform_stream(chat_log, conversation_frame_id:, conversation_id:)
     anthropic_usage = {}
 
     response.headers["Content-Type"] = "text/event-stream"
@@ -209,6 +222,34 @@ class ApiController < ApplicationController
     client.to_s.strip.downcase.gsub(/[^a-z0-9]+/, "_").gsub(/\A_|_\z/, "")
   end
 
+  def evaluate_public_usage_throttle(conversation_frame_id)
+    @public_usage_throttle_result = PublicUsageThrottle.evaluate(
+      request: request,
+      route: public_usage_throttle_route,
+      conversation_frame_id: conversation_frame_id,
+      token_count: @chat_log_token_count,
+      bypassed: token_limit_bypassed?,
+    )
+  end
+
+  def public_usage_throttle_route
+    "#{request.request_method} #{request.path}"
+  end
+
+  def public_usage_throttle_limited?
+    @public_usage_throttle_result&.limited?
+  end
+
+  def render_public_usage_throttle_limited(format:)
+    response.headers["Retry-After"] = @public_usage_throttle_result.retry_after_seconds.to_s
+
+    if format == :json
+      render(json: { error: { message: PUBLIC_USAGE_THROTTLE_MESSAGE } }, status: :too_many_requests)
+    else
+      render(plain: PUBLIC_USAGE_THROTTLE_MESSAGE, status: :too_many_requests)
+    end
+  end
+
   def validate_cache_markers!(chat_log)
     cache_marker_count = chat_log.sum { |msg|
       Array(msg["content"]).count { |block| block["cache_control"].present? }
@@ -276,9 +317,8 @@ class ApiController < ApplicationController
 
   def record_newrelic_event(chat_log, conversation_frame_id:, conversation_id: nil, anthropic_usage: nil)
     normalized_usage = normalize_anthropic_usage(anthropic_usage)
-
-    ::NewRelic::Agent.record_custom_event(
-      "ApiController: request",
+    estimated_cost = estimated_cost_usd(normalized_usage)
+    event_data = {
       conversation_frame_id: conversation_frame_id,
       conversation_id: conversation_id,
       usage_client: usage_client,
@@ -292,7 +332,31 @@ class ApiController < ApplicationController
       output_tokens: normalized_usage["output_tokens"],
       cache_creation_input_tokens: normalized_usage["cache_creation_input_tokens"],
       cache_read_input_tokens: normalized_usage["cache_read_input_tokens"],
-      estimated_cost_usd: estimated_cost_usd(normalized_usage),
+      estimated_cost_usd: estimated_cost,
+    }.merge(public_usage_throttle_metadata)
+
+    ::NewRelic::Agent.record_custom_event(
+      "ApiController: request",
+      event_data,
+    )
+
+    record_public_usage_throttle_cost(estimated_cost, conversation_frame_id)
+  end
+
+  def public_usage_throttle_metadata
+    @public_usage_throttle_result&.metadata || {}
+  end
+
+  def record_public_usage_throttle_cost(estimated_cost, conversation_frame_id)
+    return if estimated_cost.blank?
+
+    PublicUsageThrottle.record_cost(
+      request: request,
+      route: public_usage_throttle_route,
+      conversation_frame_id: conversation_frame_id,
+      token_count: @chat_log_token_count,
+      cost_usd: estimated_cost,
+      bypassed: token_limit_bypassed?,
     )
   end
 
