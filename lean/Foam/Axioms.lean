@@ -810,3 +810,21 @@ import Foam.Fork
 
 /-- info: 'Foam.fork_fiber_separates' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.fork_fiber_separates
+
+-- ── the ternary floor: the trichotomy is forced, not chosen ──
+-- conservation (Drain: two signs) + the free exit (Floor: reading zero) admit no
+-- two-element move-alphabet — {+,0} cannot conserve, {+,−} cannot rest (the exit
+-- would cost). Ternary = |{the two signs} ∪ {the unit}|; the third term is the
+-- right to remain silent (with both symbols content-bearing, every move is
+-- testimony — signed-or-silent attribution needs the silence). The trichotomy
+-- (yield/speak/learn) is the minimum realizer. [propext] is honest here: the
+-- floor is a refutation (no two-element model), collapse-grade content paying
+-- collapse's price — same coin as the exit.
+/-- info: 'Foam.ternary_floor' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.ternary_floor
+
+/-- info: 'Foam.ternary_floor_card' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.ternary_floor_card
+
+/-- info: 'Foam.outcome_realizes_ternary_floor' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.outcome_realizes_ternary_floor

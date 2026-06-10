@@ -122,4 +122,68 @@ theorem learn_iff_closed {Handle : Type} (t : Tokenized Handle) (h : t.tokens �
     | nil => exact absurd rfl h
     | cons a as => cases residual <;> simp [Tokenized.outcome]
 
+/-! ## The ternary floor — why the move-alphabet has three letters
+
+The trichotomy above is not one design among several: it is the floor of the
+design space. Two laws already on the books force a third move-type:
+
+- conservation (Drain.lean): something deposits and something spends — two
+  moves whose charge-readings carry opposite sign;
+- the free exit (Floor.lean; Gauge.lean's silent yield as the unit): a move
+  always takeable that contributes zero to every reading — if resting had a
+  sign, reaching yield would itself move the ledger, and the exit would cost.
+
+A signed move is distinct from its opposite by conservation, and the free move
+is distinct from both because its reading is zero while theirs are not. No
+two-element alphabet satisfies both laws: `{+, 0}` cannot conserve (nothing
+spends), `{+, −}` cannot rest (every beat moves the balance — the exit
+acquires a price, and the Floor theorem's "reachable regardless" silently
+becomes "purchasable"). Ternary is the cardinality of {conservation's two
+signs} ∪ {the floor's unit}. The third term is the right to remain silent:
+with both symbols content-bearing, every move is testimony — silence becomes
+impossible, and with it attribution (signed-or-silent needs the silence). -/
+
+/-- **The ternary floor.** Any move-alphabet carrying a charge-reading with a
+    depositing move, a spending move, and a free move (reading zero — the exit
+    that costs nothing) has three pairwise-distinct moves. The premises are
+    Drain's two signs and the Floor's free exit; the conclusion is that the
+    trichotomy is forced, not chosen. -/
+theorem ternary_floor {M : Type} (charge : M → Int) {plus minus rest : M}
+    (h_plus : 0 < charge plus) (h_minus : charge minus < 0)
+    (h_rest : charge rest = 0) :
+    plus ≠ minus ∧ rest ≠ plus ∧ rest ≠ minus := by
+  refine ⟨fun h => ?_, fun h => ?_, fun h => ?_⟩
+  · rw [h] at h_plus
+    exact Int.lt_irrefl 0 (Int.lt_trans h_plus h_minus)
+  · rw [h] at h_rest
+    rw [h_rest] at h_plus
+    exact Int.lt_irrefl 0 h_plus
+  · rw [h] at h_rest
+    rw [h_rest] at h_minus
+    exact Int.lt_irrefl 0 h_minus
+
+/-- The floor as cardinality: the alphabet has at least three letters. -/
+theorem ternary_floor_card {M : Type} (charge : M → Int) {plus minus rest : M}
+    (h_plus : 0 < charge plus) (h_minus : charge minus < 0)
+    (h_rest : charge rest = 0) :
+    ∃ a b c : M, a ≠ b ∧ a ≠ c ∧ b ≠ c :=
+  have h := ternary_floor charge h_plus h_minus h_rest
+  ⟨plus, minus, rest, h.1, h.2.1.symm, h.2.2.symm⟩
+
+/-- The trichotomy's own charge-reading: the hear-foot deposits, the say-foot
+    spends, the rest is free. -/
+def Outcome.charge : Outcome → Int
+  | .learn => 1
+  | .speak => -1
+  | .yield => 0
+
+/-- **The trichotomy is the minimum realizer.** `Outcome` inhabits the ternary
+    floor exactly — three moves, two signs and the unit, nothing else. The
+    trichotomy isn't a design choice; it is the smallest alphabet the laws
+    admit, realized. -/
+theorem outcome_realizes_ternary_floor :
+    Outcome.learn ≠ Outcome.speak ∧ Outcome.yield ≠ Outcome.learn ∧
+      Outcome.yield ≠ Outcome.speak :=
+  ternary_floor Outcome.charge (by decide) (by decide) (by decide)
+
 end Foam
