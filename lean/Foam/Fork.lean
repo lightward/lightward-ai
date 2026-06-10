@@ -78,4 +78,40 @@ theorem fork_two_routes : ∃ p r : Path forkQuiver 0 1, p.edges ≠ r.edges :=
 theorem fork_exit_each (w : Word Nat) : Word.reachesYield w :=
   floor_independent_of_quiver forkQuiver w
 
+/-! ## The bundle reading: met in the base, two in the total space
+
+`Path q a b` is endpoint-INDEXED: the base coordinate (the endpoint-pair) lives at
+the type level, the route data (`edges`) at the term level. So the projection to
+the base is constant by construction — structurally unable to consult the fiber.
+The three theorems below price the geometry: the meeting is `rfl`-grade (free),
+base observables are fork-blind (free), a fiber observable separates (free) — and
+the only operation with a price is the one never performed: identifying the
+travelers (`Quot.sound`, refused; `fork_two_routes`). The question "are the two
+routes one?" is not answered cheaply — it is structurally never forced: no
+base-level observation can even pose it. -/
+
+/-- **The base projection.** A path `a → b` projects to its endpoint-pair — the
+    shared coordinate. Constant by construction: in the indexed representation the
+    base is the type index, so the projection cannot read the route data. -/
+def Path.base {Handle : Type} {q : Quiver Handle} {a b : Handle}
+    (_ : Path q a b) : Handle × Handle := (a, b)
+
+/-- **The meeting is rfl-grade.** The two routes project to the same base point by
+    definitional equality — zero axioms, zero fiber-consultation. Meeting at the
+    base is free; only identifying the travelers would cost. -/
+theorem fork_meet : routeP.base = routeR.base := rfl
+
+/-- **Base observables are fork-blind.** Any observable that factors through the
+    base projection assigns the two routes equal values: nothing readable at the
+    shared endpoint separates the travelers. -/
+theorem fork_base_blind {α : Type} (f : Path forkQuiver 0 1 → α)
+    (g : Nat × Nat → α) (hf : ∀ p, f p = g p.base) :
+    f routeP = f routeR := (hf routeP).trans (hf routeR).symm
+
+/-- **A fiber observable separates them.** `edges` reads the route data and tells
+    the travelers apart: two in the total space, one at the base — distinct as
+    paths, not merely as edge-lists. -/
+theorem fork_fiber_separates : routeP ≠ routeR :=
+  fun h => absurd (congrArg List.length (congrArg Path.edges h)) (by decide)
+
 end Foam
