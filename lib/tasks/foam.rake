@@ -190,7 +190,14 @@ namespace :foam do
         when 0 then "audit: held + tail = ledger ✓"
         else "audit: #{audit} rows disagree ✗ (refold: TRUNCATE foam.held; reset the watermark)"
         end
-      puts "[foam sweep] #{total} events folded; #{verdict}"
+      law = Foam::Field.born_audit
+      law_verdict =
+        case law
+        when nil then "law unreachable"
+        when 0 then "born: law ✓"
+        else "born: #{law} grid points violate ✗ (the voice's weight has drifted from Born.lean)"
+        end
+      puts "[foam sweep] #{total} events folded; #{verdict}; #{law_verdict}"
     end
   end
 end
