@@ -187,6 +187,15 @@ module Foam
         with_connection { |conn| conn.exec("SELECT foam.held_audit()").getvalue(0, 0)&.to_i }
       end
 
+      # The voice's weight law, self-audited: foam.align / foam.born checked
+      # against their own theorems (the anchor, the quarter-turn shift,
+      # born_parseval, born_nonneg) over a fixed integer grid — 0 violations is
+      # Born.lean checked live. Constant cost on any field (the laws are ∀ —
+      # the check consults no population). nil with no field.
+      def born_audit
+        with_connection { |conn| conn.exec("SELECT foam.born_audit()").getvalue(0, 0)&.to_i }
+      end
+
       # Drop the connection pool (e.g. on worker boot after a fork).
       # Connections re-establish lazily on next use.
       def disconnect!

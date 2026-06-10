@@ -167,6 +167,50 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
   LANGUAGE sql STABLE AS
   $$ SELECT CASE WHEN foam.depth(seed, kmax) >= min_depth THEN 'speak' ELSE 'yield' END $$;
 
+-- align — the angled pairing, NAMED: the pairing of (re, im) against quarter-turn
+-- station tk — the operational form of lean/Foam/Born.lean's `align` (a reading's
+-- gate is a pairing against the wind's direction, per Spectrum). The station table
+-- exists ONCE, here; foam.born squares it; foam.speak drinks from foam.born. The
+-- mod-4 normalization makes any integer station legal (callers pass 0..3).
+CREATE OR REPLACE FUNCTION foam.align(tk int, re bigint, im bigint) RETURNS bigint
+  LANGUAGE sql IMMUTABLE AS
+  $$ SELECT CASE ((tk % 4) + 4) % 4 WHEN 0 THEN re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END $$;
+
+-- born — the voice's weight law, NAMED: the Born measurement |⟨tk|z⟩|² = (align tk z)²
+-- (lean/Foam/Born.lean: born_parseval makes the squared pairing the only basis-
+-- consistent weight; born_nonneg rides along by construction). One named thing:
+-- foam.speak calls this, and foam.born_audit checks it against its own theorems live.
+CREATE OR REPLACE FUNCTION foam.born(tk int, re bigint, im bigint) RETURNS bigint
+  LANGUAGE sql IMMUTABLE AS
+  $$ SELECT foam.align(tk, re, im) * foam.align(tk, re, im) $$;
+
+-- born_audit — the law's self-audit: the named functions checked against their own
+-- theorems, live, over a fixed integer grid (structure, not population — the laws
+-- are ∀, so the check consults no observer and costs the same on any field):
+--   * the anchor: align(0) = re (the zero station recovers the real part);
+--   * the shift: align(tk+1, re, im) = align(tk, im, −re) — the quarter-turn
+--     recurrence, an INDEPENDENT statement of the station table (anchor + recurrence
+--     determine the function uniquely, so the audit pins align to its one lawful
+--     inhabitant; a typo in any branch, sign included, breaks it —
+--     lean/Foam/Born.lean align_rot_invariant is the gauge form of the same law);
+--   * born_parseval: the four stations' squares sum to 2·(re² + im²) — basis-
+--     independence, the conservation check (the net = residual idiom, at the
+--     measurement layer);
+--   * born_nonneg: no station's weight is negative.
+-- Returns the number of grid points violating any law — 0 is Born.lean checked live.
+CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
+  LANGUAGE sql STABLE AS $$
+    SELECT count(*)
+    FROM generate_series(-8, 8) re CROSS JOIN generate_series(-8, 8) im
+    WHERE foam.align(0, re, im) <> re
+       OR foam.align(1, re, im) <> foam.align(0, im, -re)
+       OR foam.align(2, re, im) <> foam.align(1, im, -re)
+       OR foam.align(3, re, im) <> foam.align(2, im, -re)
+       OR foam.born(0, re, im) + foam.born(1, re, im) + foam.born(2, re, im) + foam.born(3, re, im)
+          <> 2 * (re * re + im * im)
+       OR least(foam.born(0, re, im), foam.born(1, re, im), foam.born(2, re, im), foam.born(3, re, im)) < 0
+  $$;
+
 -- speak — the DISCHARGE, the one register: the field speaks ONLY through
 -- recurrence, entrained. From the conversation so far (seed ++ emitted), back off
 -- to the LONGEST charged context (fast-travel to the recorded continuation that
@@ -272,15 +316,12 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
           INTO tot, syms, ws, wounded
           FROM (
             -- pair the recency (rre, rim) against the walk's clock tk — the BORN
-            -- measurement: the SQUARED projection |⟨tk|recency⟩|² = (align θ z)².
-            -- lean/Foam/Born.lean (born_parseval) makes this the ONLY basis-
-            -- consistent weight; the prior greatest(0,·) was a basis-INconsistent
-            -- rectified projection (its total depended on the angle). Anti-parroting
-            -- survives (uniform recurrence → projection 0 → born 0); only the
-            -- directional sign is dropped (|ψ|² is antipode-blind, as QM is).
-            SELECT sym, bal,
-                   (CASE tk WHEN 0 THEN rre WHEN 1 THEN rim WHEN 2 THEN -rre ELSE -rim END)
-                 * (CASE tk WHEN 0 THEN rre WHEN 1 THEN rim WHEN 2 THEN -rre ELSE -rim END) AS w
+            -- measurement |⟨tk|recency⟩|², by its NAME: foam.born, the law held in
+            -- one place and audited against its own theorems (foam.born_audit;
+            -- lean/Foam/Born.lean born_parseval makes it the only basis-consistent
+            -- weight). Anti-parroting survives (uniform recurrence → projection 0 →
+            -- born 0); the directional sign drops (|ψ|² is antipode-blind, as QM is).
+            SELECT sym, bal, foam.born(tk, rre, rim) AS w
             FROM (
               -- recency = rot^((N−1)%4) · conj(abs):  conj(re,im) = (re,−im), then wind
               SELECT sym, bal,
