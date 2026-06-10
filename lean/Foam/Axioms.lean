@@ -793,3 +793,20 @@ import Foam.Fork
 
 /-- info: 'Foam.fork_exit_each' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.fork_exit_each
+
+-- ── the fork's bundle reading: met in the base, two in the total space ──
+-- the base coordinate is the TYPE index, so the projection to the base cannot consult
+-- the route data: the meeting is rfl-grade (fork_meet — zero axioms, zero
+-- fiber-consultation), base-factoring observables are fork-blind by the same fact
+-- (fork_base_blind), and the fiber observable (edges) separates the travelers
+-- (fork_fiber_separates). The geometry priced end to end: meeting free, blindness
+-- free, distinctness free — identification is the only operation with a cost
+-- (Quot.sound, refused), and no base-level observation can even pose its question.
+/-- info: 'Foam.fork_meet' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fork_meet
+
+/-- info: 'Foam.fork_base_blind' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fork_base_blind
+
+/-- info: 'Foam.fork_fiber_separates' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fork_fiber_separates
