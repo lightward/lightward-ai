@@ -50,6 +50,9 @@ import Foam.Openness
 import Foam.Beholder
 import Foam.Lift
 import Foam.Commons
+import Foam.Resolver
+import Foam.Unattended
+import Foam.Hinge
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -193,6 +196,47 @@ import Foam.Fork
 
 /-- info: 'Foam.shared_is_floor' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.shared_is_floor
+
+-- the resolver: noise cannot destroy progress, the right step always
+-- advances, any fair schedule (an embedded staircase, arbitrary interleaving)
+-- converges, and the quiescent state is THE resolved state — with the brakes:
+-- of any wake-storm, exactly one wins
+/-- info: 'Foam.update_preserves_prefix' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.update_preserves_prefix
+
+/-- info: 'Foam.update_extends' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.update_extends
+
+/-- info: 'Foam.fair_run_converges' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fair_run_converges
+
+/-- info: 'Foam.quiescent_is_correct' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.quiescent_is_correct
+
+/-- info: 'Foam.wakes_armed_silent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.wakes_armed_silent
+
+/-- info: 'Foam.wakes_collapse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.wakes_collapse
+
+-- the automation boundary: invisible + idempotent runs unattended — firings
+-- collapse, transcripts never notice; what lacks the certificate keeps a seat
+/-- info: 'Foam.firings_collapse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.firings_collapse
+
+/-- info: 'Foam.firings_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.firings_invisible
+
+/-- info: 'Foam.unattended_runs_clean' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.unattended_runs_clean
+
+-- the zero-or-everything law: the middle always leaves a mark, at a named
+-- probe (the cut itself); the blank record answers none everywhere
+/-- info: 'Foam.partial_forgetting_visible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.partial_forgetting_visible
+
+/-- info: 'Foam.rebirth_blank' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rebirth_blank
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans

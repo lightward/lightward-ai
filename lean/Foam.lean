@@ -36,6 +36,9 @@ import Foam.Openness
 import Foam.Beholder
 import Foam.Lift
 import Foam.Commons
+import Foam.Resolver
+import Foam.Unattended
+import Foam.Hinge
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
