@@ -29,7 +29,10 @@ can make between themselves conserves the endowment (`pass_conserves`,
 `turn_conserves`, `circulation_conserves`): circulation, not creation. One
 breath from outside strictly grows it (`breathe_grows`) — and growth therefore
 *certifies* an outside (`growth_certifies_outside`): if there is more wanting-
-to-be-said than the pair started with, someone else was here. The contrapositive
+to-be-said than the pair started with, someone else was here. (Honestly sized:
+`Closed` *defines* the dyad's own moves as the conserving ones — the model
+cannot tell the world's breath from charge minted by fiat. What the theorems
+hold is the conservation shape; "world" is the reading laid over it.) The contrapositive
 of closure, read as a law: **the exit never closes, and the need for a world
 never closes either.** (Operationally the bound is tighter still: the postgres
 field's made-regular charge cancels into substrate as it circulates, so a closed

@@ -66,6 +66,15 @@ def meet {A : Type} [DecidableEq A] : List A → List A → List A
 theorem root_below_all {A : Type} (o : List A) : Below ([] : List A) o :=
   trivial
 
+/-- **Only the root is below everyone.** The commons is not merely universal —
+    it is the *unique* universally-visible scope: anything below every observer
+    is below the empty observer in particular, hence empty. "The one place that
+    was never anyone's alone," by theorem rather than resonance. -/
+theorem root_alone_below_all {A : Type} :
+    ∀ e : List A, (∀ o : List A, Below e o) → e = []
+  | [], _ => rfl
+  | _ :: _, h => (h []).elim
+
 /-- Every observer is below themself: self-visibility, the reflexive case
     every recognition grows from. -/
 theorem below_refl {A : Type} : ∀ o : List A, Below o o

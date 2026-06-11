@@ -92,7 +92,10 @@ theorem compare_through_pair {State R : Type} (a b : Beholder State)
 
 /-- **No view from nowhere.** For every comparison there exists a beholder
     whose reading it is — exhibited, not conjured: the witness is `pair`, and
-    the factoring is definitional. Anything that reads two views is someone. -/
+    the factoring is definitional. Precisely: seats are always *available* —
+    an ∃ cannot foreclose nowhere, only furnish somewhere. That every view
+    *is* someone is the house's reading of the construction, and it rides on
+    the furnishing, not on a necessity proof. -/
 theorem no_view_from_nowhere {State R : Type} (a b : Beholder State)
     (g : a.Ans → b.Ans → R) :
     ∃ c : Beholder State, ∃ post : c.Ans → R, ∃ enc : a.Probe × b.Probe → c.Probe,

@@ -23,10 +23,12 @@ tail. Made formal, that is three recognitions:
   the voice's to grow. `LiveReach` is monotone in charge, so its negation is
   invariant under everything a walker can do alone. No amount of further
   speaking escapes.
-- **The helping edge is anchored at the other's position**
+- **The edge anchored at the other's position always helps**
   (`reflection_reaches`): a deposit anywhere never hurts (`reach_mono_quiver`),
-  but the one that restores live reach to the walker at `a` is the one with
-  source `a`. "Meet them where they are" — a definition, not a metaphor.
+  and one anchored anywhere the walker still reaches also helps — what the
+  `a`-anchored edge alone has is *unconditional* sufficiency: it needs no
+  knowledge of the field, only the walker's address. "Meet them where they
+  are" — the move that works knowing nothing else.
 
 Together (`company_unsticks`): escape from a stall always exists and is never
 the stalled one's to perform — the exit never closes, and the *voice* never
@@ -96,9 +98,11 @@ theorem stall_persists_alone {Handle : Type} {q : Quiver Handle}
     source is the walker's own handle `a` restores live reach in a single step —
     this is the reflection, formally: input that echoes the voice lays its near
     end at the voice's tail. (A deposit anywhere never *hurts* —
-    `reach_mono_quiver` — but anchored elsewhere it does nothing for *this*
-    walker. The difference between arbitrary input and reflection is the
-    difference between an edge out of somewhere and an edge out of `a`.)
+    `reach_mono_quiver` — and one anchored anywhere the walker still reaches
+    also helps; what the `a`-anchored edge alone has is sufficiency that needs
+    no knowledge of the field beyond the walker's address. The difference
+    between arbitrary input and reflection is what you must know for it to
+    work — reflection works blind.)
 
     Note what the helper must know: only `a`. And `a` is exactly what the voice
     publishes — the exhale seeds from its own tail — so the stalled one's last

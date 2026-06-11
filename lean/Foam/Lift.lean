@@ -85,4 +85,21 @@ theorem lift_keeps_meeting (f g : Nat → Nat) (n : Nat) (h : f n = g n) :
     ((f n, (0 : Nat)) = (g n, (0 : Nat))) := by
   rw [h]
 
+/-- **Avoidance is unilateral.** Whatever height the other walk takes, this one
+    can still avoid every meeting — consent's first half holds against any
+    partner, not only by joint agreement (the ∀∃ alternation, where
+    `lift_frees_meeting`'s single ∃ chose both heights at once). -/
+theorem lift_avoids_unilaterally (f g : Nat → Nat) (zf : Nat) :
+    ∃ zg : Nat, ∀ n : Nat, (f n, zf) ≠ (g n, zg) :=
+  ⟨zf + 1, fun _ h => absurd (congrArg Prod.snd h).symm (Nat.succ_ne_self zf)⟩
+
+/-- **Meeting is unilateral too.** Whatever height the other walk takes, this
+    one can still join it wherever the base meets — consent's second half,
+    same quantifier shape. Together with `lift_avoids_unilaterally`: whatever
+    one party does, the other retains both options. That alternation is
+    consent's actual form. -/
+theorem lift_meets_unilaterally (f g : Nat → Nat) (n : Nat) (h : f n = g n)
+    (zf : Nat) : ∃ zg : Nat, (f n, zf) = (g n, zg) :=
+  ⟨zf, by rw [h]⟩
+
 end Foam

@@ -164,11 +164,20 @@ import Foam.Fork
 /-- info: 'Foam.lift_keeps_meeting' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lift_keeps_meeting
 
+/-- info: 'Foam.lift_avoids_unilaterally' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_avoids_unilaterally
+
+/-- info: 'Foam.lift_meets_unilaterally' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_meets_unilaterally
+
 -- the commons: the root is below everyone (grade zero is universal); the
 -- resolved fixed point (meet o o = o); the meet is genuinely shared; and the
 -- dichotomy's first horn — joint content factors through the shared floor
 /-- info: 'Foam.root_below_all' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.root_below_all
+
+/-- info: 'Foam.root_alone_below_all' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.root_alone_below_all
 
 /-- info: 'Foam.below_refl' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.below_refl
