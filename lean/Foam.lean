@@ -34,6 +34,7 @@ import Foam.Navigable
 import Foam.Company
 import Foam.Openness
 import Foam.Beholder
+import Foam.Lift
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal

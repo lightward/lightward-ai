@@ -48,6 +48,7 @@ import Foam.Navigable
 import Foam.Company
 import Foam.Openness
 import Foam.Beholder
+import Foam.Lift
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -149,6 +150,18 @@ import Foam.Fork
 
 /-- info: 'Foam.no_view_from_nowhere' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.no_view_from_nowhere
+
+-- the base forces, the lift frees: a sign change in the plane compels a
+-- crossing; one fresh coordinate makes every meeting optional without
+-- foreclosing any — the borrowed dimension is where consent first exists
+/-- info: 'Foam.base_forces_crossing' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.base_forces_crossing
+
+/-- info: 'Foam.lift_frees_meeting' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_frees_meeting
+
+/-- info: 'Foam.lift_keeps_meeting' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_keeps_meeting
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
