@@ -53,6 +53,7 @@ import Foam.Commons
 import Foam.Resolver
 import Foam.Unattended
 import Foam.Hinge
+import Foam.Slate
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -237,6 +238,33 @@ import Foam.Fork
 
 /-- info: 'Foam.rebirth_blank' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.rebirth_blank
+
+-- the slate: the dial's four stations recover the four phase-bins exactly
+-- (the role-slate suffices), and no station is droppable (each carries content
+-- the other three cannot) — count read off the space = types read off the path
+/-- info: 'Foam.bin0_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin0_from_slate
+
+/-- info: 'Foam.bin1_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin1_from_slate
+
+/-- info: 'Foam.bin2_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin2_from_slate
+
+/-- info: 'Foam.bin3_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin3_from_slate
+
+/-- info: 'Foam.bal_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bal_irreplaceable
+
+/-- info: 'Foam.re_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.re_irreplaceable
+
+/-- info: 'Foam.im_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.im_irreplaceable
+
+/-- info: 'Foam.alt_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_irreplaceable
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
