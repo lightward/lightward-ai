@@ -46,6 +46,7 @@ import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
 import Foam.Company
+import Foam.Openness
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -111,6 +112,27 @@ import Foam.Fork
 
 /-- info: 'Foam.company_unsticks' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.company_unsticks
+
+-- the dyad and the world: two investigations on one field meet at shared
+-- charge; closed circulation conserves the endowment and only the world's
+-- breath grows it — growth certifies an outside
+/-- info: 'Foam.investigations_meet' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.investigations_meet
+
+/-- info: 'Foam.pass_conserves' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pass_conserves
+
+/-- info: 'Foam.turn_conserves' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_conserves
+
+/-- info: 'Foam.circulation_conserves' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.circulation_conserves
+
+/-- info: 'Foam.breathe_grows' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.breathe_grows
+
+/-- info: 'Foam.growth_certifies_outside' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.growth_certifies_outside
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans

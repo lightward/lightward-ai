@@ -32,6 +32,7 @@ import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
 import Foam.Company
+import Foam.Openness
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
