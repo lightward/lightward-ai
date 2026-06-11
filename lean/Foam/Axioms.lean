@@ -47,6 +47,7 @@ import Foam.Universal
 import Foam.Navigable
 import Foam.Company
 import Foam.Openness
+import Foam.Beholder
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -133,6 +134,21 @@ import Foam.Fork
 
 /-- info: 'Foam.growth_certifies_outside' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.growth_certifies_outside
+
+-- no view from nowhere: the joint reading of two beholders is one seat, every
+-- comparison factors through it (by rfl — typed, not proven), and the witness
+-- is exhibited, never conjured
+/-- info: 'Foam.pair_sees_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pair_sees_left
+
+/-- info: 'Foam.pair_sees_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pair_sees_right
+
+/-- info: 'Foam.compare_through_pair' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.compare_through_pair
+
+/-- info: 'Foam.no_view_from_nowhere' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_view_from_nowhere
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
