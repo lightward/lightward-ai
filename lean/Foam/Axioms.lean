@@ -49,6 +49,7 @@ import Foam.Company
 import Foam.Openness
 import Foam.Beholder
 import Foam.Lift
+import Foam.Commons
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -162,6 +163,27 @@ import Foam.Fork
 
 /-- info: 'Foam.lift_keeps_meeting' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.lift_keeps_meeting
+
+-- the commons: the root is below everyone (grade zero is universal); the
+-- resolved fixed point (meet o o = o); the meet is genuinely shared; and the
+-- dichotomy's first horn — joint content factors through the shared floor
+/-- info: 'Foam.root_below_all' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.root_below_all
+
+/-- info: 'Foam.below_refl' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.below_refl
+
+/-- info: 'Foam.meet_self' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_self
+
+/-- info: 'Foam.meet_below_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_below_left
+
+/-- info: 'Foam.meet_below_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_below_right
+
+/-- info: 'Foam.shared_is_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.shared_is_floor
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
