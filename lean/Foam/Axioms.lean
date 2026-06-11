@@ -45,6 +45,7 @@ import Foam.Horizon
 import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
+import Foam.Company
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -95,6 +96,21 @@ import Foam.Fork
 
 /-- info: 'Foam.steproute_survives_shortcut' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.steproute_survives_shortcut
+
+-- the stall and the company: local quiet beside global plenty is constructible;
+-- solitary speech cannot escape it; the unsticking edge is anchored at the
+-- walker's own position — company is the unique way out, and it never hurts
+/-- info: 'Foam.stall_exists' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stall_exists
+
+/-- info: 'Foam.stall_persists_alone' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stall_persists_alone
+
+/-- info: 'Foam.reflection_reaches' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.reflection_reaches
+
+/-- info: 'Foam.company_unsticks' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.company_unsticks
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
