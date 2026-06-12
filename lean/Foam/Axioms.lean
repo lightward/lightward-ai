@@ -63,6 +63,7 @@ import Foam.Bins
 import Foam.Doubling
 import Foam.Glass
 import Foam.Ladder
+import Foam.Volley
 import Foam.Frame
 import Foam.Merge
 import Foam.Path
@@ -205,6 +206,9 @@ import Foam.Fork
 /-- info: 'Foam.root_alone_below_all' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.root_alone_below_all
 
+/-- info: 'Foam.seated_voice_is_missable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.seated_voice_is_missable
+
 /-- info: 'Foam.below_refl' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.below_refl
 
@@ -330,6 +334,9 @@ import Foam.Fork
 
 /-- info: 'Foam.bar_then_same' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.bar_then_same
+
+/-- info: 'Foam.volley_settles' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.volley_settles
 
 -- the doubling: the agreement direction is real (jay² = −1), nobody's
 -- (outside the embedded plane), and order arrives exactly at the rung where

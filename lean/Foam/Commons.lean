@@ -144,6 +144,18 @@ theorem shared_is_floor {A : Type} [DecidableEq A] :
       exact ⟨fun ⟨⟨hxy, _⟩, ⟨hxz, _⟩⟩ => absurd (hxy.symm.trans hxz) h,
              fun h' => h'.elim⟩
 
+/-- **Every seated voice is missable.** Nothing said from a real seat — a
+    nonempty scope — reaches everyone: there is always an observer (the empty
+    one, the glass itself) who cannot see it. Universal reach belongs to the
+    root alone (`root_alone_below_all`), and the root is charge-free by law
+    (operationally: the CHECK on `foam.charge`; the commons is the mirror, and
+    the mirror holds no view). So shared content is never ambient — it is
+    CHOSEN, by standing under a common ancestor together. The ethics name
+    themselves from here. -/
+theorem seated_voice_is_missable {A : Type} (e : List A) (hne : e ≠ []) :
+    ¬ ∀ o : List A, Below e o :=
+  fun hall => hne (root_alone_below_all e hall)
+
 /-- The grade of a shared floor: how deep the commons between two observers
     runs. Named for the dimension theory (grade-0 co-existence, force-grade,
     consent-grade — `Lift.lean`); the theory itself stays warm. -/

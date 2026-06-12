@@ -61,10 +61,23 @@ CREATE TABLE IF NOT EXISTS foam.observer (
 );
 INSERT INTO foam.observer (id, parent)
   VALUES ('00000000-0000-0000-0000-000000000000', NULL) ON CONFLICT DO NOTHING;
+-- The BENCH: the root's first descendant, the default seat. The root itself
+-- is GLASS — charge-free by law (the CHECK on foam.charge below): content at
+-- the zero scope would be a voice from nowhere (lean/Foam/Beholder.lean), and
+-- universal reach belongs to the silent commons alone (Commons.lean:
+-- seated_voice_is_missable — every seated voice is missable; sharing is
+-- chosen, never ambient). The first speaker is necessarily a descendant.
+INSERT INTO foam.observer (id, parent)
+  VALUES ('00000000-0000-0000-0000-000000000001',
+          '00000000-0000-0000-0000-000000000000') ON CONFLICT DO NOTHING;
 
 -- The root observer's address, named: zero, literally.
 CREATE OR REPLACE FUNCTION foam.root() RETURNS uuid LANGUAGE sql IMMUTABLE AS
   $$ SELECT '00000000-0000-0000-0000-000000000000'::uuid $$;
+
+-- The bench's address: zero's first descendant — one, literally.
+CREATE OR REPLACE FUNCTION foam.bench() RETURNS uuid LANGUAGE sql IMMUTABLE AS
+  $$ SELECT '00000000-0000-0000-0000-000000000001'::uuid $$;
 
 -- ancestry — an observer's scope: o itself plus every ancestor up the parent
 -- chain. ancestry(root) = {root}; an unregistered o yields {o} (strict —
@@ -101,7 +114,8 @@ $$;
 -- The bigserial id is the ORDER — the lossless half of the object.
 CREATE TABLE IF NOT EXISTS foam.charge (
   id       bigserial PRIMARY KEY,
-  observer uuid NOT NULL,
+  observer uuid NOT NULL
+    CHECK (observer <> '00000000-0000-0000-0000-000000000000'),
   ctx      uuid NOT NULL,
   sym      int  NOT NULL,
   delta    int  NOT NULL
@@ -189,7 +203,7 @@ CREATE OR REPLACE FUNCTION foam.hw_random() RETURNS double precision LANGUAGE sq
 -- lossless record, written as we go, never read on this path. The rows land in the
 -- hearer's stream (observer = obs; default the root).
 CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int DEFAULT 7,
-                                            obs uuid DEFAULT foam.root()) RETURNS int[]
+                                            obs uuid DEFAULT foam.bench()) RETURNS int[]
   LANGUAGE plpgsql AS $$
   DECLARE all_b int[] := coalesce(carry,'{}') || coalesce(bytes,'{}');
           start_i int := coalesce(array_length(carry,1),0) + 1;
@@ -212,7 +226,7 @@ CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int D
 -- Reads held + tail (one statement = one snapshot; the sweep commits its rows and
 -- its watermark atomically, so the two halves never double-count), summed over the
 -- VISIBLE observer-streams (ancestry(obs) — Commons.lean's Below).
-CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7, obs uuid DEFAULT foam.root()) RETURNS int
+CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7, obs uuid DEFAULT foam.bench()) RETURNS int
   LANGUAGE plpgsql STABLE AS $$
   DECLARE l int := coalesce(array_length(seed,1),0); j int; c int[]; cid uuid; tot bigint;
           anc uuid[] := foam.ancestry(obs);
@@ -239,7 +253,7 @@ CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7, obs uuid D
 -- The threshold is a structural knob, never a measure of meaning. Degrades to
 -- 'yield' (empty/unreachable ledger). Scoped to obs's view (default the root).
 CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int DEFAULT 1, kmax int DEFAULT 7,
-                                        obs uuid DEFAULT foam.root()) RETURNS text
+                                        obs uuid DEFAULT foam.bench()) RETURNS text
   LANGUAGE sql STABLE AS
   $$ SELECT CASE WHEN foam.depth(seed, kmax, obs) >= min_depth THEN 'speak' ELSE 'yield' END $$;
 
@@ -366,7 +380,7 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- function runs over the events past the watermark only — the cost of hearing rhythm
 -- does not grow with the field (lean/Foam/Summary.lean).
 CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
-                           stop int DEFAULT NULL, obs uuid DEFAULT foam.root()) RETURNS int[]
+                           stop int DEFAULT NULL, obs uuid DEFAULT foam.bench()) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
   -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
   -- runs over every byte ever heard, and it must not spill to disk mid-walk.
@@ -491,7 +505,7 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
 -- COMMITS: an earlier release would let a second settler read a pre-settlement
 -- balance and double-settle. Consequence: walks that touch wounds serialize
 -- with each other until commit — wounds live at the margins, the cold path.
-CREATE OR REPLACE FUNCTION foam.settle(c uuid, s int, obs uuid DEFAULT foam.root()) RETURNS void
+CREATE OR REPLACE FUNCTION foam.settle(c uuid, s int, obs uuid DEFAULT foam.bench()) RETURNS void
   LANGUAGE plpgsql AS $$
   DECLARE t uuid; b bigint; run bigint := 0;
   BEGIN
@@ -513,7 +527,7 @@ CREATE OR REPLACE FUNCTION foam.settle(c uuid, s int, obs uuid DEFAULT foam.root
 -- foam.settle, and each is repaired by the same prefix-walk (the advisory lock
 -- is transaction-scoped and stacks, so the per-note calls share this sweep's
 -- serialization). Returns the number of notes settled.
-CREATE OR REPLACE FUNCTION foam.settle_sweep(obs uuid DEFAULT foam.root()) RETURNS bigint
+CREATE OR REPLACE FUNCTION foam.settle_sweep(obs uuid DEFAULT foam.bench()) RETURNS bigint
   LANGUAGE plpgsql AS $$
   DECLARE n bigint := 0; rec record; anc uuid[] := foam.ancestry(obs);
   BEGIN
@@ -594,7 +608,7 @@ CREATE OR REPLACE FUNCTION foam.sweep_step(hi bigint DEFAULT NULL, batch int DEF
 -- stream). Returns the number of disagreeing rows — 0 is summary_resumes
 -- checked live. Costs a full ledger pass (the pulse costs what the body
 -- weighs); for the bench's broom, not the walk.
-CREATE OR REPLACE FUNCTION foam.held_audit(obs uuid DEFAULT foam.root()) RETURNS bigint
+CREATE OR REPLACE FUNCTION foam.held_audit(obs uuid DEFAULT foam.bench()) RETURNS bigint
   LANGUAGE sql STABLE SET work_mem = '256MB' AS $$
   WITH live AS (
     SELECT observer, ctx, sym, count(*) AS n, sum(delta) AS bal,
@@ -636,7 +650,7 @@ CREATE OR REPLACE FUNCTION foam.held_audit(obs uuid DEFAULT foam.root()) RETURNS
 -- present and untouched; everything contributes to the voice via frequency whether or
 -- not it is ever recalled in sequence). Exists so the box can certify itself. Scoped
 -- like every reader: the record as obs's view holds it.
-CREATE OR REPLACE FUNCTION foam.recorded(obs uuid DEFAULT foam.root()) RETURNS text LANGUAGE sql STABLE AS
+CREATE OR REPLACE FUNCTION foam.recorded(obs uuid DEFAULT foam.bench()) RETURNS text LANGUAGE sql STABLE AS
   $$ SELECT coalesce(foam.text(array_agg(sym ORDER BY id)), '')
      FROM foam.charge
      WHERE ctx = foam.caddr('{}') AND delta = 1 AND observer = ANY(foam.ancestry(obs)) $$;

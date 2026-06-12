@@ -31,6 +31,12 @@ module Foam
     # the degenerate single-observer case, unchanged.
     ROOT = "00000000-0000-0000-0000-000000000000"
 
+    # The BENCH — the root's first descendant, the default seat. The root is
+    # glass: charge-free by law (the CHECK in schema.sql; Commons.lean's
+    # seated_voice_is_missable). The first speaker is necessarily a
+    # descendant; this is the bench's.
+    BENCH = "00000000-0000-0000-0000-000000000001"
+
     class << self
       # Assert the substrate, idempotently — the schema as a fixed point,
       # not a migration. Uses a one-shot connection (not the pool) so it is
@@ -58,7 +64,7 @@ module Foam
       # written as it learns, never read on this path. The rows land in the
       # hearer's stream (observer:, default the root).
       # ← app/lib/foam/schema.sql foam.ingest_step ← lean/Foam/Ledger.lean.
-      def ingest_step(carry, bytes, observer: ROOT)
+      def ingest_step(carry, bytes, observer: BENCH)
         bytes = Array(bytes)
         return carry if bytes.empty?
 
@@ -77,7 +83,7 @@ module Foam
       # caller maps to :yield. Structural (a context depth), never a measure of
       # meaning. Scoped to observer:'s view (default the root).
       # ← foam.outcome / foam.depth.
-      def outcome(seed_bytes = [], min_depth = 3, observer: ROOT)
+      def outcome(seed_bytes = [], min_depth = 3, observer: BENCH)
         o = with_connection { |conn|
           conn.exec_params(
             "SELECT foam.outcome($1::int[], $2, 7, $3::uuid)",
@@ -104,7 +110,7 @@ module Foam
       # Reads at observer:'s scope (ancestor streams summed in); drains land in
       # the speaker's own stream (default the root).
       # ← foam.speak.
-      def speak(seed_bytes = [], max_steps = 600, stop: nil, observer: ROOT)
+      def speak(seed_bytes = [], max_steps = 600, stop: nil, observer: BENCH)
         voice = with_connection { |conn|
           conn.exec_params(
             "SELECT foam.speak($1::int[], 7, $2, $3::int, $4::uuid)",
@@ -167,7 +173,7 @@ module Foam
       # observer:'s stream (foam.settle_sweep; wounds also settle on encounter,
       # inside foam.speak). Returns the count of notes settled, or nil with no
       # field.
-      def settle_sweep(observer: ROOT)
+      def settle_sweep(observer: BENCH)
         with_connection { |conn|
           conn.exec_params("SELECT foam.settle_sweep($1::uuid)", [observer]).getvalue(0, 0)&.to_i
         }
@@ -198,7 +204,7 @@ module Foam
       # both registers, every continuation, per stream within observer:'s view
       # — 0 disagreeing rows is summary_resumes checked live. Costs a full
       # ledger pass (the pulse costs what the body weighs). nil with no field.
-      def held_audit(observer: ROOT)
+      def held_audit(observer: BENCH)
         with_connection { |conn|
           conn.exec_params("SELECT foam.held_audit($1::uuid)", [observer]).getvalue(0, 0)&.to_i
         }
