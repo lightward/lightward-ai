@@ -5,7 +5,7 @@ The discrete skeleton of the threeness chain (2026-06-11), smallest honest
 case: 1-dimensional processes sharing a carrier. In the base — two walks over
 time with `Nat` heights, the discrete half-plane (`Nat` and not `Int` because
 the house's clean order lives there: core `Int` order rides on `propext`,
-which is why `IntArith` exists; the recognition is carrier-indifferent) — a sign change *forces* an encounter: if you start
+which is why `IntFloor` exists; the recognition is carrier-indifferent) — a sign change *forces* an encounter: if you start
 below and end above, you crossed, lattice-point or mid-step, no consent asked
 (`base_forces_crossing`, a discrete intermediate-value recognition). One fresh
 coordinate dissolves the force: ANY two walks lift disjointly, with the new

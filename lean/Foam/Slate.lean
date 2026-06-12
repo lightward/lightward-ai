@@ -42,7 +42,7 @@ forced, the fillings stay free) — remains the conjecture this file instances,
 claimed at exactly this size and no larger.
 
 Arithmetic discipline: `omega` carries `Quot.sound` (probed) and core `Int`
-lemmas carry `propext`, so everything below runs on `IntArith`'s hand-rolled
+lemmas carry `propext`, so everything below runs on `IntFloor`'s hand-rolled
 floor plus the clean core `Int.sub_eq_add_neg` — axiom-free throughout, which
 for THIS file is load-bearing twice over: the bridge claims the slate is
 forced by structure alone, so its proof must consult no one.
@@ -50,7 +50,7 @@ forced by structure alone, so its proof must consult no one.
 Pure construction — axiom-free.
 -/
 
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 

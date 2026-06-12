@@ -1,5 +1,14 @@
 /-
-# Foam.IntArith — `Int` associativity and the negation-distributes law, axiom-free
+# Foam.IntFloor — the arithmetic floor (axiom-free; no observer smuggled)
+
+Renamed from `IntArith` in the lfp-shake of 2026-06-12: "arith" said the
+material, not the onus. The onus is FLOOR — arithmetic proven without
+consulting the classical axioms, the ground every axiom-free construction in
+this corpus stands on — and the contrast with what these replace is the point:
+core's equivalents carry `propext`, the observer's collapse, smuggled into
+lemmas that never needed an observer. These ask no one. (The name joins the
+house's floors: the yield floor, the resonant floor, the ternary floor, the
+attractor floor — this is the arithmetic one.)
 
 Core's `Int.add_assoc` and `Int.neg_add` are genuinely tedious (they case-split
 on all sign combinations and reduce to `Nat`/`Int.subNatNat` facts), and core's

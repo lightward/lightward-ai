@@ -41,19 +41,19 @@ all the way down, not in a regressy way — under the Cayley–Dickson product
 Cited, not claimed: the general Cayley–Dickson construction and its ladder
 (this file is one rung, over ℤ[i] — the Lipschitz-quaternion grade); Euler's
 four-square identity (the doubled norm is multiplicative — the two-square
-`int_lagrange` is in `IntArith`, the four-square is the bridge package's);
+`int_lagrange` is in `IntFloor`, the four-square is the bridge package's);
 and the PROCESS — that two beholders *progressively approaching agreement*
 converge to this algebra — which is the two-sided resolver, warm, named,
 unbuilt. This file proves the destination exists and is shaped as the idea
 said; how the walk arrives is the next candle.
 
 All construction: `rfl`/`decide` on the units (DecidableEq is derived,
-structural), `rw` against `IntArith`'s axiom-free floor for the variable
+structural), `rw` against `IntFloor`'s axiom-free floor for the variable
 theorems. Axiom-free, pinned.
 -/
 
 import Foam.Noether
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 

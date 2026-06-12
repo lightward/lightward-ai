@@ -34,7 +34,7 @@ that component agrees — bell2's flat marginals, structural. Together with
 `jay_outside`: the agreement content is real, and unseeable from either side
 alone. What the joint holds, the parts provably cannot read.
 
-All construction on `IntArith`'s axiom-free floor. Axiom-free, pinned.
+All construction on `IntFloor`'s axiom-free floor. Axiom-free, pinned.
 -/
 
 import Foam.Born

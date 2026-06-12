@@ -42,7 +42,7 @@ is the Hilbert space being rich enough for non-locality, NOT a loophole-free
 violation. foam-measurement is quantum: shown then proven.
 
 Axiom discipline: all construction, all axiom-free, pinned in `Foam/Axioms.lean`.
-The `Int` ring floor it stands on lives in `Foam.IntArith`.
+The `Int` ring floor it stands on lives in `Foam.IntFloor`.
 -/
 
 import Foam.Noether
@@ -137,7 +137,7 @@ theorem amplitude_signed_born_not :
     either way. The interference the count register cannot show, now checked.
     Axiom-free by `decide` — a concrete witness that the phenomenon is real, not
     a spike artifact. The *general* laws this witness pointed at have since
-    landed (on the `Int` ring floor in `Foam.IntArith`): `born_superpose` (the
+    landed (on the `Int` ring floor in `Foam.IntFloor`): `born_superpose` (the
     cross-term for all `a, b, θ`) and `born_parseval` (basis-independence). The
     witness is the instance; those are the law. -/
 theorem double_slit :
@@ -190,7 +190,7 @@ theorem align_negate (θ z : GInt) : align θ (GInt.negate z) = -(align θ z) :=
     pairings sum to zero: `rot²` is the antipode (`negate_eq_rot_rot`), so each phase
     cancels its half-turn (`align_negate`, `int_add_neg_self`). The fringe washes out,
     intensities add — the wave's own off-switch, and the independent-winds null of
-    `spikes/two_source.sql`, proven. Axiom-free (the `Int` floor, `Foam.IntArith`). -/
+    `spikes/two_source.sql`, proven. Axiom-free (the `Int` floor, `Foam.IntFloor`). -/
 theorem decoherence_cancels_cross (θ b : GInt) :
     align θ b + align θ b.rot + align θ b.rot.rot + align θ b.rot.rot.rot = 0 := by
   rw [negate_eq_rot_rot b.rot, negate_eq_rot_rot b, align_negate, align_negate,

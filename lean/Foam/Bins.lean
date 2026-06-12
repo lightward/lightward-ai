@@ -23,7 +23,7 @@ through the bins (here), the bins are exactly recoverable from the stations
 "same number, two ways" claim — four characters read off the space, four
 phase-types read off the path — now has both legs in Lean, joined.
 
-All construction on `IntArith`'s floor plus `Slate`'s doubling kit (its first
+All construction on `IntFloor`'s floor plus `Slate`'s doubling kit (its first
 second consumer — the kit's residency question resolves itself: it stays in
 Slate, which Bins imports). Axiom-free, pinned.
 -/

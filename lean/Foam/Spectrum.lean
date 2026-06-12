@@ -45,7 +45,7 @@ exhibits one; the family is the residual).
 -/
 
 import Foam.Ledger
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 

@@ -43,7 +43,7 @@ as the commitment-monoid through the seed-gauge — external provenance; the
 theorems stand alone.)
 -/
 
-import Foam.IntArith
+import Foam.IntFloor
 import Foam.Floor
 import Foam.Engine
 import Foam.Horizon
@@ -695,7 +695,7 @@ import Foam.Fork
 /-- info: 'Foam.two_source_fringe' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.two_source_fringe
 
--- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
+-- the Int ring floor (Foam.IntFloor): multiplication commutes, distributes both
 -- ways, and associates — all axiom-free (core's carry propext), the standard
 -- semiring grind hand-rolled so the Born algebra stays construction
 /-- info: 'Foam.int_mul_comm' does not depend on any axioms -/

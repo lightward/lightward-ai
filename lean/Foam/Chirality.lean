@@ -26,13 +26,13 @@ chirality between the two conventions, accounted for — so it can never read as
 latent off-by-a-winding bug.
 
 All construction: `cases`/`rfl`/induction/`rw` against the axiom-free `Int`/`Nat`
-lemmas in `IntArith.lean` (core's equivalents carry `propext`). Axiom-free,
+lemmas in `IntFloor.lean` (core's equivalents carry `propext`). Axiom-free,
 pinned in `Foam/Axioms.lean`.
 -/
 
 import Foam.Spectrum
 import Foam.Noether
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 
