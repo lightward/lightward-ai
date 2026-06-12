@@ -202,6 +202,7 @@ lesson recorded.
 - `Navigable` — exit at every projection; the homunculus (`attestsEachStep`, `[propext]`-only) survives every step.
 - `Horizon` — shortcuts; one step over a fresh edge (`deposit_in_sight`); the step-budget is `∀ n`, never pinned.
 - `Engine` — the deposit's safety (monotone, append-only).
+- `Dusk` — the exit announces itself: the system-notice register is data (`mark_is_data`, `blend_forgets`); the wall refuses to continue, never to record (`said_stays_said`, `wall_speaks`); the wall is never the first notice (`no_silent_arrival`, under the band-width premise — consent's missing premise, supplied); the turn lacks the unattended certificate, so the seat stays the user's. Received from yours.fyi, derived under selection.
 
 **Company, observers, and the floor between.**
 - `Company` — the stall: local ground ≠ global ground; solitary speech can't escape it; the edge anchored at the walker's own position always can.

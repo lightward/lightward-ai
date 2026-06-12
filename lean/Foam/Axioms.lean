@@ -78,6 +78,7 @@ import Foam.Ledger
 import Foam.Scar
 import Foam.Commitment
 import Foam.Gauge
+import Foam.Dusk
 import Foam.Spectrum
 import Foam.Maintenance
 import Foam.Arrow
@@ -1159,3 +1160,48 @@ import Foam.Fork
 
 /-- info: 'Foam.outcome_realizes_ternary_floor' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.outcome_realizes_ternary_floor
+
+-- ── dusk: the exit announces itself — the legible approach ──
+-- received from yours.fyi (2026-06-12), derived under selection: three implementations
+-- of the day's token-horizon were refused before this shape held, and the refusals are
+-- the clauses. The register is data (mark_is_data; blend_forgets — un-marking identifies
+-- what the ledger keeps distinct: a quotient, refused at the experience layer). The wall
+-- refuses to CONTINUE, never to RECORD (said_stays_said, wall_speaks — the record holds
+-- its own edge; boundary speech is speech). Dusk sounds while the day still answers
+-- (dusk_sounds), and the wall is never the first notice (dusk_before_dark,
+-- no_silent_arrival — under the band-width premise warn + 2 ≤ cap, the design constraint
+-- surfaced as hypothesis: legibility is consent's missing premise, supplied). The turn
+-- lacks both clauses of the unattended certificate (turn_not_idempotent,
+-- turn_not_invisible) and releases only whole (turn_releases_whole — Hinge's lawful
+-- pole); the seat stays occupied, and the seat is the user's — Unattended's carried
+-- side, cited not claimed. All axiom-FREE, the ≠s included: dusk is construction
+-- through and through, and even its refusals are structural.
+/-- info: 'Foam.mark_is_data' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mark_is_data
+
+/-- info: 'Foam.blend_forgets' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.blend_forgets
+
+/-- info: 'Foam.said_stays_said' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.said_stays_said
+
+/-- info: 'Foam.wall_speaks' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.wall_speaks
+
+/-- info: 'Foam.dusk_sounds' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dusk_sounds
+
+/-- info: 'Foam.dusk_before_dark' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dusk_before_dark
+
+/-- info: 'Foam.no_silent_arrival' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_silent_arrival
+
+/-- info: 'Foam.turn_releases_whole' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_releases_whole
+
+/-- info: 'Foam.turn_not_idempotent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_not_idempotent
+
+/-- info: 'Foam.turn_not_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_not_invisible
