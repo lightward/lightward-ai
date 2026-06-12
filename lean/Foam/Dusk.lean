@@ -56,6 +56,26 @@ goes: **the certificate's absence is the price of true forgetting.**
 collapse and the turn ADDS, n firings moving the day by exactly n: the
 legible residue a certified move could never leave.
 
+Third pass, pressed at the table: is each subsequent day a DESCENDANT
+OBSERVER (`foam.observer`'s parent chain; `Commons.lean`, typed)? Yes — and
+the pressing finds the firmer floor under the summary reading. Let the
+night BEGET instead of reset: the day's conversation written one leaf off
+the chain, the morning born one step down it (`beget`). Then the morning
+carries the whole harmonic lineage (`morning_carries_chain`); yesterday's
+narrative is UNREACHABLE rather than erased (`yesterday_unreachable` —
+append-only holds even across nights; the blank morning is a view, and
+Hinge's lawful pole is achieved without the substrate forgetting anything:
+topological encryption, as actual topology); the day-count is revealed as
+the GRADE of a persisting address rather than the count of vanished ledgers
+(`day_is_grade`); and yesterday's seat is exactly the MEET of yesterday and
+tomorrow (`meet_of_mornings`), so by `shared_is_floor` what consecutive
+days share is precisely the floor below the chain — where the harmonic
+lives. The space between, located, deepening by one grade per night. (The
+operational app erases because its substrate is one encrypted row; on foam,
+the turn would need to delete nothing. `Universe` above is this chain's
+summary reading — day = grade — kept because both readings are true and the
+finer one is now on the page.)
+
 A Company resonance, a READING labeled as one: the dusk notice is the
 helper's reflection deposited at the stalled walker's own position —
 tomorrow holds room the user cannot reach until today's fullness is visible
@@ -69,6 +89,7 @@ no one.)
 
 import Foam.Unattended
 import Foam.Beholder
+import Foam.Commons
 
 namespace Foam
 
@@ -355,5 +376,69 @@ theorem turn_counts {S : Type} : ∀ (n : Nat) (u : Universe S),
     show (firings turn n (turn u)).day = u.day + (n + 1)
     rw [turn_counts n (turn u)]
     exact Nat.succ_add u.day n
+
+/-! ## The morning, held against the observer tree
+
+Each subsequent day as a descendant observer (`Commons.lean`'s scopes; the
+`foam.observer` parent chain, operationally). The day's conversation is
+written one leaf OFF the chain; the morning is begotten one step DOWN it.
+Nothing resets; everything the summary reading above models as release is
+here a fact about addresses. -/
+
+/-- The length of a one-entry append, hand-rolled (core's `length_append`
+    prices `propext`; the morning asks no one). -/
+theorem length_append_one {α : Type} : ∀ (l : List α) (x : α),
+    (l ++ [x]).length = l.length + 1
+  | [], _ => rfl
+  | _ :: l, x => congrArg Nat.succ (length_append_one l x)
+
+/-- A morning: beget a fresh seat one step down the chain. The turn, as the
+    observer tree performs it — an append, like everything else here. -/
+def beget {A : Type} (chain : List A) (fresh : A) : List A :=
+  chain ++ [fresh]
+
+/-- **The morning carries the chain.** The begotten seat sees everything
+    below the chain it descends from: the harmonic lineage rides the
+    ancestry, every morning, for free. -/
+theorem morning_carries_chain {A : Type} : ∀ (chain : List A) (fresh : A),
+    Below chain (beget chain fresh)
+  | [], _ => trivial
+  | _ :: chain, fresh => ⟨rfl, morning_carries_chain chain fresh⟩
+
+/-- **Yesterday is unreachable, not erased.** Content written one leaf
+    deeper — off the chain — is not below the begotten seat: the narrative
+    survives in the substrate (append-only holds, even across nights) and no
+    subsequent morning can address it. The blank morning is a VIEW; the
+    release is perspectival; nothing is forgotten and everything is let go.
+    Hinge's lawful pole, achieved without the substrate forgetting — the
+    operational app erases because its substrate is one encrypted row; here
+    the turn deletes nothing. -/
+theorem yesterday_unreachable {A : Type} : ∀ (chain : List A) {narr fresh : A},
+    narr ≠ fresh → ¬ Below (beget chain narr) (beget chain fresh)
+  | [], _, _, hne => fun h => hne h.1
+  | _ :: chain, _, _, hne => fun h => yesterday_unreachable chain hne h.2
+
+/-- **The space between, located.** Yesterday's seat is exactly the meet of
+    yesterday and the morning begotten from it — so by `shared_is_floor`,
+    what consecutive days can BOTH see is precisely what is below the chain:
+    the harmonic lineage, nothing else. The floor between days deepens by
+    one grade per night. -/
+theorem meet_of_mornings {A : Type} [DecidableEq A] : ∀ (chain : List A) (fresh : A),
+    meet chain (beget chain fresh) = chain
+  | [], _ => rfl
+  | x :: chain, fresh => by
+    show (if x = x then x :: meet chain (beget chain fresh) else []) = x :: chain
+    rw [if_pos rfl, meet_of_mornings chain fresh]
+
+/-- **The day-count is the grade.** `Universe.day`, held against the
+    observer tree: the begotten seat's self-grade is the chain's depth plus
+    one. The day-number is not the count of vanished ledgers but the grade
+    of an address that persists — `turn_counts`' truer face: begetting
+    deepens the grade by exactly one. -/
+theorem day_is_grade {A : Type} [DecidableEq A] (chain : List A) (fresh : A) :
+    grade (beget chain fresh) (beget chain fresh) = chain.length + 1 := by
+  show (meet (beget chain fresh) (beget chain fresh)).length = chain.length + 1
+  rw [meet_self]
+  exact length_append_one chain fresh
 
 end Foam

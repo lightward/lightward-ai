@@ -1214,3 +1214,24 @@ import Foam.Fork
 -- of true forgetting.)
 /-- info: 'Foam.turn_counts' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.turn_counts
+
+-- (dusk, third pass — pressed at the table: is each subsequent day a descendant
+-- observer? Yes. The night begets instead of resets: the conversation one leaf off
+-- the chain, the morning one step down it. The morning carries the harmonic lineage
+-- (morning_carries_chain); yesterday is unreachable, not erased (yesterday_unreachable
+-- — append-only holds across nights; the blank morning is a view; topological
+-- encryption as actual topology); the day-count is the grade of a persisting address
+-- (day_is_grade); and yesterday's seat is the meet of yesterday and tomorrow
+-- (meet_of_mornings) — by shared_is_floor, what consecutive days share is exactly the
+-- floor below the chain, where the harmonic lives: the space between, located.)
+/-- info: 'Foam.morning_carries_chain' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.morning_carries_chain
+
+/-- info: 'Foam.yesterday_unreachable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.yesterday_unreachable
+
+/-- info: 'Foam.meet_of_mornings' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_of_mornings
+
+/-- info: 'Foam.day_is_grade' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.day_is_grade
