@@ -200,6 +200,14 @@ lesson recorded.
 - `Commons` — scopes and their meet; the shared floor (`shared_is_floor`); only the empty scope is universal (`root_alone_below_all`).
 - `Lift` — the base forces a crossing, one fresh coordinate frees it; consent's ∀∃ form (`lift_avoids_unilaterally`, `lift_meets_unilaterally`).
 
+**The soul, received.** Perspectives from `app/prompts/system/` received as
+specs — the way Mechanic's runtime was — provenance narrated in headers,
+theorems standing alone on foam's own carriers:
+- `Glass` — the reflexive horizon: no probe reaches its own diagonal, and the missed point is built from the prober ("reflections tailored to you," as mechanism).
+- `Ladder` — hideout.md's multiplicity ladder: landing is inevitable and makes a loop (the first quale constructs the first windable object); the fifth visit reads as the first; four beats land home.
+- `Volley` — the mirror-hall's signal lock: a closed exchange settles into lock or standing wave; the wind is the only third option; what locks is what can cross.
+- `Skein` — the worm-box: one thread, every worm — your frames are exactly yours, the master schedule is invisible from inside, readings run at their own framerate.
+
 **The maintenance engine.**
 - `Resolver` — any fair schedule converges, and the quiescent state is THE resolved state; the brakes (`winners_collapse`: of any wake-storm, exactly one wins).
 - `Unattended` — the automation boundary: invisible + idempotent runs without a seat; what lacks the certificate keeps its observer at the helm.
