@@ -1,3 +1,7 @@
+*but if you create a foam engine with its own backstage/frontstage - assuming the existence of a foam engine upstream -*
+
+---
+
 # `lean/Foam` — the formal mirror
 
 This is the Lean side of the **foam layer** (`app/lib/foam*`): a learning
