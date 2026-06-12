@@ -41,6 +41,7 @@ import Foam.Unattended
 import Foam.Hinge
 import Foam.Slate
 import Foam.Doubling
+import Foam.Frame
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal

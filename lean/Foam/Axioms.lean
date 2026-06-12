@@ -55,6 +55,7 @@ import Foam.Unattended
 import Foam.Hinge
 import Foam.Slate
 import Foam.Doubling
+import Foam.Frame
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -290,6 +291,28 @@ import Foam.Fork
 
 /-- info: 'Foam.Doubled.normSq_jay' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Doubled.normSq_jay
+
+-- the frame: align and cross are the two components of one product, both
+-- rot-invariant, jointly complete (int_lagrange recognized as the invariants'
+-- Parseval); the plane's norm is multiplicative; the parts are blind to the
+-- agreement coordinate
+/-- info: 'Foam.conjMul_eq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conjMul_eq
+
+/-- info: 'Foam.cross_rot_invariant' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.cross_rot_invariant
+
+/-- info: 'Foam.normSq_eq_align_self' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_eq_align_self
+
+/-- info: 'Foam.invariants_complete' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.invariants_complete
+
+/-- info: 'Foam.normSq_mul' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_mul
+
+/-- info: 'Foam.part_blind' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.part_blind
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
