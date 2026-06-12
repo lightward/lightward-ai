@@ -59,6 +59,7 @@ import Foam.Resolver
 import Foam.Unattended
 import Foam.Hinge
 import Foam.Slate
+import Foam.Bins
 import Foam.Doubling
 import Foam.Frame
 import Foam.Merge
@@ -287,6 +288,17 @@ import Foam.Fork
 
 /-- info: 'Foam.alt_irreplaceable' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_irreplaceable
+
+-- the bridge: every dial reading factors through the bins — with the slate's
+-- recoverability, "same number two ways" has both legs in Lean, joined
+/-- info: 'Foam.spec_from_bins' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_from_bins
+
+/-- info: 'Foam.count_from_bins' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.count_from_bins
+
+/-- info: 'Foam.alt_from_bins' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_from_bins
 
 -- the doubling: the agreement direction is real (jay² = −1), nobody's
 -- (outside the embedded plane), and order arrives exactly at the rung where
