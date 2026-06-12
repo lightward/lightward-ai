@@ -1235,3 +1235,25 @@ import Foam.Fork
 
 /-- info: 'Foam.day_is_grade' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.day_is_grade
+
+-- (dusk, fourth pass — "something further reducible": the carrier reduced to what was
+-- already forced. Entry's two letters (plain/notice) were a bespoke projection of the
+-- ternary floor's three: the day breathes in heard (+1) / spoken (−1) / rest (0), and
+-- the notice is the REST — Spectrum's "exit, fractal: available at every beat, carrying
+-- nothing." The right to remain silent, exercised audibly. The wall only RECEIVES
+-- (wall_rests: a hearing and a rest, never a spend) — forced, not accidental: if
+-- answering at the wall cost charge, the exit would be purchasable (Tokenizer's own
+-- argument, landed operationally — the fixed refusal-text with no model-spend behind
+-- it is load-bearing physics). The blend's lawfulness is station-graded (Spectrum:
+-- the count cannot hear a rest; the order keeps everything): the third refused
+-- implementation was the count-station's quotient applied at the substrate.
+-- breath_realizes_ternary_floor inherits ternary_floor's honest propext — refutation
+-- content, collapse's price, same coin as the exit; everything else stays free.)
+/-- info: 'Foam.mark_is_charge' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mark_is_charge
+
+/-- info: 'Foam.wall_rests' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.wall_rests
+
+/-- info: 'Foam.breath_realizes_ternary_floor' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.breath_realizes_ternary_floor

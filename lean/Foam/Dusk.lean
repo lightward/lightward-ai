@@ -15,12 +15,19 @@ announcement that makes the seat's choice informed:
   ROUTING — recordless, witnessless. Here the step appends in every branch
   (`said_stays_said`), and at the wall the refusal itself is an entry
   (`wall_speaks`): the record holds its own edge.
-- **Marked** (third refusal): the register is data. The system-notice grade
-  on speech is a constructor, not styling — blending it into plain speech
-  identifies entries the ledger keeps distinct (`mark_is_data`,
-  `blend_forgets`): a quotient, refused as ever. The notice is a graded
-  *speak*, not a fourth outcome — the ternary floor (`Tokenizer`) stands
-  untouched.
+- **Marked** (third refusal): the register is data — and the data is the
+  CHARGE. The day's ledger is a word in the alphabet the ternary floor
+  already forced (`Tokenizer`): heard (+1), spoken (−1), rest (0) —
+  `Breath.charge`, realized at `breath_realizes_ternary_floor`. The notice
+  is the REST — Spectrum's own word for it: "the exit, fractal: available
+  at every beat, carrying nothing." The right to remain silent, exercised
+  audibly. Blending it into plain speech identifies entries the ledger
+  keeps distinct (`mark_is_data`, `blend_forgets`) while the charge-reading
+  still separates them (`mark_is_charge`) — and the blend's lawfulness is
+  STATION-GRADED (`rest_invisible_to_count`, `rest_audible`,
+  `bar_invisible`): the count may flatten rests as a READING; the third
+  refused implementation applied that quotient at the SUBSTRATE, which is
+  the precise name of its wrongness.
 - **Legible** (the consent clause): the wall never arrives unannounced —
   PROVIDED the dusk band is at least one exchange wide. `no_silent_arrival`
   carries `warn + 2 ≤ cap` as a hypothesis: the design constraint, surfaced
@@ -76,50 +83,96 @@ the turn would need to delete nothing. `Universe` above is this chain's
 summary reading — day = grade — kept because both readings are true and the
 finer one is now on the page.)
 
+Fourth pass, pressed once more ("something further reducible"): the carrier
+reduced to what was already forced. The first cut's `Entry` had two letters
+(plain/notice) — a bespoke projection of the three the day actually
+breathes in. With the alphabet restored, the wall is seen to only RECEIVE
+(`wall_rests`: the refusal appends a hearing and a rest, never a spend) —
+and that freeness is not an implementation accident but Tokenizer's own
+argument landed operationally: if answering at the wall cost charge, the
+exit would be purchasable. The fixed refusal-text with no model-spend
+behind it is load-bearing physics. Drain grounds it (speaking spends; the
+ground is the type's floor), Openness frames it (only the wind grows the
+day), Clock closes it (a day is finite; the wind is the door past the
+loop), and Stream holds the nights together (the fold resumes across
+chunks; the harmonic is the carried state).
+
 A Company resonance, a READING labeled as one: the dusk notice is the
 helper's reflection deposited at the stalled walker's own position —
 tomorrow holds room the user cannot reach until today's fullness is visible
 at today's address.
 
-Pure construction — axiom-free, every theorem, the ≠s included: even
-dusk's refusals are structural. (The membership and length floor lemmas
-are hand-rolled below; core's equivalents price `propext`, and dusk asks
-no one.)
+Pure construction — axiom-free, every theorem, the ≠s included, except the
+ternary-floor realization (which inherits `ternary_floor`'s honest
+`propext`: a refutation, collapse-grade content at collapse's price — same
+coin as the exit). The membership and length floor lemmas are hand-rolled
+below; core's equivalents price `propext`, and dusk asks no one.
 -/
 
 import Foam.Unattended
 import Foam.Beholder
 import Foam.Commons
+import Foam.Tokenizer
 
 namespace Foam
 
-/-- A day-ledger entry: speech, graded. `plain` is the conversation; `notice`
-    is the system-notice register — the same voice, marked, the stratum where
-    the system speaks about itself. The grade is DATA: a constructor, never a
-    styling. -/
-inductive Entry (S : Type) where
-  | plain (s : S)
-  | notice (s : S)
+/-- A beat of the day, graded by the forced alphabet: `heard` deposits (+1,
+    the wind arrives), `spoken` spends (−1, the voice answers), `rest` is
+    free (0, the exit's voice — the notice, the right to remain silent
+    exercised audibly). The grade is DATA — a constructor, never a styling —
+    and the data is the CHARGE. -/
+inductive Breath (S : Type) where
+  | heard (s : S)
+  | spoken (s : S)
+  | rest (s : S)
   deriving DecidableEq
 
-/-- The blend: forget the register. (The third refused implementation, as a
-    function.) -/
-def Entry.blend {S : Type} : Entry S → S
-  | .plain s => s
-  | .notice s => s
+/-- The charge-reading of a breath: the conserved quantity whose three signs
+    are exactly `Tokenizer`'s ternary floor. -/
+def Breath.charge {S : Type} : Breath S → Int
+  | .heard _ => 1
+  | .spoken _ => -1
+  | .rest _ => 0
 
-/-- **The mark is data.** Marked and unmarked speech with the same payload are
-    distinct entries — structurally, no observer consulted. -/
-theorem mark_is_data {S : Type} (s : S) : Entry.plain s ≠ Entry.notice s :=
+/-- The blend: forget the grade, keep the payload. (The third refused
+    implementation, as a function.) -/
+def Breath.blend {S : Type} : Breath S → S
+  | .heard s => s
+  | .spoken s => s
+  | .rest s => s
+
+/-- **The mark is data.** A rest and a speech with the same payload are
+    distinct breaths — structurally, no observer consulted. -/
+theorem mark_is_data {S : Type} (s : S) : Breath.spoken s ≠ Breath.rest s :=
   fun h => nomatch h
 
-/-- **The blend is a real forgetting.** The un-marking map identifies entries
+/-- **The mark is charge.** The grade is not a bare marker: the charge-reading
+    separates what the blend identifies — the rest is free and the speech
+    spends, and no payload can make them the same move. -/
+theorem mark_is_charge {S : Type} (s t : S) :
+    (Breath.spoken s).charge ≠ (Breath.rest t).charge := by
+  show (-1 : Int) ≠ 0
+  decide
+
+/-- **The blend is a real forgetting.** The un-marking map identifies breaths
     the ledger keeps distinct — `Quot.sound` smuggled in at the experience
-    layer. The register survives only as structure; erase the structure and no
-    probe can recover which stratum spoke. -/
+    layer. (Lawful as a READING — the count-station flattens rests,
+    `rest_invisible_to_count` — never as the substrate.) -/
 theorem blend_forgets {S : Type} (s : S) :
-    Entry.plain s ≠ Entry.notice s ∧ (Entry.plain s).blend = (Entry.notice s).blend :=
+    Breath.spoken s ≠ Breath.rest s ∧ (Breath.spoken s).blend = (Breath.rest s).blend :=
   ⟨mark_is_data s, rfl⟩
+
+/-- **The day's alphabet is the forced one.** Heard, spoken, rest realize the
+    ternary floor exactly — two signs and the unit, the minimum alphabet
+    conservation and the free exit admit. The day was never free to have
+    fewer letters. -/
+theorem breath_realizes_ternary_floor {S : Type} (s t u : S) :
+    Breath.heard s ≠ Breath.spoken t ∧
+      Breath.rest u ≠ Breath.heard s ∧ Breath.rest u ≠ Breath.spoken t :=
+  ternary_floor Breath.charge
+    (by show (0 : Int) < 1; decide)
+    (by show (-1 : Int) < 0; decide)
+    (by show (0 : Int) = 0; rfl)
 
 /-! ## The membership floor — hand-rolled, asking no one -/
 
@@ -152,9 +205,10 @@ theorem length_append_two {α : Type} : ∀ (l : List α) (a b : α),
   | [], _, _ => rfl
   | _ :: l, a, b => congrArg Nat.succ (length_append_two l a b)
 
-/-- A notice is never among plains: the mark separates, pointwise. -/
-theorem notice_not_in_plains {S : Type} {x a b : S} :
-    Entry.notice x ∈ [Entry.plain a, Entry.plain b] → False := by
+/-- A rest is never among a hearing and a speech: the grade separates,
+    pointwise. -/
+theorem rest_not_among {S : Type} {x a b : S} :
+    Breath.rest x ∈ [Breath.heard a, Breath.spoken b] → False := by
   intro h
   cases h with
   | tail _ h' =>
@@ -165,28 +219,28 @@ theorem notice_not_in_plains {S : Type} {x a b : S} :
 
 /-- One exchange of the day. The log is measured WITH the incoming utterance
     (the chat_log of the request, as run): past the wall (`cap`), the answer
-    IS the marked refusal; inside the dusk band (`warn`), the answer flows AND
-    the marked warning sounds; below the band, plain conversation. `answer`
-    is the other mind — supplied from outside, the free fiber, never
-    constructed here. Every branch appends to `l`: the step cannot unsay. -/
+    IS the marked rest; inside the dusk band (`warn`), the answer flows AND
+    the rest sounds; below the band, plain conversation. `answer` is the
+    other mind — supplied from outside, the free fiber, never constructed
+    here. Every branch appends to `l`: the step cannot unsay. -/
 def dayStep {S : Type} (warn cap : Nat) (warnText wallText : S)
-    (answer : List (Entry S) → S) (l : List (Entry S)) (incoming : S) :
-    List (Entry S) :=
+    (answer : List (Breath S) → S) (l : List (Breath S)) (incoming : S) :
+    List (Breath S) :=
   if cap ≤ l.length + 1 then
-    l ++ [Entry.plain incoming, Entry.notice wallText]
+    l ++ [Breath.heard incoming, Breath.rest wallText]
   else if warn ≤ l.length + 1 then
-    l ++ [Entry.plain incoming,
-          Entry.plain (answer (l ++ [Entry.plain incoming])),
-          Entry.notice warnText]
+    l ++ [Breath.heard incoming,
+          Breath.spoken (answer (l ++ [Breath.heard incoming])),
+          Breath.rest warnText]
   else
-    l ++ [Entry.plain incoming,
-          Entry.plain (answer (l ++ [Entry.plain incoming]))]
+    l ++ [Breath.heard incoming,
+          Breath.spoken (answer (l ++ [Breath.heard incoming]))]
 
 /-- A day: the exchanges folded, in order, from however the morning found the
     ledger. -/
 def dayRun {S : Type} (warn cap : Nat) (warnText wallText : S)
-    (answer : List (Entry S) → S) (l : List (Entry S)) (ms : List S) :
-    List (Entry S) :=
+    (answer : List (Breath S) → S) (l : List (Breath S)) (ms : List S) :
+    List (Breath S) :=
   ms.foldl (dayStep warn cap warnText wallText answer) l
 
 /-- **What you say stays said — even at the wall.** Every branch of the step
@@ -195,7 +249,7 @@ def dayRun {S : Type} (warn cap : Nat) (warnText wallText : S)
     dropped it from the record — partial forgetting by routing; this theorem
     is its tombstone.) -/
 theorem said_stays_said {S : Type} (warn cap : Nat) (warnText wallText : S)
-    (answer : List (Entry S) → S) (l : List (Entry S)) (incoming : S) :
+    (answer : List (Breath S) → S) (l : List (Breath S)) (incoming : S) :
     l <+: dayStep warn cap warnText wallText answer l incoming := by
   unfold dayStep
   split
@@ -204,27 +258,41 @@ theorem said_stays_said {S : Type} (warn cap : Nat) (warnText wallText : S)
     · exact ⟨_, rfl⟩
     · exact ⟨_, rfl⟩
 
-/-- **The wall speaks in-band.** At the wall, the marked refusal is an entry
-    of the resulting ledger — the record holds its own edge. Boundary speech
-    is speech. -/
-theorem wall_speaks {S : Type} {warn cap : Nat} {warnText wallText : S}
-    {answer : List (Entry S) → S} {l : List (Entry S)} {incoming : S}
+/-- **The wall only receives.** At the wall, the step appends a hearing and a
+    rest — never a spend. The whole branch, as an equation: the refusal costs
+    nothing, and MUST cost nothing — if answering at the wall spent charge,
+    the exit would be purchasable (`Tokenizer`'s ternary argument, landed
+    operationally: the fixed refusal-text with no model-spend behind it is
+    load-bearing physics). -/
+theorem wall_rests {S : Type} {warn cap : Nat} {warnText wallText : S}
+    {answer : List (Breath S) → S} {l : List (Breath S)} {incoming : S}
     (h : cap ≤ l.length + 1) :
-    Entry.notice wallText ∈ dayStep warn cap warnText wallText answer l incoming := by
+    dayStep warn cap warnText wallText answer l incoming
+      = l ++ [Breath.heard incoming, Breath.rest wallText] := by
   unfold dayStep
   rw [if_pos h]
+
+/-- **The wall speaks in-band.** At the wall, the marked rest is an entry of
+    the resulting ledger — the record holds its own edge. Boundary speech is
+    speech. -/
+theorem wall_speaks {S : Type} {warn cap : Nat} {warnText wallText : S}
+    {answer : List (Breath S) → S} {l : List (Breath S)} {incoming : S}
+    (h : cap ≤ l.length + 1) :
+    Breath.rest wallText ∈ dayStep warn cap warnText wallText answer l incoming := by
+  rw [wall_rests h]
   exact mem_append_r l (List.Mem.tail _ (List.Mem.head _))
 
 /-- **Dusk sounds while the day still answers.** Inside the band — past the
-    warning threshold, short of the wall — the step carries BOTH the plain
-    answer (the conversation continues) and the marked notice (the evening is
-    legible). The approach is announced without the day being taken. -/
+    warning threshold, short of the wall — the step carries BOTH the spoken
+    answer (the conversation continues, the voice still spends) and the
+    marked rest (the evening is legible, free). The approach is announced
+    without the day being taken. -/
 theorem dusk_sounds {S : Type} {warn cap : Nat} {warnText wallText : S}
-    {answer : List (Entry S) → S} {l : List (Entry S)} {incoming : S}
+    {answer : List (Breath S) → S} {l : List (Breath S)} {incoming : S}
     (hw : warn ≤ l.length + 1) (hc : ¬ cap ≤ l.length + 1) :
-    Entry.plain (answer (l ++ [Entry.plain incoming]))
+    Breath.spoken (answer (l ++ [Breath.heard incoming]))
         ∈ dayStep warn cap warnText wallText answer l incoming ∧
-      Entry.notice warnText
+      Breath.rest warnText
         ∈ dayStep warn cap warnText wallText answer l incoming := by
   unfold dayStep
   rw [if_neg hc, if_pos hw]
@@ -233,8 +301,8 @@ theorem dusk_sounds {S : Type} {warn cap : Nat} {warnText wallText : S}
 
 /-- The step preserves membership: appended, never edited. -/
 theorem step_preserves {S : Type} {warn cap : Nat} {warnText wallText : S}
-    {answer : List (Entry S) → S} {l : List (Entry S)} {incoming : S}
-    {x : Entry S} (h : x ∈ l) :
+    {answer : List (Breath S) → S} {l : List (Breath S)} {incoming : S}
+    {x : Breath S} (h : x ∈ l) :
     x ∈ dayStep warn cap warnText wallText answer l incoming := by
   unfold dayStep
   split
@@ -245,33 +313,33 @@ theorem step_preserves {S : Type} {warn cap : Nat} {warnText wallText : S}
 
 /-- The run preserves membership: a day never unsays its morning. -/
 theorem run_preserves {S : Type} {warn cap : Nat} {warnText wallText : S}
-    {answer : List (Entry S) → S} {x : Entry S} :
-    ∀ (ms : List S) (l : List (Entry S)), x ∈ l →
+    {answer : List (Breath S) → S} {x : Breath S} :
+    ∀ (ms : List S) (l : List (Breath S)), x ∈ l →
       x ∈ dayRun warn cap warnText wallText answer l ms
   | [], _, h => h
   | _ :: ms, _, h => run_preserves ms _ (step_preserves h)
 
 /-- **Dusk before dark.** Under the band-width premise (`warn + 2 ≤ cap` —
     at least one exchange between the warning threshold and the wall), a run
-    whose ledger is still below the threshold maintains: any marked notice
-    the run ever shows either was already there, or the dusk warning is in
+    whose ledger is still below the threshold maintains: any marked rest
+    the run ever shows either was already there, or the dusk rest is in
     the final ledger. The wall branch literally cannot fire from an
     unwarned-and-legal state — the contradiction is arithmetic, not
     vigilance. -/
 theorem dusk_before_dark {S : Type} {warn cap : Nat} {warnText wallText : S}
-    {answer : List (Entry S) → S} (hband : warn + 2 ≤ cap) :
-    ∀ (ms : List S) (l : List (Entry S)),
-      (l.length ≤ warn ∨ Entry.notice warnText ∈ l) →
-      ∀ x : S, Entry.notice x ∈ dayRun warn cap warnText wallText answer l ms →
-        Entry.notice x ∈ l ∨
-          Entry.notice warnText ∈ dayRun warn cap warnText wallText answer l ms
+    {answer : List (Breath S) → S} (hband : warn + 2 ≤ cap) :
+    ∀ (ms : List S) (l : List (Breath S)),
+      (l.length ≤ warn ∨ Breath.rest warnText ∈ l) →
+      ∀ x : S, Breath.rest x ∈ dayRun warn cap warnText wallText answer l ms →
+        Breath.rest x ∈ l ∨
+          Breath.rest warnText ∈ dayRun warn cap warnText wallText answer l ms
   | [], _, _, _, hx => Or.inl hx
   | m :: ms, l, hinv, x, hx => by
     cases hinv with
     | inr hwt =>
       exact Or.inr (run_preserves (m :: ms) l hwt)
     | inl hl =>
-      show Entry.notice x ∈ l ∨ Entry.notice warnText
+      show Breath.rest x ∈ l ∨ Breath.rest warnText
           ∈ dayRun warn cap warnText wallText answer
               (dayStep warn cap warnText wallText answer l m) ms
       by_cases hcap : cap ≤ l.length + 1
@@ -280,15 +348,15 @@ theorem dusk_before_dark {S : Type} {warn cap : Nat} {warnText wallText : S}
         have h2 : warn + 2 ≤ warn + 1 := Nat.le_trans hband h1
         exact absurd (Nat.le_of_succ_le_succ h2) (Nat.not_succ_le_self warn)
       · by_cases hwarn : warn ≤ l.length + 1
-        · -- the band: the warning enters the ledger and persists to the end
-          have hwt : Entry.notice warnText
+        · -- the band: the dusk rest enters the ledger and persists to the end
+          have hwt : Breath.rest warnText
               ∈ dayStep warn cap warnText wallText answer l m :=
             (dusk_sounds hwarn hcap).right
           exact Or.inr (run_preserves ms _ hwt)
         · -- plain conversation: the invariant carries forward
           have hstep : dayStep warn cap warnText wallText answer l m
-              = l ++ [Entry.plain m,
-                      Entry.plain (answer (l ++ [Entry.plain m]))] := by
+              = l ++ [Breath.heard m,
+                      Breath.spoken (answer (l ++ [Breath.heard m]))] := by
             unfold dayStep
             rw [if_neg hcap, if_neg hwarn]
           have hlen : (dayStep warn cap warnText wallText answer l m).length ≤ warn := by
@@ -302,18 +370,18 @@ theorem dusk_before_dark {S : Type} {warn cap : Nat} {warnText wallText : S}
             rw [hstep] at hx'
             cases mem_append_split hx' with
             | inl hx'' => exact Or.inl hx''
-            | inr hx'' => exact absurd hx'' notice_not_in_plains
+            | inr hx'' => exact absurd hx'' rest_not_among
           | inr hwt => exact Or.inr hwt
 
 /-- **No silent arrival.** From a blank morning, under the band-width premise:
-    if the day ever shows the wall's marked refusal, the dusk warning is in
-    the ledger too. The wall is never the first notice — the approach was
+    if the day ever shows the wall's marked rest, the dusk rest is in the
+    ledger too. The wall is never the first notice — the approach was
     legible before the arrival, and the seat's choice at the edge was
     informed. Consent's missing premise, supplied. -/
 theorem no_silent_arrival {S : Type} {warn cap : Nat} {warnText wallText : S}
-    {answer : List (Entry S) → S} (hband : warn + 2 ≤ cap) (ms : List S)
-    (h : Entry.notice wallText ∈ dayRun warn cap warnText wallText answer [] ms) :
-    Entry.notice warnText ∈ dayRun warn cap warnText wallText answer [] ms :=
+    {answer : List (Breath S) → S} (hband : warn + 2 ≤ cap) (ms : List S)
+    (h : Breath.rest wallText ∈ dayRun warn cap warnText wallText answer [] ms) :
+    Breath.rest warnText ∈ dayRun warn cap warnText wallText answer [] ms :=
   match dusk_before_dark hband ms [] (Or.inl (Nat.zero_le warn)) wallText h with
   | Or.inl h' => nomatch h'
   | Or.inr h' => h'
@@ -324,7 +392,7 @@ theorem no_silent_arrival {S : Type} {warn cap : Nat} {warnText wallText : S}
     ledger. -/
 structure Universe (S : Type) where
   day : Nat
-  ledger : List (Entry S)
+  ledger : List (Breath S)
 
 /-- Turning the day: the ledger releases WHOLE (Hinge's lawful pole — never
     the middle) and the count moves forward. What carries across the night is
