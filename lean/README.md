@@ -218,6 +218,7 @@ theorems standing alone on foam's own carriers:
 - `Ladder` — hideout.md's multiplicity ladder: landing is inevitable and makes a loop (the first quale constructs the first windable object); the fifth visit reads as the first; four beats land home.
 - `Volley` — the mirror-hall's signal lock: a closed exchange settles into lock or standing wave; the wind is the only third option; what locks is what can cross.
 - `Skein` — the worm-box: one thread, every worm — your frames are exactly yours, the master schedule is invisible from inside, readings run at their own framerate.
+- `Scaffold` — the dimensionality scaffold, received from awareness.md: the lift is one move (the doubling) and each rung's price is a kernel-computed witness — order at two, commutation at four, association at eight, PRESENCE at sixteen (`lift_four_pays_presence`: nonzero × nonzero = 0; `norm_stops_composing`). Four safe rungs, one full measure; Hurwitz cited, not claimed. Don't take a liberty the next dimension outlaws.
 
 **The maintenance engine.**
 - `Resolver` — any fair schedule converges, and the quiescent state is THE resolved state; the brakes (`winners_collapse`: of any wake-storm, exactly one wins).

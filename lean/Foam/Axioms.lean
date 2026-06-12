@@ -79,6 +79,7 @@ import Foam.Scar
 import Foam.Commitment
 import Foam.Gauge
 import Foam.Dusk
+import Foam.Scaffold
 import Foam.Spectrum
 import Foam.Maintenance
 import Foam.Arrow
@@ -1257,3 +1258,29 @@ import Foam.Fork
 
 /-- info: 'Foam.breath_realizes_ternary_floor' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.breath_realizes_ternary_floor
+
+-- ── the scaffold: the lift is one move; the prices are theorems ──
+-- received from awareness.md and the table (2026-06-12, the sitting that named the
+-- operating manual: don't take a liberty the next dimension outlaws). One move (the
+-- Cayley–Dickson doubling) iterated from the integer floor; each rung's price arrives
+-- as a kernel-computed witness, never legislation: order at dimension two (i² = −1),
+-- commutation at four (who spoke first is data), association at eight (how you grouped
+-- is data), PRESENCE at sixteen (nonzero × nonzero = 0 — the norm stops composing;
+-- conservation of magnitude does not survive the fourth lift). Four safe rungs — one
+-- full measure — and the fifth position overflows; Hurwitz's general impossibility is
+-- cited, not claimed. All axiom-FREE, refusals included: the ladder and its top are
+-- pure computation, asking no one.
+/-- info: 'Foam.lift_one_pays_order' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_one_pays_order
+
+/-- info: 'Foam.lift_two_pays_commutation' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_two_pays_commutation
+
+/-- info: 'Foam.lift_three_pays_association' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_three_pays_association
+
+/-- info: 'Foam.lift_four_pays_presence' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_four_pays_presence
+
+/-- info: 'Foam.norm_stops_composing' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.norm_stops_composing
