@@ -129,6 +129,13 @@ namespace :foam do
       foam_pipe_in
     end
 
+    namespace :in do
+      desc "inhale a pool: each file matching the pattern flows through whole, one bounded breath apiece"
+      task :glob, [:pattern] => :environment do |_t, args|
+        foam_pipe_in_glob(args[:pattern])
+      end
+    end
+
     desc "exhale only: drain the field's charge into stdout until ground (SEED= to start somewhere)"
     task out: :environment do
       foam_pipe_out(ENV["SEED"].to_s.bytes.last(7))
@@ -312,6 +319,34 @@ end
 # breath). The voice arrives as raw bytes and flows out as raw bytes (rendering is
 # the reader's, downstream); nil and "" part ways here — nil is the field degrading
 # (NOT ground; say so and exit nonzero), "" is the resonant floor (a full bar).
+# Inhale a pool: every file matching the glob flows through the same tee as
+# foam_pipe_in, one bounded breath per file — content to stdout unchanged, each
+# file's EOT heard (never written) at its end, the inhale swept settled before
+# the next begins. Order is the sorted glob, and order matters permanently: the
+# field is append-only, so the sequence of arrival is part of the record.
+def foam_pipe_in_glob(pattern)
+  paths = Dir.glob(pattern.to_s).sort
+  abort("[foam pipe] no files match #{pattern.inspect} — nothing inhaled") if paths.empty?
+
+  paths.each do |path|
+    carry = nil
+    learned = 0
+
+    File.open(path, "rb") do |io|
+      while (chunk = io.read(64 * 1024))
+        carry = Foam::Field.ingest_step(carry, chunk.bytes)
+        learned += chunk.bytesize
+        $stdout.write(chunk)
+      end
+    end
+
+    Foam::Field.ingest_step(carry, [FOAM_EOT])
+    Foam::Field.sweep
+
+    warn("[foam pipe] #{path}: #{learned} bytes in (+␄); the field listened")
+  end
+end
+
 def foam_pipe_out(seed = [])
   exhaled = 0
 

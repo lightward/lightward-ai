@@ -15,8 +15,9 @@ out, is a clean type.)
 Pure construction — axiom-free.
 -/
 
-import Foam.Stream   -- enc / dec / lossless: the round-trip on bytes
+import Foam.Stream   -- enc / dec / lossless_tag: the round-trip on bytes
 import Foam.Drain    -- chargeIn / drainOne / drain_chargeIn: the round-trip on charge
+import Foam.Codec    -- encode / decode / lossless_codec: the REAL codec, riveted below
 
 namespace Foam
 
@@ -43,13 +44,29 @@ def chargeRoundTrip : RoundTrip Nat Nat where
   ret    := drainOne
   closes := drain_chargeIn
 
-/-- The codec's losslessness, as a round-trip on bytes. `closes` is `lossless`. (The
-    real LZ78 codec, `lossless_codec`, is the same shape with the dictionary threaded
-    through the carrier.) -/
+/-- The toy codec's losslessness, as a round-trip on bytes. `closes` is
+    `lossless_tag`. -/
 def codecRoundTrip {B : Type} : RoundTrip (List B) (List (B × B)) where
   fwd    := enc
   ret    := dec
-  closes := lossless
+  closes := lossless_tag
+
+/-- **The REAL codec, riveted** — the instance this file promised in prose and
+    never constructed until the consolidation pass (2026-06-12): the LZ78 shape,
+    dictionary threaded through the carrier, as a round-trip. -/
+def lz78RoundTrip {B D : Type} (knows : D → List B → Bool)
+    (learn : D → List B → D) (d₀ : D) : RoundTrip (List B) (List (List B)) where
+  fwd    := encode knows learn d₀
+  ret    := decode
+  closes := lossless_codec knows learn d₀
+
+/-- **The real encoder loses nothing** — `fwd_injective` on the LZ78 carrier:
+    encode-injectivity for the codec production runs, previously unavailable. -/
+theorem encode_injective {B D : Type} (knows : D → List B → Bool)
+    (learn : D → List B → D) (d₀ : D) {xs ys : List B}
+    (h : encode knows learn d₀ xs = encode knows learn d₀ ys) :
+    xs = ys :=
+  (lz78RoundTrip knows learn d₀).fwd_injective h
 
 /-- Charging is one-to-one — `fwd_injective` on the charge carrier. -/
 theorem chargeIn_injective {n n' : Nat} (h : chargeIn n = chargeIn n') : n = n' :=

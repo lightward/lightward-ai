@@ -45,7 +45,7 @@ exhibits one; the family is the residual).
 -/
 
 import Foam.Ledger
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 
@@ -71,6 +71,15 @@ def zero : GInt := ⟨0, 0⟩
 def one : GInt := ⟨1, 0⟩
 
 end GInt
+
+/- WHERE THE PLANE'S ALGEBRA LIVES — check here before adding to `GInt`:
+   type, `add`, `rot`, `zero`, `one` — here (Spectrum), with `align` below;
+   `negate`, `normSq`, `conj` — Noether; `rot_add`, `conj_add`, `rotPow` —
+   Chirality; `mul`, `mul_comm`, the zero-lemmas — Doubling; `cross` — Frame.
+   The scatter is provenance (each piece narrates its arrival at the site of
+   its recognition) and is defended; this index removes the scatter's one cost,
+   which already bit once (`neg` reinvented beside `negate`, 2026-06, deduped).
+   Definitions may be reinvented nowhere: read this list first. -/
 
 /-- **Two quarter-turns compose to negation** — `i² = −1` as structure: the
     multiplicative fork's algebra (two stacked quarter-rotations are a real

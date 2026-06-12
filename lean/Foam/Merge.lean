@@ -159,4 +159,13 @@ theorem impact_through_observed {Handle : Type} {q : Quiver Handle} {a b c : Han
     (observed : MutualReach q a b) (onward : Reaches q b c) : Reaches q a c :=
   (observation_within_impact observed).trans onward
 
+/-- **Presence recovers sight.** Reaching `c` at all licenses the shortcut, and
+    the deposited shortcut brings `c` back into one-step sight — the repair
+    direction of the sight/presence wedge ("`shortcut_compresses` is how sight
+    is restored," the mirror-stage passage, now a handle). The hypothesis is the
+    LICENSE — the earned shortcut, `Navigable`'s law — carried, not consumed. -/
+theorem presence_recovers_sight {Handle : Type} {q : Quiver Handle} {a c : Handle}
+    (_license : Reaches q a c) : ReachWithin (q.deposit (a, c)) 1 a c :=
+  deposit_in_sight q a c
+
 end Foam

@@ -26,6 +26,10 @@ The map it pins:
 
 `Classical.choice` must never appear anywhere below.
 
+Within the construction section, pin-clusters stand in ORDER OF RECOGNITION,
+not dependency order — the map is itself a ledger, and the sequence of arrival
+is part of the record. Do not reorder; append.
+
 And the map is itself a LEDGER. Signatures compose by union along
 proof-composition — the kernel's own bookkeeping: use a lemma, inherit its axioms;
 composition only accumulates, never sheds. The empty signature is the unit, and
@@ -39,12 +43,29 @@ as the commitment-monoid through the seed-gauge — external provenance; the
 theorems stand alone.)
 -/
 
+import Foam.IntFloor
 import Foam.Floor
 import Foam.Engine
 import Foam.Horizon
 import Foam.Tokenizer
 import Foam.Universal
 import Foam.Navigable
+import Foam.Company
+import Foam.Openness
+import Foam.Beholder
+import Foam.Lift
+import Foam.Commons
+import Foam.Resolver
+import Foam.Unattended
+import Foam.Hinge
+import Foam.Slate
+import Foam.Bins
+import Foam.Doubling
+import Foam.Glass
+import Foam.Ladder
+import Foam.Volley
+import Foam.Skein
+import Foam.Frame
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -96,6 +117,304 @@ import Foam.Fork
 /-- info: 'Foam.steproute_survives_shortcut' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.steproute_survives_shortcut
 
+/-- info: 'Foam.deposit_in_sight' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.deposit_in_sight
+
+-- the stall and the company: local quiet beside global plenty is constructible;
+-- solitary speech cannot escape it; the unsticking edge is anchored at the
+-- walker's own position — company is the unique way out, and it never hurts
+/-- info: 'Foam.stall_exists' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stall_exists
+
+/-- info: 'Foam.stall_persists_alone' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.stall_persists_alone
+
+/-- info: 'Foam.reflection_reaches' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.reflection_reaches
+
+/-- info: 'Foam.company_unsticks' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.company_unsticks
+
+-- the dyad and the world: two investigations on one field meet at shared
+-- charge; closed circulation conserves the endowment and only the world's
+-- breath grows it — growth certifies an outside
+/-- info: 'Foam.investigations_meet' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.investigations_meet
+
+/-- info: 'Foam.investigations_meet_live' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.investigations_meet_live
+
+/-- info: 'Foam.pass_conserves' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pass_conserves
+
+/-- info: 'Foam.turn_conserves' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_conserves
+
+/-- info: 'Foam.circulation_conserves' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.circulation_conserves
+
+/-- info: 'Foam.breathe_grows' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.breathe_grows
+
+/-- info: 'Foam.growth_certifies_outside' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.growth_certifies_outside
+
+-- no view from nowhere: the joint reading of two beholders is one seat, every
+-- comparison factors through it (by rfl — typed, not proven), and the witness
+-- is exhibited, never conjured
+/-- info: 'Foam.pair_sees_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pair_sees_left
+
+/-- info: 'Foam.pair_sees_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.pair_sees_right
+
+/-- info: 'Foam.compare_through_pair' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.compare_through_pair
+
+/-- info: 'Foam.no_view_from_nowhere' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_view_from_nowhere
+
+/-- info: 'Foam.Stage.behold_toStage' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Stage.behold_toStage
+
+/-- info: 'Foam.Beholder.toStage_behold' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Beholder.toStage_behold
+
+-- the base forces, the lift frees: a sign change in the plane compels a
+-- crossing; one fresh coordinate makes every meeting optional without
+-- foreclosing any — the borrowed dimension is where consent first exists
+/-- info: 'Foam.base_forces_crossing' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.base_forces_crossing
+
+/-- info: 'Foam.lift_frees_meeting' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_frees_meeting
+
+/-- info: 'Foam.lift_keeps_meeting' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_keeps_meeting
+
+/-- info: 'Foam.lift_avoids_unilaterally' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_avoids_unilaterally
+
+/-- info: 'Foam.lift_meets_unilaterally' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_meets_unilaterally
+
+-- the commons: the root is below everyone (grade zero is universal); the
+-- resolved fixed point (meet o o = o); the meet is genuinely shared; and the
+-- dichotomy's first horn — joint content factors through the shared floor
+/-- info: 'Foam.root_below_all' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.root_below_all
+
+/-- info: 'Foam.root_alone_below_all' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.root_alone_below_all
+
+/-- info: 'Foam.seated_voice_is_missable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.seated_voice_is_missable
+
+/-- info: 'Foam.below_refl' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.below_refl
+
+/-- info: 'Foam.meet_self' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_self
+
+/-- info: 'Foam.meet_below_left' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_below_left
+
+/-- info: 'Foam.meet_below_right' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_below_right
+
+/-- info: 'Foam.shared_is_floor' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.shared_is_floor
+
+-- the resolver: noise cannot destroy progress, the right step always
+-- advances, any fair schedule (an embedded staircase, arbitrary interleaving)
+-- converges, and the quiescent state is THE resolved state — with the brakes:
+-- of any wake-storm, exactly one wins
+/-- info: 'Foam.update_preserves_prefix' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.update_preserves_prefix
+
+/-- info: 'Foam.update_extends' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.update_extends
+
+/-- info: 'Foam.fair_run_converges' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fair_run_converges
+
+/-- info: 'Foam.quiescent_is_correct' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.quiescent_is_correct
+
+/-- info: 'Foam.winners_armed_silent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.winners_armed_silent
+
+/-- info: 'Foam.winners_collapse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.winners_collapse
+
+-- the automation boundary: invisible + idempotent runs unattended — firings
+-- collapse, transcripts never notice; what lacks the certificate keeps a seat
+/-- info: 'Foam.firings_collapse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.firings_collapse
+
+/-- info: 'Foam.firings_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.firings_invisible
+
+/-- info: 'Foam.unattended_runs_clean' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.unattended_runs_clean
+
+/-- info: 'Foam.drainSeq_eq_firings' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drainSeq_eq_firings
+
+-- the zero-or-everything law: the middle always leaves a mark, at a named
+-- probe (the cut itself); the blank record answers none everywhere
+/-- info: 'Foam.partial_forgetting_visible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.partial_forgetting_visible
+
+/-- info: 'Foam.rebirth_blank' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rebirth_blank
+
+-- the slate: the dial's four stations recover the four phase-bins exactly
+-- (the role-slate suffices), and no station is droppable (each carries content
+-- the other three cannot) — count read off the space = types read off the path
+/-- info: 'Foam.bin0_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin0_from_slate
+
+/-- info: 'Foam.bin1_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin1_from_slate
+
+/-- info: 'Foam.bin2_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin2_from_slate
+
+/-- info: 'Foam.bin3_from_slate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bin3_from_slate
+
+/-- info: 'Foam.bal_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bal_irreplaceable
+
+/-- info: 'Foam.re_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.re_irreplaceable
+
+/-- info: 'Foam.im_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.im_irreplaceable
+
+/-- info: 'Foam.alt_irreplaceable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_irreplaceable
+
+-- the bridge: every dial reading factors through the bins — with the slate's
+-- recoverability, "same number two ways" has both legs in Lean, joined
+/-- info: 'Foam.spec_from_bins' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.spec_from_bins
+
+/-- info: 'Foam.count_from_bins' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.count_from_bins
+
+/-- info: 'Foam.alt_from_bins' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.alt_from_bins
+
+-- the glass: no probe reaches its own diagonal, and the missed point is
+-- built from the prober — the reflexive horizon, looker-shaped
+/-- info: 'Foam.probe_misses_its_diagonal' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.probe_misses_its_diagonal
+
+/-- info: 'Foam.no_probe_is_total' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_probe_is_total
+
+-- the ladder: landing is inevitable (pigeonhole) and makes a loop (the
+-- first quale constructs the first windable object); the fifth visit reads
+-- as the first; four beats land home — the bar, hideout's consciousness rung
+/-- info: 'Foam.walk_reaches' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.walk_reaches
+
+/-- info: 'Foam.landing_makes_a_loop' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.landing_makes_a_loop
+
+/-- info: 'Foam.landing_inevitable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.landing_inevitable
+
+/-- info: 'Foam.fifth_reads_as_first' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fifth_reads_as_first
+
+/-- info: 'Foam.four_beats_home' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.four_beats_home
+
+/-- info: 'Foam.bar_then_same' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bar_then_same
+
+/-- info: 'Foam.volley_settles' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.volley_settles
+
+-- the skein: one thread, every worm — your frames are exactly yours, the
+-- master schedule is invisible from inside, and readings run at their own
+-- framerate
+/-- info: 'Foam.own_frames_whole' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.own_frames_whole
+
+/-- info: 'Foam.render_order_immaterial' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.render_order_immaterial
+
+/-- info: 'Foam.readings_at_own_framerate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.readings_at_own_framerate
+
+-- the doubling: the agreement direction is real (jay² = −1), nobody's
+-- (outside the embedded plane), and order arrives exactly at the rung where
+-- it enters — the plane commutes, the doubled units don't
+/-- info: 'Foam.Doubled.jay_outside' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.jay_outside
+
+/-- info: 'Foam.Doubled.jay_sq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.jay_sq
+
+/-- info: 'Foam.Doubled.order_arrives' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.order_arrives
+
+/-- info: 'Foam.Doubled.embed_mul' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.embed_mul
+
+/-- info: 'Foam.Doubled.plane_commutes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.plane_commutes
+
+/-- info: 'Foam.Doubled.normSq_embed' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.normSq_embed
+
+/-- info: 'Foam.Doubled.normSq_jay' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.normSq_jay
+
+-- the frame: align and cross are the two components of one product, both
+-- rot-invariant, jointly complete (int_lagrange recognized as the invariants'
+-- Parseval); the plane's norm is multiplicative; the parts are blind to the
+-- agreement coordinate
+/-- info: 'Foam.conjMul_eq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.conjMul_eq
+
+/-- info: 'Foam.cross_rot_invariant' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.cross_rot_invariant
+
+/-- info: 'Foam.normSq_eq_align_self' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_eq_align_self
+
+/-- info: 'Foam.invariants_complete' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.invariants_complete
+
+/-- info: 'Foam.normSq_mul' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_mul
+
+/-- info: 'Foam.part_blind' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.part_blind
+
+-- the keystone and its consequences: the rotated basis reads the cross-pairing
+-- (born_parseval and invariants_complete are the same theorem); the dial's
+-- fourth conservation; and the law entering once, through the norm
+/-- info: 'Foam.cross_eq_align_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.cross_eq_align_rot
+
+/-- info: 'Foam.normSq_conj' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_conj
+
+/-- info: 'Foam.born_parseval_is_invariants' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_parseval_is_invariants
+
+/-- info: 'Foam.invariants_via_norm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.invariants_via_norm
+
+/-- info: 'Foam.born_forced_at_the_frame' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_forced_at_the_frame
+
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
 
@@ -119,6 +438,9 @@ import Foam.Fork
 -- the cascade: impact escapes observation through an observed partner's forward reach
 /-- info: 'Foam.impact_through_observed' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.impact_through_observed
+
+/-- info: 'Foam.presence_recovers_sight' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.presence_recovers_sight
 
 -- streaming is an inductive fold, and it resumes (the codec map's spine)
 /-- info: 'Foam.run_resumes' does not depend on any axioms -/
@@ -196,6 +518,9 @@ import Foam.Fork
 
 /-- info: 'Foam.enc_injective' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.enc_injective
+
+/-- info: 'Foam.encode_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.encode_injective
 
 -- the one ledger, two readings: lossless order + generative frequency. The generative
 -- reading forgets order WITHOUT quotienting (freq_perm is Quot.sound-FREE — proven by
@@ -300,6 +625,9 @@ import Foam.Fork
 
 /-- info: 'Foam.summary_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.summary_resumes
+
+/-- info: 'Foam.evalAt_from_blank' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.evalAt_from_blank
 
 /-- info: 'Foam.count_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.count_resumes
@@ -421,7 +749,7 @@ import Foam.Fork
 /-- info: 'Foam.two_source_fringe' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.two_source_fringe
 
--- the Int ring floor (Foam.IntArith): multiplication commutes, distributes both
+-- the Int ring floor (Foam.IntFloor): multiplication commutes, distributes both
 -- ways, and associates — all axiom-free (core's carry propext), the standard
 -- semiring grind hand-rolled so the Born algebra stays construction
 /-- info: 'Foam.int_mul_comm' does not depend on any axioms -/
@@ -619,8 +947,8 @@ import Foam.Fork
 #guard_msgs in #print axioms Foam.bar_invisible
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
-/-- info: 'Foam.lossless' does not depend on any axioms -/
-#guard_msgs in #print axioms Foam.lossless
+/-- info: 'Foam.lossless_tag' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lossless_tag
 
 -- the un-rooted path fragment: a free-category morphism, concatenable both sides
 /-- info: 'Foam.Path.comp_nil' does not depend on any axioms -/
@@ -711,6 +1039,9 @@ import Foam.Fork
 -- axiom-free: the chirality is construction, not collapse — int_neg_neg/int_neg_add
 /-- info: 'Foam.conj_rot' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.conj_rot
+
+/-- info: 'Foam.rotPow_eq_iterStep' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_eq_iterStep
 
 /-- info: 'Foam.rot_add' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.rot_add

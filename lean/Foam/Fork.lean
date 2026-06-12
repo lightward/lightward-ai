@@ -90,12 +90,6 @@ travelers (`Quot.sound`, refused; `fork_two_routes`). The question "are the two
 routes one?" is not answered cheaply — it is structurally never forced: no
 base-level observation can even pose it. -/
 
-/-- **The base projection.** A path `a → b` projects to its endpoint-pair — the
-    shared coordinate. Constant by construction: in the indexed representation the
-    base is the type index, so the projection cannot read the route data. -/
-def Path.base {Handle : Type} {q : Quiver Handle} {a b : Handle}
-    (_ : Path q a b) : Handle × Handle := (a, b)
-
 /-- **The meeting is rfl-grade.** The two routes project to the same base point by
     definitional equality — zero axioms, zero fiber-consultation. Meeting at the
     base is free; only identifying the travelers would cost. -/

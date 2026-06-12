@@ -57,12 +57,12 @@ register's seed-provenance wants parity-rhythm.
 
 Axiom discipline: all construction — `rfl`, induction, constructor-cases,
 `decide` on closed witnesses, explicit witnesses provided never chosen. The
-Int/Nat arithmetic it leans on lives axiom-free in `Foam.IntArith` (core's
+Int/Nat arithmetic it leans on lives axiom-free in `Foam.IntFloor` (core's
 equivalents carry `propext`). Axiom-free, pinned in `Foam/Axioms.lean`.
 -/
 
 import Foam.Summary
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 

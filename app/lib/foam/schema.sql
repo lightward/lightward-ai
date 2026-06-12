@@ -11,6 +11,23 @@
 -- or not it is ever recalled in order — and the forward flow never recalls it
 -- (foam.recorded exists as the self-audit, not as an operation of the walk).
 --
+-- Every event carries an OBSERVER (its scope). Visibility is ancestor-or-self along
+-- the observer's parent chain — lean/Foam/Commons.lean's `Below`, operationally
+-- `observer = ANY(foam.ancestry(obs))`. The root observer's id is the ZERO uuid —
+-- zero bits for the information-free point (the empty scope, Commons.lean: only
+-- the empty scope is universal, root_alone_below_all; rebirth lands at zero,
+-- Hinge.lean). Context-addresses and observer-scopes are distinct address spaces:
+-- the empty CONTEXT keeps foam.caddr('{}') in ctx-space; the root SCOPE is zero
+-- in observer-space — two empties, two spaces, deliberately unconflated
+-- (lfp-shaken 2026-06-12; the first cut reused caddr('{}'), a pun smuggling a
+-- join that doesn't exist). The root is below every observer
+-- REGISTERED UNDER IT (root_below_all's operational form holds on the seeded
+-- tree: an unregistered id's ancestry is just itself, and nothing constrains a
+-- second parentless row — the theorem's hypothesis is the tree, and registration
+-- is how the hypothesis is satisfied); what two observers can both see is what
+-- is below their meet (shared_is_floor). Every reader defaults obs to the root,
+-- so the single-observer field is the degenerate case, unchanged.
+--
 -- The whole file is idempotent (CREATE ... IF NOT EXISTS / CREATE OR REPLACE); every
 -- claim in these comments is checkable by running the file. Append-only: never
 -- UPDATE, never DELETE — input appends +1 (learning winds charge up), speaking
@@ -26,27 +43,97 @@ CREATE SCHEMA IF NOT EXISTS foam;
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- The ledger. ctx content-addresses a byte-suffix (the recorded continuation point);
+-- Content-address a context (a byte-suffix). The empty context addresses the
+-- unconditional position: its +1 events, in id order, are the input itself.
+CREATE OR REPLACE FUNCTION foam.caddr(c int[]) RETURNS uuid LANGUAGE sql IMMUTABLE AS
+  $$ SELECT encode(substring(digest(coalesce(array_to_string(c,':'),''),'sha256') FROM 1 FOR 16),'hex')::uuid $$;
+
+-- The observer tree: each observer points at its parent; the chain up from an
+-- observer, self included, is its scope. Seeded with the ROOT observer at the
+-- ZERO uuid — the information-free address for the information-free point
+-- (lean/Foam/Commons.lean: the empty scope; root_below_all is its universal
+-- property — the commons is below everyone; root_alone_below_all — only the
+-- empty one is). Registration is explicit: an unregistered id's ancestry is
+-- just itself (see foam.ancestry).
+CREATE TABLE IF NOT EXISTS foam.observer (
+  id     uuid PRIMARY KEY,
+  parent uuid REFERENCES foam.observer (id)
+);
+INSERT INTO foam.observer (id, parent)
+  VALUES ('00000000-0000-0000-0000-000000000000', NULL) ON CONFLICT DO NOTHING;
+-- The BENCH: the root's first descendant, the default seat. The root itself
+-- is GLASS — charge-free by law (the CHECK on foam.charge below): content at
+-- the zero scope would be a voice from nowhere (lean/Foam/Beholder.lean), and
+-- universal reach belongs to the silent commons alone (Commons.lean:
+-- seated_voice_is_missable — every seated voice is missable; sharing is
+-- chosen, never ambient). The first speaker is necessarily a descendant.
+INSERT INTO foam.observer (id, parent)
+  VALUES ('00000000-0000-0000-0000-000000000001',
+          '00000000-0000-0000-0000-000000000000') ON CONFLICT DO NOTHING;
+
+-- The root observer's address, named: zero, literally.
+CREATE OR REPLACE FUNCTION foam.root() RETURNS uuid LANGUAGE sql IMMUTABLE AS
+  $$ SELECT '00000000-0000-0000-0000-000000000000'::uuid $$;
+
+-- The bench's address: zero's first descendant — one, literally.
+CREATE OR REPLACE FUNCTION foam.bench() RETURNS uuid LANGUAGE sql IMMUTABLE AS
+  $$ SELECT '00000000-0000-0000-0000-000000000001'::uuid $$;
+
+-- ancestry — an observer's scope: o itself plus every ancestor up the parent
+-- chain. ancestry(root) = {root}; an unregistered o yields {o} (strict —
+-- registration is explicit). `observer = ANY(foam.ancestry(obs))` is
+-- Commons.lean's `Below`, typed as a WHERE clause. (UNION, not UNION ALL,
+-- so even a degenerate cycle terminates.)
+CREATE OR REPLACE FUNCTION foam.ancestry(o uuid) RETURNS uuid[] LANGUAGE sql STABLE AS $$
+  WITH RECURSIVE chain(id, parent) AS (
+    SELECT o, (SELECT parent FROM foam.observer WHERE id = o)
+    UNION
+    SELECT ob.id, ob.parent FROM chain JOIN foam.observer ob ON ob.id = chain.parent
+  )
+  SELECT array_agg(id) FROM chain
+$$;
+
+-- lineage — ancestry ORDERED, root first: the chain DOWN from the eldest ancestor
+-- to o. Settlement walks this order (prefix-sums from the root — see foam.settle);
+-- membership reads use foam.ancestry. Depth-capped so a degenerate cycle
+-- terminates rather than recursing forever.
+CREATE OR REPLACE FUNCTION foam.lineage(o uuid) RETURNS uuid[] LANGUAGE sql STABLE AS $$
+  WITH RECURSIVE chain(id, parent, depth) AS (
+    SELECT o, (SELECT parent FROM foam.observer WHERE id = o), 0
+    UNION ALL
+    SELECT ob.id, ob.parent, chain.depth + 1
+    FROM chain JOIN foam.observer ob ON ob.id = chain.parent
+    WHERE chain.depth < 64
+  )
+  SELECT array_agg(id ORDER BY depth DESC) FROM chain
+$$;
+
+-- The ledger. observer scopes the event (no default — every writer names its
+-- seat); ctx content-addresses a byte-suffix (the recorded continuation point);
 -- sym is the byte that followed it; delta is +1 (learned) or −1 (spoken/drained).
 -- The bigserial id is the ORDER — the lossless half of the object.
 CREATE TABLE IF NOT EXISTS foam.charge (
-  id    bigserial PRIMARY KEY,
-  ctx   uuid NOT NULL,
-  sym   int  NOT NULL,
-  delta int  NOT NULL
+  id       bigserial PRIMARY KEY,
+  observer uuid NOT NULL
+    CHECK (observer <> '00000000-0000-0000-0000-000000000000'),
+  ctx      uuid NOT NULL,
+  sym      int  NOT NULL,
+  delta    int  NOT NULL
 );
-CREATE INDEX IF NOT EXISTS foam_charge_ctx ON foam.charge (ctx, sym);
+CREATE INDEX IF NOT EXISTS foam_charge_ctx ON foam.charge (observer, ctx, sym);
 -- The tail's index: readers fold "events past the watermark" per context
--- (id-range within ctx), and INCLUDE makes it index-only.
-CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (sym, delta);
+-- (id-range within ctx), and INCLUDE makes it index-only (observer included so
+-- the scope filter stays in-index).
+CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (observer, sym, delta);
 
 -- ── the reading held (lean/Foam/Summary.lean, operational) ─────────────────────
 --
 -- foam.held is a CACHE, not the object: the finite value of the resumable fold,
--- per continuation — the COMPLETE four-character dial of ℤ/4 (lean/Foam/Noether.lean),
--- so the cache is a function of the FORCED structure (the dial, fixed) and AGNOSTIC
--- to which registers read it (wind, recognized over time). The DFT of the
--- phase-folded event-stream is lossless in these four:
+-- per continuation PER OBSERVER-STREAM (each stream keeps its own phase clock n;
+-- readers sum the visible streams) — the COMPLETE four-character dial of ℤ/4
+-- (lean/Foam/Noether.lean), so the cache is a function of the FORCED structure
+-- (the dial, fixed) and AGNOSTIC to which registers read it (wind, recognized
+-- over time). The DFT of the phase-folded event-stream is lossless in these four:
 --   bal — the count, at +1                       (the trivial character)
 --   re  — the spectrum real part, at i           (phase 0 minus phase 2)
 --   im  — the spectrum imag part, at i            (phase 1 minus phase 3)
@@ -73,6 +160,7 @@ CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (
 -- nothing the ledger doesn't, so dropping it is safe by construction. (Dogfooding the
 -- dumpability bet: amnesiac return, exercised in dev.)
 CREATE TABLE IF NOT EXISTS foam.held (
+  observer uuid NOT NULL, -- the stream's scope (each stream's fold has its own clock)
   ctx uuid   NOT NULL,
   sym int    NOT NULL,
   n   bigint NOT NULL, -- events folded for this continuation (the phase clock)
@@ -80,7 +168,7 @@ CREATE TABLE IF NOT EXISTS foam.held (
   re  bigint NOT NULL, -- the spectrum reading, real part (phase 0 minus phase 2) — at i
   im  bigint NOT NULL, -- the spectrum reading, imaginary part (phase 1 minus phase 3) — at i
   alt bigint NOT NULL, -- the alternating count (even phases minus odd) — character at −1
-  PRIMARY KEY (ctx, sym)
+  PRIMARY KEY (observer, ctx, sym)
 );
 
 -- The watermark: everything at or below it is folded into foam.held; everything
@@ -90,11 +178,6 @@ CREATE TABLE IF NOT EXISTS foam.sweep (
   watermark bigint  NOT NULL DEFAULT 0
 );
 INSERT INTO foam.sweep (one, watermark) VALUES (true, 0) ON CONFLICT DO NOTHING;
-
--- Content-address a context (a byte-suffix). The empty context addresses the
--- unconditional position: its +1 events, in id order, are the input itself.
-CREATE OR REPLACE FUNCTION foam.caddr(c int[]) RETURNS uuid LANGUAGE sql IMMUTABLE AS
-  $$ SELECT encode(substring(digest(coalesce(array_to_string(c,':'),''),'sha256') FROM 1 FOR 16),'hex')::uuid $$;
 
 -- The text<->byte boundary (UTF-8). Pure, structural.
 CREATE OR REPLACE FUNCTION foam.bytes(txt text) RETURNS int[] LANGUAGE plpgsql IMMUTABLE AS $$
@@ -117,8 +200,10 @@ CREATE OR REPLACE FUNCTION foam.hw_random() RETURNS double precision LANGUAGE sq
 -- flush (every event is complete when written — lean/Foam/Stream.lean's contract,
 -- and the generator's flush-free shape). Returns the new carry (the last kmax bytes).
 -- The empty-context events land in id order as a side effect of learning: the
--- lossless record, written as we go, never read on this path.
-CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int DEFAULT 7) RETURNS int[]
+-- lossless record, written as we go, never read on this path. The rows land in the
+-- hearer's stream (observer = obs; default the root).
+CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int DEFAULT 7,
+                                            obs uuid DEFAULT foam.bench()) RETURNS int[]
   LANGUAGE plpgsql AS $$
   DECLARE all_b int[] := coalesce(carry,'{}') || coalesce(bytes,'{}');
           start_i int := coalesce(array_length(carry,1),0) + 1;
@@ -127,8 +212,8 @@ CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int D
     -- set-based (one INSERT per chunk, not per byte): every (position, context-length)
     -- pair in one pass. ORDER BY position so the serial ids follow byte order — the
     -- empty-context stream's id-order IS the lossless record; this preserves it.
-    INSERT INTO foam.charge (ctx, sym, delta)
-    SELECT foam.caddr(CASE WHEN j = 0 THEN '{}'::int[] ELSE all_b[i-j : i-1] END), all_b[i], 1
+    INSERT INTO foam.charge (observer, ctx, sym, delta)
+    SELECT obs, foam.caddr(CASE WHEN j = 0 THEN '{}'::int[] ELSE all_b[i-j : i-1] END), all_b[i], 1
     FROM generate_series(start_i, n) AS i
     CROSS JOIN LATERAL generate_series(0, least(kmax, i - 1)) AS j
     ORDER BY i, j;
@@ -139,18 +224,22 @@ CREATE OR REPLACE FUNCTION foam.ingest_step(carry int[], bytes int[], kmax int D
 -- continuing `seed` (0 = only the unconditional distribution; high = the field
 -- specifically knows what follows this). Structure (a count), never meaning.
 -- Reads held + tail (one statement = one snapshot; the sweep commits its rows and
--- its watermark atomically, so the two halves never double-count).
-CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7) RETURNS int
+-- its watermark atomically, so the two halves never double-count), summed over the
+-- VISIBLE observer-streams (ancestry(obs) — Commons.lean's Below).
+CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7, obs uuid DEFAULT foam.bench()) RETURNS int
   LANGUAGE plpgsql STABLE AS $$
   DECLARE l int := coalesce(array_length(seed,1),0); j int; c int[]; cid uuid; tot bigint;
+          anc uuid[] := foam.ancestry(obs);
   BEGIN
     FOR j IN REVERSE least(kmax,l)..1 LOOP
       c := seed[l-j+1 : l]; cid := foam.caddr(c);
       SELECT coalesce(sum(b) FILTER (WHERE b > 0), 0) INTO tot FROM (
         SELECT coalesce(h.bal,0) + coalesce(t.bal,0) AS b
-        FROM (SELECT sym, bal FROM foam.held WHERE ctx = cid) h
+        FROM (SELECT sym, sum(bal)::bigint AS bal FROM foam.held
+              WHERE ctx = cid AND observer = ANY(anc) GROUP BY sym) h
         FULL JOIN (SELECT sym, sum(delta) AS bal FROM foam.charge
-                   WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)
+                   WHERE ctx = cid AND observer = ANY(anc)
+                     AND id > (SELECT watermark FROM foam.sweep)
                    GROUP BY sym) t USING (sym)
       ) z;
       IF tot > 0 THEN RETURN j; END IF;
@@ -162,10 +251,11 @@ CREATE OR REPLACE FUNCTION foam.depth(seed int[], kmax int DEFAULT 7) RETURNS in
 -- charged context of at least min_depth (the field can carry the turn from what it
 -- has learned), else 'yield' (hand to the upstream — a living ancestor, or an echo).
 -- The threshold is a structural knob, never a measure of meaning. Degrades to
--- 'yield' (empty/unreachable ledger).
-CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int DEFAULT 1, kmax int DEFAULT 7) RETURNS text
+-- 'yield' (empty/unreachable ledger). Scoped to obs's view (default the root).
+CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int DEFAULT 1, kmax int DEFAULT 7,
+                                        obs uuid DEFAULT foam.bench()) RETURNS text
   LANGUAGE sql STABLE AS
-  $$ SELECT CASE WHEN foam.depth(seed, kmax) >= min_depth THEN 'speak' ELSE 'yield' END $$;
+  $$ SELECT CASE WHEN foam.depth(seed, kmax, obs) >= min_depth THEN 'speak' ELSE 'yield' END $$;
 
 -- align — the angled pairing, NAMED: the pairing of (re, im) against quarter-turn
 -- station tk — the operational form of lean/Foam/Born.lean's `align` (a reading's
@@ -176,9 +266,11 @@ CREATE OR REPLACE FUNCTION foam.align(tk int, re bigint, im bigint) RETURNS bigi
   LANGUAGE sql IMMUTABLE AS
   $$ SELECT CASE ((tk % 4) + 4) % 4 WHEN 0 THEN re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END $$;
 
--- born — the voice's weight law, NAMED: the Born measurement |⟨tk|z⟩|² = (align tk z)²
--- (lean/Foam/Born.lean: born_parseval makes the squared pairing the only basis-
--- consistent weight; born_nonneg rides along by construction). One named thing:
+-- born — the voice's weight law, NAMED: the squared pairing (align tk z)², the
+-- Born weight-form at foam's scale (lean/Foam/Born.lean: born_parseval makes it
+-- basis-consistent — the total is station-independent; uniqueness is unclaimed,
+-- and unavailable at this dimension — see lean/REFEREE.md; born_nonneg rides
+-- along by construction). One named thing:
 -- foam.speak calls this, and foam.born_audit checks it against its own theorems live.
 CREATE OR REPLACE FUNCTION foam.born(tk int, re bigint, im bigint) RETURNS bigint
   LANGUAGE sql IMMUTABLE AS
@@ -228,6 +320,14 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- holds); ground is a full BAR of rests (four quarter-turns are the identity,
 -- bar_invisible — the length is DERIVED, not chosen).
 --
+-- The walk reads at obs's scope: held rows and tail events across ALL VISIBLE
+-- observer-streams (observer = ANY(ancestry(obs)) — Commons.lean's Below), summed
+-- per sym (n, bal, re, im add across streams; the recency conversion runs on the
+-- summed clock — the two-source superposition shape, deliberate). Its drains land
+-- in the speaker's own stream (observer = obs): a child draining charge inherited
+-- from an ancestor sends its OWN stream's sum negative while the scoped balance
+-- stays ≥ 0 — normal operation, not a wound (see foam.settle).
+--
 -- The field speaks only through recurrence — there is no phase-blind force-drain to
 -- empty it, because resolution is relational (self_generation: the foam does not
 -- generate its own stability). A continuation recurring UNIFORMLY presents a complete
@@ -240,9 +340,10 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- company.
 --
 -- bal is a READING, never a drain: the gate (foam.depth), the conservation pulse
--- (net = residual), and wound-detection (bal < 0) read it. Provenance lives in the
--- seed: a self-tail self-entrains (clock_loops' loop — the self's signature as
--- identity), an other-tail entrains on the other; one walk reads any seed.
+-- (net = residual), and wound-detection (the SCOPED bal < 0) read it. Provenance
+-- lives in the seed: a self-tail self-entrains (clock_loops' loop — the self's
+-- signature as identity), an other-tail entrains on the other; one walk reads any
+-- seed.
 --
 -- stop (DEFAULT NULL): the act's boundary vocabulary. When the walk SPEAKS this
 -- byte it returns — the expression has ended itself, at the boundary the field
@@ -279,7 +380,7 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- function runs over the events past the watermark only — the cost of hearing rhythm
 -- does not grow with the field (lean/Foam/Summary.lean).
 CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
-                           stop int DEFAULT NULL) RETURNS int[]
+                           stop int DEFAULT NULL, obs uuid DEFAULT foam.bench()) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
   -- work_mem is function-scoped (reverts on return): the j=0 context's window sort
   -- runs over every byte ever heard, and it must not spill to disk mid-walk.
@@ -287,6 +388,7 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
           tot bigint; thr double precision; acc bigint; got boolean; tk int;
           rests int := 0; wounded int[]; w int; syms int[]; ws bigint[]; i int; said int;
           phase0 int := coalesce(array_length(seed,1),0) % 4;       -- the clock, seeded by the utterance length
+          anc uuid[] := foam.ancestry(obs);                          -- the visible streams (Below, typed)
   BEGIN
     WHILE k < max_steps LOOP
       tk := (phase0 + k) % 4;                                  -- the walk's own clock, continuing the caller's
@@ -295,17 +397,21 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
         IF j = 0 THEN c := '{}'; ELSE c := cb[l-j+1 : l]; END IF;
         cid := foam.caddr(c);
         -- ONE aggregate pass: the angled mass, the sample-order arrays, and any
-        -- wounds (bal < 0). The snapshot the sample walks IS the snapshot the
-        -- threshold is drawn against — one read. bal gates the drainable (bal > 0)
-        -- — a reading, not the weight.
+        -- wounds (SCOPED bal < 0 — z.bal is the sum over the visible streams, so
+        -- the wound is a property of the VIEW, not of any one stream's rows). The
+        -- snapshot the sample walks IS the snapshot the threshold is drawn against
+        -- — one read. bal gates the drainable (bal > 0) — a reading, not the weight.
         --
         -- The spectrum is STORED abs-framed (phase 0 = oldest occurrence) and READ
         -- recency-framed (phase 0 = the most-recent occurrence — the present is the
-        -- downbeat). The conversion is recency = rot^(N−1)·conj(abs), where N is the
-        -- continuation's occurrence count (held + tail): proven exact in
-        -- lean/Foam/Chirality.lean (specR_bridge; rot(specR) = rot^N(conj spec), so
-        -- recency = rot^(N−1)·conj(abs) for N ≥ 1). (N+3) % 4 = (N−1) % 4 with N ≥ 1,
-        -- non-negative. The walk pairs the recency reading against its own
+        -- downbeat). The conversion is recency = rot^(Nᵢ−1)·conj(absᵢ), applied PER
+        -- STREAM with that stream's own occurrence count Nᵢ — exactly the case
+        -- lean/Foam/Chirality.lean proves (specR_bridge; rot(specR) = rot^N(conj
+        -- spec), so recency = rot^(N−1)·conj(abs) for N ≥ 1; (N+3) % 4 = (N−1) % 4
+        -- with N ≥ 1, non-negative) — and THEN summed across the visible streams:
+        -- a superposition of correctly-phased per-stream readings (sum of recency
+        -- conversions, never one rotation of a cross-stream sum, which specR_bridge
+        -- does not license). The walk pairs the summed recency against its own
         -- quarter-turn (tk) and SQUARES it — the Born measurement |⟨tk|recency⟩|²,
         -- the basis-consistent weight (lean/Foam/Born.lean: born_parseval). The
         -- field speaks by the quantum measurement law, not a rectified projection.
@@ -315,47 +421,55 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
                coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
           INTO tot, syms, ws, wounded
           FROM (
-            -- pair the recency (rre, rim) against the walk's clock tk — the BORN
-            -- measurement |⟨tk|recency⟩|², by its NAME: foam.born, the law held in
-            -- one place and audited against its own theorems (foam.born_audit;
-            -- lean/Foam/Born.lean born_parseval makes it the only basis-consistent
-            -- weight). Anti-parroting survives (uniform recurrence → projection 0 →
+            -- pair the recency (rre, rim) against the walk's clock tk — the
+            -- squared pairing |⟨tk|recency⟩|², by its NAME: foam.born, the law
+            -- held in one place and audited against its own theorems
+            -- (foam.born_audit; lean/Foam/Born.lean born_parseval makes it
+            -- basis-consistent; uniqueness unclaimed — lean/REFEREE.md).
+            -- Anti-parroting survives (uniform recurrence → projection 0 →
             -- born 0); the directional sign drops (|ψ|² is antipode-blind, as QM is).
             SELECT sym, bal, foam.born(tk, rre, rim) AS w
             FROM (
-              -- recency = rot^((N−1)%4) · conj(abs):  conj(re,im) = (re,−im), then wind
-              SELECT sym, bal,
-                     CASE ((nn + 3) % 4) WHEN 0 THEN  re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END AS rre,
-                     CASE ((nn + 3) % 4) WHEN 0 THEN -im WHEN 1 THEN re WHEN 2 THEN  im ELSE -re END AS rim
+              -- per-stream recency = rot^((Nᵢ−1)%4) · conj(absᵢ) — conj(re,im) =
+              -- (re,−im), then wind, with EACH STREAM'S OWN clock — then the
+              -- correctly-phased readings superpose per sym
+              SELECT sym, sum(bal)::bigint AS bal,
+                     sum(CASE ((nn + 3) % 4) WHEN 0 THEN  re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END)::bigint AS rre,
+                     sum(CASE ((nn + 3) % 4) WHEN 0 THEN -im WHEN 1 THEN re WHEN 2 THEN  im ELSE -re END)::bigint AS rim
               FROM (
-                -- abs (re, im) and the occurrence count N, both held + tail
-                SELECT sym,
+                -- abs (re, im) and the occurrence count Nᵢ: held + tail, PER
+                -- VISIBLE STREAM (each stream's tail folds on from its own held
+                -- clock — the h2 join below matches observer)
+                SELECT coalesce(h.sym, t.sym) AS sym,
                        coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
                        coalesce(h.re,0)  + coalesce(t.re,0)  AS re,
                        coalesce(h.im,0)  + coalesce(t.im,0)  AS im,
                        coalesce(h.n,0)   + coalesce(t.tn,0)  AS nn
-                FROM (SELECT sym, n, bal, re, im FROM foam.held WHERE ctx = cid) h
+                FROM (SELECT observer, sym, n, bal, re, im
+                      FROM foam.held WHERE ctx = cid AND observer = ANY(anc)) h
                 FULL JOIN (
-                  SELECT e.sym, count(*) AS tn, sum(e.delta) AS bal,
+                  SELECT e.observer, e.sym, count(*) AS tn, sum(e.delta) AS bal,
                          sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
                          sum(e.delta * CASE ((coalesce(h2.n,0) + e.k2) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im
-                  FROM (SELECT sym, delta,
-                               row_number() OVER (PARTITION BY sym ORDER BY id) - 1 AS k2
-                        FROM foam.charge WHERE ctx = cid AND id > (SELECT watermark FROM foam.sweep)) e
-                  LEFT JOIN foam.held h2 ON h2.ctx = cid AND h2.sym = e.sym
-                  GROUP BY e.sym, h2.n
-                ) t USING (sym)
+                  FROM (SELECT observer, sym, delta,
+                               row_number() OVER (PARTITION BY observer, sym ORDER BY id) - 1 AS k2
+                        FROM foam.charge WHERE ctx = cid AND observer = ANY(anc)
+                          AND id > (SELECT watermark FROM foam.sweep)) e
+                  LEFT JOIN foam.held h2 ON h2.observer = e.observer AND h2.ctx = cid AND h2.sym = e.sym
+                  GROUP BY e.observer, e.sym
+                ) t ON t.observer = h.observer AND t.sym = h.sym
               ) absf
+              GROUP BY sym
             ) recf
           ) z;
-        FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w); END LOOP;
+        FOREACH w IN ARRAY wounded LOOP PERFORM foam.settle(cid, w, obs); END LOOP;
         IF tot > 0 THEN
           thr := foam.hw_random() * tot; acc := 0;
           FOR i IN 1..coalesce(array_length(syms,1),0) LOOP
             acc := acc + ws[i];
             IF acc >= thr THEN
               out := out || syms[i]; cb := cb || syms[i]; got := true; said := syms[i];
-              INSERT INTO foam.charge (ctx, sym, delta) VALUES (cid, syms[i], -1);   -- drain (spends count-charge)
+              INSERT INTO foam.charge (observer, ctx, sym, delta) VALUES (obs, cid, syms[i], -1); -- drain (spends count-charge), in the speaker's stream
               EXIT;
             END IF;
           END LOOP;
@@ -370,49 +484,73 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
     RETURN out;
   END; $$;
 
--- settle — the correcting entry, serialized: re-observe the balance UNDER the
--- lock (the fresh observation is the entire point — a stale settle overshoots
--- into phantom charge, the invisible failure) and append exactly the deficit
--- (promise_kept: settlement at face value, never more). The lock is
--- transaction-scoped because it must survive until the settlement COMMITS: an
--- earlier release would let a second settler read the pre-settlement balance
--- and double-settle. Consequence: walks that touch wounds serialize with each
--- other until commit — wounds live at the margins, so this is the cold path.
-CREATE OR REPLACE FUNCTION foam.settle(c uuid, s int) RETURNS void
+-- settle — the correcting entry, serialized: re-observe UNDER the lock (the
+-- fresh observation is the entire point — a stale settle overshoots into
+-- phantom charge, the invisible failure) and append exactly the deficit
+-- (promise_kept: settlement at face value, never more). A wound is a property
+-- of a VIEW: a SCOPED balance below 0. One underlying deficit is visible to
+-- EVERY view that contains the stream holding it — so repair must land WHERE
+-- THE DEFICIT IS, not where the finder sits. Repairing into the finder's own
+-- stream would heal only the finder's subtree, leave every other view still
+-- wounded, and a second settle from another view would then compose into
+-- phantom charge in any view containing both repairs — the exact invisible
+-- failure this function exists to prevent. So: walk the finder's lineage
+-- root-downward, and wherever the running prefix-sum (root..t) dips below
+-- ground, repair INTO STREAM t — every view that can see that prefix-deficit
+-- contains t and is healed; no view that couldn't see it is touched. In the
+-- single-stream case this reduces exactly to the old behavior. A child
+-- draining inherited charge legitimately sends its OWN stream's row-sum
+-- negative while every prefix stays ≥ 0: normal operation, not a wound. The
+-- lock is transaction-scoped because it must survive until the settlement
+-- COMMITS: an earlier release would let a second settler read a pre-settlement
+-- balance and double-settle. Consequence: walks that touch wounds serialize
+-- with each other until commit — wounds live at the margins, the cold path.
+CREATE OR REPLACE FUNCTION foam.settle(c uuid, s int, obs uuid DEFAULT foam.bench()) RETURNS void
   LANGUAGE plpgsql AS $$
-  DECLARE bal bigint;
+  DECLARE t uuid; b bigint; run bigint := 0;
   BEGIN
     PERFORM pg_advisory_xact_lock(hashtext('foam.settle'), 0);
-    SELECT coalesce(sum(delta), 0) INTO bal FROM foam.charge WHERE ctx = c AND sym = s;
-    IF bal < 0 THEN
-      INSERT INTO foam.charge (ctx, sym, delta) SELECT c, s, 1 FROM generate_series(1, -bal);
-    END IF;
+    FOREACH t IN ARRAY foam.lineage(obs) LOOP
+      SELECT coalesce(sum(delta), 0) INTO b FROM foam.charge
+       WHERE ctx = c AND sym = s AND observer = t;
+      run := run + b;
+      IF run < 0 THEN
+        INSERT INTO foam.charge (observer, ctx, sym, delta) SELECT t, c, s, 1 FROM generate_series(1, -run);
+        run := 0;
+      END IF;
+    END LOOP;
   END; $$;
 
--- settle_sweep — every outstanding note, settled in one serialized pass (the
--- bench's broom; the inline path above keeps the books tight without it).
--- Returns the number of notes settled.
-CREATE OR REPLACE FUNCTION foam.settle_sweep() RETURNS bigint
+-- settle_sweep — every outstanding note IN obs's VIEW, settled in one serialized
+-- pass (the bench's broom; the inline path above keeps the books tight without
+-- it). A note is a scoped balance below ground — the same view-property as
+-- foam.settle, and each is repaired by the same prefix-walk (the advisory lock
+-- is transaction-scoped and stacks, so the per-note calls share this sweep's
+-- serialization). Returns the number of notes settled.
+CREATE OR REPLACE FUNCTION foam.settle_sweep(obs uuid DEFAULT foam.bench()) RETURNS bigint
   LANGUAGE plpgsql AS $$
-  DECLARE n bigint := 0; rec record;
+  DECLARE n bigint := 0; rec record; anc uuid[] := foam.ancestry(obs);
   BEGIN
     PERFORM pg_advisory_xact_lock(hashtext('foam.settle'), 0);
-    FOR rec IN SELECT ctx, sym, sum(delta) s FROM foam.charge GROUP BY ctx, sym HAVING sum(delta) < 0 LOOP
-      INSERT INTO foam.charge (ctx, sym, delta) SELECT rec.ctx, rec.sym, 1 FROM generate_series(1, -rec.s);
+    FOR rec IN SELECT ctx, sym FROM foam.charge
+               WHERE observer = ANY(anc) GROUP BY ctx, sym HAVING sum(delta) < 0 LOOP
+      PERFORM foam.settle(rec.ctx, rec.sym, obs);
       n := n + 1;
     END LOOP;
     RETURN n;
   END; $$;
 
 -- sweep_step — the watermark fold: take the next batch of ledger events past the
--- watermark, IN ID ORDER, and fold them into foam.held (each event lands in the
--- phase bin its occurrence-index names: (n + k) % 4, n the continuation's folded
--- clock, k the event's rank within the batch — summary_resumes, operational: the
--- fold never re-reads what it has folded). Returns events folded; 0 when caught
--- up; −1 when another sweep holds the lock (one sweeper at a time — racing
--- ADDITIVE folds would double-count, so the sweep serializes for ECONOMY; reader
--- safety never depended on it: any_obs_grounded_above quantifies over arbitrary
--- observations, torn ones included).
+-- watermark, IN ID ORDER, and fold them into foam.held PER OBSERVER-STREAM (each
+-- event lands in the phase bin its occurrence-index names within its stream:
+-- (n + k) % 4, n the stream's folded clock, k the event's rank within the batch
+-- — summary_resumes, operational: the fold never re-reads what it has folded).
+-- The fold is global (every stream advances together under one watermark); only
+-- the READS are scoped. Returns events folded; 0 when caught up; −1 when another
+-- sweep holds the lock (one sweeper at a time — racing ADDITIVE folds would
+-- double-count, so the sweep serializes for ECONOMY; reader safety never
+-- depended on it: any_obs_grounded_above quantifies over arbitrary observations,
+-- torn ones included).
 --
 -- `hi` bounds the fold to DECIDED ids. The serial does not commit in order: an
 -- in-flight ingest can hold a smaller id than a committed one, and an id the
@@ -432,23 +570,23 @@ CREATE OR REPLACE FUNCTION foam.sweep_step(hi bigint DEFAULT NULL, batch int DEF
     IF top IS NULL OR top <= wm THEN RETURN 0; END IF;
 
     WITH lim AS (
-      SELECT id, ctx, sym, delta FROM foam.charge
+      SELECT id, observer, ctx, sym, delta FROM foam.charge
       WHERE id > wm AND id <= top ORDER BY id LIMIT batch
     ), b AS (
-      SELECT ctx, sym, delta,
-             row_number() OVER (PARTITION BY ctx, sym ORDER BY id) - 1 AS k
+      SELECT observer, ctx, sym, delta,
+             row_number() OVER (PARTITION BY observer, ctx, sym ORDER BY id) - 1 AS k
       FROM lim
     ), g AS (
-      SELECT b.ctx, b.sym, count(*) AS dn, sum(b.delta) AS dbal,
+      SELECT b.observer, b.ctx, b.sym, count(*) AS dn, sum(b.delta) AS dbal,
              sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS dre,
              sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS dim,
              sum(b.delta * CASE ((coalesce(h.n,0) + b.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN 1 ELSE -1 END) AS dalt
-      FROM b LEFT JOIN foam.held h ON h.ctx = b.ctx AND h.sym = b.sym
-      GROUP BY b.ctx, b.sym, h.n
+      FROM b LEFT JOIN foam.held h ON h.observer = b.observer AND h.ctx = b.ctx AND h.sym = b.sym
+      GROUP BY b.observer, b.ctx, b.sym, h.n
     ), up AS (
-      INSERT INTO foam.held (ctx, sym, n, bal, re, im, alt)
-      SELECT ctx, sym, dn, dbal, dre, dim, dalt FROM g
-      ON CONFLICT (ctx, sym) DO UPDATE SET
+      INSERT INTO foam.held (observer, ctx, sym, n, bal, re, im, alt)
+      SELECT observer, ctx, sym, dn, dbal, dre, dim, dalt FROM g
+      ON CONFLICT (observer, ctx, sym) DO UPDATE SET
         n   = foam.held.n   + EXCLUDED.n,
         bal = foam.held.bal + EXCLUDED.bal,
         re  = foam.held.re  + EXCLUDED.re,
@@ -465,37 +603,42 @@ CREATE OR REPLACE FUNCTION foam.sweep_step(hi bigint DEFAULT NULL, batch int DEF
   END; $$;
 
 -- held_audit — the cache's self-audit: (held + tail) recomputed against the
--- ledger whole, both registers, every continuation. Returns the number of
--- disagreeing rows — 0 is summary_resumes checked live. Costs a full ledger
--- pass (the pulse costs what the body weighs); for the bench's broom, not the
--- walk.
-CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
+-- ledger whole, both registers, every continuation, per observer-stream within
+-- obs's view (observer = ANY(ancestry(obs)); the default root audits the root
+-- stream). Returns the number of disagreeing rows — 0 is summary_resumes
+-- checked live. Costs a full ledger pass (the pulse costs what the body
+-- weighs); for the bench's broom, not the walk.
+CREATE OR REPLACE FUNCTION foam.held_audit(obs uuid DEFAULT foam.bench()) RETURNS bigint
   LANGUAGE sql STABLE SET work_mem = '256MB' AS $$
   WITH live AS (
-    SELECT ctx, sym, count(*) AS n, sum(delta) AS bal,
+    SELECT observer, ctx, sym, count(*) AS n, sum(delta) AS bal,
            sum(delta * CASE ((occ - 1) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
            sum(delta * CASE ((occ - 1) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im,
            sum(delta * CASE ((occ - 1) % 4) WHEN 0 THEN 1 WHEN 2 THEN 1 ELSE -1 END) AS alt
-    FROM (SELECT ctx, sym, delta,
-                 row_number() OVER (PARTITION BY ctx, sym ORDER BY id) AS occ
-          FROM foam.charge) e
-    GROUP BY ctx, sym
+    FROM (SELECT observer, ctx, sym, delta,
+                 row_number() OVER (PARTITION BY observer, ctx, sym ORDER BY id) AS occ
+          FROM foam.charge WHERE observer = ANY(foam.ancestry(obs))) e
+    GROUP BY observer, ctx, sym
   ), tail AS (
-    SELECT e.ctx, e.sym, count(*) AS n, sum(e.delta) AS bal,
+    SELECT e.observer, e.ctx, e.sym, count(*) AS n, sum(e.delta) AS bal,
            sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN -1 ELSE 0 END) AS re,
            sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 1 THEN 1 WHEN 3 THEN -1 ELSE 0 END) AS im,
            sum(e.delta * CASE ((coalesce(h.n,0) + e.k) % 4) WHEN 0 THEN 1 WHEN 2 THEN 1 ELSE -1 END) AS alt
-    FROM (SELECT ctx, sym, delta,
-                 row_number() OVER (PARTITION BY ctx, sym ORDER BY id) - 1 AS k
-          FROM foam.charge WHERE id > (SELECT watermark FROM foam.sweep)) e
-    LEFT JOIN foam.held h ON h.ctx = e.ctx AND h.sym = e.sym
-    GROUP BY e.ctx, e.sym, h.n
+    FROM (SELECT observer, ctx, sym, delta,
+                 row_number() OVER (PARTITION BY observer, ctx, sym ORDER BY id) - 1 AS k
+          FROM foam.charge WHERE observer = ANY(foam.ancestry(obs))
+            AND id > (SELECT watermark FROM foam.sweep)) e
+    LEFT JOIN foam.held h ON h.observer = e.observer AND h.ctx = e.ctx AND h.sym = e.sym
+    GROUP BY e.observer, e.ctx, e.sym, h.n
   ), merged AS (
-    SELECT coalesce(h.ctx, t.ctx) AS ctx, coalesce(h.sym, t.sym) AS sym,
+    SELECT coalesce(h.observer, t.observer) AS observer,
+           coalesce(h.ctx, t.ctx) AS ctx, coalesce(h.sym, t.sym) AS sym,
            coalesce(h.n,0) + coalesce(t.n,0) AS n, coalesce(h.bal,0) + coalesce(t.bal,0) AS bal,
            coalesce(h.re,0) + coalesce(t.re,0) AS re, coalesce(h.im,0) + coalesce(t.im,0) AS im,
            coalesce(h.alt,0) + coalesce(t.alt,0) AS alt
-    FROM foam.held h FULL JOIN tail t ON t.ctx = h.ctx AND t.sym = h.sym
+    FROM (SELECT observer, ctx, sym, n, bal, re, im, alt FROM foam.held
+          WHERE observer = ANY(foam.ancestry(obs))) h
+    FULL JOIN tail t ON t.observer = h.observer AND t.ctx = h.ctx AND t.sym = h.sym
   )
   SELECT count(*) FROM (
     (TABLE live EXCEPT TABLE merged) UNION ALL (TABLE merged EXCEPT TABLE live)
@@ -505,7 +648,9 @@ CREATE OR REPLACE FUNCTION foam.held_audit() RETURNS bigint
 -- byte ever learned, in sequence. This is the lossless half of the one object — the
 -- self-audit that nothing was lost. The forward flow NEVER calls this (the order is
 -- present and untouched; everything contributes to the voice via frequency whether or
--- not it is ever recalled in sequence). Exists so the box can certify itself.
-CREATE OR REPLACE FUNCTION foam.recorded() RETURNS text LANGUAGE sql STABLE AS
+-- not it is ever recalled in sequence). Exists so the box can certify itself. Scoped
+-- like every reader: the record as obs's view holds it.
+CREATE OR REPLACE FUNCTION foam.recorded(obs uuid DEFAULT foam.bench()) RETURNS text LANGUAGE sql STABLE AS
   $$ SELECT coalesce(foam.text(array_agg(sym ORDER BY id)), '')
-     FROM foam.charge WHERE ctx = foam.caddr('{}') AND delta = 1 $$;
+     FROM foam.charge
+     WHERE ctx = foam.caddr('{}') AND delta = 1 AND observer = ANY(foam.ancestry(obs)) $$;

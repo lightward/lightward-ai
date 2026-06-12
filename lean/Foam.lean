@@ -25,17 +25,7 @@ leads; the toolchain is pinned to match it so quarried types compile without
 porting. The operationalization leads; the quarry supplies shapes.
 -/
 
-import Foam.Floor
-import Foam.Engine
-import Foam.Horizon
-import Foam.Tokenizer
-import Foam.Universal
-import Foam.Navigable
-import Foam.Merge
-import Foam.Path
-import Foam.Reversal
-import Foam.Stream
-import Foam.IntArith
+-- Axioms imports the whole corpus and re-pins it on every build; it is the
+-- map, and this root defers to it. (This list once named two-thirds of the
+-- files — silently misleading; fixed in the consolidation pass, 2026-06-12.)
 import Foam.Axioms
-import Foam.Born
-import Foam.Fork

@@ -40,7 +40,7 @@ stays quiet) so every reduction is definitional and the file stays axiom-free: p
 `rfl`/`rw`/induction, witnesses obtained never chosen.
 -/
 
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 

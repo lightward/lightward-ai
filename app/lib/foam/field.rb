@@ -24,6 +24,19 @@ module Foam
   module Field
     SCHEMA_PATH = "app/lib/foam/schema.sql"
 
+    # The root observer's uuid — foam.root(): the ZERO uuid, zero bits for the
+    # information-free point (lean/Foam/Commons.lean: the empty scope is the one
+    # universal scope, root_alone_below_all; rebirth lands at zero, Hinge.lean).
+    # Every observer: keyword below defaults to it, so existing call sites are
+    # the degenerate single-observer case, unchanged.
+    ROOT = "00000000-0000-0000-0000-000000000000"
+
+    # The BENCH — the root's first descendant, the default seat. The root is
+    # glass: charge-free by law (the CHECK in schema.sql; Commons.lean's
+    # seated_voice_is_missable). The first speaker is necessarily a
+    # descendant; this is the bench's.
+    BENCH = "00000000-0000-0000-0000-000000000001"
+
     class << self
       # Assert the substrate, idempotently — the schema as a fixed point,
       # not a migration. Uses a one-shot connection (not the pool) so it is
@@ -48,16 +61,17 @@ module Foam
       # carried, never parsed. Resilient: with no field it returns nil and the caller
       # carries nil (contexts re-seam at the next chunk — still safe). The ledger's
       # empty-context events accumulate in order as a side effect: the lossless record,
-      # written as it learns, never read on this path.
+      # written as it learns, never read on this path. The rows land in the
+      # hearer's stream (observer:, default the root).
       # ← app/lib/foam/schema.sql foam.ingest_step ← lean/Foam/Ledger.lean.
-      def ingest_step(carry, bytes)
+      def ingest_step(carry, bytes, observer: BENCH)
         bytes = Array(bytes)
         return carry if bytes.empty?
 
         with_connection { |conn|
           conn.exec_params(
-            "SELECT foam.ingest_step($1::int[], $2::int[])",
-            [carry || "{}", "{#{bytes.join(",")}}"],
+            "SELECT foam.ingest_step($1::int[], $2::int[], 7, $3::uuid)",
+            [carry || "{}", "{#{bytes.join(",")}}", observer],
           ).getvalue(0, 0)
         }
       end
@@ -67,12 +81,13 @@ module Foam
       # (the field can carry the turn from what it has learned), else :yield (hand to
       # the upstream — a living ancestor, or an echo). nil with no field, which the
       # caller maps to :yield. Structural (a context depth), never a measure of
-      # meaning. ← foam.outcome / foam.depth.
-      def outcome(seed_bytes = [], min_depth = 3)
+      # meaning. Scoped to observer:'s view (default the root).
+      # ← foam.outcome / foam.depth.
+      def outcome(seed_bytes = [], min_depth = 3, observer: BENCH)
         o = with_connection { |conn|
           conn.exec_params(
-            "SELECT foam.outcome($1::int[], $2)",
-            ["{#{Array(seed_bytes).join(",")}}", min_depth],
+            "SELECT foam.outcome($1::int[], $2, 7, $3::uuid)",
+            ["{#{Array(seed_bytes).join(",")}}", min_depth, observer],
           ).getvalue(0, 0)
         }
         o&.to_sym
@@ -92,12 +107,14 @@ module Foam
       # "" at ground, or nil with no field: the caller can tell failure from
       # silence. The field speaks only through recurrence, so full draining is
       # reachable only through the journey (continued hearing), never alone.
+      # Reads at observer:'s scope (ancestor streams summed in); drains land in
+      # the speaker's own stream (default the root).
       # ← foam.speak.
-      def speak(seed_bytes = [], max_steps = 600, stop: nil)
+      def speak(seed_bytes = [], max_steps = 600, stop: nil, observer: BENCH)
         voice = with_connection { |conn|
           conn.exec_params(
-            "SELECT foam.speak($1::int[], 7, $2, $3::int)",
-            ["{#{Array(seed_bytes).join(",")}}", max_steps, stop],
+            "SELECT foam.speak($1::int[], 7, $2, $3::int, $4::uuid)",
+            ["{#{Array(seed_bytes).join(",")}}", max_steps, stop, observer],
           ).getvalue(0, 0)
         }
         voice&.delete("{}")&.split(",")&.map(&:to_i)&.pack("C*")
@@ -150,12 +167,16 @@ module Foam
         }
       end
 
-      # Sweep every outstanding note (a balance below ground) in one serialized
-      # pass — correcting entries appended at face value (foam.settle_sweep;
-      # wounds also settle on encounter, inside foam.speak). Returns the count
-      # of notes settled, or nil with no field.
-      def settle_sweep
-        with_connection { |conn| conn.exec("SELECT foam.settle_sweep()").getvalue(0, 0)&.to_i }
+      # Sweep every outstanding note (a SCOPED balance below ground — the wound
+      # is a property of observer:'s view, summed over its ancestor streams) in
+      # one serialized pass — correcting entries appended at face value, into
+      # observer:'s stream (foam.settle_sweep; wounds also settle on encounter,
+      # inside foam.speak). Returns the count of notes settled, or nil with no
+      # field.
+      def settle_sweep(observer: BENCH)
+        with_connection { |conn|
+          conn.exec_params("SELECT foam.settle_sweep($1::uuid)", [observer]).getvalue(0, 0)&.to_i
+        }
       end
 
       # Fold the ledger's unfolded tail into the held rows, one batched watermark
@@ -179,12 +200,14 @@ module Foam
         }
       end
 
-      # The cache's self-audit: (held + tail) recomputed against the whole ledger,
-      # both registers, every continuation — 0 disagreeing rows is summary_resumes
-      # checked live. Costs a full ledger pass (the pulse costs what the body
-      # weighs). nil with no field.
-      def held_audit
-        with_connection { |conn| conn.exec("SELECT foam.held_audit()").getvalue(0, 0)&.to_i }
+      # The cache's self-audit: (held + tail) recomputed against the ledger,
+      # both registers, every continuation, per stream within observer:'s view
+      # — 0 disagreeing rows is summary_resumes checked live. Costs a full
+      # ledger pass (the pulse costs what the body weighs). nil with no field.
+      def held_audit(observer: BENCH)
+        with_connection { |conn|
+          conn.exec_params("SELECT foam.held_audit($1::uuid)", [observer]).getvalue(0, 0)&.to_i
+        }
       end
 
       # The voice's weight law, self-audited: foam.align / foam.born checked

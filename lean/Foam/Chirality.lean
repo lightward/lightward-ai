@@ -26,13 +26,13 @@ chirality between the two conventions, accounted for — so it can never read as
 latent off-by-a-winding bug.
 
 All construction: `cases`/`rfl`/induction/`rw` against the axiom-free `Int`/`Nat`
-lemmas in `IntArith.lean` (core's equivalents carry `propext`). Axiom-free,
+lemmas in `IntFloor.lean` (core's equivalents carry `propext`). Axiom-free,
 pinned in `Foam/Axioms.lean`.
 -/
 
 import Foam.Spectrum
 import Foam.Noether
-import Foam.IntArith
+import Foam.IntFloor
 
 namespace Foam
 
@@ -47,6 +47,14 @@ def rotPow : Nat → GInt → GInt
 def specR [DecidableEq S] : List S → S → GInt
   | [],     _ => GInt.zero
   | x :: l, s => (rotPow l.length (if x = s then GInt.one else GInt.zero)).add (specR l s)
+
+/-- `rotPow` is `iterStep` at the quarter-turn — the specialization named
+    (Noether's general station-iteration was in hand when the winding was
+    defined; the kinship is now a handle rather than a re-derivation). -/
+theorem rotPow_eq_iterStep : ∀ (n : Nat) (z : GInt),
+    rotPow n z = iterStep n GInt.rot z
+  | 0, _ => rfl
+  | n + 1, z => congrArg GInt.rot (rotPow_eq_iterStep n z)
 
 /-- The quarter-turn distributes over addition — `rot` is `Int`-linear in each
     component (`int_neg_add` on the imaginary part). -/
