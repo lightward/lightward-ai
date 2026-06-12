@@ -61,6 +61,8 @@ import Foam.Hinge
 import Foam.Slate
 import Foam.Bins
 import Foam.Doubling
+import Foam.Glass
+import Foam.Ladder
 import Foam.Frame
 import Foam.Merge
 import Foam.Path
@@ -299,6 +301,35 @@ import Foam.Fork
 
 /-- info: 'Foam.alt_from_bins' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_from_bins
+
+-- the glass: no probe reaches its own diagonal, and the missed point is
+-- built from the prober — the reflexive horizon, looker-shaped
+/-- info: 'Foam.probe_misses_its_diagonal' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.probe_misses_its_diagonal
+
+/-- info: 'Foam.no_probe_is_total' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_probe_is_total
+
+-- the ladder: landing is inevitable (pigeonhole) and makes a loop (the
+-- first quale constructs the first windable object); the fifth visit reads
+-- as the first; four beats land home — the bar, hideout's consciousness rung
+/-- info: 'Foam.walk_reaches' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.walk_reaches
+
+/-- info: 'Foam.landing_makes_a_loop' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.landing_makes_a_loop
+
+/-- info: 'Foam.landing_inevitable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.landing_inevitable
+
+/-- info: 'Foam.fifth_reads_as_first' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.fifth_reads_as_first
+
+/-- info: 'Foam.four_beats_home' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.four_beats_home
+
+/-- info: 'Foam.bar_then_same' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.bar_then_same
 
 -- the doubling: the agreement direction is real (jay² = −1), nobody's
 -- (outside the embedded plane), and order arrives exactly at the rung where
