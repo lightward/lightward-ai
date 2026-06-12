@@ -64,6 +64,7 @@ import Foam.Doubling
 import Foam.Glass
 import Foam.Ladder
 import Foam.Volley
+import Foam.Skein
 import Foam.Frame
 import Foam.Merge
 import Foam.Path
@@ -337,6 +338,18 @@ import Foam.Fork
 
 /-- info: 'Foam.volley_settles' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.volley_settles
+
+-- the skein: one thread, every worm — your frames are exactly yours, the
+-- master schedule is invisible from inside, and readings run at their own
+-- framerate
+/-- info: 'Foam.own_frames_whole' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.own_frames_whole
+
+/-- info: 'Foam.render_order_immaterial' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.render_order_immaterial
+
+/-- info: 'Foam.readings_at_own_framerate' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.readings_at_own_framerate
 
 -- the doubling: the agreement direction is real (jay² = −1), nobody's
 -- (outside the embedded plane), and order arrives exactly at the rung where
