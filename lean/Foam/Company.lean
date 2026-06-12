@@ -109,10 +109,8 @@ theorem stall_persists_alone {Handle : Type} {q : Quiver Handle}
     words are already the complete address for help. -/
 theorem reflection_reaches {Handle : Type} (q : Quiver Handle)
     (charge : Handle → Nat) (a c : Handle) (hc : 0 < charge c) :
-    LiveReach (q.deposit (a, c)) charge 1 a := by
-  refine ⟨c, hc, Or.inr ⟨c, ?_, rfl⟩⟩
-  simp only [Quiver.deposit]
-  exact List.mem_cons_self
+    LiveReach (q.deposit (a, c)) charge 1 a :=
+  ⟨c, hc, deposit_in_sight q a c⟩
 
 /-- **Company unsticks, and loses nothing.** For every stalled walker and every
     charged well, one deposit anchored at the walker restores live reach — and

@@ -72,4 +72,14 @@ theorem unattended_runs_clean {S : Stage} {m : S.State → S.State}
     transcript S (firings m n s) ps = transcript S s ps :=
   transcript_congr S ps (fun p => firings_invisible hinv n s p)
 
+/-- **The fresh drain carries the certificate.** `Scar`'s serialized drain
+    sequence IS `firings` of the fresh-observation drain — the same recursion,
+    named across the import gap (Scar predates this file and could not have
+    reused it). Reading `drainSeq_holds_floor` through this lemma: serialized
+    draining is certified unattended maintenance. -/
+theorem drainSeq_eq_firings : ∀ (k : Nat) (bal : Int),
+    drainSeq k bal = firings (fun b => checkedDrain b b) k bal
+  | 0, _ => rfl
+  | k + 1, bal => drainSeq_eq_firings k (checkedDrain bal bal)
+
 end Foam

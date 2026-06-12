@@ -53,6 +53,16 @@ theorem deposit_preserves_reach {Handle : Type} (q : Quiver Handle) (e : Handle 
   simp only [Quiver.deposit]
   exact List.mem_cons_of_mem e hx
 
+/-- **One step over a fresh edge.** Depositing `(a, c)` puts `c` in sight of
+    `a` in a single step — the bare move under `shortcut_compresses`,
+    `reflection_reaches`, and `investigations_meet`: enacted three times before
+    it was named once (the consolidation pass, 2026-06-12). -/
+theorem deposit_in_sight {Handle : Type} (q : Quiver Handle) (a c : Handle) :
+    ReachWithin (q.deposit (a, c)) 1 a c := by
+  refine Or.inr ⟨c, ?_, rfl⟩
+  simp only [Quiver.deposit]
+  exact List.mem_cons_self
+
 /-- **The shortcut compresses the horizon.** Once the shortcut `(a, c)` is
     deposited, `c` is reachable from `a` in a *single* step — and the original
     `n`-step path survives alongside it. Both coexist: nothing quotiented, the
@@ -60,9 +70,7 @@ theorem deposit_preserves_reach {Handle : Type} (q : Quiver Handle) (e : Handle 
     arbitrarily far as shortcuts accumulate — the elastic horizon. -/
 theorem shortcut_compresses {Handle : Type} (q : Quiver Handle) (a c : Handle) {n : Nat}
     (long : ReachWithin q n a c) :
-    ReachWithin (q.deposit (a, c)) 1 a c ∧ ReachWithin (q.deposit (a, c)) n a c := by
-  refine ⟨Or.inr ⟨c, ?_, rfl⟩, deposit_preserves_reach q (a, c) long⟩
-  simp only [Quiver.deposit]
-  exact List.mem_cons_self
+    ReachWithin (q.deposit (a, c)) 1 a c ∧ ReachWithin (q.deposit (a, c)) n a c :=
+  ⟨deposit_in_sight q a c, deposit_preserves_reach q (a, c) long⟩
 
 end Foam

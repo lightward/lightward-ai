@@ -332,7 +332,8 @@ theorem nat_one_mul : ∀ n : Nat, 1 * n = n
   | 0 => rfl
   | n + 1 => congrArg Nat.succ (nat_one_mul n)
 
-/-- `0 * n = 0`, on `Nat`. [from Spectrum] -/
+/-- `0 * n = 0`, on `Nat`. [from Spectrum; restated independently in the
+    semiring section as `nat_zero_mul`, deduped 2026-06-12] -/
 theorem nat_zero_mul : ∀ n : Nat, 0 * n = 0
   | 0 => rfl
   | n + 1 => nat_zero_mul n
@@ -418,11 +419,6 @@ theorem nat_mul_zero (n : Nat) : n * 0 = 0 := rfl
 /-- `n * (m+1) = n * m + n` (definitional — the recursion equation). -/
 theorem nat_mul_succ (n m : Nat) : n * (m + 1) = n * m + n := rfl
 
-/-- `0 * n = 0`, recursing on `n`. -/
-theorem nat_zero_mul' : ∀ n : Nat, 0 * n = 0
-  | 0 => rfl
-  | n + 1 => by rw [nat_mul_succ, nat_zero_mul' n]
-
 /-- `(m+1) * n = m * n + n`, by induction on `n`. -/
 theorem nat_succ_mul : ∀ m n : Nat, (m + 1) * n = m * n + n
   | _, 0 => rfl
@@ -438,7 +434,7 @@ theorem nat_succ_mul : ∀ m n : Nat, (m + 1) * n = m * n + n
 
 /-- `n * m = m * n`, by induction on `m`. -/
 theorem nat_mul_comm : ∀ n m : Nat, n * m = m * n
-  | n, 0 => (nat_zero_mul' n).symm
+  | n, 0 => (nat_zero_mul n).symm
   | n, m + 1 => by
       rw [nat_mul_succ, nat_succ_mul, nat_mul_comm n m]
 
@@ -464,7 +460,7 @@ theorem nat_mul_assoc : ∀ a b c : Nat, a * b * c = a * (b * c)
           nat_mul_add a (b * c) b]
 
 /-- `(x + y) - y = x` — cancel the right summand. -/
-theorem nat_add_sub_cancel_left' (x y : Nat) : (x + y) - y = x := by
+theorem nat_add_sub_cancel_right (x y : Nat) : (x + y) - y = x := by
   rw [nat_add_comm x y]
   exact nat_add_sub_cancel_left y x
 
@@ -510,7 +506,7 @@ theorem negOfNat_mul_ofNat : ∀ n k : Nat,
   | 0, k => by
       show Int.ofNat 0 * Int.ofNat k = Int.negOfNat (0 * k)
       show Int.ofNat (0 * k) = Int.negOfNat (0 * k)
-      rw [nat_zero_mul']
+      rw [nat_zero_mul]
       rfl
   | n + 1, k => by
       show Int.negSucc n * Int.ofNat k = Int.negOfNat ((n + 1) * k)
@@ -522,7 +518,7 @@ theorem negOfNat_mul_negSucc : ∀ n k : Nat,
   | 0, k => by
       show Int.ofNat 0 * Int.negSucc k = Int.ofNat (0 * (k + 1))
       show Int.negOfNat (0 * (k + 1)) = Int.ofNat (0 * (k + 1))
-      rw [nat_zero_mul']
+      rw [nat_zero_mul]
       rfl
   | n + 1, k => by
       show Int.negSucc n * Int.negSucc k = Int.ofNat ((n + 1) * (k + 1))
@@ -557,11 +553,6 @@ theorem ofNat_mul_negOfNat (m k : Nat) :
     Int.ofNat m * Int.negOfNat k = Int.negOfNat (m * k) := by
   rw [int_mul_comm, negOfNat_mul_ofNat, nat_mul_comm k m]
 
-/-- `negOfNat (p + q) = negOfNat p + negOfNat q` (re-stated for this section;
-    proven as `negOfNat_add` above). -/
-theorem negOfNat_distrib (p q : Nat) :
-    Int.negOfNat (p + q) = Int.negOfNat p + Int.negOfNat q := negOfNat_add p q
-
 /-- Left distributivity, the all-`ofNat` slice: trivial via `nat_mul_add`. -/
 theorem mul_ofNat_add_ofNat (m b c : Nat) :
     Int.ofNat m * (Int.ofNat b + Int.ofNat c)
@@ -595,7 +586,7 @@ theorem ofNat_mul_subNatNat (m b c : Nat) :
       apply congrArg Int.ofNat
       -- (m*b) - (m*c) = m*(b-c)
       rw [hmb, nat_add_comm (m * c) (m * (b - c))]
-      exact nat_add_sub_cancel_left' (m * (b - c)) (m * c)
+      exact nat_add_sub_cancel_right (m * (b - c)) (m * c)
     rw [key]
   | succ d =>
     rw [subNatNat_eq_succ h]

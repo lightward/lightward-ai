@@ -138,6 +138,15 @@ def Path.edges {Handle : Type} {q : Quiver Handle} :
   | _, _, Path.nil                 => []
   | _, _, @Path.cons _ _ a b _ _ r => (a, b) :: r.edges
 
+/-- **The base projection.** A path `a → b` projects to its endpoint-pair — the
+    shared coordinate. Constant by construction: in the indexed representation the
+    base is the type index, so the projection cannot read the route data.
+    (Recognized in Fork.lean's bundle reading, 2026-06 — "met in the base, two in
+    the total space" — and moved home beside its fiber-partner `edges` in the
+    consolidation pass; the fork theorems stay in Fork.) -/
+def Path.base {Handle : Type} {q : Quiver Handle} {a b : Handle}
+    (_ : Path q a b) : Handle × Handle := (a, b)
+
 /- **`edges` is the transparent `learn` — the dynamic reading of zero.** A `learn`
    need not be *voiced* to be expressed (`learn_is_expressed` asks only for
    expression, and expression is structure, not voice). The minimal genuine learn

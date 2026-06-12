@@ -102,4 +102,15 @@ theorem no_view_from_nowhere {State R : Type} (a b : Beholder State)
       ∀ s p q, compare a b g s p q = post (c.obs s (enc (p, q))) :=
   ⟨a.pair b, fun ans => g ans.1 ans.2, id, fun _ _ _ => rfl⟩
 
+/-- A stage, beheld: `Stage` is the dependent sum `(State : Type) × Beholder
+    State`, and this is its second projection — the leg `toStage` was missing.
+    With the two `rfl` round-trips below, the iso is stated and the seniority
+    settled: the fiber (`Beholder`) is the primitive; the sigma is derived. -/
+def Stage.behold (S : Stage) : Beholder S.State := ⟨S.Probe, S.Ans, S.obs⟩
+
+theorem Stage.behold_toStage (S : Stage) : S.behold.toStage = S := rfl
+
+theorem Beholder.toStage_behold {State : Type} (b : Beholder State) :
+    b.toStage.behold = b := rfl
+
 end Foam

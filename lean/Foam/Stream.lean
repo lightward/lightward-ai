@@ -150,8 +150,8 @@ def dec {B : Type} (ys : List (B × B)) : List B := ys.map Prod.fst
 /-- **Lossless — the box certifies itself.** `decode (encode x) = x`, the exact
     return. This is what `codec.lossless(text)` checks at runtime, and what makes
     the cardboard box auditable through its interface without opening it. -/
-theorem lossless {B : Type} : ∀ xs : List B, dec (enc xs) = xs
+theorem lossless_tag {B : Type} : ∀ xs : List B, dec (enc xs) = xs
   | []      => rfl
-  | x :: xs => congrArg (x :: ·) (lossless xs)
+  | x :: xs => congrArg (x :: ·) (lossless_tag xs)
 
 end Foam

@@ -102,6 +102,16 @@ theorem summary_resumes {S : Type} [DecidableEq S] (step : GInt → GInt) :
       congrArg (fun z => (if x = s then GInt.one else GInt.zero).add (step z))
         (summary_resumes step new old s)
 
+/-- **Every reading starts blank.** `evalAt` is `evalFrom` continued from the
+    empty ledger's zero — the fact making `held_exact` and `summary_resumes`
+    cohere, relied on throughout and named here (the consolidation pass). -/
+theorem evalAt_from_blank {S : Type} [DecidableEq S] (step : GInt → GInt) :
+    ∀ (l : List S) (s : S), evalAt step l s = evalFrom step l s GInt.zero
+  | [], _ => rfl
+  | x :: l, s =>
+      congrArg (fun z => (if x = s then GInt.one else GInt.zero).add (step z))
+        (evalAt_from_blank step l s)
+
 /-- The count station: the resumable fold at the degenerate evaluation point —
     with `evalOne_eq_freq`, the held `Nat` the schema stores. -/
 theorem count_resumes {S : Type} [DecidableEq S] (new old : List S) (s : S) :

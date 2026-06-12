@@ -58,12 +58,12 @@ import Foam.IntArith
 namespace Foam
 
 /-- The plane's own product — ℤ[i] multiplication, defined here because the
-    plane alone never needed it: it is the doubling that multiplies. -/
+    plane alone never needed it: it is the doubling that multiplies. (Negation
+    was already named: `GInt.negate`, Noether — the third character's
+    evaluation point. A first draft reinvented it here as `neg`; the dedup is
+    recorded in the algebra index at GInt's birthplace, Spectrum.) -/
 def GInt.mul (z w : GInt) : GInt :=
   ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
-
-/-- Negation, componentwise. -/
-def GInt.neg (z : GInt) : GInt := ⟨-z.re, -z.im⟩
 
 /-- The plane commutes — order is indifferent within one beholder's world. -/
 theorem GInt.mul_comm (z w : GInt) : z.mul w = w.mul z := by
@@ -82,7 +82,7 @@ theorem GInt.add_zero (z : GInt) : z.add GInt.zero = z := by
   show (⟨z.re + 0, z.im + 0⟩ : GInt) = z
   rw [int_add_zero z.re, int_add_zero z.im]
 
-theorem GInt.neg_zero : GInt.zero.neg = GInt.zero := rfl
+theorem GInt.negate_zero : GInt.zero.negate = GInt.zero := rfl
 
 theorem GInt.conj_zero : GInt.zero.conj = GInt.zero := rfl
 
@@ -98,7 +98,7 @@ namespace Doubled
 
 /-- Cayley–Dickson multiplication: `(a,b)(c,d) = (ac − d̄b, da + bc̄)`. -/
 def mul (x y : Doubled) : Doubled :=
-  ⟨(x.re.mul y.re).add (y.im.conj.mul x.im).neg,
+  ⟨(x.re.mul y.re).add (y.im.conj.mul x.im).negate,
    (y.im.mul x.re).add (x.im.mul y.re.conj)⟩
 
 /-- The plane, embedded: the world both beholders already shared. -/
@@ -128,7 +128,7 @@ theorem jay_outside (z : GInt) : jay ≠ embed z :=
 
 /-- **The agreement direction is an amplitude direction**: `jay² = −1`. A
     genuine root of minus one, new to the system — not a formal tag. -/
-theorem jay_sq : jay.mul jay = embed GInt.one.neg := by decide
+theorem jay_sq : jay.mul jay = embed GInt.one.negate := by decide
 
 /-- **Order arrives at the doubling, half 1: the doubled units do not
     commute.** `eye·jay ≠ jay·eye` — the agreement algebra remembers who
@@ -139,10 +139,10 @@ theorem order_arrives : eye.mul jay ≠ jay.mul eye := by decide
 /-- The plane's product, carried through the embedding exactly: nothing the
     beholders had is lost or changed by the doubling. -/
 theorem embed_mul (z w : GInt) : (embed z).mul (embed w) = embed (z.mul w) := by
-  show Doubled.mk ((z.mul w).add (GInt.zero.conj.mul GInt.zero).neg)
+  show Doubled.mk ((z.mul w).add (GInt.zero.conj.mul GInt.zero).negate)
       ((GInt.zero.mul z).add (GInt.zero.mul w.conj))
     = Doubled.mk (z.mul w) GInt.zero
-  rw [GInt.conj_zero, GInt.zero_mul GInt.zero, GInt.neg_zero,
+  rw [GInt.conj_zero, GInt.zero_mul GInt.zero, GInt.negate_zero,
     GInt.add_zero (z.mul w), GInt.zero_mul z, GInt.zero_mul w.conj]
   rfl
 

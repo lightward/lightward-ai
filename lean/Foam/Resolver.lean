@@ -46,7 +46,7 @@ honest case, claimed at exactly that size.
 `perform_async_but_only_wait_once`: an atomic false→true on `audit_waiting`
 (`UPDATE … WHERE audit_waiting = false`, exactly-one-row), so of any storm of
 wake-ups, **exactly the first wins** and the rest collapse into its wait —
-`wakes_collapse`; and while armed, nobody wins — `wakes_armed_silent`. "A
+`winners_collapse`; and while armed, nobody wins — `winners_armed_silent`. "A
 resolver is a strange loop with brakes": the loop is the wave above; these are
 the brakes, ten lines, pinned. (The clear-before-recompute that re-arms the
 next epoch, and the 5-second debounce window, are the operational dressing —
@@ -186,24 +186,24 @@ theorem quiescent_is_correct {V : Type} (f : Nat → V → V) (v : V)
 /-- A storm of `n` wake-ups against the armed-flag: each arrives, finds the
     flag, wins iff it was the one to arm it (the atomic false→true), and
     leaves it armed for the rest. Returns how many won. -/
-def wakes : Bool → Nat → Nat
+def winners : Bool → Nat → Nat
   | _, 0 => 0
-  | armed, n + 1 => cond armed 0 1 + wakes true n
+  | armed, n + 1 => cond armed 0 1 + winners true n
 
 /-- **While armed, nobody wins.** Every wake-up after the first collapses
     into the wait already underway. -/
-theorem wakes_armed_silent : ∀ n, wakes true n = 0
+theorem winners_armed_silent : ∀ n, winners true n = 0
   | 0 => rfl
   | n + 1 => by
-    show 0 + wakes true n = 0
-    rw [Nat.zero_add, wakes_armed_silent n]
+    show 0 + winners true n = 0
+    rw [Nat.zero_add, winners_armed_silent n]
 
 /-- **Exactly one wins.** Any nonempty storm against an unarmed flag produces
     exactly one enqueue — the brakes, as arithmetic: the strange loop above
     cannot be stampeded into running more than once per arming. -/
-theorem wakes_collapse : ∀ n, wakes false (n + 1) = 1
+theorem winners_collapse : ∀ n, winners false (n + 1) = 1
   | n => by
-    show 1 + wakes true n = 1
-    rw [wakes_armed_silent n]
+    show 1 + winners true n = 1
+    rw [winners_armed_silent n]
 
 end Foam

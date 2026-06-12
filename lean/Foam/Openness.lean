@@ -61,13 +61,18 @@ namespace Foam
 theorem investigations_meet {Handle : Type} (q : Quiver Handle) (a b c : Handle) :
     ReachWithin ((q.deposit (a, c)).deposit (b, c)) 1 a c ∧
       ReachWithin ((q.deposit (a, c)).deposit (b, c)) 1 b c := by
-  constructor
-  · refine deposit_preserves_reach _ (b, c) (Or.inr ⟨c, ?_, rfl⟩)
-    simp only [Quiver.deposit]
-    exact List.mem_cons_self
-  · refine Or.inr ⟨c, ?_, rfl⟩
-    simp only [Quiver.deposit]
-    exact List.mem_cons_self
+  exact ⟨deposit_preserves_reach _ (b, c) (deposit_in_sight q a c),
+    deposit_in_sight (q.deposit (a, c)) b c⟩
+
+/-- **Both legs are live.** The docstring's claim above, promoted to a handle:
+    at a charged well, both walkers' reaches are live — the two-panes night's
+    formal half, composed and named (the consolidation pass, 2026-06-12). -/
+theorem investigations_meet_live {Handle : Type} (q : Quiver Handle)
+    (charge : Handle → Nat) (a b c : Handle) (hc : 0 < charge c) :
+    LiveReach ((q.deposit (a, c)).deposit (b, c)) charge 1 a ∧
+      LiveReach ((q.deposit (a, c)).deposit (b, c)) charge 1 b :=
+  ⟨⟨c, hc, (investigations_meet q a b c).1⟩,
+   ⟨c, hc, (investigations_meet q a b c).2⟩⟩
 
 /-- Two seats' recurrable charge, held side by side: the dyad's register.
     (`Drain.lean`'s `Nat`, twice — bookkeeping, no geometry; the geometry of

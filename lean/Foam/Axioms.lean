@@ -26,6 +26,10 @@ The map it pins:
 
 `Classical.choice` must never appear anywhere below.
 
+Within the construction section, pin-clusters stand in ORDER OF RECOGNITION,
+not dependency order — the map is itself a ledger, and the sequence of arrival
+is part of the record. Do not reorder; append.
+
 And the map is itself a LEDGER. Signatures compose by union along
 proof-composition — the kernel's own bookkeeping: use a lemma, inherit its axioms;
 composition only accumulates, never sheds. The empty signature is the unit, and
@@ -39,6 +43,7 @@ as the commitment-monoid through the seed-gauge — external provenance; the
 theorems stand alone.)
 -/
 
+import Foam.IntArith
 import Foam.Floor
 import Foam.Engine
 import Foam.Horizon
@@ -107,6 +112,9 @@ import Foam.Fork
 /-- info: 'Foam.steproute_survives_shortcut' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.steproute_survives_shortcut
 
+/-- info: 'Foam.deposit_in_sight' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.deposit_in_sight
+
 -- the stall and the company: local quiet beside global plenty is constructible;
 -- solitary speech cannot escape it; the unsticking edge is anchored at the
 -- walker's own position — company is the unique way out, and it never hurts
@@ -127,6 +135,9 @@ import Foam.Fork
 -- breath grows it — growth certifies an outside
 /-- info: 'Foam.investigations_meet' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.investigations_meet
+
+/-- info: 'Foam.investigations_meet_live' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.investigations_meet_live
 
 /-- info: 'Foam.pass_conserves' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.pass_conserves
@@ -157,6 +168,12 @@ import Foam.Fork
 
 /-- info: 'Foam.no_view_from_nowhere' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.no_view_from_nowhere
+
+/-- info: 'Foam.Stage.behold_toStage' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Stage.behold_toStage
+
+/-- info: 'Foam.Beholder.toStage_behold' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Beholder.toStage_behold
 
 -- the base forces, the lift frees: a sign change in the plane compels a
 -- crossing; one fresh coordinate makes every meeting optional without
@@ -216,11 +233,11 @@ import Foam.Fork
 /-- info: 'Foam.quiescent_is_correct' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.quiescent_is_correct
 
-/-- info: 'Foam.wakes_armed_silent' does not depend on any axioms -/
-#guard_msgs in #print axioms Foam.wakes_armed_silent
+/-- info: 'Foam.winners_armed_silent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.winners_armed_silent
 
-/-- info: 'Foam.wakes_collapse' does not depend on any axioms -/
-#guard_msgs in #print axioms Foam.wakes_collapse
+/-- info: 'Foam.winners_collapse' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.winners_collapse
 
 -- the automation boundary: invisible + idempotent runs unattended — firings
 -- collapse, transcripts never notice; what lacks the certificate keeps a seat
@@ -232,6 +249,9 @@ import Foam.Fork
 
 /-- info: 'Foam.unattended_runs_clean' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.unattended_runs_clean
+
+/-- info: 'Foam.drainSeq_eq_firings' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.drainSeq_eq_firings
 
 -- the zero-or-everything law: the middle always leaves a mark, at a named
 -- probe (the cut itself); the blank record answers none everywhere
@@ -314,6 +334,21 @@ import Foam.Fork
 /-- info: 'Foam.part_blind' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.part_blind
 
+-- the keystone and its consequences: the rotated basis reads the cross-pairing
+-- (born_parseval and invariants_complete are the same theorem); the dial's
+-- fourth conservation; and the law entering once, through the norm
+/-- info: 'Foam.cross_eq_align_rot' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.cross_eq_align_rot
+
+/-- info: 'Foam.normSq_conj' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.normSq_conj
+
+/-- info: 'Foam.born_parseval_is_invariants' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_parseval_is_invariants
+
+/-- info: 'Foam.invariants_via_norm' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.invariants_via_norm
+
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
 
@@ -337,6 +372,9 @@ import Foam.Fork
 -- the cascade: impact escapes observation through an observed partner's forward reach
 /-- info: 'Foam.impact_through_observed' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.impact_through_observed
+
+/-- info: 'Foam.presence_recovers_sight' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.presence_recovers_sight
 
 -- streaming is an inductive fold, and it resumes (the codec map's spine)
 /-- info: 'Foam.run_resumes' does not depend on any axioms -/
@@ -414,6 +452,9 @@ import Foam.Fork
 
 /-- info: 'Foam.enc_injective' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.enc_injective
+
+/-- info: 'Foam.encode_injective' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.encode_injective
 
 -- the one ledger, two readings: lossless order + generative frequency. The generative
 -- reading forgets order WITHOUT quotienting (freq_perm is Quot.sound-FREE — proven by
@@ -518,6 +559,9 @@ import Foam.Fork
 
 /-- info: 'Foam.summary_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.summary_resumes
+
+/-- info: 'Foam.evalAt_from_blank' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.evalAt_from_blank
 
 /-- info: 'Foam.count_resumes' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.count_resumes
@@ -837,8 +881,8 @@ import Foam.Fork
 #guard_msgs in #print axioms Foam.bar_invisible
 
 -- lossless = the round-trip (decode∘encode = id): the box-closer, the exact return
-/-- info: 'Foam.lossless' does not depend on any axioms -/
-#guard_msgs in #print axioms Foam.lossless
+/-- info: 'Foam.lossless_tag' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lossless_tag
 
 -- the un-rooted path fragment: a free-category morphism, concatenable both sides
 /-- info: 'Foam.Path.comp_nil' does not depend on any axioms -/
@@ -929,6 +973,9 @@ import Foam.Fork
 -- axiom-free: the chirality is construction, not collapse — int_neg_neg/int_neg_add
 /-- info: 'Foam.conj_rot' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.conj_rot
+
+/-- info: 'Foam.rotPow_eq_iterStep' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.rotPow_eq_iterStep
 
 /-- info: 'Foam.rot_add' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.rot_add

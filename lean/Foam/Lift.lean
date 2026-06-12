@@ -50,7 +50,7 @@ namespace Foam
 /-- Two walks cross at step `n`: they share the lattice point, or they trade
     sides across one step — the polyline crossing that happens *between*
     lattice points. Both are encounters; neither is asked for. -/
-def Crosses (f g : Nat → Nat) (n : Nat) : Prop :=
+def CrossesUp (f g : Nat → Nat) (n : Nat) : Prop :=
   f n = g n ∨ (f n < g n ∧ g (n + 1) < f (n + 1))
 
 /-- **The base forces the meeting.** In the half-plane — two walks over time —
@@ -59,7 +59,7 @@ def Crosses (f g : Nat → Nat) (n : Nat) : Prop :=
     chose it. Discrete intermediate-value, by induction on the horizon; no
     step-size condition needed — the order structure alone forces it. -/
 theorem base_forces_crossing (f g : Nat → Nat) :
-    ∀ N : Nat, f 0 < g 0 → g N < f N → ∃ n, n < N ∧ Crosses f g n
+    ∀ N : Nat, f 0 < g 0 → g N < f N → ∃ n, n < N ∧ CrossesUp f g n
   | 0, h0, hN => absurd (Nat.lt_trans h0 hN) (Nat.lt_irrefl _)
   | N + 1, h0, hN => by
     rcases Nat.lt_trichotomy (f N) (g N) with hlt | heq | hgt
