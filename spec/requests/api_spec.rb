@@ -5,7 +5,67 @@ require "rails_helper"
 require "webmock/rspec"
 
 RSpec.describe("API", type: :request) do
+  def build_fake_throttle_store
+    Class.new do
+      attr_reader :sources
+
+      def initialize
+        @rows = Hash.new { |rows, row_key| rows[row_key] = { requests: 0, micro_usd: 0 } }
+        @sources = []
+        @raise_errors = false
+      end
+
+      def fail!
+        @raise_errors = true
+      end
+
+      def bump(source:, hour_bucket:, day_bucket:, requests: 0, micro_usd: 0)
+        raise "store unavailable" if @raise_errors
+
+        @sources << source
+
+        {
+          "hour" => bump_row([source, "hour", hour_bucket], requests, micro_usd),
+          "day" => bump_row([source, "day", day_bucket], requests, micro_usd),
+        }
+      end
+
+      private
+
+      def bump_row(row_key, requests, micro_usd)
+        row = @rows[row_key]
+        row[:requests] += requests
+        row[:micro_usd] += micro_usd
+        row.dup
+      end
+    end.new
+  end
+
+  def configure_public_usage_throttle(mode:, budgets: {})
+    fake_store = build_fake_throttle_store
+
+    PublicUsageThrottle.reset!
+    PublicUsageThrottle.store = fake_store
+
+    # Pin the clock mid-bucket so a window boundary can't roll over mid-example
+    allow(Time).to(receive(:current).and_return(Time.zone.at(1_750_000_000)))
+
+    allow(ENV).to(receive(:fetch).and_call_original)
+    allow(ENV).to(receive(:fetch).with("PUBLIC_USAGE_THROTTLE_MODE", "").and_return(mode))
+    {
+      "PUBLIC_USAGE_THROTTLE_HOUR_REQUESTS" => budgets[:hour_requests],
+      "PUBLIC_USAGE_THROTTLE_DAY_REQUESTS" => budgets[:day_requests],
+      "PUBLIC_USAGE_THROTTLE_HOUR_USD" => budgets[:hour_usd],
+      "PUBLIC_USAGE_THROTTLE_DAY_USD" => budgets[:day_usd],
+    }.each do |name, value|
+      allow(ENV).to(receive(:fetch).with(name, nil).and_return(value&.to_s))
+    end
+
+    fake_store
+  end
+
   before do
+    PublicUsageThrottle.reset!
     host! ENV.fetch("HOST", "test.host")
 
     allow(Prompts).to(receive(:generate_system_prompt).and_return([{ type: "text", text: "test system prompt" }]))
@@ -262,6 +322,158 @@ RSpec.describe("API", type: :request) do
           expect(response.body).not_to(include("Memory space 90% utilized"))
           expect(response.body).not_to(include("conversation horizon approaching"))
         end
+      end
+    end
+
+    describe "public usage throttle" do
+      before do
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "does not throttle when disabled", :aggregate_failures do
+        ["", "off"].each do |mode|
+          configure_public_usage_throttle(mode: mode, budgets: { hour_requests: 1, hour_usd: 0.01 })
+
+          2.times { post "/api/stream", params: { chat_log: chat_log } }
+
+          expect(response).to(have_http_status(:ok))
+          expect(response.content_type).to(include("text/event-stream"))
+        end
+      end
+
+      it "records would-limit telemetry in observe mode without blocking", :aggregate_failures do
+        configure_public_usage_throttle(mode: "observe", budgets: { hour_requests: 1 })
+
+        2.times { post "/api/stream", params: { chat_log: chat_log } }
+
+        expect(response).to(have_http_status(:ok))
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: public throttle",
+          hash_including(
+            public_throttle_limited: false,
+            public_throttle_would_limit: true,
+            public_throttle_mode: "observe",
+            public_throttle_window: "hour",
+            public_throttle_reason: "request_count",
+          ),
+        ))
+      end
+
+      it "returns a JSON 429 before streaming when an enforced request budget is spent", :aggregate_failures do
+        configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 1 })
+
+        post "/api/stream", params: { chat_log: chat_log }
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:too_many_requests))
+        expect(response.content_type).to(include("application/json"))
+        expect(response.headers["Retry-After"].to_i).to(be_between(1, 3600))
+        expect(JSON.parse(response.body).dig("error", "message")).to(include("cooling down"))
+      end
+
+      it "enforces the day window with its own retry horizon", :aggregate_failures do
+        configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 99, day_requests: 2 })
+
+        3.times { post "/api/stream", params: { chat_log: chat_log } }
+
+        expect(response).to(have_http_status(:too_many_requests))
+        expect(response.headers["Retry-After"].to_i).to(be_between(1, 86_400))
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: public throttle",
+          hash_including(public_throttle_window: "day", public_throttle_reason: "request_count"),
+        ))
+      end
+
+      it "blocks when prior observed cost has spent the budget", :aggregate_failures do
+        configure_public_usage_throttle(mode: "enforce", budgets: { hour_usd: 0.01 })
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: [
+              "event: message_start",
+              'data: {"type":"message_start","message":{"usage":{"input_tokens":10000}}}',
+              "",
+              "event: message_stop",
+              'data: {"type":"message_stop"}',
+              "",
+              "",
+            ].join("\n"),
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+
+        post "/api/stream", params: { chat_log: chat_log }
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:too_many_requests))
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: public throttle",
+          hash_including(
+            public_throttle_limited: true,
+            public_throttle_window: "hour",
+            public_throttle_reason: "estimated_cost_usd",
+          ),
+        ))
+      end
+
+      it "does not let spoofed usage client headers skip the throttle", :aggregate_failures do
+        configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 1 })
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("configured_client"))
+
+        2.times do
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "X-LAI-Usage-Client" => "configured_client" }
+        end
+
+        expect(response).to(have_http_status(:too_many_requests))
+      end
+
+      it "skips the public throttle for valid bypass keys", :aggregate_failures do
+        fake_store = configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 1, hour_usd: 0.01 })
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("trusted-key"))
+
+        2.times do
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "Token-Limit-Bypass-Key" => "trusted-key" }
+        end
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.content_type).to(include("text/event-stream"))
+        expect(fake_store.sources).to(be_empty)
+      end
+
+      it "fails open when the store is unavailable", :aggregate_failures do
+        fake_store = configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 1 })
+        fake_store.fail!
+        allow(Rollbar).to(receive(:error))
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(response).to(have_http_status(:ok))
+        expect(Rollbar).to(have_received(:error))
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: public throttle",
+          hash_including(public_throttle_error: "RuntimeError"),
+        ))
+      end
+
+      it "does not put raw IP addresses in the store or telemetry", :aggregate_failures do
+        event_payloads = []
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) { |_event, data| event_payloads << data }
+        fake_store = configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 1 })
+
+        post "/api/stream",
+          params: { chat_log: chat_log },
+          headers: { "REMOTE_ADDR" => "203.0.113.10" }
+
+        expect(fake_store.sources).not_to(be_empty)
+        expect(fake_store.sources.join).not_to(include("203.0.113.10"))
+        expect(fake_store.sources.join).not_to(include("127.0.0.1"))
+        expect(event_payloads.flat_map(&:values).join).not_to(include("203.0.113.10"))
+        expect(event_payloads.flat_map(&:values).join).not_to(include("127.0.0.1"))
       end
     end
 
@@ -853,6 +1065,24 @@ RSpec.describe("API", type: :request) do
           expect(response).to(have_http_status(:ok))
           expect(response.body).not_to(include("Memory space 90% utilized"))
         end
+      end
+    end
+
+    describe "public usage throttle" do
+      before do
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "returns a plaintext 429 before calling Anthropic when an enforced budget is spent", :aggregate_failures do
+        configure_public_usage_throttle(mode: "enforce", budgets: { hour_requests: 1 })
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:too_many_requests))
+        expect(response.content_type).to(include("text/plain"))
+        expect(response.headers["Retry-After"].to_i).to(be_between(1, 3600))
+        expect(response.body).to(include("cooling down"))
       end
     end
 
