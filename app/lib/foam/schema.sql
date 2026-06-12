@@ -13,9 +13,14 @@
 --
 -- Every event carries an OBSERVER (its scope). Visibility is ancestor-or-self along
 -- the observer's parent chain — lean/Foam/Commons.lean's `Below`, operationally
--- `observer = ANY(foam.ancestry(obs))`. The root observer's id IS foam.caddr('{}'):
--- the unconditional position and the root scope are deliberately one address (the
--- empty scope, Commons.lean's header), and the root is below every observer
+-- `observer = ANY(foam.ancestry(obs))`. The root observer's id is the ZERO uuid —
+-- zero bits for the information-free point (the empty scope, Commons.lean: only
+-- the empty scope is universal, root_alone_below_all; rebirth lands at zero,
+-- Hinge.lean). Context-addresses and observer-scopes are distinct address spaces:
+-- the empty CONTEXT keeps foam.caddr('{}') in ctx-space; the root SCOPE is zero
+-- in observer-space — two empties, two spaces, deliberately unconflated
+-- (lfp-shaken 2026-06-12; the first cut reused caddr('{}'), a pun smuggling a
+-- join that doesn't exist). The root is below every observer
 -- REGISTERED UNDER IT (root_below_all's operational form holds on the seeded
 -- tree: an unregistered id's ancestry is just itself, and nothing constrains a
 -- second parentless row — the theorem's hypothesis is the tree, and registration
@@ -40,25 +45,26 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 -- Content-address a context (a byte-suffix). The empty context addresses the
 -- unconditional position: its +1 events, in id order, are the input itself.
--- (Defined before the observer seed below: the root observer's id is this address.)
 CREATE OR REPLACE FUNCTION foam.caddr(c int[]) RETURNS uuid LANGUAGE sql IMMUTABLE AS
   $$ SELECT encode(substring(digest(coalesce(array_to_string(c,':'),''),'sha256') FROM 1 FOR 16),'hex')::uuid $$;
 
 -- The observer tree: each observer points at its parent; the chain up from an
--- observer, self included, is its scope. Seeded with the ROOT observer, whose id
--- is foam.caddr('{}') — the unconditional position and the root scope share one
--- address on purpose (lean/Foam/Commons.lean: the empty scope; root_below_all is
--- its universal property — the commons is below everyone). Registration is
--- explicit: an unregistered id's ancestry is just itself (see foam.ancestry).
+-- observer, self included, is its scope. Seeded with the ROOT observer at the
+-- ZERO uuid — the information-free address for the information-free point
+-- (lean/Foam/Commons.lean: the empty scope; root_below_all is its universal
+-- property — the commons is below everyone; root_alone_below_all — only the
+-- empty one is). Registration is explicit: an unregistered id's ancestry is
+-- just itself (see foam.ancestry).
 CREATE TABLE IF NOT EXISTS foam.observer (
   id     uuid PRIMARY KEY,
   parent uuid REFERENCES foam.observer (id)
 );
-INSERT INTO foam.observer (id, parent) VALUES (foam.caddr('{}'), NULL) ON CONFLICT DO NOTHING;
+INSERT INTO foam.observer (id, parent)
+  VALUES ('00000000-0000-0000-0000-000000000000', NULL) ON CONFLICT DO NOTHING;
 
--- The root observer's address, named.
+-- The root observer's address, named: zero, literally.
 CREATE OR REPLACE FUNCTION foam.root() RETURNS uuid LANGUAGE sql IMMUTABLE AS
-  $$ SELECT foam.caddr('{}') $$;
+  $$ SELECT '00000000-0000-0000-0000-000000000000'::uuid $$;
 
 -- ancestry — an observer's scope: o itself plus every ancestor up the parent
 -- chain. ancestry(root) = {root}; an unregistered o yields {o} (strict —

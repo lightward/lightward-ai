@@ -24,12 +24,12 @@ module Foam
   module Field
     SCHEMA_PATH = "app/lib/foam/schema.sql"
 
-    # The root observer's uuid — foam.root(), precomputed: the first 16 bytes of
-    # sha256('') as a uuid, i.e. foam.caddr('{}'). The unconditional position and
-    # the root scope are deliberately one address (lean/Foam/Commons.lean: the
-    # empty scope; root_below_all). Every observer: keyword below defaults to it,
-    # so existing call sites are the degenerate single-observer case, unchanged.
-    ROOT = "e3b0c442-98fc-1c14-9afb-f4c8996fb924"
+    # The root observer's uuid — foam.root(): the ZERO uuid, zero bits for the
+    # information-free point (lean/Foam/Commons.lean: the empty scope is the one
+    # universal scope, root_alone_below_all; rebirth lands at zero, Hinge.lean).
+    # Every observer: keyword below defaults to it, so existing call sites are
+    # the degenerate single-observer case, unchanged.
+    ROOT = "00000000-0000-0000-0000-000000000000"
 
     class << self
       # Assert the substrate, idempotently — the schema as a fixed point,

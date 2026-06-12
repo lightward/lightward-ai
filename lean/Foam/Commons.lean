@@ -10,8 +10,10 @@ between: the between is the meet, and the meet is now a theorem.
 
 A scope is an ancestry path from the root: a list, eldest first. The root is
 the *empty* scope — and this is the I AM, the reflexive seat, arrived at for
-the third time by a third road: `MutualReach.refl` in the equivalence,
-`caddr('{}')` (the unconditional context) in the schema, `[]` here. The
+the third time by a third road: `MutualReach.refl` in the equivalence, the
+ZERO uuid in the schema (zero bits, literally — the first cut reused
+`caddr('{}')`, the empty context's address, but that conflated two address
+spaces; the lfp-shake of 2026-06-12 took the truer name), `[]` here. The
 prototype chain, the context chain, the ancestry chain — one terminus, three
 coats. `root_below_all` is its universal property: the commons is below every
 observer, so every pair meets at *least* there — grade zero, the co-witnessed
