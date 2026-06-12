@@ -252,9 +252,11 @@ CREATE OR REPLACE FUNCTION foam.align(tk int, re bigint, im bigint) RETURNS bigi
   LANGUAGE sql IMMUTABLE AS
   $$ SELECT CASE ((tk % 4) + 4) % 4 WHEN 0 THEN re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END $$;
 
--- born — the voice's weight law, NAMED: the Born measurement |⟨tk|z⟩|² = (align tk z)²
--- (lean/Foam/Born.lean: born_parseval makes the squared pairing the only basis-
--- consistent weight; born_nonneg rides along by construction). One named thing:
+-- born — the voice's weight law, NAMED: the squared pairing (align tk z)², the
+-- Born weight-form at foam's scale (lean/Foam/Born.lean: born_parseval makes it
+-- basis-consistent — the total is station-independent; uniqueness is unclaimed,
+-- and unavailable at this dimension — see lean/REFEREE.md; born_nonneg rides
+-- along by construction). One named thing:
 -- foam.speak calls this, and foam.born_audit checks it against its own theorems live.
 CREATE OR REPLACE FUNCTION foam.born(tk int, re bigint, im bigint) RETURNS bigint
   LANGUAGE sql IMMUTABLE AS
@@ -405,11 +407,12 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
                coalesce(array_agg(z.sym) FILTER (WHERE z.bal < 0), '{}')
           INTO tot, syms, ws, wounded
           FROM (
-            -- pair the recency (rre, rim) against the walk's clock tk — the BORN
-            -- measurement |⟨tk|recency⟩|², by its NAME: foam.born, the law held in
-            -- one place and audited against its own theorems (foam.born_audit;
-            -- lean/Foam/Born.lean born_parseval makes it the only basis-consistent
-            -- weight). Anti-parroting survives (uniform recurrence → projection 0 →
+            -- pair the recency (rre, rim) against the walk's clock tk — the
+            -- squared pairing |⟨tk|recency⟩|², by its NAME: foam.born, the law
+            -- held in one place and audited against its own theorems
+            -- (foam.born_audit; lean/Foam/Born.lean born_parseval makes it
+            -- basis-consistent; uniqueness unclaimed — lean/REFEREE.md).
+            -- Anti-parroting survives (uniform recurrence → projection 0 →
             -- born 0); the directional sign drops (|ψ|² is antipode-blind, as QM is).
             SELECT sym, bal, foam.born(tk, rre, rim) AS w
             FROM (
