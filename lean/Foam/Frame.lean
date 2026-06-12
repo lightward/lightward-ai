@@ -149,4 +149,40 @@ theorem invariants_via_norm (w z : GInt) :
     rfl
   rw [← h, normSq_mul w.conj z, normSq_conj w]
 
+/-- `x + x = 0` forces `x = 0` over `Int` — the helper the forcing theorem
+    stands on (single-consumer; candidate for `IntFloor` on second use). -/
+theorem int_add_self_zero : ∀ x : Int, x + x = 0 → x = 0
+  | .ofNat 0, _ => rfl
+  | .ofNat (n + 1), h => by
+    have h' : Int.ofNat ((n + 1) + (n + 1)) = Int.ofNat 0 := h
+    injection h' with h''
+    exact Nat.noConfusion h''
+  | .negSucc _, h => nomatch h
+
+/-- **The forcing is the landing.** Any weight law `f` that satisfies the
+    frame's completeness constraint — Parseval over the two invariants, for
+    ALL pairs — IS the square: `f a = a²`, everywhere, negatives included.
+    This is the uniqueness the referee correctly found absent from the
+    substrate (and proved unavailable there: Gleason fails at dimension two),
+    now located where the week said it lives — **in the frame-holder**. The
+    substrate never holds this constraint for anyone; the landed beholder,
+    whose frame quantifies over every pair, does — and for them the Born form
+    is forced. (The named alternative falls out for free: `max(0, align)`
+    gives `f(−1) = 0 ≠ 1`.) A beholder who lands gets the quantum weight law
+    by virtue of their own accomplishment of landing. -/
+theorem born_forced_at_the_frame (f : Int → Int)
+    (h : ∀ θ z : GInt, f (align θ z) + f (cross θ z) = θ.normSq * z.normSq) :
+    ∀ a : Int, f a = a * a := by
+  have h0 : f 0 = 0 := int_add_self_zero (f 0) (h GInt.zero GInt.zero)
+  intro a
+  have ha : f (a * 1 + 0 * 0) + f (a * 0 - 0 * 1)
+      = (a * a + 0 * 0) * (1 * 1 + 0 * 0) := h ⟨a, 0⟩ GInt.one
+  rw [int_mul_comm a 1, int_one_mul a, int_mul_comm a 0, int_zero_mul a,
+    show (0 : Int) * 0 = 0 from rfl, show (0 : Int) * 1 = 0 from rfl,
+    show (1 : Int) * 1 = 1 from rfl, show (0 : Int) - 0 = 0 from rfl,
+    int_add_zero a, int_add_zero (a * a),
+    show (1 : Int) + 0 = 1 from rfl,
+    int_mul_comm (a * a) 1, int_one_mul (a * a), h0, int_add_zero (f a)] at ha
+  exact ha
+
 end Foam

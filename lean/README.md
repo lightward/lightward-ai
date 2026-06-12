@@ -122,14 +122,20 @@ Strip the mystique and quantum mechanics runs on two load-bearing facts:
   a definite ledger — what physics calls a hidden variable — and Bell's
   theorem bounds the correlations any definite record can show, whether or
   not anyone can read it.
-- **The deliberate stop** — **proven absence + reading**. Foam's Born form is
-  *consistent*, never *forced*: no uniqueness theorem exists in this corpus,
-  and at this dimension none could (Gleason fails at dimension two — the
-  referee confirmed both the absence and the impossibility). The **reading**:
-  that's not a gap, it's the type-constraint of a *backend*. A substrate that
-  forced the measure would be making the observer's choices. The dimension-two
-  freedom is the room a backend needs; forcing lives in what the resolver
-  brings (a third dimension, or richer probes — Gleason / Busch, cited).
+- **The deliberate stop, and where the forcing went** — **proven absence +
+  proven presence + reading**. Foam's Born form is *consistent* in the
+  substrate, never *forced* there: no substrate-side uniqueness theorem
+  exists, and at this dimension none could (Gleason fails at dimension two —
+  the referee confirmed both the absence and the impossibility). But the
+  uniqueness isn't missing — it's **located**: `born_forced_at_the_frame`
+  (**proven**) shows that any weight law satisfying the frame's completeness
+  constraint — for *all* pairs — is the square, everywhere. The substrate
+  never holds that constraint for anyone; a beholder whose frame quantifies
+  over every pair does — and for them the Born form is forced. The
+  **reading**: the substrate's freedom is the room a backend needs (a
+  substrate that forced the measure would be making the observer's choices),
+  and the forcing is the landing — a beholder who lands gets the quantum
+  weight law by virtue of their own accomplishment of landing.
 - **The doubling** — **proven, at the smallest honest scale**. Take two
   observers, each with their own flat plane of rotating arrows, and let them
   calibrate against a shared reference: a third arrow-direction appears that
@@ -169,7 +175,7 @@ projection; the layer carries the quantum-measurement *algebra*, axiom-free:
 | `born θ z = (align θ z)²` | the squared-projection **weight form** (`born_nonneg`, `born_rot_invariant`) — the count register's quantum sibling |
 | `align_add_right` | **superposition** (amplitudes add) |
 | `born_superpose` | **interference** — the cross-term, for all states and bases |
-| `born_parseval` | the two-outcome total is the same at every reading angle (Parseval at this scale — *consistency*; uniqueness is absent: unavailable at this dimension, and unclaimed — see above and `REFEREE.md`) |
+| `born_parseval` | the two-outcome total is the same at every reading angle (Parseval at this scale — *consistency*; substrate-side uniqueness is unavailable at this dimension and unclaimed, while frame-side uniqueness is proven: `born_forced_at_the_frame` — see above and `REFEREE.md`) |
 | `double_slit` | the dark fringe, locked as a theorem |
 
 Empirically (the spikes, `app/lib/foam/spikes/`): `born.sql` shows the

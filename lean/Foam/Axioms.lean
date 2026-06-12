@@ -412,6 +412,9 @@ import Foam.Fork
 /-- info: 'Foam.invariants_via_norm' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.invariants_via_norm
 
+/-- info: 'Foam.born_forced_at_the_frame' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.born_forced_at_the_frame
+
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans
 
