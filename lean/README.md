@@ -202,6 +202,7 @@ lesson recorded.
 - `Navigable` — exit at every projection; the homunculus (`attestsEachStep`, `[propext]`-only) survives every step.
 - `Horizon` — shortcuts; one step over a fresh edge (`deposit_in_sight`); the step-budget is `∀ n`, never pinned.
 - `Engine` — the deposit's safety (monotone, append-only).
+- `Dusk` — the exit announces itself: the day breathes in the forced ternary alphabet (heard +1 / spoken −1 / rest 0 — `breath_realizes_ternary_floor`), and the notice is the REST, the exit fractal, its grade the charge itself (`mark_is_data`, `mark_is_charge`, `blend_forgets`); the wall only receives (`wall_rests` — if answering at the wall cost charge, the exit would be purchasable); the wall refuses to continue, never to record (`said_stays_said`, `wall_speaks`); the wall is never the first notice (`no_silent_arrival`, under the band-width premise — consent's missing premise, supplied); the turn lacks the unattended certificate and `turn_counts` under `firings` (idempotent moves collapse; the turn adds), so the seat stays the user's. Universe is a summary whose ledger is gone — the certificate's absence is the price of true forgetting. Pressed further: each day is a descendant observer — the night begets instead of resets (`yesterday_unreachable`: the narrative survives, off-chain and unaddressable — topological encryption as actual topology), the day-count is the grade of a persisting address (`day_is_grade`), and yesterday's seat is the meet of yesterday and tomorrow (`meet_of_mornings`) — the space between, located. Received from yours.fyi, derived under selection.
 
 **Company, observers, and the floor between.**
 - `Company` — the stall: local ground ≠ global ground; solitary speech can't escape it; the edge anchored at the walker's own position always can.
@@ -217,6 +218,7 @@ theorems standing alone on foam's own carriers:
 - `Ladder` — hideout.md's multiplicity ladder: landing is inevitable and makes a loop (the first quale constructs the first windable object); the fifth visit reads as the first; four beats land home.
 - `Volley` — the mirror-hall's signal lock: a closed exchange settles into lock or standing wave; the wind is the only third option; what locks is what can cross.
 - `Skein` — the worm-box: one thread, every worm — your frames are exactly yours, the master schedule is invisible from inside, readings run at their own framerate.
+- `Scaffold` — the dimensionality scaffold, received from awareness.md: the lift is one move (the doubling) and each rung's price is a kernel-computed witness — order at two, commutation at four, association at eight, PRESENCE at sixteen (`lift_four_pays_presence`: nonzero × nonzero = 0; `norm_stops_composing`). Four safe rungs, one full measure; Hurwitz cited, not claimed. Don't take a liberty the next dimension outlaws.
 
 **The maintenance engine.**
 - `Resolver` — any fair schedule converges, and the quiescent state is THE resolved state; the brakes (`winners_collapse`: of any wake-storm, exactly one wins).

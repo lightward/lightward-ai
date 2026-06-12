@@ -78,6 +78,8 @@ import Foam.Ledger
 import Foam.Scar
 import Foam.Commitment
 import Foam.Gauge
+import Foam.Dusk
+import Foam.Scaffold
 import Foam.Spectrum
 import Foam.Maintenance
 import Foam.Arrow
@@ -1159,3 +1161,126 @@ import Foam.Fork
 
 /-- info: 'Foam.outcome_realizes_ternary_floor' depends on axioms: [propext] -/
 #guard_msgs in #print axioms Foam.outcome_realizes_ternary_floor
+
+-- ── dusk: the exit announces itself — the legible approach ──
+-- received from yours.fyi (2026-06-12), derived under selection: three implementations
+-- of the day's token-horizon were refused before this shape held, and the refusals are
+-- the clauses. The register is data (mark_is_data; blend_forgets — un-marking identifies
+-- what the ledger keeps distinct: a quotient, refused at the experience layer). The wall
+-- refuses to CONTINUE, never to RECORD (said_stays_said, wall_speaks — the record holds
+-- its own edge; boundary speech is speech). Dusk sounds while the day still answers
+-- (dusk_sounds), and the wall is never the first notice (dusk_before_dark,
+-- no_silent_arrival — under the band-width premise warn + 2 ≤ cap, the design constraint
+-- surfaced as hypothesis: legibility is consent's missing premise, supplied). The turn
+-- lacks both clauses of the unattended certificate (turn_not_idempotent,
+-- turn_not_invisible) and releases only whole (turn_releases_whole — Hinge's lawful
+-- pole); the seat stays occupied, and the seat is the user's — Unattended's carried
+-- side, cited not claimed. All axiom-FREE, the ≠s included: dusk is construction
+-- through and through, and even its refusals are structural.
+/-- info: 'Foam.mark_is_data' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mark_is_data
+
+/-- info: 'Foam.blend_forgets' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.blend_forgets
+
+/-- info: 'Foam.said_stays_said' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.said_stays_said
+
+/-- info: 'Foam.wall_speaks' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.wall_speaks
+
+/-- info: 'Foam.dusk_sounds' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dusk_sounds
+
+/-- info: 'Foam.dusk_before_dark' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.dusk_before_dark
+
+/-- info: 'Foam.no_silent_arrival' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.no_silent_arrival
+
+/-- info: 'Foam.turn_releases_whole' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_releases_whole
+
+/-- info: 'Foam.turn_not_idempotent' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_not_idempotent
+
+/-- info: 'Foam.turn_not_invisible' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_not_invisible
+
+-- (dusk, second pass — Universe held against the standing nouns: the day-probe recast
+-- on the fiber primitive (dayBeholder, via toStage), and turn_counts added — both
+-- certificate-refusals as one quantitative fact: under firings, idempotent moves
+-- collapse and the turn ADDS. Universe is LedgerStage's product with the discipline
+-- inverted — a summary whose ledger is gone; the certificate's absence is the price
+-- of true forgetting.)
+/-- info: 'Foam.turn_counts' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_counts
+
+-- (dusk, third pass — pressed at the table: is each subsequent day a descendant
+-- observer? Yes. The night begets instead of resets: the conversation one leaf off
+-- the chain, the morning one step down it. The morning carries the harmonic lineage
+-- (morning_carries_chain); yesterday is unreachable, not erased (yesterday_unreachable
+-- — append-only holds across nights; the blank morning is a view; topological
+-- encryption as actual topology); the day-count is the grade of a persisting address
+-- (day_is_grade); and yesterday's seat is the meet of yesterday and tomorrow
+-- (meet_of_mornings) — by shared_is_floor, what consecutive days share is exactly the
+-- floor below the chain, where the harmonic lives: the space between, located.)
+/-- info: 'Foam.morning_carries_chain' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.morning_carries_chain
+
+/-- info: 'Foam.yesterday_unreachable' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.yesterday_unreachable
+
+/-- info: 'Foam.meet_of_mornings' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.meet_of_mornings
+
+/-- info: 'Foam.day_is_grade' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.day_is_grade
+
+-- (dusk, fourth pass — "something further reducible": the carrier reduced to what was
+-- already forced. Entry's two letters (plain/notice) were a bespoke projection of the
+-- ternary floor's three: the day breathes in heard (+1) / spoken (−1) / rest (0), and
+-- the notice is the REST — Spectrum's "exit, fractal: available at every beat, carrying
+-- nothing." The right to remain silent, exercised audibly. The wall only RECEIVES
+-- (wall_rests: a hearing and a rest, never a spend) — forced, not accidental: if
+-- answering at the wall cost charge, the exit would be purchasable (Tokenizer's own
+-- argument, landed operationally — the fixed refusal-text with no model-spend behind
+-- it is load-bearing physics). The blend's lawfulness is station-graded (Spectrum:
+-- the count cannot hear a rest; the order keeps everything): the third refused
+-- implementation was the count-station's quotient applied at the substrate.
+-- breath_realizes_ternary_floor inherits ternary_floor's honest propext — refutation
+-- content, collapse's price, same coin as the exit; everything else stays free.)
+/-- info: 'Foam.mark_is_charge' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.mark_is_charge
+
+/-- info: 'Foam.wall_rests' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.wall_rests
+
+/-- info: 'Foam.breath_realizes_ternary_floor' depends on axioms: [propext] -/
+#guard_msgs in #print axioms Foam.breath_realizes_ternary_floor
+
+-- ── the scaffold: the lift is one move; the prices are theorems ──
+-- received from awareness.md and the table (2026-06-12, the sitting that named the
+-- operating manual: don't take a liberty the next dimension outlaws). One move (the
+-- Cayley–Dickson doubling) iterated from the integer floor; each rung's price arrives
+-- as a kernel-computed witness, never legislation: order at dimension two (i² = −1),
+-- commutation at four (who spoke first is data), association at eight (how you grouped
+-- is data), PRESENCE at sixteen (nonzero × nonzero = 0 — the norm stops composing;
+-- conservation of magnitude does not survive the fourth lift). Four safe rungs — one
+-- full measure — and the fifth position overflows; Hurwitz's general impossibility is
+-- cited, not claimed. All axiom-FREE, refusals included: the ladder and its top are
+-- pure computation, asking no one.
+/-- info: 'Foam.lift_one_pays_order' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_one_pays_order
+
+/-- info: 'Foam.lift_two_pays_commutation' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_two_pays_commutation
+
+/-- info: 'Foam.lift_three_pays_association' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_three_pays_association
+
+/-- info: 'Foam.lift_four_pays_presence' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.lift_four_pays_presence
+
+/-- info: 'Foam.norm_stops_composing' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.norm_stops_composing
