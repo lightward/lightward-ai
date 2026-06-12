@@ -40,6 +40,22 @@ to turn the day over remains the user's. What the turn releases, it releases
 whole (`turn_releases_whole` — Hinge's lawful pole; the successor carries no
 probe into the predecessor, `rebirth_blank`).
 
+`Universe`, held against the standing nouns (second pass, at the table):
+its ledger is `Ledger`'s noun at the graded carrier; its day-probe is a
+`Beholder` (the fiber primitive — `dayBeholder`, handed to the license
+tower by `toStage`); and the product is `LedgerStage`'s shape with the
+discipline INVERTED. There, the second component is backstage and
+derivable — the cache carries nothing the ledger doesn't, so it is
+dumpable, re-grown, swept without a seat (`sweep_invisible`). Here it is
+frontstage and non-derivable — the ledgers it counted are released
+(`rebirth_blank`; the successor carries no probe into the predecessor), so
+the count must be carried as state by a seated move. Universe is a summary
+whose ledger is gone, and that inversion is exactly where the certificate
+goes: **the certificate's absence is the price of true forgetting.**
+`turn_counts` makes it quantitative — under `firings`, idempotent moves
+collapse and the turn ADDS, n firings moving the day by exactly n: the
+legible residue a certified move could never leave.
+
 A Company resonance, a READING labeled as one: the dusk notice is the
 helper's reflection deposited at the stalled walker's own position —
 tomorrow holds room the user cannot reach until today's fullness is visible
@@ -51,7 +67,8 @@ are hand-rolled below; core's equivalents price `propext`, and dusk asks
 no one.)
 -/
 
-import Foam.Maintenance
+import Foam.Unattended
+import Foam.Beholder
 
 namespace Foam
 
@@ -307,19 +324,36 @@ theorem turn_releases_whole {S : Type} (u : Universe S) : (turn u).ledger = [] :
 theorem turn_not_idempotent {S : Type} (u : Universe S) : turn (turn u) ≠ turn u :=
   fun h => Nat.succ_ne_self (u.day + 1) (congrArg Universe.day h)
 
-/-- The day-stage: the frontstage probe that reads which day it is — the
-    header of the pocket universe, "Yours: day N". -/
-def dayStage (S : Type) : Stage :=
-  { State := Universe S, Probe := Unit, Ans := Nat, obs := fun u _ => u.day }
+/-- The day-beholder: one way the universe answers — which day it is, the
+    header of the pocket universe, "Yours: day N". A `Beholder`, the fiber
+    primitive: the day-count is a FRONTSTAGE reading by design, where
+    `LedgerStage`'s cache component is backstage by construction — the
+    inversion the turn-theorems below price out. -/
+def dayBeholder (S : Type) : Beholder (Universe S) :=
+  ⟨Unit, Nat, fun u _ => u.day⟩
 
-/-- **The turn is seen.** The day counter is a frontstage probe and the turn
+/-- **The turn is seen.** The day-count is a frontstage reading and the turn
     moves it: not invisible, for any payload type. Second clause of the
     unattended certificate, refused. With `turn_not_idempotent`: the turn
     lacks the certificate entirely, so per `Unattended` the seat stays
     occupied — and the seat is the user's. (That last step is the boundary's
     carried side — operational wisdom, cited not claimed, exactly as
     `Unattended` holds it.) -/
-theorem turn_not_invisible (S : Type) : ¬ Invisible (dayStage S) turn :=
+theorem turn_not_invisible (S : Type) : ¬ Invisible (dayBeholder S).toStage turn :=
   fun h => Nat.succ_ne_self 0 (h ⟨0, []⟩ ())
+
+/-- **The turn counts.** Under `firings` — `Unattended`'s own combinator — an
+    idempotent move collapses (`firings_collapse`); the turn ADDS: n firings
+    move the day by exactly n. Both certificate-refusals as one quantitative
+    fact, and the day-count named for what it is — the legible residue of n
+    seated firings, exactly the trace `unattended_runs_clean` proves a
+    certified move can never leave. -/
+theorem turn_counts {S : Type} : ∀ (n : Nat) (u : Universe S),
+    (firings turn n u).day = u.day + n
+  | 0, _ => rfl
+  | n + 1, u => by
+    show (firings turn n (turn u)).day = u.day + (n + 1)
+    rw [turn_counts n (turn u)]
+    exact Nat.succ_add u.day n
 
 end Foam

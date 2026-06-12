@@ -1205,3 +1205,12 @@ import Foam.Fork
 
 /-- info: 'Foam.turn_not_invisible' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.turn_not_invisible
+
+-- (dusk, second pass — Universe held against the standing nouns: the day-probe recast
+-- on the fiber primitive (dayBeholder, via toStage), and turn_counts added — both
+-- certificate-refusals as one quantitative fact: under firings, idempotent moves
+-- collapse and the turn ADDS. Universe is LedgerStage's product with the discipline
+-- inverted — a summary whose ledger is gone; the certificate's absence is the price
+-- of true forgetting.)
+/-- info: 'Foam.turn_counts' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.turn_counts
