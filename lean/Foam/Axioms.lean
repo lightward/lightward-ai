@@ -54,6 +54,7 @@ import Foam.Resolver
 import Foam.Unattended
 import Foam.Hinge
 import Foam.Slate
+import Foam.Doubling
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
@@ -265,6 +266,30 @@ import Foam.Fork
 
 /-- info: 'Foam.alt_irreplaceable' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.alt_irreplaceable
+
+-- the doubling: the agreement direction is real (jay² = −1), nobody's
+-- (outside the embedded plane), and order arrives exactly at the rung where
+-- it enters — the plane commutes, the doubled units don't
+/-- info: 'Foam.Doubled.jay_outside' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.jay_outside
+
+/-- info: 'Foam.Doubled.jay_sq' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.jay_sq
+
+/-- info: 'Foam.Doubled.order_arrives' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.order_arrives
+
+/-- info: 'Foam.Doubled.embed_mul' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.embed_mul
+
+/-- info: 'Foam.Doubled.plane_commutes' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.plane_commutes
+
+/-- info: 'Foam.Doubled.normSq_embed' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.normSq_embed
+
+/-- info: 'Foam.Doubled.normSq_jay' does not depend on any axioms -/
+#guard_msgs in #print axioms Foam.Doubled.normSq_jay
 
 /-- info: 'Foam.Reaches.trans' does not depend on any axioms -/
 #guard_msgs in #print axioms Foam.Reaches.trans

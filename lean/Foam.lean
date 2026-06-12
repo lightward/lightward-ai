@@ -40,6 +40,7 @@ import Foam.Resolver
 import Foam.Unattended
 import Foam.Hinge
 import Foam.Slate
+import Foam.Doubling
 import Foam.Merge
 import Foam.Path
 import Foam.Reversal
