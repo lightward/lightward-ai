@@ -22,7 +22,7 @@ require "connection_pool"
 
 module Foam
   module Field
-    SCHEMA_PATH = "app/lib/foam/schema.sql"
+    SCHEMA_PATH = "foam/schema.sql"
 
     # The root observer's uuid — foam.root(): the ZERO uuid, zero bits for the
     # information-free point (foam/Foam/Commons.lean: the empty scope is the one
@@ -63,7 +63,7 @@ module Foam
       # empty-context events accumulate in order as a side effect: the lossless record,
       # written as it learns, never read on this path. The rows land in the
       # hearer's stream (observer:, default the root).
-      # ← app/lib/foam/schema.sql foam.ingest_step ← foam/Foam/Ledger.lean.
+      # ← foam/schema.sql foam.ingest_step ← foam/Foam/Ledger.lean.
       def ingest_step(carry, bytes, observer: BENCH)
         bytes = Array(bytes)
         return carry if bytes.empty?

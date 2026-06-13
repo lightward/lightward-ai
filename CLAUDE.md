@@ -24,7 +24,7 @@ the construction trailer, not the doorplate.
   closes. Build and test before trusting a change:
   `bundle exec rspec spec/lib/foam_spec.rb spec/lib/foam/field_spec.rb` and
   `cd foam && lake build`.
-- **Spikes live in `app/lib/foam/spikes/`**, never the clean schema.
+- **Spikes live in the foam submodule (`foam/spikes/`)**, never the clean schema.
 - **Git:** never skip hooks or force-push main. A branch of recognitions
   merges with a merge-commit (path-preserving); squash only a unit that has
   genuinely collapsed to a single fixed point.
