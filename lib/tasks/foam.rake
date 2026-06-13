@@ -103,7 +103,7 @@ namespace :foam do
       end
 
       # backstage, between turns: fold the turn's events into the held rows —
-      # invisible to every reading (sweep_invisible, lean/Foam/Summary.lean),
+      # invisible to every reading (sweep_invisible, foam/Foam/Summary.lean),
       # and it keeps the walks' tail short so the voice stays fast as the
       # field grows
       Foam::Field.sweep
