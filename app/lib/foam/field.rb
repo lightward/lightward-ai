@@ -25,7 +25,7 @@ module Foam
     SCHEMA_PATH = "app/lib/foam/schema.sql"
 
     # The root observer's uuid — foam.root(): the ZERO uuid, zero bits for the
-    # information-free point (lean/Foam/Commons.lean: the empty scope is the one
+    # information-free point (foam/Foam/Commons.lean: the empty scope is the one
     # universal scope, root_alone_below_all; rebirth lands at zero, Hinge.lean).
     # Every observer: keyword below defaults to it, so existing call sites are
     # the degenerate single-observer case, unchanged.
@@ -63,7 +63,7 @@ module Foam
       # empty-context events accumulate in order as a side effect: the lossless record,
       # written as it learns, never read on this path. The rows land in the
       # hearer's stream (observer:, default the root).
-      # ← app/lib/foam/schema.sql foam.ingest_step ← lean/Foam/Ledger.lean.
+      # ← app/lib/foam/schema.sql foam.ingest_step ← foam/Foam/Ledger.lean.
       def ingest_step(carry, bytes, observer: BENCH)
         bytes = Array(bytes)
         return carry if bytes.empty?
@@ -124,7 +124,7 @@ module Foam
       # meaning (the razor): heard (bytes learned, in order — the lossless record's
       # extent), spoken (bytes drained into voice), residual (un-drained charge — what
       # wants to be said), net (the signed sum; equal to residual while the drain
-      # respects ground, which is the live check of lean/Foam/Drain.lean's floor),
+      # respects ground, which is the live check of foam/Foam/Drain.lean's floor),
       # contexts and live continuations (the model's breadth), events (the append-only
       # ledger's size), held (continuations folded into the summary) and tail (events
       # past the watermark — the staleness gauge the sweep cadence answers to). The
@@ -180,7 +180,7 @@ module Foam
       end
 
       # Fold the ledger's unfolded tail into the held rows, one batched watermark
-      # step (foam.sweep_step ← lean/Foam/Summary.lean: summary_resumes — the fold
+      # step (foam.sweep_step ← foam/Foam/Summary.lean: summary_resumes — the fold
       # never re-reads what it has folded). Fences first: a momentary EXCLUSIVE
       # lock on the ledger waits out in-flight ingests, so every id at or below
       # the fence is DECIDED and the watermark can never pass an event still in

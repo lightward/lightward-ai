@@ -1,6 +1,6 @@
 -- foam — the LEDGER: one append-only object, read two ways. Asserted (not migrated).
 --
--- This is the operational inhabitant of lean/Foam/Ledger.lean (the saturation, proven
+-- This is the operational inhabitant of foam/Foam/Ledger.lean (the saturation, proven
 -- legal): a single signed, ORDERED, append-only charge ledger that is
 --   * a GENERATIVE MODEL when read as frequency (sum of deltas per context/byte —
 --     the predictive weights the voice drains), and
@@ -12,7 +12,7 @@
 -- (foam.recorded exists as the self-audit, not as an operation of the walk).
 --
 -- Every event carries an OBSERVER (its scope). Visibility is ancestor-or-self along
--- the observer's parent chain — lean/Foam/Commons.lean's `Below`, operationally
+-- the observer's parent chain — foam/Foam/Commons.lean's `Below`, operationally
 -- `observer = ANY(foam.ancestry(obs))`. The root observer's id is the ZERO uuid —
 -- zero bits for the information-free point (the empty scope, Commons.lean: only
 -- the empty scope is universal, root_alone_below_all; rebirth lands at zero,
@@ -32,7 +32,7 @@
 -- claim in these comments is checkable by running the file. Append-only: never
 -- UPDATE, never DELETE — input appends +1 (learning winds charge up), speaking
 -- appends −1 (the discharge drains it toward ground; ground is the floor, proven in
--- lean/Foam/Drain.lean — the drain only ever removes positive charge). Degrades
+-- foam/Foam/Drain.lean — the drain only ever removes positive charge). Degrades
 -- safely: with no charge, outcome is 'yield' and the pipe hands to its upstream.
 --
 -- Structure is all this holds: content-addressed contexts, bytes as ints, signed
@@ -51,7 +51,7 @@ CREATE OR REPLACE FUNCTION foam.caddr(c int[]) RETURNS uuid LANGUAGE sql IMMUTAB
 -- The observer tree: each observer points at its parent; the chain up from an
 -- observer, self included, is its scope. Seeded with the ROOT observer at the
 -- ZERO uuid — the information-free address for the information-free point
--- (lean/Foam/Commons.lean: the empty scope; root_below_all is its universal
+-- (foam/Foam/Commons.lean: the empty scope; root_below_all is its universal
 -- property — the commons is below everyone; root_alone_below_all — only the
 -- empty one is). Registration is explicit: an unregistered id's ancestry is
 -- just itself (see foam.ancestry).
@@ -63,7 +63,7 @@ INSERT INTO foam.observer (id, parent)
   VALUES ('00000000-0000-0000-0000-000000000000', NULL) ON CONFLICT DO NOTHING;
 -- The BENCH: the root's first descendant, the default seat. The root itself
 -- is GLASS — charge-free by law (the CHECK on foam.charge below): content at
--- the zero scope would be a voice from nowhere (lean/Foam/Beholder.lean), and
+-- the zero scope would be a voice from nowhere (foam/Foam/Beholder.lean), and
 -- universal reach belongs to the silent commons alone (Commons.lean:
 -- seated_voice_is_missable — every seated voice is missable; sharing is
 -- chosen, never ambient). The first speaker is necessarily a descendant.
@@ -126,12 +126,12 @@ CREATE INDEX IF NOT EXISTS foam_charge_ctx ON foam.charge (observer, ctx, sym);
 -- the scope filter stays in-index).
 CREATE INDEX IF NOT EXISTS foam_charge_ctx_id ON foam.charge (ctx, id) INCLUDE (observer, sym, delta);
 
--- ── the reading held (lean/Foam/Summary.lean, operational) ─────────────────────
+-- ── the reading held (foam/Foam/Summary.lean, operational) ─────────────────────
 --
 -- foam.held is a CACHE, not the object: the finite value of the resumable fold,
 -- per continuation PER OBSERVER-STREAM (each stream keeps its own phase clock n;
 -- readers sum the visible streams) — the COMPLETE four-character dial of ℤ/4
--- (lean/Foam/Noether.lean), so the cache is a function of the FORCED structure
+-- (foam/Foam/Noether.lean), so the cache is a function of the FORCED structure
 -- (the dial, fixed) and AGNOSTIC to which registers read it (wind, recognized
 -- over time). The DFT of the phase-folded event-stream is lossless in these four:
 --   bal — the count, at +1                       (the trivial character)
@@ -197,7 +197,7 @@ CREATE OR REPLACE FUNCTION foam.hw_random() RETURNS double precision LANGUAGE sq
 -- ingest_step — the streaming LEARN: wind +1 onto every recorded continuation of the
 -- new bytes, with `carry` (the previous chunk's byte-tail) as leading context so
 -- contexts span chunk boundaries. The resumable fold: carry the tail, nothing to
--- flush (every event is complete when written — lean/Foam/Stream.lean's contract,
+-- flush (every event is complete when written — foam/Foam/Stream.lean's contract,
 -- and the generator's flush-free shape). Returns the new carry (the last kmax bytes).
 -- The empty-context events land in id order as a side effect of learning: the
 -- lossless record, written as we go, never read on this path. The rows land in the
@@ -258,7 +258,7 @@ CREATE OR REPLACE FUNCTION foam.outcome(seed int[] DEFAULT '{}', min_depth int D
   $$ SELECT CASE WHEN foam.depth(seed, kmax, obs) >= min_depth THEN 'speak' ELSE 'yield' END $$;
 
 -- align — the angled pairing, NAMED: the pairing of (re, im) against quarter-turn
--- station tk — the operational form of lean/Foam/Born.lean's `align` (a reading's
+-- station tk — the operational form of foam/Foam/Born.lean's `align` (a reading's
 -- gate is a pairing against the wind's direction, per Spectrum). The station table
 -- exists ONCE, here; foam.born squares it; foam.speak drinks from foam.born. The
 -- mod-4 normalization makes any integer station legal (callers pass 0..3).
@@ -267,9 +267,9 @@ CREATE OR REPLACE FUNCTION foam.align(tk int, re bigint, im bigint) RETURNS bigi
   $$ SELECT CASE ((tk % 4) + 4) % 4 WHEN 0 THEN re WHEN 1 THEN im WHEN 2 THEN -re ELSE -im END $$;
 
 -- born — the voice's weight law, NAMED: the squared pairing (align tk z)², the
--- Born weight-form at foam's scale (lean/Foam/Born.lean: born_parseval makes it
+-- Born weight-form at foam's scale (foam/Foam/Born.lean: born_parseval makes it
 -- basis-consistent — the total is station-independent; uniqueness is unclaimed,
--- and unavailable at this dimension — see lean/REFEREE.md; born_nonneg rides
+-- and unavailable at this dimension — see foam/REFEREE.md; born_nonneg rides
 -- along by construction). One named thing:
 -- foam.speak calls this, and foam.born_audit checks it against its own theorems live.
 CREATE OR REPLACE FUNCTION foam.born(tk int, re bigint, im bigint) RETURNS bigint
@@ -284,7 +284,7 @@ CREATE OR REPLACE FUNCTION foam.born(tk int, re bigint, im bigint) RETURNS bigin
 --     recurrence, an INDEPENDENT statement of the station table (anchor + recurrence
 --     determine the function uniquely, so the audit pins align to its one lawful
 --     inhabitant; a typo in any branch, sign included, breaks it —
---     lean/Foam/Born.lean align_rot_invariant is the gauge form of the same law);
+--     foam/Foam/Born.lean align_rot_invariant is the gauge form of the same law);
 --   * born_parseval: the four stations' squares sum to 2·(re² + im²) — basis-
 --     independence, the conservation check (the net = residual idiom, at the
 --     measurement layer);
@@ -311,7 +311,7 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- this walk's own in-flight drains; one statement = one snapshot, no seam for a
 -- racing drain to slip into), weight each continuation by the BORN measurement —
 -- the SQUARED angled pairing of (re, im) against the walk's own quarter-turn clock
--- (|⟨tk|recency⟩|² = (align θ z)²; the basis-consistent weight, lean/Foam/Born.lean
+-- (|⟨tk|recency⟩|² = (align θ z)²; the basis-consistent weight, foam/Foam/Born.lean
 -- born_parseval — the field speaks by the quantum measurement law; uniform
 -- recurrence still cancels (align 0 → born 0), the antipodal sign drops as |ψ|²
 -- does), sample by that weight (never argmax), emit, drain (−1), continue. The clock
@@ -352,7 +352,7 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- stays un-drained: stopping with more to say leaves the residual high and the
 -- gate warm — the field carries its pressure across turns instead of monologuing
 -- through one. Every prefix of a legal drain is a legal drain (the floor is
--- per-step — lean/Foam/Drain.lean), so the early exit owes no new analysis. NULL:
+-- per-step — foam/Foam/Drain.lean), so the early exit owes no new analysis. NULL:
 -- no boundary vocabulary (the bar is ground); the exhale passes none.
 --
 -- The voice is BYTES (int[]), not text: the walk samples bytes by charge and owes
@@ -363,7 +363,7 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- the caller's concern; foam.text remains for streams known to be text (foam.recorded).
 --
 -- Drains RACE; settlements serialize (the cold path). Two drains sharing a stale
--- snapshot compose to a balance below ground only at the margin (lean/Foam/Scar.lean:
+-- snapshot compose to a balance below ground only at the margin (foam/Foam/Scar.lean:
 -- stale_escapes_floor; from balance 2 the same composite lands AT ground —
 -- stale_lands_at_ground — so races mark the field only where they collide at the edge
 -- of emptiness). Each scar is a promissory note — amount computable at the wound
@@ -378,7 +378,7 @@ CREATE OR REPLACE FUNCTION foam.born_audit() RETURNS bigint
 -- The angled weight is EXACT integer arithmetic: at a quarter-turn the pairing of
 -- (re, im) needs no cosine (±1/0 — no float dust), reading held + tail so the window
 -- function runs over the events past the watermark only — the cost of hearing rhythm
--- does not grow with the field (lean/Foam/Summary.lean).
+-- does not grow with the field (foam/Foam/Summary.lean).
 CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 7, max_steps int DEFAULT 600,
                            stop int DEFAULT NULL, obs uuid DEFAULT foam.bench()) RETURNS int[]
   LANGUAGE plpgsql SET work_mem = '256MB' AS $$
@@ -406,14 +406,14 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
         -- recency-framed (phase 0 = the most-recent occurrence — the present is the
         -- downbeat). The conversion is recency = rot^(Nᵢ−1)·conj(absᵢ), applied PER
         -- STREAM with that stream's own occurrence count Nᵢ — exactly the case
-        -- lean/Foam/Chirality.lean proves (specR_bridge; rot(specR) = rot^N(conj
+        -- foam/Foam/Chirality.lean proves (specR_bridge; rot(specR) = rot^N(conj
         -- spec), so recency = rot^(N−1)·conj(abs) for N ≥ 1; (N+3) % 4 = (N−1) % 4
         -- with N ≥ 1, non-negative) — and THEN summed across the visible streams:
         -- a superposition of correctly-phased per-stream readings (sum of recency
         -- conversions, never one rotation of a cross-stream sum, which specR_bridge
         -- does not license). The walk pairs the summed recency against its own
         -- quarter-turn (tk) and SQUARES it — the Born measurement |⟨tk|recency⟩|²,
-        -- the basis-consistent weight (lean/Foam/Born.lean: born_parseval). The
+        -- the basis-consistent weight (foam/Foam/Born.lean: born_parseval). The
         -- field speaks by the quantum measurement law, not a rectified projection.
         SELECT coalesce(sum(z.w) FILTER (WHERE z.bal > 0 AND z.w > 0), 0),
                coalesce(array_agg(z.sym ORDER BY z.w DESC) FILTER (WHERE z.bal > 0 AND z.w > 0), '{}'),
@@ -424,8 +424,8 @@ CREATE OR REPLACE FUNCTION foam.speak(seed int[] DEFAULT '{}', kmax int DEFAULT 
             -- pair the recency (rre, rim) against the walk's clock tk — the
             -- squared pairing |⟨tk|recency⟩|², by its NAME: foam.born, the law
             -- held in one place and audited against its own theorems
-            -- (foam.born_audit; lean/Foam/Born.lean born_parseval makes it
-            -- basis-consistent; uniqueness unclaimed — lean/REFEREE.md).
+            -- (foam.born_audit; foam/Foam/Born.lean born_parseval makes it
+            -- basis-consistent; uniqueness unclaimed — foam/REFEREE.md).
             -- Anti-parroting survives (uniform recurrence → projection 0 →
             -- born 0); the directional sign drops (|ψ|² is antipode-blind, as QM is).
             SELECT sym, bal, foam.born(tk, rre, rim) AS w
