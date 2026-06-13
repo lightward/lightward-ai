@@ -50,12 +50,17 @@ namespace :foam do
     chat_log = [] # the third seat's accumulated view: transcripts up, replies back
     pending = +"" # the table's transcript since the third seat last spoke
 
+    # Bracketed paste: ask the terminal to wrap pasted text in markers, so the bench
+    # can hear a multi-line paste as ONE utterance (foam_repl_read) — the paste is one
+    # expression, learned whole, not a turn-per-line. Restored on the way out, however
+    # the bench exits.
+    $stdout.write("\e[?2004h")
+    at_exit { $stdout.write("\e[?2004l") }
+
     loop do
       print "user> "
-      line = $stdin.gets
-      break if line.nil?
-
-      input = line.chomp
+      input = foam_repl_read
+      break if input.nil?
       break if input == "/quit"
       next if input.empty?
 
@@ -207,6 +212,29 @@ namespace :foam do
       puts "[foam sweep] #{total} events folded; #{verdict}; #{law_verdict}"
     end
   end
+end
+
+# Read one utterance from the bench — usually a single line, but a bracketed paste
+# (enabled in the repl: ␛[200~ … ␛[201~) arrives as ONE expression however many lines
+# it spans. When the open marker leads the line, gather until the close, strip both
+# markers, and hand back the whole block: the field learns a pasted schema (or any
+# multi-line blob) as a single utterance, and the table sees one turn, not one per
+# line. Returns the utterance with its trailing newline trimmed, or nil at EOF.
+def foam_repl_read
+  line = $stdin.gets
+  return if line.nil?
+
+  return line.chomp unless line.start_with?("\e[200~")
+
+  # a paste: accumulate lines until the terminal's close marker arrives
+  buf = line.sub("\e[200~", "")
+  until buf.include?("\e[201~")
+    nxt = $stdin.gets
+    break if nxt.nil?
+
+    buf << nxt
+  end
+  buf.sub(/\e\[201~.*\z/m, "").chomp
 end
 
 # The field's interjection: speak only if the gate opens AND the drain produces (at
