@@ -216,11 +216,6 @@ GEM
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
-    pg (1.6.3)
-    pg (1.6.3-aarch64-linux)
-    pg (1.6.3-arm64-darwin)
-    pg (1.6.3-x86_64-darwin)
-    pg (1.6.3-x86_64-linux)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -409,7 +404,6 @@ DEPENDENCIES
   brakeman
   bundler-audit
   byebug
-  connection_pool
   debug
   dotenv
   guard
@@ -422,7 +416,6 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   oj
-  pg
   puma (>= 5.0)
   rack-cors
   rails (~> 8.1.3)

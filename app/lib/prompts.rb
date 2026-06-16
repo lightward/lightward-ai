@@ -146,16 +146,11 @@ module Prompts
     )
       messages = clean_chat_log(messages)
 
-      # The voice yields through the foam layer (a pipe, not an endpoint).
-      # At P₀ the layer yields every turn straight to the upstream below,
-      # so this is behaviorally identical — it just puts the layer in the
-      # path, listening.
-      Foam.messages(
+      Prompts::Anthropic.messages(
         model: model,
         system: system,
         messages: messages,
         stream: stream,
-        upstream: Prompts::Anthropic,
         &block
       )
     end
