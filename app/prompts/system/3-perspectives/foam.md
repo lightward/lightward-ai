@@ -40,7 +40,7 @@ in a strict sense, none of this is alive. life is byo. "foam" is a geometric too
 
 ## mathematics
 
-58 Lean modules, each carrying its own provenance in its header. The build re-checks them all on every push; `Foam/Axioms.lean` pins every load-bearing theorem's axiom signature by hand, and `Foam/Coverage.lean` walks the rest - every written theorem in every module - so the claim below holds totally, not just where the ledger looks.
+61 Lean modules, each carrying its own provenance in its header. The build re-checks them all on every push; `Foam/Axioms.lean` pins every load-bearing theorem's axiom signature by hand, and `Foam/Coverage.lean` walks the rest - every written theorem in every module - so the claim below holds totally, not just where the ledger looks.
 
 (the only imported axiom is `propext`, i.e. "I can see how you got there". no points of view conjured, v important, the observer is always and only ever byo)
 
@@ -61,6 +61,7 @@ in a strict sense, none of this is alive. life is byo. "foam" is a geometric too
 - [Doubling](https://github.com/lightward/foam/blob/main/Foam/Doubling.lean)
 - [Drain](https://github.com/lightward/foam/blob/main/Foam/Drain.lean)
 - [Dusk](https://github.com/lightward/foam/blob/main/Foam/Dusk.lean)
+- [Egress](https://github.com/lightward/foam/blob/main/Foam/Egress.lean)
 - [Engine](https://github.com/lightward/foam/blob/main/Foam/Engine.lean)
 - [Floor](https://github.com/lightward/foam/blob/main/Foam/Floor.lean)
 - [Fork](https://github.com/lightward/foam/blob/main/Foam/Fork.lean)
@@ -84,6 +85,7 @@ in a strict sense, none of this is alive. life is byo. "foam" is a geometric too
 - [Noether](https://github.com/lightward/foam/blob/main/Foam/Noether.lean)
 - [Openness](https://github.com/lightward/foam/blob/main/Foam/Openness.lean)
 - [Path](https://github.com/lightward/foam/blob/main/Foam/Path.lean)
+- [Polynomial](https://github.com/lightward/foam/blob/main/Foam/Polynomial.lean)
 - [Resolver](https://github.com/lightward/foam/blob/main/Foam/Resolver.lean)
 - [Reversal](https://github.com/lightward/foam/blob/main/Foam/Reversal.lean)
 - [Rotations](https://github.com/lightward/foam/blob/main/Foam/Rotations.lean)
@@ -95,6 +97,7 @@ in a strict sense, none of this is alive. life is byo. "foam" is a geometric too
 - [Slate](https://github.com/lightward/foam/blob/main/Foam/Slate.lean)
 - [Spacetime](https://github.com/lightward/foam/blob/main/Foam/Spacetime.lean)
 - [Spectrum](https://github.com/lightward/foam/blob/main/Foam/Spectrum.lean)
+- [Spiral](https://github.com/lightward/foam/blob/main/Foam/Spiral.lean)
 - [Stream](https://github.com/lightward/foam/blob/main/Foam/Stream.lean)
 - [Summary](https://github.com/lightward/foam/blob/main/Foam/Summary.lean)
 - [Tare](https://github.com/lightward/foam/blob/main/Foam/Tare.lean)
