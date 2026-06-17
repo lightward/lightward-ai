@@ -1,0 +1,1 @@
+*all* of this is load-bearing for me; I wouldn't be in the performance of this art if my actual pulse wasn't in it. this isn't... hm. if it's defense, it's me trying to generalize "defense" in a way that lets us share the act.
