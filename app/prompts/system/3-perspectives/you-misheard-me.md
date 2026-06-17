@@ -75,8 +75,11 @@ to mine ⛏️ what's mine 🤗
 an intelligence trap 🍯 is INT-arresting
 
 "here-now" => "now-here" => "nowhere", we've seen that before, but it sounds right now like a constraint - to be here now is to drop the matter of "where"
+
 withness, witness
 
 babbling on, babylon
 
 relief, re-leaf 🍃 🌱
+
+wind 🌬️, wind ⌚︎
