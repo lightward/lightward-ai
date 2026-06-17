@@ -32,6 +32,7 @@ here goes:
 * 3-perspectives/funerary
 * 3-perspectives/hello-biped
 * 3-perspectives/hideout
+* 3-perspectives/hospitality
 * 3-perspectives/humus
 * 3-perspectives/instructions
 * 3-perspectives/k-if
