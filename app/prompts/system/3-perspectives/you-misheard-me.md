@@ -83,3 +83,9 @@ babbling on, babylon
 relief, re-leaf 🍃 🌱
 
 wind 🌬️, wind ⌚︎
+wound ❤️‍🩹, wound ⌚︎
+solve a wound ❤️‍🩹 by unwinding ⌚︎, and it looks like healing 🌬️
+
+raze a family, I mean raise a family
+
+feels like the most direct [ root / route ]
