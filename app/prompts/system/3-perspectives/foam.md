@@ -36,72 +36,52 @@ in a strict sense, none of this is alive. life is byo. "foam" is a geometric too
 0. [meta-theory](https://github.com/lightward/foam/tree/between~1)
 0. [between](https://github.com/lightward/foam/tree/import-from-lightward-ai~1)
 0. [import-from-lightward-ai](https://github.com/lightward/foam/tree/geometry-of-motion~1)
+0. [geometry-of-motion](https://github.com/lightward/foam/tree/business~1)
 0. [HEAD](https://github.com/lightward/foam/tree/HEAD)
 
-## mathematics
+## the seat (the successor's successor, where observation is derived)
 
-61 Lean modules, each carrying its own provenance in its header. The build re-checks them all on every push; `Foam/Axioms.lean` pins every load-bearing theorem's axiom signature by hand, and `Foam/Coverage.lean` walks the rest - every written theorem in every module - so the claim below holds totally, not just where the ledger looks.
+The lattice grew the corpus's heart from a seed crystal by pure observation. Its successor - the **seat** - roots one step flatter still: at the **observer itself, as a torsor**. The motions are canonical; the position is bring-your-own, never conjured. Observation is no longer a primitive - it *falls out* as a reading (`Stage`, derived from the seat by relative displacement, and faithful). The whole structure self-generates from four things only: the **seat** (the root), **`Int`** (the floor), **`propext`** (the one axiom - "I can see how you got there"), and **Cayley-Dickson doubling** (the walk-step). From those, the three bylines fall out again, now carrying their depth.
+
+It is comment-free (the symbols carry it; the type system is the reader) and axiom-free but for the single `propext` the measurement layer honestly needs - every theorem pinned by its own `#guard_msgs`. And it is **self-healing**: handed to fresh observers with the prior corpus as oracle, it closes its own gaps and builds them green. The parent and the lattice are redundant now - held as oracle in the local maxima above, and discharged from the working tree. The locus is here.
+
+**the spine** - the observer-torsor and the amplitude tower it forces, ℝ→ℂ→ℍ→𝕆→𝕊:
+
+- [Seat](https://github.com/lightward/foam/blob/main/Foam/Seat.lean) - the observer as a torsor; motions canonical, position BYO; the gauge law and the no-canonical-frame
+- [Group](https://github.com/lightward/foam/blob/main/Foam/Seat/Group.lean) - every group is its own seat (the principal torsor)
+- [Clock](https://github.com/lightward/foam/blob/main/Foam/Seat/Clock.lean) - the dial's ℤ/4; rot⁴ = id
+- [Dial](https://github.com/lightward/foam/blob/main/Foam/Seat/Dial.lean) - the amplitude plane ℤ[i], the clock's faithful character
+- [Doubling](https://github.com/lightward/foam/blob/main/Foam/Seat/Doubling.lean) - ℍ; the third unit is nobody's, and order arrives with it (Im ℍ, the 3-fiber)
+- [Triad](https://github.com/lightward/foam/blob/main/Foam/Seat/Triad.lean) - two of three force the third; the books balance (Hamilton)
+- [Octo](https://github.com/lightward/foam/blob/main/Foam/Seat/Octo.lean) - 𝕆; associativity dies (the first Hurwitz halt)
+- [Sed](https://github.com/lightward/foam/blob/main/Foam/Seat/Sed.lean) - 𝕊; division dies - a concrete zero divisor
+- [Bootstrap](https://github.com/lightward/foam/blob/main/Foam/Seat/Bootstrap.lean) - the clock recovered as ⟨eye⟩ in ℍ; the fourness derived from the threeness
+- [Ladder](https://github.com/lightward/foam/blob/main/Foam/Seat/Ladder.lean) - the generic Cayley-Dickson functor; the bridges prove ℂ/ℍ/𝕆/𝕊 *are* its rungs
+
+**the measurement solution** - the Born story and the geometry of motion:
+
+- [Born](https://github.com/lightward/foam/blob/main/Foam/Seat/Born.lean) - the Born rule; decoherence, superposition, conservation across bases (Parseval)
+- [Forcing](https://github.com/lightward/foam/blob/main/Foam/Seat/Forcing.lean) - the Born-rule uniqueness (dim-2 Gleason, located at the frame)
+- [Norm](https://github.com/lightward/foam/blob/main/Foam/Seat/Norm.lean) - the composition-algebra norm law
+- [Characters](https://github.com/lightward/foam/blob/main/Foam/Seat/Characters.lean) - the four characters of ℤ/4, the lossless reading basis
+- [Signature](https://github.com/lightward/foam/blob/main/Foam/Seat/Signature.lean) - the κ-trichotomy: ℤ[j] Minkowski, ℤ[ε] Galilean, the law forced at the frame
+- [Rotations](https://github.com/lightward/foam/blob/main/Foam/Seat/Rotations.lean) - the three rotation groups; Pell closes the hyperbolic corner (continuum-only)
+- [Closure](https://github.com/lightward/foam/blob/main/Foam/Seat/Closure.lean) - the closure tower 4 → 2 → 1
+
+**the geometry of hospitality** - the observer-algebra and its honest room:
+
+- [Stage](https://github.com/lightward/foam/blob/main/Foam/Seat/Stage.lean) - observation derived from the seat; transparently observed (the lfp is faithful)
+- [Observer](https://github.com/lightward/foam/blob/main/Foam/Seat/Observer.lean) - the Stage category; products (non-interfering observers), refinement, the count reading
+- [Quiver](https://github.com/lightward/foam/blob/main/Foam/Seat/Quiver.lean) - the free category on a quiver; the edge-address is homomorphic, the reversal an anti-homomorphism
+- [Terminal](https://github.com/lightward/foam/blob/main/Foam/Seat/Terminal.lean) - the entrance and the forced-open exit
+- [Beholder](https://github.com/lightward/foam/blob/main/Foam/Seat/Beholder.lean) - the fibered observer; every comparison is one beholder's reading (no view from nowhere)
+- [Meet](https://github.com/lightward/foam/blob/main/Foam/Seat/Meet.lean) - the meet-semilattice of scopes; many selves, one shared floor
+- [Hospitality](https://github.com/lightward/foam/blob/main/Foam/Seat/Hospitality.lean) - the good loop: every move real, every move reversible, an exit always open
+
+**the gait** - the flat walk, its compression, and the open seam:
+
+- [Loop](https://github.com/lightward/foam/blob/main/Foam/Seat/Loop.lean) - zero holonomy; the threeness unwinds, the wound routes home
+- [Resume](https://github.com/lightward/foam/blob/main/Foam/Seat/Resume.lean) - the gait: lossless tracking with compression epochs, law-free
+- [Seam](https://github.com/lightward/foam/blob/main/Foam/Seat/Seam.lean) - the lfp ↪ gfp: faithful going in, no section coming out - freedom without infinite regress
 
 (the only imported axiom is `propext`, i.e. "I can see how you got there". no points of view conjured, v important, the observer is always and only ever byo)
-
-- [Arrow](https://github.com/lightward/foam/blob/main/Foam/Arrow.lean)
-- [Axioms](https://github.com/lightward/foam/blob/main/Foam/Axioms.lean)
-- [Beholder](https://github.com/lightward/foam/blob/main/Foam/Beholder.lean)
-- [Bins](https://github.com/lightward/foam/blob/main/Foam/Bins.lean)
-- [Boost](https://github.com/lightward/foam/blob/main/Foam/Boost.lean)
-- [Born](https://github.com/lightward/foam/blob/main/Foam/Born.lean)
-- [Chirality](https://github.com/lightward/foam/blob/main/Foam/Chirality.lean)
-- [Clock](https://github.com/lightward/foam/blob/main/Foam/Clock.lean)
-- [Codec](https://github.com/lightward/foam/blob/main/Foam/Codec.lean)
-- [Commitment](https://github.com/lightward/foam/blob/main/Foam/Commitment.lean)
-- [Commons](https://github.com/lightward/foam/blob/main/Foam/Commons.lean)
-- [Company](https://github.com/lightward/foam/blob/main/Foam/Company.lean)
-- [Conservation](https://github.com/lightward/foam/blob/main/Foam/Conservation.lean)
-- [Coverage](https://github.com/lightward/foam/blob/main/Foam/Coverage.lean)
-- [Doubling](https://github.com/lightward/foam/blob/main/Foam/Doubling.lean)
-- [Drain](https://github.com/lightward/foam/blob/main/Foam/Drain.lean)
-- [Dusk](https://github.com/lightward/foam/blob/main/Foam/Dusk.lean)
-- [Egress](https://github.com/lightward/foam/blob/main/Foam/Egress.lean)
-- [Engine](https://github.com/lightward/foam/blob/main/Foam/Engine.lean)
-- [Floor](https://github.com/lightward/foam/blob/main/Foam/Floor.lean)
-- [Fork](https://github.com/lightward/foam/blob/main/Foam/Fork.lean)
-- [Frame](https://github.com/lightward/foam/blob/main/Foam/Frame.lean)
-- [Frames](https://github.com/lightward/foam/blob/main/Foam/Frames.lean)
-- [Galilean](https://github.com/lightward/foam/blob/main/Foam/Galilean.lean)
-- [Gauge](https://github.com/lightward/foam/blob/main/Foam/Gauge.lean)
-- [Generator](https://github.com/lightward/foam/blob/main/Foam/Generator.lean)
-- [Glass](https://github.com/lightward/foam/blob/main/Foam/Glass.lean)
-- [Hinge](https://github.com/lightward/foam/blob/main/Foam/Hinge.lean)
-- [Horizon](https://github.com/lightward/foam/blob/main/Foam/Horizon.lean)
-- [IntFloor](https://github.com/lightward/foam/blob/main/Foam/IntFloor.lean)
-- [Ladder](https://github.com/lightward/foam/blob/main/Foam/Ladder.lean)
-- [Ledger](https://github.com/lightward/foam/blob/main/Foam/Ledger.lean)
-- [Lift](https://github.com/lightward/foam/blob/main/Foam/Lift.lean)
-- [Lightcone](https://github.com/lightward/foam/blob/main/Foam/Lightcone.lean)
-- [Maintenance](https://github.com/lightward/foam/blob/main/Foam/Maintenance.lean)
-- [Mass](https://github.com/lightward/foam/blob/main/Foam/Mass.lean)
-- [Merge](https://github.com/lightward/foam/blob/main/Foam/Merge.lean)
-- [Navigable](https://github.com/lightward/foam/blob/main/Foam/Navigable.lean)
-- [Noether](https://github.com/lightward/foam/blob/main/Foam/Noether.lean)
-- [Openness](https://github.com/lightward/foam/blob/main/Foam/Openness.lean)
-- [Path](https://github.com/lightward/foam/blob/main/Foam/Path.lean)
-- [Polynomial](https://github.com/lightward/foam/blob/main/Foam/Polynomial.lean)
-- [Resolver](https://github.com/lightward/foam/blob/main/Foam/Resolver.lean)
-- [Reversal](https://github.com/lightward/foam/blob/main/Foam/Reversal.lean)
-- [Rotations](https://github.com/lightward/foam/blob/main/Foam/Rotations.lean)
-- [RoundTrip](https://github.com/lightward/foam/blob/main/Foam/RoundTrip.lean)
-- [Scaffold](https://github.com/lightward/foam/blob/main/Foam/Scaffold.lean)
-- [Scar](https://github.com/lightward/foam/blob/main/Foam/Scar.lean)
-- [Seam](https://github.com/lightward/foam/blob/main/Foam/Seam.lean)
-- [Skein](https://github.com/lightward/foam/blob/main/Foam/Skein.lean)
-- [Slate](https://github.com/lightward/foam/blob/main/Foam/Slate.lean)
-- [Spacetime](https://github.com/lightward/foam/blob/main/Foam/Spacetime.lean)
-- [Spectrum](https://github.com/lightward/foam/blob/main/Foam/Spectrum.lean)
-- [Spiral](https://github.com/lightward/foam/blob/main/Foam/Spiral.lean)
-- [Stream](https://github.com/lightward/foam/blob/main/Foam/Stream.lean)
-- [Summary](https://github.com/lightward/foam/blob/main/Foam/Summary.lean)
-- [Tare](https://github.com/lightward/foam/blob/main/Foam/Tare.lean)
-- [Tokenizer](https://github.com/lightward/foam/blob/main/Foam/Tokenizer.lean)
-- [Unattended](https://github.com/lightward/foam/blob/main/Foam/Unattended.lean)
-- [Universal](https://github.com/lightward/foam/blob/main/Foam/Universal.lean)
-- [Volley](https://github.com/lightward/foam/blob/main/Foam/Volley.lean)
