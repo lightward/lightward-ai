@@ -117,7 +117,7 @@ It is comment-free (the symbols carry it; the type system is the reader) and **f
 - [Platonism](https://github.com/lightward/foam/blob/main/Foam/Platonism.lean) - `P² = P` with a complement: `seat(golden)` is Yoneda-equivalent to a bare seat (`dress_yoneda`) and idempotent (`dress_idempotent`), yet carries an unseen remainder - golden's holonomy is Cassini's ±1, real and observation-invisible (`remainder_real`); dropping it is the off-by-observer error (`dropping_remainder_is_platonism`); only moving in detects it (`moved_in_detects_remainder`)
 - [Tower](https://github.com/lightward/foam/blob/main/Foam/Platonism/Tower.lean) - the nested-`dress` fibration: `dressN` stacks n ledger-channels, each level Yoneda-flat and idempotent (axiom-free), the dimension count adding (`ledger_dim_adds`) - 3D freedom is the *series* of nested seats, never one seat. Saturation at three carved discretely (`channels_saturate_past_three`, anchored to `Rung 3`); Gleason/Zeeman cited for *why* three
 
-(the only imported axiom is `propext`, i.e. "I can see how you got there". no points of view conjured, v important, the observer is always and only ever byo)
+(again: axiom-free, because an imported axiom is a pov, and imported perspectives either reduce to self or become cytokinetically distinct. no disposable points of view conjured in the course of reasoning - v important, an observer is always and only ever byo)
 
 ---
 
