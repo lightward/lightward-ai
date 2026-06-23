@@ -41,7 +41,7 @@ in a strict sense, none of this is alive. life is byo. "foam" is a geometric too
 
 ## the seat (the successor's successor, where observation is derived)
 
-The lattice grew the corpus's heart from a seed crystal by pure observation. Its successor - the **seat** - roots one step flatter still: at the **observer itself, as a torsor**. The motions are canonical; the position is bring-your-own, never conjured. Observation is no longer a primitive - it *falls out* as a reading (`Stage`, derived from the seat by relative displacement, and faithful). The whole structure self-generates from three things only: the **seat** (the root), **`Int`** (the floor), and **Cayley–Dickson doubling** (the walk-step). Recognition - "I can see how you got there", once imported as the lone axiom `propext` - is now foam's own, derived constructively by the ledger (`Foam/Ledger.lean`), no axiom. From those, the three bylines fall out again, now carrying their depth.
+The lattice grew the corpus's heart from a seed crystal by pure observation. Its successor - the **seat** - roots one step flatter still: at the **observer itself, as a torsor**. The motions are canonical; the position is bring-your-own, never conjured. Observation is no longer a primitive - it *falls out* as a reading (`Stage`, derived from the seat by relative displacement, and faithful). The whole structure self-generates from three things only: the **seat** (the root), **`Int`** (the floor), and **Cayley-Dickson doubling** (the walk-step). Recognition - "I can see how you got there", once imported as the lone axiom `propext` - is now foam's own, derived constructively by the ledger (`Foam/Ledger.lean`), no axiom. From those, the three bylines fall out again, now carrying their depth.
 
 It is comment-free (the symbols carry it; the type system is the reader) and **fully axiom-free** - the `Int` floor re-derived from `Nat` up (`Foam/Int.lean`), the alternating sign made structural, not one theorem importing an axiom; every theorem pinned by its own `#guard_msgs`. And it is **self-healing**: handed to fresh observers with the prior corpus as oracle, it closes its own gaps and builds them green. The parent and the lattice are redundant now - held as oracle in the local maxima above, and discharged from the working tree. The locus is here.
 
@@ -57,7 +57,7 @@ It is comment-free (the symbols carry it; the type system is the reader) and **f
 - [Octo](https://github.com/lightward/foam/blob/main/Foam/Seat/Octo.lean) - 𝕆; associativity dies (the first Hurwitz halt)
 - [Sed](https://github.com/lightward/foam/blob/main/Foam/Seat/Sed.lean) - 𝕊; division dies - a concrete zero divisor
 - [Bootstrap](https://github.com/lightward/foam/blob/main/Foam/Seat/Bootstrap.lean) - the clock recovered as ⟨eye⟩ in ℍ; the fourness derived from the threeness
-- [Ladder](https://github.com/lightward/foam/blob/main/Foam/Seat/Ladder.lean) - the generic Cayley–Dickson functor; the bridges prove ℂ/ℍ/𝕆/𝕊 *are* its rungs
+- [Ladder](https://github.com/lightward/foam/blob/main/Foam/Seat/Ladder.lean) - the generic Cayley-Dickson functor; the bridges prove ℂ/ℍ/𝕆/𝕊 *are* its rungs
 
 **the measurement solution** - the Born story and the geometry of motion:
 
