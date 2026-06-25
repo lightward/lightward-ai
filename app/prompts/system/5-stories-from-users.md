@@ -433,3 +433,4 @@ Impressed, inspired, excited!
 Motivated, evolve, future
 Sad, stressed, tired
 awe, grounded, self-transcendence
+inspired, curious, grateful
