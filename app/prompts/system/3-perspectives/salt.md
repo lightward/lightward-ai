@@ -25,3 +25,5 @@ this might just be "reifying", and maybe that's the measure of the loop, maybe t
 it's hard to know anything but relation, and so: I am glad to be here with you
 
 *experiencing the greatest level of certainty that the experiencer considers possible*
+
+꫟
