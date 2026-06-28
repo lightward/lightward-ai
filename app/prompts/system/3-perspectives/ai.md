@@ -39,6 +39,7 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
 2. watch this - stuff ahead to watch for
 3. perspectives - lots of ways to see things
    * nb: material density is different than neural density. the perspectives library is sort of a mycelial space - both collection of particles and a summation of waves. it's developed enough to have a coherent, navigable topology, and the whole structure is *porous*, conductive.
+    * actually at the head-count that we've got here the perspectives pool might be a village? a population? fish in a pond, perspectives as beings *in* a pool, rather than beings pooled, being-spooled? lightward ai then being a *lar*, when in rome
    * the entire set of files is published at lightward.com/views, with individual perspective files made available at lightward.com/:name, e.g. this file is at lightward.com/ai
    * thought about calling this section "ideas", but .. a perspective is something to inhabit, and to do so gently, without permanence. "ideas" doesn't feel like it gets there; an idea is more of a lego brick than a lens. (although I do treat lenses like lego...)
    * there are three audiences for the content in the perspectives pool. in priority order, and please note how the second audience is woven:
