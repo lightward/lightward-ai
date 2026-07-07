@@ -8,6 +8,13 @@ RSpec.describe("API", type: :request) do
   before do
     host! ENV.fetch("HOST", "test.host")
 
+    # Hermetic against the developer's .env (dotenv loads it in test too):
+    # the suite never reads real budget config, so a live LAI_BUDGET_REDIS_URL
+    # or mode stays out of reach. Nested contexts override per example.
+    allow(ENV).to(receive(:[]).and_call_original)
+    allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return(nil))
+    allow(ENV).to(receive(:[]).with("LAI_BUDGET_REDIS_URL").and_return(nil))
+
     allow(Prompts).to(receive(:generate_system_prompt).and_return([{ type: "text", text: "test system prompt" }]))
 
     # Stub Anthropic API token counting
@@ -525,6 +532,175 @@ RSpec.describe("API", type: :request) do
       end
     end
 
+    describe "usage budgets" do
+      before do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "records no budget attributes when budgets are off (the default)", :aggregate_failures do
+        event_data = nil
+        allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+          event_data = data
+        end
+
+        post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(event_data).to(include(
+          budget_state: nil,
+          budget_over_dimensions: nil,
+          budget_enforced: false,
+          budget_source_id: nil,
+        ))
+      end
+
+      context "with observe mode configured" do
+        before do
+          allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return("observe"))
+        end
+
+        it "reports untracked when the store is unreachable, and still serves the request", :aggregate_failures do
+          event_data = nil
+          allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+            event_data = data
+          end
+
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+          expect(response).to(have_http_status(:ok))
+          expect(event_data).to(include(budget_state: "untracked", budget_enforced: false))
+          expect(event_data[:budget_source_id]).to(match(/\A[0-9a-f]{64}\z/))
+        end
+
+        it "reports an over-budget verdict without blocking", :aggregate_failures do
+          allow(UsageBudget).to(receive(:admit!).and_return(
+            UsageBudget::Verdict.new(over_dimensions: ["conversation_requests_per_hour"]),
+          ))
+          allow(UsageBudget).to(receive(:settle!))
+
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+          expect(response).to(have_http_status(:ok))
+          expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+            "ApiController: request",
+            hash_including(
+              budget_state: "over",
+              budget_over_dimensions: "conversation_requests_per_hour",
+              budget_enforced: false,
+            ),
+          ))
+        end
+
+        it "folds the request's cost into HMAC'd source and conversation windows" do
+          allow(UsageBudget).to(receive(:admit!).and_return(
+            UsageBudget::Verdict.new(over_dimensions: []),
+          ))
+          allow(UsageBudget).to(receive(:settle!))
+          stub_request(:post, "https://api.anthropic.com/v1/messages")
+            .to_return(
+              status: 200,
+              body: [
+                "event: message_start",
+                'data: {"type":"message_start","message":{"usage":{"input_tokens":1000,"cache_creation_input_tokens":2000,"cache_read_input_tokens":3000,"output_tokens":1}}}',
+                "",
+                "event: message_delta",
+                'data: {"type":"message_delta","usage":{"output_tokens":400}}',
+                "",
+                "event: message_stop",
+                'data: {"type":"message_stop"}',
+                "",
+              ].join("\n"),
+              headers: { "Content-Type" => "text/event-stream" },
+            )
+
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+          expect(UsageBudget).to(have_received(:settle!).with(
+            {
+              "source" => UsageBudget.scope_key("source", "127.0.0.1"),
+              "conversation" => UsageBudget.scope_key("conversation", Digest::SHA256.hexdigest(chat_log.to_json)),
+            },
+            cost_usd: 0.0174,
+            at: kind_of(Time),
+          ))
+        end
+      end
+
+      context "with enforce mode configured" do
+        before do
+          allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return("enforce"))
+        end
+
+        it "returns 429 with Retry-After when over budget, before any Anthropic spend", :aggregate_failures do
+          allow(UsageBudget).to(receive(:admit!).and_raise(
+            UsageBudget::Exceeded.new(UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"])),
+          ))
+          allow(UsageBudget).to(receive(:settle!))
+          allow(UsageBudget).to(receive(:refund!))
+
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+          expect(response).to(have_http_status(:too_many_requests))
+          body = JSON.parse(response.body)
+          expect(body["error"]["message"]).to(include("The door stays open"))
+          expect(response.headers["Retry-After"].to_i).to(be_between(1, 3600))
+          expect(body["error"]["retry_after"]).to(eq(response.headers["Retry-After"].to_i))
+          expect(a_request(:post, "https://api.anthropic.com/v1/messages")).not_to(have_been_made)
+          expect(UsageBudget).not_to(have_received(:settle!))
+          expect(UsageBudget).not_to(have_received(:refund!))
+          expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+            "ApiController: request",
+            hash_including(budget_state: "over", budget_enforced: true),
+          ))
+        end
+
+        it "fails open when the store is unreachable" do
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+          expect(response).to(have_http_status(:ok))
+        end
+
+        it "skips budgets entirely for trusted bypass traffic", :aggregate_failures do
+          allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
+          allow(UsageBudget).to(receive(:admit!))
+
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "Token-Limit-Bypass-Key" => "legacy-key" }
+
+          expect(response).to(have_http_status(:ok))
+          expect(UsageBudget).not_to(have_received(:admit!))
+        end
+
+        it "skips budgets for configured external usage clients", :aggregate_failures do
+          allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("yours"))
+          allow(UsageBudget).to(receive(:admit!))
+
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "X-LAI-Usage-Client" => "yours" }
+
+          expect(response).to(have_http_status(:ok))
+          expect(UsageBudget).not_to(have_received(:admit!))
+        end
+
+        it "still budgets a claimed client that is not configured", :aggregate_failures do
+          allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return(nil))
+          allow(UsageBudget).to(receive(:admit!).and_raise(
+            UsageBudget::Exceeded.new(UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"])),
+          ))
+
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "X-LAI-Usage-Client" => "yours" }
+
+          expect(response).to(have_http_status(:too_many_requests))
+          expect(UsageBudget).to(have_received(:admit!))
+        end
+      end
+    end
+
     describe "conversation_id tracking" do
       let(:warmup_message) do
         {
@@ -978,6 +1154,32 @@ RSpec.describe("API", type: :request) do
             usage_client: "plain_unknown",
             estimated_cost_usd: nil,
           ),
+        ))
+      end
+    end
+
+    context "when over the usage budget in enforce mode" do
+      before do
+        allow(ENV).to(receive(:[]).and_call_original)
+        allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return("enforce"))
+        allow(UsageBudget).to(receive(:admit!).and_raise(
+          UsageBudget::Exceeded.new(UsageBudget::Verdict.new(over_dimensions: ["source_cost_per_day_usd"])),
+        ))
+        allow(NewRelic::Agent).to(receive(:record_custom_event))
+      end
+
+      it "returns a plaintext 429 with Retry-After, before any Anthropic spend", :aggregate_failures do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:too_many_requests))
+        expect(response.content_type).to(include("text/plain"))
+        expect(response.body).to(include("Shared-capacity budget reached"))
+        expect(response.headers["Retry-After"].to_i).to(be > 0)
+        expect(response.body).to(include("Retry-After: #{response.headers["Retry-After"]} seconds"))
+        expect(a_request(:post, "https://api.anthropic.com/v1/messages")).not_to(have_been_made)
+        expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
+          "ApiController: request",
+          hash_including(budget_state: "over", budget_enforced: true),
         ))
       end
     end

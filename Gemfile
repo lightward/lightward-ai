@@ -19,6 +19,7 @@ gem "rollbar"
 gem "oj" # per rollbar recommendation
 gem "newrelic_rpm"
 gem "rack-cors"
+gem "redis" # usage budget counters (fly upstash, private network)
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
