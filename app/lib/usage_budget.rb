@@ -18,10 +18,19 @@
 # source. LAI_BUDGET_MODE selects off (default) / observe (count and report,
 # never block) / enforce (block while over, with Retry-After).
 #
+# The lifecycle is admit → settle: admit! counts the request in the same
+# atomic MULTI that reads the counters (so concurrent requests cannot slip
+# past a full cap together), and the caller settles afterward — folding in
+# the actual cost when Anthropic responded, refunding the count when the
+# request never reached Anthropic at all. An enforced rejection refunds
+# itself: it spends nothing, so it counts nothing.
+#
 # The store is a Redis (Fly's managed Upstash, reached over the org's
 # private network — LAI_BUDGET_REDIS_URL). And the store is enhancement,
 # never essential: if it is unconfigured or unreachable, every operation
-# degrades to nil and requests flow exactly as they do today. Fail-open is
+# degrades to nil and requests flow exactly as they do today, with a short
+# timeout and a breaker (one failure opens it; the store is left alone for
+# BREAKER_SECONDS) so a sick store cannot tax the request path. Fail-open is
 # the invariant — enforcement can be caused only by observed usage, never by
 # infrastructure failure.
 
@@ -33,8 +42,19 @@ module UsageBudget
   # A window's counter stops being written once its bucket passes; twice the
   # window is comfortably past any assessment that could still read it.
   TTL_SECONDS = { "hour" => 2 * 3600, "day" => 2 * 86_400 }.freeze
+  # One failure opens the breaker; the store is skipped (nil, fail-open)
+  # until it lapses. Bounds a store outage's tax to one short timeout per
+  # process per window instead of two per request.
+  BREAKER_SECONDS = 30
 
-  class Exceeded < StandardError; end
+  class Exceeded < StandardError
+    attr_reader :verdict
+
+    def initialize(verdict = nil)
+      @verdict = verdict
+      super("usage budget exceeded")
+    end
+  end
 
   Verdict = Struct.new(:over_dimensions, keyword_init: true) do
     def over?
@@ -59,69 +79,91 @@ module UsageBudget
       mode == :enforce
     end
 
-    # An HMAC'd budget key: stable within a scope kind and UTC day,
-    # meaningless outside the server (keyed on the app secret), and never
-    # reversible to the raw identifier. This is the only form in which a
-    # source or conversation is ever stored or reported. The day in the
-    # input rotates the key nightly: neither the store nor the telemetry
-    # can link an actor across days — both forget on the same clock as the
+    # An HMAC'd budget key: stable within a scope kind and the UTC day of
+    # `at`, meaningless outside the server (keyed on the app secret), and
+    # never reversible to the raw identifier. This is the only form in which
+    # a source or conversation is ever stored or reported. The day in the
+    # input rotates the key nightly: neither the store nor the telemetry can
+    # link an actor across days — both forget on the same clock as the
     # budget's longest window. (Cross-day continuity of a *conversation*
     # still shows in telemetry via the content-derived conversation_id.)
-    def scope_key(kind, value)
+    # Pass the same `at` to admit!/settle!/refund! so the salt and the
+    # counter buckets are derived from one instant — a request that spans a
+    # boundary stays attributed to its admission time.
+    def scope_key(kind, value, at: Time.now.utc)
       value = value.to_s
       return if value.blank?
 
-      day = Time.now.utc.strftime("%Y%m%d")
-      scoped_value = [HMAC_NAMESPACE, day, kind, value].join(":")
+      scoped_value = [HMAC_NAMESPACE, at.strftime("%Y%m%d"), kind, value].join(":")
       OpenSSL::HMAC.hexdigest("SHA256", Rails.application.secret_key_base, scoped_value)
     end
 
-    # Compare the current hour/day windows for each scope against configured
-    # thresholds, BEFORE this request spends anything. Returns a Verdict
-    # (over_dimensions empty when within budget), or nil when the store is
-    # unconfigured or unreachable — the caller treats nil as untracked and
-    # lets the request through. A dimension with no configured threshold is
+    # Admit one request: read the current hour/day counters and count the
+    # request in one atomic MULTI (no gap for concurrent requests to slip
+    # through together), then compare what was already spent against the
+    # configured thresholds. In enforce mode an over verdict refunds the
+    # count (a rejection spends nothing, so it counts nothing) and raises
+    # Exceeded carrying the verdict. Otherwise returns the Verdict — or nil
+    # when the store is unconfigured or unreachable: untracked, fail-open,
+    # nothing to settle. A dimension with no configured threshold is
     # unbounded.
-    def assess(scopes)
+    def admit!(scopes, at: Time.now.utc)
       return if scopes.blank?
 
-      counters = fetch_counters(scopes.values)
-      return unless counters
-
-      index = 0
-      over = scopes.flat_map { |scope_kind, _key|
-        WINDOW_KINDS.flat_map { |window_kind|
-          requests, cost = Array(counters[index])
-          index += 1
-
-          METRICS.filter_map { |metric|
-            limit = limit_for(scope_kind, metric, window_kind)
-            next unless limit
-
-            spent = metric == "requests" ? requests.to_i : cost.to_f
-            dimension_label(scope_kind, metric, window_kind) if spent >= limit
-          }
-        }
+      keys = scopes.values.flat_map { |key|
+        WINDOW_KINDS.map { |window_kind| counter_key(key, window_kind, at) }
       }
 
-      Verdict.new(over_dimensions: over)
+      results = with_redis { |redis|
+        redis.multi { |tx|
+          keys.each { |key| tx.hmget(key, "requests", "cost") }
+          keys.each_with_index do |key, index|
+            tx.hincrby(key, "requests", 1)
+            tx.expire(key, TTL_SECONDS[WINDOW_KINDS[index % WINDOW_KINDS.size]])
+          end
+        }
+      }
+      return unless results
+
+      verdict = evaluate(scopes, results.first(keys.size))
+      if verdict.over? && enforce?
+        refund!(scopes, at: at)
+        raise Exceeded, verdict
+      end
+
+      verdict
     end
 
-    # Fold one request into the current hour/day windows of every scope —
-    # request count always, cost as reported (0 when Anthropic returned no
-    # usage). Returns true, or nil when the store is unconfigured or
-    # unreachable (the request simply goes unbudgeted; fail-open).
-    def record!(scopes, cost_usd: 0)
+    # Fold the settled cost into the admission's buckets — the request count
+    # already landed in admit!. Zero cost settles for free.
+    def settle!(scopes, cost_usd:, at: Time.now.utc)
+      return if scopes.blank?
+      return true if cost_usd.to_f.zero?
+
+      with_redis { |redis|
+        redis.pipelined do |pipeline|
+          scopes.values.each do |key|
+            WINDOW_KINDS.each do |window_kind|
+              counter = counter_key(key, window_kind, at)
+              pipeline.hincrbyfloat(counter, "cost", cost_usd.to_f)
+              pipeline.expire(counter, TTL_SECONDS[window_kind])
+            end
+          end
+        end
+        true
+      }
+    end
+
+    # Give back an admission: the request never reached Anthropic (or was
+    # rejected at the gate), so it spends nothing and counts nothing.
+    def refund!(scopes, at: Time.now.utc)
       return if scopes.blank?
 
       with_redis { |redis|
         redis.pipelined do |pipeline|
           scopes.values.each do |key|
             WINDOW_KINDS.each do |window_kind|
-              counter = counter_key(key, window_kind)
-              pipeline.hincrby(counter, "requests", 1)
-              pipeline.hincrbyfloat(counter, "cost", cost_usd.to_f)
-              pipeline.expire(counter, TTL_SECONDS[window_kind])
+              pipeline.hincrby(counter_key(key, window_kind, at), "requests", -1)
             end
           end
         end
@@ -142,36 +184,48 @@ module UsageBudget
       (boundary - now).ceil
     end
 
-    # Drop the memoized client (e.g. between spec examples that reconfigure
-    # the store). Connections re-establish lazily on next use.
+    # Drop the memoized client and close the breaker (e.g. between spec
+    # examples that reconfigure the store). Connections re-establish lazily
+    # on next use.
     def disconnect!
       @redis&.close
     rescue StandardError
       nil
     ensure
       @redis = nil
+      @skip_until = nil
     end
 
     private
 
-    # One pipelined round trip: [requests, cost] for the current hour and
-    # day bucket of each scope, in scope-major order. nil on any failure.
-    def fetch_counters(scope_keys)
-      keys = scope_keys.flat_map { |key|
-        WINDOW_KINDS.map { |window_kind| counter_key(key, window_kind) }
-      }
+    # Counter rows arrive scope-major, window-minor — the same order the
+    # keys were built in admit!. Values are pre-admission (the MULTI reads
+    # before it increments), so `spent >= limit` means: this request would
+    # be the limit-plus-first.
+    def evaluate(scopes, counter_rows)
+      index = 0
+      over = scopes.flat_map { |scope_kind, _key|
+        WINDOW_KINDS.flat_map { |window_kind|
+          requests, cost = Array(counter_rows[index])
+          index += 1
 
-      with_redis { |redis|
-        redis.pipelined { |pipeline|
-          keys.each { |key| pipeline.hmget(key, "requests", "cost") }
+          METRICS.filter_map { |metric|
+            limit = limit_for(scope_kind, metric, window_kind)
+            next unless limit
+
+            spent = metric == "requests" ? requests.to_i : cost.to_f
+            dimension_label(scope_kind, metric, window_kind) if spent >= limit
+          }
         }
       }
+
+      Verdict.new(over_dimensions: over)
     end
 
     # The bucket rides in the key, so a fixed TTL per write is enough: the
     # key goes cold when its window passes and expires on its own.
-    def counter_key(scope_key, window_kind)
-      bucket = Time.now.utc.strftime(window_kind == "hour" ? "%Y%m%d%H" : "%Y%m%d")
+    def counter_key(scope_key, window_kind, at)
+      bucket = at.strftime(window_kind == "hour" ? "%Y%m%d%H" : "%Y%m%d")
       [KEY_NAMESPACE, scope_key, window_kind, bucket].join(":")
     end
 
@@ -203,22 +257,29 @@ module UsageBudget
     end
 
     # Run the block with the client. Any failure — connect, timeout, command
-    # — is swallowed to nil. No store ⇒ nil ⇒ the request flows unbudgeted.
+    # — is swallowed to nil AND opens the breaker, so the next BREAKER_SECONDS
+    # of requests skip the store outright instead of each re-paying the
+    # timeout. No store ⇒ nil ⇒ the request flows unbudgeted.
     def with_redis
+      return if @skip_until && Time.now.utc < @skip_until
+
       client = redis_client
       return unless client
 
-      yield client
+      result = yield client
+      @skip_until = nil
+      result
     rescue StandardError => e
-      Rails.logger.debug { "[budget] store unavailable (#{e.class}: #{e.message}) — failing open" }
+      @skip_until = Time.now.utc + BREAKER_SECONDS
+      Rails.logger.warn("[budget] store unavailable (#{e.class}: #{e.message}) — failing open for #{BREAKER_SECONDS}s")
       nil
     end
 
     # Created lazily, so it is never built in a preloading master — each
     # worker gets its own client on first use, after fork. The budget store
     # must never add meaningful latency to a conversation: a sick store
-    # costs at most the timeout, once, and then fails open (no reconnect
-    # retries — the next request simply tries fresh).
+    # costs at most one short timeout per breaker window (no reconnect
+    # retries), and Fly's private network makes the healthy path ~1ms.
     def redis_client
       url = ENV["LAI_BUDGET_REDIS_URL"].to_s.strip
       return if url.blank?
@@ -226,8 +287,10 @@ module UsageBudget
       @redis ||= Redis.new(url: url, timeout: timeout_seconds, reconnect_attempts: 0)
     end
 
+    # Forgiving parse: a malformed override must not disable budgeting (the
+    # raise would be swallowed to fail-open by with_redis, silently).
     def timeout_seconds
-      Float(ENV.fetch("LAI_BUDGET_TIMEOUT_SECONDS", "1"))
+      Float(ENV.fetch("LAI_BUDGET_TIMEOUT_SECONDS", "0.25"), exception: false) || 0.25
     end
   end
 end

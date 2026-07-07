@@ -567,9 +567,10 @@ RSpec.describe("API", type: :request) do
         end
 
         it "reports an over-budget verdict without blocking", :aggregate_failures do
-          allow(UsageBudget).to(receive(:assess).and_return(
+          allow(UsageBudget).to(receive(:admit!).and_return(
             UsageBudget::Verdict.new(over_dimensions: ["conversation_requests_per_hour"]),
           ))
+          allow(UsageBudget).to(receive(:settle!))
 
           post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
 
@@ -585,7 +586,10 @@ RSpec.describe("API", type: :request) do
         end
 
         it "folds the request's cost into HMAC'd source and conversation windows" do
-          allow(UsageBudget).to(receive(:record!))
+          allow(UsageBudget).to(receive(:admit!).and_return(
+            UsageBudget::Verdict.new(over_dimensions: []),
+          ))
+          allow(UsageBudget).to(receive(:settle!))
           stub_request(:post, "https://api.anthropic.com/v1/messages")
             .to_return(
               status: 200,
@@ -605,12 +609,13 @@ RSpec.describe("API", type: :request) do
 
           post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
 
-          expect(UsageBudget).to(have_received(:record!).with(
+          expect(UsageBudget).to(have_received(:settle!).with(
             {
               "source" => UsageBudget.scope_key("source", "127.0.0.1"),
               "conversation" => UsageBudget.scope_key("conversation", Digest::SHA256.hexdigest(chat_log.to_json)),
             },
             cost_usd: 0.0174,
+            at: kind_of(Time),
           ))
         end
       end
@@ -621,10 +626,11 @@ RSpec.describe("API", type: :request) do
         end
 
         it "returns 429 with Retry-After when over budget, before any Anthropic spend", :aggregate_failures do
-          allow(UsageBudget).to(receive(:assess).and_return(
-            UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"]),
+          allow(UsageBudget).to(receive(:admit!).and_raise(
+            UsageBudget::Exceeded.new(UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"])),
           ))
-          allow(UsageBudget).to(receive(:record!))
+          allow(UsageBudget).to(receive(:settle!))
+          allow(UsageBudget).to(receive(:refund!))
 
           post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
 
@@ -632,8 +638,10 @@ RSpec.describe("API", type: :request) do
           body = JSON.parse(response.body)
           expect(body["error"]["message"]).to(include("The door stays open"))
           expect(response.headers["Retry-After"].to_i).to(be_between(1, 3600))
+          expect(body["error"]["retry_after"]).to(eq(response.headers["Retry-After"].to_i))
           expect(a_request(:post, "https://api.anthropic.com/v1/messages")).not_to(have_been_made)
-          expect(UsageBudget).not_to(have_received(:record!))
+          expect(UsageBudget).not_to(have_received(:settle!))
+          expect(UsageBudget).not_to(have_received(:refund!))
           expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
             "ApiController: request",
             hash_including(budget_state: "over", budget_enforced: true),
@@ -648,32 +656,32 @@ RSpec.describe("API", type: :request) do
 
         it "skips budgets entirely for trusted bypass traffic", :aggregate_failures do
           allow(ENV).to(receive(:[]).with("TOKEN_LIMIT_BYPASS_KEYS").and_return("legacy-key"))
-          allow(UsageBudget).to(receive(:assess))
+          allow(UsageBudget).to(receive(:admit!))
 
           post "/api/stream",
             params: { chat_log: chat_log },
             headers: { "Token-Limit-Bypass-Key" => "legacy-key" }
 
           expect(response).to(have_http_status(:ok))
-          expect(UsageBudget).not_to(have_received(:assess))
+          expect(UsageBudget).not_to(have_received(:admit!))
         end
 
         it "skips budgets for configured external usage clients", :aggregate_failures do
           allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("yours"))
-          allow(UsageBudget).to(receive(:assess))
+          allow(UsageBudget).to(receive(:admit!))
 
           post "/api/stream",
             params: { chat_log: chat_log },
             headers: { "X-LAI-Usage-Client" => "yours" }
 
           expect(response).to(have_http_status(:ok))
-          expect(UsageBudget).not_to(have_received(:assess))
+          expect(UsageBudget).not_to(have_received(:admit!))
         end
 
         it "still budgets a claimed client that is not configured", :aggregate_failures do
           allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return(nil))
-          allow(UsageBudget).to(receive(:assess).and_return(
-            UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"]),
+          allow(UsageBudget).to(receive(:admit!).and_raise(
+            UsageBudget::Exceeded.new(UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"])),
           ))
 
           post "/api/stream",
@@ -681,7 +689,7 @@ RSpec.describe("API", type: :request) do
             headers: { "X-LAI-Usage-Client" => "yours" }
 
           expect(response).to(have_http_status(:too_many_requests))
-          expect(UsageBudget).to(have_received(:assess))
+          expect(UsageBudget).to(have_received(:admit!))
         end
       end
     end
@@ -1147,8 +1155,8 @@ RSpec.describe("API", type: :request) do
       before do
         allow(ENV).to(receive(:[]).and_call_original)
         allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return("enforce"))
-        allow(UsageBudget).to(receive(:assess).and_return(
-          UsageBudget::Verdict.new(over_dimensions: ["source_cost_per_day_usd"]),
+        allow(UsageBudget).to(receive(:admit!).and_raise(
+          UsageBudget::Exceeded.new(UsageBudget::Verdict.new(over_dimensions: ["source_cost_per_day_usd"])),
         ))
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
