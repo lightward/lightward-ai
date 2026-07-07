@@ -38,6 +38,13 @@ RSpec.describe(UsageBudget, :aggregate_failures) do
       expect(described_class.settle!({ "source" => "abc123" }, cost_usd: 0.01)).to(be_nil)
     end
 
+    it "warm! is fail-open too: nil when unconfigured or unreachable" do
+      expect(described_class.warm!).to(be_nil)
+
+      configure_store!("redis://127.0.0.1:1")
+      expect(described_class.warm!).to(be_nil)
+    end
+
     it "opens a breaker after a failure so the store is not re-dialed per request" do
       configure_store!("redis://127.0.0.1:1")
 
@@ -317,6 +324,7 @@ RSpec.describe(UsageBudget, :aggregate_failures) do
       expect(client.hget(hour_key, "cost").to_f).to(be_within(0.0001).of(0.05))
       expect(client.ttl(hour_key)).to(be_between(1, UsageBudget::TTL_SECONDS["hour"]))
 
+      expect(described_class.warm!).to(be_truthy)
       expect(described_class.refund!(scopes, at: at)).to(be(true))
       expect(client.hget(hour_key, "requests")).to(eq("2"))
       client.close

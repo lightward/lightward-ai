@@ -171,6 +171,15 @@ module UsageBudget
       }
     end
 
+    # Establish the client and its connection ahead of need (e.g. at boot,
+    # before the machine accepts traffic) so the first budgeted request never
+    # pays the connect — or races boot-time CPU for it. Fail-open like
+    # everything else: an unreachable store costs one bounded timeout here
+    # and nothing more. Returns truthy on success, nil otherwise.
+    def warm!
+      with_redis(&:ping)
+    end
+
     # Seconds until the earliest window that could clear the verdict rolls
     # over — the next UTC hour unless only a per-day dimension is exceeded.
     def retry_after_seconds(verdict)
