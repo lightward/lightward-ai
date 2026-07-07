@@ -163,11 +163,16 @@ class ApiController < ApplicationController
   private
 
   # Shared-resource budgets: open with limits, not closed. Skipped entirely
-  # for trusted bypass traffic; inert unless LAI_BUDGET_MODE is set. In
-  # observe mode an over-budget verdict is recorded but never blocks; in
-  # enforce mode it raises UsageBudget::Exceeded before any Anthropic spend.
+  # for trusted bypass traffic and for configured external clients (the
+  # operator's explicit allowlist — first-party and unknown traffic is what
+  # budgets protect right now; note the client header is an unauthenticated
+  # claim, a courtesy exemption rather than a security boundary). Inert
+  # unless LAI_BUDGET_MODE is set. In observe mode an over-budget verdict is
+  # recorded but never blocks; in enforce mode it raises
+  # UsageBudget::Exceeded before any Anthropic spend.
   def check_usage_budget!(conversation_id = nil)
     return if token_limit_bypassed?
+    return if budget_exempt_client?
     return unless UsageBudget.active?
 
     @budget_scopes = {
@@ -182,6 +187,11 @@ class ApiController < ApplicationController
       @budget_enforced = true
       raise UsageBudget::Exceeded
     end
+  end
+
+  def budget_exempt_client?
+    client = reported_usage_client
+    client.present? && configured_external_usage_clients.value?(client)
   end
 
   # Fold this request into the budget windows — only requests that reached

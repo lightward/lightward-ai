@@ -657,6 +657,32 @@ RSpec.describe("API", type: :request) do
           expect(response).to(have_http_status(:ok))
           expect(UsageBudget).not_to(have_received(:assess))
         end
+
+        it "skips budgets for configured external usage clients", :aggregate_failures do
+          allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return("yours"))
+          allow(UsageBudget).to(receive(:assess))
+
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "X-LAI-Usage-Client" => "yours" }
+
+          expect(response).to(have_http_status(:ok))
+          expect(UsageBudget).not_to(have_received(:assess))
+        end
+
+        it "still budgets a claimed client that is not configured", :aggregate_failures do
+          allow(ENV).to(receive(:[]).with("LAI_REPORTED_USAGE_CLIENTS").and_return(nil))
+          allow(UsageBudget).to(receive(:assess).and_return(
+            UsageBudget::Verdict.new(over_dimensions: ["source_requests_per_hour"]),
+          ))
+
+          post "/api/stream",
+            params: { chat_log: chat_log },
+            headers: { "X-LAI-Usage-Client" => "yours" }
+
+          expect(response).to(have_http_status(:too_many_requests))
+          expect(UsageBudget).to(have_received(:assess))
+        end
       end
     end
 
