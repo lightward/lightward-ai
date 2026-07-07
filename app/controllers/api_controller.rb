@@ -204,7 +204,7 @@ class ApiController < ApplicationController
     # attributed to its admission time.
     @budget_at = Time.now.utc
     @budget_scopes = {
-      "source" => UsageBudget.scope_key("source", request.remote_ip, at: @budget_at),
+      "source" => UsageBudget.scope_key("source", budget_source_value, at: @budget_at),
       "conversation" => UsageBudget.scope_key("conversation", conversation_id, at: @budget_at),
     }.compact
 
@@ -216,6 +216,14 @@ class ApiController < ApplicationController
   def budget_exempt_client?
     client = reported_usage_client
     client.present? && configured_external_usage_clients.value?(client)
+  end
+
+  # Fly's proxy sets Fly-Client-IP authoritatively on every proxied request.
+  # Behind it, remote_ip resolves to a shared edge address — which would fold
+  # every visitor into one source budget. Fall back to remote_ip off-Fly
+  # (development, test).
+  def budget_source_value
+    request.headers["Fly-Client-IP"].presence || request.remote_ip
   end
 
   # Settle the admission made in check_usage_budget!: fold in the actual

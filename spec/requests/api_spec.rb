@@ -625,6 +625,22 @@ RSpec.describe("API", type: :request) do
             at: kind_of(Time),
           ))
         end
+
+        it "scopes the source by Fly-Client-IP when the proxy provides it", :aggregate_failures do
+          admitted_scopes = nil
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted_scopes = scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          post "/api/stream",
+            params: { chat_log: chat_log, usage_client: "reader" },
+            headers: { "Fly-Client-IP" => "203.0.113.7" }
+
+          expect(admitted_scopes["source"]).to(eq(UsageBudget.scope_key("source", "203.0.113.7")))
+          expect(admitted_scopes["source"]).not_to(eq(UsageBudget.scope_key("source", "127.0.0.1")))
+        end
       end
 
       context "with enforce mode configured" do
