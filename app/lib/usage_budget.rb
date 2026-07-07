@@ -10,9 +10,9 @@
 #
 # Privacy is structural, not procedural: budgets are keyed only by HMAC'd
 # scope keys (a server-observed source, a content-derived conversation id),
-# so no raw IP, user id, or conversation content ever reaches the store or
-# the telemetry. Counter keys carry their own TTL — the store holds pacing
-# state, never history.
+# day-salted so actor-linkage dissolves nightly, and no raw IP, user id, or
+# conversation content ever reaches the store or the telemetry. Counter keys
+# carry their own TTL — the store holds pacing state, never history.
 #
 # Thresholds live in private runtime config (ENV), never in this public
 # source. LAI_BUDGET_MODE selects off (default) / observe (count and report,
@@ -59,15 +59,20 @@ module UsageBudget
       mode == :enforce
     end
 
-    # An HMAC'd budget key: stable within a scope kind, meaningless outside
-    # the server (keyed on the app secret), and never reversible to the raw
-    # identifier. This is the only form in which a source or conversation is
-    # ever stored or reported.
+    # An HMAC'd budget key: stable within a scope kind and UTC day,
+    # meaningless outside the server (keyed on the app secret), and never
+    # reversible to the raw identifier. This is the only form in which a
+    # source or conversation is ever stored or reported. The day in the
+    # input rotates the key nightly: neither the store nor the telemetry
+    # can link an actor across days — both forget on the same clock as the
+    # budget's longest window. (Cross-day continuity of a *conversation*
+    # still shows in telemetry via the content-derived conversation_id.)
     def scope_key(kind, value)
       value = value.to_s
       return if value.blank?
 
-      scoped_value = [HMAC_NAMESPACE, kind, value].join(":")
+      day = Time.now.utc.strftime("%Y%m%d")
+      scoped_value = [HMAC_NAMESPACE, day, kind, value].join(":")
       OpenSSL::HMAC.hexdigest("SHA256", Rails.application.secret_key_base, scoped_value)
     end
 

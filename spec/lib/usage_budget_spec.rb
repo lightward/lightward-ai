@@ -73,16 +73,29 @@ RSpec.describe(UsageBudget, :aggregate_failures) do
     end
 
     it "returns a stable HMAC that never contains the raw identifier" do
-      key = described_class.scope_key("source", "203.0.113.7")
+      travel_to(Time.utc(2026, 7, 6, 12, 0, 0)) do
+        key = described_class.scope_key("source", "203.0.113.7")
 
-      expect(key).to(eq(described_class.scope_key("source", "203.0.113.7")))
-      expect(key).to(match(/\A[0-9a-f]{64}\z/))
-      expect(key).not_to(include("203.0.113.7"))
+        expect(key).to(eq(described_class.scope_key("source", "203.0.113.7")))
+        expect(key).to(match(/\A[0-9a-f]{64}\z/))
+        expect(key).not_to(include("203.0.113.7"))
+      end
     end
 
     it "scopes the HMAC by kind, so a source key and a conversation key never collide" do
       expect(described_class.scope_key("source", "value"))
         .not_to(eq(described_class.scope_key("conversation", "value")))
+    end
+
+    it "rotates with the UTC day, so an actor is never linkable across days" do
+      today = travel_to(Time.utc(2026, 7, 6, 23, 59, 0)) {
+        described_class.scope_key("source", "203.0.113.7")
+      }
+      tomorrow = travel_to(Time.utc(2026, 7, 7, 0, 1, 0)) {
+        described_class.scope_key("source", "203.0.113.7")
+      }
+
+      expect(today).not_to(eq(tomorrow))
     end
   end
 
