@@ -133,9 +133,12 @@ class ApiController < ApplicationController
     @budget_verdict = error.verdict
     @budget_enforced = true
     record_newrelic_event(chat_log, conversation_frame_id: "plain")
+    retry_after = UsageBudget.retry_after_seconds(error.verdict)
     # self.response: the local `response` above shadows the controller's
-    self.response.headers["Retry-After"] = UsageBudget.retry_after_seconds(error.verdict).to_s
-    render(plain: BUDGET_EXCEEDED_MESSAGE, status: :too_many_requests)
+    self.response.headers["Retry-After"] = retry_after.to_s
+    # The retry window rides in the body too — the pacing signal should be
+    # hard to miss, whether a client reads headers or bodies.
+    render(plain: "#{BUDGET_EXCEEDED_MESSAGE}\n\nRetry-After: #{retry_after} seconds", status: :too_many_requests)
   rescue StandardError => error
     Rollbar.error(error)
     Rails.logger.error("API plain error: #{error.message}\n#{error.backtrace.join("\n")}")

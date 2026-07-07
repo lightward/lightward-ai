@@ -5,7 +5,11 @@ require "rails_helper"
 
 RSpec.describe(UsageBudget, :aggregate_failures) do
   before do
+    # Hermetic against the developer's .env (dotenv loads it in test too);
+    # configure_store! and per-example stubs override.
     allow(ENV).to(receive(:[]).and_call_original)
+    allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return(nil))
+    allow(ENV).to(receive(:[]).with("LAI_BUDGET_REDIS_URL").and_return(nil))
   end
 
   after do

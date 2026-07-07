@@ -8,6 +8,13 @@ RSpec.describe("API", type: :request) do
   before do
     host! ENV.fetch("HOST", "test.host")
 
+    # Hermetic against the developer's .env (dotenv loads it in test too):
+    # the suite never reads real budget config, so a live LAI_BUDGET_REDIS_URL
+    # or mode stays out of reach. Nested contexts override per example.
+    allow(ENV).to(receive(:[]).and_call_original)
+    allow(ENV).to(receive(:[]).with("LAI_BUDGET_MODE").and_return(nil))
+    allow(ENV).to(receive(:[]).with("LAI_BUDGET_REDIS_URL").and_return(nil))
+
     allow(Prompts).to(receive(:generate_system_prompt).and_return([{ type: "text", text: "test system prompt" }]))
 
     # Stub Anthropic API token counting
@@ -1168,6 +1175,7 @@ RSpec.describe("API", type: :request) do
         expect(response.content_type).to(include("text/plain"))
         expect(response.body).to(include("Shared-capacity budget reached"))
         expect(response.headers["Retry-After"].to_i).to(be > 0)
+        expect(response.body).to(include("Retry-After: #{response.headers["Retry-After"]} seconds"))
         expect(a_request(:post, "https://api.anthropic.com/v1/messages")).not_to(have_been_made)
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
