@@ -11,28 +11,28 @@
 # Privacy is structural, not procedural: budgets are keyed only by HMAC'd
 # scope keys (a server-observed source, a content-derived conversation id),
 # so no raw IP, user id, or conversation content ever reaches the store or
-# the telemetry. Windows age out after two days; the store holds pacing
+# the telemetry. Counter keys carry their own TTL — the store holds pacing
 # state, never history.
 #
 # Thresholds live in private runtime config (ENV), never in this public
 # source. LAI_BUDGET_MODE selects off (default) / observe (count and report,
 # never block) / enforce (block while over, with Retry-After).
 #
-# Like the foam field, the store is enhancement, never essential: if the
-# database is unreachable, every operation degrades to nil and requests flow
-# exactly as they do today. Fail-open is the invariant — enforcement can be
-# caused only by observed usage, never by infrastructure failure.
-
-require "pg"
-require "connection_pool"
+# The store is a Redis (Fly's managed Upstash, reached over the org's
+# private network — LAI_BUDGET_REDIS_URL). And the store is enhancement,
+# never essential: if it is unconfigured or unreachable, every operation
+# degrades to nil and requests flow exactly as they do today. Fail-open is
+# the invariant — enforcement can be caused only by observed usage, never by
+# infrastructure failure.
 
 module UsageBudget
-  SCHEMA_PATH = "app/lib/usage_budget/schema.sql"
   HMAC_NAMESPACE = "lai-usage-budget-v1"
+  KEY_NAMESPACE = "lai-budget-v1"
   WINDOW_KINDS = ["hour", "day"].freeze
   METRICS = ["requests", "cost"].freeze
-  RETENTION_WINDOW = 2.days
-  PURGE_SAMPLE = 1_000 # ~1 purge sweep per thousand recordings
+  # A window's counter stops being written once its bucket passes; twice the
+  # window is comfortably past any assessment that could still read it.
+  TTL_SECONDS = { "hour" => 2 * 3600, "day" => 2 * 86_400 }.freeze
 
   class Exceeded < StandardError; end
 
@@ -74,24 +74,26 @@ module UsageBudget
     # Compare the current hour/day windows for each scope against configured
     # thresholds, BEFORE this request spends anything. Returns a Verdict
     # (over_dimensions empty when within budget), or nil when the store is
-    # unreachable — the caller treats nil as untracked and lets the request
-    # through. A dimension with no configured threshold is unbounded.
+    # unconfigured or unreachable — the caller treats nil as untracked and
+    # lets the request through. A dimension with no configured threshold is
+    # unbounded.
     def assess(scopes)
       return if scopes.blank?
 
-      rows = fetch_windows(scopes.values)
-      return unless rows
+      counters = fetch_counters(scopes.values)
+      return unless counters
 
-      counters = rows.index_by { |row| [row["scope_key"], row["window_kind"]] }
-
-      over = scopes.flat_map { |scope_kind, key|
+      index = 0
+      over = scopes.flat_map { |scope_kind, _key|
         WINDOW_KINDS.flat_map { |window_kind|
-          row = counters[[key, window_kind]] || {}
+          requests, cost = Array(counters[index])
+          index += 1
+
           METRICS.filter_map { |metric|
             limit = limit_for(scope_kind, metric, window_kind)
             next unless limit
 
-            spent = metric == "requests" ? row["request_count"].to_i : row["cost_usd"].to_f
+            spent = metric == "requests" ? requests.to_i : cost.to_f
             dimension_label(scope_kind, metric, window_kind) if spent >= limit
           }
         }
@@ -102,34 +104,24 @@ module UsageBudget
 
     # Fold one request into the current hour/day windows of every scope —
     # request count always, cost as reported (0 when Anthropic returned no
-    # usage). Returns true, or nil when the store is unreachable (the request
-    # simply goes unbudgeted; fail-open).
+    # usage). Returns true, or nil when the store is unconfigured or
+    # unreachable (the request simply goes unbudgeted; fail-open).
     def record!(scopes, cost_usd: 0)
       return if scopes.blank?
 
-      hour, day = window_starts
-      params = []
-      values = scopes.values.flat_map { |key|
-        [["hour", hour], ["day", day]].map { |window_kind, window_start|
-          base = params.size
-          params.push(key, window_kind, window_start.iso8601, cost_usd.to_f)
-          "($#{base + 1}, $#{base + 2}, $#{base + 3}::timestamptz, 1, $#{base + 4}::numeric)"
-        }
-      }
-
-      recorded = with_connection { |conn|
-        conn.exec_params(<<~SQL, params)
-          INSERT INTO lai_budget.windows (scope_key, window_kind, window_start, request_count, cost_usd)
-          VALUES #{values.join(", ")}
-          ON CONFLICT (scope_key, window_kind, window_start)
-          DO UPDATE SET request_count = windows.request_count + 1,
-                        cost_usd = windows.cost_usd + EXCLUDED.cost_usd
-        SQL
+      with_redis { |redis|
+        redis.pipelined do |pipeline|
+          scopes.values.each do |key|
+            WINDOW_KINDS.each do |window_kind|
+              counter = counter_key(key, window_kind)
+              pipeline.hincrby(counter, "requests", 1)
+              pipeline.hincrbyfloat(counter, "cost", cost_usd.to_f)
+              pipeline.expire(counter, TTL_SECONDS[window_kind])
+            end
+          end
+        end
         true
       }
-
-      purge! if recorded && rand(PURGE_SAMPLE).zero?
-      recorded
     end
 
     # Seconds until the earliest window that could clear the verdict rolls
@@ -145,46 +137,37 @@ module UsageBudget
       (boundary - now).ceil
     end
 
-    # Assert the substrate, idempotently — a fixed point, not a migration.
-    # Boot-resilient: any failure is logged and swallowed; the app boots and
-    # runs unbudgeted.
-    def assert!
-      conn = PG.connect(database_url)
-      conn.exec(schema_sql)
-      Rails.logger.info("[budget] store asserted")
-      true
-    rescue => e
-      Rails.logger.warn("[budget] store assertion skipped (#{e.class}: #{e.message}) — running unbudgeted")
-      false
-    ensure
-      conn&.finish
-    end
-
-    # Drop the connection pool (e.g. on worker boot after a fork).
+    # Drop the memoized client (e.g. between spec examples that reconfigure
+    # the store). Connections re-establish lazily on next use.
     def disconnect!
-      @pool&.shutdown(&:finish)
-      @pool = nil
+      @redis&.close
+    rescue StandardError
+      nil
+    ensure
+      @redis = nil
     end
 
     private
 
-    def fetch_windows(scope_keys)
-      hour, day = window_starts
+    # One pipelined round trip: [requests, cost] for the current hour and
+    # day bucket of each scope, in scope-major order. nil on any failure.
+    def fetch_counters(scope_keys)
+      keys = scope_keys.flat_map { |key|
+        WINDOW_KINDS.map { |window_kind| counter_key(key, window_kind) }
+      }
 
-      with_connection { |conn|
-        conn.exec_params(<<~SQL, ["{#{scope_keys.join(",")}}", hour.iso8601, day.iso8601]).to_a
-          SELECT scope_key, window_kind, request_count, cost_usd
-          FROM lai_budget.windows
-          WHERE scope_key = ANY($1::text[])
-            AND ((window_kind = 'hour' AND window_start = $2::timestamptz)
-              OR (window_kind = 'day' AND window_start = $3::timestamptz))
-        SQL
+      with_redis { |redis|
+        redis.pipelined { |pipeline|
+          keys.each { |key| pipeline.hmget(key, "requests", "cost") }
+        }
       }
     end
 
-    def window_starts
-      now = Time.now.utc
-      [now.beginning_of_hour, now.beginning_of_day]
+    # The bucket rides in the key, so a fixed TTL per write is enough: the
+    # key goes cold when its window passes and expires on its own.
+    def counter_key(scope_key, window_kind)
+      bucket = Time.now.utc.strftime(window_kind == "hour" ? "%Y%m%d%H" : "%Y%m%d")
+      [KEY_NAMESPACE, scope_key, window_kind, bucket].join(":")
     end
 
     # Thresholds stay in private runtime config, e.g.
@@ -214,61 +197,32 @@ module UsageBudget
       end
     end
 
-    def purge!
-      with_connection { |conn|
-        conn.exec_params(
-          "DELETE FROM lai_budget.windows WHERE window_start < $1::timestamptz",
-          [(Time.now.utc - RETENTION_WINDOW).iso8601],
-        )
-      }
-    end
+    # Run the block with the client. Any failure — connect, timeout, command
+    # — is swallowed to nil. No store ⇒ nil ⇒ the request flows unbudgeted.
+    def with_redis
+      client = redis_client
+      return unless client
 
-    # Check out a pooled connection and run the block. Any failure —
-    # connection, pool-timeout, query — is swallowed to nil; a broken
-    # connection is best-effort reset so the pool heals. No store ⇒ nil ⇒
-    # the request flows unbudgeted.
-    def with_connection
-      pool.with do |conn|
-        conn.reset if conn.status != PG::CONNECTION_OK
-        yield conn
-      end
-    rescue => e
+      yield client
+    rescue StandardError => e
       Rails.logger.debug { "[budget] store unavailable (#{e.class}: #{e.message}) — failing open" }
       nil
     end
 
     # Created lazily, so it is never built in a preloading master — each
-    # worker gets its own pool on first use, after fork.
-    def pool
-      @pool ||= ConnectionPool.new(size: pool_size, timeout: checkout_timeout) do
-        PG.connect(database_url)
-      end
+    # worker gets its own client on first use, after fork. The budget store
+    # must never add meaningful latency to a conversation: a sick store
+    # costs at most the timeout, once, and then fails open (no reconnect
+    # retries — the next request simply tries fresh).
+    def redis_client
+      url = ENV["LAI_BUDGET_REDIS_URL"].to_s.strip
+      return if url.blank?
+
+      @redis ||= Redis.new(url: url, timeout: timeout_seconds, reconnect_attempts: 0)
     end
 
-    def database_url
-      # In test the store is opt-in via its OWN variable (mirroring the foam
-      # field): the suite must stay hermetic against the developer's .env. A
-      # spec that wants a live store names one explicitly in
-      # LAI_BUDGET_SPEC_DATABASE_URL; everything else gets an unreachable
-      # default and degrades open, exactly as production does before
-      # provisioning.
-      if Rails.env.test?
-        ENV.fetch("LAI_BUDGET_SPEC_DATABASE_URL", "postgres://127.0.0.1:1/lai_budget?connect_timeout=1")
-      else
-        ENV.fetch("LAI_BUDGET_DATABASE_URL", "postgres:///lai_budget?connect_timeout=2")
-      end
-    end
-
-    def pool_size
-      Integer(ENV.fetch("LAI_BUDGET_POOL_SIZE", "5"))
-    end
-
-    def checkout_timeout
-      Float(ENV.fetch("LAI_BUDGET_CHECKOUT_TIMEOUT", "1"))
-    end
-
-    def schema_sql
-      File.read(Rails.root.join(SCHEMA_PATH))
+    def timeout_seconds
+      Float(ENV.fetch("LAI_BUDGET_TIMEOUT_SECONDS", "1"))
     end
   end
 end
