@@ -18,6 +18,7 @@ class ApiController < ApplicationController
     "cache_read_input_tokens",
   ].freeze
   TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
+  BUDGET_EXCEEDED_MESSAGE = "Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲"
 
   skip_before_action :verify_host!
 
@@ -26,14 +27,20 @@ class ApiController < ApplicationController
 
     # Validate request before starting stream
     validate_cache_markers!(chat_log)
+    conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
+    check_usage_budget!(conversation_id)
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
     # Validation passed, begin streaming
-    perform_stream(chat_log)
+    perform_stream(chat_log, conversation_frame_id, conversation_id)
   rescue InvalidCacheMarkerCount => error
     render(json: { error: { message: error.message } }, status: :bad_request)
   rescue ChatLogTokenLimitExceeded
     render(json: { error: { message: "Conversation horizon has arrived. 🤲" } }, status: :unprocessable_content)
+  rescue UsageBudget::Exceeded
+    record_newrelic_event(chat_log, conversation_frame_id: conversation_frame_id, conversation_id: conversation_id)
+    response.headers["Retry-After"] = UsageBudget.retry_after_seconds(@budget_verdict).to_s
+    render(json: { error: { message: BUDGET_EXCEEDED_MESSAGE } }, status: :too_many_requests)
   end
 
   def system
@@ -71,7 +78,8 @@ class ApiController < ApplicationController
       },
     ]
 
-    # Check conversation horizon
+    # Check shared-resource budgets, then the conversation horizon
+    check_usage_budget!
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
     # Make non-streaming request to Anthropic
@@ -81,6 +89,7 @@ class ApiController < ApplicationController
     )
 
     if response.code.to_i >= 400
+      record_usage_budget
       record_newrelic_event(chat_log, conversation_frame_id: "plain")
       newrelic_event_recorded = true
       render(plain: "An error occurred.", status: :bad_gateway)
@@ -90,6 +99,7 @@ class ApiController < ApplicationController
     # Parse response and extract text
     parsed = JSON.parse(response.body)
     response_text = parsed.dig("content", 0, "text") || ""
+    record_usage_budget(parsed["usage"])
     record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: parsed["usage"])
     newrelic_event_recorded = true
 
@@ -102,6 +112,11 @@ class ApiController < ApplicationController
     render(plain: response_text)
   rescue ChatLogTokenLimitExceeded
     render(plain: "Conversation horizon has arrived. 🤲", status: :unprocessable_content)
+  rescue UsageBudget::Exceeded
+    record_newrelic_event(chat_log, conversation_frame_id: "plain")
+    # self.response: the local `response` above shadows the controller's
+    self.response.headers["Retry-After"] = UsageBudget.retry_after_seconds(@budget_verdict).to_s
+    render(plain: BUDGET_EXCEEDED_MESSAGE, status: :too_many_requests)
   rescue StandardError => error
     Rollbar.error(error)
     Rails.logger.error("API plain error: #{error.message}\n#{error.backtrace.join("\n")}")
@@ -109,8 +124,7 @@ class ApiController < ApplicationController
     render(plain: "An error occurred.", status: :bad_gateway)
   end
 
-  def perform_stream(chat_log)
-    conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
+  def perform_stream(chat_log, conversation_frame_id, conversation_id)
     anthropic_usage = {}
 
     response.headers["Content-Type"] = "text/event-stream"
@@ -135,6 +149,7 @@ class ApiController < ApplicationController
     Rails.logger.error("API stream error: #{error.message}\n#{error.backtrace.join("\n")}")
     send_sse_event("error", { error: { message: "An unexpected error occurred" } })
   ensure
+    record_usage_budget(anthropic_usage)
     record_newrelic_event(
       chat_log,
       conversation_frame_id: conversation_frame_id,
@@ -146,6 +161,44 @@ class ApiController < ApplicationController
   end
 
   private
+
+  # Shared-resource budgets: open with limits, not closed. Skipped entirely
+  # for trusted bypass traffic; inert unless LAI_BUDGET_MODE is set. In
+  # observe mode an over-budget verdict is recorded but never blocks; in
+  # enforce mode it raises UsageBudget::Exceeded before any Anthropic spend.
+  def check_usage_budget!(conversation_id = nil)
+    return if token_limit_bypassed?
+    return unless UsageBudget.active?
+
+    @budget_scopes = {
+      "source" => UsageBudget.scope_key("source", request.remote_ip),
+      "conversation" => UsageBudget.scope_key("conversation", conversation_id),
+    }.compact
+
+    @budget_verdict = UsageBudget.assess(@budget_scopes)
+    return unless @budget_verdict&.over?
+
+    if UsageBudget.enforce?
+      @budget_enforced = true
+      raise UsageBudget::Exceeded
+    end
+  end
+
+  # Fold this request into the budget windows — only requests that reached
+  # Anthropic (an enforced rejection spends nothing, so it counts nothing).
+  def record_usage_budget(anthropic_usage = nil)
+    return if @budget_scopes.blank?
+
+    cost = estimated_cost_usd(normalize_anthropic_usage(anthropic_usage))
+    UsageBudget.record!(@budget_scopes, cost_usd: cost || 0)
+  end
+
+  def budget_state
+    return if @budget_scopes.blank?
+    return "untracked" if @budget_verdict.nil?
+
+    @budget_verdict.over? ? "over" : "ok"
+  end
 
   def token_limit_disabled?
     token_limit_bypassed?
@@ -293,6 +346,10 @@ class ApiController < ApplicationController
       cache_creation_input_tokens: normalized_usage["cache_creation_input_tokens"],
       cache_read_input_tokens: normalized_usage["cache_read_input_tokens"],
       estimated_cost_usd: estimated_cost_usd(normalized_usage),
+      budget_state: budget_state,
+      budget_over_dimensions: @budget_verdict&.over_dimensions&.join(",").presence,
+      budget_enforced: @budget_enforced || false,
+      budget_source_id: @budget_scopes&.[]("source"),
     )
   end
 
