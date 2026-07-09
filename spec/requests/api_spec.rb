@@ -44,6 +44,10 @@ RSpec.describe("API", type: :request) do
       built = Prompts.build_system_prompt.map { |m| JSON.parse(m.to_json) }
 
       expect(served).to(eq(built))
+      # Pinned literally (not just round-tripped) so any change to the
+      # published marker shape is a deliberate, reviewed decision: this is a
+      # public integration surface third parties copy. TTL-neutral on purpose.
+      expect(served.last["cache_control"]).to(eq({ "type" => "ephemeral" }))
     end
 
     it "serves the system prompt as plain text", :aggregate_failures do
@@ -75,6 +79,40 @@ RSpec.describe("API", type: :request) do
 
       expect(response).to(have_http_status(:ok))
       expect(response.headers["Content-Type"]).to(eq("text/event-stream"))
+    end
+
+    it "applies the 1h cache TTL to the system prompt at the transport layer, and strips client-sent ttl", :aggregate_failures do
+      allow(Prompts).to(receive(:generate_system_prompt).and_return([
+        { type: "text", text: "test system prompt", cache_control: { type: "ephemeral" } },
+      ]))
+
+      ttl_chat_log = [
+        {
+          role: "user",
+          content: [
+            # A client copying the served marker shape must not be able to buy
+            # a 1h write on its own never-shared prefix: ttl is stripped.
+            { type: "text", text: "Warmup", cache_control: { type: "ephemeral", ttl: "1h" } },
+          ],
+        },
+        {
+          role: "user",
+          content: [{ type: "text", text: "Hello!" }],
+        },
+      ]
+
+      post "/api/stream", params: { chat_log: ttl_chat_log }
+
+      expect(a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
+        body = JSON.parse(req.body)
+        # clean_chat_log merges the two consecutive user messages into one,
+        # so both text blocks live in the first message's content array.
+        system_marker = body["system"].last["cache_control"]
+        client_marker = body["messages"].dig(0, "content", 0, "cache_control")
+
+        system_marker == { "type" => "ephemeral", "ttl" => "1h" } &&
+          client_marker == { "type" => "ephemeral" }
+      }).to(have_been_made.once)
     end
 
     context "when chat log exceeds token limit" do
@@ -477,13 +515,13 @@ RSpec.describe("API", type: :request) do
         ))
       end
 
-      it "records streaming Anthropic usage and estimated cost" do
+      it "records streaming Anthropic usage and estimated cost, pricing cache writes by TTL tier" do
         stub_request(:post, "https://api.anthropic.com/v1/messages")
           .to_return(
             status: 200,
             body: [
               "event: message_start",
-              'data: {"type":"message_start","message":{"usage":{"input_tokens":1000,"cache_creation_input_tokens":2000,"cache_read_input_tokens":3000,"output_tokens":1}}}',
+              'data: {"type":"message_start","message":{"usage":{"input_tokens":1000,"cache_creation_input_tokens":2000,"cache_creation":{"ephemeral_5m_input_tokens":500,"ephemeral_1h_input_tokens":1500},"cache_read_input_tokens":3000,"output_tokens":1}}}',
               "",
               "event: message_delta",
               'data: {"type":"message_delta","usage":{"output_tokens":400}}',
@@ -497,6 +535,8 @@ RSpec.describe("API", type: :request) do
 
         post "/api/stream", params: { chat_log: chat_log, usage_client: "writer" }
 
+        # 1000 input @ $3 + 500 5m-writes @ $3.75 + 1500 1h-writes @ $6
+        # + 3000 reads @ $0.30 + 400 output @ $15, per million tokens.
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
@@ -505,8 +545,10 @@ RSpec.describe("API", type: :request) do
             input_tokens: 1000,
             output_tokens: 400,
             cache_creation_input_tokens: 2000,
+            cache_creation_5m_input_tokens: 500,
+            cache_creation_1h_input_tokens: 1500,
             cache_read_input_tokens: 3000,
-            estimated_cost_usd: 0.0174,
+            estimated_cost_usd: 0.020775,
           ),
         ))
       end
@@ -616,12 +658,15 @@ RSpec.describe("API", type: :request) do
 
           post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
 
+          # This stub reports no per-TTL breakdown, so the aggregate write
+          # count is priced at the 1-hour tier — overcounting is the safe
+          # direction for budget enforcement.
           expect(UsageBudget).to(have_received(:settle!).with(
             {
               "source" => UsageBudget.scope_key("source", "127.0.0.1"),
               "conversation" => UsageBudget.scope_key("conversation", Digest::SHA256.hexdigest(chat_log.to_json)),
             },
-            cost_usd: 0.0174,
+            cost_usd: 0.0219,
             at: kind_of(Time),
           ))
         end
@@ -1120,7 +1165,7 @@ RSpec.describe("API", type: :request) do
         ))
       end
 
-      it "records plain Anthropic usage and estimated cost" do
+      it "records plain Anthropic usage and estimated cost, flattening the cache_creation breakdown" do
         stub_request(:post, "https://api.anthropic.com/v1/messages")
           .to_return(
             status: 200,
@@ -1131,6 +1176,10 @@ RSpec.describe("API", type: :request) do
                 input_tokens: 10,
                 output_tokens: 20,
                 cache_creation_input_tokens: 30,
+                cache_creation: {
+                  ephemeral_5m_input_tokens: 10,
+                  ephemeral_1h_input_tokens: 20,
+                },
                 cache_read_input_tokens: 40,
               },
             }.to_json,
@@ -1139,14 +1188,19 @@ RSpec.describe("API", type: :request) do
 
         post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
+        # 10 input @ $3 + 10 5m-writes @ $3.75 + 20 1h-writes @ $6
+        # + 40 reads @ $0.30 + 20 output @ $15, per million tokens:
+        # (30 + 37.5 + 120 + 12 + 300) / 1e6.
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
             input_tokens: 10,
             output_tokens: 20,
             cache_creation_input_tokens: 30,
+            cache_creation_5m_input_tokens: 10,
+            cache_creation_1h_input_tokens: 20,
             cache_read_input_tokens: 40,
-            estimated_cost_usd: 0.0004545,
+            estimated_cost_usd: 0.0004995,
           ),
         ))
       end

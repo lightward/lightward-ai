@@ -17,6 +17,13 @@ class ApiController < ApplicationController
     "cache_creation_input_tokens",
     "cache_read_input_tokens",
   ].freeze
+  # Cache writes bill by TTL tier (5m at 1.25x base, 1h at 2x); the API
+  # reports the split under usage.cache_creation. Captured flattened, so
+  # cost accounting can price each tier at its own rate.
+  ANTHROPIC_CACHE_CREATION_KEYS = {
+    "ephemeral_5m_input_tokens" => "cache_creation_5m_input_tokens",
+    "ephemeral_1h_input_tokens" => "cache_creation_1h_input_tokens",
+  }.freeze
   TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
   BUDGET_EXCEEDED_MESSAGE = "Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲"
 
@@ -392,6 +399,8 @@ class ApiController < ApplicationController
       input_tokens: normalized_usage["input_tokens"],
       output_tokens: normalized_usage["output_tokens"],
       cache_creation_input_tokens: normalized_usage["cache_creation_input_tokens"],
+      cache_creation_5m_input_tokens: normalized_usage["cache_creation_5m_input_tokens"],
+      cache_creation_1h_input_tokens: normalized_usage["cache_creation_1h_input_tokens"],
       cache_read_input_tokens: normalized_usage["cache_read_input_tokens"],
       estimated_cost_usd: estimated_cost_usd(normalized_usage),
       budget_state: budget_state,
@@ -428,14 +437,37 @@ class ApiController < ApplicationController
       usage[key] = anthropic_usage[key] if anthropic_usage.key?(key)
     end
 
+    # Non-streaming responses carry the nested cache_creation object; the
+    # streaming path has already flattened it in capture_anthropic_usage!.
+    breakdown = anthropic_usage["cache_creation"]
+    ANTHROPIC_CACHE_CREATION_KEYS.each do |api_key, flat_key|
+      if anthropic_usage.key?(flat_key)
+        usage[flat_key] = anthropic_usage[flat_key]
+      elsif breakdown.is_a?(Hash) && breakdown.key?(api_key)
+        usage[flat_key] = breakdown[api_key]
+      end
+    end
+
     usage
   end
 
   def estimated_cost_usd(anthropic_usage)
     return if anthropic_usage.values.all?(&:nil?)
 
+    usage = anthropic_usage.dup
+    if usage["cache_creation_5m_input_tokens"] || usage["cache_creation_1h_input_tokens"]
+      # The per-TTL breakdown is authoritative; drop the aggregate so the
+      # same tokens aren't priced twice.
+      usage.delete("cache_creation_input_tokens")
+    else
+      # No breakdown reported: price the aggregate at the 1-hour rate — the
+      # system prompt (the overwhelming share of any write) uses that tier,
+      # and overcounting is the safe direction for budget enforcement.
+      usage["cache_creation_1h_input_tokens"] = usage.delete("cache_creation_input_tokens")
+    end
+
     cost = Prompts::Anthropic::PRICING_USD_PER_MILLION.sum { |key, usd_per_million|
-      anthropic_usage[key].to_i * usd_per_million / 1_000_000.0
+      usage[key].to_i * usd_per_million / 1_000_000.0
     }
 
     cost.round(8)
@@ -484,6 +516,13 @@ class ApiController < ApplicationController
 
     ANTHROPIC_USAGE_TOKEN_KEYS.each do |key|
       anthropic_usage[key] = usage[key] if usage.key?(key)
+    end
+
+    breakdown = usage["cache_creation"]
+    if breakdown.is_a?(Hash)
+      ANTHROPIC_CACHE_CREATION_KEYS.each do |api_key, flat_key|
+        anthropic_usage[flat_key] = breakdown[api_key] if breakdown.key?(api_key)
+      end
     end
   end
 

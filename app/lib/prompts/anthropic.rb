@@ -11,10 +11,25 @@ module Prompts
     ORIGIN = "https://api.anthropic.com"
     MODEL = "claude-sonnet-4-6"
     BETAS = nil
-    # Claude Sonnet 4.6 API pricing, checked against Anthropic docs on 2026-06-06.
+    # Our cache lifetime for the system prompt, applied here at the transport
+    # layer — NOT in the published prompt itself, which /api/system.json
+    # serves verbatim to third parties whose traffic economics are their own.
+    # The 1-hour tier (GA, no beta header) costs 2x base per write vs 1.25x
+    # for the 5-minute default, and reads (which dominate for us) cost the
+    # same either way; it pays for itself whenever it saves rewrites across
+    # the gaps in traffic. Cached entries refresh on every read at no cost.
+    # Client-submitted markers in the chat_log stay on the 5-minute default
+    # (the controller strips any client-sent ttl), which also satisfies the
+    # API's longer-TTL-first ordering rule, since system renders first.
+    CACHE_TTL = "1h"
+    # Claude Sonnet 4.6 API pricing, checked against Anthropic docs on
+    # 2026-07-09. Cache writes bill by TTL tier: 1.25x base for the 5-minute
+    # default, 2x for the 1-hour tier used on the system prompt. The API
+    # reports the split under usage.cache_creation.ephemeral_{5m,1h}_input_tokens.
     PRICING_USD_PER_MILLION = {
       "input_tokens" => 3.0,
-      "cache_creation_input_tokens" => 3.75,
+      "cache_creation_5m_input_tokens" => 3.75,
+      "cache_creation_1h_input_tokens" => 6.0,
       "cache_read_input_tokens" => 0.30,
       "output_tokens" => 15.0,
     }.freeze
@@ -50,11 +65,29 @@ module Prompts
           max_tokens: 4000,
           stream: stream,
           temperature: 1.0,
-          system: system,
+          system: apply_cache_ttl(system),
           messages: messages,
         }
 
         api_request("/v1/messages", payload, &block)
+      end
+
+      # Merge CACHE_TTL into any cache_control markers in the system blocks.
+      # Applied only on this billable path — count_tokens writes no cache,
+      # and the published /api/system.json stays TTL-neutral.
+      def apply_cache_ttl(system)
+        return system unless system.respond_to?(:map)
+
+        system.map do |block|
+          key = if block.key?(:cache_control)
+            :cache_control
+          elsif block.key?("cache_control")
+            "cache_control"
+          end
+          next block unless key
+
+          block.merge(key => block[key].merge(ttl: CACHE_TTL))
+        end
       end
 
       def api_request(path, payload)
