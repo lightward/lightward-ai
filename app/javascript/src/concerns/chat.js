@@ -715,7 +715,19 @@ export class ChatSession {
       .then((response) => {
         if (!response.ok) {
           return response.text().then((text) => {
-            throw new Error(text);
+            // Error bodies arrive as JSON ({ error: { message } }) — surface
+            // the message itself, never raw JSON, to the person reading.
+            let message = text;
+            try {
+              message = JSON.parse(text).error.message || text;
+            } catch (_) {
+              // plain-text body; use as-is
+            }
+            const error = new Error(message);
+            // A 429 is pacing, not breakage: the door stays open. Render it
+            // as a notice (the horizon warnings' register), not an error.
+            error.isPacing = response.status === 429;
+            throw error;
           });
         }
 
@@ -763,7 +775,7 @@ export class ChatSession {
       })
       .catch((error) => {
         console.error('Error:', error);
-        this._appendError(error.message);
+        this._appendError(error.message, { notice: error.isPacing });
         this._completeMessageWithError();
       });
   }
@@ -821,8 +833,9 @@ export class ChatSession {
     this._completeMessageWithError();
   }
 
-  _appendError(message) {
-    const errorText = ` ⚠️ Lightward AI system error: ${message}`;
+  _appendError(message, { notice = false } = {}) {
+    const label = notice ? 'notice' : 'error';
+    const errorText = ` ⚠️ Lightward AI system ${label}: ${message}`;
 
     if (this.currentAssistantElement) {
       this.streamController.addChunk(errorText);

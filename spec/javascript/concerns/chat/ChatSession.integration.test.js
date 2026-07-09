@@ -161,6 +161,38 @@ data: null
       });
     });
 
+    it('renders a budget 429 as a notice with the message unwrapped from JSON', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 429,
+        text: () =>
+          Promise.resolve(
+            JSON.stringify({
+              error: {
+                message:
+                  'Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲',
+                retry_after: 900,
+              },
+            })
+          ),
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+        expect(lastText).toContain('Lightward AI system notice:');
+        expect(lastText).toContain('The door stays open');
+        expect(lastText).not.toContain('{"error"');
+        expect(lastText).not.toContain('system error');
+      });
+    });
+
     it('should handle fetch errors', async () => {
       mockFetch.mockRejectedValueOnce(new Error('Network error'));
 
