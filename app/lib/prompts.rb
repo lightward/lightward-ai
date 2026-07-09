@@ -257,7 +257,11 @@ module Prompts
       # cache the longest matching prefix from all previous messages.
       result = messages.map { |m| m.except(:size) }
 
-      # Add cache_control to the last message only
+      # Add cache_control to the last message only. The TTL is deliberately
+      # NOT set here: this array is served verbatim at /api/system.json for
+      # anyone to reuse, and cache-lifetime economics belong to whoever pays
+      # for the request. Our own TTL choice is applied at the transport
+      # layer (Prompts::Anthropic) just before the API call.
       result.last[:cache_control] = { type: "ephemeral" } unless result.empty?
 
       result.map(&:freeze)

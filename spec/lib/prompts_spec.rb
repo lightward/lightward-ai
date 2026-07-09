@@ -62,6 +62,10 @@ RSpec.describe(Prompts, :aggregate_failures) do
         expect(cache_control_count).to(eq(1))
         expect(system_messages.last).to(have_key(:cache_control))
       end
+
+      it "publishes a TTL-neutral marker (cache lifetime is transport policy, applied in Prompts::Anthropic)" do
+        expect(system_messages.last[:cache_control]).to(eq({ type: "ephemeral" }))
+      end
     end
   end
 
