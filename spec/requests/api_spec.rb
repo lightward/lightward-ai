@@ -731,6 +731,11 @@ RSpec.describe("API", type: :request) do
           expect(response).to(have_http_status(:too_many_requests))
           body = JSON.parse(response.body)
           expect(body["error"]["message"]).to(include("The door stays open"))
+          # The seat's involuntary speech act carries the when (human time)
+          # and a path to a human — composed server-side; prior art is the
+          # horizon warning.
+          expect(body["error"]["message"]).to(match(/pick this back up in about \d+ minutes?\./))
+          expect(body["error"]["message"]).to(include("email team@lightward.com"))
           expect(response.headers["Retry-After"].to_i).to(be_between(1, 3600))
           expect(body["error"]["retry_after"]).to(eq(response.headers["Retry-After"].to_i))
           expect(a_request(:post, "https://api.anthropic.com/v1/messages")).not_to(have_been_made)

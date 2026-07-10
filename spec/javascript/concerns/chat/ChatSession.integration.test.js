@@ -190,14 +190,10 @@ data: null
         expect(lastText).toContain('The door stays open');
         expect(lastText).not.toContain('{"error"');
         expect(lastText).not.toContain('system error');
-        // the when: retry_after as a human-sized window, not a seconds field
-        expect(lastText).toContain('back up in about 15 minutes');
-        // the appeal path: a human is reachable if the pacing got it wrong
-        expect(lastText).toContain('email team@lightward.com');
       });
     });
 
-    it('humanizes long retry windows into hours', async () => {
+    it("renders the server's pacing words verbatim, composing none of its own", async () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 429,
@@ -216,9 +212,13 @@ data: null
       document.querySelector('#text-input button').click();
 
       await waitFor(() => {
+        // The seat's speech act is conducted server-side; the client must
+        // not assemble guidance from retry_after or anything else.
         const messages = document.querySelectorAll('.chat-message.assistant');
         const lastText = messages[messages.length - 1].textContent;
-        expect(lastText).toContain('back up in about 4 hours');
+        expect(lastText).toContain('Paced. 🤲');
+        expect(lastText).not.toContain('back up in about');
+        expect(lastText).not.toContain('team@lightward.com');
       });
     });
 
@@ -242,8 +242,6 @@ data: null
         const messages = document.querySelectorAll('.chat-message.assistant');
         const lastText = messages[messages.length - 1].textContent;
         expect(lastText).toContain('system error');
-        expect(lastText).not.toContain('team@lightward.com');
-        expect(lastText).not.toContain('back up in about');
       });
     });
 
