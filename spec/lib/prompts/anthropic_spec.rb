@@ -61,6 +61,84 @@ RSpec.describe(Prompts::Anthropic, :aggregate_failures) do
     end
   end
 
+  describe ".cache_conversation_tail" do
+    let(:marked_log) do
+      [
+        {
+          "role" => "user",
+          "content" => [
+            { "type" => "text", "text" => "frame", "cache_control" => { "type" => "ephemeral" } },
+            { "type" => "text", "text" => "hello" },
+          ],
+        },
+        {
+          "role" => "assistant",
+          "content" => [{ "type" => "text", "text" => "hi" }],
+        },
+        {
+          "role" => "user",
+          "content" => [{ "type" => "text", "text" => "more" }],
+        },
+      ]
+    end
+
+    it "adds a breakpoint to the final content block when the client opted into caching" do
+      result = described_class.cache_conversation_tail(marked_log)
+
+      expect(result.last["content"].last["cache_control"]).to(eq({ "type" => "ephemeral" }))
+    end
+
+    it "leaves the client's own marker exactly where it was" do
+      result = described_class.cache_conversation_tail(marked_log)
+
+      expect(result.first["content"].first["cache_control"]).to(eq({ "type" => "ephemeral" }))
+      expect(result.first["content"].second).not_to(have_key("cache_control"))
+    end
+
+    it "does not mutate the input" do
+      described_class.cache_conversation_tail(marked_log)
+
+      expect(marked_log.last["content"].last).not_to(have_key("cache_control"))
+    end
+
+    it "handles symbol keys" do
+      log = [
+        { role: "user", content: [{ type: "text", text: "frame", cache_control: { type: "ephemeral" } }] },
+        { role: "user", content: [{ type: "text", text: "more" }] },
+      ]
+
+      result = described_class.cache_conversation_tail(log)
+
+      expect(result.last[:content].last[:cache_control]).to(eq({ type: "ephemeral" }))
+    end
+
+    it "leaves marker-less logs untouched (one-shot traffic shouldn't pay the write premium)" do
+      log = [{ "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] }]
+
+      expect(described_class.cache_conversation_tail(log)).to(equal(log))
+    end
+
+    it "adds nothing when the final block already carries the marker" do
+      log = [
+        {
+          "role" => "user",
+          "content" => [{ "type" => "text", "text" => "hi", "cache_control" => { "type" => "ephemeral" } }],
+        },
+      ]
+
+      expect(described_class.cache_conversation_tail(log)).to(equal(log))
+    end
+
+    it "leaves string-content messages untouched (no block to attach a marker to)" do
+      log = [
+        { "role" => "user", "content" => [{ "type" => "text", "text" => "a", "cache_control" => { "type" => "ephemeral" } }] },
+        { "role" => "user", "content" => "plain string" },
+      ]
+
+      expect(described_class.cache_conversation_tail(log)).to(equal(log))
+    end
+  end
+
   describe ".count_tokens" do
     let(:messages) { [{ "role" => "user", "content" => [{ "type" => "text", "text" => "Hello world" }] }] }
 
