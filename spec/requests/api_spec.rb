@@ -109,9 +109,35 @@ RSpec.describe("API", type: :request) do
         # so both text blocks live in the first message's content array.
         system_marker = body["system"].last["cache_control"]
         client_marker = body["messages"].dig(0, "content", 0, "cache_control")
+        # The transport layer adds its own breakpoint on the final block, so
+        # each turn writes only its new suffix and reads the history back.
+        tail_marker = body["messages"].dig(-1, "content", -1, "cache_control")
 
         system_marker == { "type" => "ephemeral", "ttl" => "1h" } &&
-          client_marker == { "type" => "ephemeral" }
+          client_marker == { "type" => "ephemeral" } &&
+          tail_marker == { "type" => "ephemeral" }
+      }).to(have_been_made.once)
+    end
+
+    it "adds no cache markers to marker-less one-shot requests", :aggregate_failures do
+      stub_request(:post, "https://api.anthropic.com/v1/messages")
+        .to_return(
+          status: 200,
+          body: {
+            content: [{ type: "text", text: "Hello!" }],
+            stop_reason: "end_turn",
+            usage: { input_tokens: 10, output_tokens: 5 },
+          }.to_json,
+          headers: { "Content-Type" => "application/json" },
+        )
+
+      post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
+        body = JSON.parse(req.body)
+        # One-shot content is never re-sent; caching it would be pure write
+        # premium with no read to pay it back.
+        body["messages"].flat_map { |m| m["content"] }.none? { |b| b.key?("cache_control") }
       }).to(have_been_made.once)
     end
 
