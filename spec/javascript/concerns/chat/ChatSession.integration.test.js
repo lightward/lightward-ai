@@ -190,6 +190,60 @@ data: null
         expect(lastText).toContain('The door stays open');
         expect(lastText).not.toContain('{"error"');
         expect(lastText).not.toContain('system error');
+        // the when: retry_after as a human-sized window, not a seconds field
+        expect(lastText).toContain('back up in about 15 minutes');
+        // the appeal path: a human is reachable if the pacing got it wrong
+        expect(lastText).toContain('email team@lightward.com');
+      });
+    });
+
+    it('humanizes long retry windows into hours', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 429,
+        text: () =>
+          Promise.resolve(
+            JSON.stringify({
+              error: { message: 'Paced. 🤲', retry_after: 14400 },
+            })
+          ),
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+        expect(lastText).toContain('back up in about 4 hours');
+      });
+    });
+
+    it('keeps ordinary errors free of pacing guidance', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+        text: () =>
+          Promise.resolve(
+            JSON.stringify({ error: { message: 'Internal error' } })
+          ),
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+        expect(lastText).toContain('system error');
+        expect(lastText).not.toContain('team@lightward.com');
+        expect(lastText).not.toContain('back up in about');
       });
     });
 
