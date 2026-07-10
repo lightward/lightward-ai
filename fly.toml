@@ -28,13 +28,32 @@ kill_timeout = 30
   auto_start_machines  = true
   auto_stop_machines   = true
   internal_port        = 8080
-  min_machines_running = 20
+
+  # Five machines stay warm; the rest of the fleet parks (costing only
+  # storage) and wakes on demand. Measured against Fly's own proxy
+  # concurrency counters, the warm set alone covers the busiest minute
+  # on record with all of its Puma threads to spare — the parked
+  # machines are burst headroom, not lost capacity.
+  min_machines_running = 5
   processes            = ["web"]
   protocol             = "tcp"
 
   [services.concurrency]
+    # The soft limit is a routing signal, not capacity: it's the point
+    # where the proxy prefers another machine, and — once EVERY running
+    # machine is at it — wakes a parked one. Capacity here is Puma's 5
+    # threads per machine, and a streaming response holds its thread
+    # for the whole reply; the 6th concurrent request on a saturated
+    # machine doesn't run slower, it queues behind someone's stream.
+    # So the soft limit matches the thread count: the pool wakes at
+    # exactly the moment adding traffic would mean queueing humans.
+    # The asymmetry is what makes a sensitive trigger correct — a
+    # false wake costs a machine boot and pennies of runtime, a late
+    # wake costs a person's message waiting behind another's reply.
+    # (The previous soft limit of 975 could never trip, which made
+    # auto_start decorative and the burst pool unreachable.)
     hard_limit = 1000
-    soft_limit = 975
+    soft_limit = 5
     type       = "requests"
 
   [[services.ports]]
