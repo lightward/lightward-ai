@@ -60,7 +60,10 @@ class ApiController < ApplicationController
     # Validate request before starting stream
     validate_cache_markers!(chat_log)
     conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
-    check_usage_budget!(conversation_id)
+    # Observation (the ids above) and intervention part ways here: the
+    # budget scope uses its own collision-resistant key, nil until the
+    # conversation has words of its own.
+    check_usage_budget!(budget_conversation_value(chat_log, conversation_frame_id))
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
     # Validation passed, begin streaming
@@ -408,6 +411,79 @@ class ApiController < ApplicationController
     conversation_id = Digest::SHA256.hexdigest(messages_to_hash.to_json)
 
     [conversation_frame_id, conversation_id]
+  end
+
+  # The budget layer's conversation key — deliberately its own derivation,
+  # separate from compute_conversation_ids. Those ids were built for
+  # observation, where a rare collision is harmless dashboard noise; a
+  # budget key is intervention, where a collision paces an innocent
+  # stranger (this happened). Enforcement needs collision resistance that
+  # observation never promised.
+  #
+  # The key anchors on three messages: the guest's words just before the
+  # first genuine assistant reply, that reply, and the guest's words just
+  # after it. Suggested prompts make first user messages identical across
+  # strangers, and the staged opening asks for a single-line reply — short
+  # enough that two strangers can receive the same line — so no one of
+  # these is unique alone; together they are. System speech (the replayed
+  # notices and errors, canned and identical for everyone who hit the same
+  # wall) is excluded throughout. The anchors are fixed points of an
+  # append-only log, so the key is stable at every later depth.
+  #
+  # Until all three anchors exist there is nothing unique to key on, and
+  # this returns nil: the request rides on the source scope alone, which
+  # already bounds rapid-fire from one place. (Known, accepted: a log shaped
+  # to never seed — reply-less, all-notice, or marker-at-tail — is bounded
+  # by source caps only. That traffic could always rotate conversation keys
+  # by varying bytes anyway; the source scope was and remains the backstop.)
+  def budget_conversation_value(chat_log, conversation_frame_id)
+    post = post_marker_messages(chat_log).reject { |msg| system_speech?(msg) }
+
+    reply_index = post.find_index { |msg| msg["role"] == "assistant" }
+    return unless reply_index
+
+    guest_after = post[(reply_index + 1)..-1].find { |msg| msg["role"] == "user" }
+    return unless guest_after
+
+    opening = [post[0...reply_index].last, post[reply_index], guest_after].compact
+    "#{conversation_frame_id}:#{Digest::SHA256.hexdigest(opening.to_json)}"
+  end
+
+  # Everything after the cache marker BLOCK — including any content blocks
+  # that share the marker's message but follow the marker, which belong to
+  # the conversation, not the frame.
+  def post_marker_messages(chat_log)
+    chat_log.each_with_index do |msg, msg_idx|
+      blocks = Array(msg["content"])
+      block_idx = blocks.find_index { |block| block["cache_control"].present? }
+      next unless block_idx
+
+      rest = chat_log[(msg_idx + 1)..-1] || []
+      trailing = blocks[(block_idx + 1)..-1] || []
+      return rest if trailing.empty?
+
+      return [msg.merge("content" => trailing)] + rest
+    end
+    []
+  end
+
+  # Words placed in the assistant's seat by the system rather than spoken
+  # by it. Two recognizable forms: the first-party client's replay prefix
+  # (⚠️, with or without the emoji variation selector), and the server's
+  # own canned bodies saved verbatim by simpler clients.
+  SYSTEM_SPEECH_RE = %r{
+    \A[[:space:]]*
+    (?:
+      ⚠️?[[:space:]]*Lightward\ AI\ system\ (?:notice|error):
+      | Shared-capacity\ budget\ reached\ for\ now\.
+      | Conversation\ horizon\ has\ arrived\.
+    )
+  }x
+  def system_speech?(msg)
+    return false unless msg["role"] == "assistant"
+
+    text = Array(msg["content"]).filter_map { |block| block["text"] if block.is_a?(Hash) }.join
+    SYSTEM_SPEECH_RE.match?(text)
   end
 
   def record_newrelic_event(chat_log, conversation_frame_id:, conversation_id: nil, anthropic_usage: nil)
