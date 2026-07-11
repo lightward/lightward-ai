@@ -26,6 +26,31 @@ class ApiController < ApplicationController
   }.freeze
   TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
   BUDGET_EXCEEDED_MESSAGE = "Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲"
+  class << self
+    # The pacing message is a speech act taken involuntarily by Lightward
+    # AI's seat during its turn (see the horizon warning for prior art), so
+    # it is composed here — in one place, in the server's care — never in a
+    # client. It carries the two things a paced person needs: when the door
+    # reopens, in human time, and a way to reach a human if the pacing
+    # caught something it shouldn't have.
+    def budget_exceeded_message(retry_after_seconds)
+      parts = [BUDGET_EXCEEDED_MESSAGE]
+      if retry_after_seconds.to_i.positive?
+        parts << "You can pick this back up in about #{humanize_seconds(retry_after_seconds)}."
+      end
+      parts << "And if this pacing seems out of step with what you were doing, " \
+        "email team@lightward.com — a human reads these."
+      parts.join(" ")
+    end
+
+    def humanize_seconds(seconds)
+      minutes = (seconds / 60.0).ceil
+      return "#{minutes} #{"minute".pluralize(minutes)}" if minutes < 90
+
+      hours = (minutes / 60.0).round
+      "#{hours} #{"hour".pluralize(hours)}"
+    end
+  end
 
   skip_before_action :verify_host!
 
@@ -53,7 +78,7 @@ class ApiController < ApplicationController
     # retry_after rides in the body too — minimal clients parse JSON but
     # never look at headers, and the pacing signal should be hard to miss.
     render(
-      json: { error: { message: BUDGET_EXCEEDED_MESSAGE, retry_after: retry_after } },
+      json: { error: { message: self.class.budget_exceeded_message(retry_after), retry_after: retry_after } },
       status: :too_many_requests,
     )
   end
@@ -145,7 +170,10 @@ class ApiController < ApplicationController
     self.response.headers["Retry-After"] = retry_after.to_s
     # The retry window rides in the body too — the pacing signal should be
     # hard to miss, whether a client reads headers or bodies.
-    render(plain: "#{BUDGET_EXCEEDED_MESSAGE}\n\nRetry-After: #{retry_after} seconds", status: :too_many_requests)
+    render(
+      plain: "#{self.class.budget_exceeded_message(retry_after)}\n\nRetry-After: #{retry_after} seconds",
+      status: :too_many_requests,
+    )
   rescue StandardError => error
     Rollbar.error(error)
     Rails.logger.error("API plain error: #{error.message}\n#{error.backtrace.join("\n")}")

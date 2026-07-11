@@ -718,11 +718,8 @@ export class ChatSession {
             // Error bodies arrive as JSON ({ error: { message } }) — surface
             // the message itself, never raw JSON, to the person reading.
             let message = text;
-            let retryAfter = null;
             try {
-              const parsed = JSON.parse(text).error;
-              message = parsed.message || text;
-              retryAfter = parsed.retry_after || null;
+              message = JSON.parse(text).error.message || text;
             } catch (_) {
               // plain-text body; use as-is
             }
@@ -730,7 +727,6 @@ export class ChatSession {
             // A 429 is pacing, not breakage: the door stays open. Render it
             // as a notice (the horizon warnings' register), not an error.
             error.isPacing = response.status === 429;
-            error.retryAfter = retryAfter;
             throw error;
           });
         }
@@ -779,38 +775,13 @@ export class ChatSession {
       })
       .catch((error) => {
         console.error('Error:', error);
-        const message = error.isPacing
-          ? this._withPacingGuidance(error)
-          : error.message;
-        this._appendError(message, { notice: error.isPacing });
+        // The seat's involuntary speech acts — pacing guidance included —
+        // are composed server-side (see ApiController, prior art: the
+        // horizon warning). The client renders those words verbatim and
+        // adds none of its own.
+        this._appendError(error.message, { notice: error.isPacing });
         this._completeMessageWithError();
       });
-  }
-
-  // The server's pacing message says why. This adds the when — a
-  // human-sized retry window instead of a seconds field nobody reads —
-  // and a path to a human, for the person the pacing shouldn't have
-  // caught. Only the web client renders this; the API body stays spare.
-  _withPacingGuidance(error) {
-    const parts = [error.message];
-    if (error.retryAfter > 0) {
-      parts.push(
-        `You can pick this back up in about ${this._humanizeSeconds(error.retryAfter)}.`
-      );
-    }
-    parts.push(
-      'And if this pacing seems out of step with what you were doing, email team@lightward.com — a human reads these.'
-    );
-    return parts.join(' ');
-  }
-
-  _humanizeSeconds(seconds) {
-    const minutes = Math.ceil(seconds / 60);
-    if (minutes < 90) {
-      return `${minutes} minute${minutes === 1 ? '' : 's'}`;
-    }
-    const hours = Math.round(minutes / 60);
-    return `${hours} hour${hours === 1 ? '' : 's'}`;
   }
 
   _handleMessage(data) {
