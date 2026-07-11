@@ -620,6 +620,7 @@ RSpec.describe("API", type: :request) do
           budget_over_dimensions: nil,
           budget_enforced: false,
           budget_source_id: nil,
+          budget_conversation_id: nil,
         ))
       end
 
@@ -638,6 +639,33 @@ RSpec.describe("API", type: :request) do
 
           expect(response).to(have_http_status(:ok))
           expect(event_data).to(include(budget_state: "untracked", budget_enforced: false))
+          expect(event_data[:budget_source_id]).to(match(/\A[0-9a-f]{64}\z/))
+        end
+
+        it "records the enforcement conversation key's telemetry shadow", :aggregate_failures do
+          event_data = nil
+          allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
+            event_data = data
+          end
+          allow(UsageBudget).to(receive(:admit!).and_return(
+            UsageBudget::Verdict.new(over_dimensions: []),
+          ))
+          allow(UsageBudget).to(receive(:settle!))
+
+          seeded_chat_log = chat_log + [
+            { role: "assistant", content: [{ type: "text", text: "Hi there — welcome." }] },
+            { role: "user", content: [{ type: "text", text: "Thanks!" }] },
+          ]
+          post "/api/stream", params: { chat_log: seeded_chat_log, usage_client: "reader" }
+
+          # Seeded conversation: the day-salted scope key rides into telemetry,
+          # sibling to budget_source_id — collision-resistant where the
+          # observation conversation_id can pool same-opener conversations.
+          expect(event_data[:budget_conversation_id]).to(match(/\A[0-9a-f]{64}\z/))
+
+          # Unseeded (no genuine reply yet): source-only, so the shadow is nil.
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+          expect(event_data[:budget_conversation_id]).to(be_nil)
           expect(event_data[:budget_source_id]).to(match(/\A[0-9a-f]{64}\z/))
         end
 
