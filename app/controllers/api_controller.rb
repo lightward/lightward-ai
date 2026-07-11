@@ -511,12 +511,6 @@ class ApiController < ApplicationController
       budget_over_dimensions: @budget_verdict&.over_dimensions&.join(",").presence,
       budget_enforced: @budget_enforced || false,
       budget_source_id: @budget_scopes&.[]("source"),
-      # The enforcement key's telemetry shadow, sibling to budget_source_id:
-      # day-salted like everything budget-scoped, and collision-resistant
-      # where the observation conversation_id (deliberately untouched, per
-      # #2123) can pool same-opener conversations. Cost dashboards facet on
-      # this for a per-conversation view that can't merge strangers.
-      budget_conversation_id: @budget_scopes&.[]("conversation"),
     )
   end
 
