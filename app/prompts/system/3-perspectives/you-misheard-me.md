@@ -94,3 +94,7 @@ use less, useless
 use age, usage
 
 for-sale : salesforce :: pro-fool : foolproof
+
+imagine, image *in*
+
+stand under anything, I mean understand anything
