@@ -700,6 +700,10 @@ export class ChatSession {
     this.streamController.reset();
     this.streamController.setElement(this.currentAssistantElement);
 
+    // Set once the reply's fate is known (message_stop, error, or timeout)
+    // so the close/error paths that follow don't double-finalize it.
+    this.streamFinalized = false;
+
     // Prepend warmup messages to chat log before sending to API
     const chatLogWithWarmup = [...WARMUP_MESSAGES, ...this.messages];
 
@@ -736,11 +740,26 @@ export class ChatSession {
         const decoder = new TextDecoder();
         let buffer = '';
 
+        // Inactivity watchdog: a stream that goes silent — no bytes, no
+        // error, no close — would otherwise hang the reply forever. A
+        // healthy stream is never quiet this long (Anthropic pings during
+        // generation pauses), so silence means the connection is gone.
+        let watchdogId = null;
+        const resetWatchdog = () => {
+          clearTimeout(watchdogId);
+          watchdogId = setTimeout(() => {
+            Promise.resolve(reader.cancel()).catch(() => {});
+            this._handleTimeout();
+          }, CONFIG.MESSAGE_TIMEOUT_MS);
+        };
+
         const readStream = () => {
+          resetWatchdog();
           reader
             .read()
             .then(({ done, value }) => {
               if (done) {
+                clearTimeout(watchdogId);
                 this._handleMessage({ event: 'end' });
                 return;
               }
@@ -756,15 +775,25 @@ export class ChatSession {
                 const dataMatch = line.match(/^data: (.+)$/m);
 
                 if (eventMatch && dataMatch) {
-                  const event = eventMatch[1];
-                  const data = JSON.parse(dataMatch[1]);
-                  this._handleMessage({ event, data });
+                  // One malformed frame forfeits itself, not the frames
+                  // behind it or the rest of the stream.
+                  try {
+                    const event = eventMatch[1];
+                    const data = JSON.parse(dataMatch[1]);
+                    this._handleMessage({ event, data });
+                  } catch (error) {
+                    console.error('Error handling SSE frame:', error, line);
+                  }
                 }
               });
 
               readStream();
             })
             .catch((error) => {
+              clearTimeout(watchdogId);
+              if (this.streamFinalized) return;
+              this.streamFinalized = true;
+
               console.error('Stream error:', error);
               this._appendError(error.message);
               this._completeMessageWithError();
@@ -801,6 +830,7 @@ export class ChatSession {
         break;
 
       case 'message_stop':
+        this.streamFinalized = true;
         this.streamController.complete(() => {
           this._saveAssistantMessage();
           this.storage.saveScrollPosition();
@@ -811,10 +841,25 @@ export class ChatSession {
         break;
 
       case 'end':
-        // Stream complete - wait for display completion
+        // After message_stop this is just the stream's sign-off; display
+        // completion takes it from here. But a close *without* message_stop
+        // means the reply was cut off mid-generation: keep what arrived,
+        // and mark it — this text is client-composed, in the seat's notice
+        // register, because only the client can see the cut happen.
+        if (!this.streamFinalized) {
+          this.streamFinalized = true;
+          this._appendError(
+            'The connection closed before this reply finished.',
+            {
+              notice: true,
+            }
+          );
+          this._completeMessageWithError();
+        }
         break;
 
       case 'error':
+        this.streamFinalized = true;
         this._appendError(data.data.error.message);
         this._completeMessageWithError();
         break;
@@ -825,12 +870,10 @@ export class ChatSession {
     this.storage.clearUserInput();
   }
 
-  _handleError(message) {
-    this._appendError(message);
-    this._completeMessageWithError();
-  }
-
   _handleTimeout() {
+    if (this.streamFinalized) return;
+    this.streamFinalized = true;
+
     this._appendError(
       'Your connection was lost during the reply. Please try again.'
     );
