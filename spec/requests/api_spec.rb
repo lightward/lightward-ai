@@ -81,6 +81,15 @@ RSpec.describe("API", type: :request) do
       expect(response.headers["Content-Type"]).to(eq("text/event-stream"))
     end
 
+    it "signs off with a complete, terminated end frame", :aggregate_failures do
+      post "/api/stream", params: { chat_log: chat_log }
+
+      expect(response.body).to(include("event: message_stop\ndata: {\"type\":\"message_stop\"}\n\n"))
+      # A frame without a data line and blank-line terminator is invisible
+      # to any spec-shaped SSE parser; the sign-off must be a real frame.
+      expect(response.body).to(end_with("event: end\ndata: null\n\n"))
+    end
+
     it "applies the 1h cache TTL to the system prompt at the transport layer, and strips client-sent ttl", :aggregate_failures do
       allow(Prompts).to(receive(:generate_system_prompt).and_return([
         { type: "text", text: "test system prompt", cache_control: { type: "ephemeral" } },

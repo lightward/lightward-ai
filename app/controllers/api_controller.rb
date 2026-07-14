@@ -204,12 +204,12 @@ class ApiController < ApplicationController
         stream_anthropic_response(request, response, chat_log, anthropic_usage)
       end
     end
-  rescue IOError
-    send_sse_event("error", { error: { message: "Connection error" } })
+  rescue IOError, ActionController::Live::ClientDisconnected
+    send_sse_event_quietly("error", { error: { message: "Connection error" } })
   rescue StandardError => error
     Rollbar.error(error)
     Rails.logger.error("API stream error: #{error.message}\n#{error.backtrace.join("\n")}")
-    send_sse_event("error", { error: { message: "An unexpected error occurred" } })
+    send_sse_event_quietly("error", { error: { message: "An unexpected error occurred" } })
   ensure
     settle_usage_budget(anthropic_responded, anthropic_usage)
     record_newrelic_event(
@@ -218,7 +218,7 @@ class ApiController < ApplicationController
       conversation_id: conversation_id,
       anthropic_usage: anthropic_usage,
     ) if conversation_frame_id
-    send_sse_event("end", nil)
+    send_sse_event_quietly("end", nil)
     response.stream.close
   end
 
@@ -678,9 +678,24 @@ class ApiController < ApplicationController
     send_sse_event(current_event || "message", event_data)
   end
 
+  # Every frame gets a data line and a blank-line terminator, even when
+  # there's nothing to say (nil → "data: null"): an unterminated frame is
+  # invisible to any spec-shaped SSE parser, ours included. One write per
+  # frame, atomically: each write travels as its own chunk, and transport
+  # has been observed (2026-07-13, live) slipping a newline between the
+  # chunks of a two-write frame — splitting it into two half-frames a
+  # frame-shaped parser drops. An atomic frame leaves no seam to split.
   def send_sse_event(event, data)
-    response.stream.write("event: #{event}\n")
-    response.stream.write("data: #{data.to_json}\n\n") if data
+    response.stream.write("event: #{event}\ndata: #{data.to_json}\n\n")
+  end
+
+  # For the rescue/ensure exits, where the stream may already be dead: a
+  # farewell that can't be delivered must not raise over the error it was
+  # delivering, or leave the ensure block half-run.
+  def send_sse_event_quietly(event, data)
+    send_sse_event(event, data)
+  rescue IOError, ActionController::Live::ClientDisconnected
+    nil
   end
 
   def permitted_chat_log_params
