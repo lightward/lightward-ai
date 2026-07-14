@@ -576,7 +576,7 @@ RSpec.describe("API", type: :request) do
           "ApiController: request",
           hash_including(
             usage_client: "lightward_writer",
-            anthropic_model: "claude-sonnet-4-6",
+            anthropic_model: "claude-sonnet-5",
             input_tokens: 1000,
             output_tokens: 400,
             cache_creation_input_tokens: 2000,

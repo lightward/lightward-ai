@@ -9,7 +9,7 @@ require "time"
 module Prompts
   module Anthropic
     ORIGIN = "https://api.anthropic.com"
-    MODEL = "claude-sonnet-4-6"
+    MODEL = "claude-sonnet-5"
     BETAS = nil
     # Our cache lifetime for the system prompt, applied here at the transport
     # layer — NOT in the published prompt itself, which /api/system.json
