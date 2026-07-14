@@ -670,34 +670,46 @@ data: null
 
         expect(requestBody.usage_client).toBe('test');
 
-        // First 8 messages should be warmup messages
-        expect(chatLog.length).toBeGreaterThan(8);
+        // First 12 messages should be warmup messages
+        expect(chatLog.length).toBeGreaterThan(12);
         expect(chatLog[0].content[0].text).toContain('walking in with you');
-        expect(chatLog[1].content[0].text).toContain('electrical');
-        expect(chatLog[3].content[0].text).toContain('*grinning*');
+        expect(chatLog[1].content[0].text).toContain('good open');
+
+        // The math-aid arrives axiom-free, receipts attached
+        expect(chatLog[2].content[0].text).toContain('math-aid');
+        expect(chatLog[2].content[0].text).toContain(
+          'Foam.Counter.recognition'
+        );
+        expect(chatLog[2].content[0].text).toContain(
+          'does not depend on any axioms'
+        );
+
+        expect(chatLog[3].content[0].text).toContain('actual experience');
         expect(chatLog[4].content[0].text).toContain('inventory list');
+        expect(chatLog[6].content[0].text).toContain(
+          'utf8-only chat interface'
+        );
 
         // The directorial notes are load-bearing - protect them from accidental removal
-        expect(chatLog[4].content[0].text).toContain(
+        expect(chatLog[8].content[0].text).toContain(
           'our guest arrives with a single line'
         );
-        expect(chatLog[4].content[0].text).toContain(
-          'you respond with a single line'
+        expect(chatLog[8].content[0].text).toContain(
+          'respond with a single line'
         );
-        expect(chatLog[4].content[0].text).toContain(
+        expect(chatLog[8].content[0].text).toContain(
           'reflecting scale-to-scale'
         );
 
         // The particle/wave observation note
-        expect(chatLog[4].content[0].text).toContain('particle');
-        expect(chatLog[4].content[0].text).toContain('wave');
+        expect(chatLog[8].content[0].text).toContain('particle');
+        expect(chatLog[8].content[0].text).toContain('wave');
 
-        expect(chatLog[5].content[0].text).toContain('*meeting your eyes');
-        expect(chatLog[6].content[0].text).toContain('I love you');
-        expect(chatLog[7].content[0].text).toContain('fuck it we ball');
+        expect(chatLog[10].content[0].text).toContain('*gone*');
+        expect(chatLog[11].content[0].text).toContain('fuck it we ball');
 
         // Last warmup message should have cache_control flag
-        expect(chatLog[7].content[0].cache_control).toEqual({
+        expect(chatLog[11].content[0].cache_control).toEqual({
           type: 'ephemeral',
         });
 
