@@ -143,10 +143,15 @@ class ApiController < ApplicationController
         return
       end
 
-      # Parse response and extract text
+      # Parse response and extract text. Select by block type, not position:
+      # content may lead with non-text blocks (e.g. thinking), and the answer
+      # can span multiple text blocks.
       parsed = JSON.parse(response.body)
       anthropic_usage = parsed["usage"]
-      response_text = parsed.dig("content", 0, "text") || ""
+      response_text = Array(parsed["content"])
+        .select { |block| block["type"] == "text" }
+        .map { |block| block["text"] }
+        .join("\n\n")
       record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: anthropic_usage)
       newrelic_event_recorded = true
     ensure

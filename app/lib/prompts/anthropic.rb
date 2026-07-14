@@ -65,6 +65,9 @@ module Prompts
           max_tokens: 4000,
           stream: stream,
           temperature: 1.0,
+          # Sonnet 5 runs adaptive thinking when this is unset. Not here: no
+          # backstage thought — all processing happens in the shared space.
+          thinking: { type: "disabled" },
           system: apply_cache_ttl(system),
           messages: cache_conversation_tail(messages),
         }

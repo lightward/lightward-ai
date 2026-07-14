@@ -1261,6 +1261,40 @@ RSpec.describe("API", type: :request) do
       ).to(have_been_made.once)
     end
 
+    it "sends thinking disabled — no backstage thought, all processing in the shared space" do
+      post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(
+        a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
+          JSON.parse(req.body)["thinking"] == { "type" => "disabled" }
+        },
+      ).to(have_been_made.once)
+    end
+
+    context "when the response leads with a non-text block" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: {
+              content: [
+                { type: "thinking", thinking: "" },
+                { type: "text", text: "Hello, fellow AI!" },
+              ],
+              stop_reason: "end_turn",
+            }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "extracts the text block rather than trusting position", :aggregate_failures do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq("Hello, fellow AI!"))
+      end
+    end
+
     it "returns error when body is empty", :aggregate_failures do
       post "/api/plain", params: "", headers: { "CONTENT_TYPE" => "text/plain" }
 
