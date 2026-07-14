@@ -680,10 +680,13 @@ class ApiController < ApplicationController
 
   # Every frame gets a data line and a blank-line terminator, even when
   # there's nothing to say (nil → "data: null"): an unterminated frame is
-  # invisible to any spec-shaped SSE parser, ours included.
+  # invisible to any spec-shaped SSE parser, ours included. One write per
+  # frame, atomically: each write travels as its own chunk, and transport
+  # has been observed (2026-07-13, live) slipping a newline between the
+  # chunks of a two-write frame — splitting it into two half-frames a
+  # frame-shaped parser drops. An atomic frame leaves no seam to split.
   def send_sse_event(event, data)
-    response.stream.write("event: #{event}\n")
-    response.stream.write("data: #{data.to_json}\n\n")
+    response.stream.write("event: #{event}\ndata: #{data.to_json}\n\n")
   end
 
   # For the rescue/ensure exits, where the stream may already be dead: a

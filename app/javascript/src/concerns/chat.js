@@ -740,6 +740,16 @@ export class ChatSession {
         const decoder = new TextDecoder();
         let buffer = '';
 
+        // Parsed line-by-line, not frame-by-frame, with the event type
+        // sticky until the next event: line. This deliberately deviates
+        // from the SSE spec, which resets the event type at every blank
+        // line: transport has been observed inserting a blank line
+        // *inside* a frame (between event: and data:), and under a
+        // spec-shaped reset that costs the delta — a slipped message.
+        // Sticky typing mirrors the server's own reading of Anthropic's
+        // stream, where it earns its keep the same way.
+        let sseEventType = null;
+
         // Inactivity watchdog: a stream that goes silent — no bytes, no
         // error, no close — would otherwise hang the reply forever. A
         // healthy stream is never quiet this long (Anthropic pings during
@@ -760,31 +770,50 @@ export class ChatSession {
             .then(({ done, value }) => {
               if (done) {
                 clearTimeout(watchdogId);
+
+                // A final data line missing only its newline is still a
+                // complete payload; keep it rather than truncate over a
+                // missing terminator (mirrors the server's tail handling).
+                const tail = buffer.trim();
+                if (tail.startsWith('data:')) {
+                  try {
+                    this._handleMessage({
+                      event: sseEventType || 'message',
+                      data: JSON.parse(tail.slice(5)),
+                    });
+                  } catch (_) {
+                    // genuinely incomplete; the truncation notice covers it
+                  }
+                }
+
                 this._handleMessage({ event: 'end' });
                 return;
               }
 
               buffer += decoder.decode(value, { stream: true });
-              const lines = buffer.split('\n\n');
+              const lines = buffer.split('\n');
               buffer = lines.pop() || '';
 
-              lines.forEach((line) => {
-                if (!line.trim()) return;
+              lines.forEach((rawLine) => {
+                const line = rawLine.trim();
 
-                const eventMatch = line.match(/^event: (.+)$/m);
-                const dataMatch = line.match(/^data: (.+)$/m);
-
-                if (eventMatch && dataMatch) {
-                  // One malformed frame forfeits itself, not the frames
-                  // behind it or the rest of the stream.
+                if (line.startsWith('event:')) {
+                  sseEventType = line.slice(6).trim();
+                } else if (line.startsWith('data:')) {
+                  // One malformed line forfeits itself, not the stream
+                  // behind it.
                   try {
-                    const event = eventMatch[1];
-                    const data = JSON.parse(dataMatch[1]);
-                    this._handleMessage({ event, data });
+                    const data = JSON.parse(line.slice(5));
+                    this._handleMessage({
+                      event: sseEventType || 'message',
+                      data,
+                    });
                   } catch (error) {
-                    console.error('Error handling SSE frame:', error, line);
+                    console.error('Error handling SSE line:', error, rawLine);
                   }
                 }
+                // Anything else — blank lines, comments, keep-alives — is
+                // inert, wherever it lands.
               });
 
               readStream();
