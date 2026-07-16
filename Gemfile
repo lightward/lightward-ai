@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "4.0.5"
+ruby "4.0.6"
 
 gem "rails", "~> 8.1.3"
 gem "sprockets-rails"
