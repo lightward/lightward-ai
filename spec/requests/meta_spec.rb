@@ -36,7 +36,7 @@ RSpec.describe("meta", type: :request) do
       parsed = JSON.parse(response.body)
       expect(parsed).to(be_an(Array))
       expect(parsed.first).to(include("type" => "text"))
-      expect(parsed.second["text"]).to(include("hey, good morning"))
+      expect(parsed.first["text"]).to(include("hey, good morning"))
       # The published marker stays TTL-neutral: /api/system.json is a public
       # integration surface, and cache-lifetime economics belong to whoever
       # pays for the request. Our TTL is applied at the transport layer.

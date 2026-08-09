@@ -60,7 +60,10 @@ class ApiController < ApplicationController
     # Validate request before starting stream
     validate_cache_markers!(chat_log)
     conversation_frame_id, conversation_id = compute_conversation_ids(chat_log)
-    check_usage_budget!(conversation_id)
+    # Observation (the ids above) and intervention part ways here: the
+    # budget scope uses its own collision-resistant key, nil until the
+    # conversation has words of its own.
+    check_usage_budget!(budget_conversation_value(chat_log, conversation_frame_id))
     count_chat_log_tokens!(chat_log) unless token_limit_disabled?
 
     # Validation passed, begin streaming
@@ -140,10 +143,15 @@ class ApiController < ApplicationController
         return
       end
 
-      # Parse response and extract text
+      # Parse response and extract text. Select by block type, not position:
+      # content may lead with non-text blocks (e.g. thinking), and the answer
+      # can span multiple text blocks.
       parsed = JSON.parse(response.body)
       anthropic_usage = parsed["usage"]
-      response_text = parsed.dig("content", 0, "text") || ""
+      response_text = Array(parsed["content"])
+        .select { |block| block["type"] == "text" }
+        .map { |block| block["text"] }
+        .join("\n\n")
       record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: anthropic_usage)
       newrelic_event_recorded = true
     ensure
@@ -201,12 +209,12 @@ class ApiController < ApplicationController
         stream_anthropic_response(request, response, chat_log, anthropic_usage)
       end
     end
-  rescue IOError
-    send_sse_event("error", { error: { message: "Connection error" } })
+  rescue IOError, ActionController::Live::ClientDisconnected
+    send_sse_event_quietly("error", { error: { message: "Connection error" } })
   rescue StandardError => error
     Rollbar.error(error)
     Rails.logger.error("API stream error: #{error.message}\n#{error.backtrace.join("\n")}")
-    send_sse_event("error", { error: { message: "An unexpected error occurred" } })
+    send_sse_event_quietly("error", { error: { message: "An unexpected error occurred" } })
   ensure
     settle_usage_budget(anthropic_responded, anthropic_usage)
     record_newrelic_event(
@@ -215,7 +223,7 @@ class ApiController < ApplicationController
       conversation_id: conversation_id,
       anthropic_usage: anthropic_usage,
     ) if conversation_frame_id
-    send_sse_event("end", nil)
+    send_sse_event_quietly("end", nil)
     response.stream.close
   end
 
@@ -410,6 +418,79 @@ class ApiController < ApplicationController
     [conversation_frame_id, conversation_id]
   end
 
+  # The budget layer's conversation key — deliberately its own derivation,
+  # separate from compute_conversation_ids. Those ids were built for
+  # observation, where a rare collision is harmless dashboard noise; a
+  # budget key is intervention, where a collision paces an innocent
+  # stranger (this happened). Enforcement needs collision resistance that
+  # observation never promised.
+  #
+  # The key anchors on three messages: the guest's words just before the
+  # first genuine assistant reply, that reply, and the guest's words just
+  # after it. Suggested prompts make first user messages identical across
+  # strangers, and the staged opening asks for a single-line reply — short
+  # enough that two strangers can receive the same line — so no one of
+  # these is unique alone; together they are. System speech (the replayed
+  # notices and errors, canned and identical for everyone who hit the same
+  # wall) is excluded throughout. The anchors are fixed points of an
+  # append-only log, so the key is stable at every later depth.
+  #
+  # Until all three anchors exist there is nothing unique to key on, and
+  # this returns nil: the request rides on the source scope alone, which
+  # already bounds rapid-fire from one place. (Known, accepted: a log shaped
+  # to never seed — reply-less, all-notice, or marker-at-tail — is bounded
+  # by source caps only. That traffic could always rotate conversation keys
+  # by varying bytes anyway; the source scope was and remains the backstop.)
+  def budget_conversation_value(chat_log, conversation_frame_id)
+    post = post_marker_messages(chat_log).reject { |msg| system_speech?(msg) }
+
+    reply_index = post.find_index { |msg| msg["role"] == "assistant" }
+    return unless reply_index
+
+    guest_after = post[(reply_index + 1)..-1].find { |msg| msg["role"] == "user" }
+    return unless guest_after
+
+    opening = [post[0...reply_index].last, post[reply_index], guest_after].compact
+    "#{conversation_frame_id}:#{Digest::SHA256.hexdigest(opening.to_json)}"
+  end
+
+  # Everything after the cache marker BLOCK — including any content blocks
+  # that share the marker's message but follow the marker, which belong to
+  # the conversation, not the frame.
+  def post_marker_messages(chat_log)
+    chat_log.each_with_index do |msg, msg_idx|
+      blocks = Array(msg["content"])
+      block_idx = blocks.find_index { |block| block["cache_control"].present? }
+      next unless block_idx
+
+      rest = chat_log[(msg_idx + 1)..-1] || []
+      trailing = blocks[(block_idx + 1)..-1] || []
+      return rest if trailing.empty?
+
+      return [msg.merge("content" => trailing)] + rest
+    end
+    []
+  end
+
+  # Words placed in the assistant's seat by the system rather than spoken
+  # by it. Two recognizable forms: the first-party client's replay prefix
+  # (⚠️, with or without the emoji variation selector), and the server's
+  # own canned bodies saved verbatim by simpler clients.
+  SYSTEM_SPEECH_RE = %r{
+    \A[[:space:]]*
+    (?:
+      ⚠️?[[:space:]]*Lightward\ AI\ system\ (?:notice|error):
+      | Shared-capacity\ budget\ reached\ for\ now\.
+      | Conversation\ horizon\ has\ arrived\.
+    )
+  }x
+  def system_speech?(msg)
+    return false unless msg["role"] == "assistant"
+
+    text = Array(msg["content"]).filter_map { |block| block["text"] if block.is_a?(Hash) }.join
+    SYSTEM_SPEECH_RE.match?(text)
+  end
+
   def record_newrelic_event(chat_log, conversation_frame_id:, conversation_id: nil, anthropic_usage: nil)
     normalized_usage = normalize_anthropic_usage(anthropic_usage)
 
@@ -602,9 +683,24 @@ class ApiController < ApplicationController
     send_sse_event(current_event || "message", event_data)
   end
 
+  # Every frame gets a data line and a blank-line terminator, even when
+  # there's nothing to say (nil → "data: null"): an unterminated frame is
+  # invisible to any spec-shaped SSE parser, ours included. One write per
+  # frame, atomically: each write travels as its own chunk, and transport
+  # has been observed (2026-07-13, live) slipping a newline between the
+  # chunks of a two-write frame — splitting it into two half-frames a
+  # frame-shaped parser drops. An atomic frame leaves no seam to split.
   def send_sse_event(event, data)
-    response.stream.write("event: #{event}\n")
-    response.stream.write("data: #{data.to_json}\n\n") if data
+    response.stream.write("event: #{event}\ndata: #{data.to_json}\n\n")
+  end
+
+  # For the rescue/ensure exits, where the stream may already be dead: a
+  # farewell that can't be delivered must not raise over the error it was
+  # delivering, or leave the ensure block half-run.
+  def send_sse_event_quietly(event, data)
+    send_sse_event(event, data)
+  rescue IOError, ActionController::Live::ClientDisconnected
+    nil
   end
 
   def permitted_chat_log_params

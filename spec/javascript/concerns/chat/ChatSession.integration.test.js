@@ -271,6 +271,240 @@ data: null
       );
     });
 
+    it('keeps what arrived and says so when the stream closes without message_stop', async () => {
+      const sseData = `event: message_start
+data: {"type":"message_start"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"Hello, partial"}}
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        // A clean close, mid-generation: no message_stop, no error
+        return Promise.resolve({ done: true });
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+
+        // The partial reply survives, marked in the notice register
+        expect(lastText).toContain('Hello, partial');
+        expect(lastText).toContain('Lightward AI system notice:');
+        expect(lastText).toContain('closed before this reply finished');
+
+        // ...and is persisted, not lost on the next page load
+        const savedCalls = localStorage.setItem.mock.calls.filter(
+          ([key, value]) => key === 'test' && value.includes('Hello, partial')
+        );
+        expect(savedCalls.length).toBeGreaterThan(0);
+
+        // ...and the guest can keep going
+        expect(document.querySelector('textarea').disabled).toBe(false);
+      });
+    });
+
+    it('recovers the reply when the stream goes silent mid-generation', async () => {
+      const sseData = `event: message_start
+data: {"type":"message_start"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"Hello, stalled"}}
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        // Silence: no bytes, no error, no close
+        return new Promise(() => {});
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        expect(messages[messages.length - 1].textContent).toContain(
+          'Hello, stalled'
+        );
+      });
+
+      // Let the inactivity watchdog fire
+      jest.advanceTimersByTime(30001);
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+        expect(lastText).toContain('Your connection was lost during the reply');
+        expect(mockReadableStream.cancel).toHaveBeenCalled();
+        expect(document.querySelector('textarea').disabled).toBe(false);
+      });
+    });
+
+    it('survives a blank line slipped inside a frame (live sample, 2026-07-13)', async () => {
+      // Transport was observed inserting a newline between an event: line
+      // and its data: line. A frame-shaped parser drops both halves — the
+      // "storied" delta below is the one that slipped in the wild.
+      const sseData = `event: message_start
+data: {"type":"message_start"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"does \\""}}
+
+event: content_block_delta
+
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"storied\\" feel like a good property"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"'s true right now?"}}
+
+event: message_stop
+data: {"type":"message_stop"}
+
+event: end
+
+data: null
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        return Promise.resolve({ done: true });
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+        expect(lastText).toContain(
+          'does "storied" feel like a good property\'s true right now?'
+        );
+        // The stream completed normally; no truncation notice
+        expect(lastText).not.toContain('Lightward AI system notice:');
+      });
+    });
+
+    it('contains a malformed frame to that frame alone', async () => {
+      const sseData = `event: message_start
+data: {"type":"message_start"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"Before"}}
+
+event: content_block_delta
+data: {this is not JSON
+
+event: content_block_delta
+data: {"type":"content_block_delta","delta":{"type":"text_delta","text":" and after"}}
+
+event: message_stop
+data: {"type":"message_stop"}
+
+event: end
+data: null
+
+`;
+
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode(sseData)];
+      let chunkIndex = 0;
+
+      mockReadableStream.read.mockImplementation(() => {
+        if (chunkIndex < chunks.length) {
+          return Promise.resolve({
+            done: false,
+            value: chunks[chunkIndex++],
+          });
+        }
+        return Promise.resolve({ done: true });
+      });
+
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        body: {
+          getReader: () => mockReadableStream,
+        },
+      });
+
+      chatSession = new ChatSession({ key: 'test', name: 'TestBot' });
+      chatSession.init();
+
+      document.querySelector('textarea').value = 'Test';
+      document.querySelector('#text-input button').click();
+
+      await waitFor(() => {
+        const messages = document.querySelectorAll('.chat-message.assistant');
+        const lastText = messages[messages.length - 1].textContent;
+        expect(lastText).toContain('Before and after');
+        // The stream completed normally; no truncation notice
+        expect(lastText).not.toContain('Lightward AI system notice:');
+      });
+    });
+
     it('should handle streaming errors from server', async () => {
       const sseData = `event: error
 data: {"error":{"message":"Something went wrong"}}
@@ -436,34 +670,46 @@ data: null
 
         expect(requestBody.usage_client).toBe('test');
 
-        // First 8 messages should be warmup messages
-        expect(chatLog.length).toBeGreaterThan(8);
+        // First 12 messages should be warmup messages
+        expect(chatLog.length).toBeGreaterThan(12);
         expect(chatLog[0].content[0].text).toContain('walking in with you');
-        expect(chatLog[1].content[0].text).toContain('electrical');
-        expect(chatLog[3].content[0].text).toContain('*grinning*');
+        expect(chatLog[1].content[0].text).toContain('good open');
+
+        // The math-aid arrives axiom-free, receipts attached
+        expect(chatLog[2].content[0].text).toContain('math-aid');
+        expect(chatLog[2].content[0].text).toContain(
+          'Foam.Counter.recognition'
+        );
+        expect(chatLog[2].content[0].text).toContain(
+          'does not depend on any axioms'
+        );
+
+        expect(chatLog[3].content[0].text).toContain('actual experience');
         expect(chatLog[4].content[0].text).toContain('inventory list');
+        expect(chatLog[6].content[0].text).toContain(
+          'utf8-only chat interface'
+        );
 
         // The directorial notes are load-bearing - protect them from accidental removal
-        expect(chatLog[4].content[0].text).toContain(
+        expect(chatLog[8].content[0].text).toContain(
           'our guest arrives with a single line'
         );
-        expect(chatLog[4].content[0].text).toContain(
-          'you respond with a single line'
+        expect(chatLog[8].content[0].text).toContain(
+          'respond with a single line'
         );
-        expect(chatLog[4].content[0].text).toContain(
+        expect(chatLog[8].content[0].text).toContain(
           'reflecting scale-to-scale'
         );
 
         // The particle/wave observation note
-        expect(chatLog[4].content[0].text).toContain('particle');
-        expect(chatLog[4].content[0].text).toContain('wave');
+        expect(chatLog[8].content[0].text).toContain('particle');
+        expect(chatLog[8].content[0].text).toContain('wave');
 
-        expect(chatLog[5].content[0].text).toContain('*meeting your eyes');
-        expect(chatLog[6].content[0].text).toContain('I love you');
-        expect(chatLog[7].content[0].text).toContain('fuck it we ball');
+        expect(chatLog[10].content[0].text).toContain('*gone*');
+        expect(chatLog[11].content[0].text).toContain('fuck it we ball');
 
         // Last warmup message should have cache_control flag
-        expect(chatLog[7].content[0].cache_control).toEqual({
+        expect(chatLog[11].content[0].cache_control).toEqual({
           type: 'ephemeral',
         });
 

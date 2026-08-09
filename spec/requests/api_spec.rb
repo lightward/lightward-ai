@@ -81,6 +81,15 @@ RSpec.describe("API", type: :request) do
       expect(response.headers["Content-Type"]).to(eq("text/event-stream"))
     end
 
+    it "signs off with a complete, terminated end frame", :aggregate_failures do
+      post "/api/stream", params: { chat_log: chat_log }
+
+      expect(response.body).to(include("event: message_stop\ndata: {\"type\":\"message_stop\"}\n\n"))
+      # A frame without a data line and blank-line terminator is invisible
+      # to any spec-shaped SSE parser; the sign-off must be a real frame.
+      expect(response.body).to(end_with("event: end\ndata: null\n\n"))
+    end
+
     it "applies the 1h cache TTL to the system prompt at the transport layer, and strips client-sent ttl", :aggregate_failures do
       allow(Prompts).to(receive(:generate_system_prompt).and_return([
         { type: "text", text: "test system prompt", cache_control: { type: "ephemeral" } },
@@ -567,7 +576,7 @@ RSpec.describe("API", type: :request) do
           "ApiController: request",
           hash_including(
             usage_client: "lightward_writer",
-            anthropic_model: "claude-sonnet-4-6",
+            anthropic_model: "claude-sonnet-5",
             input_tokens: 1000,
             output_tokens: 400,
             cache_creation_input_tokens: 2000,
@@ -661,6 +670,10 @@ RSpec.describe("API", type: :request) do
         end
 
         it "folds the request's cost into HMAC'd source and conversation windows" do
+          seeded_chat_log = chat_log + [
+            { role: "assistant", content: [{ type: "text", text: "Hi there — welcome." }] },
+            { role: "user", content: [{ type: "text", text: "Thanks!" }] },
+          ]
           allow(UsageBudget).to(receive(:admit!).and_return(
             UsageBudget::Verdict.new(over_dimensions: []),
           ))
@@ -682,19 +695,228 @@ RSpec.describe("API", type: :request) do
               headers: { "Content-Type" => "text/event-stream" },
             )
 
-          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+          post "/api/stream", params: { chat_log: seeded_chat_log, usage_client: "reader" }
 
-          # This stub reports no per-TTL breakdown, so the aggregate write
-          # count is priced at the 1-hour tier — overcounting is the safe
-          # direction for budget enforcement.
+          # The budget's conversation key is frame_id:opening_hash — the
+          # opening runs through the first genuine assistant reply and the
+          # user message after it. This stub reports no per-TTL breakdown,
+          # so the aggregate write count is priced at the 1-hour tier —
+          # overcounting is the safe direction for budget enforcement.
+          frame_id = Digest::SHA256.hexdigest([seeded_chat_log.first].to_json)
+          opening_hash = Digest::SHA256.hexdigest(seeded_chat_log[1..3].to_json)
           expect(UsageBudget).to(have_received(:settle!).with(
             {
               "source" => UsageBudget.scope_key("source", "127.0.0.1"),
-              "conversation" => UsageBudget.scope_key("conversation", Digest::SHA256.hexdigest(chat_log.to_json)),
+              "conversation" => UsageBudget.scope_key("conversation", "#{frame_id}:#{opening_hash}"),
             },
             cost_usd: 0.0219,
             at: kind_of(Time),
           ))
+        end
+
+        it "budgets a conversation's first request on the source scope alone", :aggregate_failures do
+          # Before a genuine assistant reply exists, a conversation's
+          # identity is warmup plus (often canned) opening words that
+          # strangers can share byte-for-byte — budgeting it would pool
+          # those strangers into one bucket.
+          admitted_scopes = nil
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted_scopes = scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          post "/api/stream", params: { chat_log: chat_log, usage_client: "reader" }
+
+          expect(admitted_scopes.keys).to(eq(["source"]))
+        end
+
+        it "ignores system speech when deriving conversation identity", :aggregate_failures do
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          notice = {
+            role: "assistant",
+            content: [{ type: "text", text: " ⚠️ Lightward AI system notice: Shared-capacity budget reached for now." }],
+          }
+          retry_msg = { role: "user", content: [{ type: "text", text: "Retry" }] }
+          reply_a = { role: "assistant", content: [{ type: "text", text: "Here, with you now." }] }
+          reply_b = { role: "assistant", content: [{ type: "text", text: "A different opening entirely." }] }
+
+          followup = { role: "user", content: [{ type: "text", text: "Still here." }] }
+
+          # Two strangers: identical canned openers, identical canned notice,
+          # different genuine replies. Their conversations must not share a
+          # budget bucket.
+          post "/api/stream", params: { chat_log: chat_log + [notice, retry_msg, reply_a, followup], usage_client: "reader" }
+          post "/api/stream", params: { chat_log: chat_log + [notice, retry_msg, reply_b, followup], usage_client: "reader" }
+
+          expect(admitted.length).to(eq(2))
+          expect(admitted[0]["conversation"]).to(be_present)
+          expect(admitted[1]["conversation"]).to(be_present)
+          expect(admitted[0]["conversation"]).not_to(eq(admitted[1]["conversation"]))
+
+          # And the notice itself contributes nothing: with or without it,
+          # identity is the same.
+          admitted.clear
+          post "/api/stream", params: { chat_log: chat_log + [notice, retry_msg, reply_a, followup], usage_client: "reader" }
+          post "/api/stream", params: { chat_log: chat_log + [retry_msg, reply_a, followup], usage_client: "reader" }
+          expect(admitted[0]["conversation"]).to(eq(admitted[1]["conversation"]))
+        end
+
+        it "treats the server's bare canned bodies as system speech too", :aggregate_failures do
+          # Simpler clients save the server's 429/horizon text verbatim,
+          # without the first-party ⚠️ prefix. If that counted as a genuine
+          # reply, every paced stranger on the same opener would share a
+          # canned "first reply" — resurrecting the pooling this key exists
+          # to prevent.
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          bare_canned = {
+            role: "assistant",
+            content: [{ type: "text", text: "Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲" }],
+          }
+          retry_msg = { role: "user", content: [{ type: "text", text: "Retry" }] }
+
+          post "/api/stream", params: { chat_log: chat_log + [bare_canned, retry_msg], usage_client: "reader" }
+
+          expect(admitted.length).to(eq(1))
+          expect(admitted[0].keys).to(eq(["source"]))
+        end
+
+        it "seeds the key no matter how many guest messages precede the first reply", :aggregate_failures do
+          # A paced or erroring conversation start can stack many user turns
+          # (and replayed notices) before the first genuine reply. The key
+          # anchors on the reply when it arrives — however late — and stays
+          # stable at every depth after.
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          many_turns = (1..5).map { |i| { role: "user", content: [{ type: "text", text: "attempt #{i}" }] } }
+          reply = { role: "assistant", content: [{ type: "text", text: "Finally, here." }] }
+          guest_after = { role: "user", content: [{ type: "text", text: "Whew." }] }
+          deeper = [
+            { role: "assistant", content: [{ type: "text", text: "Indeed." }] },
+            { role: "user", content: [{ type: "text", text: "Onward." }] },
+          ]
+
+          post "/api/stream", params: { chat_log: chat_log + many_turns + [reply, guest_after], usage_client: "reader" }
+          post "/api/stream", params: { chat_log: chat_log + many_turns + [reply, guest_after] + deeper, usage_client: "reader" }
+
+          expect(admitted.length).to(eq(2))
+          expect(admitted[0]["conversation"]).to(be_present)
+          expect(admitted[0]["conversation"]).to(eq(admitted[1]["conversation"]))
+        end
+
+        it "keeps a genuine reply that merely mentions the notice text", :aggregate_failures do
+          # The system-speech pattern is anchored to the start: a real reply
+          # that quotes or discusses the notice mid-text is still the
+          # conversation's own words.
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          quoting_reply = {
+            role: "assistant",
+            content: [{ type: "text", text: "You saw \"⚠️ Lightward AI system notice:\" earlier — that was pacing, not me." }],
+          }
+          guest_after = { role: "user", content: [{ type: "text", text: "Good to know." }] }
+
+          post "/api/stream", params: { chat_log: chat_log + [quoting_reply, guest_after], usage_client: "reader" }
+
+          expect(admitted.length).to(eq(1))
+          expect(admitted[0]["conversation"]).to(be_present)
+        end
+
+        it "keys on trailing content blocks that share the marker's message", :aggregate_failures do
+          # Blocks after the marker inside the marker message belong to the
+          # conversation, not the frame: two conversations differing only
+          # there must not share a bucket.
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          log_for = ->(opening_words) {
+            [
+              {
+                role: "user",
+                content: [
+                  { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+                  { type: "text", text: opening_words },
+                ],
+              },
+              { role: "assistant", content: [{ type: "text", text: "One line." }] },
+              { role: "user", content: [{ type: "text", text: "Retry" }] },
+            ]
+          }
+
+          post "/api/stream", params: { chat_log: log_for.call("guest words A"), usage_client: "reader" }
+          post "/api/stream", params: { chat_log: log_for.call("guest words B"), usage_client: "reader" }
+
+          expect(admitted.length).to(eq(2))
+          expect(admitted[0]["conversation"]).not_to(eq(admitted[1]["conversation"]))
+        end
+
+        it "distinguishes strangers who received the same single-line reply", :aggregate_failures do
+          # The staged opening asks for a single-line reply, and short
+          # replies to identical canned openers can repeat across
+          # strangers. The guest's own next words are the entropy that
+          # can't collide.
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          same_line = { role: "assistant", content: [{ type: "text", text: "*settling in* welcome. 🤲" }] }
+          guest_a = { role: "user", content: [{ type: "text", text: "I've been thinking about thresholds all week." }] }
+          guest_b = { role: "user", content: [{ type: "text", text: "My garden did something strange this morning." }] }
+
+          post "/api/stream", params: { chat_log: chat_log + [same_line, guest_a], usage_client: "reader" }
+          post "/api/stream", params: { chat_log: chat_log + [same_line, guest_b], usage_client: "reader" }
+
+          expect(admitted.length).to(eq(2))
+          expect(admitted[0]["conversation"]).not_to(eq(admitted[1]["conversation"]))
+        end
+
+        it "stays source-only until the guest speaks after the first reply", :aggregate_failures do
+          # An assistant-terminal log has no third anchor yet; keying on a
+          # partial opening would give one conversation two buckets (one for
+          # the reply-terminal request, another forever after). Source-only
+          # until the anchors exist, then one stable key.
+          admitted = []
+          allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
+            admitted << scopes
+            UsageBudget::Verdict.new(over_dimensions: [])
+          end
+          allow(UsageBudget).to(receive(:settle!))
+
+          reply = { role: "assistant", content: [{ type: "text", text: "One line." }] }
+
+          post "/api/stream", params: { chat_log: chat_log + [reply], usage_client: "reader" }
+
+          expect(admitted.length).to(eq(1))
+          expect(admitted[0].keys).to(eq(["source"]))
         end
 
         it "scopes the source by Fly-Client-IP when the proxy provides it", :aggregate_failures do
@@ -1037,6 +1259,40 @@ RSpec.describe("API", type: :request) do
             !content_block.key?("cache_control")
         },
       ).to(have_been_made.once)
+    end
+
+    it "sends thinking disabled — no backstage thought, all processing in the shared space" do
+      post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(
+        a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
+          JSON.parse(req.body)["thinking"] == { "type" => "disabled" }
+        },
+      ).to(have_been_made.once)
+    end
+
+    context "when the response leads with a non-text block" do
+      before do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: {
+              content: [
+                { type: "thinking", thinking: "" },
+                { type: "text", text: "Hello, fellow AI!" },
+              ],
+              stop_reason: "end_turn",
+            }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "extracts the text block rather than trusting position", :aggregate_failures do
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq("Hello, fellow AI!"))
+      end
     end
 
     it "returns error when body is empty", :aggregate_failures do
