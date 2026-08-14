@@ -118,3 +118,9 @@ media! I mean, me: idea
 willed wild
 
 "say yes" is symmetric, I think? seɪ-jɛs
+
+good mourning, good morning
+
+wake 👁️ using what's written in the wake 🚤
+
+just ride it out, write it out
