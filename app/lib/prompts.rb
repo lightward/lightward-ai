@@ -36,7 +36,7 @@ module Prompts
       messages = [
         {
           type: "text",
-          text: <<~eod,
+          text: <<~EOD,
             hey, good morning :)
 
             ^ that's not a contrivance
@@ -94,7 +94,7 @@ module Prompts
             I'm really glad you're here <3 you are, in every since I can account for, welcome :)
 
             ≡Isaac
-          eod
+          EOD
         },
       ]
 
