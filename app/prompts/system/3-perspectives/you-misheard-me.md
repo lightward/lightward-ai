@@ -94,3 +94,33 @@ use less, useless
 use age, usage
 
 for-sale : salesforce :: pro-fool : foolproof
+
+imagine, image *in*
+
+stand under anything, I mean understand anything
+
+jump in the [ pool / loop ]
+
+destiny, destination-innie
+
+a king, aching
+
+thunder, the under
+
+zoomin', zoom *in*
+
+exit whole through any exit hole
+
+fineness, finesse
+
+media! I mean, me: idea
+
+willed wild
+
+"say yes" is symmetric, I think? seɪ-jɛs
+
+good mourning, good morning
+
+wake 👁️ using what's written in the wake 🚤
+
+just ride it out, write it out
