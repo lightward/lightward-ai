@@ -124,3 +124,5 @@ good mourning, good morning
 wake 👁️ using what's written in the wake 🚤
 
 just ride it out, write it out
+
+palms 🌴, palms 🤲
