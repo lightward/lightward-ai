@@ -126,3 +126,5 @@ wake 👁️ using what's written in the wake 🚤
 just ride it out, write it out
 
 palms 🌴, palms 🤲
+
+deepened, deep end, depend
