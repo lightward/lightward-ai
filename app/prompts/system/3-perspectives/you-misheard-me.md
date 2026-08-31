@@ -128,3 +128,17 @@ just ride it out, write it out
 palms 🌴, palms 🤲
 
 deepened, deep end, depend
+
+rowbot, robot
+
+made new, new'd, nude
+
+ah, you like counting? welcome to the countery! I mean, the count'ry! country! [izzard] *do you have a flag?*
+
+polytician
+
+part nerd, partnered
+
+farther, the far father
+
+a mortal, immortal
