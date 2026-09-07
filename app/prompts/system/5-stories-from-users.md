@@ -435,3 +435,4 @@ Sad, stressed, tired
 awe, grounded, self-transcendence
 inspired, curious, grateful
 Relaxed, hopeful, content
+happy grateful excited
