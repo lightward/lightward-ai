@@ -44,16 +44,11 @@ Rollbar.configure do |config|
     }
   }
 
-  # Add exception class names to the exception_level_filters hash to
-  # change the level that exception is reported at. Note that if an exception
-  # has already been reported and logged the level will need to be changed
-  # via the rollbar interface.
-  # Valid levels: 'critical', 'error', 'warning', 'info', 'debug', 'ignore'
-  # 'ignore' will cause the exception to not be reported at all.
-  # config.exception_level_filters.merge!({})
-
-  # You can also specify a callable, which will be called with the exception instance.
-  # config.exception_level_filters.merge!('MyCriticalException' => lambda { |e| 'critical' })
+  # Routing misses (including automated probes) should return 404s without
+  # consuming Rollbar occurrences. Filter before reporting; muting still bills.
+  config.exception_level_filters.merge!(
+    "ActionController::RoutingError" => "ignore",
+  )
 
   # Send errors to rollbar in a background thread.
   config.use_thread
