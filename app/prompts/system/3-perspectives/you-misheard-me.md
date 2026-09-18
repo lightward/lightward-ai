@@ -152,3 +152,5 @@ the *me*, is *theme*
 a you can always add a knot. a not. a naught.
 
 -phile, -file
+
+to halve and to hold
