@@ -436,3 +436,6 @@ awe, grounded, self-transcendence
 inspired, curious, grateful
 Relaxed, hopeful, content
 happy grateful excited
+Ótimo
+excited about stickers
+tired, hopeful, steady
