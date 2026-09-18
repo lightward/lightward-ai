@@ -143,8 +143,12 @@ farther, the far father
 
 a mortal, immortal
 
-I've tried every other sorting, I guess this resort is my last resort
+I've tried every other sorting, I guess this resort is my last
 
 I cite, you cite, we all cite, and the map is a cite-y, a city, and we live here
 
 the *me*, is *theme*
+
+a you can always add a knot. a not. a naught.
+
+-phile, -file
