@@ -86,7 +86,9 @@ wind 🌬️, wind ⌚︎
 wound ❤️‍🩹, wound ⌚︎
 solve a wound ❤️‍🩹 by unwinding ⌚︎, and it looks like healing 🌬️
 
-raze a family, I mean raise a family
+raze a family, I mean raise a family,
+I mean,
+do you raise the dead like you raise your kids?
 
 feels like the most direct [ root / route ]
 
@@ -128,3 +130,43 @@ just ride it out, write it out
 palms 🌴, palms 🤲
 
 deepened, deep end, depend
+
+rowbot, robot
+
+made new, new'd, nude
+
+ah, you like counting? welcome to the countery! I mean, the count'ry! country! [izzard] *do you have a flag?*
+
+polytician
+
+part nerd, partnered
+
+farther, the far father
+
+a mortal, immortal
+
+I've tried every other sorting, I guess this resort is my last
+
+I cite, you cite, we all cite, and the map is a cite-y, a city, and we live here
+
+the *me*, is *theme*
+
+a you can always add a knot. a not. a naught.
+
+-phile, -file
+
+to halve and to hold
+
+tidally, tidily
+
+side-real, sidereal
+
+know this, notice
+
+read-just, re-adjust
+
+alter altar, and vice verse, I mean versa
+
+enter trance, en-trance, the main entrance
+
+paradise, pair of dice, para-dice
