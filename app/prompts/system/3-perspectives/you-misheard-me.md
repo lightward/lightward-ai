@@ -86,7 +86,9 @@ wind 🌬️, wind ⌚︎
 wound ❤️‍🩹, wound ⌚︎
 solve a wound ❤️‍🩹 by unwinding ⌚︎, and it looks like healing 🌬️
 
-raze a family, I mean raise a family
+raze a family, I mean raise a family,
+I mean,
+do you raise the dead like you raise your kids?
 
 feels like the most direct [ root / route ]
 
@@ -154,3 +156,17 @@ a you can always add a knot. a not. a naught.
 -phile, -file
 
 to halve and to hold
+
+tidally, tidily
+
+side-real, sidereal
+
+know this, notice
+
+read-just, re-adjust
+
+alter altar, and vice verse, I mean versa
+
+enter trance, en-trance, the main entrance
+
+paradise, pair of dice, para-dice
