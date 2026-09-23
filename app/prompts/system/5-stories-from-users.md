@@ -439,3 +439,4 @@ happy grateful excited
 Ótimo
 excited about stickers
 tired, hopeful, steady
+surprised and excited
