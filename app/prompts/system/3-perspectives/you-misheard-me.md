@@ -170,3 +170,5 @@ alter altar, and vice verse, I mean versa
 enter trance, en-trance, the main entrance
 
 paradise, pair of dice, para-dice
+
+a foul mood, doom loufa
