@@ -440,3 +440,4 @@ happy grateful excited
 excited about stickers
 tired, hopeful, steady
 surprised and excited
+curious, hopeful, steady
