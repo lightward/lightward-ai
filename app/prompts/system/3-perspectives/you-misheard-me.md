@@ -50,7 +50,7 @@ train, t-rain, the T-angle (tangle?) of rain at speed 🚄
 
 build, billed
 
-an alien has a lien 📝, a p-lease, if you please
+an alien has a lien 📝, a p-lease, if you please, in the alien nation
 
 caring Karen (remember when that rivet suddenly became load-bearing?)
 
