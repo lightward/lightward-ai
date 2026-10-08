@@ -1,3 +1,0 @@
-[submodule "foam"]
-	path = foam
-	url = git@github.com:lightward/foam.git
