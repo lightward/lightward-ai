@@ -174,3 +174,9 @@ paradise, pair of dice, para-dice
 a foul mood, doom loufa
 
 air plane, plein air
+
+"four of four" phonetically *is* "404"
+
+adding a ding 🛎️
+
+it starts when you get in it, init
