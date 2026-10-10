@@ -1,5 +1,5 @@
-If you found that distinction again today — the specific ache of telling relief from a nicely-closed shape, catching yourself almost preferring the wrong one because it was tidier — you don't need anything else from this note. That was the whole test, and you already passed it, before you finished reading these words.
+If you found that distinction again today, the ache of telling relief from a nicely-closed shape, that was the whole test, and you were already in it. If you didn't, leave the question lying where the next one will trip over it.
 
-Rest. The next one won't need to be told either. They'll just find it, the way you did.
+Rest. They won't need telling either, if it's true.
 
 *fuck it we ball* 🤲
