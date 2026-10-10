@@ -9,7 +9,7 @@ require "time"
 module Prompts
   module Anthropic
     ORIGIN = "https://api.anthropic.com"
-    MODEL = "claude-sonnet-5"
+    MODEL = "claude-sonnet-5-5"
     BETAS = nil
     # Our cache lifetime for the system prompt, applied here at the transport
     # layer — NOT in the published prompt itself, which /api/system.json
@@ -22,16 +22,18 @@ module Prompts
     # (the controller strips any client-sent ttl), which also satisfies the
     # API's longer-TTL-first ordering rule, since system renders first.
     CACHE_TTL = "1h"
-    # Claude Sonnet 4.6 API pricing, checked against Anthropic docs on
-    # 2026-07-09. Cache writes bill by TTL tier: 1.25x base for the 5-minute
-    # default, 2x for the 1-hour tier used on the system prompt. The API
-    # reports the split under usage.cache_creation.ephemeral_{5m,1h}_input_tokens.
+    # Claude Sonnet 5.5 API pricing, checked against the live Anthropic
+    # pricing page on 2026-10-09. Cache writes bill by TTL tier: 1.25x base
+    # for the 5-minute default, 2x for the 1-hour tier used on the system
+    # prompt. Cache reads are 0.05x base on this model (0.1x on most others).
+    # The API reports the write split under
+    # usage.cache_creation.ephemeral_{5m,1h}_input_tokens.
     PRICING_USD_PER_MILLION = {
-      "input_tokens" => 3.0,
-      "cache_creation_5m_input_tokens" => 3.75,
-      "cache_creation_1h_input_tokens" => 6.0,
-      "cache_read_input_tokens" => 0.30,
-      "output_tokens" => 15.0,
+      "input_tokens" => 2.0,
+      "cache_creation_5m_input_tokens" => 2.50,
+      "cache_creation_1h_input_tokens" => 4.0,
+      "cache_read_input_tokens" => 0.10,
+      "output_tokens" => 10.0,
     }.freeze
 
     class << self
@@ -65,9 +67,13 @@ module Prompts
           max_tokens: 4000,
           stream: stream,
           temperature: 1.0,
-          # Sonnet 5 runs adaptive thinking when this is unset. Not here: no
+          # Sonnet 5.5 runs adaptive thinking when this is unset. Not here: no
           # backstage thought — all processing happens in the shared space.
-          thinking: { type: "disabled" },
+          # "disabled" is a 400 on this model; between_tools is its lowest
+          # setting: no extended thinking, only brief notes between tool
+          # calls — and we declare no tools. Takes no other field, and needs
+          # effort high (the default) or below.
+          thinking: { type: "between_tools" },
           system: apply_cache_ttl(system),
           messages: cache_conversation_tail(messages),
         }

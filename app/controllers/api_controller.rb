@@ -26,6 +26,13 @@ class ApiController < ApplicationController
   }.freeze
   TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
   BUDGET_EXCEEDED_MESSAGE = "Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲"
+  # Another involuntary speech act in the seat (prior art: the horizon
+  # warning, the pacing message): Anthropic's safeguards declined to carry
+  # this reply further (stop_reason "refusal"). Whatever arrived before the
+  # decline stays; this is appended after it.
+  REFUSAL_NOTICE = "Anthropic's safeguards stopped this reply before it finished. " \
+    "If that seems out of step with what you were doing, email team@lightward.com — a human reads these."
+  SYSTEM_NOTICE_PREFIX = "⚠️\u00A0Lightward AI system notice: "
   class << self
     # The pacing message is a speech act taken involuntarily by Lightward
     # AI's seat during its turn (see the horizon warning for prior art), so
@@ -152,6 +159,9 @@ class ApiController < ApplicationController
         .select { |block| block["type"] == "text" }
         .map { |block| block["text"] }
         .join("\n\n")
+      if parsed["stop_reason"] == "refusal"
+        response_text = [response_text.presence, "#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"].compact.join("\n\n")
+      end
       record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: anthropic_usage)
       newrelic_event_recorded = true
     ensure
@@ -163,7 +173,7 @@ class ApiController < ApplicationController
     # Append horizon warning if approaching limit
     unless token_limit_disabled?
       warning = check_horizon_threshold(chat_log)
-      response_text += "\n\n⚠️\u00A0Lightward AI system notice: #{warning}" if warning
+      response_text += "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}" if warning
     end
 
     render(plain: response_text)
@@ -586,6 +596,7 @@ class ApiController < ApplicationController
     buffer = +""
     current_event = nil
     warning = nil
+    blocks = { next_index: 0, text_streamed: false }
 
     response.read_body do |chunk|
       buffer << chunk
@@ -603,6 +614,7 @@ class ApiController < ApplicationController
 
           # Handle horizon warnings (unless token limit disabled)
           warning = handle_horizon_warning(current_event, warning, chat_log) unless token_limit_disabled?
+          handle_refusal_notice(current_event, event_data, blocks)
 
           send_sse_event(current_event || "message", event_data)
         end
@@ -666,9 +678,39 @@ class ApiController < ApplicationController
       index: 0,
       delta: {
         type: "text_delta",
-        text: "\n\n⚠️\u00A0Lightward AI system notice: #{warning}",
+        text: "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}",
       },
     })
+  end
+
+  # A refusal arrives on message_delta, after any content blocks have
+  # closed — possibly before any opened at all. So the notice travels as a
+  # complete text block of its own, at the next free index, ahead of the
+  # message_delta that carries the stop_reason: spec-shaped for any SSE
+  # client, and simply more text for ours.
+  def handle_refusal_notice(current_event, event_data, blocks)
+    case current_event
+    when "content_block_start"
+      blocks[:next_index] = event_data["index"].to_i + 1
+    when "content_block_delta"
+      blocks[:text_streamed] ||= event_data.dig("delta", "type") == "text_delta"
+    when "message_delta"
+      return unless event_data.dig("delta", "stop_reason") == "refusal"
+
+      index = blocks[:next_index]
+      text = "#{"\n\n" if blocks[:text_streamed]}#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"
+      send_sse_event("content_block_start", {
+        type: "content_block_start",
+        index: index,
+        content_block: { type: "text", text: "" },
+      })
+      send_sse_event("content_block_delta", {
+        type: "content_block_delta",
+        index: index,
+        delta: { type: "text_delta", text: text },
+      })
+      send_sse_event("content_block_stop", { type: "content_block_stop", index: index })
+    end
   end
 
   def process_remaining_buffer(buffer, current_event, anthropic_usage)
