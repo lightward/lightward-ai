@@ -1301,6 +1301,23 @@ RSpec.describe("API", type: :request) do
         expect(events[notice_stop + 1].first).to(eq("message_delta"))
       end
 
+      it "carries a pending horizon warning when nothing arrived", :aggregate_failures do
+        # 90% of the horizon: the warning is computed at message_start, but an
+        # empty refusal never sends the content_block_stop that would carry it.
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(status: 200, body: { input_tokens: 45_000 }.to_json, headers: { "Content-Type" => "application/json" })
+        stub_refusal_stream
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        deltas = frames(response.body).select { |event, _| event == "content_block_delta" }
+        expect(deltas.size).to(eq(1))
+        expect(deltas.first.last.dig("delta", "text")).to(eq(
+          "⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}" \
+            "\n\n⚠️\u00A0Lightward AI system notice: Memory space 90% utilized; conversation horizon approaching",
+        ))
+      end
+
       it "opens at index 0 with no leading break when nothing arrived", :aggregate_failures do
         stub_refusal_stream
 

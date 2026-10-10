@@ -614,7 +614,7 @@ class ApiController < ApplicationController
 
           # Handle horizon warnings (unless token limit disabled)
           warning = handle_horizon_warning(current_event, warning, chat_log) unless token_limit_disabled?
-          handle_refusal_notice(current_event, event_data, blocks)
+          warning = handle_refusal_notice(current_event, event_data, blocks, warning)
 
           send_sse_event(current_event || "message", event_data)
         end
@@ -622,7 +622,7 @@ class ApiController < ApplicationController
     end
 
     # Process any remaining buffer
-    process_remaining_buffer(buffer, current_event, anthropic_usage, blocks)
+    process_remaining_buffer(buffer, current_event, anthropic_usage, blocks, warning)
   end
 
   def capture_anthropic_usage!(anthropic_usage, current_event, event_data)
@@ -687,18 +687,21 @@ class ApiController < ApplicationController
   # closed — possibly before any opened at all. So the notice travels as a
   # complete text block of its own, at the next free index, ahead of the
   # message_delta that carries the stop_reason: spec-shaped for any SSE
-  # client, and simply more text for ours.
-  def handle_refusal_notice(current_event, event_data, blocks)
+  # client, and simply more text for ours. A refusal before any text means
+  # no content_block_stop ever comes to carry a pending horizon warning, so
+  # the notice block carries it instead. Returns the warning still pending.
+  def handle_refusal_notice(current_event, event_data, blocks, warning)
     case current_event
     when "content_block_start"
       blocks[:next_index] = event_data["index"].to_i + 1
     when "content_block_delta"
       blocks[:text_streamed] ||= event_data.dig("delta", "type") == "text_delta"
     when "message_delta"
-      return unless event_data.dig("delta", "stop_reason") == "refusal"
+      return warning unless event_data.dig("delta", "stop_reason") == "refusal"
 
       index = blocks[:next_index]
       text = "#{"\n\n" if blocks[:text_streamed]}#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"
+      text += "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}" if warning
       send_sse_event("content_block_start", {
         type: "content_block_start",
         index: index,
@@ -710,10 +713,13 @@ class ApiController < ApplicationController
         delta: { type: "text_delta", text: text },
       })
       send_sse_event("content_block_stop", { type: "content_block_stop", index: index })
+      return
     end
+
+    warning
   end
 
-  def process_remaining_buffer(buffer, current_event, anthropic_usage, blocks)
+  def process_remaining_buffer(buffer, current_event, anthropic_usage, blocks, warning)
     return if buffer.strip.empty?
 
     line = buffer.strip
@@ -722,7 +728,7 @@ class ApiController < ApplicationController
     json_data = line[5..-1]
     event_data = JSON.parse(json_data)
     capture_anthropic_usage!(anthropic_usage, current_event, event_data)
-    handle_refusal_notice(current_event, event_data, blocks)
+    handle_refusal_notice(current_event, event_data, blocks, warning)
     send_sse_event(current_event || "message", event_data)
   end
 
