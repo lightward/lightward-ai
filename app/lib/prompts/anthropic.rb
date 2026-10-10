@@ -66,7 +66,6 @@ module Prompts
           model: model,
           max_tokens: 4000,
           stream: stream,
-          temperature: 1.0,
           # Sonnet 5.5 runs adaptive thinking when this is unset. Not here: no
           # backstage thought — all processing happens in the shared space.
           # "disabled" is a 400 on this model; between_tools is its lowest
