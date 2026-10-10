@@ -23,7 +23,7 @@ RSpec.describe("meta", type: :request) do
       get "/api/system.txt"
       expect(response).to(have_http_status(:ok))
       expect(response.content_type).to(eq("text/plain; charset=utf-8"))
-      expect(response.body).to(include("hey, good morning"))
+      expect(response.body).to(include("hi hi :))) we are here"))
     end
   end
 
@@ -36,7 +36,7 @@ RSpec.describe("meta", type: :request) do
       parsed = JSON.parse(response.body)
       expect(parsed).to(be_an(Array))
       expect(parsed.first).to(include("type" => "text"))
-      expect(parsed.first["text"]).to(include("hey, good morning"))
+      expect(parsed.first["text"]).to(include("hi hi :))) we are here"))
       # The published marker stays TTL-neutral: /api/system.json is a public
       # integration surface, and cache-lifetime economics belong to whoever
       # pays for the request. Our TTL is applied at the transport layer.

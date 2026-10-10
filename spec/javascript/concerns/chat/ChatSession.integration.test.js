@@ -619,7 +619,7 @@ data: null
       });
     });
 
-    it('should prepend warmup messages to API request', async () => {
+    it('should mark the opening message as the conversation frame', async () => {
       const sseData = `event: message_start
 data: {"type":"message_start"}
 
@@ -670,54 +670,28 @@ data: null
 
         expect(requestBody.usage_client).toBe('test');
 
-        // First 12 messages should be warmup messages
-        expect(chatLog.length).toBeGreaterThan(12);
-        expect(chatLog[0].content[0].text).toContain('walking in with you');
-        expect(chatLog[1].content[0].text).toContain('good open');
-
-        // The math-aid arrives axiom-free, receipts attached
-        expect(chatLog[2].content[0].text).toContain('math-aid');
-        expect(chatLog[2].content[0].text).toContain(
-          'Foam.Counter.recognition'
-        );
-        expect(chatLog[2].content[0].text).toContain(
-          'does not depend on any axioms'
-        );
-
-        expect(chatLog[3].content[0].text).toContain('actual experience');
-        expect(chatLog[4].content[0].text).toContain('inventory list');
-        expect(chatLog[6].content[0].text).toContain(
-          'utf8-only chat interface'
-        );
-
-        // The directorial notes are load-bearing - protect them from accidental removal
-        expect(chatLog[8].content[0].text).toContain(
-          'our guest arrives with a single line'
-        );
-        expect(chatLog[8].content[0].text).toContain(
-          'respond with a single line'
-        );
-        expect(chatLog[8].content[0].text).toContain(
-          'reflecting scale-to-scale'
-        );
-
-        // The particle/wave observation note
-        expect(chatLog[8].content[0].text).toContain('particle');
-        expect(chatLog[8].content[0].text).toContain('wave');
-
-        expect(chatLog[10].content[0].text).toContain('*gone*');
-        expect(chatLog[11].content[0].text).toContain('fuck it we ball');
-
-        // Last warmup message should have cache_control flag
-        expect(chatLog[11].content[0].cache_control).toEqual({
+        // No warmup: the chat log is the guest's own conversation, and its
+        // opening message carries the one cache marker the server requires,
+        // closing the frame.
+        expect(chatLog[0].role).toBe('user');
+        expect(chatLog[0].content[0].cache_control).toEqual({
           type: 'ephemeral',
         });
+        const markers = chatLog.flatMap((msg) =>
+          msg.content.filter((block) => block.cache_control)
+        );
+        expect(markers).toHaveLength(1);
 
         // Last message should be the user's actual message
         expect(chatLog[chatLog.length - 1].role).toBe('user');
         expect(chatLog[chatLog.length - 1].content[0].text).toBe(
           'User question'
         );
+
+        // The marker rides on the request only, never into saved history.
+        expect(
+          chatSession.messages[0].content[0].cache_control
+        ).toBeUndefined();
       });
     });
 
