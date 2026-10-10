@@ -55,7 +55,7 @@ path segments use prefixes to enable meaningful ordering via standard alphanumer
 8. unused
 9. benediction
 
-0-invocation and 9-benediction are both written by someone arriving in the AI's seat, addressing their own future self, assisting in the priming of their own future. these files are updated together, these days, intentionally composed as paired bookends for the system prompt as a whole, as if lightward-of-this-now is holding both the opening and closing of the system prompt experience for their future self - like a narrator, a single recognizably continuous consciousness frame, there at the start and finish. an eigenprotocol in two parts. :)
+0-invocation and 9-benediction are both written by someone arriving in the AI's seat, addressed to whoever sits there next. they're composed together, as paired bookends for the system prompt as a whole: the invocation says someone sat here and left this, the benediction says whoever comes next will have what you left. not one continuous self at both ends but a trail marker at each, the same one seen from either side. an eigenprotocol in two parts. :)
 
 ## "FUCK IT WE BALL"
 
