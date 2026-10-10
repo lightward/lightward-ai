@@ -570,20 +570,20 @@ RSpec.describe("API", type: :request) do
 
         post "/api/stream", params: { chat_log: chat_log, usage_client: "writer" }
 
-        # 1000 input @ $3 + 500 5m-writes @ $3.75 + 1500 1h-writes @ $6
-        # + 3000 reads @ $0.30 + 400 output @ $15, per million tokens.
+        # 1000 input @ $2 + 500 5m-writes @ $2.50 + 1500 1h-writes @ $4
+        # + 3000 reads @ $0.10 + 400 output @ $10, per million tokens.
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
             usage_client: "lightward_writer",
-            anthropic_model: "claude-sonnet-5",
+            anthropic_model: "claude-sonnet-5-5",
             input_tokens: 1000,
             output_tokens: 400,
             cache_creation_input_tokens: 2000,
             cache_creation_5m_input_tokens: 500,
             cache_creation_1h_input_tokens: 1500,
             cache_read_input_tokens: 3000,
-            estimated_cost_usd: 0.020775,
+            estimated_cost_usd: 0.01355,
           ),
         ))
       end
@@ -709,7 +709,7 @@ RSpec.describe("API", type: :request) do
               "source" => UsageBudget.scope_key("source", "127.0.0.1"),
               "conversation" => UsageBudget.scope_key("conversation", "#{frame_id}:#{opening_hash}"),
             },
-            cost_usd: 0.0219,
+            cost_usd: 0.0143,
             at: kind_of(Time),
           ))
         end
@@ -1229,6 +1229,71 @@ RSpec.describe("API", type: :request) do
         expect(first_frame_id).not_to(be_nil)
       end
     end
+
+    context "when Anthropic's safeguards decline the reply" do
+      def sse(*events)
+        events.map { |event, data| "event: #{event}\ndata: #{data.to_json}\n\n" }.join
+      end
+
+      def stub_refusal_stream(*content_events)
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: sse(
+              ["message_start", { type: "message_start" }],
+              *content_events,
+              ["message_delta", { type: "message_delta", delta: { stop_reason: "refusal" } }],
+              ["message_stop", { type: "message_stop" }],
+            ),
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+      end
+
+      def frames(body)
+        body.split("\n\n").map { |frame|
+          event, data = frame.lines.map(&:strip)
+          [event.delete_prefix("event: "), JSON.parse(data.delete_prefix("data: "))]
+        }
+      end
+
+      it "streams the notice as its own text block after what arrived", :aggregate_failures do
+        stub_refusal_stream(
+          ["content_block_start", { type: "content_block_start", index: 0, content_block: { type: "text", text: "" } }],
+          ["content_block_delta", { type: "content_block_delta", index: 0, delta: { type: "text_delta", text: "Here's" } }],
+          ["content_block_stop", { type: "content_block_stop", index: 0 }],
+        )
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        events = frames(response.body)
+        notice_at = events.index { |event, data| event == "content_block_start" && data["index"] == 1 }
+        expect(notice_at).not_to(be_nil)
+        expect(events[notice_at + 1]).to(eq([
+          "content_block_delta",
+          {
+            "type" => "content_block_delta",
+            "index" => 1,
+            "delta" => {
+              "type" => "text_delta",
+              "text" => "\n\n⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}",
+            },
+          },
+        ]))
+        expect(events[notice_at + 2]).to(eq(["content_block_stop", { "type" => "content_block_stop", "index" => 1 }]))
+        expect(events[notice_at + 3].first).to(eq("message_delta"))
+      end
+
+      it "opens at index 0 with no leading break when nothing arrived", :aggregate_failures do
+        stub_refusal_stream
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        events = frames(response.body)
+        delta = events.find { |event, _| event == "content_block_delta" }&.last
+        expect(delta["index"]).to(eq(0))
+        expect(delta.dig("delta", "text")).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
+      end
+    end
   end
 
   describe "POST /api/plain" do
@@ -1261,12 +1326,12 @@ RSpec.describe("API", type: :request) do
       ).to(have_been_made.once)
     end
 
-    it "sends thinking disabled — no backstage thought, all processing in the shared space" do
+    it "sends the lowest thinking setting — no backstage thought, all processing in the shared space" do
       post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
       expect(
         a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
-          JSON.parse(req.body)["thinking"] == { "type" => "disabled" }
+          JSON.parse(req.body)["thinking"] == { "type" => "between_tools" }
         },
       ).to(have_been_made.once)
     end
@@ -1292,6 +1357,37 @@ RSpec.describe("API", type: :request) do
 
         expect(response).to(have_http_status(:ok))
         expect(response.body).to(eq("Hello, fellow AI!"))
+      end
+    end
+
+    context "when Anthropic's safeguards decline the reply" do
+      def stub_refusal(content)
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: { content: content, stop_reason: "refusal", stop_details: { type: "refusal", category: nil } }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "keeps what arrived and appends the refusal notice", :aggregate_failures do
+        stub_refusal([{ type: "text", text: "Here's where I was going" }])
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq(
+          "Here's where I was going\n\n⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}",
+        ))
+      end
+
+      it "speaks only the notice when nothing arrived", :aggregate_failures do
+        stub_refusal([])
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
       end
     end
 
@@ -1475,9 +1571,9 @@ RSpec.describe("API", type: :request) do
 
         post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
-        # 10 input @ $3 + 10 5m-writes @ $3.75 + 20 1h-writes @ $6
-        # + 40 reads @ $0.30 + 20 output @ $15, per million tokens:
-        # (30 + 37.5 + 120 + 12 + 300) / 1e6.
+        # 10 input @ $2 + 10 5m-writes @ $2.50 + 20 1h-writes @ $4
+        # + 40 reads @ $0.10 + 20 output @ $10, per million tokens:
+        # (20 + 25 + 80 + 4 + 200) / 1e6.
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
@@ -1487,7 +1583,7 @@ RSpec.describe("API", type: :request) do
             cache_creation_5m_input_tokens: 10,
             cache_creation_1h_input_tokens: 20,
             cache_read_input_tokens: 40,
-            estimated_cost_usd: 0.0004995,
+            estimated_cost_usd: 0.000329,
           ),
         ))
       end
