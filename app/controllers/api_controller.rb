@@ -414,11 +414,11 @@ class ApiController < ApplicationController
 
     conversation_frame_id = Digest::SHA256.hexdigest(frame.to_json)
 
-    # Hash includes: warmup (up to and including cache marker) + first 2 unique messages after
+    # Hash includes: the opening (through the cache marker's message) + first 2 messages after
     messages_to_hash = if cache_marker_message_index
-      warmup = chat_log[0..cache_marker_message_index]
+      opening = chat_log[0..cache_marker_message_index]
       unique = chat_log[(cache_marker_message_index + 1)..-1]&.first(2) || []
-      warmup + unique
+      opening + unique
     else
       chat_log.first(2)
     end
@@ -622,7 +622,7 @@ class ApiController < ApplicationController
     end
 
     # Process any remaining buffer
-    process_remaining_buffer(buffer, current_event, anthropic_usage)
+    process_remaining_buffer(buffer, current_event, anthropic_usage, blocks)
   end
 
   def capture_anthropic_usage!(anthropic_usage, current_event, event_data)
@@ -713,7 +713,7 @@ class ApiController < ApplicationController
     end
   end
 
-  def process_remaining_buffer(buffer, current_event, anthropic_usage)
+  def process_remaining_buffer(buffer, current_event, anthropic_usage, blocks)
     return if buffer.strip.empty?
 
     line = buffer.strip
@@ -722,6 +722,7 @@ class ApiController < ApplicationController
     json_data = line[5..-1]
     event_data = JSON.parse(json_data)
     capture_anthropic_usage!(anthropic_usage, current_event, event_data)
+    handle_refusal_notice(current_event, event_data, blocks)
     send_sse_event(current_event || "message", event_data)
   end
 

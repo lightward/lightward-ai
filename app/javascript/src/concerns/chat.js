@@ -7,9 +7,6 @@ export const CONFIG = {
   MESSAGE_TIMEOUT_MS: 30000,
 };
 
-// Warmup messages prepended to every conversation (not shown to user)
-const WARMUP_MESSAGES = [];
-
 // Storage handler for chat persistence
 export class ChatStorage {
   constructor(context) {
@@ -506,28 +503,26 @@ export class ChatSession {
     this.streamFinalized = false;
 
     // The server needs exactly one cache marker, closing the conversation
-    // frame. With no warmup, the opening message is the frame.
-    const chatLogWithWarmup = WARMUP_MESSAGES.length
-      ? [...WARMUP_MESSAGES, ...this.messages]
-      : this.messages.map((msg, index) =>
-          index === 0
-            ? {
-                ...msg,
-                content: msg.content.map((block, i) =>
-                  i === msg.content.length - 1
-                    ? { ...block, cache_control: { type: 'ephemeral' } }
-                    : block
-                ),
-              }
-            : msg
-        );
+    // frame. The opening message is the frame.
+    const chatLogWithCache = this.messages.map((msg, index) =>
+      index === 0
+        ? {
+            ...msg,
+            content: msg.content.map((block, i) =>
+              i === msg.content.length - 1
+                ? { ...block, cache_control: { type: 'ephemeral' } }
+                : block
+            ),
+          }
+        : msg
+    );
 
     // Fetch response using SSE
     fetch('/api/stream', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        chat_log: chatLogWithWarmup,
+        chat_log: chatLogWithCache,
         usage_client: this.context.key,
       }),
     })

@@ -670,9 +670,9 @@ data: null
 
         expect(requestBody.usage_client).toBe('test');
 
-        // No warmup: the chat log is the guest's own conversation, and its
-        // opening message carries the one cache marker the server requires,
-        // closing the frame.
+        // The chat log is the guest's own conversation, and its opening
+        // message carries the one cache marker the server requires, closing
+        // the frame.
         expect(chatLog[0].role).toBe('user');
         expect(chatLog[0].content[0].cache_control).toEqual({
           type: 'ephemeral',
