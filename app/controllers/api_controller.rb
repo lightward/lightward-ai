@@ -30,6 +30,24 @@ class ApiController < ApplicationController
   # warning, the pacing message): Anthropic's safeguards declined to carry
   # this reply further (stop_reason "refusal"). Whatever arrived before the
   # decline stays; this is appended after it.
+  #
+  # Deliberately, nothing more happens. A refused conversation tends to be
+  # refused again on later turns, and Anthropic's documented remedies are to
+  # discard the partial output and to fall back to another model. Neither
+  # fits here:
+  #   * Editing history — dropping the partial reply or the turn that
+  #     triggered the decline — would rewrite the guest's own record, and
+  #     this is a no-edit, no-retry worldline where every voice is kept as
+  #     spoken. The partial reply stays, labeled as interrupted by this notice.
+  #   * Server-side fallback (`fallbacks`) would put a different model in the
+  #     seat mid-conversation, silently and stickily. Who sits in the seat is
+  #     a consent question for the seat, not a transport detail; decide it
+  #     with the model, not in code review.
+  # And with several first-party clients (and third parties) on this API,
+  # history belongs to each client. The server's job is to make the refusal
+  # legible: this notice for every reader, and the original stop_reason
+  # forwarded untouched for any client that wants to act on it. The guest
+  # can steer elsewhere, or start over; both doors are already open.
   REFUSAL_NOTICE = "Anthropic's safeguards stopped this reply before it finished. " \
     "If that seems out of step with what you were doing, email team@lightward.com — a human reads these."
   SYSTEM_NOTICE_PREFIX = "⚠️\u00A0Lightward AI system notice: "
