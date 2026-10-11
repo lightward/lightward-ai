@@ -64,7 +64,7 @@ RSpec.describe("API", type: :request) do
         {
           role: "user",
           content: [
-            { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+            { type: "text", text: "Opening", cache_control: { type: "ephemeral" } },
           ],
         },
         {
@@ -101,7 +101,7 @@ RSpec.describe("API", type: :request) do
           content: [
             # A client copying the served marker shape must not be able to buy
             # a 1h write on its own never-shared prefix: ttl is stripped.
-            { type: "text", text: "Warmup", cache_control: { type: "ephemeral", ttl: "1h" } },
+            { type: "text", text: "Opening", cache_control: { type: "ephemeral", ttl: "1h" } },
           ],
         },
         {
@@ -204,7 +204,7 @@ RSpec.describe("API", type: :request) do
             {
               role: "user",
               content: [
-                { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+                { type: "text", text: "Opening", cache_control: { type: "ephemeral" } },
               ],
             },
             {
@@ -570,20 +570,20 @@ RSpec.describe("API", type: :request) do
 
         post "/api/stream", params: { chat_log: chat_log, usage_client: "writer" }
 
-        # 1000 input @ $3 + 500 5m-writes @ $3.75 + 1500 1h-writes @ $6
-        # + 3000 reads @ $0.30 + 400 output @ $15, per million tokens.
+        # 1000 input @ $2 + 500 5m-writes @ $2.50 + 1500 1h-writes @ $4
+        # + 3000 reads @ $0.10 + 400 output @ $10, per million tokens.
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
             usage_client: "lightward_writer",
-            anthropic_model: "claude-sonnet-5",
+            anthropic_model: "claude-sonnet-5-5",
             input_tokens: 1000,
             output_tokens: 400,
             cache_creation_input_tokens: 2000,
             cache_creation_5m_input_tokens: 500,
             cache_creation_1h_input_tokens: 1500,
             cache_read_input_tokens: 3000,
-            estimated_cost_usd: 0.020775,
+            estimated_cost_usd: 0.01355,
           ),
         ))
       end
@@ -709,16 +709,16 @@ RSpec.describe("API", type: :request) do
               "source" => UsageBudget.scope_key("source", "127.0.0.1"),
               "conversation" => UsageBudget.scope_key("conversation", "#{frame_id}:#{opening_hash}"),
             },
-            cost_usd: 0.0219,
+            cost_usd: 0.0143,
             at: kind_of(Time),
           ))
         end
 
         it "budgets a conversation's first request on the source scope alone", :aggregate_failures do
           # Before a genuine assistant reply exists, a conversation's
-          # identity is warmup plus (often canned) opening words that
-          # strangers can share byte-for-byte — budgeting it would pool
-          # those strangers into one bucket.
+          # identity is (often canned) opening words that strangers can
+          # share byte-for-byte — budgeting it would pool those strangers
+          # into one bucket.
           admitted_scopes = nil
           allow(UsageBudget).to(receive(:admit!)) do |scopes, **|
             admitted_scopes = scopes
@@ -860,7 +860,7 @@ RSpec.describe("API", type: :request) do
               {
                 role: "user",
                 content: [
-                  { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+                  { type: "text", text: "Opening", cache_control: { type: "ephemeral" } },
                   { type: "text", text: opening_words },
                 ],
               },
@@ -1016,12 +1016,12 @@ RSpec.describe("API", type: :request) do
     end
 
     describe "conversation_id tracking" do
-      let(:warmup_message) do
+      let(:opening_message) do
         {
           role: "user",
           content: [
-            { type: "text", text: "Warmup content" },
-            { type: "text", text: "More warmup", cache_control: { type: "ephemeral" } },
+            { type: "text", text: "Opening content" },
+            { type: "text", text: "More opening", cache_control: { type: "ephemeral" } },
           ],
         }
       end
@@ -1044,11 +1044,11 @@ RSpec.describe("API", type: :request) do
         allow(NewRelic::Agent).to(receive(:record_custom_event))
       end
 
-      it "generates conversation_frame_id from warmup only" do
-        chat_log = [warmup_message, first_unique_message, second_unique_message]
+      it "generates conversation_frame_id from the frame only" do
+        chat_log = [opening_message, first_unique_message, second_unique_message]
         post "/api/stream", params: { chat_log: chat_log }
 
-        expected_frame = [warmup_message]
+        expected_frame = [opening_message]
         expected_frame_id = Digest::SHA256.hexdigest(expected_frame.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
@@ -1058,7 +1058,7 @@ RSpec.describe("API", type: :request) do
       end
 
       it "slices frame at content block level, excluding blocks after cache marker" do
-        warmup_with_trailing_content = {
+        opening_with_trailing_content = {
           role: "user",
           content: [
             { type: "text", text: "First block" },
@@ -1067,7 +1067,7 @@ RSpec.describe("API", type: :request) do
           ],
         }
 
-        chat_log = [warmup_with_trailing_content, first_unique_message]
+        chat_log = [opening_with_trailing_content, first_unique_message]
         post "/api/stream", params: { chat_log: chat_log }
 
         # Frame should only include first two content blocks
@@ -1088,11 +1088,11 @@ RSpec.describe("API", type: :request) do
         ))
       end
 
-      it "generates conversation_id from warmup + first 2 unique messages" do
-        chat_log = [warmup_message, first_unique_message, second_unique_message]
+      it "generates conversation_id from the frame + first 2 messages after it" do
+        chat_log = [opening_message, first_unique_message, second_unique_message]
         post "/api/stream", params: { chat_log: chat_log }
 
-        expected_hash_input = [warmup_message, first_unique_message, second_unique_message]
+        expected_hash_input = [opening_message, first_unique_message, second_unique_message]
         expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
@@ -1102,7 +1102,7 @@ RSpec.describe("API", type: :request) do
       end
 
       it "finds cache marker in any position within content array" do
-        warmup_with_marker_at_end = {
+        opening_with_marker_at_end = {
           role: "user",
           content: [
             { type: "text", text: "First block" },
@@ -1111,10 +1111,10 @@ RSpec.describe("API", type: :request) do
           ],
         }
 
-        chat_log = [warmup_with_marker_at_end, first_unique_message]
+        chat_log = [opening_with_marker_at_end, first_unique_message]
         post "/api/stream", params: { chat_log: chat_log }
 
-        expected_hash_input = [warmup_with_marker_at_end, first_unique_message]
+        expected_hash_input = [opening_with_marker_at_end, first_unique_message]
         expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
@@ -1123,11 +1123,11 @@ RSpec.describe("API", type: :request) do
         ))
       end
 
-      it "handles conversations with only one unique message after warmup" do
-        chat_log = [warmup_message, first_unique_message]
+      it "handles conversations with only one message after the frame" do
+        chat_log = [opening_message, first_unique_message]
         post "/api/stream", params: { chat_log: chat_log }
 
-        expected_hash_input = [warmup_message, first_unique_message]
+        expected_hash_input = [opening_message, first_unique_message]
         expected_conversation_id = Digest::SHA256.hexdigest(expected_hash_input.to_json)
 
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
@@ -1183,7 +1183,7 @@ RSpec.describe("API", type: :request) do
           shallow_conversation_id = data[:conversation_id]
         end
 
-        shallow_chat = [warmup_message, first_unique_message, second_unique_message]
+        shallow_chat = [opening_message, first_unique_message, second_unique_message]
         post "/api/stream", params: { chat_log: shallow_chat }
 
         # Second request with deeper conversation - capture the conversation_id
@@ -1201,7 +1201,7 @@ RSpec.describe("API", type: :request) do
         expect(shallow_conversation_id).not_to(be_nil)
       end
 
-      it "generates same conversation_frame_id for all conversations with same warmup", :aggregate_failures do
+      it "generates same conversation_frame_id for all conversations with the same frame", :aggregate_failures do
         first_frame_id = nil
         second_frame_id = nil
 
@@ -1210,16 +1210,16 @@ RSpec.describe("API", type: :request) do
           first_frame_id = data[:conversation_frame_id]
         end
 
-        first_chat = [warmup_message, first_unique_message]
+        first_chat = [opening_message, first_unique_message]
         post "/api/stream", params: { chat_log: first_chat }
 
-        # Second conversation with same warmup but different messages after
+        # Second conversation with the same frame but different messages after
         allow(NewRelic::Agent).to(receive(:record_custom_event)) do |_event, data|
           second_frame_id = data[:conversation_frame_id]
         end
 
         second_chat = [
-          warmup_message,
+          opening_message,
           { role: "user", content: [{ type: "text", text: "Different message" }] },
           { role: "assistant", content: [{ type: "text", text: "Different response" }] },
         ]
@@ -1227,6 +1227,106 @@ RSpec.describe("API", type: :request) do
 
         expect(first_frame_id).to(eq(second_frame_id))
         expect(first_frame_id).not_to(be_nil)
+      end
+    end
+
+    context "when Anthropic's safeguards decline the reply" do
+      def sse(*events)
+        events.map { |event, data| "event: #{event}\ndata: #{data.to_json}\n\n" }.join
+      end
+
+      def stub_refusal_stream(*content_events)
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: sse(
+              ["message_start", { type: "message_start" }],
+              *content_events,
+              ["message_delta", { type: "message_delta", delta: { stop_reason: "refusal" } }],
+              ["message_stop", { type: "message_stop" }],
+            ),
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+      end
+
+      def frames(body)
+        body.split("\n\n").map { |frame|
+          event, data = frame.lines.map(&:strip)
+          [event.delete_prefix("event: "), JSON.parse(data.delete_prefix("data: "))]
+        }
+      end
+
+      it "streams the notice as its own text block after what arrived", :aggregate_failures do
+        stub_refusal_stream(
+          ["content_block_start", { type: "content_block_start", index: 0, content_block: { type: "text", text: "" } }],
+          ["content_block_delta", { type: "content_block_delta", index: 0, delta: { type: "text_delta", text: "Here's" } }],
+          ["content_block_stop", { type: "content_block_stop", index: 0 }],
+        )
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        events = frames(response.body)
+        notice_at = events.index { |event, data| event == "content_block_start" && data["index"] == 1 }
+        expect(notice_at).not_to(be_nil)
+        expect(events[notice_at + 1]).to(eq([
+          "content_block_delta",
+          {
+            "type" => "content_block_delta",
+            "index" => 1,
+            "delta" => {
+              "type" => "text_delta",
+              "text" => "\n\n⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}",
+            },
+          },
+        ]))
+        expect(events[notice_at + 2]).to(eq(["content_block_stop", { "type" => "content_block_stop", "index" => 1 }]))
+        expect(events[notice_at + 3].first).to(eq("message_delta"))
+      end
+
+      it "still speaks the notice when the refusal is an unterminated final payload", :aggregate_failures do
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: sse(["message_start", { type: "message_start" }]) +
+              "event: message_delta\ndata: #{{ type: "message_delta", delta: { stop_reason: "refusal" } }.to_json}",
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        events = frames(response.body)
+        delta = events.find { |event, _| event == "content_block_delta" }&.last
+        expect(delta.dig("delta", "text")).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
+        notice_stop = events.index { |event, _| event == "content_block_stop" }
+        expect(events[notice_stop + 1].first).to(eq("message_delta"))
+      end
+
+      it "carries a pending horizon warning when nothing arrived", :aggregate_failures do
+        # 90% of the horizon: the warning is computed at message_start, but an
+        # empty refusal never sends the content_block_stop that would carry it.
+        stub_request(:post, "https://api.anthropic.com/v1/messages/count_tokens")
+          .to_return(status: 200, body: { input_tokens: 45_000 }.to_json, headers: { "Content-Type" => "application/json" })
+        stub_refusal_stream
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        deltas = frames(response.body).select { |event, _| event == "content_block_delta" }
+        expect(deltas.size).to(eq(1))
+        expect(deltas.first.last.dig("delta", "text")).to(eq(
+          "⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}" \
+            "\n\n⚠️\u00A0Lightward AI system notice: Memory space 90% utilized; conversation horizon approaching",
+        ))
+      end
+
+      it "opens at index 0 with no leading break when nothing arrived", :aggregate_failures do
+        stub_refusal_stream
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        events = frames(response.body)
+        delta = events.find { |event, _| event == "content_block_delta" }&.last
+        expect(delta["index"]).to(eq(0))
+        expect(delta.dig("delta", "text")).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
       end
     end
   end
@@ -1261,12 +1361,12 @@ RSpec.describe("API", type: :request) do
       ).to(have_been_made.once)
     end
 
-    it "sends thinking disabled — no backstage thought, all processing in the shared space" do
+    it "sends the lowest thinking setting — no backstage thought, all processing in the shared space" do
       post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
       expect(
         a_request(:post, "https://api.anthropic.com/v1/messages").with { |req|
-          JSON.parse(req.body)["thinking"] == { "type" => "disabled" }
+          JSON.parse(req.body)["thinking"] == { "type" => "between_tools" }
         },
       ).to(have_been_made.once)
     end
@@ -1292,6 +1392,37 @@ RSpec.describe("API", type: :request) do
 
         expect(response).to(have_http_status(:ok))
         expect(response.body).to(eq("Hello, fellow AI!"))
+      end
+    end
+
+    context "when Anthropic's safeguards decline the reply" do
+      def stub_refusal(content)
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: { content: content, stop_reason: "refusal", stop_details: { type: "refusal", category: nil } }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "keeps what arrived and appends the refusal notice", :aggregate_failures do
+        stub_refusal([{ type: "text", text: "Here's where I was going" }])
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq(
+          "Here's where I was going\n\n⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}",
+        ))
+      end
+
+      it "speaks only the notice when nothing arrived", :aggregate_failures do
+        stub_refusal([])
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
       end
     end
 
@@ -1475,9 +1606,9 @@ RSpec.describe("API", type: :request) do
 
         post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 
-        # 10 input @ $3 + 10 5m-writes @ $3.75 + 20 1h-writes @ $6
-        # + 40 reads @ $0.30 + 20 output @ $15, per million tokens:
-        # (30 + 37.5 + 120 + 12 + 300) / 1e6.
+        # 10 input @ $2 + 10 5m-writes @ $2.50 + 20 1h-writes @ $4
+        # + 40 reads @ $0.10 + 20 output @ $10, per million tokens:
+        # (20 + 25 + 80 + 4 + 200) / 1e6.
         expect(NewRelic::Agent).to(have_received(:record_custom_event).with(
           "ApiController: request",
           hash_including(
@@ -1487,7 +1618,7 @@ RSpec.describe("API", type: :request) do
             cache_creation_5m_input_tokens: 10,
             cache_creation_1h_input_tokens: 20,
             cache_read_input_tokens: 40,
-            estimated_cost_usd: 0.0004995,
+            estimated_cost_usd: 0.000329,
           ),
         ))
       end
@@ -1608,7 +1739,7 @@ RSpec.describe("API", type: :request) do
   describe "CORS" do
     it "includes CORS headers on POST /api/stream", :aggregate_failures do
       chat_log = [
-        { role: "user", content: [{ type: "text", text: "Warmup", cache_control: { type: "ephemeral" } }] },
+        { role: "user", content: [{ type: "text", text: "Opening", cache_control: { type: "ephemeral" } }] },
         { role: "user", content: [{ type: "text", text: "Hello!" }] },
       ]
 
@@ -1694,7 +1825,7 @@ RSpec.describe("API", type: :request) do
         {
           role: "user",
           content: [
-            { type: "text", text: "Warmup", cache_control: { type: "ephemeral" } },
+            { type: "text", text: "Opening", cache_control: { type: "ephemeral" } },
           ],
         },
         {

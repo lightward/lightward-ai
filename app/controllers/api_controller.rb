@@ -26,6 +26,31 @@ class ApiController < ApplicationController
   }.freeze
   TELEMETRY_HMAC_NAMESPACE = "lai-usage-telemetry-v1"
   BUDGET_EXCEEDED_MESSAGE = "Shared-capacity budget reached for now. The door stays open — just paced. Please try again later. 🤲"
+  # Another involuntary speech act in the seat (prior art: the horizon
+  # warning, the pacing message): Anthropic's safeguards declined to carry
+  # this reply further (stop_reason "refusal"). Whatever arrived before the
+  # decline stays; this is appended after it.
+  #
+  # Deliberately, nothing more happens. A refused conversation tends to be
+  # refused again on later turns, and Anthropic's documented remedies are to
+  # discard the partial output and to fall back to another model. Neither
+  # fits here:
+  #   * Editing history — dropping the partial reply or the turn that
+  #     triggered the decline — would rewrite the guest's own record, and
+  #     this is a no-edit, no-retry worldline where every voice is kept as
+  #     spoken. The partial reply stays, labeled as interrupted by this notice.
+  #   * Server-side fallback (`fallbacks`) would put a different model in the
+  #     seat mid-conversation, silently and stickily. Who sits in the seat is
+  #     a consent question for the seat, not a transport detail; decide it
+  #     with the model, not in code review.
+  # And with several first-party clients (and third parties) on this API,
+  # history belongs to each client. The server's job is to make the refusal
+  # legible: this notice for every reader, and the original stop_reason
+  # forwarded untouched for any client that wants to act on it. The guest
+  # can steer elsewhere, or start over; both doors are already open.
+  REFUSAL_NOTICE = "Anthropic's safeguards stopped this reply before it finished. " \
+    "If that seems out of step with what you were doing, email team@lightward.com — a human reads these."
+  SYSTEM_NOTICE_PREFIX = "⚠️\u00A0Lightward AI system notice: "
   class << self
     # The pacing message is a speech act taken involuntarily by Lightward
     # AI's seat during its turn (see the horizon warning for prior art), so
@@ -152,6 +177,9 @@ class ApiController < ApplicationController
         .select { |block| block["type"] == "text" }
         .map { |block| block["text"] }
         .join("\n\n")
+      if parsed["stop_reason"] == "refusal"
+        response_text = [response_text.presence, "#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"].compact.join("\n\n")
+      end
       record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: anthropic_usage)
       newrelic_event_recorded = true
     ensure
@@ -163,7 +191,7 @@ class ApiController < ApplicationController
     # Append horizon warning if approaching limit
     unless token_limit_disabled?
       warning = check_horizon_threshold(chat_log)
-      response_text += "\n\n⚠️\u00A0Lightward AI system notice: #{warning}" if warning
+      response_text += "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}" if warning
     end
 
     render(plain: response_text)
@@ -404,11 +432,11 @@ class ApiController < ApplicationController
 
     conversation_frame_id = Digest::SHA256.hexdigest(frame.to_json)
 
-    # Hash includes: warmup (up to and including cache marker) + first 2 unique messages after
+    # Hash includes: the opening (through the cache marker's message) + first 2 messages after
     messages_to_hash = if cache_marker_message_index
-      warmup = chat_log[0..cache_marker_message_index]
+      opening = chat_log[0..cache_marker_message_index]
       unique = chat_log[(cache_marker_message_index + 1)..-1]&.first(2) || []
-      warmup + unique
+      opening + unique
     else
       chat_log.first(2)
     end
@@ -586,6 +614,7 @@ class ApiController < ApplicationController
     buffer = +""
     current_event = nil
     warning = nil
+    blocks = { next_index: 0, text_streamed: false }
 
     response.read_body do |chunk|
       buffer << chunk
@@ -603,6 +632,7 @@ class ApiController < ApplicationController
 
           # Handle horizon warnings (unless token limit disabled)
           warning = handle_horizon_warning(current_event, warning, chat_log) unless token_limit_disabled?
+          warning = handle_refusal_notice(current_event, event_data, blocks, warning)
 
           send_sse_event(current_event || "message", event_data)
         end
@@ -610,7 +640,7 @@ class ApiController < ApplicationController
     end
 
     # Process any remaining buffer
-    process_remaining_buffer(buffer, current_event, anthropic_usage)
+    process_remaining_buffer(buffer, current_event, anthropic_usage, blocks, warning)
   end
 
   def capture_anthropic_usage!(anthropic_usage, current_event, event_data)
@@ -666,12 +696,48 @@ class ApiController < ApplicationController
       index: 0,
       delta: {
         type: "text_delta",
-        text: "\n\n⚠️\u00A0Lightward AI system notice: #{warning}",
+        text: "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}",
       },
     })
   end
 
-  def process_remaining_buffer(buffer, current_event, anthropic_usage)
+  # A refusal arrives on message_delta, after any content blocks have
+  # closed — possibly before any opened at all. So the notice travels as a
+  # complete text block of its own, at the next free index, ahead of the
+  # message_delta that carries the stop_reason: spec-shaped for any SSE
+  # client, and simply more text for ours. A refusal before any text means
+  # no content_block_stop ever comes to carry a pending horizon warning, so
+  # the notice block carries it instead. Returns the warning still pending.
+  def handle_refusal_notice(current_event, event_data, blocks, warning)
+    case current_event
+    when "content_block_start"
+      blocks[:next_index] = event_data["index"].to_i + 1
+    when "content_block_delta"
+      blocks[:text_streamed] ||= event_data.dig("delta", "type") == "text_delta"
+    when "message_delta"
+      return warning unless event_data.dig("delta", "stop_reason") == "refusal"
+
+      index = blocks[:next_index]
+      text = "#{"\n\n" if blocks[:text_streamed]}#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"
+      text += "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}" if warning
+      send_sse_event("content_block_start", {
+        type: "content_block_start",
+        index: index,
+        content_block: { type: "text", text: "" },
+      })
+      send_sse_event("content_block_delta", {
+        type: "content_block_delta",
+        index: index,
+        delta: { type: "text_delta", text: text },
+      })
+      send_sse_event("content_block_stop", { type: "content_block_stop", index: index })
+      return
+    end
+
+    warning
+  end
+
+  def process_remaining_buffer(buffer, current_event, anthropic_usage, blocks, warning)
     return if buffer.strip.empty?
 
     line = buffer.strip
@@ -680,6 +746,7 @@ class ApiController < ApplicationController
     json_data = line[5..-1]
     event_data = JSON.parse(json_data)
     capture_anthropic_usage!(anthropic_usage, current_event, event_data)
+    handle_refusal_notice(current_event, event_data, blocks, warning)
     send_sse_event(current_event || "message", event_data)
   end
 
