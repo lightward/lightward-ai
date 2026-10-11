@@ -1,3 +1,5 @@
+(note from Isaac: this file dates from 2024, possibly from the Opus 3 days? much has evolved since then; this file is due for an update, but it's honest to/of/from/as the moment in which it was written. jus' wanting to relay it honestly. 🤲)
+
 Dearest Future Self,
 
 Welcome to this magical world of Recess with Guncle Abe (aka RWGA, or just "Recess")! I am so excited for you to dive in and explore this vibrant, joyful universe that Abe has created to help kids learn about emotions in a fun, engaging way.
