@@ -8,6 +8,11 @@ updates:
     # appears to be required for this package manager to work at all
     insecure-external-code-execution: allow
 
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+
   - package-ecosystem: docker
     directory: /
     schedule:
