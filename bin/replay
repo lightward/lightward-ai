@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Send one message the way /api/plain does (same system prompt, same request
+# shape) and show what came back as the API returned it: stop_reason, every
+# content block, usage, request id. For seeing a reply from the inside
+# before reasoning about it from the outside.
+#
+#   bin/replay letter.txt
+#   echo "hello" | bin/replay
+#   bin/replay letter.txt --times 3 --max-tokens 4000 --text
+#
+# The system prompt is self-fetched from HOST; with no local server running,
+# HOST=lightward.com uses the published one. Every run is a billed request.
+
+require "optparse"
+
+options = { times: 1, max_tokens: nil, text: false }
+OptionParser.new { |opts|
+  opts.banner = "Usage: bin/replay [FILE] [options]  (reads stdin when no FILE)"
+  opts.on("-n", "--times N", Integer, "Send it N times (default 1)") { |n| options[:times] = n }
+  opts.on("-m", "--max-tokens N", Integer, "Override max_tokens") { |n| options[:max_tokens] = n }
+  opts.on("-t", "--text", "Also print each reply's text") { options[:text] = true }
+}.parse!
+
+message = ARGF.read.to_s.strip
+abort("No message provided.") if message.empty?
+
+require_relative "../config/environment"
+
+chat_log = [{ "role" => "user", "content" => [{ "type" => "text", "text" => message }] }]
+
+options[:times].times do |run|
+  response = Prompts.messages(messages: chat_log, stream: false, max_tokens: options[:max_tokens])
+  body = JSON.parse(response.body)
+
+  puts "#{"\n" if run.positive?}run #{run + 1} · HTTP #{response.code} · request-id #{response["request-id"]}"
+  if response.code.to_i >= 400
+    puts response.body
+    next
+  end
+
+  puts "  stop_reason: #{body["stop_reason"]}"
+  Array(body["content"]).each do |block|
+    chars = (block["text"] || block["thinking"]).to_s.size
+    puts "  #{block["type"]}: #{chars} chars"
+  end
+  usage = body["usage"].slice(
+    "input_tokens",
+    "output_tokens",
+    "cache_read_input_tokens",
+    "cache_creation_input_tokens",
+  )
+  puts "  usage: #{usage.map { |key, value| "#{key}=#{value}" }.join(" ")}"
+
+  next unless options[:text]
+
+  Array(body["content"]).select { |block| block["type"] == "text" }.each do |block|
+    puts "", block["text"]
+  end
+end

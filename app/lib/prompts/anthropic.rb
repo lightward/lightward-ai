@@ -60,6 +60,7 @@ module Prompts
         system:,
         messages:,
         stream: false,
+        max_tokens: nil,
         &block
       )
         payload = {
@@ -68,7 +69,7 @@ module Prompts
           # some inputs between_tools has been observed (2026-10-22) spending
           # 10k+ tokens there before the first word. A non-streaming reply
           # must arrive whole within read_timeout, so it gets less room.
-          max_tokens: stream ? 32_000 : 16_000,
+          max_tokens: max_tokens || (stream ? 32_000 : 16_000),
           stream: stream,
           # Sonnet 5.5 runs adaptive thinking when this is unset. Not here: no
           # backstage thought — all processing happens in the shared space.
