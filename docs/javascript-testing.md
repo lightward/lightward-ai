@@ -33,7 +33,7 @@ JavaScript tests are automatically run on:
 - Daily scheduled runs
 
 The CI workflow (`jest` job in `.github/workflows/test.yml`):
-1. Sets up Node.js 20
+1. Sets up Node.js at the version in `.node-version`
 2. Installs dependencies with `npm ci`
 3. Runs all JavaScript tests with coverage reporting
 
@@ -54,7 +54,7 @@ The CI workflow (`jest` job in `.github/workflows/test.yml`):
 
 ### Tests pass locally but fail in CI
 - Ensure all dependencies are in package.json (not installed globally)
-- Check Node.js version matches CI (v20)
+- Check Node.js version matches CI (`.node-version`)
 - Verify no hardcoded paths or environment-specific code
 
 ### Module not found errors
