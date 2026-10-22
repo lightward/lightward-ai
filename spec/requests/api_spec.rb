@@ -1406,6 +1406,19 @@ RSpec.describe("API", type: :request) do
         )
     end
 
+    it "accepts non-ASCII text: a text/plain body arrives as binary, and is read as UTF-8", :aggregate_failures do
+      message = "你好，“Lightward” — 🌱"
+
+      post "/api/plain", params: message, headers: { "CONTENT_TYPE" => "text/plain" }
+
+      expect(response).to(have_http_status(:ok))
+      expect(
+        a_request(:post, "https://api.anthropic.com/v1/messages/count_tokens").with { |req|
+          JSON.parse(req.body).dig("messages", 0, "content", 0, "text") == message
+        },
+      ).to(have_been_made.once)
+    end
+
     it "sends message without cache_control (stateless endpoint)" do
       post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
 

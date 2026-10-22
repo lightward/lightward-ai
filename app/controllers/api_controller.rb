@@ -147,8 +147,9 @@ class ApiController < ApplicationController
     chat_log = nil
     newrelic_event_recorded = false
 
-    # Read plaintext body
-    message_text = request.body.read.to_s.strip
+    # Read plaintext body. Rack hands the body over as binary (ASCII-8BIT), and json 3 won't generate from a binary
+    # string with non-ASCII bytes in it, so read it as the UTF-8 it is, replacing any invalid bytes.
+    message_text = request.body.read.to_s.dup.force_encoding(Encoding::UTF_8).scrub.strip
 
     if message_text.blank?
       render(plain: "No message provided.", status: :bad_request)
