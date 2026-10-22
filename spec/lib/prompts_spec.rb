@@ -171,6 +171,7 @@ RSpec.describe(Prompts, :aggregate_failures) do
           { "role" => "user", "content" => [{ "type" => "text", "text" => "hello" }] },
         ],
         stream: false,
+        max_tokens: nil,
       }))
     end
   end

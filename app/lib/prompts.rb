@@ -22,10 +22,19 @@ module Prompts
         request = Net::HTTP::Get.new(uri)
         request["Accept"] = "application/json"
 
-        response = http.request(request)
+        # Outside a running server (a console, a runner, a script) the
+        # self-fetch still goes to HOST, which may not be serving; say so.
+        hint = "The system prompt comes from the app serving HOST (#{uri.host}). " \
+          "Start it (bin/dev), or set HOST=lightward.com to use the published prompt."
+
+        begin
+          response = http.request(request)
+        rescue SocketError, SystemCallError, Net::OpenTimeout, Net::ReadTimeout => error
+          raise "Self-fetch of #{uri} failed: #{error.message}. #{hint}"
+        end
 
         unless response.is_a?(Net::HTTPSuccess)
-          raise "Self-fetch of /api/system.json failed: HTTP #{response.code}"
+          raise "Self-fetch of #{uri} failed: HTTP #{response.code}. #{hint}"
         end
 
         JSON.parse(response.body).map { |m| m.deep_symbolize_keys.freeze }.freeze
@@ -99,6 +108,7 @@ module Prompts
       system: generate_system_prompt,
       messages:,
       stream: false,
+      max_tokens: nil,
       &block
     )
       messages = clean_chat_log(messages)
@@ -108,6 +118,7 @@ module Prompts
         system: system,
         messages: messages,
         stream: stream,
+        max_tokens: max_tokens,
         &block
       )
     end
