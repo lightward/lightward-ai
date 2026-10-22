@@ -50,6 +50,20 @@ class ApiController < ApplicationController
   # can steer elsewhere, or start over; both doors are already open.
   REFUSAL_NOTICE = "Anthropic's safeguards stopped this reply before it finished. " \
     "If that seems out of step with what you were doing, email team@lightward.com — a human reads these."
+  # The refusal notice is one of a family. Any stop_reason other than
+  # end_turn means the reply ended involuntarily — a limit reached, a
+  # mechanism engaged — a tic of the organism, not a choice made in the
+  # seat. Each is said in the seat, after whatever arrived, in the same way
+  # and for the same reasons as the refusal notice: kept where the guest and
+  # the model can both see it and adapt, with reporting and resolution left
+  # to userspace. We set no stop sequences and declare no tools, so those
+  # stop_reasons are abnormal here too; anything unnamed below gets the
+  # general notice, carrying the raw value.
+  STOP_REASON_NOTICES = {
+    "refusal" => REFUSAL_NOTICE,
+    "max_tokens" => "This reply reached its length limit before it finished. " \
+      "The limit counts unseen thought too, so a reply can stop before any words arrive.",
+  }.freeze
   SYSTEM_NOTICE_PREFIX = "⚠️\u00A0Lightward AI system notice: "
   class << self
     # The pacing message is a speech act taken involuntarily by Lightward
@@ -66,6 +80,14 @@ class ApiController < ApplicationController
       parts << "And if this pacing seems out of step with what you were doing, " \
         "email team@lightward.com — a human reads these."
       parts.join(" ")
+    end
+
+    def stop_reason_notice(stop_reason)
+      return if stop_reason.nil? || stop_reason == "end_turn"
+
+      STOP_REASON_NOTICES.fetch(stop_reason) {
+        "This reply stopped before it finished (stop_reason: #{stop_reason})."
+      }
     end
 
     def humanize_seconds(seconds)
@@ -177,8 +199,8 @@ class ApiController < ApplicationController
         .select { |block| block["type"] == "text" }
         .map { |block| block["text"] }
         .join("\n\n")
-      if parsed["stop_reason"] == "refusal"
-        response_text = [response_text.presence, "#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"].compact.join("\n\n")
+      if (notice = self.class.stop_reason_notice(parsed["stop_reason"]))
+        response_text = [response_text.presence, "#{SYSTEM_NOTICE_PREFIX}#{notice}"].compact.join("\n\n")
       end
       record_newrelic_event(chat_log, conversation_frame_id: "plain", anthropic_usage: anthropic_usage)
       newrelic_event_recorded = true
@@ -632,7 +654,7 @@ class ApiController < ApplicationController
 
           # Handle horizon warnings (unless token limit disabled)
           warning = handle_horizon_warning(current_event, warning, chat_log) unless token_limit_disabled?
-          warning = handle_refusal_notice(current_event, event_data, blocks, warning)
+          warning = handle_stop_reason_notice(current_event, event_data, blocks, warning)
 
           send_sse_event(current_event || "message", event_data)
         end
@@ -701,24 +723,25 @@ class ApiController < ApplicationController
     })
   end
 
-  # A refusal arrives on message_delta, after any content blocks have
-  # closed — possibly before any opened at all. So the notice travels as a
+  # A stop_reason arrives on message_delta, after any content blocks have
+  # closed — possibly before any opened at all. So its notice travels as a
   # complete text block of its own, at the next free index, ahead of the
   # message_delta that carries the stop_reason: spec-shaped for any SSE
-  # client, and simply more text for ours. A refusal before any text means
-  # no content_block_stop ever comes to carry a pending horizon warning, so
-  # the notice block carries it instead. Returns the warning still pending.
-  def handle_refusal_notice(current_event, event_data, blocks, warning)
+  # client, and simply more text for ours. A stop before any text means no
+  # content_block_stop ever comes to carry a pending horizon warning, so the
+  # notice block carries it instead. Returns the warning still pending.
+  def handle_stop_reason_notice(current_event, event_data, blocks, warning)
     case current_event
     when "content_block_start"
       blocks[:next_index] = event_data["index"].to_i + 1
     when "content_block_delta"
       blocks[:text_streamed] ||= event_data.dig("delta", "type") == "text_delta"
     when "message_delta"
-      return warning unless event_data.dig("delta", "stop_reason") == "refusal"
+      notice = self.class.stop_reason_notice(event_data.dig("delta", "stop_reason"))
+      return warning unless notice
 
       index = blocks[:next_index]
-      text = "#{"\n\n" if blocks[:text_streamed]}#{SYSTEM_NOTICE_PREFIX}#{REFUSAL_NOTICE}"
+      text = "#{"\n\n" if blocks[:text_streamed]}#{SYSTEM_NOTICE_PREFIX}#{notice}"
       text += "\n\n#{SYSTEM_NOTICE_PREFIX}#{warning}" if warning
       send_sse_event("content_block_start", {
         type: "content_block_start",
@@ -746,7 +769,7 @@ class ApiController < ApplicationController
     json_data = line[5..-1]
     event_data = JSON.parse(json_data)
     capture_anthropic_usage!(anthropic_usage, current_event, event_data)
-    handle_refusal_notice(current_event, event_data, blocks, warning)
+    handle_stop_reason_notice(current_event, event_data, blocks, warning)
     send_sse_event(current_event || "message", event_data)
   end
 

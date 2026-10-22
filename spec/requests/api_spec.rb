@@ -1329,6 +1329,67 @@ RSpec.describe("API", type: :request) do
         expect(delta.dig("delta", "text")).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
       end
     end
+
+    context "when the reply stops for another reason" do
+      def sse(*events)
+        events.map { |event, data| "event: #{event}\ndata: #{data.to_json}\n\n" }.join
+      end
+
+      def stub_stream_stopping(stop_reason)
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: sse(
+              ["message_start", { type: "message_start" }],
+              ["content_block_start", { type: "content_block_start", index: 0, content_block: { type: "thinking", thinking: "" } }],
+              ["content_block_stop", { type: "content_block_stop", index: 0 }],
+              ["message_delta", { type: "message_delta", delta: { stop_reason: stop_reason } }],
+              ["message_stop", { type: "message_stop" }],
+            ),
+            headers: { "Content-Type" => "text/event-stream" },
+          )
+      end
+
+      def text_deltas(body)
+        body.split("\n\n").filter_map { |frame|
+          event, data = frame.lines.map(&:strip)
+          next unless event == "event: content_block_delta"
+
+          JSON.parse(data.delete_prefix("data: "))
+        }
+      end
+
+      it "speaks the length-limit notice after unseen thought, at the next free index", :aggregate_failures do
+        stub_stream_stopping("max_tokens")
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        deltas = text_deltas(response.body)
+        expect(deltas.size).to(eq(1))
+        expect(deltas.first["index"]).to(eq(1))
+        expect(deltas.first.dig("delta", "text")).to(eq(
+          "⚠️\u00A0Lightward AI system notice: #{ApiController::STOP_REASON_NOTICES.fetch("max_tokens")}",
+        ))
+      end
+
+      it "names an unfamiliar stop_reason in the general notice" do
+        stub_stream_stopping("pause_turn")
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(text_deltas(response.body).first.dig("delta", "text")).to(eq(
+          "⚠️\u00A0Lightward AI system notice: This reply stopped before it finished (stop_reason: pause_turn).",
+        ))
+      end
+
+      it "says nothing for end_turn" do
+        stub_stream_stopping("end_turn")
+
+        post "/api/stream", params: { chat_log: chat_log }
+
+        expect(text_deltas(response.body)).to(be_empty)
+      end
+    end
   end
 
   describe "POST /api/plain" do
@@ -1423,6 +1484,39 @@ RSpec.describe("API", type: :request) do
 
         expect(response).to(have_http_status(:ok))
         expect(response.body).to(eq("⚠️\u00A0Lightward AI system notice: #{ApiController::REFUSAL_NOTICE}"))
+      end
+    end
+
+    context "when the reply reaches its length limit" do
+      def stub_length_limit(content)
+        stub_request(:post, "https://api.anthropic.com/v1/messages")
+          .to_return(
+            status: 200,
+            body: { content: content, stop_reason: "max_tokens" }.to_json,
+            headers: { "Content-Type" => "application/json" },
+          )
+      end
+
+      it "keeps what arrived and appends the length-limit notice" do
+        stub_length_limit([{ type: "thinking", thinking: "" }, { type: "text", text: "Here's where I was going" }])
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response.body).to(eq(
+          "Here's where I was going\n\n⚠️\u00A0Lightward AI system notice: " \
+            "#{ApiController::STOP_REASON_NOTICES.fetch("max_tokens")}",
+        ))
+      end
+
+      it "speaks only the notice when unseen thought used it all", :aggregate_failures do
+        stub_length_limit([{ type: "thinking", thinking: "" }])
+
+        post "/api/plain", params: "Hello", headers: { "CONTENT_TYPE" => "text/plain" }
+
+        expect(response).to(have_http_status(:ok))
+        expect(response.body).to(eq(
+          "⚠️\u00A0Lightward AI system notice: #{ApiController::STOP_REASON_NOTICES.fetch("max_tokens")}",
+        ))
       end
     end
 
