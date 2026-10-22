@@ -29,7 +29,7 @@ module Prompts
 
         begin
           response = http.request(request)
-        rescue SocketError, SystemCallError, Net::OpenTimeout => error
+        rescue SocketError, SystemCallError, Net::OpenTimeout, Net::ReadTimeout => error
           raise "Self-fetch of #{uri} failed: #{error.message}. #{hint}"
         end
 

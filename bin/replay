@@ -32,13 +32,14 @@ chat_log = [{ "role" => "user", "content" => [{ "type" => "text", "text" => mess
 
 options[:times].times do |run|
   response = Prompts.messages(messages: chat_log, stream: false, max_tokens: options[:max_tokens])
-  body = JSON.parse(response.body)
 
   puts "#{"\n" if run.positive?}run #{run + 1} · HTTP #{response.code} · request-id #{response["request-id"]}"
   if response.code.to_i >= 400
     puts response.body
     next
   end
+
+  body = JSON.parse(response.body)
 
   puts "  stop_reason: #{body["stop_reason"]}"
   Array(body["content"]).each do |block|
