@@ -669,9 +669,10 @@ export class ChatSession {
         break;
 
       case 'message_stop':
-        // A refused reply ends here too, already labeled by the server's
-        // notice, and is kept as spoken; see REFUSAL_NOTICE in ApiController
-        // for why the conversation carries on unedited.
+        // A refused or cut-off reply ends here too, already labeled by the
+        // server's notice, and is kept as spoken; see STOP_REASON_NOTICES and
+        // REFUSAL_NOTICE in ApiController for why the conversation carries on
+        // unedited.
         this.streamFinalized = true;
         this.streamController.complete(() => {
           this._saveAssistantMessage();
