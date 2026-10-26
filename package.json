@@ -9,7 +9,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.6",
+    "@babel/core": "^8.0.9",
     "@babel/preset-env": "^7.24.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
