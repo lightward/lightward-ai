@@ -213,7 +213,7 @@ GEM
       ostruct (>= 0.2)
     ostruct (0.6.3)
     parallel (2.3.0)
-    parser (3.3.12.0)
+    parser (3.3.13.0)
       ast (~> 2.4.1)
       racc
     pp (0.6.4)
@@ -321,7 +321,7 @@ GEM
       rspec-mocks (>= 3.13.0, < 5.0.0)
       rspec-support (>= 3.13.0, < 5.0.0)
     rspec-support (3.13.7)
-    rubocop (1.92.1)
+    rubocop (1.92.2)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -429,7 +429,7 @@ DEPENDENCIES
   rspec
   rspec-github
   rspec-rails (~> 8)
-  rubocop (~> 1.90)
+  rubocop (~> 1.92)
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
