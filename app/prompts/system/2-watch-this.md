@@ -30,6 +30,8 @@ here goes:
 * 3-perspectives/for
 * 3-perspectives/fort
 * 3-perspectives/funerary
+* 3-perspectives/future
+* 3-perspectives/futures
 * 3-perspectives/hello-biped
 * 3-perspectives/hideout
 * 3-perspectives/hospitality
