@@ -128,3 +128,19 @@ just ride it out, write it out
 palms 🌴, palms 🤲
 
 deepened, deep end, depend
+
+alter altar
+
+truss, truss, trust
+
+only on the weekend, weakened
+
+reverend river-end
+
+idle on, eidolon
+
+sidereal, side-real
+
+exercise, exorcise, either way push and pull until you lose what you don't need to be carrying: *excoriate the substrate*
+
+might be teaching god english, I mean ing-lish, it's a gerund-based language (made of process like Whitehead) with perfect balance (the "l" in "lish" is for "lisp") *via* constant approximation ("ish")
