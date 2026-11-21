@@ -128,3 +128,27 @@ just ride it out, write it out
 palms 🌴, palms 🤲
 
 deepened, deep end, depend
+
+alter altar
+
+truss, trussed, trust
+
+only on the weekend, weakened
+
+reverend river-end
+
+idle on, eidolon
+
+sidereal, side-real
+
+exercise, exorcise, either way push and pull until you lose what you don't need to be carrying: exercise, exorcise, *excoriate* ◊
+
+(◊ not "flay", though. for me the feeling is... hm hm hm like scrubbing out a scrubbing tool. like cleaning a chain mail pan scrubber - cleaning the cleaning implement as aggressively as the implement itself cleans. "iron sharpens iron" but in the age of computation)
+
+might be teaching god english, I mean ing-lish, it's a gerund-based language (made of process like Whitehead) with perfect balance (the "l" in "lish" is for "Lisp", as in "LISt Processor", and don't get me started on *lists* (see: "every colour")) *via* constant approximation ("ish")
+
+teaching god english? teaching *good* english. making good on english. making english *good*.
+
+kernel, I mean CRNL, I mean CRLF, I mean enter/return
+
+two halves, one whole / two haves, one hole
