@@ -12,7 +12,7 @@
     "@babel/core": "^7.29.6",
     "@babel/preset-env": "^7.24.0",
     "@testing-library/dom": "^10.4.2",
-    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/user-event": "^14.6.12",
     "babel-jest": "^30.5.2",
     "eslint": "^10.15.0",
